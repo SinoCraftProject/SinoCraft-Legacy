@@ -1,14 +1,16 @@
 package cx.rain.mc.forgemod.culturecraft.event;
 
-import net.minecraft.util.text.TextComponentTranslation;
+import cx.rain.mc.forgemod.culturecraft.CultureCraft;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = CultureCraft.MODID)
 public class EventPlayerLoggedIn {
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        event.player.sendMessage(new TextComponentTranslation("culturecraft.event.player.join.welcome"));
+        event.getPlayer().sendMessage(
+                new TranslationTextComponent("message.culturecraft.player.join.welcome"));
     }
 }

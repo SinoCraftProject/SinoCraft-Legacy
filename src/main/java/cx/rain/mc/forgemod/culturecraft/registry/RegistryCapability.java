@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.init;
 
-import cx.rain.mc.forgemod.culturecraft.api.game.interfaces.*;
-import cx.rain.mc.forgemod.culturecraft.api.game.capability.*;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.*;
+import cx.rain.mc.forgemod.culturecraft.api.capability.*;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
