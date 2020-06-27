@@ -1,8 +1,41 @@
 {
   "itemGroup.culturecraft.blocks": "华夏文明 | 方块",
+  "itemGroup.culturecraft.items": "华夏文明 | 物品",
+  "itemGroup.culturecraft.machines": "华夏文明 | 机器",
   "itemGroup.culturecraft.foods": "华夏文明 | 食物",
 
+  "item.culturecraft.celery_cabbage": "白菜",
+  "item.culturecraft.eggplant": "茄子",
+  "item.culturecraft.pepper_chili": "辣椒",
+  "item.culturecraft.radish_green": "青萝卜",
+  "item.culturecraft.radish_summer": "水萝卜",
+  "item.culturecraft.radish_white": "白萝卜",
+
+  "item.culturecraft.bowl_ceramic": "陶瓷碗",
+
+  "item.culturecraft.heroes_assemble": "群英荟萃",
+  "item.culturecraft.dumpling": "饺子",
+  "item.culturecraft.spirits": "白酒",
+  "item.culturecraft.charred_food": "烧焦的食物",
+  "item.culturecraft.soybean_milk": "豆浆",
   "item.culturecraft.tofu": "豆腐",
 
-  "block.culturecraft.marble_white": "汉白玉"
+  "block.culturecraft.marble_white": "汉白玉",
+  "block.culturecraft.brick_black": "黑砖块",
+  "block.culturecraft.glaze_colored": "釉",
+  "block.culturecraft.tile_gray": "灰瓦片",
+  "block.culturecraft.pottery": "陶器",
+  "block.culturecraft.porcelain": "瓷器",
+  "block.culturecraft.stove": "炉灶",
+  "block.culturecraft.tile": "瓦片",
+  "block.culturecraft.log_mahogany": "桃花心木原木",
+  "block.culturecraft.plank_mahogany": "桃花心木木板",
+  "block.culturecraft.leaves_mahogany": "桃花心木树叶",
+  "block.culturecraft.sapling_mahogany": "桃花心木树苗",
+  "block.culturecraft.log_walnut": "核桃木原木",
+  "block.culturecraft.plank_walnut": "核桃木木板",
+  "block.culturecraft.leaves_walnut": "核桃树树叶",
+  "block.culturecraft.sapling_walnut": "核桃树树苗",
+
+  "message.culturecraft.player.join.welcome": "欢迎！"
 }

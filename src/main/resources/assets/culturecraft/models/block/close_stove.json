@@ -1,11 +1,11 @@
 {
   "parent": "block/cube",
   "textures": {
-    "up": "chineseculture:blocks/close_stove_top",
-    "down": "chineseculture:blocks/black_brick",
-    "west": "chineseculture:blocks/black_brick",
-    "north": "chineseculture:blocks/close_stove_front",
-    "east": "chineseculture:blocks/black_brick",
-    "south": "chineseculture:blocks/black_brick"
+    "up": "culturecraft:blocks/close_stove_top",
+    "down": "culturecraft:blocks/black_brick",
+    "west": "culturecraft:blocks/black_brick",
+    "north": "culturecraft:blocks/close_stove_front",
+    "east": "culturecraft:blocks/black_brick",
+    "south": "culturecraft:blocks/black_brick"
   }
 }

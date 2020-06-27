@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chineseculture:blocks/walnut_tree_sapling"
+    "layer0": "culturecraft:blocks/walnut_tree_sapling"
   }
 }

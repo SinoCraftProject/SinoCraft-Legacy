@@ -1,8 +1,8 @@
 {
   "variants": {
-    "axis=y":  { "model": "chineseculture:walnut_tree_log" },
-    "axis=z":   { "model": "chineseculture:walnut_tree_log", "x": 90 },
-    "axis=x":   { "model": "chineseculture:walnut_tree_log", "x": 90, "y": 90 },
-    "axis=none": { "model": "chineseculture:walnut_tree_bark" }
+    "axis=y":  { "model": "culturecraft:walnut_tree_log" },
+    "axis=z":   { "model": "culturecraft:walnut_tree_log", "x": 90 },
+    "axis=x":   { "model": "culturecraft:walnut_tree_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "culturecraft:walnut_tree_bark" }
   }
 }

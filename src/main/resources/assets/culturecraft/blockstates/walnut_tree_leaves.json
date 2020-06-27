@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "leaves",
-    "textures": {"all": "chineseculture:walnut_tree_leaves" }
+    "textures": {"all": "culturecraft:walnut_tree_leaves" }
   },
   "variants": { "normal": [{}] }
 }

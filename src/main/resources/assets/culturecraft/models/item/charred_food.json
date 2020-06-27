@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chineseculture:items/charred_food"
+    "layer0": "culturecraft:items/charred_food"
   }
 }

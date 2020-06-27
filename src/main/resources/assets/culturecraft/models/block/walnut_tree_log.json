@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "chineseculture:blocks/walnut_tree_log_top",
-    "side": "chineseculture:blocks/walnut_tree_log"
+    "end": "culturecraft:blocks/walnut_tree_log_top",
+    "side": "culturecraft:blocks/walnut_tree_log"
   }
 }

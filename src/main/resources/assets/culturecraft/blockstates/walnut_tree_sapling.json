@@ -6,7 +6,7 @@
   },
   "variants": {
     "oak":[{
-      "model": "chineseculture:walnut_tree_sapling"
+      "model": "culturecraft:walnut_tree_sapling"
     }],
     "stage": {}
   }

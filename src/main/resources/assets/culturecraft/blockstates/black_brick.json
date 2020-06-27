@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "chineseculture:black_brick" }
+    "": { "model": "culturecraft:black_brick" }
   }
 }

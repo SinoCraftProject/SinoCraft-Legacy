@@ -1,11 +1,11 @@
 {
   "parent": "block/cube",
   "textures": {
-    "up": "chineseculture:blocks/overload_stove_top",
-    "down": "chineseculture:blocks/overload_black_brick",
-    "west": "chineseculture:blocks/overload_black_brick",
-    "north": "chineseculture:blocks/overload_stove_front",
-    "east": "chineseculture:blocks/overload_black_brick",
-    "south": "chineseculture:blocks/overload_black_brick"
+    "up": "culturecraft:blocks/overload_stove_top",
+    "down": "culturecraft:blocks/overload_black_brick",
+    "west": "culturecraft:blocks/overload_black_brick",
+    "north": "culturecraft:blocks/overload_stove_front",
+    "east": "culturecraft:blocks/overload_black_brick",
+    "south": "culturecraft:blocks/overload_black_brick"
   }
 }

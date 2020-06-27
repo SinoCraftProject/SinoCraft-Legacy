@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "chineseculture:blocks/mahogany_leaves"
+    "all": "culturecraft:blocks/mahogany_leaves"
   }
 }

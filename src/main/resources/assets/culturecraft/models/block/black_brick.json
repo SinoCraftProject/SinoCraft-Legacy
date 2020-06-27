@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "chineseculture:blocks/black_brick"
+    "all": "culturecraft:blocks/black_brick"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "blocks/walnut_tree_sapling"
+    "cross": "culturecraft:blocks/walnut_tree_sapling"
   }
 }

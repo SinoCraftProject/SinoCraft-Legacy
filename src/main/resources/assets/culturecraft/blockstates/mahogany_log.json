@@ -1,8 +1,8 @@
 {
   "variants": {
-    "axis=y":  { "model": "chineseculture:mahogany_log" },
-    "axis=z":   { "model": "chineseculture:mahogany_log", "x": 90 },
-    "axis=x":   { "model": "chineseculture:mahogany_log", "x": 90, "y": 90 },
-    "axis=none": { "model": "chineseculture:mahogany_bark" }
+    "axis=y":  { "model": "culturecraft:mahogany_log" },
+    "axis=z":   { "model": "culturecraft:mahogany_log", "x": 90 },
+    "axis=x":   { "model": "culturecraft:mahogany_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "culturecraft:mahogany_bark" }
   }
 }

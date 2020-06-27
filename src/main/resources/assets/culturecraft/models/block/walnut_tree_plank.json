@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "chineseculture:blocks/walnut_tree_plank"
+    "all": "culturecraft:blocks/walnut_tree_plank"
   }
 }

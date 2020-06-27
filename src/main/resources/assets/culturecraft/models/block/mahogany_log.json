@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "chineseculture:blocks/mahogany_log_top",
-    "side": "chineseculture:blocks/mahogany_log"
+    "end": "culturecraft:blocks/mahogany_log_top",
+    "side": "culturecraft:blocks/mahogany_log"
   }
 }

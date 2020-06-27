@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "leaves",
-    "textures": {"all": "chineseculture:mahogany_leaves" }
+    "textures": {"all": "culturecraft:mahogany_leaves" }
   },
   "variants": { "normal": [{}] }
 }
