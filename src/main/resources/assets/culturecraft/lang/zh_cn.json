@@ -3,6 +3,7 @@
   "itemGroup.culturecraft.items": "华夏文明 | 物品",
   "itemGroup.culturecraft.machines": "华夏文明 | 机器",
   "itemGroup.culturecraft.foods": "华夏文明 | 食物",
+  "itemGroup.culturecraft.misc": "华夏文明 | 杂项",
 
   "item.culturecraft.celery_cabbage": "白菜",
   "item.culturecraft.eggplant": "茄子",
@@ -11,6 +12,7 @@
   "item.culturecraft.radish_summer": "水萝卜",
   "item.culturecraft.radish_white": "白萝卜",
 
+  "item.culturecraft.plate": "盘子",
   "item.culturecraft.bowl_ceramic": "陶瓷碗",
 
   "item.culturecraft.heroes_assemble": "群英荟萃",
@@ -37,5 +39,7 @@
   "block.culturecraft.leaves_walnut": "核桃树树叶",
   "block.culturecraft.sapling_walnut": "核桃树树苗",
 
-  "message.culturecraft.player.join.welcome": "欢迎！"
+  "message.culturecraft.player.join.welcome": "欢迎！",
+
+  "tooltip.culturecraft.heroes_assemble": "你说这叫群英荟萃，我看这像萝卜开会。"
 }
