@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "chineseculture:blocks/working_stove_top",
+    "down": "chineseculture:blocks/black_brick",
+    "west": "chineseculture:blocks/black_brick",
+    "north": "chineseculture:blocks/working_stove_front",
+    "east": "chineseculture:blocks/black_brick",
+    "south": "chineseculture:blocks/black_brick"
+  }
+}

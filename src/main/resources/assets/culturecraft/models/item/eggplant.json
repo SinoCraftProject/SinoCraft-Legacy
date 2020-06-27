@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chineseculture:items/tofu"
+    "layer0": "chineseculture:items/eggplant"
   }
 }

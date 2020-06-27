@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "facing=east,state=close": { "model": "chineseculture:close_stove", "y": 90, "uvlock": true },
+    "facing=north,state=close": { "model": "chineseculture:close_stove" },
+    "facing=south,state=close": { "model": "chineseculture:close_stove", "y": 180, "uvlock": true },
+    "facing=west,state=close": { "model": "chineseculture:close_stove", "y": 270, "uvlock": true },
+    "facing=east,state=working": { "model": "chineseculture:working_stove", "y": 90, "uvlock": true },
+    "facing=north,state=working": { "model": "chineseculture:working_stove" },
+    "facing=south,state=working": { "model": "chineseculture:working_stove", "y": 180, "uvlock": true },
+    "facing=west,state=working": { "model": "chineseculture:working_stove", "y": 270, "uvlock": true },
+    "facing=east,state=idle": { "model": "chineseculture:working_stove", "y": 90, "uvlock": true },
+    "facing=north,state=idle": { "model": "chineseculture:working_stove" },
+    "facing=south,state=idle": { "model": "chineseculture:working_stove", "y": 180, "uvlock": true },
+    "facing=west,state=idle": { "model": "chineseculture:working_stove", "y": 270, "uvlock": true },
+    "facing=east,state=overload": { "model": "chineseculture:overload_stove", "y": 90, "uvlock": true },
+    "facing=north,state=overload": { "model": "chineseculture:overload_stove" },
+    "facing=south,state=overload": { "model": "chineseculture:overload_stove", "y": 180, "uvlock": true },
+    "facing=west,state=overload": { "model": "chineseculture:overload_stove", "y": 270, "uvlock": true },
+    "facing=east,state=damaged": { "model": "chineseculture:damaged_stove", "y": 90, "uvlock": true },
+    "facing=north,state=damaged": { "model": "chineseculture:damaged_stove" },
+    "facing=south,state=damaged": { "model": "chineseculture:damaged_stove", "y": 180, "uvlock": true },
+    "facing=west,state=damaged": { "model": "chineseculture:damaged_stove", "y": 270, "uvlock": true }
+  }
+}

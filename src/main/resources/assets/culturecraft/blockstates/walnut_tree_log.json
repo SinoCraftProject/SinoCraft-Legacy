@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y":  { "model": "chineseculture:walnut_tree_log" },
+    "axis=z":   { "model": "chineseculture:walnut_tree_log", "x": 90 },
+    "axis=x":   { "model": "chineseculture:walnut_tree_log", "x": 90, "y": 90 },
+    "axis=none": { "model": "chineseculture:walnut_tree_bark" }
+  }
+}

@@ -1,0 +1,41 @@
+# Items
+item.culturecraft.dumpling.name=饺子
+item.culturecraft.spirits.name=白酒
+item.culturecraft.tofu.name=豆腐
+item.culturecraft.charredFood.name=烧焦的食物
+item.culturecraft.soybeanMilk.name=豆浆
+item.culturecraft.celerycabbage.name=白菜
+item.culturecraft.eggplant.name=茄子
+item.culturecraft.radishgreen.name=青萝卜
+item.culturecraft.pepperchilid.name=辣椒
+item.culturecraft.radishsummer.name=水萝卜
+item.culturecraft.radishwhite.name=白萝卜
+item.culturecraft.ceramicbowl.name=陶瓷碗
+item.culturecraft.heroesassemble.name=萝卜派对
+
+# Blocks
+
+tile.culturecraft.blackBrick.name=黑砖块
+tile.culturecraft.colouredGlaze.name=釉
+tile.culturecraft.grayTiles.name=灰瓦片
+tile.culturecraft.marble.name=大理石
+tile.culturecraft.pottery.name=陶器
+tile.culturecraft.porcelain.name=瓷器
+tile.culturecraft.stove.name=炉灶
+tile.culturecraft.tiles.name=瓦片
+tile.culturecraft.mahoganyLog.name=桃花心木原木
+tile.culturecraft.mahoganyPlank.name=桃花心木木板
+tile.culturecraft.mahoganyLeaves.name=桃花心木树叶
+tile.culturecraft.mahoganySapling.name=桃花心木树苗
+tile.culturecraft.walnutTreeLog.name=核桃木原木
+tile.culturecraft.walnutTreePlank.name=核桃木木板
+tile.culturecraft.walnutTreeLeaves.name=核桃树树叶
+tile.culturecraft.walnutTreeSapling.name=核桃树树苗
+
+# ItemGroups
+itemGroup.culturecraft.tabs.block= | 建筑方块
+itemGroup.culturecraft.tabs.food= | 食物
+itemGroup.culturecraft.tabs.machine= | 机器
+itemGroup.culturecraft.tabs.ITEM= | 物品
+# Messages
+culturecraft.event.player.join.welcome=欢迎！
