@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft;
 
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
+import cx.rain.mc.forgemod.culturecraft.client.Render;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -32,8 +33,8 @@ public class CultureCraft {
         bus.addListener(this::setupClient);
         bus.addListener(this::setupServer);
 
-        Items.REGISTRY.register(bus);
-        Blocks.REGISTRY.register(bus);
+        new Blocks(bus);
+        new Items(bus);
     }
 
     public static CultureCraft getInstance() {
@@ -49,7 +50,7 @@ public class CultureCraft {
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-
+        Render.ChangeRender();
     }
 
     private void setupServer(final FMLDedicatedServerSetupEvent event) {
