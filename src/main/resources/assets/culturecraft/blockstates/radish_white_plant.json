@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "age=0": { "model": "culturecraft:block/radish_white_stage_0" },
+    "age=1": { "model": "culturecraft:block/radish_white_stage_0" },
+    "age=2": { "model": "culturecraft:block/radish_white_stage_0" },
+    "age=3": { "model": "culturecraft:block/radish_white_stage_1" },
+    "age=4": { "model": "culturecraft:block/radish_white_stage_1" },
+    "age=5": { "model": "culturecraft:block/radish_white_stage_2" },
+    "age=6": { "model": "culturecraft:block/radish_white_stage_2" },
+    "age=7": { "model": "culturecraft:block/radish_white_stage_3" }
+  }
+}
