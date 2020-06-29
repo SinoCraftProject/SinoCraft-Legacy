@@ -26,8 +26,8 @@ public class Blocks {
     public static RegistryObject<Block> PEPPER_GREEN_PLANT =
             REGISTRY.register("pepper_green_plant",() -> new BlockPepper(PepperType.GREEN));
 
-    public static RegistryObject<Block> CALERY_CABBAGE_PLANT =
-            REGISTRY.register("calery_cabbage_plant",() -> new BlockCaleryCabbage(CeleryCabbageType.CELERY_CABBAGE));
+    public static RegistryObject<Block> CELERY_CABBAGE_PLANT =
+            REGISTRY.register("celery_cabbage_plant",() -> new BlockCaleryCabbage(CeleryCabbageType.CELERY_CABBAGE));
 
     public Blocks(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering blocks.");

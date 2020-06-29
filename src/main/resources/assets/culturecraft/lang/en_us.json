@@ -6,15 +6,15 @@
   "itemGroup.culturecraft.combat": "Culture Craft | Combat",
   "itemGroup.culturecraft.misc": "Culture Craft | Miscellaneous",
 
-  "item.culturecraft.calery_cabbage": "Celery Cabbage",
+  "item.culturecraft.celery_cabbage": "Celery Cabbage",
   "item.culturecraft.eggplant": "Eggplant",
   "item.culturecraft.pepper_chili": "Pepper Chili",
   "item.culturecraft.pepper_green": "Pepper Green",
   "item.culturecraft.radish_green": "Green Radish",
   "item.culturecraft.radish_summer": "Summer Radish",
   "item.culturecraft.radish_white": "White Radish",
-  "item.culturecraft.seed_chilipepper": "Seed chili pepper",
-  "item.culturecraft.seed_greenpepper": "Seed Green Pepper",
+  "item.culturecraft.pepper_chili_seed": "Chilipepper Seed",
+  "item.culturecraft.pepper_green_seed": "Green Pepper Seed",
 
   "item.culturecraft.bowl_ceramic": "Cermic Bowl",
   "item.culturecraft.plate": "Plate",

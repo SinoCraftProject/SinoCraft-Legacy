@@ -6,15 +6,15 @@
   "itemGroup.culturecraft.combat": "华夏文明 | 战斗",
   "itemGroup.culturecraft.misc": "华夏文明 | 杂项",
 
-  "item.culturecraft.calery_cabbage": "白菜",
+  "item.culturecraft.celery_cabbage": "白菜",
   "item.culturecraft.eggplant": "茄子",
   "item.culturecraft.pepper_chili": "辣椒",
   "item.culturecraft.pepper_green": "青椒",
   "item.culturecraft.radish_green": "青萝卜",
   "item.culturecraft.radish_summer": "水萝卜",
   "item.culturecraft.radish_white": "白萝卜",
-  "item.culturecraft.seed_chilipepper": "辣椒种子",
-  "item.culturecraft.seed_peppergreen": "青椒种子",
+  "item.culturecraft.pepper_chili_seed": "辣椒种子",
+  "item.culturecraft.pepper_green_seed": "青椒种子",
 
   "item.culturecraft.bowl_ceramic": "陶瓷碗",
   "item.culturecraft.plate": "盘子",

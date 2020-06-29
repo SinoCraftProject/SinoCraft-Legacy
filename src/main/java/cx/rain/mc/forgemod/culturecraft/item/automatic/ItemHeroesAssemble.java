@@ -36,7 +36,7 @@ public class ItemHeroesAssemble extends Item {
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         tooltip.add(new TranslationTextComponent("tooltip.culturecraft.heroes_assemble")
-                .setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+                .setStyle(new Style().setColor(TextFormatting.GRAY)));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }
