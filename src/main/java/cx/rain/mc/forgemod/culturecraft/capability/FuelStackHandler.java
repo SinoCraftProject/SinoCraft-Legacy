@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.api.capability;
+package cx.rain.mc.forgemod.culturecraft.capability;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import net.minecraft.item.ItemStack;

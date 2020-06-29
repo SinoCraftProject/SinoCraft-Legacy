@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.api.capability;
+package cx.rain.mc.forgemod.culturecraft.capability;
 
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IWindEnergy;
 import net.minecraft.nbt.INBT;
