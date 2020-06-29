@@ -36,11 +36,17 @@ public class Items {
                             .food(new Food.Builder().hunger(3).saturation(5).build())
                             .setNoRepair()));
 
-    public static RegistryObject<Item> PEPPER_CHILI =
-            REGISTRY.register("pepper_chili", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
+
+    public static RegistryObject<Item> SEED_CHILIPEPPER =
+            REGISTRY.register("seed_chilipepper", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
-                            .group(Groups.FOODS)
-                            .food(new Food.Builder().hunger(1).saturation(2).fastToEat().build())
+                            .group(Groups.ITEMS)
+                            .setNoRepair()));
+
+    public static RegistryObject<Item> SEED_GREENPEPPER =
+            REGISTRY.register("seed_greenpepper", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
+                    new Item.Properties()
+                            .group(Groups.ITEMS)
                             .setNoRepair()));
 
     public Items(IEventBus bus) {

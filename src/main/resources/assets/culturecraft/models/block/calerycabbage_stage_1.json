@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "culturecraft:blocks/calerycabbage_stage_1"
+  }
+}

@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
+import cx.rain.mc.forgemod.culturecraft.api.enumerate.CalerycabbageType;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.PepperType;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
 import net.minecraft.block.Block;
@@ -22,6 +23,11 @@ public class Blocks {
 
     public static RegistryObject<Block> PEPPER_CHILI_PLANT =
             REGISTRY.register("pepper_chili_plant",() -> new BlockPepper(PepperType.CHILI));
+    public static RegistryObject<Block> PEPPER_GREEN_PLANT =
+            REGISTRY.register("pepper_green_plant",() -> new BlockPepper(PepperType.GREEN));
+
+    public static RegistryObject<Block> CALERY_CABBAGE_PLANT =
+            REGISTRY.register("calery_cabbage_plant",() -> new BlockCalerycabbageplant(CalerycabbageType.CALERYCABBAGE));
 
     public Blocks(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering blocks.");

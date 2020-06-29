@@ -32,7 +32,7 @@ public class BlockPepper extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 7;
+        int stage = age / 8;
         return SHAPE_BY_AGE[stage];
 
     }
@@ -41,9 +41,12 @@ public class BlockPepper extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (pepperType) {
             case CHILI:
-                return Items.PEPPER_CHILI.get();
+                return Items.SEED_CHILIPEPPER.get();
+            case GREEN:
+                return Items.SEED_GREENPEPPER.get();
         }
         return null;
 
     }
+
 }

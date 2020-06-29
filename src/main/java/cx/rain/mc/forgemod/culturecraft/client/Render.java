@@ -9,5 +9,10 @@ public class Render {
         RenderTypeLookup.setRenderLayer(Blocks.RADISH_WHITE_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.RADISH_SUMMER_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.RADISH_GREEN_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.PEPPER_CHILI_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.PEPPER_GREEN_PLANT.get(),RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.CALERY_CABBAGE_PLANT.get(),RenderType.getCutout());
+
+
     }
 }
