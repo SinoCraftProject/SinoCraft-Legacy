@@ -38,13 +38,13 @@ public class Items {
 
 
     public static RegistryObject<Item> SEED_CHILIPEPPER =
-            REGISTRY.register("seed_chilipepper", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
+            REGISTRY.register("pepper_chili_seed", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.ITEMS)
                             .setNoRepair()));
 
     public static RegistryObject<Item> SEED_GREENPEPPER =
-            REGISTRY.register("seed_greenpepper", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
+            REGISTRY.register("pepper_green_seed", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.ITEMS)
                             .setNoRepair()));

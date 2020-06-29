@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CalerycabbageType;
+import cx.rain.mc.forgemod.culturecraft.api.enumerate.CeleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,7 +12,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class BlockCalerycabbageplant extends CropsBlock {
+public class BlockCaleryCabbage extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
@@ -20,28 +20,26 @@ public class BlockCalerycabbageplant extends CropsBlock {
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private CalerycabbageType calerycabbageType = null;
+    private CeleryCabbageType celeryCabbageType = null;
 
-    protected BlockCalerycabbageplant(CalerycabbageType type) {
+    protected BlockCaleryCabbage(CeleryCabbageType type) {
         super(Block.Properties.from(Blocks.CARROTS));
-        calerycabbageType = type;
+        celeryCabbageType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
     }
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 4;
+        int stage = age / 2;
         return SHAPE_BY_AGE[stage];
 
     }
 
     @Override
     public IItemProvider getSeedsItem() {
-        switch (calerycabbageType) {
-            case CALERYCABBAGE:
-                return RegistryItem.ITEMS.get("calery_cabbage");
-
-
+        switch (celeryCabbageType) {
+            case CELERY_CABBAGE:
+                return RegistryItem.ITEMS.get("celery_cabbage");
         }
         return null;
     }

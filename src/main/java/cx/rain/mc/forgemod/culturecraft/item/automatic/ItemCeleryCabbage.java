@@ -5,13 +5,13 @@ import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 
-@ModItem(name = "calery_cabbage")
-public class ItemCalelycabbage extends Item {
+@ModItem(name = "celery_cabbage")
+public class ItemCeleryCabbage extends Item {
     public static Food food = new Food.Builder()
             .hunger(1)
             .saturation(3)
             .build();
-    public ItemCalelycabbage(){
+    public ItemCeleryCabbage(){
         super(new Properties()
                 .group(Groups.FOODS)
                 .food(food)
