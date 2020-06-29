@@ -12,6 +12,7 @@ public class BlockMarbleWhite extends Block {
         super(Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA)
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(2)
+                .hardnessAndResistance(1.5F, 6.0F)
         );
     }
 }
