@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "culturecraft:RecipeHeroesassemble",
+  "result": { "item": "culturecraft:heroes_assemble", "count": 1 },
+  "ingredients": [
+    { "item": "culturecraft:radish_green", "data": 0 },
+    { "item": "culturecraft:radish_white", "data": 0 },
+    { "item": "culturecraft:radish_summer", "data": 0 },
+    { "item": "minecraft:carrot", "data": 0 },
+    { "item": "culturecraft:ceramic_bowl", "data": 0 }
+  ]
+}
