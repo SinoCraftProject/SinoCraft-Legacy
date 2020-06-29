@@ -26,7 +26,7 @@ public class Items {
             REGISTRY.register("radish_summer", () -> new BlockNamedItem(Blocks.RADISH_SUMMER_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
-                            .food(new Food.Builder().hunger(3).saturation(5).build())
+                            .food(new Food.Builder().hunger(2).saturation(3).build())
                             .setNoRepair()));
 
     public static RegistryObject<Item> RADISH_GREEN =
@@ -40,7 +40,7 @@ public class Items {
             REGISTRY.register("pepper_chili", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
-                            .food(new Food.Builder().hunger(1).saturation(2).build())
+                            .food(new Food.Builder().hunger(1).saturation(2).fastToEat().build())
                             .setNoRepair()));
 
     public Items(IEventBus bus) {

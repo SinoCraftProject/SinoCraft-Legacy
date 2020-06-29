@@ -42,7 +42,6 @@ public class BlockPepper extends CropsBlock {
         switch (pepperType) {
             case CHILI:
                 return Items.PEPPER_CHILI.get();
-
         }
         return null;
 
