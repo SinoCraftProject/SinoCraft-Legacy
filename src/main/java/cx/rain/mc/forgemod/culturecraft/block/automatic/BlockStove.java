@@ -1,7 +1,8 @@
 package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -14,6 +15,11 @@ import javax.annotation.Nullable;
 public class BlockStove extends ContainerBlock {
     public BlockStove() {
         super(Properties.create(Material.GOURD, MaterialColor.GRAY));
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Nullable
