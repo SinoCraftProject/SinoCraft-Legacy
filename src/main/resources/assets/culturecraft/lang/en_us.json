@@ -1,8 +1,19 @@
 {
-  "itemGroup.culturecraft.blocks":"Culture Craft | Blocks",
-  "itemGroup.culturecraft.foods":"Culture Craft | Foods",
+  "itemGroup.culturecraft.blocks": "CultureCraft | Blocks",
+  "itemGroup.culturecraft.foods": "CultureCraft | Foods",
+  "itemGroup.culturecraft.items": "CultureCraft | Items",
 
   "item.culturecraft.tofu": "Tofu",
+  "item.culturecraft.celery_cabbage": "Celery Cabbage",
+  "item.culturecraft.radish_green": "Green Radish",
+  "item.culturecraft.radish_white": "White Radish",
+  "item.culturecraft.radish_summer": "Summer Radish",
+  "item.culturecraft.eggplant": "Eggplant",
+  "item.culturecraft.heroes_assemnble": "Heroes Assemble",
 
-  "block.culturecraft.marble_white": "White Marble"
+  "block.culturecraft.marble_white": "Marble White",
+  "block.culturecraft.pepper_chili_plant": "Pepper Chili",
+  "block.culturecraft.radish_green_plant": "Green Radish",
+  "block.culturecraft.marble_white_plant": "White Radish",
+  "block.culturecraft.marble_summer_plant": "Summer Radish"
 }
