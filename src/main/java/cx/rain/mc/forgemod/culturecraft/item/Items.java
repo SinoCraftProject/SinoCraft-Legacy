@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.culturecraft.item;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -32,6 +31,13 @@ public class Items {
 
     public static RegistryObject<Item> RADISH_GREEN =
             REGISTRY.register("radish_green", () -> new BlockNamedItem(Blocks.RADISH_GREEN_PLANT.get(),
+                    new Item.Properties()
+                            .group(Groups.FOODS)
+                            .food(new Food.Builder().hunger(3).saturation(5).build())
+                            .setNoRepair()));
+
+    public static RegistryObject<Item> PEPPER_CHILI =
+            REGISTRY.register("pepper_chili", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
                             .food(new Food.Builder().hunger(1).saturation(2).build())

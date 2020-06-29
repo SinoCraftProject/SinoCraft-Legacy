@@ -1,44 +1,8 @@
 {
-  "itemGroup.culturecraft.blocks": "Culture Craft | Blocks",
-  "itemGroup.culturecraft.items": "Culture Craft | Items",
-  "itemGroup.culturecraft.machines": "Culture Craft | Machines",
-  "itemGroup.culturecraft.foods": "Culture Craft | Foods",
-  "itemGroup.culturecraft.misc": "Culture Craft | Miscellaneous",
+  "itemGroup.culturecraft.blocks":"Culture Craft | Blocks",
+  "itemGroup.culturecraft.foods":"Culture Craft | Foods",
 
-  "item.culturecraft.celery_cabbage": "Celery Cabbage",
-  "item.culturecraft.eggplant": "Eggplant",
-  "item.culturecraft.pepper_chili": "Chili Pepper",
-  "item.culturecraft.radish_green": "GreenRadish",
-  "item.culturecraft.radish_summer": "Summer Radish",
-  "item.culturecraft.radish_white": "WhiteRadish",
-
-  "item.culturecraft.plate": "Plate",
-  "item.culturecraft.bowl_ceramic": "Cermic Bowl",
-
-  "item.culturecraft.heroes_assemble": "Heroes Assemble",
-  "item.culturecraft.dumpling": "Dumpling",
-  "item.culturecraft.spirits": "Spirits",
-  "item.culturecraft.charred_food": "Charred Food",
-  "item.culturecraft.soybean_milk": "Soybean Milk",
   "item.culturecraft.tofu": "Tofu",
 
-  "block.culturecraft.marble_white": "White Marble",
-  "block.culturecraft.brick_black": "Black Brick",
-  "block.culturecraft.glaze_colored": "Coloured Glaze",
-  "block.culturecraft.tile_gray": "Gray Tiles",
-  "block.culturecraft.pottery": "Pottery",
-  "block.culturecraft.porcelain": "Porcelain",
-  "block.culturecraft.stove": "Stove",
-  "block.culturecraft.tile": "Tiles",
-  "block.culturecraft.log_mahogany": "Mahogany Log",
-  "block.culturecraft.plank_mahogany": "Mahogany Plank",
-  "block.culturecraft.leaves_mahogany": "Mahogany Leaves",
-  "block.culturecraft.sapling_mahogany": "Mahogany Sapling",
-  "block.culturecraft.log_walnut": "Walnut Tree Log",
-  "block.culturecraft.plank_walnut": "Walnut Tree Plank",
-  "block.culturecraft.leaves_walnut": "Walnut Tree Leaves",
-  "block.culturecraft.sapling_walnut": "Walnut Tree Sapling",
-
-  "message.culturecraft.player.join.welcome": "Welcome!",
-  "tooltip.culturecraft.heroes_assemble": "I think this is radish meeting."
+  "block.culturecraft.marble_white": "White Marble"
 }
