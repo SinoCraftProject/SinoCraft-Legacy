@@ -4,6 +4,7 @@
   "itemGroup.culturecraft.machines": "Culture Craft | Machines",
   "itemGroup.culturecraft.foods": "Culture Craft | Foods",
   "itemGroup.culturecraft.combat": "Culture Craft | Combat",
+  "itemGroup.culturecraft.misc": "Culture Craft | Miscellaneous",
 
   "item.culturecraft.celery_cabbage": "Celery Cabbage",
   "item.culturecraft.eggplant": "Eggplant",
@@ -13,6 +14,7 @@
   "item.culturecraft.radish_white": "WhiteRadish",
 
   "item.culturecraft.bowl_ceramic": "Cermic Bowl",
+  "item.culturecraft.plate": "Plate",
 
   "item.culturecraft.heroes_assemble": "Heroes Assemble",
   "item.culturecraft.dumpling": "Dumpling",
@@ -37,6 +39,8 @@
   "block.culturecraft.plank_walnut": "Walnut Tree Plank",
   "block.culturecraft.leaves_walnut": "Walnut Tree Leaves",
   "block.culturecraft.sapling_walnut": "Walnut Tree Sapling",
+
+  "tooltip.culturecraft.heroes_assemble": "I think this is radishes meeting.",
 
   "message.culturecraft.player.join.welcome": "Welcome!"
 }
