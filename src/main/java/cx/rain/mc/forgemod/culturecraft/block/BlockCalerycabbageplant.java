@@ -39,7 +39,7 @@ public class BlockCalerycabbageplant extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (calerycabbageType) {
             case CALERYCABBAGE:
-                return RegistryItem.ITEMS.get("celery_cabbage");
+                return RegistryItem.ITEMS.get("calery_cabbage");
 
 
         }
