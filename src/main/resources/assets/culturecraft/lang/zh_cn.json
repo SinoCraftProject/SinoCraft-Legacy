@@ -15,10 +15,12 @@
   "item.culturecraft.radish_white": "白萝卜",
   "item.culturecraft.pepper_chili_seed": "辣椒种子",
   "item.culturecraft.pepper_green_seed": "青椒种子",
+  "item.culturecraft.rice": "米",
 
   "item.culturecraft.bowl_ceramic": "陶瓷碗",
   "item.culturecraft.plate": "盘子",
   "item.culturecraft.chirping_wildoose_inhand": "鸣鸿刀",
+  "item.culturecraft.seven_stars_precious_blade": "七星刀",
 
   "item.culturecraft.heroes_assemble": "群英荟萃",
   "item.culturecraft.dumpling": "饺子",
@@ -45,6 +47,7 @@
   "block.culturecraft.sapling_walnut": "核桃树树苗",
 
   "tooltip.culturecraft.heroes_assemble": "你说这是群英荟萃，我看这像萝卜开会。",
+  "tooltip.culturecraft.bowl_rice": "香喷喷的白米饭",
 
   "message.culturecraft.player.join.welcome": "欢迎！"
 }

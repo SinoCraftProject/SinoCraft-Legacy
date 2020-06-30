@@ -19,7 +19,7 @@ public class Items {
             REGISTRY.register("radish_white", () -> new BlockNamedItem(Blocks.RADISH_WHITE_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
-                            .food(new Food.Builder().hunger(4).saturation(6).build())
+                            .food(new Food.Builder().hunger(3).saturation(4).build())
                             .setNoRepair()));
 
     public static RegistryObject<Item> RADISH_SUMMER =
@@ -33,7 +33,7 @@ public class Items {
             REGISTRY.register("radish_green", () -> new BlockNamedItem(Blocks.RADISH_GREEN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
-                            .food(new Food.Builder().hunger(3).saturation(5).build())
+                            .food(new Food.Builder().hunger(2).saturation(5).build())
                             .setNoRepair()));
 
 
@@ -47,6 +47,20 @@ public class Items {
             REGISTRY.register("pepper_green_seed", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.ITEMS)
+                            .setNoRepair()));
+
+    public static RegistryObject<Item> RICE =
+            REGISTRY.register("rice", () -> new BlockNamedItem(Blocks.RICE.get(),
+                    new Item.Properties()
+                            .food(new Food.Builder().hunger(1).saturation(2).build())
+                            .group(Groups.FOODS)
+                            .setNoRepair()));
+
+    public static RegistryObject<Item> EGGPLANT =
+            REGISTRY.register("eggplant", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
+                    new Item.Properties()
+                            .food(new Food.Builder().hunger(2).saturation(2).build())
+                            .group(Groups.FOODS)
                             .setNoRepair()));
 
     public Items(IEventBus bus) {

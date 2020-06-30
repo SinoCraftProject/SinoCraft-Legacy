@@ -2,18 +2,27 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 2.0,
+      "rolls": 1.0,
       "entries": [
         {
-          "conditions": [
-          {
-            "condition": "minecraft:block_state_property",
-            "block": "culturecraft:radish_white_plant",
-            "properties": {
-              "age": "4"
-            }
+          "type": "minecraft:item",
+          "name": "culturecraft:radish_white"
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "culturecraft:radish_white_plant",
+          "properties": {
+            "age": "7"
           }
-        ],
+        }
+      ],
+      "entries": [
+        {
           "type": "minecraft:item",
           "functions": [
             {

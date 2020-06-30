@@ -32,7 +32,7 @@ public class BlockPepper extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 8;
+        int stage = age / 7;
         return SHAPE_BY_AGE[stage];
 
     }

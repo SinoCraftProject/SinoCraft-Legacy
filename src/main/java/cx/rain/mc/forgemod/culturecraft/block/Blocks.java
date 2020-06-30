@@ -1,14 +1,15 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CaleryCabbageType;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.PepperType;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
+
+import cx.rain.mc.forgemod.culturecraft.api.enumerate.*;
 import net.minecraft.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.lang.reflect.Type;
 
 public class Blocks {
     public static final DeferredRegister<Block> REGISTRY =
@@ -27,7 +28,14 @@ public class Blocks {
             REGISTRY.register("pepper_green_plant",() -> new BlockPepper(PepperType.GREEN));
 
     public static RegistryObject<Block> CALERY_CABBAGE_PLANT =
-            REGISTRY.register("calery_cabbage_plant",() -> new BlockCaleryCabbage(CaleryCabbageType.CALERY_CABBAGE));
+            REGISTRY.register("calery_cabbage_plant",() -> new BlockCeleryCabbage(CeleryCabbageType.CELERY_CABBAGE));
+
+    public static RegistryObject<Block> EGGPLANT_PLANT =
+            REGISTRY.register("eggplant_plant",() -> new BlockEggplant(EggplantType.EGGPLANT));
+
+    public static RegistryObject<Block> RICE =
+            REGISTRY.register("rice_plant",() -> new BlockRice(RiceType.RICE));
+
 
     public Blocks(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering blocks.");

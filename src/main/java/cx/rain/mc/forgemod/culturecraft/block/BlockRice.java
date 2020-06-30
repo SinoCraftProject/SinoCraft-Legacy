@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.culturecraft.block;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.RiceType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

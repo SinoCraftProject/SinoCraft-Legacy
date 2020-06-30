@@ -33,7 +33,7 @@
           "condition": "minecraft:block_state_property",
           "block": "culturecraft:pepper_green_plant",
           "properties": {
-            "age": "8"
+            "age": "7"
           }
         }
       ]
