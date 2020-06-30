@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CeleryCabbageType;
+import cx.rain.mc.forgemod.culturecraft.api.enumerate.CaleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,25 +20,25 @@ public class BlockCaleryCabbage extends CropsBlock {
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private CeleryCabbageType celeryCabbageType = null;
+    private CaleryCabbageType caleryCabbageType = null;
 
-    protected BlockCaleryCabbage(CeleryCabbageType type) {
+    protected BlockCaleryCabbage(CaleryCabbageType type) {
         super(Block.Properties.from(Blocks.CARROTS));
-        celeryCabbageType = type;
+        caleryCabbageType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
     }
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 2;
+        int stage = age / 4;
         return SHAPE_BY_AGE[stage];
 
     }
 
     @Override
     public IItemProvider getSeedsItem() {
-        switch (celeryCabbageType) {
-            case CELERY_CABBAGE:
+        switch (caleryCabbageType) {
+            case CALERY_CABBAGE:
                 return RegistryItem.ITEMS.get("celery_cabbage");
         }
         return null;
