@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.PepperType;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
@@ -10,8 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-
-import java.lang.reflect.Type;
 
 public class BlockPepper extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -32,7 +29,7 @@ public class BlockPepper extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 8;
+        int stage = age / 2;
         return SHAPE_BY_AGE[stage];
 
     }
