@@ -5,6 +5,15 @@
       "rolls": 1.0,
       "entries": [
         {
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "culturecraft:radish_summer_plant",
+              "properties": {
+                "age": "4"
+              }
+            }
+          ],
           "type": "minecraft:item",
           "name": "culturecraft:radish_summer"
         }
@@ -12,6 +21,15 @@
     },
     {
       "rolls": 1.0,
+      "conditions": [
+      {
+        "condition": "minecraft:block_state_property",
+        "block": "culturecraft:radish_summer_plant",
+        "properties": {
+          "age": "4"
+        }
+      }
+    ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -28,16 +46,8 @@
           ],
           "name": "culturecraft:radish_summer"
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "culturecraft:radish_summer_plant",
-          "properties": {
-            "age": "4"
-          }
-        }
       ]
+
     }
   ],
   "functions": [
