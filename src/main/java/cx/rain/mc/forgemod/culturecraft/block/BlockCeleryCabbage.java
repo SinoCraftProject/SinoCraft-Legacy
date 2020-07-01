@@ -30,9 +30,8 @@ public class BlockCeleryCabbage extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 4;
+        int stage = age / 2;
         return SHAPE_BY_AGE[stage];
-
     }
 
     @Override

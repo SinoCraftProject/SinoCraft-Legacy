@@ -1,9 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.RiceType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,6 +14,7 @@ import net.minecraft.world.IBlockReader;
 
 public class BlockRice extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 19.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 21.0D, 16.0D),
@@ -36,8 +35,7 @@ public class BlockRice extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 7;
-        return SHAPE_BY_AGE[stage];
+        return SHAPE_BY_AGE[age];
     }
 
     @Override

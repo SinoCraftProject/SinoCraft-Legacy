@@ -1,10 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CeleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,6 +18,7 @@ public class BlockEggplant extends CropsBlock {
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
+                Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
                 Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
@@ -36,9 +34,7 @@ public class BlockEggplant extends CropsBlock {
         @Override
         public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
                 int age = state.get(getAgeProperty());
-                int stage = age / 7;
-                return SHAPE_BY_AGE[stage];
-
+                return SHAPE_BY_AGE[age];
         }
 
         @Override
@@ -48,6 +44,5 @@ public class BlockEggplant extends CropsBlock {
                                 return Items.EGGPLANT.get();
                 }
                 return null;
-
         }
 }
