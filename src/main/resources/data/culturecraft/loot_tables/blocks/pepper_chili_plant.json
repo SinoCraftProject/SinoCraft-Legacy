@@ -6,28 +6,29 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "culturecraft:pepper_chili_seed"
+          "name": "culturecraft:pepper_chili"
         }
       ]
     },
     {
       "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "culturecraft:pepper_chili_plant",
+          "properties": {
+            "age": "7"
+          }
+        }
+      ],
       "entries": [
         {
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "culturecraft:pepper_chili_plant",
-              "properties": {
-                "age": "7"
-              }
-            }
-          ],
           "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:apply_bonus",
               "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
                 "extra": 3,
                 "probability": 0.5714286
@@ -37,6 +38,7 @@
           "name": "culturecraft:pepper_chili"
         }
       ]
+
     }
   ],
   "functions": [

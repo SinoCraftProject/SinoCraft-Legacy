@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.culturecraft.item;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -62,6 +63,23 @@ public class Items {
                             .food(new Food.Builder().hunger(2).saturation(2).build())
                             .group(Groups.FOODS)
                             .setNoRepair()));
+
+    public static RegistryObject<Item> Blockmahoganyplank =
+           REGISTRY.register("mahogany_plank", () -> new BlockItem(Blocks.BlockMahoganyplank.get(),
+                    new Item.Properties()
+                            .maxStackSize(64)
+                            .group(Groups.BLOCKS)));
+    public static RegistryObject<Item> Blockmahoganylog =
+            REGISTRY.register("mahogany_log", () -> new BlockItem(Blocks.BlockMahoganyplog.get(),
+                    new Item.Properties()
+                            .group(Groups.BLOCKS)
+                            .maxStackSize(64)));
+    public static RegistryObject<Item> Blockmahoganyleaves =
+            REGISTRY.register("mahogany_leaves", () -> new BlockItem(Blocks.BlockMahoganypleaves.get(),
+                    new Item.Properties()
+                            .maxStackSize(64)
+                            .group(Groups.BLOCKS)));
+
 
     public Items(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering items.");

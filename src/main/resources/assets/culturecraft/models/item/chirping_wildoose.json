@@ -1,7 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "culturecraft:items/chirping_wildoose",
-    "layer1": "culturecraft:items/chirping_wildoose_inhand"
+    "layer0": "culturecraft:items/chirping_wildoose_inhand"
   }
 }
