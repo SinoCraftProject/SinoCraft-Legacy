@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockReader;
 
 import static cx.rain.mc.forgemod.culturecraft.item.Items.RADISH_SUMMER;
 
-@ModItem(name = "chirping_wildoose_inhand")
+@ModItem(name = "chirping_wildoose")
 public class ItemChirpingwildgoose extends SwordItem {
 
     public ItemChirpingwildgoose() {
