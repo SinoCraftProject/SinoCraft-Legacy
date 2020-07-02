@@ -1,0 +1,17 @@
+{
+  "group": "mahogany_craftingtable",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0","0",
+    "0","0"
+  ],
+  "key": {
+    "0": {
+      "item": "culturecraf:mahogany_plank"
+    }
+  },
+  "result": {
+    "item": "minecraft:crafting_table",
+    "count": 1
+  }
+}

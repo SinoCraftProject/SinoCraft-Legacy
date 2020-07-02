@@ -1,0 +1,8 @@
+{
+  "group": "b",
+  "type": "minecraft:crafting_shapeless",
+  "result": { "item": "culturecraft:mahogany_plank", "count": 4 },
+  "ingredients": [
+    { "item": "culturecraft:mahogany_log", "data": 0 }
+]
+}
