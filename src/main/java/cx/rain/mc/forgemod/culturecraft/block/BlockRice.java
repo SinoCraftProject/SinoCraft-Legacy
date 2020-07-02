@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.RiceType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,7 +27,7 @@ public class BlockRice extends CropsBlock {
 
     private RiceType riceType = null;
 
-    protected BlockRice(RiceType type) {
+    public BlockRice(RiceType type) {
         super(Block.Properties.from(Blocks.WHEAT));
         riceType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
@@ -35,7 +36,6 @@ public class BlockRice extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / 4;
         return SHAPE_BY_AGE[age];
     }
 
@@ -43,7 +43,7 @@ public class BlockRice extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (riceType) {
             case RICE:
-                return Items.RICE.get();
+                return RegistryItem.ITEMS.get("rice");
         }
         return null;
     }

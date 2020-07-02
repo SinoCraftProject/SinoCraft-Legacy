@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -41,7 +42,7 @@ public class BlockEggplant extends CropsBlock {
         public IItemProvider getSeedsItem() {
                 switch (eggplantType) {
                         case EGGPLANT:
-                                return Items.EGGPLANT.get();
+                                return RegistryItem.ITEMS.get("eggplant");
                 }
                 return null;
         }

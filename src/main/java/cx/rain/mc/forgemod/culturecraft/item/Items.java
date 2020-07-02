@@ -50,20 +50,6 @@ public class Items {
                             .group(Groups.ITEMS)
                             .setNoRepair()));
 
-    public static RegistryObject<Item> RICE =
-            REGISTRY.register("rice", () -> new BlockNamedItem(Blocks.RICE.get(),
-                    new Item.Properties()
-                            .food(new Food.Builder().hunger(1).saturation(2).build())
-                            .group(Groups.FOODS)
-                            .setNoRepair()));
-
-    public static RegistryObject<Item> EGGPLANT =
-            REGISTRY.register("eggplant", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
-                    new Item.Properties()
-                            .food(new Food.Builder().hunger(2).saturation(2).build())
-                            .group(Groups.FOODS)
-                            .setNoRepair()));
-
     public Items(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering items.");
         REGISTRY.register(bus);
