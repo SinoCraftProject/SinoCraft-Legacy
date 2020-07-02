@@ -1,7 +1,12 @@
 {
-  "parent": "block/cube_column",
+  "parent": "block/cube",
   "textures": {
-    "end": "culturecraft:blocks/mahogany_log_top",
-    "side": "culturecraft:blocks/mahogany_log"
+    "down": "culturecraft:blocks/mahogany_log_top",
+    "up": "culturecraft:blocks/mahogany_log_top",
+    "north": "culturecraft:blocks/mahogany_log",
+    "east": "culturecraft:blocks/mahogany_log",
+    "south": "culturecraft:blocks/mahogany_log",
+    "west": "culturecraft:blocks/mahogany_log",
+    "particle": "culturecraft:blocks/mahogany_log"
   }
 }

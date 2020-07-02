@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.culturecraft.item;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
+import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;

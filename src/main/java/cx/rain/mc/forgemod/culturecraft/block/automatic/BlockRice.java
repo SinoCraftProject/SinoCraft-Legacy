@@ -1,6 +1,6 @@
-package cx.rain.mc.forgemod.culturecraft.block;
+package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CeleryCabbageType;
+import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,21 +17,21 @@ import net.minecraft.world.storage.loot.LootContext;
 import java.util.Collections;
 import java.util.List;
 
-public class BlockCeleryCabbage extends CropsBlock {
+
+public class BlockRice extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 18.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 22.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 26.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 32.0D, 16.0D),
     };
 
-    private CeleryCabbageType celeryCabbageType = null;
 
-    protected BlockCeleryCabbage(CeleryCabbageType type) {
+    public BlockRice() {
         super(Block.Properties.from(Blocks.CARROTS));
-        celeryCabbageType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
     }
+
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
@@ -39,19 +39,20 @@ public class BlockCeleryCabbage extends CropsBlock {
         return SHAPE_BY_AGE[stage];
     }
 
-    @Override
-    public IItemProvider getSeedsItem() {
-        switch (celeryCabbageType) {
-            case CELERY_CABBAGE:
-                return RegistryItem.ITEMS.get("celery_cabbage");
-        }
-        return null;
-    }
-    @Override
+        @Override
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("celery_cabbage"), (int) (2)));
+        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("rice"), (int) (2)));
     }
-}
+
+    @Override
+    public IItemProvider getSeedsItem() {
+        {
+            return RegistryItem.ITEMS.get("rice");
+        }
+
+    }
+
+ }

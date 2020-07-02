@@ -13,16 +13,17 @@ import net.minecraftforge.common.ToolType;
 import java.util.Collections;
 import java.util.List;
 
-@ModBlock(name = "mahogany_plank")
-public class BlockMahoganyPlank extends Block {
-    public BlockMahoganyPlank() {
-        super(Properties.create(Material.WOOD).harvestTool(ToolType.AXE).harvestLevel(0).hardnessAndResistance(2,10).sound(SoundType.WOOD));
+@ModBlock(name = "walnut_tree_plank")
+public class BlockWalnutPlank extends Block {
+    public BlockWalnutPlank() {
+        super(Properties.create(Material.WOOD).hardnessAndResistance(2,10).sound(SoundType.WOOD)
+        .harvestLevel(0).harvestTool(ToolType.AXE));
     }
     @Override
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryBlock.BLOCKS.get("mahogany_plank"), (int) (1)));
+        return Collections.singletonList(new ItemStack(RegistryBlock.BLOCKS.get("walnut_tree_plank"), (int) (1)));
     }
 }

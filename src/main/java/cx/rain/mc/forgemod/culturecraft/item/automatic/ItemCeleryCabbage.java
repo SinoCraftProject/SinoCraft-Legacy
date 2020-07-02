@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 
 @ModItem(name = "celery_cabbage")
 public class ItemCeleryCabbage extends Item {
-    public static Food food = new Food.Builder()
+    private static Food food = new Food.Builder()
             .hunger(1)
             .saturation(3)
             .build();

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "culturecraft:recipe_foods",
   "result": { "item": "culturecraft:heroes_assemble", "count": 1 },
   "ingredients": [
     { "item": "culturecraft:radish_green", "data": 0 },

@@ -1,7 +1,12 @@
 {
-  "parent": "block/cube_column",
+  "parent": "block/cube",
   "textures": {
-    "end": "culturecraft:blocks/walnut_tree_log_top",
-    "side": "culturecraft:blocks/walnut_tree_log"
+    "down": "culturecraft:blocks/walnut_tree_log_top",
+    "up": "culturecraft:blocks/walnut_tree_log_top",
+    "north": "culturecraft:blocks/walnut_tree_log",
+    "east": "culturecraft:blocks/walnut_tree_log",
+    "south": "culturecraft:blocks/walnut_tree_log",
+    "west": "culturecraft:blocks/walnut_tree_log",
+    "particle": "culturecraft:blocks/walnut_tree_log"
   }
 }

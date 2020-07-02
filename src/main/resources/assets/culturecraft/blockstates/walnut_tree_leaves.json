@@ -1,8 +1,5 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "leaves",
-    "textures": {"all": "culturecraft:walnut_tree_leaves" }
-  },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "": { "model": "culturecraft:block/walnut_tree_leaves" }
+  }
 }

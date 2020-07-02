@@ -1,8 +1,28 @@
 {
   "variants": {
-    "axis=y":  { "model": "culturecraft:walnut_tree_log" },
-    "axis=z":   { "model": "culturecraft:walnut_tree_log", "x": 90 },
-    "axis=x":   { "model": "culturecraft:walnut_tree_log", "x": 90, "y": 90 },
-    "axis=none": { "model": "culturecraft:walnut_tree_bark" }
+    "facing=south": {
+      "model": "culturecraft:block/walnut_tree_log"
+    },
+    "facing=north": {
+      "model": "culturecraft:block/walnut_tree_log"
+    },
+    "facing=east": {
+      "model": "culturecraft:block/walnut_tree_log",
+      "x": 90
+    },
+    "facing=west": {
+      "model": "culturecraft:block/walnut_tree_log",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "culturecraft:block/walnut_tree_log",
+      "x": 90,
+      "y": 90
+    },
+    "facing=down": {
+      "model": "culturecraft:block/walnut_tree_log",
+      "x": 90,
+      "y": 90
+    }
   }
 }

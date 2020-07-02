@@ -1,7 +1,28 @@
 {
   "variants": {
-    "axis=y":  { "model": "culturecraft:block/mahogany_log" },
-    "axis=z":   { "model": "culturecraft:block/mahogany_log", "x": 90 },
-    "axis=x":   { "model": "culturecraft:block/mahogany_log", "x": 90, "y": 90 }
+    "facing=south": {
+      "model": "culturecraft:block/mahogany_log"
+    },
+    "facing=north": {
+      "model": "culturecraft:block/mahogany_log"
+    },
+    "facing=east": {
+      "model": "culturecraft:block/mahogany_log",
+      "x": 90
+    },
+    "facing=west": {
+      "model": "culturecraft:block/mahogany_log",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "culturecraft:block/mahogany_log",
+      "x": 90,
+      "y": 90
+    },
+    "facing=down": {
+      "model": "culturecraft:block/mahogany_log",
+      "x": 90,
+      "y": 90
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
+  "group": "c",
   "type": "minecraft:crafting_shapeless",
-  "group": "culturecraft:recipe_foods",
   "result": { "item": "culturecraft:bowl_rice", "count": 1 },
   "ingredients": [
     { "item": "culturecraft:rice", "data": 0 },

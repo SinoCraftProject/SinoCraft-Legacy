@@ -2,7 +2,10 @@ package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.DirectionalBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -18,11 +21,10 @@ import net.minecraftforge.common.ToolType;
 import java.util.Collections;
 import java.util.List;
 
-
-@ModBlock(name = "mahogany_log")
-public class BlockMahoganyLog extends Block {
+@ModBlock(name = "walnut_tree_log")
+public class BlockWalnutLog extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public BlockMahoganyLog() {
+    public BlockWalnutLog() {
         super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2, 10).lightValue(0).harvestLevel(0)
                 .harvestTool(ToolType.AXE));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.SOUTH));
@@ -74,6 +76,6 @@ public class BlockMahoganyLog extends Block {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryBlock.BLOCKS.get("mahogany_log"), (int) (1)));
+        return Collections.singletonList(new ItemStack(RegistryBlock.BLOCKS.get("walnut_tree_log"), (int) (1)));
     }
 }

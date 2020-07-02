@@ -5,9 +5,11 @@ import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 
+import java.security.PrivateKey;
+
 @ModItem(name = "eggplant")
 public class ItemEggplant extends Item {
-    public static Food food = new Food.Builder()
+    private static Food food = new Food.Builder()
             .hunger(1)
             .saturation(3)
             .build();

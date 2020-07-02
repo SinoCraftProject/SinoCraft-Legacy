@@ -3,7 +3,7 @@ package cx.rain.mc.forgemod.culturecraft.block;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.*;
-import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockMahoganyPlank;
+import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockRice;
 import net.minecraft.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -31,9 +31,6 @@ public class Blocks {
 
     public static RegistryObject<Block> EGGPLANT_PLANT =
             REGISTRY.register("eggplant_plant",() -> new BlockEggplant(EggplantType.EGGPLANT));
-
-    public static RegistryObject<Block> RICE =
-            REGISTRY.register("rice_plant",() -> new BlockRice(RiceType.RICE));
 
 
     public Blocks(IEventBus bus) {
