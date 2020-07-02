@@ -14,10 +14,6 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = CultureCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryItem {
-    /*
-    public static final DeferredRegister<Item> REGISTRY =
-            new DeferredRegister<>(ForgeRegistries.ITEMS, CultureCraft.MODID);
-     */
     public static Map<String, Item> ITEMS = new LinkedHashMap<>();
 
     static {

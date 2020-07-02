@@ -21,8 +21,8 @@ public class RegistryBlock {
     public static Map<String, Block> BLOCKS = new LinkedHashMap<>();
 
     static {
-        String itemsPackage = "cx.rain.mc.forgemod.culturecraft.block.automatic";
-        for (Class<?> clazz : AnnotationsHelper.getClassAnnotated(itemsPackage, ModBlock.class)) {
+        String blocksPackage = "cx.rain.mc.forgemod.culturecraft.block.automatic";
+        for (Class<?> clazz : AnnotationsHelper.getClassAnnotated(blocksPackage, ModBlock.class)) {
             try {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
