@@ -1,15 +1,13 @@
-package cx.rain.mc.forgemod.culturecraft.block;
+package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-
-public class BlockMahoganyplank extends Block {
-
-    public BlockMahoganyplank() {
+@ModBlock(name = "mahogany_plank")
+public class BlockMahoganyPlank extends Block {
+    public BlockMahoganyPlank() {
         super(Properties.create(Material.WOOD)
         .harvestTool(ToolType.AXE)
         .harvestLevel(0)
