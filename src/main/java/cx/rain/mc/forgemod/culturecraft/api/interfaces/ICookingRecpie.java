@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 public interface ICookingRecpie extends IForgeRegistryEntry<ICookingRecpie> {
     /**
      * Judge item set is meeting the rules of this recipe
-     * @param items Item set
+     * @param items ItemKnife set
      * @param tool Cooking tool
      * @param player player
      * @param worldIn the world of player in
@@ -28,7 +28,7 @@ public interface ICookingRecpie extends IForgeRegistryEntry<ICookingRecpie> {
 
     /**
      * Get the result of this recipe
-     * @param items Item set
+     * @param items ItemKnife set
      * @param tool Cooking tool
      * @param player player
      * @param worldIn the world of player in
@@ -39,7 +39,7 @@ public interface ICookingRecpie extends IForgeRegistryEntry<ICookingRecpie> {
 
     /**
      * Get remaining items after cooked
-     * @param items Item set
+     * @param items ItemKnife set
      * @return Remaining items
      */
     default NonNullList<ItemStack> getRemainingItems(@Nonnull NonNullList<ItemStack> items){

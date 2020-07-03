@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * ModItem annotation.
  * For auto register items.
- * Use on class extends Item.
+ * Use on class extends ItemKnife.
  * @author AmemiyaSigure
  */
 @Retention(RetentionPolicy.RUNTIME)

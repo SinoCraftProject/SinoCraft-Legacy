@@ -43,7 +43,7 @@ public class BlockRice extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (riceType) {
             case RICE:
-                return RegistryItem.ITEMS.get("rice");
+                return RegistryItem.ITEMS.get("seed_rice");
         }
         return null;
     }
