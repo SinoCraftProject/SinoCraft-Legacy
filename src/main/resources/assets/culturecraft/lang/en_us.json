@@ -19,6 +19,7 @@
 
   "item.culturecraft.bowl_ceramic": "Cermic Bowl",
   "item.culturecraft.plate": "Plate",
+  "item.culturecraft.chirping_wildoose": "Chirping Wildoose",
   "item.culturecraft.chirping_wildoose_inhand": "Chirping Wildoose",
   "item.culturecraft.seven_stars_precious_blade": "Seven stars precious blade",
 
@@ -37,16 +38,17 @@
   "block.culturecraft.porcelain": "Porcelain",
   "block.culturecraft.stove": "Stove",
   "block.culturecraft.tile": "Tiles",
-  "block.culturecraft.log_mahogany": "Mahogany Log",
-  "block.culturecraft.plank_mahogany": "Mahogany Plank",
-  "block.culturecraft.leaves_mahogany": "Mahogany Leaves",
-  "block.culturecraft.sapling_mahogany": "Mahogany Sapling",
+  "block.culturecraft.log_peach": "Peach Tree Log",
+  "block.culturecraft.plank_peach": "Peach Tree Plank",
+  "block.culturecraft.leaves_peach": "Peach Tree Leaves",
+  "block.culturecraft.sapling_peach": "Peach Tree Sapling",
   "block.culturecraft.log_walnut": "Walnut Tree Log",
   "block.culturecraft.plank_walnut": "Walnut Tree Plank",
   "block.culturecraft.leaves_walnut": "Walnut Tree Leaves",
   "block.culturecraft.sapling_walnut": "Walnut Tree Sapling",
 
   "tooltip.culturecraft.heroes_assemble": "I think this is radishes meeting.",
+  "tooltip.culturecraft.bowl_rice": "Testy rice!",
 
   "message.culturecraft.player.join.welcome": "Welcome!"
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "culturecraft:block/log_walnut" },
+    "axis=z":   { "model": "culturecraft:block/log_walnut", "x": 90 },
+    "axis=x":   { "model": "culturecraft:block/log_walnut", "x": 90, "y": 90 }
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "culturecraft:blocks/walnut_tree_log"
-  }
-}

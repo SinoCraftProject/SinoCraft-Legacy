@@ -1,0 +1,8 @@
+{
+  "group": "culturecraft:crafting",
+  "type": "minecraft:crafting_shapeless",
+  "result": { "item": "culturecraft:plank_peach", "count": 4 },
+  "ingredients": [
+    { "item": "culturecraft:log_peach", "data": 0 }
+]
+}
