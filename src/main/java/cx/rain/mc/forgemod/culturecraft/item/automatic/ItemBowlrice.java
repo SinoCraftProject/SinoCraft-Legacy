@@ -29,7 +29,7 @@ public class ItemBowlrice extends Item {
                 .food(food)
                 .maxStackSize(1)
                 .setNoRepair()
-                .containerItem(RegistryItem.ITEMS.get("plate"))
+                .containerItem(RegistryItem.ITEMS.get("bowl_empty"))
         );
     }
     @Override

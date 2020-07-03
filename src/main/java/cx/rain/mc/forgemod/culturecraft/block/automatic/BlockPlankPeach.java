@@ -21,4 +21,11 @@ public class BlockPlankPeach extends Block {
                 .hardnessAndResistance(2, 10)
                 .sound(SoundType.WOOD));
     }
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        if (!dropsOriginal.isEmpty())
+            return dropsOriginal;
+        return Collections.singletonList(new ItemStack(RegistryBlock.BLOCKS.get("plank_peach"), (int) (1)));
+    }
 }

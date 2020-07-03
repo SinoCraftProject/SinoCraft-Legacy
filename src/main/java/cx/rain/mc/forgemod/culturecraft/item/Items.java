@@ -42,19 +42,19 @@ public class Items {
     public static RegistryObject<Item> SEED_CHILIPEPPER =
             REGISTRY.register("pepper_chili_seed", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
-                            .group(Groups.ITEMS)
+                            .group(Groups.MISC)
                             .setNoRepair()));
 
     public static RegistryObject<Item> SEED_GREENPEPPER =
             REGISTRY.register("pepper_green_seed", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
                     new Item.Properties()
-                            .group(Groups.ITEMS)
+                            .group(Groups.MISC)
                             .setNoRepair()));
 
     public static RegistryObject<Item> SEED_EGGPLANT =
             REGISTRY.register("seed_eggplant", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
                     new Item.Properties()
-                            .group(Groups.ITEMS)
+                            .group(Groups.MISC)
                             .setNoRepair()));
 
     public Items(IEventBus bus) {
