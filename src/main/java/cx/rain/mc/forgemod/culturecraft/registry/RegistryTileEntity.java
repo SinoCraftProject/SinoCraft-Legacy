@@ -4,13 +4,13 @@ import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModTileEntity;
 import cx.rain.mc.forgemod.culturecraft.utility.AnnotationsHelper;
-import javafx.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.LinkedHashMap;
 import java.util.List;

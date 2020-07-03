@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
-import javafx.scene.image.PixelFormat;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
