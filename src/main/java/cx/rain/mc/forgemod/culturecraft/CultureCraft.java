@@ -2,8 +2,8 @@ package cx.rain.mc.forgemod.culturecraft;
 
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.client.Render;
+import cx.rain.mc.forgemod.culturecraft.entity.Entities;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -35,6 +35,8 @@ public class CultureCraft {
 
         new Blocks(bus);
         new Items(bus);
+        new Entities(bus);
+
     }
 
     public static CultureCraft getInstance() {
