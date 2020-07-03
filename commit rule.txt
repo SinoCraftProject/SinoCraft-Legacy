@@ -1,36 +1,36 @@
-Git Commit�ύ׼��
-Add: ������ʲô����
-Delete: ɾ����ʲô����
-Fix: �޸���ʲô����
-Update: ������ʲô���� 
-Refact: �ع���ʲô����
-Rename:��������ʲô����
-Wish:�ƻ���ʲô����
-Doing:������ʲô����
-List:���������޸ģ������г��޸��б������ڻ��ֲ��
-Task:����ĳ������ȴ������
-Issues:�������
-Change:�޸���ʲô����
-Build:�������°汾
-Modify:�޸���ʲô
-Complete:�����ʲô
-Found:�ҵ���ʲô��©����
+Git Commit提交准则：
+Add: 添加了什么东西
+Delete: 删除了什么东西
+Fix: 修复了什么东西
+Update: 更新了什么东西 
+Refact: 重构了什么东西
+Rename:重命名了什么东西
+Wish:计划做什么东西
+Doing:正在做什么东西
+List:用于套娃修改，底下列出修改列表，用于划分层次
+Task:添加某个任务等待人完成
+Issues:请求帮助
+Change:修改了什么东西
+Build:构建了新版本
+Modify:修改了什么
+Complete:完成了什么
+Found:找到了什么（漏洞）
 
-Listʾ��:
+List示例:
 List xxx:
   Fix: xxx
 
-List��������
+List命名建议
 
-"api_"��ͷָ��api����
-"game_"��ͷָ���淨����
-"code_"��ͷָ���������
-"optimize_"��ͷָ�������Ż�
-"doc_"��ͷָ��javadoc����
-"render_"��ͷָ����Ⱦ����
-"resource_"��ͷָ����Դ������
-"data_"��ͷָ�����ݰ�����
+"api_"开头指代api更新
+"game_"开头指代玩法更新
+"code_"开头指代代码更新
+"optimize_"开头指代性能优化
+"doc_"开头指代javadoc更新
+"render_"开头指代渲染更新
+"resource_"开头指代资源包更新
+"data_"开头指代数据包更新
 
-List����������ĸҪ��д����50����ĸ����
-���þ�Ž���List����ʹ����ʹ��
-ÿ��72����
+List行命名首字母要大写且在50个字母以内
+不用句号结束List行且使用祈使句
+每行72个字
