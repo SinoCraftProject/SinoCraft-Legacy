@@ -14,20 +14,11 @@ import net.minecraftforge.event.world.SaplingGrowTreeEvent;
 import java.util.Properties;
 import java.util.Random;
 
+/*
 @ModBlock(name = "sapling_peach")
-public class BlockSaplingPeach extends CropsBlock {
-    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-    };
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        int age = state.get(getAgeProperty());
-        int stage = age / 1;
-        return SHAPE_BY_AGE[stage];
-    }
-    protected BlockSaplingPeach() {
-        super(Block.Properties.from(Blocks.ACACIA_SAPLING));
-        setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
+public class BlockSaplingPeach extends SaplingBlock {
+    public BlockSaplingPeach() {
+        super();
     }
 }
+ */
