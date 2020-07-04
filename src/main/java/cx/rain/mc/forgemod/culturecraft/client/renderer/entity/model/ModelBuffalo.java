@@ -173,7 +173,7 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         HORN_R_3.setRotationPoint(0.0F, 0.0F, 0.5F);
         HORN_R.addChild(HORN_R_3);
         setRotationAngle(HORN_R_3, 0.0F, 0.0F, -1.3963F);
-        HORN_R_3.setTextureOffset(0, 4).addBox(23.0F, 1.0914F, -15.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+        HORN_R_3.setTextureOffset(0, 4).addBox(23.0F, 1.0914F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
         HORN_R_1 = new ModelRenderer(this);
         HORN_R_1.setRotationPoint(0.0F, 0.0F, 0.5F);
