@@ -47,9 +47,3 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
-src/main/resources/assets/culturecraft/models/entity/Buffole.java
-src/main/resources/assets/culturecraft/models/entity/Bffalo.java
-*.java
-src/main/resources/META-INF/mods.toml
-src/main/resources/pack.mcmeta
-src/main/resources/META-INF/mods.toml
