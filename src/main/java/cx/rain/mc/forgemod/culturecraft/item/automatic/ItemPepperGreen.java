@@ -5,17 +5,17 @@ import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 
-@ModItem(name = "pepper_chili")
-public class ItemPepperchili extends Item {
+@ModItem(name = "pepper_green")
+public class ItemPepperGreen extends Item {
     private static Food food = new Food.Builder()
             .hunger(1)
             .saturation(3)
             .build();
-    public ItemPepperchili(){
+    public ItemPepperGreen(){
         super(new Properties()
-        .group(Groups.FOODS)
-        .food(food)
-        .maxStackSize(64)
-        .setNoRepair());
+                .group(Groups.FOODS)
+                .food(food)
+                .maxStackSize(64)
+                .setNoRepair());
     }
 }

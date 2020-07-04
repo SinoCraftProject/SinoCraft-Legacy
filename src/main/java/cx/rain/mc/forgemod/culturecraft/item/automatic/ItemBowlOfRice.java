@@ -17,13 +17,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @ModItem(name = "bowl_rice")
-public class ItemBowlrice extends Item {
+public class ItemBowlOfRice extends Item {
     private static Food food = new Food.Builder()
             .hunger(6)
             .saturation(8)
             .build();
 
-    public ItemBowlrice() {
+    public ItemBowlOfRice() {
         super(new Properties()
                 .group(Groups.FOODS)
                 .food(food)

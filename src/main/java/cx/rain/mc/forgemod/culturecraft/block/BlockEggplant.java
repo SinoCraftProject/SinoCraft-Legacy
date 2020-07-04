@@ -2,22 +2,15 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.storage.loot.LootContext;
-
-import java.util.Collections;
-import java.util.List;
 
 public class BlockEggplant extends CropsBlock {
         private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -48,7 +41,7 @@ public class BlockEggplant extends CropsBlock {
         public IItemProvider getSeedsItem() {
                 switch (eggplantType) {
                         case EGGPLANT:
-                                return Items.SEED_EGGPLANT.get();
+                                return Items.EGGPLANT_SEED.get();
                 }
                 return null;
         }

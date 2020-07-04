@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.PepperType;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
@@ -10,8 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-
-import java.lang.reflect.Type;
 
 public class BlockPepper extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -41,9 +38,9 @@ public class BlockPepper extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (pepperType) {
             case CHILI:
-                return Items.SEED_CHILIPEPPER.get();
+                return Items.PEPPER_CHILI_SEED.get();
             case GREEN:
-                return Items.SEED_GREENPEPPER.get();
+                return Items.PEPPER_GREEN_SEED.get();
         }
         return null;
 

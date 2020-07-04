@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Entities {
 
+    //EntityType.Builder.build()的参数可以随便写一个字符串，因为data fixer目前不能用于mod，写啥都会抛出一个WARN
     public static final EntityType<EntityBuffalo> ENTITY_BUFFALO = EntityType.Builder
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)
             .size(1.4F, 1.4F).build("null");
