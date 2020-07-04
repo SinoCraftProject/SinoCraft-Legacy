@@ -1,4 +1,4 @@
-{
+ {
   "itemGroup.culturecraft.blocks": "华夏文明 | 方块",
   "itemGroup.culturecraft.items": "华夏文明 | 物品",
   "itemGroup.culturecraft.machines": "华夏文明 | 机器",
@@ -21,7 +21,6 @@
   "item.culturecraft.bowl_empty": "碗",
   "item.culturecraft.green_pepper_shredded_meat": "青椒炒肉丝",
 
-  "item.culturecraft.bowl_ceramic": "陶瓷碗",
   "item.culturecraft.plate": "盘子",
   "item.culturecraft.chirping_wildoose": "鸣鸿刀",
   "item.culturecraft.seven_stars_precious_blade": "七星刀",
@@ -55,7 +54,11 @@
   "entity.culturecraft.buffalo": "水牛",
 
   "tooltip.culturecraft.heroes_assemble": "你说这是群英荟萃，我看这像萝卜开会。",
-  "tooltip.culturecraft.bowl_rice": "香喷喷的白米饭",
-
+   "tooltip.culturecraft.bowl_rice": "香喷喷的白米饭",
+   "tooltip.culturecraft.bowl_empty": "这是碗!",
+   "tooltip.culturecraft.plate": "有了盘子可以做更多的美食了",
+   "tooltip.culturecraft.green_pepper_shredded_meat": "青椒+肉丝真的好吃吗!",
+   "tooltip.culturecraft.tofu": "豆腐! 我国相当有名的食物",
+   "tooltip.culturecraft.knife": "水果刀 用于切小型蔬菜食物",
   "message.culturecraft.player.join.welcome": "欢迎！"
 }

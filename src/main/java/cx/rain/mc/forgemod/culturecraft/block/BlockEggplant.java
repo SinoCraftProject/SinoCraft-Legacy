@@ -52,11 +52,4 @@ public class BlockEggplant extends CropsBlock {
                 }
                 return null;
         }
-        @Override
-        public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-                List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-                if (!dropsOriginal.isEmpty())
-                        return dropsOriginal;
-                return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("eggplany"), (int) (2)));
-        }
 }

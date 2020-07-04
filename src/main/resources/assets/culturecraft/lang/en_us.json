@@ -13,14 +13,15 @@
   "item.culturecraft.radish_green": "Green Radish",
   "item.culturecraft.radish_summer": "Summer Radish",
   "item.culturecraft.radish_white": "White Radish",
-  "item.culturecraft.pepper_chili_seed": "Chilipepper Seed",
+  "item.culturecraft.pepper_chili_seed": "Chili pepper Seed",
   "item.culturecraft.pepper_green_seed": "Green Pepper Seed",
   "item.culturecraft.rice": "Rice",
   "item.culturecraft.cuke": "cuke",
   "item.culturecraft.knife": "Knife",
-  "item.culturecraft.bowl_empty": "Bowl",
+  "item.culturecraft.seed_eggplant": "Seed Eggplant",
+  "item.culturecraft.seed_millet": "Seed Millet",
 
-  "item.culturecraft.bowl_ceramic": "Cermic Bowl",
+  "item.culturecraft.bowl_empty": "Bowl",
   "item.culturecraft.plate": "Plate",
   "item.culturecraft.chirping_wildoose": "Chirping Wildoose",
   "item.culturecraft.chirping_wildoose_inhand": "Chirping Wildoose",
@@ -54,6 +55,10 @@
 
   "tooltip.culturecraft.heroes_assemble": "I think this is radishes meeting.",
   "tooltip.culturecraft.bowl_rice": "Testy rice!",
+  "tooltip.culturecraft.bowl_empty": "It's bowl!",
+  "tooltip.culturecraft.plate": "It's plate",
+  "tooltip.culturecraft.green_pepper_shredded_meat": "Pepper green + meat!",
+  "tooltip.culturecraft.tofu": "Tofu !  also known as bean curd,is a food prepared by coagulating soy milk and then pressing the resulting cuds into soild white blocks of varying softness.",
 
   "entity.culturecraft.buffalo": "Buffalo",
 

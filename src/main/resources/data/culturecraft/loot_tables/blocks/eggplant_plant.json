@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "culturecraft:pepper_green"
+          "name": "culturecraft:eggplant"
         }
       ]
     },
@@ -26,13 +26,13 @@
               }
             }
           ],
-          "name": "culturecraft:pepper_green"
+          "name": "culturecraft:eggplant"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "culturecraft:pepper_green_plant",
+          "block": "culturecraft:eggplant_plant",
           "properties": {
             "age": "8"
           }
