@@ -48,7 +48,7 @@ public class BlockEggplant extends CropsBlock {
         public IItemProvider getSeedsItem() {
                 switch (eggplantType) {
                         case EGGPLANT:
-                                return RegistryItem.ITEMS.get("eggplant");
+                                return Items.SEED_EGGPLANT.get();
                 }
                 return null;
         }
