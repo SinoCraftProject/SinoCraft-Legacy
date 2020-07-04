@@ -17,20 +17,23 @@
   "item.culturecraft.pepper_green_seed": "青椒种子",
   "item.culturecraft.rice": "米",
   "item.culturecraft.cucumber": "黄瓜",
-  "item.culturecraft.knife": "水果刀",
-  "item.culturecraft.bowl_empty": "碗",
-  "item.culturecraft.green_pepper_shredded_meat": "青椒炒肉丝",
+  "item.culturecraft.eggplant_seed": "茄子种子",
+  "item.culturecraft.millet_seed": "小米种子",
 
+  "item.culturecraft.bowl_empty": "碗",
   "item.culturecraft.plate": "盘子",
-  "item.culturecraft.chirping_wildoose": "鸣鸿刀",
+  "item.culturecraft.knife": "水果刀",
+  "item.culturecraft.chirping_wildgoose": "鸣鸿刀",
   "item.culturecraft.seven_stars_precious_blade": "七星刀",
 
+  "item.culturecraft.bowl_rice": "米饭",
   "item.culturecraft.heroes_assemble": "群英荟萃",
   "item.culturecraft.dumpling": "饺子",
   "item.culturecraft.spirits": "白酒",
   "item.culturecraft.charred_food": "烧焦的食物",
   "item.culturecraft.soybean_milk": "豆浆",
   "item.culturecraft.tofu": "豆腐",
+  "item.culturecraft.green_pepper_shredded_meat": "青椒炒肉丝",
 
   "item.culturecraft.buffalo_spawn_egg": "水牛刷怪蛋",
 
@@ -61,5 +64,6 @@
   "tooltip.culturecraft.tofu": "豆腐~",
   "tooltip.culturecraft.tofu.2": "卤水点的豆腐。",
   "tooltip.culturecraft.knife": "水果刀 用于切小型蔬菜食物",
+
   "message.culturecraft.player.join.welcome": "欢迎！"
 }
