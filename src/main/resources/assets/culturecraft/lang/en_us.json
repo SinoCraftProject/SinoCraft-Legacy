@@ -17,22 +17,23 @@
   "item.culturecraft.pepper_green_seed": "Green Pepper Seed",
   "item.culturecraft.rice": "Rice",
   "item.culturecraft.cucumber": "Cucumber",
-  "item.culturecraft.knife": "Knife",
-  "item.culturecraft.seed_eggplant": "Seed Eggplant",
-  "item.culturecraft.seed_millet": "Seed Millet",
+  "item.culturecraft.eggplant_seed": "Eggplant Seed",
+  "item.culturecraft.millet_seed": "Millet Seed",
 
   "item.culturecraft.bowl_empty": "Bowl",
   "item.culturecraft.plate": "Plate",
-  "item.culturecraft.chirping_wildgoose": "Chirping Wildoose",
+  "item.culturecraft.knife": "Knife",
+  "item.culturecraft.chirping_wildgoose": "Chirping Wild Goose",
   "item.culturecraft.seven_stars_precious_blade": "Seven stars precious blade",
-  "item.culturecraft.green_pepper_shredded_meat": "Pepper green with meat",
 
+  "item.culturecraft.bowl_rice": "Cooked Rice",
   "item.culturecraft.heroes_assemble": "Heroes Assemble",
   "item.culturecraft.dumpling": "Dumpling",
   "item.culturecraft.spirits": "Spirits",
   "item.culturecraft.charred_food": "Charred Food",
   "item.culturecraft.soybean_milk": "Soybean Milk",
   "item.culturecraft.tofu": "Tofu",
+  "item.culturecraft.green_pepper_shredded_meat": "Pepper green with meat",
 
   "item.culturecraft.buffalo_spawn_egg": "Buffalo Spawn Egg",
 

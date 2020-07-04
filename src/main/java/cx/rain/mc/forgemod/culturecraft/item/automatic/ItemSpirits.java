@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-
 @ModItem(name = "spirits")
 public class ItemSpirits extends Item {
     public Food food = new Food.Builder()
