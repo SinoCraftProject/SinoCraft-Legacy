@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class EntityBuffalo extends AnimalEntity {
 
     public EntityBuffalo(World worldIn) {
-        super(Entities.entityBuffalo.get(), worldIn);
+        super(Entities.ENTITY_BUFFALO, worldIn);
     }
 
     public EntityBuffalo(EntityType<? extends EntityBuffalo> type, World worldIn) {
@@ -70,7 +70,7 @@ public class EntityBuffalo extends AnimalEntity {
 
     @Override
     public EntityBuffalo createChild(AgeableEntity ageable) {
-        return Entities.entityBuffalo.get().create(this.world);
+        return Entities.ENTITY_BUFFALO.create(this.world);
     }
 
     @Override

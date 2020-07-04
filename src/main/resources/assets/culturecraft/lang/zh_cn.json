@@ -32,6 +32,8 @@
   "item.culturecraft.soybean_milk": "豆浆",
   "item.culturecraft.tofu": "豆腐",
 
+  "item.culturecraft.buffalo_spawn_egg": "水牛刷怪蛋",
+
   "block.culturecraft.marble_white": "汉白玉",
   "block.culturecraft.brick_black": "黑砖块",
   "block.culturecraft.glaze_colored": "釉",
@@ -48,6 +50,8 @@
   "block.culturecraft.plank_peach": "桃树木板",
   "block.culturecraft.leaves_peach": "桃树树叶",
   "block.culturecraft.sapling_peach": "桃树树苗",
+
+  "entity.culturecraft.buffalo": "水牛",
 
   "tooltip.culturecraft.heroes_assemble": "你说这是群英荟萃，我看这像萝卜开会。",
    "tooltip.culturecraft.bowl_rice": "香喷喷的白米饭",

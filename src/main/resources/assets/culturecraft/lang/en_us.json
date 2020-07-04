@@ -34,6 +34,8 @@
   "item.culturecraft.soybean_milk": "Soybean Milk",
   "item.culturecraft.tofu": "Tofu",
 
+  "item.culturecraft.buffalo_spawn_egg": "Buffalo Spawn Egg",
+
   "block.culturecraft.marble_white": "White Marble",
   "block.culturecraft.brick_black": "Black Brick",
   "block.culturecraft.glaze_colored": "Coloured Glaze",
@@ -57,6 +59,8 @@
   "tooltip.culturecraft.plate": "It's plate",
   "tooltip.culturecraft.green_pepper_shredded_meat": "Pepper green + meat!",
   "tooltip.culturecraft.tofu": "Tofu !  also known as bean curd,is a food prepared by coagulating soy milk and then pressing the resulting cuds into soild white blocks of varying softness.",
+
+  "entity.culturecraft.buffalo": "Buffalo",
 
   "message.culturecraft.player.join.welcome": "Welcome!"
 }
