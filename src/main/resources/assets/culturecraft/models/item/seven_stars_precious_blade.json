@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "culturecraft:models/seven_stars_precious_blade",
-    "particle": "culturecraft:models/seven_stars_precious_blade"
+    "0": "culturecraft:models/items/seven_stars_precious_blade",
+    "particle": "culturecraft:models/items/seven_stars_precious_blade"
   },
   "elements": [
     {

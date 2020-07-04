@@ -16,7 +16,7 @@ public class Entities {
 
     public static final EntityType<EntityBuffalo> ENTITY_BUFFALO = EntityType.Builder
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)
-            .size(1.5F, 1.5F).build("buffalo");
+            .size(1.4F, 1.4F).build("null");
 
     /**
      * 之前使用DeferredRegister注册实体，但无法使注册实体在注册刷怪蛋之前触发，导致注册刷怪蛋出错
