@@ -10,21 +10,27 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * @author 豆焰
+ * Made with Blockbench 3.5.4
+ * Exported for Minecraft version 1.15
+ * Extra code and adjustment by SQwatermark
+ */
 @OnlyIn(Dist.CLIENT)
 public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
-    private final ModelRenderer LEGS;
-    private final ModelRenderer LEG_FL;
-    private final ModelRenderer THIGH_FL;
-    private final ModelRenderer CALF_FL;
-    private final ModelRenderer LEG_FR;
-    private final ModelRenderer THIGH_FR;
-    private final ModelRenderer CALF_FR;
-    private final ModelRenderer LEG_BR;
-    private final ModelRenderer THIGH_BR;
-    private final ModelRenderer CALF_BR;
+
     private final ModelRenderer LEG_BL;
     private final ModelRenderer THIGH_BL;
     private final ModelRenderer CALF_BL;
+    private final ModelRenderer LEG_BR;
+    private final ModelRenderer THIGH_BR;
+    private final ModelRenderer CALF_BR;
+    private final ModelRenderer LEG_FR;
+    private final ModelRenderer THIGH_FR;
+    private final ModelRenderer CALF_FR;
+    private final ModelRenderer LEG_FL;
+    private final ModelRenderer THIGH_FL;
+    private final ModelRenderer CALF_FL;
     private final ModelRenderer BODY;
     private final ModelRenderer BACK;
     private final ModelRenderer CHEST;
@@ -45,47 +51,24 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         textureWidth = 128;
         textureHeight = 128;
 
-        LEGS = new ModelRenderer(this);
-        LEGS.setRotationPoint(0.0F, 24.0F, 0.0F);
+        LEG_BL = new ModelRenderer(this);
+        LEG_BL.setRotationPoint(4.0F, 16.0F, 6.0F);
+        LEG_BL.setTextureOffset(56, 17).addBox(-2.0F, 7.0F, -1.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
 
+        THIGH_BL = new ModelRenderer(this);
+        THIGH_BL.setRotationPoint(-4.0F, 8.0F, -7.0F);
+        LEG_BL.addChild(THIGH_BL);
+        setRotationAngle(THIGH_BL, 0.2618F, 0.0F, 0.0F);
+        THIGH_BL.setTextureOffset(20, 42).addBox(2.0F, -7.0F, 7.0F, 4.0F, 6.0F, 4.0F, 0.0F, false);
 
-        LEG_FL = new ModelRenderer(this);
-        LEG_FL.setRotationPoint(4.0F, -8.0F, -7.0F);
-        LEGS.addChild(LEG_FL);
-        LEG_FL.setTextureOffset(56, 11).addBox(-2.1F, 6.0F, -2.0F, 4.0F, 2.0F, 4.0F, 0.0F, false);
-
-        THIGH_FL = new ModelRenderer(this);
-        THIGH_FL.setRotationPoint(-4.0F, 8.0F, 7.0F);
-        LEG_FL.addChild(THIGH_FL);
-        setRotationAngle(THIGH_FL, 0.3491F, 0.0F, 0.0F);
-        THIGH_FL.setTextureOffset(0, 50).addBox(2.0F, -11.0F, -6.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
-
-        CALF_FL = new ModelRenderer(this);
-        CALF_FL.setRotationPoint(-4.0F, 8.0F, 7.0F);
-        LEG_FL.addChild(CALF_FL);
-        setRotationAngle(CALF_FL, -0.2618F, 0.0F, 0.0F);
-        CALF_FL.setTextureOffset(48, 48).addBox(2.0F, -4.0F, -9.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
-
-        LEG_FR = new ModelRenderer(this);
-        LEG_FR.setRotationPoint(-4.0F, -8.0F, -7.0F);
-        LEGS.addChild(LEG_FR);
-        LEG_FR.setTextureOffset(56, 5).addBox(-2.1F, 6.0F, -2.0F, 4.0F, 2.0F, 4.0F, 0.0F, false);
-
-        THIGH_FR = new ModelRenderer(this);
-        THIGH_FR.setRotationPoint(-4.0F, 8.0F, 7.0F);
-        LEG_FR.addChild(THIGH_FR);
-        setRotationAngle(THIGH_FR, 0.3491F, 0.0F, 0.0F);
-        THIGH_FR.setTextureOffset(46, 32).addBox(2.0F, -11.0F, -6.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
-
-        CALF_FR = new ModelRenderer(this);
-        CALF_FR.setRotationPoint(-4.0F, 8.0F, 7.0F);
-        LEG_FR.addChild(CALF_FR);
-        setRotationAngle(CALF_FR, -0.2618F, 0.0F, 0.0F);
-        CALF_FR.setTextureOffset(44, 0).addBox(2.0F, -4.0F, -9.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+        CALF_BL = new ModelRenderer(this);
+        CALF_BL.setRotationPoint(-4.0F, 8.0F, -7.0F);
+        LEG_BL.addChild(CALF_BL);
+        setRotationAngle(CALF_BL, -0.0873F, 0.0F, 0.0F);
+        CALF_BL.setTextureOffset(16, 52).addBox(2.0F, -5.0F, 6.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
 
         LEG_BR = new ModelRenderer(this);
-        LEG_BR.setRotationPoint(-4.0F, -8.0F, 6.0F);
-        LEGS.addChild(LEG_BR);
+        LEG_BR.setRotationPoint(-4.0F, 16.0F, 6.0F);
         LEG_BR.setTextureOffset(0, 59).addBox(-2.0F, 7.0F, -1.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
 
         THIGH_BR = new ModelRenderer(this);
@@ -100,22 +83,37 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         setRotationAngle(CALF_BR, -0.0873F, 0.0F, 0.0F);
         CALF_BR.setTextureOffset(32, 52).addBox(2.0F, -5.0F, 6.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
 
-        LEG_BL = new ModelRenderer(this);
-        LEG_BL.setRotationPoint(4.0F, -8.0F, 6.0F);
-        LEGS.addChild(LEG_BL);
-        LEG_BL.setTextureOffset(56, 17).addBox(-2.0F, 7.0F, -1.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
+        LEG_FR = new ModelRenderer(this);
+        LEG_FR.setRotationPoint(-4.0F, 16.0F, -7.0F);
+        LEG_FR.setTextureOffset(56, 5).addBox(-2.1F, 6.0F, -2.0F, 4.0F, 2.0F, 4.0F, 0.0F, false);
 
-        THIGH_BL = new ModelRenderer(this);
-        THIGH_BL.setRotationPoint(-4.0F, 8.0F, -7.0F);
-        LEG_BL.addChild(THIGH_BL);
-        setRotationAngle(THIGH_BL, 0.2618F, 0.0F, 0.0F);
-        THIGH_BL.setTextureOffset(20, 42).addBox(2.0F, -7.0F, 7.0F, 4.0F, 6.0F, 4.0F, 0.0F, false);
+        THIGH_FR = new ModelRenderer(this);
+        THIGH_FR.setRotationPoint(-4.0F, 8.0F, 7.0F);
+        LEG_FR.addChild(THIGH_FR);
+        setRotationAngle(THIGH_FR, 0.3491F, 0.0F, 0.0F);
+        THIGH_FR.setTextureOffset(46, 32).addBox(2.0F, -11.0F, -6.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
 
-        CALF_BL = new ModelRenderer(this);
-        CALF_BL.setRotationPoint(-4.0F, 8.0F, -7.0F);
-        LEG_BL.addChild(CALF_BL);
-        setRotationAngle(CALF_BL, -0.0873F, 0.0F, 0.0F);
-        CALF_BL.setTextureOffset(16, 52).addBox(2.0F, -5.0F, 6.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+        CALF_FR = new ModelRenderer(this);
+        CALF_FR.setRotationPoint(-4.0F, 8.0F, 7.0F);
+        LEG_FR.addChild(CALF_FR);
+        setRotationAngle(CALF_FR, -0.2618F, 0.0F, 0.0F);
+        CALF_FR.setTextureOffset(44, 0).addBox(2.0F, -4.0F, -9.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+
+        LEG_FL = new ModelRenderer(this);
+        LEG_FL.setRotationPoint(4.0F, 16.0F, -7.0F);
+        LEG_FL.setTextureOffset(56, 11).addBox(-2.1F, 6.0F, -2.0F, 4.0F, 2.0F, 4.0F, 0.0F, false);
+
+        THIGH_FL = new ModelRenderer(this);
+        THIGH_FL.setRotationPoint(-4.0F, 8.0F, 7.0F);
+        LEG_FL.addChild(THIGH_FL);
+        setRotationAngle(THIGH_FL, 0.3491F, 0.0F, 0.0F);
+        THIGH_FL.setTextureOffset(0, 50).addBox(2.0F, -11.0F, -6.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+
+        CALF_FL = new ModelRenderer(this);
+        CALF_FL.setRotationPoint(-4.0F, 8.0F, 7.0F);
+        LEG_FL.addChild(CALF_FL);
+        setRotationAngle(CALF_FL, -0.2618F, 0.0F, 0.0F);
+        CALF_FL.setTextureOffset(48, 48).addBox(2.0F, -4.0F, -9.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
 
         BODY = new ModelRenderer(this);
         BODY.setRotationPoint(0.0F, 26.0F, 0.0F);
@@ -151,7 +149,7 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         HORN_L_3.setRotationPoint(0.0F, 0.0F, 0.0F);
         HORN_L.addChild(HORN_L_3);
         setRotationAngle(HORN_L_3, 0.0F, 0.0F, -1.3963F);
-        HORN_L_3.setTextureOffset(5, 3).addBox(23.0F, 1.0914F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        HORN_L_3.setTextureOffset(5, 3).addBox(22.9442F, 1.0914F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
         HORN_L_1 = new ModelRenderer(this);
         HORN_L_1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -163,7 +161,7 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         HORN_L_2.setRotationPoint(0.0F, 0.0F, 0.0F);
         HORN_L.addChild(HORN_L_2);
         setRotationAngle(HORN_L_2, 0.0F, 0.0F, -0.6109F);
-        HORN_L_2.setTextureOffset(5, 5).addBox(16.0F, -15.7452F, -15.0F, 1.7F, 1.0F, 1.0F, 0.0F, false);
+        HORN_L_2.setTextureOffset(5, 5).addBox(15.7028F, -15.7452F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
         HORN_R = new ModelRenderer(this);
         HORN_R.setRotationPoint(0.0F, 20.0F, -14.5F);
@@ -175,7 +173,7 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         HORN_R_3.setRotationPoint(0.0F, 0.0F, 0.5F);
         HORN_R.addChild(HORN_R_3);
         setRotationAngle(HORN_R_3, 0.0F, 0.0F, -1.3963F);
-        HORN_R_3.setTextureOffset(0, 4).addBox(23.0F, 1.0914F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        HORN_R_3.setTextureOffset(0, 4).addBox(23.0F, 1.0914F, -15.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 
         HORN_R_1 = new ModelRenderer(this);
         HORN_R_1.setRotationPoint(0.0F, 0.0F, 0.5F);
@@ -187,7 +185,7 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
         HORN_R_2.setRotationPoint(0.0F, 0.0F, 0.5F);
         HORN_R.addChild(HORN_R_2);
         setRotationAngle(HORN_R_2, 0.0F, 0.0F, -0.6109F);
-        HORN_R_2.setTextureOffset(0, 0).addBox(16.0F, -15.7452F, -15.0F, 1.7F, 1.0F, 1.0F, 0.0F, false);
+        HORN_R_2.setTextureOffset(0, 0).addBox(15.7028F, -15.7452F, -15.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
         FACE = new ModelRenderer(this);
         FACE.setRotationPoint(0.0F, 3.0F, -4.0F);
@@ -203,13 +201,34 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-        LEGS.render(matrixStack, buffer, packedLight, packedOverlay);
-        BODY.render(matrixStack, buffer, packedLight, packedOverlay);
-        HEAD.render(matrixStack, buffer, packedLight, packedOverlay);
+    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        if (this.isChild) {
+            matrixStack.push();
+            matrixStack.scale(0.75F, 0.75F, 0.75F);
+
+            matrixStack.translate(0.0D, 1.0F, 0.25F);
+            this.getHeadParts().forEach((p_228230_8_) -> {
+                p_228230_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+            });
+            matrixStack.pop();
+            matrixStack.push();
+            matrixStack.scale(0.5F, 0.5F, 0.5F);
+            matrixStack.translate(0.0D, 24.0F / 16.0F, 0.0D);
+            this.getBodyParts().forEach((p_228229_8_) -> {
+                p_228229_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+            });
+            matrixStack.pop();
+        } else {
+            this.getHeadParts().forEach((p_228228_8_) -> {
+                p_228228_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+            });
+            this.getBodyParts().forEach((p_228227_8_) -> {
+                p_228227_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+            });
+        }
     }
 
-    //The method is written by BlockBench to set the model
+    //The method is written by BlockBench to set the model, not setRotationAngles.
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

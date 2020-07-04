@@ -11,16 +11,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class RendererBuffalo extends MobRenderer<EntityBuffalo, ModelBuffalo> {
 
-    public RendererBuffalo(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelBuffalo(), 1F);
-    }
+    private static final ResourceLocation BUFFALO_TEXTURES = new ResourceLocation("culturecraft", "textures/entity/ox.png");
 
-    public RendererBuffalo(EntityRendererManager renderManagerIn, ModelBuffalo entityModelIn, float shadowSizeIn) {
-        super(renderManagerIn, entityModelIn, shadowSizeIn);
+    public RendererBuffalo(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelBuffalo(), 0.9F);
     }
 
     @Override
     public ResourceLocation getEntityTexture(EntityBuffalo entity) {
-        return new ResourceLocation("culturecraft", "textures/entity/ox.png");
+        return BUFFALO_TEXTURES;
     }
+
 }
