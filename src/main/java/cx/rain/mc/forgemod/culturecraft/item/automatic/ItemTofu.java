@@ -29,6 +29,8 @@ public class ItemTofu extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         tooltip.add(new TranslationTextComponent("tooltip.culturecraft.tofu")
                 .setStyle(new Style().setColor(TextFormatting.GRAY)));
+        tooltip.add(new TranslationTextComponent("tooltip.culturecraft.tofu.2")
+                .setStyle(new Style().setColor(TextFormatting.GRAY)));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }

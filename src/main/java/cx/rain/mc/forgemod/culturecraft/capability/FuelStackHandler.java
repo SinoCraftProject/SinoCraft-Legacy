@@ -8,7 +8,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 
 /**
- * Fuel ItemKnife Stack Handler
+ * Fuel Item Stack Handler
  * Each of slots leave with 1 fuel
  */
 public class FuelStackHandler extends ItemStackHandler {

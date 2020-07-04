@@ -39,20 +39,20 @@ public class Items {
                             .setNoRepair()));
 
 
-    public static RegistryObject<Item> SEED_CHILIPEPPER =
+    public static RegistryObject<Item> PEPPER_CHILI_SEED =
             REGISTRY.register("pepper_chili_seed", () -> new BlockNamedItem(Blocks.PEPPER_CHILI_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.MISC)
                             .setNoRepair()));
 
-    public static RegistryObject<Item> SEED_GREENPEPPER =
+    public static RegistryObject<Item> PEPPER_GREEN_SEED =
             REGISTRY.register("pepper_green_seed", () -> new BlockNamedItem(Blocks.PEPPER_GREEN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.MISC)
                             .setNoRepair()));
 
-    public static RegistryObject<Item> SEED_EGGPLANT =
-            REGISTRY.register("seed_eggplant", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
+    public static RegistryObject<Item> EGGPLANT_SEED =
+            REGISTRY.register("eggplant_seed", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.MISC)
                             .setNoRepair()));
