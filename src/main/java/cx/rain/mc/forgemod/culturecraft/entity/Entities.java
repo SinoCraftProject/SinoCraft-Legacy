@@ -22,18 +22,20 @@ public class Entities {
      * 之前使用DeferredRegister注册实体，但无法使注册实体在注册刷怪蛋之前触发，导致注册刷怪蛋出错
      * 也许是我操作有误，但目前我只能用@SubscribeEvent注册实体了
      */
-    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
         CultureCraft.getInstance().getLog().info("Registering entities.");
         event.getRegistry().register(ENTITY_BUFFALO.setRegistryName("buffalo"));
     }
 
-    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void registerSpawnEggs(final RegistryEvent.Register<Item> event) {
         CultureCraft.getInstance().getLog().info("Registering spawn eggs.");
-        event.getRegistry().register(new SpawnEggItem(ENTITY_BUFFALO, 0, 0,
+        //by SQwatermark:
+        //primaryColorIn是底色，secondaryColorIn是斑点的颜色
+        //填入的为十六进制RGB颜色转换为的十进制值
+        //直接获取十进制颜色的网页：https://www.shuxuele.com/hexadecimal-decimal-colors.html
+        event.getRegistry().register(new SpawnEggItem(ENTITY_BUFFALO, 11434029, 13027014,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("buffalo_spawn_egg"));
     }
 
