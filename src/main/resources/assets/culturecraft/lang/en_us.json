@@ -23,8 +23,7 @@
 
   "item.culturecraft.bowl_empty": "Bowl",
   "item.culturecraft.plate": "Plate",
-  "item.culturecraft.chirping_wildoose": "Chirping Wildoose",
-  "item.culturecraft.chirping_wildoose_inhand": "Chirping Wildoose",
+  "item.culturecraft.chirping_wildgoose": "Chirping Wildoose",
   "item.culturecraft.seven_stars_precious_blade": "Seven stars precious blade",
   "item.culturecraft.green_pepper_shredded_meat": "Pepper green with meat",
 
@@ -54,6 +53,8 @@
   "block.culturecraft.leaves_walnut": "Walnut Tree Leaves",
   "block.culturecraft.sapling_walnut": "Walnut Tree Sapling",
 
+  "entity.culturecraft.buffalo": "Buffalo",
+
   "tooltip.culturecraft.heroes_assemble": "I think this is radishes meeting.",
   "tooltip.culturecraft.bowl_rice": "Testy rice!",
   "tooltip.culturecraft.bowl_empty": "It's bowl!",
@@ -62,7 +63,6 @@
   "tooltip.culturecraft.tofu": "Tofu! Also known as bean curd, is a food prepared by coagulating soy milk ",
   "tooltip.culturecraft.tofu.2": "and then pressing the resulting cuds into soild white blocks of varying softness.",
   "tooltip.culturecraft.knife": "Used for cutting foods.",
-  "entity.culturecraft.buffalo": "Buffalo",
 
   "message.culturecraft.player.join.welcome": "Welcome!"
 }

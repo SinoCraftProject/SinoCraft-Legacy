@@ -95,6 +95,9 @@ minecraft {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     maven {
         url = 'https://files.minecraftforge.net/maven'
     }

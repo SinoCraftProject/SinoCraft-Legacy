@@ -22,7 +22,7 @@
   "item.culturecraft.green_pepper_shredded_meat": "青椒炒肉丝",
 
   "item.culturecraft.plate": "盘子",
-  "item.culturecraft.chirping_wildoose": "鸣鸿刀",
+  "item.culturecraft.chirping_wildgoose": "鸣鸿刀",
   "item.culturecraft.seven_stars_precious_blade": "七星刀",
 
   "item.culturecraft.heroes_assemble": "群英荟萃",
@@ -54,6 +54,7 @@
   "entity.culturecraft.buffalo": "水牛",
 
   "tooltip.culturecraft.heroes_assemble": "你说这是群英荟萃，我看这像萝卜开会。",
+
   "tooltip.culturecraft.bowl_rice": "香喷喷的白米饭~",
   "tooltip.culturecraft.bowl_empty": "这是碗！",
   "tooltip.culturecraft.plate": "有了盘子可以做更多的美食了。",
@@ -61,5 +62,6 @@
   "tooltip.culturecraft.tofu": "豆腐~",
   "tooltip.culturecraft.tofu.2": "卤水点的豆腐。",
   "tooltip.culturecraft.knife": "水果刀 用于切小型蔬菜食物",
+
   "message.culturecraft.player.join.welcome": "欢迎！"
 }
