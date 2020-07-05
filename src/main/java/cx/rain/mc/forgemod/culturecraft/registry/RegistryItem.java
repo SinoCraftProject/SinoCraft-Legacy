@@ -37,11 +37,7 @@ public class RegistryItem {
                         }
                     }
                 }
-            } catch (NoSuchMethodException
-                    | IllegalAccessException
-                    | InstantiationException
-                    | InvocationTargetException
-                    | Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }

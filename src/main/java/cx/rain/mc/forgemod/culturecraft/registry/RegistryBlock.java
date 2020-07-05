@@ -42,11 +42,7 @@ public class RegistryBlock {
                         }
                     }
                 }
-            } catch (NoSuchMethodException
-                    | IllegalAccessException
-                    | InstantiationException
-                    | InvocationTargetException 
-                    | Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
