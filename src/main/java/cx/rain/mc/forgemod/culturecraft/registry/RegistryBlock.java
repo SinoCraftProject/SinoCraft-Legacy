@@ -35,7 +35,7 @@ public class RegistryBlock {
                     }
 
                     else{
-                        for(int i=0;i<args.length();i++){
+                        for(int i=0;i<args.length;i++){
                             Block block = factory.get((Class<? extends Block>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
                             BLOCKS.put(registryName, block);
                         }

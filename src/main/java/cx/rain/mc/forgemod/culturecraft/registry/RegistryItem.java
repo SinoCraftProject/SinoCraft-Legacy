@@ -30,7 +30,7 @@ public class RegistryItem {
                         ITEMS.put(registryName, item);
                     }
                     else{
-                        for(int i=0;i<args.length();i++){
+                        for(int i=0;i<args.length;i++){
                             Item item = factory.get((Class<? extends Item>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
                             ITEMS.put(registryName, item);
                         }
