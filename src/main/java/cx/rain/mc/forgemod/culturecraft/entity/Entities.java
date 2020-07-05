@@ -1,7 +1,10 @@
 package cx.rain.mc.forgemod.culturecraft.entity;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
+import cx.rain.mc.forgemod.culturecraft.entity.monster.EntityTerraCotta;
 import cx.rain.mc.forgemod.culturecraft.entity.passive.EntityBuffalo;
+import cx.rain.mc.forgemod.culturecraft.entity.monster.EntityTerraCotta;
+import cx.rain.mc.forgemod.culturecraft.entity.passive.EntityEmperor;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -18,6 +21,12 @@ public class Entities {
     public static final EntityType<EntityBuffalo> ENTITY_BUFFALO = EntityType.Builder
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)
             .size(1.4F, 1.4F).build("null");
+    public static final EntityType<EntityTerraCotta> ENTITY_TERRACOTTA = EntityType.Builder//兵马俑
+            .create((EntityType.IFactory<EntityTerraCotta>) EntityTerraCotta::new, EntityClassification.MISC)
+            .size(1.4F, 1.4F).build("null");
+    public static final EntityType<EntityEmperor> ENTITY_EMPEROR = EntityType.Builder//国王
+            .create((EntityType.IFactory<EntityEmperor>) EntityEmperor::new, EntityClassification.MISC)
+            .size(1.4F, 1.4F).build("null");
 
     /**
      * 之前使用DeferredRegister注册实体，但无法使注册实体在注册刷怪蛋之前触发，导致注册刷怪蛋出错
@@ -27,6 +36,8 @@ public class Entities {
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
         CultureCraft.getInstance().getLog().info("Registering entities.");
         event.getRegistry().register(ENTITY_BUFFALO.setRegistryName("buffalo"));
+        event.getRegistry().register(ENTITY_TERRACOTTA.setRegistryName("terracotta"));
+        event.getRegistry().register(ENTITY_EMPEROR.setRegistryName("emperor"));
     }
 
     @SubscribeEvent
@@ -38,6 +49,8 @@ public class Entities {
         //直接获取十进制颜色的网页：https://www.shuxuele.com/hexadecimal-decimal-colors.html
         event.getRegistry().register(new SpawnEggItem(ENTITY_BUFFALO, 11434029, 13027014,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("buffalo_spawn_egg"));
+        event.getRegistry().register(new SpawnEggItem(ENTITY_TERRACOTTA, 7963006, 10587648,
+                new Item.Properties().group(ItemGroup.MISC)).setRegistryName("terracotta_spawn_egg"));
     }
 
 }
