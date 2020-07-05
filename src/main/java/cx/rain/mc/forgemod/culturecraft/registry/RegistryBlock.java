@@ -29,7 +29,7 @@ public class RegistryBlock {
                 String registryName = modBlock.name();
                 IBlockFactory factory = modBlock.factory().newInstance();
                 if (!registryName.isEmpty()) {
-                    Block block = factory.get(clazz).setRegistryName(CultureCraft.MODID, registryName);
+                    Block block = factory.get((Class<? extends Block>)clazz).setRegistryName(CultureCraft.MODID, registryName);
                     BLOCKS.put(registryName, block);
                 }
             } catch (NoSuchMethodException

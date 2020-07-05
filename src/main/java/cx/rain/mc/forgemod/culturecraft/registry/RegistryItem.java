@@ -25,7 +25,7 @@ public class RegistryItem {
                 String registryName = modItem.name();
                 IItemFactory factory = modItem.factory().newInstance();
                 if (!registryName.isEmpty()) {
-                    Item item = factory.get(clazz).setRegistryName(CultureCraft.MODID, registryName);
+                    Item item = factory.get((Class<? extends Item>)clazz).setRegistryName(CultureCraft.MODID, registryName);
                     ITEMS.put(registryName, item);
                 }
             } catch (NoSuchMethodException
