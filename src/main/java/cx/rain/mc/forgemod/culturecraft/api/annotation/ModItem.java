@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.ItemFactory;
+import java.util.concurrent.Callable;
 
 /**
  * ModItem annotation.
