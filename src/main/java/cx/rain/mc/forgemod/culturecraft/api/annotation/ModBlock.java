@@ -34,5 +34,5 @@ public @interface ModBlock {
      * The args to factory's callable factory
      * @return The args to factory's callable factory
      */
-    Class<? extends Callable<Object[][]>> args() default NullArgs;
+    Class<? extends Callable<Object[][]>> args() default NullArgs.class;
 }
