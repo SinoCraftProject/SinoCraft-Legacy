@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IBlockFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
@@ -26,9 +27,9 @@ public class RegistryBlock {
             try {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
+                IBlockFactory factory = modBlock.factory();
                 if (!registryName.isEmpty()) {
-                    Block block = ((Block) clazz.getConstructor().newInstance())
-                            .setRegistryName(CultureCraft.MODID, registryName);
+                    Block block = factory.get(clazz).setRegistryName(CultureCraft.MODID, registryName);
                     BLOCKS.put(registryName, block);
                 }
             } catch (NoSuchMethodException
