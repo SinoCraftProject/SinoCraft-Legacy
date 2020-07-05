@@ -1,20 +1,22 @@
-Git Commit提交准则：
+﻿Git Commit提交准则：
 Add: 添加了什么东西
-Delete: 删除了什么东西
+Delete/Del: 删除了什么东西
 Fix: 修复了什么东西
-Update: 更新了什么东西 
+Update/Up: 更新了什么东西 
 Refact: 重构了什么东西
 Rename:重命名了什么东西
 Wish:计划做什么东西
-Doing:正在做什么东西
+Doing/TODO:正在做什么东西
 List:用于套娃修改，底下列出修改列表，用于划分层次
 Task:添加某个任务等待人完成
-Issues:请求帮助
+Issues/Iss:请求帮助
 Change:修改了什么东西
 Build:构建了新版本
 Modify:修改了什么
-Complete:完成了什么
+Complete/Com:完成了什么
+Move/Mov:移动什么至什么
 Found:找到了什么（漏洞）
+Other:其他
 
 List示例:
 List xxx:
