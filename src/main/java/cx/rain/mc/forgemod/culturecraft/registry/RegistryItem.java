@@ -24,9 +24,18 @@ public class RegistryItem {
                 ModItem modItem = clazz.getAnnotation(ModItem.class);
                 String registryName = modItem.name();
                 IItemFactory factory = modItem.factory().newInstance();
+                Object[][] args = modItem.args();
                 if (!registryName.isEmpty()) {
-                    Item item = factory.get((Class<? extends Item>)clazz).setRegistryName(CultureCraft.MODID, registryName);
-                    ITEMS.put(registryName, item);
+                    if(args==null){
+                        Item item = factory.get((Class<? extends Item>)clazz,null).setRegistryName(CultureCraft.MODID, registryName);
+                        ITEMS.put(registryName, item);
+                    }
+                    else{
+                        for(int i=0;i<args.length();i++){
+                            Item item = factory.get((Class<? extends Item>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
+                            ITEMS.put(registryName, item);
+                        }
+                    }
                 }
             } catch (NoSuchMethodException
                     | IllegalAccessException

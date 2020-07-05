@@ -28,9 +28,19 @@ public class RegistryBlock {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
                 IBlockFactory factory = modBlock.factory().newInstance();
+                Object[][] args = modItem.args();
                 if (!registryName.isEmpty()) {
-                    Block block = factory.get((Class<? extends Block>)clazz).setRegistryName(CultureCraft.MODID, registryName);
-                    BLOCKS.put(registryName, block);
+                    if(args==null) {
+                        Block block = factory.get((Class<? extends Block>) clazz, null).setRegistryName(CultureCraft.MODID, registryName);
+                        BLOCKS.put(registryName, block);
+                    }
+
+                    else{
+                        for(int i=0;i<args.length();i++){
+                            Block block = factory.get((Class<? extends Block>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
+                            BLOCKS.put(registryName, block);
+                        }
+                    }
                 }
             } catch (NoSuchMethodException
                     | IllegalAccessException

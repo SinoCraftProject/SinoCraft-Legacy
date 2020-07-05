@@ -27,4 +27,10 @@ public @interface ModBlock {
      * @return The factory
      */
     Class<? extends IBlockFactory> factory() default BlockFactory.class;
+
+    /**
+     * The args to factory
+     * @return The args to factory
+     */
+    Object[][] args() default null;
 }

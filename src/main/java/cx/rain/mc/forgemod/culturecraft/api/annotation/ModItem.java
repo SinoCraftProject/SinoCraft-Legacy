@@ -27,5 +27,11 @@ public @interface ModItem {
      * @return The factory
      */
     Class<? extends IItemFactory> factory() default ItemFactory.class;
+
+    /**
+     * The args to factory
+     * @return The args to factory
+     */
+    Object[][] args default null;
 }
 
