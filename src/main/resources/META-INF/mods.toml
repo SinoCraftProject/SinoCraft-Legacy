@@ -26,7 +26,7 @@ logoFile="logo.png" #optional
 # A text field displayed in the mod UI
 credits="The SaltedFish Club, and DouYan." #optional
 # A text field displayed in the mod UI
-authors="AmemiyaSigure, Luo_ShiJian, theFlySong, Victoria, HIMKing" #optional
+authors="AmemiyaSigure, Luo_ShiJian, theFlySong, Victoria, HIMKing,jirufengyu" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A minecraft mod with Chinese culture.
