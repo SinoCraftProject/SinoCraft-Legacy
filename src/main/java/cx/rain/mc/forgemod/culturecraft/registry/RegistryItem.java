@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
@@ -22,9 +23,9 @@ public class RegistryItem {
             try {
                 ModItem modItem = clazz.getAnnotation(ModItem.class);
                 String registryName = modItem.name();
+                IItemFactory factory = modItem.factory().newInstance();
                 if (!registryName.isEmpty()) {
-                    Item item = ((Item) clazz.getConstructor().newInstance())
-                            .setRegistryName(CultureCraft.MODID, registryName);
+                    Item item = factory.get(clazz).setRegistryName(CultureCraft.MODID, registryName);
                     ITEMS.put(registryName, item);
                 }
             } catch (NoSuchMethodException
@@ -38,7 +39,7 @@ public class RegistryItem {
 
     @SubscribeEvent
     public static void onRegisterItem(RegistryEvent.Register<Item> event) {
-        CultureCraft.getInstance().getLog().info("Registering more items.");
+        CultureCraft.getInstance().getLog().info("Registering items.");
         ITEMS.forEach((name, item) -> {
             event.getRegistry().register(item);
         });

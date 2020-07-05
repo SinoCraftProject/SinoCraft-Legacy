@@ -27,7 +27,7 @@ public class RegistryBlock {
             try {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
-                IBlockFactory factory = modBlock.factory();
+                IBlockFactory factory = modBlock.factory().newInstance();
                 if (!registryName.isEmpty()) {
                     Block block = factory.get(clazz).setRegistryName(CultureCraft.MODID, registryName);
                     BLOCKS.put(registryName, block);
@@ -43,7 +43,7 @@ public class RegistryBlock {
 
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event) {
-        CultureCraft.getInstance().getLog().info("Registering more blocks.");
+        CultureCraft.getInstance().getLog().info("Registering blocks.");
         BLOCKS.forEach((name, block) -> {
             event.getRegistry().register(block);
         });
