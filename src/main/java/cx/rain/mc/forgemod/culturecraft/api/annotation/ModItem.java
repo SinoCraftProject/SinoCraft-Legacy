@@ -4,6 +4,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.ItemFactory;
 
 /**
  * ModItem annotation.
