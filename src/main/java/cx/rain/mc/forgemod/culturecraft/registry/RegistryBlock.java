@@ -28,7 +28,7 @@ public class RegistryBlock {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
                 IBlockFactory factory = modBlock.factory().newInstance();
-                Object[][] args = modItem.args();
+                Object[][] args = modBlock.args();
                 if (!registryName.isEmpty()) {
                     if(args==null) {
                         Block block = factory.get((Class<? extends Block>) clazz, null).setRegistryName(CultureCraft.MODID, registryName);
