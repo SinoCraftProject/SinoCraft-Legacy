@@ -13,6 +13,5 @@ public class Render {
         RenderTypeLookup.setRenderLayer(Blocks.PEPPER_GREEN_PLANT.get(),RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.CELERY_CABBAGE_PLANT.get(),RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.EGGPLANT_PLANT.get(),RenderType.getCutout());
-
     }
 }
