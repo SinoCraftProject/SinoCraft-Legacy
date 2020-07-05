@@ -17,6 +17,8 @@ Complete/Com:完成了什么
 Move/Mov:移动什么至什么
 Found:找到了什么（漏洞）
 Other:其他
+Tip:贴士/提醒
+Request/Req:发起投票，决定某个东西的变更
 
 List示例:
 List xxx:
@@ -27,10 +29,10 @@ List命名建议
 "api_"开头指代api更新
 "game_"开头指代玩法更新
 "code_"开头指代代码更新
-"optimize_"开头指代性能优化
+"optimize_"/"opti_"开头指代性能优化
 "doc_"开头指代javadoc更新
 "render_"开头指代渲染更新
-"resource_"开头指代资源包更新
+"resource_"/"res_"开头指代资源包更新
 "data_"开头指代数据包更新
 
 List行命名首字母要大写且在50个字母以内
