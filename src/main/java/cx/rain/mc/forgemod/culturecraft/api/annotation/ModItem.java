@@ -32,6 +32,6 @@ public @interface ModItem {
      * The args to factory
      * @return The args to factory
      */
-    Object[][] args default null;
+    Object[][] args() default null;
 }
 
