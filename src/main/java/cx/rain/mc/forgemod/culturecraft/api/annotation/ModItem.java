@@ -23,15 +23,15 @@ public @interface ModItem {
     String name();
 
     /**
-     * A factory class get the instance of item
+     * The factory class get the instance of item
      * @return The factory
      */
     Class<? extends IItemFactory> factory() default ItemFactory.class;
 
     /**
-     * The args to factory
-     * @return The args to factory
+     * The args to factory's callable factory
+     * @return The args to factory's callable factory
      */
-    Object[][] args() default null;
+    Class<? extends Callable<Object[][]>> args() default NullArgs;
 }
 

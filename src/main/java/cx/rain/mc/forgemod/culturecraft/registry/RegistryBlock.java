@@ -28,7 +28,7 @@ public class RegistryBlock {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
                 IBlockFactory factory = modBlock.factory().newInstance();
-                Object[][] args = modBlock.args();
+                Object[][] args = modBlock.args().newInstance().call();
                 if (!registryName.isEmpty()) {
                     if(args==null) {
                         Block block = factory.get((Class<? extends Block>) clazz, null).setRegistryName(CultureCraft.MODID, registryName);
@@ -45,7 +45,8 @@ public class RegistryBlock {
             } catch (NoSuchMethodException
                     | IllegalAccessException
                     | InstantiationException
-                    | InvocationTargetException ex) {
+                    | InvocationTargetException 
+                    | Exception ex) {
                 ex.printStackTrace();
             }
         }

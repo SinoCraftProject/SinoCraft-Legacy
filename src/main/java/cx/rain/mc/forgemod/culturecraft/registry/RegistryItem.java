@@ -24,7 +24,7 @@ public class RegistryItem {
                 ModItem modItem = clazz.getAnnotation(ModItem.class);
                 String registryName = modItem.name();
                 IItemFactory factory = modItem.factory().newInstance();
-                Object[][] args = modItem.args();
+                Object[][] args = modItem.args().newInstance().call();
                 if (!registryName.isEmpty()) {
                     if(args==null){
                         Item item = factory.get((Class<? extends Item>)clazz,null).setRegistryName(CultureCraft.MODID, registryName);
@@ -40,7 +40,8 @@ public class RegistryItem {
             } catch (NoSuchMethodException
                     | IllegalAccessException
                     | InstantiationException
-                    | InvocationTargetException ex) {
+                    | InvocationTargetException
+                    | Exception ex) {
                 ex.printStackTrace();
             }
         }
