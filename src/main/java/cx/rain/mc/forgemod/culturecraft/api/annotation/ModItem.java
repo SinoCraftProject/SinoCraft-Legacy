@@ -19,5 +19,11 @@ public @interface ModItem {
      * @return RegistryName
      */
     String name();
+
+    /**
+     * A factory class get the instance of item
+     * @return The factory
+     */
+    Class<? extends IItemFactory> factory() default ItemFactory.class;
 }
 
