@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.entity.passive;
 
+import cx.rain.mc.forgemod.culturecraft.entity.Entities;
 import cx.rain.mc.forgemod.culturecraft.item.automatic.ItemCrown;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -7,9 +8,11 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -18,10 +21,16 @@ import java.util.UUID;
  * @author jirufengyu
  */
 public class EntityEmperor extends MobEntity {
-    public EntityEmperor(EntityType<? extends MobEntity> type, World worldIn) {
+    public EntityEmperor(EntityType<? extends EntityEmperor> type, World worldIn) {
         super(type, worldIn);
     }
+    public EntityEmperor(World worldIn) {
+        super(Entities.ENTITY_EMPEROR, worldIn);
+    }
+    /*
+    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID;
     EquipmentSlotType slot;
+
     @Nullable
     public LivingEntity getOwner() {
         try {
@@ -36,7 +45,8 @@ public class EntityEmperor extends MobEntity {
         ItemStack head=this.getItemStackFromSlot(EquipmentSlotType.HEAD);
         Item crown=head.getItem();
         if(crown instanceof ItemCrown){
-
+            System.out.println("Emperor is ");
+            return (UUID)((Optional)this.dataManager.get(OWNER_UNIQUE_ID)).orElse((Object)null);
         }
-    }
+    }*/
 }
