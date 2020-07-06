@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
+import cx.rain.mc.forgemod.culturecraft.tileentity.TileEntityStove;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
@@ -25,6 +26,6 @@ public class BlockStove extends ContainerBlock {
     @Nullable
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return null;
+        return new TileEntityStove();
     }
 }

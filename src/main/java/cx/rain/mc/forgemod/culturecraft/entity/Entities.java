@@ -42,7 +42,7 @@ public class Entities {
 
     @SubscribeEvent
     public static void registerSpawnEggs(final RegistryEvent.Register<Item> event) {
-        CultureCraft.getInstance().getLog().info("Registering spawn eggs.");
+        CultureCraft.getInstance().getLog().info("Registering entity spawn eggs.");
         //by SQwatermark:
         //primaryColorIn是底色，secondaryColorIn是斑点的颜色
         //填入的为十六进制RGB颜色转换为的十进制值

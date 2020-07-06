@@ -49,7 +49,7 @@ public class RegistryBlock {
 
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event) {
-        CultureCraft.getInstance().getLog().info("Registering blocks.");
+        CultureCraft.getInstance().getLog().info("Registering more blocks.");
         BLOCKS.forEach((name, block) -> {
             event.getRegistry().register(block);
         });

@@ -68,7 +68,7 @@ public class RegistryItem {
 
     @SubscribeEvent
     public static void onRegisterItem(RegistryEvent.Register<Item> event) {
-        CultureCraft.getInstance().getLog().info("Registering items.");
+        CultureCraft.getInstance().getLog().info("Registering more items.");
         ITEMS.forEach((name, item) -> {
             event.getRegistry().register(item);
         });
