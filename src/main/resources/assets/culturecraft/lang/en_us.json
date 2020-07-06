@@ -18,8 +18,12 @@
   "item.culturecraft.rice": "Rice",
   "item.culturecraft.cucumber": "Cucumber",
   "item.culturecraft.eggplant_seed": "Eggplant Seed",
-  "item.culturecraft.millet_seed": "Millet Seed",
+  "item.culturecraft.seed_millet": "Millet Seed",
   "item.culturecraft.seed_rice": "Rice Seed",
+  "item.culturecraft.seed_soybean": "Soybean Seed",
+  "item.culturecraft.seed_sorghum": "Sorghum Seed",
+  "item.culturecraft.scallion": "Scallion",
+  "item.culturecraft.millet": "Millet",
 
   "item.culturecraft.bowl": "Bowl",
   "item.culturecraft.plate": "Plate",
@@ -32,7 +36,7 @@
   "item.culturecraft.dumpling": "Dumpling",
   "item.culturecraft.spirits": "Spirits",
   "item.culturecraft.charred_food": "Charred Food",
-  "item.culturecraft.soybean_milk": "Soybean Milk",
+  "item.culturecraft.milk_soybean": "Soybean Milk",
   "item.culturecraft.tofu": "Tofu",
   "item.culturecraft.green_pepper_shredded_meat": "Pepper green with meat",
 

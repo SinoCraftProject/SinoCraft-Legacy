@@ -18,8 +18,12 @@
   "item.culturecraft.rice": "米",
   "item.culturecraft.cucumber": "黄瓜",
   "item.culturecraft.eggplant_seed": "茄子种子",
-  "item.culturecraft.millet_seed": "小米种子",
   "item.culturecraft.seed_rice": "米的种子",
+  "item.culturecraft.scallion": "葱",
+  "item.culturecraft.seed_soybean": "大豆种子",
+  "item.culturecraft.seed_millet": "小米种子",
+  "item.culturecraft.seed_sorghum": "高粱种子",
+  "item.culturecraft.millet": "小米",
 
   "item.culturecraft.bowl": "碗",
   "item.culturecraft.plate": "盘子",

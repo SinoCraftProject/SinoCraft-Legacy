@@ -17,8 +17,8 @@ import net.minecraft.world.storage.loot.LootContext;
 import java.util.Collections;
 import java.util.List;
 
-
-public class BlockRice extends CropsBlock {
+@ModBlock(name = "plant_rice")
+public class BlockPlantRice extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 18.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 22.0D, 16.0D),
@@ -27,8 +27,8 @@ public class BlockRice extends CropsBlock {
     };
 
 
-    public BlockRice() {
-        super(Block.Properties.from(Blocks.CARROTS));
+    public BlockPlantRice() {
+        super(Block.Properties.from(Blocks.WHEAT));
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
     }
 
@@ -50,7 +50,7 @@ public class BlockRice extends CropsBlock {
     @Override
     public IItemProvider getSeedsItem() {
         {
-            return RegistryItem.ITEMS.get("rice");
+            return RegistryItem.ITEMS.get("seed_rice");
         }
 
     }
