@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.item.automatic;
 
+import cx.rain.mc.forgemod.culturecraft.api.annotation.HandheldModel;
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModItem;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,7 +18,7 @@ import net.minecraftforge.common.ToolType;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@ModItem(name = "seven_stars_precious_blade")
+@ModItem(name = "seven_stars_precious_blade", handheldModel = @HandheldModel(value = "handheld"))
 public class ItemSevenStarsPreciousBlade extends SwordItem {
     public ItemSevenStarsPreciousBlade() {
         super(ItemTier.IRON, 6, -2.4F, new Item.Properties()
