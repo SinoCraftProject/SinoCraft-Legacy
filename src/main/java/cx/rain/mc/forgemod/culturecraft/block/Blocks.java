@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.*;
 import cx.rain.mc.forgemod.culturecraft.enumerate.CeleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
