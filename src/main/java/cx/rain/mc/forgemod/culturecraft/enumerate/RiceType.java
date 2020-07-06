@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.api.enumerate;
+package cx.rain.mc.forgemod.culturecraft.enumerate;
 
 public enum RiceType {
     RICE("rice");

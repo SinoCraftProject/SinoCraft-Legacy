@@ -4,6 +4,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.concurrent.Callable;
+
+import cx.rain.mc.forgemod.culturecraft.api.argument.NullArgs;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IBlockFactory;
+import cx.rain.mc.forgemod.culturecraft.api.factory.BlockFactory;
 
 /**
  * ModBlock annotation.
@@ -19,4 +24,17 @@ public @interface ModBlock {
      * @return RegistryName
      */
     String name();
+
+    /**
+     * The factory class get the instance of block
+     * @return The factory
+     */
+    Class<? extends IBlockFactory> factory() default BlockFactory.class;
+
+
+    /**
+     * The args to factory's callable factory
+     * @return The args to factory's callable factory
+     */
+    Class<? extends Callable<Object[][]>> args() default NullArgs.class;
 }

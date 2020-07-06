@@ -11,8 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IBlockFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,15 +26,22 @@ public class RegistryBlock {
             try {
                 ModBlock modBlock = clazz.getAnnotation(ModBlock.class);
                 String registryName = modBlock.name();
+                IBlockFactory factory = modBlock.factory().newInstance();
+                Object[][] args = modBlock.args().newInstance().call();
                 if (!registryName.isEmpty()) {
-                    Block block = ((Block) clazz.getConstructor().newInstance())
-                            .setRegistryName(CultureCraft.MODID, registryName);
-                    BLOCKS.put(registryName, block);
+                    if(args==null) {
+                        Block block = factory.get((Class<? extends Block>) clazz, null).setRegistryName(CultureCraft.MODID, registryName);
+                        BLOCKS.put(registryName, block);
+                    }
+
+                    else{
+                        for(int i=0;i<args.length;i++){
+                            Block block = factory.get((Class<? extends Block>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
+                            BLOCKS.put(registryName, block);
+                        }
+                    }
                 }
-            } catch (NoSuchMethodException
-                    | IllegalAccessException
-                    | InstantiationException
-                    | InvocationTargetException ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }

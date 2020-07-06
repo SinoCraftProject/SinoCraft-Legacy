@@ -1,0 +1,16 @@
+{
+  "group": "culturecraft:crafting",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P"
+  ],
+  "key": {
+    "P": {
+      "item": "culturecraft:millet"
+    }
+  },
+  "result": {
+    "item": "culturecraft:seed_millet",
+    "count": 1
+  }
+}
