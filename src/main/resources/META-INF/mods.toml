@@ -24,7 +24,7 @@ displayURL="https://github.com/CultureMC/CultureCraft" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="logo.png" #optional
 # A text field displayed in the mod UI
-credits="The SaltedFish Club, DouYan, SQwatermark and jirufengyu." #optional
+credits="The SaltedFish Club, DouYan and SQwatermark." #optional
 # A text field displayed in the mod UI
 authors="AmemiyaSigure, Luo_ShiJian, theFlySong, Victoria, HIMKing" #optional
 # The description text for the mod (multi line!) (#mandatory)
