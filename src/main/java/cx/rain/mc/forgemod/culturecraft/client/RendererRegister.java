@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.client;
 
+import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.client.renderer.entity.RendererBuffalo;
 import cx.rain.mc.forgemod.culturecraft.entity.Entities;
 import net.minecraftforge.api.distmarker.Dist;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = CultureCraft.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RendererRegister {
     @SubscribeEvent
     public static void onClientSetUpEvent(FMLClientSetupEvent event) {

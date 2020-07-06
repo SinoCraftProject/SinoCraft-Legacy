@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.CeleryCabbageType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.CeleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

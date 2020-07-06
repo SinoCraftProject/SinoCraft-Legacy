@@ -2,13 +2,15 @@ package cx.rain.mc.forgemod.culturecraft.registry;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModItem;
+import cx.rain.mc.forgemod.culturecraft.api.annotation.HandheldModel;
+import cx.rain.mc.forgemod.culturecraft.registry.client.RegistrySpecialHandheldModel;
 import cx.rain.mc.forgemod.culturecraft.utility.AnnotationsHelper;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,15 +24,43 @@ public class RegistryItem {
             try {
                 ModItem modItem = clazz.getAnnotation(ModItem.class);
                 String registryName = modItem.name();
+                IItemFactory factory = modItem.factory().newInstance();
+                Object[][] args = modItem.args().newInstance().call();
                 if (!registryName.isEmpty()) {
-                    Item item = ((Item) clazz.getConstructor().newInstance())
+                    // Fixme
+                    Item item = factory.get((Class<? extends Item>) clazz, args)
                             .setRegistryName(CultureCraft.MODID, registryName);
                     ITEMS.put(registryName, item);
+
+                    String handheld = modItem.handheldModel().value();
+                    if (!handheld.isEmpty()) {
+                        RegistrySpecialHandheldModel.ITEM_SPECIAL_HANDHELD_MODEL.put(item, handheld);
+                    }
+                    /*
+                    if (args == null) {
+                        Item item = factory.get((Class<? extends Item>) clazz, null)
+                                .setRegistryName(CultureCraft.MODID, registryName);
+                        ITEMS.put(registryName, item);
+
+                        String handheld = modItem.handheldModel().value();
+                        if (!handheld.isEmpty()) {
+                            RegistrySpecialHandheldModel.ITEM_SPECIAL_HANDHELD_MODEL.put(item, handheld);
+                        }
+                    } else {
+                        for (int i = 0; i < args.length; i++) {
+                            Item item = factory.get((Class<? extends Item>) clazz, args[i])
+                                    .setRegistryName(CultureCraft.MODID, registryName);
+                            ITEMS.put(registryName, item);
+
+                            String handheld = modItem.handheldModel().value();
+                            if (!handheld.isEmpty()) {
+                                RegistrySpecialHandheldModel.ITEM_SPECIAL_HANDHELD_MODEL.put(item, handheld);
+                            }
+                        }
+                    }
+                     */
                 }
-            } catch (NoSuchMethodException
-                    | IllegalAccessException
-                    | InstantiationException
-                    | InvocationTargetException ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
@@ -38,7 +68,7 @@ public class RegistryItem {
 
     @SubscribeEvent
     public static void onRegisterItem(RegistryEvent.Register<Item> event) {
-        CultureCraft.getInstance().getLog().info("Registering more items.");
+        CultureCraft.getInstance().getLog().info("Registering items.");
         ITEMS.forEach((name, item) -> {
             event.getRegistry().register(item);
         });

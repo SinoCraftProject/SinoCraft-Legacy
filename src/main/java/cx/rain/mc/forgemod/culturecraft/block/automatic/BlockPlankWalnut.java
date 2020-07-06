@@ -17,7 +17,7 @@ import java.util.List;
 public class BlockPlankWalnut extends Block {
     public BlockPlankWalnut() {
         super(Properties.create(Material.WOOD)
-                .hardnessAndResistance(2,10)
+                .hardnessAndResistance(2.0F,3.0F)
                 .sound(SoundType.WOOD)
                 .harvestTool(ToolType.AXE));
     }

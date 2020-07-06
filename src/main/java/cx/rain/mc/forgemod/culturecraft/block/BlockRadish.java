@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RadishType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
