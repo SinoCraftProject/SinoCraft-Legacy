@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 import java.util.concurrent.Callable;
 
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IBlockFactory;
-import cx.rain.mc.forgemod.culturecraft.api.interfaces.BlockFactory;
-import java.util.concurrent.Callable;
+import cx.rain.mc.forgemod.culturecraft.api.factory.BlockFactory;
 
 /**
  * ModBlock annotation.

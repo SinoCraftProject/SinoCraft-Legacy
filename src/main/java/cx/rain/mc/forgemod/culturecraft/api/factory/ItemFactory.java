@@ -1,10 +1,11 @@
-package cx.rain.mc.forgemod.culturecraft.api.interfaces;
+package cx.rain.mc.forgemod.culturecraft.api.factory;
 
+import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
 import net.minecraft.item.Item;
 import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nullable;
 
-public class ItemFactory implements IItemFactory{
+public class ItemFactory implements IItemFactory {
     @Override
     public Item get(Class<? extends Item> type,@Nullable Object[] args) throws NoSuchMethodException,IllegalAccessException,InstantiationException,InvocationTargetException{
         return (Item)type.getConstructor().newInstance();

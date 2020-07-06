@@ -3,7 +3,10 @@ package cx.rain.mc.forgemod.culturecraft.block;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 
 import cx.rain.mc.forgemod.culturecraft.api.enumerate.*;
-import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockRice;
+import cx.rain.mc.forgemod.culturecraft.enumerate.CeleryCabbageType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.EggplantType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
 import net.minecraft.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;

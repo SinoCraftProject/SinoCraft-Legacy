@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 import java.util.concurrent.Callable;
 
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IItemFactory;
-import cx.rain.mc.forgemod.culturecraft.api.interfaces.ItemFactory;
-import java.util.concurrent.Callable;
+import cx.rain.mc.forgemod.culturecraft.api.factory.ItemFactory;
 
 /**
  * ModItem annotation.

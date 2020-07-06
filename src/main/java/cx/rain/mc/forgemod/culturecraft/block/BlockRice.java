@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.RiceType;
-import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.enumerate.RiceType;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

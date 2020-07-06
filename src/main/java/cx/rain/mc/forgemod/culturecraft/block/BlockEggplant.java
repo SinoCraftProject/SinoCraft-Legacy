@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.enumerate.EggplantType;
+import cx.rain.mc.forgemod.culturecraft.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
