@@ -44,7 +44,7 @@ public class BlockRice extends CropsBlock {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("rice"), (int) (2)));
+        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("seed_rice"), (int) (2)));
     }
 
     @Override
