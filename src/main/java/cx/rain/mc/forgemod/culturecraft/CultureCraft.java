@@ -12,7 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+@SuppressWarnings("deprecation")
 @Mod(value = CultureCraft.MODID)
 public class CultureCraft {
     public static final String MODID = "culturecraft";

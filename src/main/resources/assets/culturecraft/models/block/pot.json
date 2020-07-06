@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "Desktop/texture",
-		"particle": "Desktop/texture"
+		"0": "culturecraft:blocks/pot",
+		"particle": "culturecraft:blocks/pot"
 	},
 	"elements": [
 		{

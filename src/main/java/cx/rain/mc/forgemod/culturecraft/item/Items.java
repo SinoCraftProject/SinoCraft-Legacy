@@ -57,6 +57,12 @@ public class Items {
                             .group(Groups.MISC)
                             .setNoRepair()));
 
+    public static RegistryObject<Item> SEED_RICE =
+            REGISTRY.register("seed_rice", () -> new BlockNamedItem(Blocks.RICE_PLANT.get(),
+                    new Item.Properties()
+                            .group(Groups.MISC)
+                            .setNoRepair()));
+
     public Items(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering items.");
         REGISTRY.register(bus);

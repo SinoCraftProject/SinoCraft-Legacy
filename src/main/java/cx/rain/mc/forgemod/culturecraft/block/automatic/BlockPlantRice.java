@@ -1,58 +1,36 @@
 package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
-import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
+import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.storage.loot.LootContext;
-
-import java.util.Collections;
-import java.util.List;
-
-@ModBlock(name = "plant_rice")
+/*标准植物注册请去 Blocks 里 抄一段  -> public static RegistryObject<Block> 大写名 =
+        REGISTRY.register("ID",() -> new 植物所在的类 (Block.Properties.from(net.minecraft.block.Blocks.什么植物的特性)));
+ */
 public class BlockPlantRice extends CropsBlock {
+
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 18.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 22.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 26.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 32.0D, 16.0D),
-    };
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 20.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 28.0D, 16.0D),
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 32.0D, 16.0D)};
 
+    public BlockPlantRice(Properties builder) {
+        super(builder);
+    }
 
-    public BlockPlantRice() {
-        super(Block.Properties.from(Blocks.WHEAT));
-        setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
+    @Override
+    protected IItemProvider getSeedsItem() {
+        return Items.SEED_RICE.get();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        int age = state.get(getAgeProperty());
-        int stage = age / 2;
-        return SHAPE_BY_AGE[stage];
+        return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
     }
-
-        @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-        if (!dropsOriginal.isEmpty())
-            return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("seed_rice"), (int) (2)));
-    }
-
-    @Override
-    public IItemProvider getSeedsItem() {
-        {
-            return RegistryItem.ITEMS.get("seed_rice");
-        }
-
-    }
-
- }
+}

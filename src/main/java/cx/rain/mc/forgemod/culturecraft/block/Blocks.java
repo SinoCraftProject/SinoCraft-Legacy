@@ -2,11 +2,13 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 
+import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockPlantRice;
 import cx.rain.mc.forgemod.culturecraft.enumerate.CeleryCabbageType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.EggplantType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +36,8 @@ public class Blocks {
     public static RegistryObject<Block> EGGPLANT_PLANT =
             REGISTRY.register("eggplant_plant",() -> new BlockEggplant(EggplantType.EGGPLANT));
 
+    public static RegistryObject<Block> RICE_PLANT =
+        REGISTRY.register("plant_rice",() -> new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
 
     public Blocks(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering blocks.");
