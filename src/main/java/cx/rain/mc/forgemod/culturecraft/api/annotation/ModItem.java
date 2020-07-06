@@ -26,6 +26,12 @@ public @interface ModItem {
     String name();
 
     /**
+     * Item with special handheld model
+     * @return special handheld model
+     */
+    HandheldModel handheldModel() default @HandheldModel(value = "");
+
+    /**
      * The factory class get the instance of item
      * @return The factory
      */
