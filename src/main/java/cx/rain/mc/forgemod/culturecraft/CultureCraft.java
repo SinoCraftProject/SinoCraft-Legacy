@@ -35,7 +35,6 @@ public class CultureCraft {
 
         new Blocks(bus);
         new Items(bus);
-
     }
 
     public static CultureCraft getInstance() {
