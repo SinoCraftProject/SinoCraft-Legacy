@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.api.args;
+package cx.rain.mc.forgemod.culturecraft.api.argument;
 
 import java.util.concurrent.Callable;
 

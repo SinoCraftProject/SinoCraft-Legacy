@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.api.block;
+package cx.rain.mc.forgemod.culturecraft.api.base;
 
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IMachine;
 import net.minecraft.block.Block;
