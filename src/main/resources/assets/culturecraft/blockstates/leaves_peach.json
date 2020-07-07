@@ -1,5 +1,6 @@
 {
   "variants": {
-    "": { "model": "culturecraft:block/leaves_peach" }
+    "mature=false": { "model": "culturecraft:block/leaves_peach" },
+    "mature=true": { "model": "culturecraft:block/leaves_peach_mature" }
   }
 }

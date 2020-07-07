@@ -7,12 +7,14 @@ import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
+import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -47,7 +49,8 @@ public class Blocks {
     public static RegistryObject<Block> LOG_PEACH_STRIPPED_SKIN =
             REGISTRY.register("log_peach_stripped_skin", () -> new BlockLog(LogType.Peach));
     public static RegistryObject<Block> LEAVES_PEACH =
-            REGISTRY.register("leaves_peach", () -> new BlockLeaves(LogType.Peach));
+            REGISTRY.register("leaves_peach", () -> new BlockLeavesGrowable(LogType.Peach,
+                    new ItemStack(RegistryItem.ITEMS.get("peach"))));
     public static RegistryObject<Block> SAPLING_PEACH =
             REGISTRY.register("sapling_peach", () -> new BlockSapling(LogType.Peach, new TreePeach()));
 
