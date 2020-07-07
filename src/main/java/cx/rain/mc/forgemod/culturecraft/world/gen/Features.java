@@ -12,8 +12,8 @@ public class Features {
                     new SimpleBlockStateProvider(RegistryBlock.BLOCKS.get("log_peach").getDefaultState()),
                     new SimpleBlockStateProvider(RegistryBlock.BLOCKS.get("leaves_peach").getDefaultState()),
                     new BlobFoliagePlacer(2, 0))
-                    .baseHeight(3)
-                    .heightRandA(3)
+                    .baseHeight(4)
+                    .heightRandA(2)
                     .foliageHeight(3)
                     .ignoreVines()
                     .setSapling((IPlantable) RegistryBlock.BLOCKS.get("sapling_peach"))
