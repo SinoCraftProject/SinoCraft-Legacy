@@ -9,10 +9,10 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PeachTree extends Tree {
+public class WalnutTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.NORMAL_TREE.withConfiguration(Features.TREE_PEACH_CONFIG);
+        return Feature.NORMAL_TREE.withConfiguration(Features.TREE_WALNUT_CONFIG);
     }
 }

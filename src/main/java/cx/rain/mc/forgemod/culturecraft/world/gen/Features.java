@@ -18,6 +18,17 @@ public class Features {
                     .ignoreVines()
                     .setSapling((IPlantable) RegistryBlock.BLOCKS.get("sapling_peach"))
                     .build();
+    public static final TreeFeatureConfig TREE_WALNUT_CONFIG =
+            new TreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(RegistryBlock.BLOCKS.get("log_walnut").getDefaultState()),
+                    new SimpleBlockStateProvider(RegistryBlock.BLOCKS.get("leaves_walnut").getDefaultState()),
+                    new BlobFoliagePlacer(2, 0))
+                    .baseHeight(4)
+                    .heightRandA(2)
+                    .foliageHeight(3)
+                    .ignoreVines()
+                    .setSapling((IPlantable) RegistryBlock.BLOCKS.get("sapling_walnut"))
+                    .build();
 
 
 }
