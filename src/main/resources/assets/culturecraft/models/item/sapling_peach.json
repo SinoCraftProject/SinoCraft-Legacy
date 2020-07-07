@@ -1,3 +1,6 @@
 {
-  "parent": "culturecraft:block/sapling_peach"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "culturecraft:block/sapling_peach"
+  }
 }

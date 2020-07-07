@@ -1,22 +1,18 @@
-package cx.rain.mc.forgemod.culturecraft.block;
+package cx.rain.mc.forgemod.culturecraft.block.automatic;
 
-import cx.rain.mc.forgemod.culturecraft.enumerate.CeleryCabbageType;
+import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.storage.loot.LootContext;
 
-import java.util.Collections;
-import java.util.List;
-
+@ModBlock(name = "celery_cabbage_plant")
 public class BlockCeleryCabbage extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
@@ -25,11 +21,8 @@ public class BlockCeleryCabbage extends CropsBlock {
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private CeleryCabbageType celeryCabbageType = null;
-
-    protected BlockCeleryCabbage(CeleryCabbageType type) {
+    public BlockCeleryCabbage() {
         super(Block.Properties.from(Blocks.CARROTS));
-        celeryCabbageType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
     }
     @Override
@@ -41,17 +34,6 @@ public class BlockCeleryCabbage extends CropsBlock {
 
     @Override
     public IItemProvider getSeedsItem() {
-        switch (celeryCabbageType) {
-            case CELERY_CABBAGE:
-                return RegistryItem.ITEMS.get("celery_cabbage");
-        }
-        return null;
-    }
-    @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-        if (!dropsOriginal.isEmpty())
-            return dropsOriginal;
-        return Collections.singletonList(new ItemStack(RegistryItem.ITEMS.get("celery_cabbage"), (int) (2)));
+        return RegistryItem.ITEMS.get("celery_cabbage");
     }
 }

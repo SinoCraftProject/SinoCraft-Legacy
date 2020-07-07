@@ -1,9 +1,9 @@
 package cx.rain.mc.forgemod.culturecraft.enumerate;
 
 public enum RadishType {
-    WHITE("radish_white"),
-    SUMMER("radish_summer"),
-    GREEN("radish_green");
+    White("white"),
+    Summer("summer"),
+    Green("green");
 
     private String name;
 
