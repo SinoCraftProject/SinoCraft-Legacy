@@ -12,10 +12,10 @@ public class Render {
         RenderTypeLookup.setRenderLayer(Blocks.RADISH_GREEN_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.PEPPER_CHILI_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.PEPPER_GREEN_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.CELERY_CABBAGE_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.EGGPLANT_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PEACH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(RegistryBlock.BLOCKS.get("sapling_peach"), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(RegistryBlock.BLOCKS.get("sapling_walnut"), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(RegistryBlock.BLOCKS.get("eggplant_plant"),RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(RegistryBlock.BLOCKS.get("celery_cabbage_plant"), RenderType.getCutout());
     }
 }

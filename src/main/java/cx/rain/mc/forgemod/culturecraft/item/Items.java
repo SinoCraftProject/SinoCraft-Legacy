@@ -52,10 +52,11 @@ public class Items {
                             .setNoRepair()));
 
     public static RegistryObject<Item> EGGPLANT_SEED =
-            REGISTRY.register("eggplant_seed", () -> new BlockNamedItem(Blocks.EGGPLANT_PLANT.get(),
-                    new Item.Properties()
-                            .group(Groups.MISC)
-                            .setNoRepair()));
+            REGISTRY.register("eggplant_seed", () ->
+                    new BlockNamedItem(RegistryBlock.BLOCKS.get("eggplant_plant"),
+                            new Item.Properties()
+                                    .group(Groups.MISC)
+                                    .setNoRepair()));
 
     public static RegistryObject<Item> SEED_RICE =
             REGISTRY.register("seed_rice", () -> new BlockNamedItem(Blocks.RICE_PLANT.get(),
