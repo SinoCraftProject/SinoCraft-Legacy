@@ -57,7 +57,7 @@ public class RegistryBlock {
 
     @SubscribeEvent
     public static void onRegisterBlockItem(RegistryEvent.Register<Item> event) {
-        CultureCraft.getInstance().getLog().info("Registering block items.");
+        CultureCraft.getInstance().getLog().info("Registering more block items.");
         BLOCKS.forEach((name, block) -> {
             event.getRegistry().register(new BlockItem(block, new Item.Properties().group(Groups.BLOCKS))
                     .setRegistryName(name));

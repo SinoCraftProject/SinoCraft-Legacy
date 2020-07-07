@@ -6,9 +6,13 @@ import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockPlantRice;
 import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
+import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockNamedItem;
+import net.minecraft.item.Food;
+import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,9 +30,13 @@ public class Blocks {
             REGISTRY.register("radish_green_plant", () -> new BlockRadish(RadishType.Green));
 
     public static RegistryObject<Block> PEPPER_CHILI_PLANT =
-            REGISTRY.register("pepper_chili_plant",() -> new BlockPepper(PepperType.Chili));
+            REGISTRY.register("pepper_chili_plant", () -> new BlockPepper(PepperType.Chili));
     public static RegistryObject<Block> PEPPER_GREEN_PLANT =
-            REGISTRY.register("pepper_green_plant",() -> new BlockPepper(PepperType.Green));
+            REGISTRY.register("pepper_green_plant", () -> new BlockPepper(PepperType.Green));
+
+    public static RegistryObject<Block> RICE_PLANT =
+            REGISTRY.register("plant_rice", () ->
+                    new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
 
     public static RegistryObject<Block> LOG_PEACH =
             REGISTRY.register("log_peach", () -> new BlockLog(LogType.Peach));
@@ -55,10 +63,6 @@ public class Blocks {
             REGISTRY.register("leaves_walnut", () -> new BlockLeaves(LogType.Walnut));
     public static RegistryObject<Block> SAPLING_WALNUT =
             REGISTRY.register("sapling_walnut", () -> new BlockSapling(LogType.Walnut, new TreeWalnut()));
-
-    public static RegistryObject<Block> RICE_PLANT =
-        REGISTRY.register("plant_rice",() ->
-                new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
 
     public Blocks(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering blocks.");

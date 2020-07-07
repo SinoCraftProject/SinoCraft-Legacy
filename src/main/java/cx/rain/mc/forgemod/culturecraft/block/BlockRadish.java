@@ -37,11 +37,11 @@ public class BlockRadish extends CropsBlock {
     public IItemProvider getSeedsItem() {
         switch (radishType) {
             case White:
-                return Items.RADISH_WHITE.get();
+                return BlockItems.RADISH_WHITE.get();
             case Summer:
-                return Items.RADISH_SUMMER.get();
+                return BlockItems.RADISH_SUMMER.get();
             case Green:
-                return Items.RADISH_GREEN.get();
+                return BlockItems.RADISH_GREEN.get();
         }
         return null;
     }

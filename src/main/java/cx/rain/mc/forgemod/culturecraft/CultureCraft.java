@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.culturecraft;
 
+import cx.rain.mc.forgemod.culturecraft.block.BlockItems;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.client.Render;
-import cx.rain.mc.forgemod.culturecraft.entity.Entities;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -34,6 +34,7 @@ public class CultureCraft {
         bus.addListener(this::setupServer);
 
         new Blocks(bus);
+        new BlockItems(bus);
         new Items(bus);
     }
 
