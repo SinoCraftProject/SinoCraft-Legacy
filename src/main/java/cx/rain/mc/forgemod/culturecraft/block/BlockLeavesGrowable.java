@@ -8,7 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -93,12 +96,13 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
     }
 
     @Override
-    public void onBlockClicked(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity) {
-        super.onBlockClicked(state, world, pos, playerEntity);
-
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity,
+                                             Hand hand, BlockRayTraceResult traceResult) {
         if (isMature(state)) {
             playerEntity.dropItem(fruit, true, false);
             setMature(world, pos, state, false);
         }
+
+        return ActionResultType.SUCCESS;
     }
 }
