@@ -40,8 +40,8 @@ public class Blocks {
             REGISTRY.register("plant_rice", () ->
                     new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
 
-    public static RegistryObject<Block> SOYBEN_PLANT =
-            REGISTRY.register("plant_soyben", () ->
+    public static RegistryObject<Block> SOYBEAN_PLANT =
+            REGISTRY.register("plant_soybean", () ->
                     new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
 
     public static RegistryObject<Block> LOG_PEACH =

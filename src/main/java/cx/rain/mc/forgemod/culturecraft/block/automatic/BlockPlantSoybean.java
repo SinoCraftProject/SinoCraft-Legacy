@@ -10,20 +10,20 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class BlockPlantSoyben extends CropsBlock {
+public class BlockPlantSoybean extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
-    public BlockPlantSoyben(Properties builder) {
+    public BlockPlantSoybean(Properties builder) {
         super(builder);
     }
 
     @Override
     protected IItemProvider getSeedsItem() {
-        return Items.SEED_SOYBRN.get();
+        return Items.SEED_SOYBEAN.get();
     }
 
     @Override

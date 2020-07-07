@@ -41,8 +41,8 @@ public class Items {
                             .group(Groups.MISC)
                             .setNoRepair()));
 
-    public static RegistryObject<Item> SEED_SOYBRN = REGISTRY.register("seed_soyben", () ->
-            new BlockNamedItem(Blocks.SOYBEN_PLANT.get(),
+    public static RegistryObject<Item> SEED_SOYBEAN = REGISTRY.register("seed_soybean", () ->
+            new BlockNamedItem(Blocks.SOYBEAN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.MISC)
                             .setNoRepair()));
