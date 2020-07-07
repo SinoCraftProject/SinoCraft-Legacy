@@ -49,7 +49,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
 
     @Override
     public boolean canGrow(IBlockReader iBlockReader, BlockPos blockPos, BlockState blockState, boolean b) {
-        return true;
+        return !isMature(blockState);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
             return;
         }
 
-        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(15) == 1)) {
+        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(10) == 1)) {
             grow(world, rand, pos, state);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, pos, state);
         }
