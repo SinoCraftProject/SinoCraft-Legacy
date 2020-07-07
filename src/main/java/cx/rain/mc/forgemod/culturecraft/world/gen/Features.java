@@ -13,7 +13,7 @@ public class Features {
                     new SimpleBlockStateProvider(Blocks.LOG_PEACH.get().getDefaultState()),
                     new SimpleBlockStateProvider(Blocks.LEAVES_PEACH.get().getDefaultState()),
                     new BlobFoliagePlacer(2, 0))
-                    .baseHeight(4)
+                    .baseHeight(5)
                     .heightRandA(2)
                     .foliageHeight(3)
                     .ignoreVines()
@@ -25,7 +25,7 @@ public class Features {
                     new SimpleBlockStateProvider(Blocks.LOG_WALNUT.get().getDefaultState()),
                     new SimpleBlockStateProvider(Blocks.LEAVES_WALNUT.get().getDefaultState()),
                     new BlobFoliagePlacer(2, 0))
-                    .baseHeight(4)
+                    .baseHeight(5)
                     .heightRandA(2)
                     .foliageHeight(3)
                     .ignoreVines()
