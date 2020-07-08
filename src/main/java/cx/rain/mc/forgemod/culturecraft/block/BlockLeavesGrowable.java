@@ -89,7 +89,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
             return;
         }
 
-        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(10) == 1)) {
+        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(15) == 1)) {
             grow(world, rand, pos, state);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, pos, state);
         }
@@ -99,7 +99,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity,
                                              Hand hand, BlockRayTraceResult traceResult) {
         if (isMature(state)) {
-            playerEntity.dropItem(fruit, true, false);
+            playerEntity.dropItem(fruit, false, false);
             setMature(world, pos, state, false);
         }
 
