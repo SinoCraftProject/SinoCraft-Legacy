@@ -29,14 +29,14 @@ public class RegistryBlock {
                 IBlockFactory factory = modBlock.factory().newInstance();
                 Object[][] args = modBlock.args().newInstance().call();
                 if (!registryName.isEmpty()) {
-                    if(args==null) {
-                        Block block = factory.get((Class<? extends Block>) clazz, null).setRegistryName(CultureCraft.MODID, registryName);
+                    if (args == null) {
+                        Block block = factory.get((Class<? extends Block>) clazz, null)
+                                .setRegistryName(CultureCraft.MODID, registryName);
                         BLOCKS.put(registryName, block);
-                    }
-
-                    else{
-                        for(int i=0;i<args.length;i++){
-                            Block block = factory.get((Class<? extends Block>)clazz,args[i]).setRegistryName(CultureCraft.MODID, registryName);
+                    } else {
+                        for (int i = 0; i < args.length; i++) {
+                            Block block = factory.get((Class<? extends Block>) clazz, args[i])
+                                    .setRegistryName(CultureCraft.MODID, registryName);
                             BLOCKS.put(registryName, block);
                         }
                     }
