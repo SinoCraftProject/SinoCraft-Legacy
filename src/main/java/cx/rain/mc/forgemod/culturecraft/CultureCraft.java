@@ -23,7 +23,7 @@ public class CultureCraft {
 
     private static CultureCraft INSTANCE = null;
 
-    private final Logger Log = LogManager.getLogger(CultureCraft.NAME);
+    public static Logger Log = LogManager.getLogger(CultureCraft.NAME);
 
     public CultureCraft() {
         INSTANCE = this;

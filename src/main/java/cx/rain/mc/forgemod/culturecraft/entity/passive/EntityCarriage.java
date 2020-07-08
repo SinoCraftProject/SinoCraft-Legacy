@@ -12,6 +12,7 @@ import net.minecraft.world.World;
  *  等材质与模型 ， 使用方法右键上车，打开gui选择驿站
  *  会自动探路
  */
+
 public class EntityCarriage extends AnimalEntity {
 
     private EatGrassGoal eatGrassGoal;
