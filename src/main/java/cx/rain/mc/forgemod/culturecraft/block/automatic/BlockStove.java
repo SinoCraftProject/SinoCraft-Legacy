@@ -28,6 +28,4 @@ public class BlockStove extends ContainerBlock {
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileEntityStove();
     }
-
-
 }
