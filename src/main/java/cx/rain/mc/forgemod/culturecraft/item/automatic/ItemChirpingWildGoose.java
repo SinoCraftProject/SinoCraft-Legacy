@@ -9,7 +9,7 @@ import net.minecraft.item.SwordItem;
 @ModItem(name = "chirping_wildgoose")
 public class ItemChirpingWildGoose extends SwordItem {
     public ItemChirpingWildGoose() {
-        super(ItemTier.DIAMOND, 9, -2.4F, new Item.Properties()
+        super(ItemTier.DIAMOND, 11, -2.4F, new Item.Properties()
                 .group(Groups.COMBAT)
                 .setNoRepair()
                 .maxStackSize(1));
