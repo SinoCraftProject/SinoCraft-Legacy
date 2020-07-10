@@ -1,0 +1,7 @@
+# The history of build version
+# '#' is the comment sign
+# '*' is the snap_shot version sign
+# '^' is the stable version sign
+# '$' is the test version sign
+
+#before version 1.0.0
