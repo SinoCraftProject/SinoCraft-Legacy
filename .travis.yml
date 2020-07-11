@@ -3,7 +3,7 @@ sudo: required
 jdk: 
 - openjdk8
 before_install: 
-  - chmod 755 ~/.gradlew
+  - chmod 755 gradlew
 install: 
   - ./gradlew build
 after_success:
