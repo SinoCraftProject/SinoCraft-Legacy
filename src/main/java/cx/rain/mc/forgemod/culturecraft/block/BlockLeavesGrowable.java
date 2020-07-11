@@ -113,8 +113,8 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
         if (isMature(state)) {
             playerEntity.dropItem(fruit, false, false);
             setMature(world, pos, state, false);
+            return ActionResultType.SUCCESS;
         }
-
-        return ActionResultType.SUCCESS;
+        return ActionResultType.PASS;
     }
 }

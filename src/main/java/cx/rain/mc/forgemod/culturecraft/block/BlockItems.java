@@ -52,7 +52,7 @@ public class BlockItems {
                     new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> SAPLING_PEACH =
             REGISTRY.register("sapling_peach", () -> new BlockItem(Blocks.SAPLING_PEACH.get(),
-                    new Item.Properties().group(Groups.MISC)));
+                    new Item.Properties().group(Groups.DECORATE)));
 
     public static RegistryObject<Item> LOG_WALNUT =
             REGISTRY.register("log_walnut", () -> new BlockItem(Blocks.LOG_WALNUT.get(),
@@ -72,7 +72,7 @@ public class BlockItems {
                     new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> SAPLING_WALNUT =
             REGISTRY.register("sapling_walnut", () -> new BlockItem(Blocks.SAPLING_WALNUT.get(),
-                    new Item.Properties().group(Groups.MISC)));
+                    new Item.Properties().group(Groups.DECORATE)));
 
     public BlockItems(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering block items.");

@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.cooking;
+package cx.rain.mc.forgemod.culturecraft.crafting.cooking;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.ICookingRecpie;

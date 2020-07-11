@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "culturecraft:blocks/log_walnut_top",
+    "side": "culturecraft:blocks/log_walnut_stripped"
+  }
+}
