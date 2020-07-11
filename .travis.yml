@@ -3,13 +3,12 @@ jdk:
 - openjdk8
 before_install: 
   - chmod 755 gradlew
-install: true
-#  - ./gradlew build
+install: 
+  - ./gradlew build
 after_success:
   - git clone "https://${repo}"
-  - cd CultureCraft-Build/
-  - ls
   - mv ./build/libs/* CultureCraft-Build/libs/
+  - cd CultureCraft-Build/
   - git add *
   - git commit -m ":sparkles:Commit by Travis CI"
   - git push --force "https://amemiyasigure:${token}@${repo}"
