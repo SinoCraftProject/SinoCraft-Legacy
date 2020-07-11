@@ -78,8 +78,13 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-        super.tick(state, world, pos, rand);
+    public boolean ticksRandomly(BlockState state) {
+        return !isPersistent(state) && !isMature(state);
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        super.randomTick(state, worldIn, pos, rand);
 
         if (isMature(state)) {
             return;
@@ -89,10 +94,17 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
             return;
         }
 
-        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(15) == 1)) {
-            grow(world, rand, pos, state);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, pos, state);
+        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(25) == 1)) {
+            grow(worldIn, rand, pos, state);
+            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
         }
+    }
+
+    @Override
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        super.tick(state, worldIn, pos, rand);
+
+        randomTick(state, worldIn, pos, rand);
     }
 
     @Override
