@@ -94,17 +94,10 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
             return;
         }
 
-        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(25) == 1)) {
+        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(10) == 1)) {
             grow(worldIn, rand, pos, state);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
         }
-    }
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        super.tick(state, worldIn, pos, rand);
-
-        randomTick(state, worldIn, pos, rand);
     }
 
     @Override
