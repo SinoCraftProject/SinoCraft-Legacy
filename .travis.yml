@@ -10,7 +10,7 @@ after_success:
   - cd CultureCraft-Build/
   - mv ~/build/libs/ ~/CultureCraft-Build/
   - git add *
-  - git commit -m \":sparkles: Commit by Travis CI\"
+  - git commit -m ":sparkles:Commit by Travis CI"
   - git push --force "https://amemiyasigure:${token}@${repo}"
 
 env:
