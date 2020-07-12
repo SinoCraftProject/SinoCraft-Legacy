@@ -23,7 +23,7 @@ public class Entities {
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)
             .size(1.4F, 1.4F).build("null");
     public static final EntityType<EntityGoal> ENTITY_GOAL = EntityType.Builder//山羊
-            .create((EntityType.IFactory<EntityGoal>) EntityGoal::new, EntityClassification.MISC)
+            .create(EntityGoal::new, EntityClassification.MISC)
             .size(1.4F, 1.4F).build("null");
     public static final EntityType<EntityTerraCotta> ENTITY_TERRACOTTA = EntityType.Builder//兵马俑
             .create((EntityType.IFactory<EntityTerraCotta>) EntityTerraCotta::new, EntityClassification.MISC)
@@ -40,9 +40,11 @@ public class Entities {
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
         CultureCraft.getInstance().getLog().info("Registering entities.");
         event.getRegistry().register(ENTITY_BUFFALO.setRegistryName("buffalo"));
+        /*
         event.getRegistry().register(ENTITY_TERRACOTTA.setRegistryName("terracotta"));
         event.getRegistry().register(ENTITY_EMPEROR.setRegistryName("emperor"));
         event.getRegistry().register(ENTITY_GOAL.setRegistryName("goal"));
+         */
     }
 
     @SubscribeEvent
@@ -55,10 +57,12 @@ public class Entities {
         //下面建议注册的ID 为 spawn_egg_***
         event.getRegistry().register(new SpawnEggItem(ENTITY_BUFFALO, 11434029, 13027014,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("spawn_egg_buffalo"));
+        /*
         event.getRegistry().register(new SpawnEggItem(ENTITY_TERRACOTTA, 7963006, 10587648,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("spawn_egg_terracotta"));
         event.getRegistry().register(new SpawnEggItem(ENTITY_GOAL, 9411221, 1860469,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("spawn_egg_goal"));
+         */
     }
 }
 

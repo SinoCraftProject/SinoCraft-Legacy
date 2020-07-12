@@ -14,3 +14,6 @@ e12f602c8fdd54055c9c4df657344e0a682ecf20 assets\culturecraft\models\block\log_wa
 ad503abef509856eb9dcdeef4cda1f69b685d167 assets\culturecraft\models\block\marble_white.json
 a172c88a5dfc937d6db4bfb6aa1281d1a1d106c2 assets\culturecraft\models\block\plank_peach.json
 7caf33235c55be7b5c234ad8a7c8db79c4ff5c12 assets\culturecraft\models\block\plank_walnut.json
+ad9edc9abe53049f83c044c4d9a17ac3211e5458 data\culturecraft\tags\blocks\log_peach.json
+d410d2194702c4c0b0bb3f5e36490a89cda63ae9 data\culturecraft\tags\blocks\log_walnut.json
+304e5a8b382dd3c35d31e9c89b569ae08cfeff70 data\minecraft\tags\blocks\logs.json

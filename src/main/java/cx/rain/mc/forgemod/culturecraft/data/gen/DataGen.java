@@ -1,7 +1,10 @@
-package cx.rain.mc.forgemod.culturecraft.datagen;
+package cx.rain.mc.forgemod.culturecraft.data.gen;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.datagen.provider.ProviderBlockState;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockState;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockTags;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemModel;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,10 +22,12 @@ public class DataGen {
         // Todo: Data Generator.
         if (event.includeClient()) {
             generator.addProvider(new ProviderBlockState(generator, helper));
+            generator.addProvider(new ProviderItemModel(generator, helper));
         }
 
         if (event.includeServer()) {
-
+            generator.addProvider(new ProviderBlockTags(generator));
+            generator.addProvider(new ProviderItemTags(generator));
         }
     }
 }

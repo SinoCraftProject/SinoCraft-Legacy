@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.datagen.provider;
+package cx.rain.mc.forgemod.culturecraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
