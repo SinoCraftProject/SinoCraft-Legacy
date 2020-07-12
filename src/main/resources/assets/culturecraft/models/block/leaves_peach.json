@@ -1,6 +1,6 @@
 {
   "parent": "block/leaves",
   "textures": {
-    "all": "culturecraft:blocks/leaves_peach"
+    "all": "culturecraft:block/leaves_peach"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "culturecraft:items/milk_soybean"
+    "layer0": "culturecraft:item/milk_soybean"
   }
 }

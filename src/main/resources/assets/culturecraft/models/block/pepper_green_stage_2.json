@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "culturecraft:blocks/pepper_green_stage_2"
+    "crop": "culturecraft:block/pepper_green_stage_2"
   }
 }

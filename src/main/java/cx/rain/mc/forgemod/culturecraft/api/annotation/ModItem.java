@@ -16,8 +16,8 @@ import cx.rain.mc.forgemod.culturecraft.api.factory.ItemFactory;
  * Use on class extends Item.
  * @author AmemiyaSigure
  */
-@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ModItem {
     /**
      * Registry name of item

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "culturecraft:items/scallion"
+    "layer0": "culturecraft:item/scallion"
   }
 }

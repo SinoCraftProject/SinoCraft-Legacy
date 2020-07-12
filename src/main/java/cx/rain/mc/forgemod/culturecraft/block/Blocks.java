@@ -2,18 +2,13 @@ package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 
-import cx.rain.mc.forgemod.culturecraft.block.automatic.BlockPlantRice;
 import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PepperType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
-import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;

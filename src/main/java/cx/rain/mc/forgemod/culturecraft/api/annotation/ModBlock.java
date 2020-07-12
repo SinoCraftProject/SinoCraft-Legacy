@@ -16,8 +16,8 @@ import cx.rain.mc.forgemod.culturecraft.api.factory.BlockFactory;
  * Use on class extends Block.
  * @author AmemiyaSigure
  */
-@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ModBlock {
     /**
      * Registry name of block

@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "culturecraft:blocks/eggplant_stage_5"
+    "crop": "culturecraft:block/eggplant_stage_5"
   }
 }

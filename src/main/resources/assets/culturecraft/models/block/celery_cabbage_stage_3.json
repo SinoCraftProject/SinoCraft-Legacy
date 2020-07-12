@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "culturecraft:blocks/celery_cabbage_stage_3"
+    "crop": "culturecraft:block/celery_cabbage_stage_3"
   }
 }

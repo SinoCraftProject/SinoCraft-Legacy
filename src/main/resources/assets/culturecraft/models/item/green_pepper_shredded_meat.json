@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "culturecraft:items/green_pepper_shredded_meat"
+    "layer0": "culturecraft:item/green_pepper_shredded_meat"
   }
 }

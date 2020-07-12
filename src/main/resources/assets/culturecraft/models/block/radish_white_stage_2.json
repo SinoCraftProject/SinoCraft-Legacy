@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "culturecraft:blocks/radish_white_stage_2"
+    "crop": "culturecraft:block/radish_white_stage_2"
   }
 }

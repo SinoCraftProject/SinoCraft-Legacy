@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "culturecraft:items/chirping_wildgoose_inhand"
+    "layer0": "culturecraft:item/chirping_wildgoose_inhand"
   }
 }

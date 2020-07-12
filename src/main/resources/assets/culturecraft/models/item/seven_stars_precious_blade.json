@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "culturecraft:items/seven_stars_precious_blade"
+    "layer0": "culturecraft:item/seven_stars_precious_blade"
   }
 }

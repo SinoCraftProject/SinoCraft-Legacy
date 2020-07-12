@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.block.automatic;
+package cx.rain.mc.forgemod.culturecraft.block;
 
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.block.Block;
@@ -9,9 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-/*标准植物注册请去 Blocks 里 抄一段  -> public static RegistryObject<Block> 大写名 =
-        REGISTRY.register("ID",() -> new 植物所在的类 (Block.Properties.from(net.minecraft.block.Blocks.什么植物的特性)));
- */
+
 public class BlockPlantRice extends CropsBlock {
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
