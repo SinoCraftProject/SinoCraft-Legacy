@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "culturecraft:blocks/log_walnut_stripped"
+    "all": "culturecraft:block/plank_peach"
   }
 }

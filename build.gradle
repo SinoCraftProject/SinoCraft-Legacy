@@ -21,14 +21,6 @@ apply plugin: 'maven-publish'
 //apply plugin: 'io.freefair.lombok'
 //apply plugin: 'com.github.johnrengelman.shadow'
 
-allprojects {
-    repositories {
-        maven { url = 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url = 'https://maven.aliyun.com/repository/central' }
-        maven { url = 'https://download.mcbbs.net/maven'}
-    }
-}
-
 version = '1.15.2-1.0.0'
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'culturecraft'
@@ -59,7 +51,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                examplemod {
+                culturecraft {
                     source sourceSets.main
                 }
             }
@@ -75,7 +67,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                examplemod {
+                culturecraft {
                     source sourceSets.main
                 }
             }
@@ -88,12 +80,12 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
+            property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'culturecraft', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'culturecraft', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                culturecraft {
                     source sourceSets.main
                 }
             }
@@ -141,7 +133,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    shade group: "org.reflections", name: "reflections", version: "0.9.12"
+    shade group: "net.oneandone.reflections8", name: "reflections8", version: "0.11.5"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

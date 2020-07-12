@@ -39,7 +39,6 @@ public class Blocks {
     public static RegistryObject<Block> RICE_PLANT =
             REGISTRY.register("plant_rice", () ->
                     new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
-
     public static RegistryObject<Block> SOYBEAN_PLANT =
             REGISTRY.register("plant_soybean", () ->
                     new BlockPlantRice(Block.Properties.from(net.minecraft.block.Blocks.WHEAT)));
@@ -52,6 +51,8 @@ public class Blocks {
             REGISTRY.register("log_peach_stripped", () -> new BlockLog(LogType.Peach));
     public static RegistryObject<Block> LOG_PEACH_STRIPPED_SKIN =
             REGISTRY.register("log_peach_stripped_skin", () -> new BlockLog(LogType.Peach));
+    public static RegistryObject<Block> PLANK_PEACH =
+            REGISTRY.register("plank_peach", () -> new BlockPlank(LogType.Peach));
     public static RegistryObject<Block> LEAVES_PEACH =
             REGISTRY.register("leaves_peach", () -> new BlockLeavesGrowable(LogType.Peach,
                     new ItemStack(RegistryItem.ITEMS.get("peach"))));
@@ -66,6 +67,8 @@ public class Blocks {
             REGISTRY.register("log_walnut_stripped", () -> new BlockLog(LogType.Walnut));
     public static RegistryObject<Block> LOG_WALNUT_STRIPPED_SKIN =
             REGISTRY.register("log_walnut_stripped_skin", () -> new BlockLog(LogType.Walnut));
+    public static RegistryObject<Block> PLANK_WALNUT =
+            REGISTRY.register("plank_walnut", () -> new BlockPlank(LogType.Walnut));
     public static RegistryObject<Block> LEAVES_WALNUT =
             REGISTRY.register("leaves_walnut", () -> new BlockLeaves(LogType.Walnut));
     public static RegistryObject<Block> SAPLING_WALNUT =

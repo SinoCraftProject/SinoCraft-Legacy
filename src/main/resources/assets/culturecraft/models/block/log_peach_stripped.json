@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "culturecraft:blocks/log_peach_top",
-    "side": "culturecraft:blocks/log_peach_stripped"
-  }
-}
