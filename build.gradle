@@ -150,6 +150,12 @@ jar {
         ])
     }
 
+    sourceSets {
+        main.resources.srcDirs += 'src/generated/resources'
+    }
+
+    exclude '.cache', '.cache/**'
+
     configurations.shade.each {
         dep -> from(project.zipTree(dep)) {
             exclude 'META-INF', 'META-INF/**'

@@ -7,7 +7,6 @@ import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
-import net.minecraftforge.client.model.generators.ModelFile;
 
 public class ProviderBlockState extends BlockStateProvider {
     public ProviderBlockState(DataGenerator gen, ExistingFileHelper exFileHelper) {
