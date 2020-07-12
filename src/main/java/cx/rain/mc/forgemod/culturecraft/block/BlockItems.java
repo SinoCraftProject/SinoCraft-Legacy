@@ -16,19 +16,19 @@ public class BlockItems {
             new DeferredRegister<>(ForgeRegistries.ITEMS, CultureCraft.MODID);
 
     public static RegistryObject<Item> RADISH_WHITE =
-            REGISTRY.register("radish_white", () -> new BlockNamedItem(Blocks.RADISH_WHITE_PLANT.get(),
+            REGISTRY.register("radish_white", () -> new BlockItem(Blocks.RADISH_WHITE_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
                             .food(new Food.Builder().hunger(3).saturation(4).build())
                             .setNoRepair()));
     public static RegistryObject<Item> RADISH_SUMMER =
-            REGISTRY.register("radish_summer", () -> new BlockNamedItem(Blocks.RADISH_SUMMER_PLANT.get(),
+            REGISTRY.register("radish_summer", () -> new BlockItem(Blocks.RADISH_SUMMER_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
                             .food(new Food.Builder().hunger(2).saturation(3).build())
                             .setNoRepair()));
     public static RegistryObject<Item> RADISH_GREEN =
-            REGISTRY.register("radish_green", () -> new BlockNamedItem(Blocks.RADISH_GREEN_PLANT.get(),
+            REGISTRY.register("radish_green", () -> new BlockItem(Blocks.RADISH_GREEN_PLANT.get(),
                     new Item.Properties()
                             .group(Groups.FOODS)
                             .food(new Food.Builder().hunger(2).saturation(5).build())

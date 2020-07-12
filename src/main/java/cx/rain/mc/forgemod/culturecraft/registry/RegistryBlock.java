@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.culturecraft.registry;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
-import cx.rain.mc.forgemod.culturecraft.api.annotation.ModItem;
 import cx.rain.mc.forgemod.culturecraft.group.Groups;
 import cx.rain.mc.forgemod.culturecraft.utility.AnnotationsHelper;
 import net.minecraft.block.Block;

@@ -21,5 +21,4 @@ public class RendererBuffalo extends MobRenderer<EntityBuffalo, ModelBuffalo> {
     public ResourceLocation getEntityTexture(EntityBuffalo entity) {
         return BUFFALO_TEXTURES;
     }
-
 }
