@@ -7,6 +7,7 @@ import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.MarbleType;
 import cx.rain.mc.forgemod.culturecraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeMulberry;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
 import net.minecraft.block.Block;
@@ -46,6 +47,23 @@ public class Blocks {
     public static RegistryObject<Block> PLANK_WALNUT = REGISTRY.register("plank_walnut", () -> new BlockPlank(LogType.WALNUT));
     public static RegistryObject<Block> LEAVES_WALNUT = REGISTRY.register("leaves_walnut", () -> new BlockLeaves(LogType.WALNUT));
     public static RegistryObject<Block> SAPLING_WALNUT = REGISTRY.register("sapling_walnut", () -> new BlockSapling(LogType.WALNUT, new TreeWalnut()));
+
+    public static RegistryObject<Block> LOG_PLUM = REGISTRY.register("log_plum", () -> new BlockLog(LogType.PLUM));
+    public static RegistryObject<Block> LOG_PLUM_SKIN = REGISTRY.register("log_plum_skin", () -> new BlockLog(LogType.PLUM));
+    public static RegistryObject<Block> LOG_PLUM_STRIPPED = REGISTRY.register("log_plum_stripped", () -> new BlockLog(LogType.PLUM));
+    public static RegistryObject<Block> LOG_PLUM_STRIPPED_SKIN = REGISTRY.register("log_plum_stripped_skin", () -> new BlockLog(LogType.PLUM));
+    public static RegistryObject<Block> PLANK_PLUM = REGISTRY.register("plank_plum", () -> new BlockPlank(LogType.PLUM));
+    public static RegistryObject<Block> LEAVES_PLUM = REGISTRY.register("leaves_plum", () -> new BlockLeaves(LogType.PLUM));
+    // Todo: sapling of plum.
+    //public static RegistryObject<Block> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockSapling(LogType.PLUM, new TreeWalnut()));
+
+    public static RegistryObject<Block> LOG_MULBERRY = REGISTRY.register("log_mulberry", () -> new BlockLog(LogType.MULBERRY));
+    public static RegistryObject<Block> LOG_MULBERRY_SKIN = REGISTRY.register("log_mulberry_skin", () -> new BlockLog(LogType.MULBERRY));
+    public static RegistryObject<Block> LOG_MULBERRY_STRIPPED = REGISTRY.register("log_mulberry_stripped", () -> new BlockLog(LogType.MULBERRY));
+    public static RegistryObject<Block> LOG_MULBERRY_STRIPPED_SKIN = REGISTRY.register("log_mulberry_stripped_skin", () -> new BlockLog(LogType.MULBERRY));
+    public static RegistryObject<Block> PLANK_MULBERRY = REGISTRY.register("plank_mulberry", () -> new BlockPlank(LogType.MULBERRY));
+    public static RegistryObject<Block> LEAVES_MULBERRY = REGISTRY.register("leaves_mulberry", () -> new BlockLeaves(LogType.MULBERRY));
+    public static RegistryObject<Block> SAPLING_MULBERRY = REGISTRY.register("sapling_mulberry", () -> new BlockSapling(LogType.MULBERRY, new TreeMulberry()));
 
     public static RegistryObject<Block> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockMarble(MarbleType.WHITE));
     public static RegistryObject<Block> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));

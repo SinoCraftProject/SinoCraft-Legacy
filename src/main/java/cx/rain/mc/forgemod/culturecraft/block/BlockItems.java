@@ -74,6 +74,54 @@ public class BlockItems {
             REGISTRY.register("sapling_walnut", () -> new BlockItem(Blocks.SAPLING_WALNUT.get(),
                     new Item.Properties().group(Groups.DECORATE)));
 
+    public static RegistryObject<Item> LOG_PLUM =
+            REGISTRY.register("log_plum", () -> new BlockItem(Blocks.LOG_PLUM.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_PLUM_SKIN =
+            REGISTRY.register("log_plum_skin", () -> new BlockItem(Blocks.LOG_PLUM_SKIN.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_PLUM_STRIPPED =
+            REGISTRY.register("log_plum_stripped", () -> new BlockItem(Blocks.LOG_PLUM_STRIPPED.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_PLUM_STRIPPED_SKIN =
+            REGISTRY.register("log_plum_stripped_skin", () ->
+                    new BlockItem(Blocks.LOG_PLUM_STRIPPED_SKIN.get(),
+                            new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> PLANK_PLUM =
+            REGISTRY.register("plank_plum", () -> new BlockItem(Blocks.PLANK_PLUM.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LEAVES_PLUM =
+            REGISTRY.register("leaves_plum", () -> new BlockItem(Blocks.LEAVES_PLUM.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    /* // Todo
+    public static RegistryObject<Item> SAPLING_PLUM =
+            REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(),
+                    new Item.Properties().group(Groups.DECORATE)));
+     */
+
+    public static RegistryObject<Item> LOG_MULBERRY =
+            REGISTRY.register("log_mulberry", () -> new BlockItem(Blocks.LOG_MULBERRY.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_MULBERRY_SKIN =
+            REGISTRY.register("log_mulberry_skin", () -> new BlockItem(Blocks.LOG_MULBERRY_SKIN.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_MULBERRY_STRIPPED =
+            REGISTRY.register("log_mulberry_stripped", () -> new BlockItem(Blocks.LOG_MULBERRY_STRIPPED.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LOG_MULBERRY_STRIPPED_SKIN =
+            REGISTRY.register("log_mulberry_stripped_skin", () ->
+                    new BlockItem(Blocks.LOG_MULBERRY_STRIPPED_SKIN.get(),
+                            new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> PLANK_MULBERRY =
+            REGISTRY.register("plank_mulberry", () -> new BlockItem(Blocks.PLANK_MULBERRY.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> LEAVES_MULBERRY =
+            REGISTRY.register("leaves_mulberry", () -> new BlockItem(Blocks.LEAVES_MULBERRY.get(),
+                    new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> SAPLING_MULBERRY =
+            REGISTRY.register("sapling_mulberry", () -> new BlockItem(Blocks.SAPLING_MULBERRY.get(),
+                    new Item.Properties().group(Groups.DECORATE)));
+
     public BlockItems(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering block items.");
         REGISTRY.register(bus);

@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.culturecraft.data.gen.provider;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
+import cx.rain.mc.forgemod.culturecraft.block.base.BlockPlant;
 import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -37,5 +38,52 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(Blocks.WHITE_MARBLE.get());
         //simpleBlock(Blocks.RED_MARBLE.get());
         //simpleBlock(Blocks.BLACK_MARBLE.get());
+
+        getVariantBuilder(Blocks.WHITE_RADISH_PLANT.get())
+                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("white_radish_plant_stage_0", modLoc("block/white_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("white_radish_plant_stage_1", modLoc("block/white_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("white_radish_plant_stage_2", modLoc("block/white_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("white_radish_plant_stage_3", modLoc("block/white_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("white_radish_plant_stage_4", modLoc("block/white_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("white_radish_plant_stage_5", modLoc("block/white_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("white_radish_plant_stage_6", modLoc("block/white_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("white_radish_plant_stage_7", modLoc("block/white_radish_plant_stage_3"))).addModel();
+        getVariantBuilder(Blocks.SUMMER_RADISH_PLANT.get())
+                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("summer_radish_plant_stage_0", modLoc("block/summer_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("summer_radish_plant_stage_1", modLoc("block/summer_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("summer_radish_plant_stage_2", modLoc("block/summer_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("summer_radish_plant_stage_3", modLoc("block/summer_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("summer_radish_plant_stage_4", modLoc("block/summer_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("summer_radish_plant_stage_5", modLoc("block/summer_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("summer_radish_plant_stage_6", modLoc("block/summer_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("summer_radish_plant_stage_7", modLoc("block/summer_radish_plant_stage_3"))).addModel();
+        getVariantBuilder(Blocks.GREEN_RADISH_PLANT.get())
+                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("green_radish_plant_stage_0", modLoc("block/green_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("green_radish_plant_stage_1", modLoc("block/green_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("green_radish_plant_stage_2", modLoc("block/green_radish_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("green_radish_plant_stage_3", modLoc("block/green_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("green_radish_plant_stage_4", modLoc("block/green_radish_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("green_radish_plant_stage_5", modLoc("block/green_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("green_radish_plant_stage_6", modLoc("block/green_radish_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("green_radish_plant_stage_7", modLoc("block/green_radish_plant_stage_3"))).addModel();
+        getVariantBuilder(Blocks.GREEN_PEPPER_PLANT.get())
+                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("green_pepper_plant_stage_0", modLoc("block/green_pepper_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("green_pepper_plant_stage_1", modLoc("block/green_pepper_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("green_pepper_plant_stage_2", modLoc("block/green_pepper_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("green_pepper_plant_stage_3", modLoc("block/green_pepper_plant_stage_3"))).addModel()
+                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("green_pepper_plant_stage_4", modLoc("block/green_pepper_plant_stage_4"))).addModel()
+                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("green_pepper_plant_stage_5", modLoc("block/green_pepper_plant_stage_5"))).addModel()
+                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("green_pepper_plant_stage_6", modLoc("block/green_pepper_plant_stage_6"))).addModel()
+                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("green_pepper_plant_stage_7", modLoc("block/green_pepper_plant_stage_7"))).addModel();
+        getVariantBuilder(Blocks.CHILI_PEPPER_PLANT.get())
+                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("chili_pepper_plant_stage_0", modLoc("block/chili_pepper_plant_stage_0"))).addModel()
+                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("chili_pepper_plant_stage_1", modLoc("block/chili_pepper_plant_stage_1"))).addModel()
+                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("chili_pepper_plant_stage_2", modLoc("block/chili_pepper_plant_stage_2"))).addModel()
+                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("chili_pepper_plant_stage_3", modLoc("block/chili_pepper_plant_stage_3"))).addModel()
+                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("chili_pepper_plant_stage_4", modLoc("block/chili_pepper_plant_stage_4"))).addModel()
+                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("chili_pepper_plant_stage_5", modLoc("block/chili_pepper_plant_stage_5"))).addModel()
+                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("chili_pepper_plant_stage_6", modLoc("block/chili_pepper_plant_stage_6"))).addModel()
+                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("chili_pepper_plant_stage_7", modLoc("block/chili_pepper_plant_stage_7"))).addModel();
+
     }
 }

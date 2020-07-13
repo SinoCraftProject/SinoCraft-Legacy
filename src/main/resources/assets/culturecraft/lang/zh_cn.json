@@ -1,6 +1,5 @@
 {
   "itemGroup.culturecraft.blocks": "华夏文化 | 方块",
-  "itemGroup.culturecraft.items": "华夏文化 | 物品",
   "itemGroup.culturecraft.machines": "华夏文化 | 机器",
   "itemGroup.culturecraft.foods": "华夏文化 | 食物",
   "itemGroup.culturecraft.combat": "华夏文化 | 战斗",
@@ -30,7 +29,6 @@
   "item.culturecraft.knife": "水果刀",
   "item.culturecraft.chirping_wildgoose": "鸣鸿刀",
   "item.culturecraft.seven_stars_precious_blade": "七星刀",
-  "item.culturecraft.jade": "玉",
 
   "item.culturecraft.bowl_rice": "米饭",
   "item.culturecraft.heroes_assemble": "群英荟萃",
@@ -59,6 +57,14 @@
   "block.culturecraft.plank_peach": "桃树木板",
   "block.culturecraft.leaves_peach": "桃树树叶",
   "block.culturecraft.sapling_peach": "桃树树苗",
+  "block.culturecraft.log_plum": "梅花原木",
+  "block.culturecraft.plank_plum": "梅花木板",
+  "block.culturecraft.leaves_plum": "梅花树叶",
+  "block.culturecraft.sapling_plum": "梅花树苗",
+  "block.culturecraft.log_mulberry": "桑树原木",
+  "block.culturecraft.plank_mulberry": "桑树木板",
+  "block.culturecraft.leaves_mulberry": "桑树树叶",
+  "block.culturecraft.sapling_mulberry": "桑树树苗",
 
   "entity.culturecraft.buffalo": "水牛",
 
