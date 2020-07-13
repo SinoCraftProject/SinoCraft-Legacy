@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.culturecraft.block;
+package cx.rain.mc.forgemod.culturecraft.block.base;
 
 import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import net.minecraft.block.Block;

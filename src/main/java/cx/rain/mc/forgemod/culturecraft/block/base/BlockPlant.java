@@ -1,7 +1,6 @@
-package cx.rain.mc.forgemod.culturecraft.block;
+package cx.rain.mc.forgemod.culturecraft.block.base;
 
-import cx.rain.mc.forgemod.culturecraft.enumerate.RadishType;
-import cx.rain.mc.forgemod.culturecraft.item.Items;
+import cx.rain.mc.forgemod.culturecraft.enumerate.PlantType;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.IItemProvider;
@@ -10,7 +9,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class BlockRadish extends CropsBlock {
+public class BlockPlant extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
@@ -18,12 +17,15 @@ public class BlockRadish extends CropsBlock {
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private RadishType radishType = null;
+    private PlantType type = null;
+    private IItemProvider seed = null;
 
-    protected BlockRadish(RadishType type) {
+    public BlockPlant(PlantType typeIn, IItemProvider seedIn) {
         super(Block.Properties.from(Blocks.CARROTS));
-        radishType = type;
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
+
+        type = typeIn;
+        seed = seedIn;
     }
 
     @Override
@@ -35,15 +37,6 @@ public class BlockRadish extends CropsBlock {
 
     @Override
     public IItemProvider getSeedsItem() {
-        switch (radishType) {
-            case White:
-                return BlockItems.RADISH_WHITE.get();
-            case Summer:
-                return BlockItems.RADISH_SUMMER.get();
-            case Green:
-                return BlockItems.RADISH_GREEN.get();
-        }
-        return null;
+        return seed;
     }
-
 }

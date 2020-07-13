@@ -1,13 +1,12 @@
 package cx.rain.mc.forgemod.culturecraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.block.BlockLeavesGrowable;
+import cx.rain.mc.forgemod.culturecraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 public class ProviderBlockState extends BlockStateProvider {

@@ -1,6 +1,5 @@
-package cx.rain.mc.forgemod.culturecraft.block.automatic;
+package cx.rain.mc.forgemod.culturecraft.block;
 
-import cx.rain.mc.forgemod.culturecraft.api.annotation.ModBlock;
 import cx.rain.mc.forgemod.culturecraft.tileentity.TileEntityStove;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -12,7 +11,6 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
-@ModBlock(name = "stove")
 public class BlockStove extends ContainerBlock {
     public BlockStove() {
         super(Properties.create(Material.GOURD, MaterialColor.GRAY));

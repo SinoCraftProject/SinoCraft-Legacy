@@ -2,16 +2,15 @@ package cx.rain.mc.forgemod.culturecraft.enumerate;
 
 import net.minecraft.block.material.MaterialColor;
 
-public enum LogType {
-    PEACH("peach", MaterialColor.PINK_TERRACOTTA),
-    WALNUT("walnut", MaterialColor.OBSIDIAN),
-    PLUM("plum", MaterialColor.PINK_TERRACOTTA),
-    MULBERRY("mulberry", MaterialColor.OBSIDIAN);
+public enum MarbleType {
+    WHITE("white", MaterialColor.WHITE_TERRACOTTA),
+    RED("red", MaterialColor.RED_TERRACOTTA),
+    BLACK("black", MaterialColor.BLACK_TERRACOTTA);
 
     private String name;
     private MaterialColor color;
 
-    private LogType(String nameIn, MaterialColor colorIn) {
+    private MarbleType(String nameIn, MaterialColor colorIn) {
         name = nameIn;
         color = colorIn;
     }
