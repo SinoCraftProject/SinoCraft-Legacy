@@ -10,7 +10,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EventPlayerLoggedIn {
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        /*
         event.getPlayer().sendMessage(
                 new TranslationTextComponent("message.culturecraft.player.join.welcome"));
+         */
     }
 }

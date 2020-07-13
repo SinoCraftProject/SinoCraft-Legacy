@@ -1,10 +1,10 @@
 {
-  "itemGroup.culturecraft.blocks": "华夏文明 | 方块",
-  "itemGroup.culturecraft.items": "华夏文明 | 物品",
-  "itemGroup.culturecraft.machines": "华夏文明 | 机器",
-  "itemGroup.culturecraft.foods": "华夏文明 | 食物",
-  "itemGroup.culturecraft.combat": "华夏文明 | 战斗",
-  "itemGroup.culturecraft.misc": "华夏文明 | 杂项",
+  "itemGroup.culturecraft.blocks": "华夏文化 | 方块",
+  "itemGroup.culturecraft.items": "华夏文化 | 物品",
+  "itemGroup.culturecraft.machines": "华夏文化 | 机器",
+  "itemGroup.culturecraft.foods": "华夏文化 | 食物",
+  "itemGroup.culturecraft.combat": "华夏文化 | 战斗",
+  "itemGroup.culturecraft.misc": "华夏文化 | 杂项",
 
   "item.culturecraft.celery_cabbage": "白菜",
   "item.culturecraft.eggplant": "茄子",
@@ -30,7 +30,7 @@
   "item.culturecraft.knife": "水果刀",
   "item.culturecraft.chirping_wildgoose": "鸣鸿刀",
   "item.culturecraft.seven_stars_precious_blade": "七星刀",
-"item.culturecraft.jade": "玉",
+  "item.culturecraft.jade": "玉",
 
   "item.culturecraft.bowl_rice": "米饭",
   "item.culturecraft.heroes_assemble": "群英荟萃",

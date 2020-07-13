@@ -133,7 +133,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    shade group: "org.reflections", name: "reflections", version: "0.9.12"
+    //shade group: "org.reflections", name: "reflections", version: "0.9.12"
     //shade group: 'org.atteo.classindex', name: 'classindex', version: '3.4'
     //shade group: 'eu.infomas', name: 'annotation-detector', version: '3.0.5'
 }

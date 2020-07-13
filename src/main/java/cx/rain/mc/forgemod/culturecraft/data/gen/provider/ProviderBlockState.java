@@ -35,7 +35,7 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(Blocks.LEAVES_WALNUT.get());
 
         simpleBlock(Blocks.WHITE_MARBLE.get());
-        simpleBlock(Blocks.RED_MARBLE.get());
-        simpleBlock(Blocks.BLACK_MARBLE.get());
+        //simpleBlock(Blocks.RED_MARBLE.get());
+        //simpleBlock(Blocks.BLACK_MARBLE.get());
     }
 }
