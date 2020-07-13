@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 
 public class Render {
     public static void ChangeRender() {
-        RenderTypeLookup.setRenderLayer(Blocks.RADISH_WHITE_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.RADISH_SUMMER_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.RADISH_GREEN_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.PEPPER_CHILI_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.PEPPER_GREEN_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.WHITE_RADISH_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.SUMMER_RADISH_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.GREEN_RADISH_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.CHILI_PEPPER_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.GREEN_PEPPER_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PEACH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
 
