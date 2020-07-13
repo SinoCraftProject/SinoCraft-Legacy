@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.culturecraft.enumerate.LogType;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -14,6 +15,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Random;
 
@@ -21,9 +23,9 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
     private LogType type = null;
-    private ItemStack fruit = null;
+    private RegistryObject<Item> fruitRegistry = null;
 
-    public BlockLeavesGrowable(LogType typeIn, ItemStack fruitIn) {
+    public BlockLeavesGrowable(LogType typeIn, RegistryObject<Item> fruitRegistryIn) {
         super(Properties.create(Material.LEAVES)
                 .sound(SoundType.PLANT)
                 .hardnessAndResistance(0.2F)
@@ -31,7 +33,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
                 .notSolid()
         );
         type = typeIn;
-        fruit = fruitIn;
+        fruitRegistry = fruitRegistryIn;
 
         setDefaultState(getStateContainer().getBaseState()
                 .with(DISTANCE, 7)
@@ -103,7 +105,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity,
                                              Hand hand, BlockRayTraceResult traceResult) {
         if (isMature(state)) {
-            playerEntity.dropItem(fruit, false, false);
+            playerEntity.dropItem(new ItemStack(fruitRegistry.get()), false, false);
             setMature(world, pos, state, false);
             return ActionResultType.SUCCESS;
         }

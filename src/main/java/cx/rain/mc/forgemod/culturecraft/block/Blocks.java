@@ -36,7 +36,7 @@ public class Blocks {
     public static RegistryObject<Block> LOG_PEACH_STRIPPED = REGISTRY.register("log_peach_stripped", () -> new BlockLog(LogType.PEACH));
     public static RegistryObject<Block> LOG_PEACH_STRIPPED_SKIN = REGISTRY.register("log_peach_stripped_skin", () -> new BlockLog(LogType.PEACH));
     public static RegistryObject<Block> PLANK_PEACH = REGISTRY.register("plank_peach", () -> new BlockPlank(LogType.PEACH));
-    public static RegistryObject<Block> LEAVES_PEACH = REGISTRY.register("leaves_peach", () -> new BlockLeavesGrowable(LogType.PEACH, new ItemStack(Items.PEACH.get())));
+    public static RegistryObject<Block> LEAVES_PEACH = REGISTRY.register("leaves_peach", () -> new BlockLeavesGrowable(LogType.PEACH, Items.PEACH));
     public static RegistryObject<Block> SAPLING_PEACH = REGISTRY.register("sapling_peach", () -> new BlockSapling(LogType.PEACH, new TreePeach()));
 
     public static RegistryObject<Block> LOG_WALNUT = REGISTRY.register("log_walnut", () -> new BlockLog(LogType.WALNUT));

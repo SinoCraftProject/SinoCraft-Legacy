@@ -20,14 +20,14 @@ public class BlockPlant extends CropsBlock {
     };
 
     private PlantType type = null;
-    private RegistryObject<Item> seed = null;
+    private RegistryObject<Item> seedRegistry = null;
 
-    public BlockPlant(PlantType typeIn, RegistryObject<Item> seedIn) {
+    public BlockPlant(PlantType typeIn, RegistryObject<Item> seedRegistryIn) {
         super(Block.Properties.from(Blocks.CARROTS));
         setDefaultState(getStateContainer().getBaseState().with(getAgeProperty(), 0));
 
         type = typeIn;
-        seed = seedIn;
+        seedRegistry = seedRegistryIn;
     }
 
     @Override
@@ -39,6 +39,6 @@ public class BlockPlant extends CropsBlock {
 
     @Override
     public IItemProvider getSeedsItem() {
-        return seed.get();
+        return seedRegistry.get();
     }
 }
