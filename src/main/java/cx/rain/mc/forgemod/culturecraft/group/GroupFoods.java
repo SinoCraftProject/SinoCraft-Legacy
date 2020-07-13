@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.group;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
+import cx.rain.mc.forgemod.culturecraft.item.Items;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -14,6 +14,6 @@ public class GroupFoods extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(RegistryItem.ITEMS.get("tofu"));
+        return new ItemStack(Items.PEACH.get());
     }
 }

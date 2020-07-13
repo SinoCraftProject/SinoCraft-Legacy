@@ -1,11 +1,5 @@
 package cx.rain.mc.forgemod.culturecraft.api.enums;
 
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-
-import java.util.function.Supplier;
 /*
 public enum ModItemTiers implements IItemTier {
 

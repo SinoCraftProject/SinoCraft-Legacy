@@ -1,12 +1,9 @@
 package cx.rain.mc.forgemod.culturecraft.crafting.cooking;
 
-import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.ICookingRecpie;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.ICookingTool;
 import cx.rain.mc.forgemod.culturecraft.api.interfaces.IThermal;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryItem;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
@@ -78,7 +75,8 @@ public class CookingRecipes extends ForgeRegistryEntry<ICookingRecpie> implement
         if (te instanceof IThermal) {
             int t = ((IThermal) te).getThermal();
             if (t > maxThermal) {
-                return new ItemStack(RegistryItem.ITEMS.get("charred_food"), 1);
+                // Fixme
+                return ItemStack.EMPTY;
             } else {
                 return recipeResult;
             }

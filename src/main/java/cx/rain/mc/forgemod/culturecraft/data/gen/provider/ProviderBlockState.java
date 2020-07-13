@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.culturecraft.data.gen.provider;
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
 import cx.rain.mc.forgemod.culturecraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -35,6 +34,8 @@ public class ProviderBlockState extends BlockStateProvider {
                         .modelForState().modelFile(models().cubeAll("leaves_peach_mature", modLoc("block/leaves_peach_mature"))).addModel();
         simpleBlock(Blocks.LEAVES_WALNUT.get());
 
-        simpleBlock(RegistryBlock.BLOCKS.get("marble_white"));
+        simpleBlock(Blocks.WHITE_MARBLE.get());
+        simpleBlock(Blocks.RED_MARBLE.get());
+        simpleBlock(Blocks.BLACK_MARBLE.get());
     }
 }

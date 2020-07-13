@@ -19,6 +19,10 @@ import java.util.Map;
 public class RegistrySpecialHandheldModel {
     public static Map<Item, String> ITEM_SPECIAL_HANDHELD_MODEL = new LinkedHashMap<>();
 
+    static {
+
+    }
+
     @SubscribeEvent
     public static void onFMLClientSetup(FMLClientSetupEvent event) {
         ITEM_SPECIAL_HANDHELD_MODEL.forEach((item, additionString) -> {

@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.world.gen;
 
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
@@ -16,6 +15,7 @@ public class Features {
                     .baseHeight(4)
                     .heightRandA(2)
                     .foliageHeight(3)
+                    .foliageHeightRandom(2)
                     .ignoreVines()
                     .setSapling((IPlantable) Blocks.SAPLING_PEACH.get())
                     .build();
@@ -28,6 +28,7 @@ public class Features {
                     .baseHeight(4)
                     .heightRandA(2)
                     .foliageHeight(3)
+                    .foliageHeightRandom(2)
                     .ignoreVines()
                     .setSapling((IPlantable) Blocks.SAPLING_WALNUT.get())
                     .build();

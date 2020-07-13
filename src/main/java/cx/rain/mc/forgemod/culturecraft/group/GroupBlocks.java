@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.group;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.registry.RegistryBlock;
+import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -14,6 +14,6 @@ public class GroupBlocks extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(RegistryBlock.BLOCKS.get("marble_white"));
+        return new ItemStack(Blocks.WHITE_MARBLE.get());
     }
 }

@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft.entity.passive;
 
 import cx.rain.mc.forgemod.culturecraft.entity.Entities;
-import cx.rain.mc.forgemod.culturecraft.item.automatic.ItemCrown;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
