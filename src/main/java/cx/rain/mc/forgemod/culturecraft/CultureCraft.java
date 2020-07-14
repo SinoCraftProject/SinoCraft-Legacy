@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.culturecraft;
 
+import cx.rain.mc.forgemod.culturecraft.block.BlockAdditions;
 import cx.rain.mc.forgemod.culturecraft.block.BlockItems;
 import cx.rain.mc.forgemod.culturecraft.block.Blocks;
 import cx.rain.mc.forgemod.culturecraft.client.Render;
@@ -49,6 +50,8 @@ public class CultureCraft {
 
     private void setup(final FMLCommonSetupEvent event) {
         Log.info("Hello Minecraft!");
+
+        new BlockAdditions();
     }
 
     private void setupClient(final FMLClientSetupEvent event) {

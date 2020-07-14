@@ -10,6 +10,7 @@ import cx.rain.mc.forgemod.culturecraft.item.Items;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeMulberry;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
+import cx.rain.mc.forgemod.culturecraft.utility.ProtectedHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
