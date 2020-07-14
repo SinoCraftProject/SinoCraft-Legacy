@@ -14,8 +14,8 @@ public class Features {
                     new BlobFoliagePlacer(2, 0))
                     .baseHeight(4)
                     .heightRandA(2)
-                    .foliageHeight(3)
-                    .foliageHeightRandom(2)
+                    .foliageHeight(2)
+                    .foliageHeightRandom(1)
                     .ignoreVines()
                     .setSapling((IPlantable) Blocks.SAPLING_PEACH.get())
                     .build();
@@ -28,7 +28,6 @@ public class Features {
                     .baseHeight(4)
                     .heightRandA(2)
                     .foliageHeight(3)
-                    .foliageHeightRandom(2)
                     .ignoreVines()
                     .setSapling((IPlantable) Blocks.SAPLING_WALNUT.get())
                     .build();

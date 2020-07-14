@@ -13,6 +13,6 @@ public class TreeMulberry extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.FANCY_TREE.withConfiguration(Features.TREE_PEACH_CONFIG);
+        return Feature.FANCY_TREE.withConfiguration(Features.TREE_MULBERRY_CONFIG);
     }
 }

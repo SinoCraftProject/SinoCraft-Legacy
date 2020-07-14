@@ -22,7 +22,7 @@ public class Items {
     public static RegistryObject<Item> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(Blocks.MILLET_PLANT.get(), PlantType.MILLET));
     public static RegistryObject<Item> SOYBEAN_SEED = REGISTRY.register("soybean_seed", () -> new ItemSeed(Blocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
 
-    public static RegistryObject<Item> PEACH = REGISTRY.register("peach", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).build()));
+    public static RegistryObject<Item> PEACH = REGISTRY.register("peach", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).fastToEat().build()));
 
     public Items(IEventBus bus) {
         CultureCraft.getInstance().getLog().info("Registering items.");

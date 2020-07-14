@@ -33,6 +33,15 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("leaves_walnut").parent(getModel("block/leaves_walnut"));
         getBuilder("plank_walnut").parent(getModel("block/plank_walnut"));
         getBuilder("sapling_walnut").parent(GENERATED).texture("layer0", modLoc("block/sapling_walnut"));
+
+
+        getBuilder("log_mulberry").parent(getModel("block/log_mulberry"));
+        getBuilder("log_mulberry_skin").parent(getModel("block/log_mulberry_skin"));
+        getBuilder("log_mulberry_stripped").parent(getModel("block/log_mulberry_stripped"));
+        getBuilder("log_mulberry_stripped_skin").parent(getModel("block/log_mulberry_stripped_skin"));
+        getBuilder("leaves_mulberry").parent(getModel("block/leaves_mulberry"));
+        getBuilder("plank_mulberry").parent(getModel("block/plank_mulberry"));
+        //getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
     }
 
     @Override

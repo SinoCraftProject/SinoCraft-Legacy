@@ -17,23 +17,30 @@ public class ProviderBlockState extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         axisBlock((LogBlock) Blocks.LOG_PEACH.get(), modLoc("block/log_peach_side"), modLoc("block/log_peach_top"));
-        axisBlock((LogBlock) Blocks.LOG_WALNUT.get(), modLoc("block/log_walnut_side"), modLoc("block/log_walnut_top"));
         axisBlock((LogBlock) Blocks.LOG_PEACH_STRIPPED.get(), modLoc("block/log_peach_stripped"), modLoc("block/log_peach_top"));
-        //axisBlock((LogBlock) Blocks.LOG_WALNUT_STRIPPED.get(), modLoc("block/log_walnut_stripped"), modLoc("block/log_walnut_top"));
-
         simpleBlock(Blocks.LOG_PEACH_SKIN.get(), models().cubeAll("log_peach_skin", modLoc("block/log_peach_side")));
-        //simpleBlock(Blocks.LOG_PEACH_STRIPPED_SKIN.get(), models().cubeAll("log_peach_stripped_skin", modLoc("block/log_peach_stripped")));
+        simpleBlock(Blocks.LOG_PEACH_STRIPPED_SKIN.get(), models().cubeAll("log_peach_stripped_skin", modLoc("block/log_peach_stripped")));
+        simpleBlock(Blocks.PLANK_PEACH.get());
+        getVariantBuilder(Blocks.LEAVES_PEACH.get())
+                .partialState().with(BlockLeavesGrowable.getMatureProperty(), false).modelForState().modelFile(models().cubeAll("leaves_peach", modLoc("block/leaves_peach"))).addModel()
+                .partialState().with(BlockLeavesGrowable.getMatureProperty(), true).modelForState().modelFile(models().cubeAll("leaves_peach_mature", modLoc("block/leaves_peach_mature"))).addModel();
+        simpleBlock(Blocks.SAPLING_PEACH.get(), models().cross("sapling_peach", modLoc("block/sapling_peach")));
+
+        axisBlock((LogBlock) Blocks.LOG_WALNUT.get(), modLoc("block/log_walnut_side"), modLoc("block/log_walnut_top"));
+        //axisBlock((LogBlock) Blocks.LOG_WALNUT_STRIPPED.get(), modLoc("block/log_walnut_stripped"), modLoc("block/log_walnut_top"));
         simpleBlock(Blocks.LOG_WALNUT_SKIN.get(), models().cubeAll("log_walnut_skin", modLoc("block/log_walnut_side")));
         //simpleBlock(Blocks.LOG_WALNUT_STRIPPED_SKIN.get(), models().cubeAll("log_walnut_stripped_skin", modLoc("block/log_walnut_stripped")));
-
-        simpleBlock(Blocks.PLANK_PEACH.get());
         simpleBlock(Blocks.PLANK_WALNUT.get());
-        getVariantBuilder(Blocks.LEAVES_PEACH.get())
-                .partialState().with(BlockLeavesGrowable.getMatureProperty(), false)
-                        .modelForState().modelFile(models().cubeAll("leaves_peach", modLoc("block/leaves_peach"))).addModel()
-                .partialState().with(BlockLeavesGrowable.getMatureProperty(), true)
-                        .modelForState().modelFile(models().cubeAll("leaves_peach_mature", modLoc("block/leaves_peach_mature"))).addModel();
         simpleBlock(Blocks.LEAVES_WALNUT.get());
+        simpleBlock(Blocks.SAPLING_WALNUT.get(), models().cross("sapling_walnut", modLoc("block/sapling_walnut")));
+
+        axisBlock((LogBlock) Blocks.LOG_MULBERRY.get(), modLoc("block/log_mulberry_side"), modLoc("block/log_mulberry_top"));
+        axisBlock((LogBlock) Blocks.LOG_MULBERRY_STRIPPED.get(), modLoc("block/log_mulberry_stripped"), modLoc("block/log_mulberry_top"));
+        simpleBlock(Blocks.LOG_MULBERRY_SKIN.get(), models().cubeAll("log_mulberry_skin", modLoc("block/log_mulberry_side")));
+        simpleBlock(Blocks.LOG_MULBERRY_STRIPPED_SKIN.get(), models().cubeAll("log_mulberry_stripped_skin", modLoc("block/log_mulberry_stripped")));
+        //simpleBlock(Blocks.PLANK_MULBERRY.get());
+        simpleBlock(Blocks.LEAVES_MULBERRY.get());
+        //simpleBlock(Blocks.SAPLING_MULBERRY.get(), models().cross("sapling_mulberry", modLoc("block/sapling_mulberry")));
 
         simpleBlock(Blocks.WHITE_MARBLE.get());
         //simpleBlock(Blocks.RED_MARBLE.get());

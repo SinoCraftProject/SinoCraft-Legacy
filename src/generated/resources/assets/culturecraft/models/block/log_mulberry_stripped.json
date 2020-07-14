@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "culturecraft:block/log_mulberry_stripped",
+    "end": "culturecraft:block/log_mulberry_top"
+  }
+}
