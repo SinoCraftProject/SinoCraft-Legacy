@@ -11,6 +11,6 @@ public class ProviderBlockLootTable extends ProviderBaseBlockLootTable {
 
     @Override
     protected void registerTables() {
-        
+
     }
 }

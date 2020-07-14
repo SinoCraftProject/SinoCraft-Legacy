@@ -49,6 +49,8 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("leaves_mulberry").parent(getModel("block/leaves_mulberry"));
         getBuilder("plank_mulberry").parent(getModel("block/plank_mulberry"));
         getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
+
+        getBuilder("white_marble").parent(getModel("block/white_marble"));
     }
 
     @Override
