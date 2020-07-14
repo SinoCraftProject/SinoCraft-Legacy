@@ -34,6 +34,13 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("plank_walnut").parent(getModel("block/plank_walnut"));
         getBuilder("sapling_walnut").parent(GENERATED).texture("layer0", modLoc("block/sapling_walnut"));
 
+        getBuilder("log_plum").parent(getModel("block/log_plum"));
+        getBuilder("log_plum_skin").parent(getModel("block/log_plum_skin"));
+        getBuilder("log_plum_stripped").parent(getModel("block/log_plum_stripped"));
+        getBuilder("log_plum_stripped_skin").parent(getModel("block/log_plum_stripped_skin"));
+        getBuilder("leaves_plum").parent(getModel("block/leaves_plum"));
+        getBuilder("plank_plum").parent(getModel("block/plank_plum"));
+        //getBuilder("sapling_plum").parent(GENERATED).texture("layer0", modLoc("block/sapling_plum"));
 
         getBuilder("log_mulberry").parent(getModel("block/log_mulberry"));
         getBuilder("log_mulberry_skin").parent(getModel("block/log_mulberry_skin"));
@@ -41,7 +48,7 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("log_mulberry_stripped_skin").parent(getModel("block/log_mulberry_stripped_skin"));
         getBuilder("leaves_mulberry").parent(getModel("block/leaves_mulberry"));
         getBuilder("plank_mulberry").parent(getModel("block/plank_mulberry"));
-        //getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
+        getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
     }
 
     @Override

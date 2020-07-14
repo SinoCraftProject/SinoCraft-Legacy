@@ -6,8 +6,8 @@ import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
 
-public class ProviderBlockTags extends BlockTagsProvider {
-    public ProviderBlockTags(DataGenerator generatorIn) {
+public class ProviderBlockTag extends BlockTagsProvider {
+    public ProviderBlockTag(DataGenerator generatorIn) {
         super(generatorIn);
     }
 

@@ -40,7 +40,7 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(Blocks.LOG_MULBERRY_STRIPPED_SKIN.get(), models().cubeAll("log_mulberry_stripped_skin", modLoc("block/log_mulberry_stripped")));
         //simpleBlock(Blocks.PLANK_MULBERRY.get());
         simpleBlock(Blocks.LEAVES_MULBERRY.get());
-        //simpleBlock(Blocks.SAPLING_MULBERRY.get(), models().cross("sapling_mulberry", modLoc("block/sapling_mulberry")));
+        simpleBlock(Blocks.SAPLING_MULBERRY.get(), models().cross("sapling_mulberry", modLoc("block/sapling_mulberry")));
 
         simpleBlock(Blocks.WHITE_MARBLE.get());
         //simpleBlock(Blocks.RED_MARBLE.get());
