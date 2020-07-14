@@ -1,10 +1,7 @@
 package cx.rain.mc.forgemod.culturecraft.data.gen;
 
 import cx.rain.mc.forgemod.culturecraft.CultureCraft;
-import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockState;
-import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockTag;
-import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemModel;
-import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemTag;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.*;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.language.ProviderLanguageENUS;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.language.ProviderLanguageZHCN;
 import net.minecraft.data.DataGenerator;
@@ -21,7 +18,6 @@ public class DataGen {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
-        // Todo: Data Generator.
         if (event.includeClient()) {
             generator.addProvider(new ProviderBlockState(generator, helper));
             generator.addProvider(new ProviderItemModel(generator, helper));
@@ -30,6 +26,7 @@ public class DataGen {
         if (event.includeServer()) {
             generator.addProvider(new ProviderBlockTag(generator));
             generator.addProvider(new ProviderItemTag(generator));
+            generator.addProvider(new ProviderBlockLootTable(generator));
 
             generator.addProvider(new ProviderLanguageZHCN(generator));
             generator.addProvider(new ProviderLanguageENUS(generator));
