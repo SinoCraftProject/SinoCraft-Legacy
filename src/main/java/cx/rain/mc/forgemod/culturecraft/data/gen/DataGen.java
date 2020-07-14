@@ -5,6 +5,7 @@ import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockState;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderBlockTag;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemModel;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.ProviderItemTag;
+import cx.rain.mc.forgemod.culturecraft.data.gen.provider.language.ProviderLanguageENUS;
 import cx.rain.mc.forgemod.culturecraft.data.gen.provider.language.ProviderLanguageZHCN;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
@@ -31,6 +32,7 @@ public class DataGen {
             generator.addProvider(new ProviderItemTag(generator));
 
             generator.addProvider(new ProviderLanguageZHCN(generator));
+            generator.addProvider(new ProviderLanguageENUS(generator));
         }
     }
 }

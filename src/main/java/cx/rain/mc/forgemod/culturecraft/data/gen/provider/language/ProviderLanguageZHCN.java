@@ -43,13 +43,6 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(BlockItems.GREEN_RADISH, "青萝卜");
         addItem(BlockItems.SUMMER_RADISH, "水萝卜");
         addItem(BlockItems.WHITE_RADISH, "白萝卜");
-//        addItem(BlockItems.LOG_PEACH, "");
-//        addItem(BlockItems.LOG_PEACH_STRIPPED, "");
-//        addItem(BlockItems.LOG_PEACH_SKIN, "");
-//        addItem(BlockItems.LOG_PEACH_STRIPPED_SKIN, "");
-//        addItem(BlockItems.PLANK_PEACH, "");
-//        addItem(BlockItems.LEAVES_PEACH, "");
-//        addItem(BlockItems.SAPLING_PEACH, "");
     }
 
     private void addBlocks() {
