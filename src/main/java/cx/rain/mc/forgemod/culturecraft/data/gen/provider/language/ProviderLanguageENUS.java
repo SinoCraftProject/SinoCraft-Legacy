@@ -38,11 +38,19 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.EGGPLANT_SEED, "Eggplant Seeds");
         addItem(Items.RICE_SEED, "Rice Seeds");
         addItem(Items.MILLET_SEED, "Millet Seeds");
-        addItem(Items.SOYBEAN_SEED, "Soybean Seeds");
+        addItem(Items.SORGHUM_SEED, "Sorghum Seeds");
+        addItem(Items.SOYBEAN, "Soybean");
+        addItem(Items.RICE, "Rice");
+        addItem(Items.MILLET, "Millet");
+        addItem(Items.SORGHUM, "Sorghum");
 
         addItem(BlockItems.GREEN_RADISH, "Green Radish");
         addItem(BlockItems.SUMMER_RADISH, "Summer Radish");
         addItem(BlockItems.WHITE_RADISH, "White Radish");
+        addItem(Items.CHILI_PEPPER, "Chilipepper");
+        addItem(Items.GREEN_PEPPER, "Green Pepper");
+        addItem(Items.EGGPLANT, "Eggplant");
+        addItem(Items.CABBAGE, "Chinese Cabbage");
     }
 
     private void addBlocks() {
@@ -77,6 +85,10 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addBlock(Blocks.PLANK_MULBERRY, "Mulberry Plank");
         addBlock(Blocks.LEAVES_MULBERRY, "Mulberry Leaves");
         addBlock(Blocks.SAPLING_MULBERRY, "Mulberry Sapling");
+
+        addBlock(Blocks.WHITE_MARBLE, "White Marble");
+        addBlock(Blocks.RED_MARBLE, "Red Marble");
+        addBlock(Blocks.BLACK_MARBLE, "Black Marble");
     }
 
     private void addEntities() {

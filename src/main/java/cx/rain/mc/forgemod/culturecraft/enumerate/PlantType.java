@@ -10,7 +10,8 @@ public enum PlantType {
     CABBAGE("cabbage"),
     RICE("rice"),
     MILLET("millet"),
-    SOYBEAN("soybean");
+    SOYBEAN("soybean"),
+    SORGHUM("sorghum");
 
     private String name;
 

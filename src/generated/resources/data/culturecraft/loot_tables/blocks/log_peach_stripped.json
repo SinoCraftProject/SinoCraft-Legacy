@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "log_peach_stripped",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "culturecraft:log_peach_stripped"
+        }
+      ]
+    }
+  ]
+}
