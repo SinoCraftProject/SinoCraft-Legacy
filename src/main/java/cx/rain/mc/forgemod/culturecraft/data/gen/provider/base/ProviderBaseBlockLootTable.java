@@ -3,11 +3,13 @@ package cx.rain.mc.forgemod.culturecraft.data.gen.provider.base;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import cx.rain.mc.forgemod.culturecraft.block.base.BlockLeavesGrowable;
+import cx.rain.mc.forgemod.culturecraft.client.Render;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -136,5 +138,33 @@ public abstract class ProviderBaseBlockLootTable implements IDataProvider {
                 .addEntry(ItemLootEntry.builder(sapling).weight(4))
                 .addEntry(ItemLootEntry.builder(Items.STICK).weight(1))
                 .addEntry(ItemLootEntry.builder(Items.AIR).weight(44));
+    }
+
+    protected LootPool.Builder droppingSeeds(String name, IItemProvider seeds) {
+        return LootPool.builder()
+                .name(name)
+                .rolls(ConstantRange.of(1))
+                .addEntry(ItemLootEntry.builder(seeds));
+    }
+
+    protected LootPool.Builder droppingCropsByAge(String name, Block block, int age, IItemProvider crops) {
+        return droppingCropsWithChanceByAge(name, block, age, crops, 1, 4);
+    }
+
+    protected LootPool.Builder droppingCropsWithChanceByAge(String name, Block block, int age, IItemProvider crops, int min, int max) {
+        return LootPool.builder()
+                .name(name)
+                .rolls(ConstantRange.of(1))
+                .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, age)))
+                .addEntry(ItemLootEntry.builder(crops).acceptFunction(SetCount.builder(RandomValueRange.of(min, max))));
+    }
+
+    protected LootPool.Builder droppingSeedsAndFruitsWithChanceByAge(String name, Block block, int age, IItemProvider seeds, IItemProvider fruits) {
+        return LootPool.builder()
+                .name(name)
+                .rolls(ConstantRange.of(1))
+                .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, age)))
+                .addEntry(ItemLootEntry.builder(seeds).acceptFunction(SetCount.builder(RandomValueRange.of(0, 3))))
+                .addEntry(ItemLootEntry.builder(fruits).acceptFunction(SetCount.builder(RandomValueRange.of(1, 3))));
     }
 }
