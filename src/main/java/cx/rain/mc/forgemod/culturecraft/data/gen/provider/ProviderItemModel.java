@@ -40,7 +40,7 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("log_plum_stripped_skin").parent(getModel("block/log_plum_stripped_skin"));
         getBuilder("leaves_plum").parent(getModel("block/leaves_plum"));
         getBuilder("plank_plum").parent(getModel("block/plank_plum"));
-        //getBuilder("sapling_plum").parent(GENERATED).texture("layer0", modLoc("block/sapling_plum"));
+        getBuilder("sapling_plum").parent(GENERATED).texture("layer0", modLoc("block/sapling_plum"));
 
         getBuilder("log_mulberry").parent(getModel("block/log_mulberry"));
         getBuilder("log_mulberry_skin").parent(getModel("block/log_mulberry_skin"));

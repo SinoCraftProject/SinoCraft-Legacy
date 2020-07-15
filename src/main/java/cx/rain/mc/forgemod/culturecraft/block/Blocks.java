@@ -9,6 +9,7 @@ import cx.rain.mc.forgemod.culturecraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.culturecraft.item.Items;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeMulberry;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePeach;
+import cx.rain.mc.forgemod.culturecraft.structure.tree.TreePlum;
 import cx.rain.mc.forgemod.culturecraft.structure.tree.TreeWalnut;
 import cx.rain.mc.forgemod.culturecraft.utility.ProtectedHelper;
 import net.minecraft.block.Block;
@@ -55,8 +56,7 @@ public class Blocks {
     public static RegistryObject<Block> LOG_PLUM_STRIPPED_SKIN = REGISTRY.register("log_plum_stripped_skin", () -> new BlockLog(LogType.PLUM));
     public static RegistryObject<Block> PLANK_PLUM = REGISTRY.register("plank_plum", () -> new BlockPlank(LogType.PLUM));
     public static RegistryObject<Block> LEAVES_PLUM = REGISTRY.register("leaves_plum", () -> new BlockLeaves(LogType.PLUM));
-    // Todo: sapling of plum.
-    //public static RegistryObject<Block> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockSapling(LogType.PLUM, new TreeWalnut()));
+    public static RegistryObject<Block> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockSapling(LogType.PLUM, new TreePlum()));
 
     public static RegistryObject<Block> LOG_MULBERRY = REGISTRY.register("log_mulberry", () -> new BlockLog(LogType.MULBERRY));
     public static RegistryObject<Block> LOG_MULBERRY_SKIN = REGISTRY.register("log_mulberry_skin", () -> new BlockLog(LogType.MULBERRY));

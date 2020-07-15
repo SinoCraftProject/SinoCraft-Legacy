@@ -93,11 +93,9 @@ public class BlockItems {
     public static RegistryObject<Item> LEAVES_PLUM =
             REGISTRY.register("leaves_plum", () -> new BlockItem(Blocks.LEAVES_PLUM.get(),
                     new Item.Properties().group(Groups.BLOCKS)));
-    /* // Todo
     public static RegistryObject<Item> SAPLING_PLUM =
             REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(),
                     new Item.Properties().group(Groups.DECORATE)));
-     */
 
     public static RegistryObject<Item> LOG_MULBERRY =
             REGISTRY.register("log_mulberry", () -> new BlockItem(Blocks.LOG_MULBERRY.get(),

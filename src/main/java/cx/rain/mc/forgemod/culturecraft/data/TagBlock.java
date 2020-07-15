@@ -11,4 +11,6 @@ public class TagBlock {
             new BlockTags.Wrapper(new ResourceLocation(CultureCraft.MODID, "log_peach"));
     public static final Tag<Block> LOG_WALNUT =
             new BlockTags.Wrapper(new ResourceLocation(CultureCraft.MODID, "log_walnut"));
+    public static final Tag<Block> LOG_PLUM =
+            new BlockTags.Wrapper(new ResourceLocation(CultureCraft.MODID, "log_plum"));
 }

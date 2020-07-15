@@ -16,5 +16,6 @@ public class Render {
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PEACH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_MULBERRY.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PLUM.get(), RenderType.getCutout());
     }
 }
