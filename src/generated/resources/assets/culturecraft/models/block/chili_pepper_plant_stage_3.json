@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "culturecraft:block/chili_pepper_plant_stage_3"
-  }
-}

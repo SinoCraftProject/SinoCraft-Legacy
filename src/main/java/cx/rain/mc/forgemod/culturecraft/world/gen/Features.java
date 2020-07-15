@@ -15,7 +15,6 @@ public class Features {
                     .baseHeight(4)
                     .heightRandA(2)
                     .foliageHeight(2)
-                    .foliageHeightRandom(1)
                     .ignoreVines()
                     .setSapling((IPlantable) Blocks.SAPLING_PEACH.get())
                     .build();

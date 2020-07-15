@@ -80,7 +80,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return !isPersistent(state) && !isMature(state);
+        return !isPersistent(state);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
             return;
         }
 
-        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(15) == 1)) {
+        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(25) == 1)) {
             grow(worldIn, rand, pos, state);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
         }
