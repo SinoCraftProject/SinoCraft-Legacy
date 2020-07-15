@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "culturecraft:block/rice_stage_top_3"
-  }
-}
