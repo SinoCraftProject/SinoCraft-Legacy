@@ -70,7 +70,9 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("green_pepper").parent(GENERATED).texture("layer0", modLoc("item/green_pepper"));
         getBuilder("eggplant").parent(GENERATED).texture("layer0", modLoc("item/eggplant"));
         getBuilder("cabbage").parent(GENERATED).texture("layer0", modLoc("item/cabbage"));
-
+        getBuilder("white_radish").parent(GENERATED).texture("layer0", modLoc("item/white_radish"));
+        getBuilder("summer_radish").parent(GENERATED).texture("layer0", modLoc("item/summer_radish"));
+        getBuilder("green_radish").parent(GENERATED).texture("layer0", modLoc("item/green_radish"));
     }
 
     @Override
