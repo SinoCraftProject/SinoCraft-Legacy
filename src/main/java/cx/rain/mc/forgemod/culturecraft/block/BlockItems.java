@@ -42,7 +42,12 @@ public class BlockItems {
     public static RegistryObject<Item> PLANK_PLUM = REGISTRY.register("plank_plum", () -> new BlockItem(Blocks.PLANK_PLUM.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> LEAVES_PLUM = REGISTRY.register("leaves_plum", () -> new BlockItem(Blocks.LEAVES_PLUM.get(), new Item.Properties().group(Groups.BLOCKS)));
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
+=======
+    // Todo
+    //public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
+>>>>>>> 2a54515cac3df260d16a024949eed452833a9eda
 =======
     // Todo
     //public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
