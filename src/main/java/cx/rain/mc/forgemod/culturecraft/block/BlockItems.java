@@ -41,9 +41,7 @@ public class BlockItems {
     public static RegistryObject<Item> LOG_PLUM_STRIPPED_SKIN = REGISTRY.register("log_plum_stripped_skin", () -> new BlockItem(Blocks.LOG_PLUM_STRIPPED_SKIN.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> PLANK_PLUM = REGISTRY.register("plank_plum", () -> new BlockItem(Blocks.PLANK_PLUM.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> LEAVES_PLUM = REGISTRY.register("leaves_plum", () -> new BlockItem(Blocks.LEAVES_PLUM.get(), new Item.Properties().group(Groups.BLOCKS)));
-    public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
-    public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
-    public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)));
+    public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(Blocks.SAPLING_PLUM.get(), new Item.Properties().group(Groups.DECORATE)))；
 
     public static RegistryObject<Item> LOG_MULBERRY = REGISTRY.register("log_mulberry", () -> new BlockItem(Blocks.LOG_MULBERRY.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> LOG_MULBERRY_SKIN = REGISTRY.register("log_mulberry_skin", () -> new BlockItem(Blocks.LOG_MULBERRY_SKIN.get(), new Item.Properties().group(Groups.BLOCKS)));
