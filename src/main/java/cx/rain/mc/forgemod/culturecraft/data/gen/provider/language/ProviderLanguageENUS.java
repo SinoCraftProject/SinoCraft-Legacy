@@ -76,7 +76,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addBlock(Blocks.LOG_PLUM_STRIPPED_SKIN, "Stripped Plum Wood");
         addBlock(Blocks.PLANK_PLUM, "Plum Plank");
         addBlock(Blocks.LEAVES_PLUM, "Plum Leaves");
-        //addBlock(Blocks.SAPLING_PLUM, "Plum Sapling");
+        addBlock(Blocks.SAPLING_PLUM, "Plum Sapling");
 
         addBlock(Blocks.LOG_MULBERRY, "Mulberry Log");
         addBlock(Blocks.LOG_MULBERRY_STRIPPED, "Stripped Mulberry Log");
