@@ -111,6 +111,16 @@ public abstract class ProviderBaseBlockLootTable implements IDataProvider {
                 .addEntry(ItemLootEntry.builder(Items.AIR).weight(37));
     }
 
+    protected LootPool.Builder droppingSaplingsAndSticksWithHigherChance(String name, IItemProvider sapling) {
+        return LootPool.builder()
+                .name(name)
+                .rolls(ConstantRange.of(1))
+                .acceptCondition(NOT_SILK_TOUCH_OR_SHEARS)
+                .addEntry(ItemLootEntry.builder(sapling).weight(4))
+                .addEntry(ItemLootEntry.builder(Items.STICK).weight(1))
+                .addEntry(ItemLootEntry.builder(Items.AIR).weight(35));
+    }
+
     protected LootPool.Builder droppingLeavesWithShearsOrSilkTouch(String name, IItemProvider leaves) {
         return LootPool.builder()
                 .name(name)

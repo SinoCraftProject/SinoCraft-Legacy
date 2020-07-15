@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 2,
+          "weight": 4,
           "name": "culturecraft:sapling_plum"
         },
         {
@@ -16,7 +16,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 37,
+          "weight": 35,
           "name": "minecraft:air"
         }
       ],

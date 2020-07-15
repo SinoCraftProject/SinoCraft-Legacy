@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "culturecraft:log_mulberry",
+    "culturecraft:log_mulberry_skin",
+    "culturecraft:log_mulberry_stripped",
+    "culturecraft:log_mulberry_stripped_skin"
+  ]
+}

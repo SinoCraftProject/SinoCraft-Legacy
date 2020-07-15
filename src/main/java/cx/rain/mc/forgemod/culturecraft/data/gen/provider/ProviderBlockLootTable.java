@@ -33,7 +33,7 @@ public class ProviderBlockLootTable extends ProviderBaseBlockLootTable {
         getLootTables().put(Blocks.LOG_PLUM_SKIN.get(), tableNormal("log_plum_skin", Blocks.LOG_PLUM_SKIN.get()));
         getLootTables().put(Blocks.LOG_PLUM_STRIPPED_SKIN.get(), tableNormal("log_plum_stripped_skin", Blocks.LOG_PLUM_STRIPPED_SKIN.get()));
         getLootTables().put(Blocks.PLANK_PLUM.get(), tableNormal("plank_plum", Blocks.PLANK_PLUM.get()));
-        getLootTables().put(Blocks.LEAVES_PLUM.get(), tableWithPools(droppingSaplingsAndSticksWithChance("leaves_plum_sapling", Blocks.SAPLING_PLUM.get()), droppingLeavesWithShearsOrSilkTouch("leaves_plum", Blocks.LEAVES_PLUM.get())));
+        getLootTables().put(Blocks.LEAVES_PLUM.get(), tableWithPools(droppingSaplingsAndSticksWithHigherChance("leaves_plum_sapling", Blocks.SAPLING_PLUM.get()), droppingLeavesWithShearsOrSilkTouch("leaves_plum", Blocks.LEAVES_PLUM.get())));
         getLootTables().put(Blocks.SAPLING_PLUM.get(), tableNormal("sapling_plum", Blocks.SAPLING_PLUM.get()));
         
         getLootTables().put(Blocks.LOG_MULBERRY.get(), tableNormal("log_mulberry", Blocks.LOG_MULBERRY.get()));
