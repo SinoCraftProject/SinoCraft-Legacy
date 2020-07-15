@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "culturecraft:block/green_pepper_plant_stage_0"
+  }
+}

@@ -23,9 +23,9 @@ public class Items {
     public static RegistryObject<Item> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(Blocks.MILLET_PLANT.get(), PlantType.MILLET));
     public static RegistryObject<Item> SORGHUM_SEED = REGISTRY.register("sorghum_seed", () -> new ItemSeed(Blocks.SORGHUM_PLANT.get(), PlantType.SORGHUM));
 
-    public static RegistryObject<Item> SOYBEAN = REGISTRY.register("soybean_seed", () -> new ItemSeed(Blocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
+    public static RegistryObject<Item> SOYBEAN = REGISTRY.register("soybean", () -> new ItemSeed(Blocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
     public static RegistryObject<Item> RICE = REGISTRY.register("rice", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE).setNoRepair()));
-    public static RegistryObject<Item> MILLET = REGISTRY.register("mullet", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE).setNoRepair()));
+    public static RegistryObject<Item> MILLET = REGISTRY.register("millet", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE).setNoRepair()));
     public static RegistryObject<Item> SORGHUM = REGISTRY.register("sorghum", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE).setNoRepair()));
 
     public static RegistryObject<Item> PEACH = REGISTRY.register("peach", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).fastToEat().build()));
