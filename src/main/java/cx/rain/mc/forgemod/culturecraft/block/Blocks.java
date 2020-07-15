@@ -32,6 +32,7 @@ public class Blocks {
     public static RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant", () -> new BlockPlant(PlantType.RICE, Items.RICE_SEED));
     public static RegistryObject<Block> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new BlockPlant(PlantType.MILLET, Items.MILLET_SEED));
     public static RegistryObject<Block> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new BlockPlant(PlantType.SOYBEAN, Items.SOYBEAN_SEED));
+    public static RegistryObject<Block> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new BlockPlant(PlantType.SORGHUM, Items.SORGHUM_SEED));
 
     public static RegistryObject<Block> LOG_PEACH = REGISTRY.register("log_peach", () -> new BlockLog(LogType.PEACH));
     public static RegistryObject<Block> LOG_PEACH_SKIN = REGISTRY.register("log_peach_skin", () -> new BlockLog(LogType.PEACH));

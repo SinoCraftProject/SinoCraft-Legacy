@@ -39,6 +39,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.RICE_SEED, "Rice Seeds");
         addItem(Items.MILLET_SEED, "Millet Seeds");
         addItem(Items.SOYBEAN_SEED, "Soybean Seeds");
+        addItem(Items.SORGHUM_SEED, "Sorghum Seeds");
 
         addItem(BlockItems.GREEN_RADISH, "Green Radish");
         addItem(BlockItems.SUMMER_RADISH, "Summer Radish");

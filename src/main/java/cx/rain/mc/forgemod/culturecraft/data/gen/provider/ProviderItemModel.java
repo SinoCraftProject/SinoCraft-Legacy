@@ -17,7 +17,6 @@ public class ProviderItemModel extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        //getBuilder("peach").parent(GENERATED).texture("layer0", modLoc("block/peach"));
         getBuilder("log_peach").parent(getModel("block/log_peach"));
         getBuilder("log_peach_skin").parent(getModel("block/log_peach_skin"));
         getBuilder("log_peach_stripped").parent(getModel("block/log_peach_stripped"));
@@ -51,6 +50,18 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
 
         getBuilder("white_marble").parent(getModel("block/white_marble"));
+        getBuilder("red_marble").parent(getModel("block/red_marble"));
+        getBuilder("black_marble").parent(getModel("block/black_marble"));
+
+        //getBuilder("peach").parent(GENERATED).texture("layer0", modLoc("item/peach"));
+        getBuilder("chili_pepper_seed").parent(GENERATED).texture("layer0", modLoc("item/chili_pepper_seed"));
+        getBuilder("green_pepper_seed").parent(GENERATED).texture("layer0", modLoc("item/green_pepper_seed"));
+        getBuilder("eggplant_seed").parent(GENERATED).texture("layer0", modLoc("item/eggplant_seed"));
+        //getBuilder("cabbage_seed").parent(GENERATED).texture("layer0", modLoc("item/cabbage_seed"));
+        getBuilder("rice_seed").parent(GENERATED).texture("layer0", modLoc("item/rice_seed"));
+        getBuilder("millet_seed").parent(GENERATED).texture("layer0", modLoc("item/millet_seed"));
+        getBuilder("soybean_seed").parent(GENERATED).texture("layer0", modLoc("item/soybean_seed"));
+        getBuilder("sorghum_seed").parent(GENERATED).texture("layer0", modLoc("item/sorghum_seed"));
     }
 
     @Override
