@@ -76,7 +76,7 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addBlock(Blocks.LOG_PLUM_STRIPPED_SKIN, "去皮梅花树皮块");
         addBlock(Blocks.PLANK_PLUM, "梅花木板");
         addBlock(Blocks.LEAVES_PLUM, "梅花树叶");
-        //addBlock(Blocks.SAPLING_PLUM, "梅花树苗");
+        addBlock(Blocks.SAPLING_PLUM, "梅花树苗");
 
         addBlock(Blocks.LOG_MULBERRY, "桑树原木");
         addBlock(Blocks.LOG_MULBERRY_STRIPPED, "去皮桑树原木");
