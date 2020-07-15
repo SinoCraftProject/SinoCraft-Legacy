@@ -38,14 +38,6 @@ public class Features {
                     .setSapling((IPlantable) Blocks.SAPLING_WALNUT.get())
                     .build();
 
-    public static final TreeFeatureConfig TREE_MULBERRY_CONFIG =
-            new TreeFeatureConfig.Builder(
-                    new SimpleBlockStateProvider(Blocks.LOG_MULBERRY.get().getDefaultState()),
-                    new SimpleBlockStateProvider(Blocks.LEAVES_MULBERRY.get().getDefaultState()),
-                    new BlobFoliagePlacer(0, 0))
-                    .setSapling((IPlantable) Blocks.SAPLING_MULBERRY.get())
-                    .build();
-
     public static final TreeFeatureConfig TREE_PLUM_CONFIG =
             new TreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.LOG_PLUM.get().getDefaultState()),
@@ -57,7 +49,15 @@ public class Features {
                     .trunkHeightRandom(1)
                     .trunkTopOffsetRandom(2)
                     .ignoreVines()
-                    .setSapling((IPlantable) Blocks.SAPLING_PLUM.get().getDefaultState())
+                    .setSapling((IPlantable) Blocks.SAPLING_PLUM.get())
+                    .build();
+
+    public static final TreeFeatureConfig TREE_MULBERRY_CONFIG =
+            new TreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(Blocks.LOG_MULBERRY.get().getDefaultState()),
+                    new SimpleBlockStateProvider(Blocks.LEAVES_MULBERRY.get().getDefaultState()),
+                    new BlobFoliagePlacer(0, 0))
+                    .setSapling((IPlantable) Blocks.SAPLING_MULBERRY.get())
                     .build();
 
 }
