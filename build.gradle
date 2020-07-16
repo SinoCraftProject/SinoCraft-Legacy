@@ -1,10 +1,11 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.aliyun.com/repository/central' }
-        maven { url = 'https://maven.aliyun.com/repository/jcenter/' }
+        maven { url = 'http://gradle.otakusaikou.com/releases' }
         maven { url = 'https://download.mcbbs.net/maven'}
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://plugins.gradle.org/m2/' }
+        //maven { url = 'https://plugins.gradle.org/m2/' }
+        maven { url = 'https://maven.aliyun.com/repository/central' }
+        maven { url = 'https://maven.aliyun.com/repository/jcenter/' }
         jcenter()
         mavenCentral()
     }
@@ -33,7 +34,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: '20200704-1.15.1'
+    mappings channel: 'snapshot', version: '20200715-1.15.1'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
