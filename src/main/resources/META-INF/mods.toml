@@ -8,32 +8,32 @@ modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
 loaderVersion="[31,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/CultureMC/CultureCraft/issues" #optional
+issueTrackerURL="https://github.com/SinoCraftProject/SinoCraft/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId="culturecraft" #mandatory
+modId="sinocraft" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
  # A display name for the mod
-displayName="Culture Craft" #mandatory
+displayName="SinoCraft" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="https://github.com/CultureMC/CultureCraft/blob/master/update.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://github.com/CultureMC/CultureCraft" #optional
+displayURL="https://github.com/SinoCraftProject/SinoCraft" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="logo.png" #optional
 # A text field displayed in the mod UI
 credits="The SaltedFish Club, DouYan, SQwatermark, HIMKing and jirufengyu." #optional
 # A text field displayed in the mod UI
-authors="AmemiyaSigure, Luo_ShiJian, theFlySong, YaoZ and Victoria" #optional
+authors="AmemiyaSigure(Qiu YuLuo), Luo_ShiJian, theFlySong, YaoZ and Victoria" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A minecraft mod with Chinese culture.
 '''
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.culturecraft]] #optional
+[[dependencies.sinocraft]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -45,7 +45,7 @@ A minecraft mod with Chinese culture.
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.culturecraft]]
+[[dependencies.sinocraft]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"

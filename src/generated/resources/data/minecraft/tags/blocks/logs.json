@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "#culturecraft:log_peach",
-    "#culturecraft:log_walnut",
-    "#culturecraft:log_plum",
-    "#culturecraft:log_mulberry"
+    "#sinocraft:log_peach",
+    "#sinocraft:log_walnut",
+    "#sinocraft:log_plum",
+    "#sinocraft:log_mulberry"
   ]
 }

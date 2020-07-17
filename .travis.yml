@@ -7,12 +7,12 @@ install:
   - ./gradlew build
 after_success:
   - git clone "https://${repo}"
-  - mv ./build/libs/* CultureCraft-Build/libs/
-  - cd CultureCraft-Build/
+  - mv ./build/libs/* SinoCraft-Build/libs/
+  - cd SinoCraft-Build/
   - git add *
   - git commit -m ":sparkles:Commit by Travis CI"
   - git push --force "https://amemiyasigure:${token}@${repo}"
 
 env:
   global:
-    - repo: github.com/CultureMC/CultureCraft-Build.git
+    - repo: github.com/SinoCraftProject/SinoCraft-Build.git

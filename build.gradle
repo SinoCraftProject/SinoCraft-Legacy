@@ -1,30 +1,25 @@
 buildscript {
     repositories {
         maven { url = 'http://gradle.otakusaikou.com/releases' }
-        maven { url = 'https://download.mcbbs.net/maven'}
+        maven { url = 'https://bmclapi2.bangbang93.com/maven' }
         maven { url = 'https://files.minecraftforge.net/maven' }
-        //maven { url = 'https://plugins.gradle.org/m2/' }
         maven { url = 'https://maven.aliyun.com/repository/central' }
-        maven { url = 'https://maven.aliyun.com/repository/jcenter/' }
+        maven { url = 'https://maven.aliyun.com/repository/jcenter' }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        //classpath "io.freefair.gradle:lombok-plugin:5.1.0"
-        //classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-//apply plugin: 'io.freefair.lombok'
-//apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '1.15.2-1.0.0'
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'culturecraft'
+archivesBaseName = 'sinocraft'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -52,7 +47,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                culturecraft {
+                sinocraft {
                     source sourceSets.main
                 }
             }
@@ -68,7 +63,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                culturecraft {
+                sinocraft {
                     source sourceSets.main
                 }
             }
@@ -83,10 +78,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'culturecraft', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'sinocraft', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                culturecraft {
+                sinocraft {
                     source sourceSets.main
                 }
             }
@@ -95,9 +90,6 @@ minecraft {
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
     maven {
         url = 'https://files.minecraftforge.net/maven'
     }
@@ -133,22 +125,18 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
-    //shade group: "org.reflections", name: "reflections", version: "0.9.12"
-    //shade group: 'org.atteo.classindex', name: 'classindex', version: '3.4'
-    //shade group: 'eu.infomas', name: 'annotation-detector', version: '3.0.5'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
-            "Specification-Title": "culturecraft",
-            "Specification-Vendor": "culturecraft",
+            "Specification-Title": "sinocraft",
+            "Specification-Vendor": "sinocraft",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"culturecraft",
+            "Implementation-Vendor" :"sinocraft",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
