@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "sorghum_seeds",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sinocraft:sorghum_seed"
+        }
+      ]
+    },
+    {
+      "name": "sorghum",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "sinocraft:sorghum_seed"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "sinocraft:sorghum_plant",
+          "properties": {
+            "age": "7"
+          }
+        }
+      ]
+    }
+  ]
+}

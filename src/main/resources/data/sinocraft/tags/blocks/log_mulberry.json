@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "sinocraft:log_mulberry",
+    "sinocraft:log_mulberry_skin",
+    "sinocraft:log_mulberry_stripped",
+    "sinocraft:log_mulberry_stripped_skin"
+  ]
+}
