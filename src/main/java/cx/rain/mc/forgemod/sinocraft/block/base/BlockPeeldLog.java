@@ -10,7 +10,7 @@ import net.minecraft.block.material.MaterialColor;
 public class BlockPeeledLog extends LogBlock {
     private LogType type = null;
 
-    public BlockLog(LogType typeIn) {
+    public BlockPeeledLog(LogType typeIn) {
         super(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, typeIn.getColor())
                 .hardnessAndResistance(2.0F)
                 .sound(SoundType.WOOD));
