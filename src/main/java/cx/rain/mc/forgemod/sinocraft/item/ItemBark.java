@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
-import net.minecraft.item.Food;
+import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
 import net.minecraft.item.Item;
 
 public class ItemFood extends Item {
