@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.item;
+package cx.rain.mc.forgemod.sinocraft.item.base;
 
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;

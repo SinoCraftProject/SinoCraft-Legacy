@@ -3,8 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.item;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
 import net.minecraft.item.Item;
-import java.lang.util.Map;
-import java.lang.util.HashMap;
 
 public class ItemKnife extends Item {
 	public static interface IShave{

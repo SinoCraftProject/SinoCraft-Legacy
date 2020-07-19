@@ -4,6 +4,8 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
+import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
