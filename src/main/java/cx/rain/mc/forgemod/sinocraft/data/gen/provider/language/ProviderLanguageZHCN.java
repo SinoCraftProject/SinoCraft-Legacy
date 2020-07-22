@@ -19,6 +19,12 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItems();
         addBlocks();
         addEntities();
+        addAdvancements();
+    }
+
+    private void addAdvancements(){
+        add("advancement.sinocraft.basic.root.title","感谢使用华夏文明模组！");
+        add("advancement.sinocraft.basic.root.description","感谢使用华夏文明模组！");
     }
 
     private void addItemGroups() {
@@ -56,32 +62,32 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     private void addBlocks() {
         addBlock(Blocks.LOG_PEACH, "桃树原木");
         addBlock(Blocks.LOG_PEACH_STRIPPED, "去皮桃树原木");
-        addBlock(Blocks.LOG_PEACH_SKIN, "桃树树皮块");
-        addBlock(Blocks.LOG_PEACH_STRIPPED_SKIN, "去皮桃树树皮块");
+        addBlock(Blocks.LOG_PEACH_BARK, "桃树树皮块");
+        addBlock(Blocks.LOG_PEACH_STRIPPED_BARK, "去皮桃树树皮块");
         addBlock(Blocks.PLANK_PEACH, "桃树木板");
         addBlock(Blocks.LEAVES_PEACH, "桃树树叶");
         addBlock(Blocks.SAPLING_PEACH, "桃树树苗");
 
         addBlock(Blocks.LOG_WALNUT, "核桃树原木");
         addBlock(Blocks.LOG_WALNUT_STRIPPED, "去皮核桃树原木");
-        addBlock(Blocks.LOG_WALNUT_SKIN, "核桃树树皮块");
-        addBlock(Blocks.LOG_WALNUT_STRIPPED_SKIN, "去皮核桃树树皮块");
+        addBlock(Blocks.LOG_WALNUT_BARK, "核桃树树皮块");
+        addBlock(Blocks.LOG_WALNUT_STRIPPED_BARK, "去皮核桃树树皮块");
         addBlock(Blocks.PLANK_WALNUT, "核桃树木板");
         addBlock(Blocks.LEAVES_WALNUT, "核桃树树叶");
         addBlock(Blocks.SAPLING_WALNUT, "核桃树树苗");
 
         addBlock(Blocks.LOG_PLUM, "梅花原木");
         addBlock(Blocks.LOG_PLUM_STRIPPED, "去皮梅花原木");
-        addBlock(Blocks.LOG_PLUM_SKIN, "梅花树皮块");
-        addBlock(Blocks.LOG_PLUM_STRIPPED_SKIN, "去皮梅花树皮块");
+        addBlock(Blocks.LOG_PLUM_BARK, "梅花树皮块");
+        addBlock(Blocks.LOG_PLUM_STRIPPED_BARK, "去皮梅花树皮块");
         addBlock(Blocks.PLANK_PLUM, "梅花木板");
         addBlock(Blocks.LEAVES_PLUM, "梅花树叶");
         addBlock(Blocks.SAPLING_PLUM, "梅花树苗");
 
         addBlock(Blocks.LOG_MULBERRY, "桑树原木");
         addBlock(Blocks.LOG_MULBERRY_STRIPPED, "去皮桑树原木");
-        addBlock(Blocks.LOG_MULBERRY_SKIN, "桑树树皮块");
-        addBlock(Blocks.LOG_MULBERRY_STRIPPED_SKIN, "去皮桑树树皮块");
+        addBlock(Blocks.LOG_MULBERRY_BARK, "桑树树皮块");
+        addBlock(Blocks.LOG_MULBERRY_STRIPPED_BARK, "去皮桑树树皮块");
         addBlock(Blocks.PLANK_MULBERRY, "桑树木板");
         addBlock(Blocks.LEAVES_MULBERRY, "桑树树叶");
         addBlock(Blocks.SAPLING_MULBERRY, "桑树树苗");

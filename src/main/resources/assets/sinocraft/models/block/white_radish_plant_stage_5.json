@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "sinocraft:block/white_radish_plant_stage_2"
+  }
+}

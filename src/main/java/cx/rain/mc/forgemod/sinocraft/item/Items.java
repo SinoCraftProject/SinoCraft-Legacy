@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
+import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
@@ -36,6 +37,14 @@ public class Items {
     public static RegistryObject<Item> GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).fastToEat().build()));
     public static RegistryObject<Item> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).fastToEat().build()));
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).fastToEat().build()));
+
+    public static RegistryObject<Item> BARK_PEACH = REGISTRY.register("bark_peach",()->new ItemBark(LogType.PEACH));
+
+    public static RegistryObject<Item> BARK_WALNUT = REGISTRY.register("bark_walnut",()->new ItemBark(LogType.PEACH));
+
+    public static RegistryObject<Item> BARK_PLUM = REGISTRY.register("bark_plum",()->new ItemBark(LogType.PEACH));
+
+    public static RegistryObject<Item> BARK_MULBERRY = REGISTRY.register("bark_mulberry",()->new ItemBark(LogType.PEACH));
 
     public Items(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering items.");
