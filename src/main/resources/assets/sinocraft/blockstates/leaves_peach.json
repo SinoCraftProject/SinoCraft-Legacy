@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mature=false": {
+      "model": "sinocraft:block/leaves_peach"
+    },
+    "mature=true": {
+      "model": "sinocraft:block/leaves_peach_mature"
+    }
+  }
+}

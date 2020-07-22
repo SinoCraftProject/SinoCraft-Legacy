@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "sinocraft:block/log_mulberry_side",
+    "end": "sinocraft:block/log_mulberry_top"
+  }
+}

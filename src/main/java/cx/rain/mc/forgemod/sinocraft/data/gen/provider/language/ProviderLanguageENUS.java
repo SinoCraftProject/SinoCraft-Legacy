@@ -19,6 +19,12 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItems();
         addBlocks();
         addEntities();
+        addAdvancements();
+    }
+
+    private void addAdvancements(){
+        add("advancement.sinocraft.basic.root.title","Welcome to SinoCraft!");
+        add("advancement.sinocraft.basic.root.description","Welcome to SinoCraft!");
     }
 
     private void addItemGroups() {
@@ -56,32 +62,32 @@ public class ProviderLanguageENUS extends LanguageProvider {
     private void addBlocks() {
         addBlock(Blocks.LOG_PEACH, "Peach Log");
         addBlock(Blocks.LOG_PEACH_STRIPPED, "Stripped Peach Log");
-        addBlock(Blocks.LOG_PEACH_SKIN, "Peach Wood");
-        addBlock(Blocks.LOG_PEACH_STRIPPED_SKIN, "Stripped Peach Wood");
+        addBlock(Blocks.LOG_PEACH_BARK, "Peach Wood");
+        addBlock(Blocks.LOG_PEACH_STRIPPED_BARK, "Stripped Peach Wood");
         addBlock(Blocks.PLANK_PEACH, "Peach Plank");
         addBlock(Blocks.LEAVES_PEACH, "Peach Leaves");
         addBlock(Blocks.SAPLING_PEACH, "Peach Sapling");
 
         addBlock(Blocks.LOG_WALNUT, "Walnut Log");
         addBlock(Blocks.LOG_WALNUT_STRIPPED, "Stripped Walnut Log");
-        addBlock(Blocks.LOG_WALNUT_SKIN, "Walnut Wood");
-        addBlock(Blocks.LOG_WALNUT_STRIPPED_SKIN, "Stripped Walnut Wood");
+        addBlock(Blocks.LOG_WALNUT_BARK, "Walnut Wood");
+        addBlock(Blocks.LOG_WALNUT_STRIPPED_BARK, "Stripped Walnut Wood");
         addBlock(Blocks.PLANK_WALNUT, "Walnut Plank");
         addBlock(Blocks.LEAVES_WALNUT, "Walnut Leaves");
         addBlock(Blocks.SAPLING_WALNUT, "Walnut Sapling");
 
         addBlock(Blocks.LOG_PLUM, "Plum Log");
         addBlock(Blocks.LOG_PLUM_STRIPPED, "Stripped Plum Log");
-        addBlock(Blocks.LOG_PLUM_SKIN, "Plum Wood");
-        addBlock(Blocks.LOG_PLUM_STRIPPED_SKIN, "Stripped Plum Wood");
+        addBlock(Blocks.LOG_PLUM_BARK, "Plum Wood");
+        addBlock(Blocks.LOG_PLUM_STRIPPED_BARK, "Stripped Plum Wood");
         addBlock(Blocks.PLANK_PLUM, "Plum Plank");
         addBlock(Blocks.LEAVES_PLUM, "Plum Leaves");
         addBlock(Blocks.SAPLING_PLUM, "Plum Sapling");
 
         addBlock(Blocks.LOG_MULBERRY, "Mulberry Log");
         addBlock(Blocks.LOG_MULBERRY_STRIPPED, "Stripped Mulberry Log");
-        addBlock(Blocks.LOG_MULBERRY_SKIN, "Mulberry Wood");
-        addBlock(Blocks.LOG_MULBERRY_STRIPPED_SKIN, "Stripped Mulberry Wood");
+        addBlock(Blocks.LOG_MULBERRY_BARK, "Mulberry Wood");
+        addBlock(Blocks.LOG_MULBERRY_STRIPPED_BARK, "Stripped Mulberry Wood");
         addBlock(Blocks.PLANK_MULBERRY, "Mulberry Plank");
         addBlock(Blocks.LEAVES_MULBERRY, "Mulberry Leaves");
         addBlock(Blocks.SAPLING_MULBERRY, "Mulberry Sapling");

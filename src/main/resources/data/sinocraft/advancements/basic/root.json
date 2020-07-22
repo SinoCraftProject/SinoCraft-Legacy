@@ -1,0 +1,17 @@
+{
+    "display": {
+        "icon": { "item": "sinocraft:white_marble"},
+        "title": { "translate": "advancement.sinocraft.basic.root.title" },
+        "frame": "task",
+        "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
+        "description": { "translate": "advancement.sinocraft.basic.root.description" },
+        "show_toast": false,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "only": {
+            "trigger": "minecraft:tick"
+        }
+    }
+}
