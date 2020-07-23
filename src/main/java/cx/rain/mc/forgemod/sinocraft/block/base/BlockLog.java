@@ -8,7 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 
 public class BlockLog extends LogBlock {
-    private LogType type = null;
+    public LogType type = null;
 
     public BlockLog(LogType typeIn) {
         super(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, typeIn.getColor())
