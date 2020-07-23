@@ -46,6 +46,8 @@ public class Items {
 
     public static RegistryObject<Item> BARK_MULBERRY = REGISTRY.register("bark_mulberry",()->new ItemBark(LogType.PEACH));
 
+    public static RegistryObject<Item> KNIFE = REGISTRY.register("knife",()->new ItemKnife());
+
     public Items(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering items.");
         REGISTRY.register(bus);

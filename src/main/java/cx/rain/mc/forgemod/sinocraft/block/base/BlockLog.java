@@ -8,12 +8,22 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 
 public class BlockLog extends LogBlock {
-    private LogType type = null;
+    public LogType type = null;
 
-    public BlockLog(LogType typeIn) {
+    public enum KIND{
+        LOG,
+        LOG_BARK,
+        LOG_STRIPPED,
+        LOG_STRIPPED_BARK
+    }
+
+    public KIND kind;
+
+    public BlockLog(LogType typeIn,KIND kindIn) {
         super(MaterialColor.WOOD, Block.Properties.create(Material.WOOD, typeIn.getColor())
                 .hardnessAndResistance(2.0F)
                 .sound(SoundType.WOOD));
         type = typeIn;
+        kind = kindIn;
     }
 }
