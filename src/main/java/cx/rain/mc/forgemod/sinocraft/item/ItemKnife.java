@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
@@ -12,6 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -22,6 +26,26 @@ import java.util.Map;
 
 public class ItemKnife extends Item {
 	public static List<IFactory<IShave,ItemUseContext>> shaveManagers = new ArrayList();
+
+	public static void dropItem(World worldIn, BlockPos pos, ItemStack stack){
+        worldIn.addEntity(new ItemEntity(worldIn.getWorld(),
+                pos.getX(),pos.getY(),pos.getZ(),stack));
+    }
+
+    public static void dropItem(World worldIn, BlockPos pos, ItemStack stack, Direction face) {
+	    int x=pos.getX();
+	    int y=pos.getY();
+	    int z=pos.getZ();
+	    switch (face){
+            case EAST: x+=1;break;
+            case WEST: x-=1;break;
+            case UP: y+=1;break;
+            case DOWN: y-=1;break;
+            case NORTH: z-=1;break;
+            case SOUTH: z+=1;break;
+        }
+        worldIn.addEntity(new ItemEntity(worldIn.getWorld(), x,y,z,stack));
+    }
 
 	public static class DefaultManager implements IFactory<IShave, ItemUseContext> {
         private static Map<Block, IShave> recipes = new HashMap();
@@ -59,15 +83,18 @@ public class ItemKnife extends Item {
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
             if(type.getWorld().getBlockState(type.getPos()).getBlock() instanceof BlockLog){
+                BlockLog b = (BlockLog) type.getWorld().getBlockState(type.getPos()).getBlock();
+                if(b.kind!= BlockLog.KIND.LOG){
+                    return null;
+                }
                 return (context) -> {
                     BlockLog block = (BlockLog)context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(context.getPos(),
                             block.type.getTag().LogStripped.get().getDefaultState());
-                    context.getWorld().addEntity(new ItemEntity(context.getWorld(),
-                            context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(),
-                            new ItemStack(block.type.getTag().Bark.get(),
-                                    context.getWorld().getRandom().nextInt(2))
-                    ));
+                    dropItem(context.getWorld(), context.getPos(),
+                            new ItemStack(block.type.getTag().Bark.get(), context.getWorld().getRandom().nextInt(2)),
+                            context.getFace()
+                    );
                 };
             }
             return null;
@@ -76,6 +103,7 @@ public class ItemKnife extends Item {
 
     public ItemKnife() {
         super(new Item.Properties().group(Groups.MISC));
+        initManager();
     }
 
     void initManager(){

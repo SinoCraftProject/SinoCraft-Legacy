@@ -13,6 +13,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static cx.rain.mc.forgemod.sinocraft.item.ItemKnife.dropItem;
+
 public class ShaveBase implements IShave {
     protected BlockState block;
     protected List<ItemStack> stacks;
@@ -39,7 +41,7 @@ public class ShaveBase implements IShave {
         BlockPos pos = context.getPos();
         world.setBlockState(pos,block);
         for(ItemStack stack : stacks){
-            world.addEntity(new ItemEntity(context.getWorld(),pos.getX(),pos.getY(),pos.getZ(),stack));
+            dropItem(context.getWorld(),pos,stack,context.getFace());
         }
     }
 }
