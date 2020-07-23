@@ -1,5 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.AxeItem;
 
@@ -25,5 +30,18 @@ public class ProtectedHelper {
         } catch (NoSuchFieldException | IllegalAccessException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static JsonElement AdvancementToJson(Advancement advancement){
+        JsonElement json = null;
+        try {
+            Field field = AdvancementManager.class.getDeclaredField("Gson");
+            field.setAccessible(true);
+            json=((Gson)field.get(null)).toJsonTree(advancement);
+
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }

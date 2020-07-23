@@ -33,16 +33,16 @@ public class ItemKnife extends Item {
     }
 
     public static void dropItem(World worldIn, BlockPos pos, ItemStack stack, Direction face) {
-	    int x=pos.getX();
-	    int y=pos.getY();
-	    int z=pos.getZ();
+	    double x=pos.getX();
+        double y=pos.getY();
+        double z=pos.getZ();
 	    switch (face){
-            case EAST: x+=1;break;
-            case WEST: x-=1;break;
-            case UP: y+=1;break;
-            case DOWN: y-=1;break;
-            case NORTH: z-=1;break;
-            case SOUTH: z+=1;break;
+            case EAST: x-=0.5;break;
+            case WEST: x+=0.5;break;
+            case UP: y+=0.5;break;
+            case DOWN: y-=0.5;break;
+            case NORTH: z-=0.5;break;
+            case SOUTH: z+=0.5;break;
         }
         worldIn.addEntity(new ItemEntity(worldIn.getWorld(), x,y,z,stack));
     }
@@ -92,7 +92,7 @@ public class ItemKnife extends Item {
                     context.getWorld().setBlockState(context.getPos(),
                             block.type.getTag().LogStripped.get().getDefaultState());
                     dropItem(context.getWorld(), context.getPos(),
-                            new ItemStack(block.type.getTag().Bark.get(), context.getWorld().getRandom().nextInt(2)),
+                            new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)),
                             context.getFace()
                     );
                 };
