@@ -2,9 +2,11 @@ package cx.rain.mc.forgemod.sinocraft.data.gen.provider.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -29,6 +31,42 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
 
     public ProviderBaseAdvancement(DataGenerator generatorIn) {
         generator = generatorIn;
+    }
+
+    protected static class AdvancementToJson{
+        private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().registerTypeAdapter(Advancement.class, new TypeAdapter<Advancement>() {
+            @Override
+            public void write(JsonWriter out, Advancement value) throws IOException{
+                writeDisplay(out,value);
+            }
+
+            public void writeDisplay(JsonWriter out, Advancement adv) throws IOException {
+                DisplayInfo info = adv.getDisplay();
+                out.name("display").beginObject();
+                    out.name("icon").beginObject();
+                        out.name("item").value(info.getIcon().getItem().getRegistryName().toString());
+                    out.endObject();
+                    out.name("title").beginObject();
+                           out.name("translate").value(info.getTitle().getString());
+                    out.endObject();
+                    out.name("description").beginObject();
+                            out.name("translate").value(info.getDescription().getString());
+                    out.endObject();
+                    out.name("frame").value(info.getFrame().getName());
+                    if(info.getBackground()!=null){
+                        out.name("background").value(info.getBackground().toString());
+                    }
+                    out.name("show_toast").value(info.shouldShowToast());
+                    out.name("announce_to_chat").value(info.shouldAnnounceToChat());
+                    out.name("hidden").value(info.isHidden());
+                out.endObject();
+            }
+
+            @Override
+            public Advancement read(JsonReader in) {
+                return null;
+            }
+        }).create();
     }
 
     protected abstract void registerAdvancements();
