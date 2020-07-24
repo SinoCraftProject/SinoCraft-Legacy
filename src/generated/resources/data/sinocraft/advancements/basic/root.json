@@ -15,9 +15,5 @@
     "announce_to_chat": true,
     "hidden": true
   },
-  "rewards": {
-    "experience": 0,
-    "recipes": [],
-    "loot": []
-  }
+  "rewards": {}
 }
