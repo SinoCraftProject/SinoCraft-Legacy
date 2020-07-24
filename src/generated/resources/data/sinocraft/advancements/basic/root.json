@@ -20,10 +20,10 @@
       "trigger": "minecraft:tick"
     }
   },
-  "rewards": {},
   "requirements": [
     [
       "only"
     ]
-  ]
+  ],
+  "rewards": {}
 }

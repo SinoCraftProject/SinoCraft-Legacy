@@ -12,7 +12,29 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     public ProviderLanguageZHCN(DataGenerator gen) {
         super(gen, SinoCraft.MODID, "zh_cn");
     }
-
+/*
+§0 黑色 black
+§1 深蓝色 dark_blue
+§2 深绿色 dark_green
+§3 湖蓝色 dark_aqua
+§4 深红色 dark_red
+§5 紫色 dark_purple
+§6 金色 gold
+§7 灰色 gray
+§8 深灰色 dark_gray
+§9 靛蓝色 blue
+§a 鲜绿色 green
+§b 水蓝色 aqua
+§c 红色 red
+§d 粉色 light_purple
+§e 黄色 yellow
+§f 白色 white
+§r 默认字体
+§l 加粗
+§o 倾斜
+§n 下划线
+§m 删除线
+*/
     @Override
     protected void addTranslations() {
         addItemGroups();
@@ -25,6 +47,10 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     private void addAdvancements(){
         add("advancement.sinocraft.basic.root.title","感谢使用华夏文明模组！");
         add("advancement.sinocraft.basic.root.description","感谢使用华夏文明模组！");
+        add("advancement.sinocraft.basic.knife.title","刀");
+        add("advancement.sinocraft.basic.knife.description","获得一把小刀");
+        add("advancement.sinocraft.basic.knife_killed.title","§9小刀也能毙命");
+        add("advancement.sinocraft.basic.knife_killed.description","§9用小刀杀死一个生物");
     }
 
     private void addItemGroups() {

@@ -16,17 +16,16 @@ import net.minecraft.util.text.StringTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public abstract class ProviderBaseAdvancement implements IDataProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private DataGenerator generator;
-    protected final Map<ResourceLocation, Advancement.Builder> Advancements = new HashMap<>();
+    protected final Map<ResourceLocation, Advancement.Builder> Advancements = new LinkedHashMap<>();
 
     public ProviderBaseAdvancement(DataGenerator generatorIn) {
         generator = generatorIn;
@@ -42,12 +41,11 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                     out.name("parent").value(value.getParent().getId().toString());
                 }
                 writeCriteria(out,value);
-                writeRewards(out,value);
                 writeRequirements(out, value);
+                writeRewards(out,value);
                 out.endObject();
             }
 
-            //complete
             public void writeDisplay(JsonWriter out, Advancement adv) throws IOException {
                 DisplayInfo info = adv.getDisplay();
                 out.name("display").beginObject();
@@ -86,7 +84,6 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 out.endArray();
             }
 
-            //incomplete
             public void writeCriteria(JsonWriter out,Advancement adv) throws IOException{
                 Map<String,Criterion> criteria = adv.getCriteria();
                 out.name("criteria").beginObject();
@@ -135,19 +132,38 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                         JsonArray array = ele.getAsJsonArray();
                         out.name(entry.getKey()).beginArray();
                         for(int i=0;i<array.size();i++){
-                            JsonPrimitive pri = array.get(i).getAsJsonPrimitive();
-                            if(pri.isBoolean()){
-                                out.value(pri.getAsBoolean());
-                            }
-                            else if(pri.isNumber()){
-                                out.value(pri.getAsNumber());
-                            }
-                            else if(pri.isString()){
-                                out.value(pri.getAsString());
-                            }
+                            writeArrayValues(out,array.get(i));
                         }
                         out.endArray();
                     }
+                }
+            }
+
+            public void writeArrayValues(JsonWriter out,JsonElement ele) throws IOException {
+                if(ele.isJsonObject()){
+                    out.beginObject();
+                    writeConditions(out,ele.getAsJsonObject());
+                    out.endObject();
+                }
+                else if(ele.isJsonPrimitive()){
+                    JsonPrimitive pri = ele.getAsJsonPrimitive();
+                    if(pri.isBoolean()){
+                        out.value(pri.getAsBoolean());
+                    }
+                    else if(pri.isNumber()){
+                        out.value(pri.getAsNumber());
+                    }
+                    else if(pri.isString()){
+                        out.value(pri.getAsString());
+                    }
+                }
+                else if(ele.isJsonArray()){
+                    JsonArray array = ele.getAsJsonArray();
+                    out.beginArray();
+                    for(int i=0;i<array.size();i++){
+                        writeArrayValues(out,array.get(i));
+                    }
+                    out.endArray();
                 }
             }
 
@@ -201,8 +217,11 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
     public void act(DirectoryCache directoryCache){
         registerAdvancements();
 
-        Map<ResourceLocation, Advancement> advancements = new HashMap<>();
+        Map<ResourceLocation, Advancement> advancements = new LinkedHashMap<>();
         for (Map.Entry<ResourceLocation, Advancement.Builder> entry : Advancements.entrySet()) {
+            if(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")!=null){
+                entry.getValue().withParent(advancements.get(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")));
+            }
             advancements.put(entry.getKey(), entry.getValue().build(entry.getKey()));
         }
         writeAdvancements(directoryCache, advancements);
@@ -234,9 +253,8 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
         return pathIn.resolve("data/" + id.getNamespace() + "/advancements/" + id.getPath() + ".json");
     }
 
-    protected Advancement.Builder RootAdvancement(ItemStack icon, ITextComponent title, ITextComponent description,
-                                                  @Nullable ResourceLocation background, FrameType frame, boolean showToast,
-                                                  boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
+    protected Advancement.Builder RootAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, ResourceLocation background, FrameType frame,
+                                                  boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
         return Advancement.Builder.builder()
                 .withDisplay(
                         new DisplayInfo(icon,title,description,background,frame,showToast,announceToChat,hidden)
@@ -244,14 +262,52 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 .withRewards(rewardsBuilder);
     }
 
-    protected Advancement.Builder RootAdvancement(ItemStack icon, String title, String description,
-                                                  @Nullable ResourceLocation background, FrameType frame, boolean showToast,
-                                                  boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder
-                                                  ){
+    protected Advancement.Builder RootAdvancement(ItemStack icon, String title, String description, ResourceLocation background, FrameType frame,
+                                                  boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
         return Advancement.Builder.builder()
                 .withDisplay(
                         new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),background,frame,showToast,announceToChat,hidden)
                 )
                 .withRewards(rewardsBuilder);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, String title, String description, ResourceLocation parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewardsBuilder)
+                .withParentId(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, Advancement parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,title,description,null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewardsBuilder)
+                .withParent(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, ResourceLocation parent, FrameType frame,
+                                                    boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,title,description,null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewardsBuilder)
+                .withParentId(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, String title, String description, Advancement parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards.Builder rewardsBuilder){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewardsBuilder)
+                .withParent(parent);
     }
 }

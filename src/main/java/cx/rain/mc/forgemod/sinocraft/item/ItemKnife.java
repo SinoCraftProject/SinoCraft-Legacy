@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
@@ -12,6 +11,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +24,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemKnife extends Item {
+import static net.minecraft.item.ItemTier.IRON;
+
+public class ItemKnife extends SwordItem {
 	public static List<IFactory<IShave,ItemUseContext>> shaveManagers = new ArrayList();
 
 	public static void dropItem(World worldIn, BlockPos pos, ItemStack stack){
@@ -102,7 +104,7 @@ public class ItemKnife extends Item {
     }
 
     public ItemKnife() {
-        super(new Item.Properties().group(Groups.MISC));
+        super(IRON,4,-3.0f,new Item.Properties().group(Groups.MISC));
         initManager();
     }
 
@@ -118,7 +120,7 @@ public class ItemKnife extends Item {
                 IShave shave=shaveManager.get(context,null);
                 if(shave!=null){
                     shave.Shave(context);
-                    break;
+                    return ActionResultType.SUCCESS;
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 e.printStackTrace();
