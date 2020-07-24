@@ -4,10 +4,10 @@
       "item": "sinocraft:white_marble"
     },
     "title": {
-      "translate": "!"
+      "translate": "advancement.sinocraft.basic.root.title"
     },
     "description": {
-      "translate": "!"
+      "translate": "advancement.sinocraft.basic.root.description"
     },
     "frame": "task",
     "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
