@@ -1,17 +1,29 @@
 {
-    "display": {
-        "icon": { "item": "sinocraft:white_marble"},
-        "title": { "translate": "advancement.sinocraft.basic.root.title" },
-        "frame": "task",
-        "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
-        "description": { "translate": "advancement.sinocraft.basic.root.description" },
-        "show_toast": false,
-        "announce_to_chat": false,
-        "hidden": false
+  "display": {
+    "icon": {
+      "item": "sinocraft:white_marble"
     },
-    "criteria": {
-        "only": {
-            "trigger": "minecraft:tick"
-        }
+    "title": {
+      "translate": "advancement.sinocraft.basic.root.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.basic.root.description"
+    },
+    "frame": "task",
+    "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
+    "show_toast": false,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "only": {
+      "trigger": "minecraft:tick"
     }
+  },
+  "rewards": {},
+  "requirements": [
+    [
+      "only"
+    ]
+  ]
 }

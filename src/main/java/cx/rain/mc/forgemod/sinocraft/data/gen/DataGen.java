@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.gen;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.*;
-import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderAdvancement;
+import cx.rain.mc.forgemod.sinocraft.data.gen.provider.ProviderAdvancement;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageENUS;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageZHCN;
 import net.minecraft.data.DataGenerator;
