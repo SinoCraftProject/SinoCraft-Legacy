@@ -32,16 +32,63 @@ public class ProtectedHelper {
         }
     }
 
-    public static JsonElement AdvancementToJson(Advancement advancement){
-        JsonElement json = null;
+    public static Object getStaticField(Class<? extends Object> clazz,String name,boolean isFinal){
         try {
-            Field field = AdvancementManager.class.getDeclaredField("Gson");
+            Field field = clazz.getDeclaredField(name);
             field.setAccessible(true);
-            json=((Gson)field.get(null)).toJsonTree(advancement);
 
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            return field.get(null);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        return json;
+        return null;
+    }
+
+    public static Object getStaticField(Class<? extends Object> clazz,String name){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            return field.get(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object getField(Class<? extends Object> clazz,Object obj,String name,boolean isFinal){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            return field.get(obj);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object getField(Class<? extends Object> clazz,Object obj,String name){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            return field.get(obj);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
