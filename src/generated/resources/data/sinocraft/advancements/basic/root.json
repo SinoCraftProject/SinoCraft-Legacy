@@ -15,5 +15,15 @@
     "announce_to_chat": true,
     "hidden": true
   },
-  "rewards": {}
+  "criteria": {
+    "only": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {},
+  "requirements": [
+    [
+      "only"
+    ]
+  ]
 }

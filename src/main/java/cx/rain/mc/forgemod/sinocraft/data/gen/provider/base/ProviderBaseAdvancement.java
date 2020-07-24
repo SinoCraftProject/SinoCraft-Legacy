@@ -1,9 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider.base;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
@@ -44,7 +41,9 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 if(value.getParent()!=null){
                     out.name("parent").value(value.getParent().getId().toString());
                 }
+                writeCriteria(out,value);
                 writeRewards(out,value);
+                writeRequirements(out, value);
                 out.endObject();
             }
 
@@ -71,9 +70,85 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 out.endObject();
             }
 
+            public void writeRequirements(JsonWriter out,Advancement adv) throws IOException {
+                String[][] req = adv.getRequirements();
+                if(req==null||req.length==0){
+                    return;
+                }
+                out.name("requirements").beginArray();
+                for(String[] arr : req){
+                    out.beginArray();
+                    for(String r : arr){
+                        out.value(r);
+                    }
+                    out.endArray();
+                }
+                out.endArray();
+            }
+
             //incomplete
             public void writeCriteria(JsonWriter out,Advancement adv) throws IOException{
+                Map<String,Criterion> criteria = adv.getCriteria();
+                out.name("criteria").beginObject();
+                    for(Map.Entry<String,Criterion> entry : criteria.entrySet()){
+                        Criterion criterion = entry.getValue();
+                        JsonObject obj;
+                        if(criterion.serialize().getAsJsonObject().get("conditions")==JsonNull.INSTANCE){
+                            obj=null;
+                        }
+                        else{
+                            obj = criterion.serialize().getAsJsonObject().getAsJsonObject("conditions");
+                        }
+                        out.name(entry.getKey()).beginObject();
+                            out.name("trigger").value(criterion.getCriterionInstance().getId().toString());
+                            if(obj!=null){
+                                out.name("conditions").beginObject();
+                                writeConditions(out,obj);
+                                out.endObject();
+                            }
+                        out.endObject();
+                    }
+                out.endObject();
+            }
 
+            public void writeConditions(JsonWriter out,JsonObject obj) throws IOException {
+                for(Map.Entry<String,JsonElement> entry : obj.entrySet()){
+                    JsonElement ele = entry.getValue();
+                    if(ele.isJsonObject()){
+                        out.name(entry.getKey()).beginObject();
+                        writeConditions(out,ele.getAsJsonObject());
+                        out.endObject();
+                    }
+                    else if(ele.isJsonPrimitive()){
+                        JsonPrimitive pri = ele.getAsJsonPrimitive();
+                        if(pri.isBoolean()){
+                            out.name(entry.getKey()).value(pri.getAsBoolean());
+                        }
+                        else if(pri.isNumber()){
+                            out.name(entry.getKey()).value(pri.getAsNumber());
+                        }
+                        else if(pri.isString()){
+                            out.name(entry.getKey()).value(pri.getAsString());
+                        }
+                    }
+                    else if(ele.isJsonArray()){
+                        JsonArray array = ele.getAsJsonArray();
+                        out.name(entry.getKey()).beginArray();
+                        for(int i=0;i<array.size();i++){
+                            JsonPrimitive pri = array.get(i).getAsJsonPrimitive();
+                            if(pri.isBoolean()){
+                                out.value(pri.getAsBoolean());
+                            }
+                            else if(pri.isNumber()){
+                                out.value(pri.getAsNumber());
+                            }
+                            else if(pri.isString()){
+                                out.value(pri.getAsString());
+                            }
+                        }
+                        out.endArray();
+                    }
+                }
             }
 
             //complete
