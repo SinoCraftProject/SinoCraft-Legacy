@@ -1,5 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.AxeItem;
 
@@ -25,5 +30,65 @@ public class ProtectedHelper {
         } catch (NoSuchFieldException | IllegalAccessException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static Object getStaticField(Class<? extends Object> clazz,String name,boolean isFinal){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            return field.get(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object getStaticField(Class<? extends Object> clazz,String name){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            return field.get(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object getField(Class<? extends Object> clazz,Object obj,String name,boolean isFinal){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            return field.get(obj);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object getField(Class<? extends Object> clazz,Object obj,String name){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            return field.get(obj);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

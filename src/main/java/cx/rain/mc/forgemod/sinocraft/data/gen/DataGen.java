@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.gen;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.*;
+import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderAdvancement;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageENUS;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageZHCN;
 import net.minecraft.data.DataGenerator;
@@ -30,6 +31,7 @@ public class DataGen {
 
             generator.addProvider(new ProviderLanguageZHCN(generator));
             generator.addProvider(new ProviderLanguageENUS(generator));
+            generator.addProvider(new ProviderAdvancement(generator));
         }
     }
 }

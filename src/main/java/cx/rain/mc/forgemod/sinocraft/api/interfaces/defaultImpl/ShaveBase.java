@@ -1,9 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.math.BlockPos;

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:white_marble"
+    },
+    "title": {
+      "translate": "!"
+    },
+    "description": {
+      "translate": "!"
+    },
+    "frame": "task",
+    "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
+    "show_toast": false,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "rewards": {}
+}
