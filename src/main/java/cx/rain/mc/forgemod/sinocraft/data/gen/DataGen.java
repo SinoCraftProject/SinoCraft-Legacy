@@ -32,6 +32,7 @@ public class DataGen {
             generator.addProvider(new ProviderLanguageZHCN(generator));
             generator.addProvider(new ProviderLanguageENUS(generator));
             generator.addProvider(new ProviderAdvancement(generator));
+            generator.addProvider(new ProviderRecipe(generator));
         }
     }
 }

@@ -21,8 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "sinocraft:knife",
-            "count": 1
+            "item": "sinocraft:knife"
           }
         ]
       }

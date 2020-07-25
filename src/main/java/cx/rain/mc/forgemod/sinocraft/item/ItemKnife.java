@@ -104,7 +104,7 @@ public class ItemKnife extends SwordItem {
     }
 
     public ItemKnife() {
-        super(IRON,4,-3.0f,new Item.Properties().group(Groups.MISC));
+        super(IRON,2,-3.0f,new Item.Properties().group(Groups.TOOLS));
         initManager();
     }
 

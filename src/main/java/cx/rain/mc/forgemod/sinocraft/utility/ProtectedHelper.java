@@ -91,4 +91,60 @@ public class ProtectedHelper {
         }
         return null;
     }
+
+    public static void setStaticField(Class<? extends Object> clazz,String name,Object value,boolean isFinal){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            field.set(null,value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setStaticField(Class<? extends Object> clazz,String name,Object value){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            field.set(null,value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setField(Class<? extends Object> clazz,Object obj,String name,Object value,boolean isFinal){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            if(isFinal){
+                Field modifiersField = Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            }
+
+            field.set(obj,value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setField(Class<? extends Object> clazz,Object obj,String name,Object value){
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+
+            field.set(obj,value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -31,8 +31,7 @@
           "source_entity": {
             "equipment": {
               "mainhand": {
-                "item": "sinocraft:knife",
-                "count": 1
+                "item": "sinocraft:knife"
               }
             }
           }
