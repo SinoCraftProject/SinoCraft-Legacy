@@ -1,18 +1,19 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderBaseAdvancement;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import static net.minecraft.advancements.criterion.MinMaxBounds.IntBound.UNBOUNDED;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 
 public class ProviderAdvancement extends ProviderBaseAdvancement {
     public static final String ID = SinoCraft.MODID;
@@ -29,6 +30,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
                 FrameType.TASK,false,true,true,new AdvancementRewards.Builder().addExperience(0)).
                 withCriterion("only",new TickTrigger.Instance())
         );
+
         Advancements.put(new ResourceLocation(ID,"basic/knife"),ChildAdvancement(
                 new ItemStack(Items.KNIFE.get()),"advancement.sinocraft.basic.knife.title","advancement.sinocraft.basic.knife.description",
                 new ResourceLocation(ID,"basic/root"),FrameType.TASK,false,true,true,new AdvancementRewards.Builder().addExperience(0)).
@@ -46,6 +48,17 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
                                 ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
                                 this.baseProvider(Items.KNIFE.get()),ItemPredicate.ANY)).build()
                 )
+                ))
+        );
+
+        Advancements.put(new ResourceLocation(ID,"basic/get_bark"),ChildAdvancement(
+                new ItemStack(Items.KNIFE.get()),"advancement.sinocraft.basic.get_bark.title","advancement.sinocraft.basic.get_bark.description",
+                new ResourceLocation(ID,"basic/root"),FrameType.TASK,false,true,true,new AdvancementRewards.Builder().addExperience(0)).
+                withRequirementsStrategy(IRequirementsStrategy.AND).
+                withCriterion("get_bark",this.hasItem(Items.BARK.get())).
+                withCriterion("use_knife",new RightClickBlockWithItemTrigger.Instance(
+                        RegistryTrigger.SHAVE_BARK_WITH_KNIFE.getId(),BlockPredicate.field_226231_a_,
+                        StatePropertiesPredicate.EMPTY,ItemPredicate.ANY
                 ))
         );
     }

@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
+import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
@@ -8,6 +9,7 @@ import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -95,8 +97,9 @@ public class ItemKnife extends SwordItem {
                             block.type.getTag().LogStripped.get().getDefaultState());
                     dropItem(context.getWorld(), context.getPos(),
                             new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)),
-                            context.getFace()
-                    );
+                            context.getFace());
+                    RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
+                            context.getPos(),context.getItem());
                 };
             }
             return null;
@@ -120,6 +123,8 @@ public class ItemKnife extends SwordItem {
                 IShave shave=shaveManager.get(context,null);
                 if(shave!=null){
                     shave.Shave(context);
+                    RegistryTrigger.SHAVE_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
+                            context.getPos(),context.getItem());
                     return ActionResultType.SUCCESS;
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {

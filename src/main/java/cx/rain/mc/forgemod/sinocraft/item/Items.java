@@ -38,7 +38,7 @@ public class Items {
     public static RegistryObject<Item> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).fastToEat().build()));
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).fastToEat().build()));
 
-    public static RegistryObject<Item> BARK = REGISTRY.register("bark_walnut",()->new Item(new Item.Properties().group(Groups.MISC)));
+    public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(Groups.MISC)));
 
     public static RegistryObject<Item> KNIFE = REGISTRY.register("knife",()->new ItemKnife());
 

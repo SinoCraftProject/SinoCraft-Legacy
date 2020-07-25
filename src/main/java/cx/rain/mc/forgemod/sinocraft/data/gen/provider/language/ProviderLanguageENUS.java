@@ -26,9 +26,11 @@ public class ProviderLanguageENUS extends LanguageProvider {
         add("advancement.sinocraft.basic.root.title","Welcome to SinoCraft!");
         add("advancement.sinocraft.basic.root.description","Welcome to SinoCraft!");
         add("advancement.sinocraft.basic.knife.title","Knife");
-        add("advancement.sinocraft.basic.knife.description","Get a knife");
+        add("advancement.sinocraft.basic.knife.description","Get a knife.");
         add("advancement.sinocraft.basic.knife_killed.title","Knife can kill too");
-        add("advancement.sinocraft.basic.knife_killed.description","Kill a entity with a knife");
+        add("advancement.sinocraft.basic.knife_killed.description","Kill a entity with a knife.");
+        add("advancement.sinocraft.basic.get_bark.title","Strip the tree!");
+        add("advancement.sinocraft.basic.get_bark.description","Shave a tree with knife and get the bark.");
     }
 
     private void addItemGroups() {

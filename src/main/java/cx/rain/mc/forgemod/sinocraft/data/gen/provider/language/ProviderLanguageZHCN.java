@@ -51,6 +51,8 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         add("advancement.sinocraft.basic.knife.description","获得一把小刀");
         add("advancement.sinocraft.basic.knife_killed.title","小刀也能毙命");
         add("advancement.sinocraft.basic.knife_killed.description","用小刀杀死一个生物");
+        add("advancement.sinocraft.basic.get_bark.title","给树脱衣！");
+        add("advancement.sinocraft.basic.get_bark.description","用小刀剥下并捡起一棵树的树皮");
     }
 
     private void addItemGroups() {
