@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
@@ -8,12 +9,10 @@ import cx.rain.mc.forgemod.sinocraft.block.base.BlockLog;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LogBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -34,21 +33,6 @@ public class ItemKnife extends SwordItem {
 	public static void dropItem(World worldIn, BlockPos pos, ItemStack stack){
         worldIn.addEntity(new ItemEntity(worldIn.getWorld(),
                 pos.getX(),pos.getY(),pos.getZ(),stack));
-    }
-
-    public static void dropItem(World worldIn, BlockPos pos, ItemStack stack, Direction face) {
-	    double x=pos.getX();
-        double y=pos.getY();
-        double z=pos.getZ();
-	    switch (face){
-            case EAST: x-=0.5;break;
-            case WEST: x+=0.5;break;
-            case UP: y+=0.5;break;
-            case DOWN: y-=0.5;break;
-            case NORTH: z-=0.5;break;
-            case SOUTH: z+=0.5;break;
-        }
-        worldIn.addEntity(new ItemEntity(worldIn.getWorld(), x,y,z,stack));
     }
 
 	public static class DefaultManager implements IFactory<IShave, ItemUseContext> {
@@ -94,20 +78,20 @@ public class ItemKnife extends SwordItem {
                 return (context) -> {
                     BlockLog block = (BlockLog)context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(context.getPos(),
-                            block.type.getTag().LogStripped.get().getDefaultState());
+                            block.type.getTag().LogStripped.get().getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
                     dropItem(context.getWorld(), context.getPos(),
-                            new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)),
-                            context.getFace());
+                            new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                             context.getPos(),context.getItem());
+                    SinoCraft.getInstance().getLog().info("!!!");
                 };
             }
             return null;
         }
     }
 
-    public ItemKnife() {
-        super(IRON,2,-3.0f,new Item.Properties().group(Groups.TOOLS));
+    public ItemKnife(IItemTier tier) {
+        super(tier,2,-3.0f,new Item.Properties().group(Groups.TOOLS));
         initManager();
     }
 
@@ -118,6 +102,9 @@ public class ItemKnife extends SwordItem {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
+	    if(context.getWorld().isRemote){
+	        return ActionResultType.PASS;
+        }
 	    for(IFactory<IShave,ItemUseContext> shaveManager : shaveManagers){
             try {
                 IShave shave=shaveManager.get(context,null);

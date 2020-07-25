@@ -9,6 +9,7 @@ import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -40,7 +41,8 @@ public class Items {
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(Groups.MISC)));
 
-    public static RegistryObject<Item> KNIFE = REGISTRY.register("knife",()->new ItemKnife());
+    public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron",()->new ItemKnife(ItemTier.IRON));
+
 
     public Items(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering items.");

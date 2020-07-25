@@ -11,4 +11,5 @@ public class TagItem {
     public static final Tag<Item> LOG_WALNUT = new ItemTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_walnut"));
     public static final Tag<Item> LOG_PLUM = new ItemTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_plum"));
     public static final Tag<Item> LOG_MULBERRY = new ItemTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_mulberry"));
+    public static final Tag<Item> KNIFE = new ItemTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "knife"));
 }

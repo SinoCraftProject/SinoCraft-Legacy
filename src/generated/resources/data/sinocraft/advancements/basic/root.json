@@ -13,7 +13,7 @@
     "background": "sinocraft:textures/gui/advancements/backgrounds/white_marble.png",
     "show_toast": false,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "criteria": {
     "only": {

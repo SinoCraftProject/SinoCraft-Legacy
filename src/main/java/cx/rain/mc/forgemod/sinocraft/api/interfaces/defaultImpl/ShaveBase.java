@@ -39,7 +39,7 @@ public class ShaveBase implements IShave {
         BlockPos pos = context.getPos();
         world.setBlockState(pos,block);
         for(ItemStack stack : stacks){
-            dropItem(context.getWorld(),pos,stack,context.getFace());
+            dropItem(context.getWorld(),pos,stack);
         }
     }
 }

@@ -10,9 +10,9 @@
       "translate": "advancement.sinocraft.basic.knife_killed.description"
     },
     "frame": "goal",
-    "show_toast": false,
+    "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "sinocraft:basic/knife",
   "criteria": {

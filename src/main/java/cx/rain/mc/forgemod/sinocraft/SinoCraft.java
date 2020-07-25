@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft;
 
+import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockAdditions;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
@@ -38,6 +39,7 @@ public class SinoCraft {
         new Blocks(bus);
         new BlockItems(bus);
         new Items(bus);
+        new RegistryTrigger();
     }
 
     public static SinoCraft getInstance() {
