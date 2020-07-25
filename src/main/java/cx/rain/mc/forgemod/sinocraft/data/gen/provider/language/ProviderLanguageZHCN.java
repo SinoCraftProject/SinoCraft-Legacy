@@ -59,6 +59,7 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         add("itemGroup.sinocraft.agriculture", "华夏工艺 | 农业");
         add("itemGroup.sinocraft.foods", "华夏工艺 | 食物");
         add("itemGroup.sinocraft.combat", "华夏工艺 | 战斗");
+        add("itemGroup.sinocraft.tools", "华夏工艺 | 工具");
         add("itemGroup.sinocraft.misc", "华夏工艺 | 杂项");
     }
 
