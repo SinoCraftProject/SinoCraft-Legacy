@@ -5,11 +5,17 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.command.FunctionObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -309,5 +315,25 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 )
                 .withRewards(rewardsBuilder)
                 .withParent(parent);
+    }
+
+    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
+        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
+    }
+
+    protected InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
+        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
+    }
+
+    protected ItemPredicate baseProvider(IItemProvider itemIn){
+        return ItemPredicate.Builder.create().item(itemIn).build();
+    }
+
+    protected  ItemPredicate baseProvider(Tag<Item> tagIn){
+        return ItemPredicate.Builder.create().tag(tagIn).build();
+    }
+
+    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
+        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
     }
 }

@@ -49,8 +49,8 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         add("advancement.sinocraft.basic.root.description","感谢使用华夏文明模组！");
         add("advancement.sinocraft.basic.knife.title","刀");
         add("advancement.sinocraft.basic.knife.description","获得一把小刀");
-        add("advancement.sinocraft.basic.knife_killed.title","§9小刀也能毙命");
-        add("advancement.sinocraft.basic.knife_killed.description","§9用小刀杀死一个生物");
+        add("advancement.sinocraft.basic.knife_killed.title","小刀也能毙命");
+        add("advancement.sinocraft.basic.knife_killed.description","用小刀杀死一个生物");
     }
 
     private void addItemGroups() {

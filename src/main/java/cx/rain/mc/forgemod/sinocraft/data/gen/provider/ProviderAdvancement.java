@@ -32,10 +32,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
         Advancements.put(new ResourceLocation(ID,"basic/knife"),ChildAdvancement(
                 new ItemStack(Items.KNIFE.get()),"advancement.sinocraft.basic.knife.title","advancement.sinocraft.basic.knife.description",
                 new ResourceLocation(ID,"basic/root"),FrameType.TASK,false,true,true,new AdvancementRewards.Builder().addExperience(0)).
-                withCriterion("knife",new InventoryChangeTrigger.Instance(UNBOUNDED,UNBOUNDED,UNBOUNDED,new ItemPredicate[]{
-                        new ItemPredicate(null,Items.KNIFE.get(),MinMaxBounds.IntBound.exactly(1),UNBOUNDED,EnchantmentPredicate.field_226534_b_,
-                                EnchantmentPredicate.field_226534_b_,null, NBTPredicate.ANY)
-                }))
+                withCriterion("knife",this.hasItem(Items.KNIFE.get()))
         );
 
         Advancements.put(new ResourceLocation(ID,"basic/knife_killed"),ChildAdvancement(
@@ -46,9 +43,9 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
                                 false,false,false,false, false,
                         false,false,false,EntityPredicate.ANY,
                         EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
-                                ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,new ItemPredicate(
-                                        null,Items.KNIFE.get(),MinMaxBounds.IntBound.exactly(1),UNBOUNDED,EnchantmentPredicate.field_226534_b_,
-                                EnchantmentPredicate.field_226534_b_,null, NBTPredicate.ANY),ItemPredicate.ANY)).build())
+                                ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
+                                this.baseProvider(Items.KNIFE.get()),ItemPredicate.ANY)).build()
+                )
                 ))
         );
     }
