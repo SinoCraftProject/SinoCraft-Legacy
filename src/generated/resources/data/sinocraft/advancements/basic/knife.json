@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:knife"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.basic.knife.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.basic.knife.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "sinocraft:basic/root",
+  "criteria": {
+    "knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:knife",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "knife"
+    ]
+  ],
+  "rewards": {}
+}
