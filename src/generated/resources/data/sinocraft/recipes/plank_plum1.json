@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "sinocraft:log_plum"
+    }
+  ],
+  "result": {
+    "item": "sinocraft:plank_plum",
+    "count": 4
+  }
+}

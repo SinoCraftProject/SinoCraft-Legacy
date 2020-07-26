@@ -7,6 +7,7 @@ import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguage
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageZHCN;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -33,6 +34,7 @@ public class DataGen {
             generator.addProvider(new ProviderLanguageENUS(generator));
             generator.addProvider(new ProviderAdvancement(generator));
             generator.addProvider(new ProviderRecipe(generator));
+            generator.addProvider(new ProviderLootTable(generator));
         }
     }
 }

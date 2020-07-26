@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "sinocraft:log_mulberry"
+    }
+  ],
+  "result": {
+    "item": "sinocraft:plank_mulberry",
+    "count": 4
+  }
+}

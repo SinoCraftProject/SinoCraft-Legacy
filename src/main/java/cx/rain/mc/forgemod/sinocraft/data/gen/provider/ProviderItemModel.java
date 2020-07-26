@@ -80,7 +80,7 @@ public class ProviderItemModel extends ItemModelProvider {
 
         getBuilder("bark").parent(GENERATED).texture("layer0",modLoc("item/bark"));
 
-        getBuilder("knife").parent(GENERATED).texture("layer0",modLoc("item/knife"));
+        getBuilder("knife_iron").parent(GENERATED).texture("layer0",modLoc("item/knife_iron"));
     }
 
     @Override

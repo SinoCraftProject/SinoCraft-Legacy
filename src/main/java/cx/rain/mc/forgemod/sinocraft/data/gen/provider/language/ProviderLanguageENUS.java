@@ -25,10 +25,24 @@ public class ProviderLanguageENUS extends LanguageProvider {
     private void addAdvancements(){
         add("advancement.sinocraft.basic.root.title","Welcome to SinoCraft!");
         add("advancement.sinocraft.basic.root.description","Welcome to SinoCraft!");
+
         add("advancement.sinocraft.basic.knife.title","Knife");
-        add("advancement.sinocraft.basic.knife.description","Get a knife");
+        add("advancement.sinocraft.basic.knife.description","Get a knife.");
+
         add("advancement.sinocraft.basic.knife_killed.title","Knife can kill too");
-        add("advancement.sinocraft.basic.knife_killed.description","Kill a entity with a knife");
+        add("advancement.sinocraft.basic.knife_killed.description","Kill a entity with a knife.");
+
+        add("advancement.sinocraft.basic.get_bark.title","Strip the tree!");
+        add("advancement.sinocraft.basic.get_bark.description","Shave a tree with knife and get the bark.");
+
+        add("advancement.minecraft.adventure.kill_all_entities.title","Slaughter!");
+        add("advancement.minecraft.adventure.kill_all_entities.description","Kill one of every living entities.");
+
+        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.title","Mob Master");
+        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.description","Kill one of every mobs with knife.");
+
+        add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","Real slaughter!");
+        add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","Kill one of every living entities with knife.");
     }
 
     private void addItemGroups() {
@@ -62,7 +76,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.EGGPLANT, "Eggplant");
         addItem(Items.CABBAGE, "Chinese Cabbage");
         addItem(Items.BARK,"Bark");
-        addItem(Items.KNIFE,"Knife");
+        addItem(Items.KNIFE_IRON,"Knife");
     }
 
     private void addBlocks() {

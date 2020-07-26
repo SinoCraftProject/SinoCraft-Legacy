@@ -3,20 +3,21 @@ package cx.rain.mc.forgemod.sinocraft.data.gen.provider.base;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.command.FunctionObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import org.apache.logging.log4j.LogManager;
@@ -32,6 +33,20 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private DataGenerator generator;
     protected final Map<ResourceLocation, Advancement.Builder> Advancements = new LinkedHashMap<>();
+    private static final EntityType<?>[] MOB_ENTITIES = new EntityType[]{EntityType.CAVE_SPIDER, EntityType.SPIDER, EntityType.ZOMBIE_PIGMAN,
+            EntityType.ENDERMAN, EntityType.BLAZE, EntityType.CREEPER, EntityType.EVOKER, EntityType.GHAST, EntityType.GUARDIAN, EntityType.HUSK,
+            EntityType.MAGMA_CUBE, EntityType.SHULKER, EntityType.SILVERFISH, EntityType.SKELETON, EntityType.SLIME, EntityType.STRAY,
+            EntityType.VINDICATOR, EntityType.WITCH, EntityType.WITHER_SKELETON, EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.PHANTOM,
+            EntityType.DROWNED, EntityType.PILLAGER, EntityType.RAVAGER};
+
+    private static final EntityType<?>[] ENTITIES = new EntityType[]{EntityType.CAVE_SPIDER, EntityType.SPIDER, EntityType.ZOMBIE_PIGMAN,
+            EntityType.ENDERMAN, EntityType.BLAZE, EntityType.CREEPER, EntityType.EVOKER, EntityType.GHAST, EntityType.GUARDIAN, EntityType.HUSK,
+            EntityType.MAGMA_CUBE, EntityType.SHULKER, EntityType.SILVERFISH, EntityType.SKELETON, EntityType.SLIME, EntityType.STRAY,
+            EntityType.VINDICATOR, EntityType.WITCH, EntityType.WITHER_SKELETON, EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.PHANTOM,
+            EntityType.DROWNED, EntityType.PILLAGER, EntityType.RAVAGER, EntityType.BAT, EntityType.BEE, EntityType.CAT, EntityType.CHICKEN, EntityType.COW,
+            EntityType.DOLPHIN,EntityType.DONKEY,EntityType.FOX,EntityType.HORSE,EntityType.IRON_GOLEM,EntityType.LLAMA,EntityType.MOOSHROOM,EntityType.MULE,
+            EntityType.OCELOT,EntityType.PANDA,EntityType.PARROT,EntityType.PIG,EntityType.POLAR_BEAR,EntityType.PUFFERFISH,EntityType.RABBIT,
+            EntityType.SALMON,EntityType.SHEEP,EntityType.SNOW_GOLEM,EntityType.SQUID,EntityType.VILLAGER,EntityType.WOLF};
 
     public ProviderBaseAdvancement(DataGenerator generatorIn) {
         generator = generatorIn;
@@ -225,10 +240,17 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
 
         Map<ResourceLocation, Advancement> advancements = new LinkedHashMap<>();
         for (Map.Entry<ResourceLocation, Advancement.Builder> entry : Advancements.entrySet()) {
-            if(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")!=null){
-                entry.getValue().withParent(advancements.get(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")));
+            if(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")!=null) {
+                if(advancements.containsKey(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId"))){
+                    entry.getValue().withParent(advancements.get(ProtectedHelper.getField(Advancement.Builder.class,entry.getValue(),"parentId")));
+                }
             }
-            advancements.put(entry.getKey(), entry.getValue().build(entry.getKey()));
+            try {
+                advancements.put(entry.getKey(), entry.getValue().build(entry.getKey()));
+            }
+            catch (IllegalStateException e){
+
+            }
         }
         writeAdvancements(directoryCache, advancements);
     }
@@ -317,6 +339,64 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 .withParent(parent);
     }
 
+    protected Advancement.Builder RootAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, ResourceLocation background, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,title,description,background,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards);
+    }
+
+    protected Advancement.Builder RootAdvancement(ItemStack icon, String title, String description, ResourceLocation background, FrameType frame,
+                                                  boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),background,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, String title, String description, ResourceLocation parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards)
+                .withParentId(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, Advancement parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,title,description,null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards)
+                .withParent(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, ITextComponent title, ITextComponent description, ResourceLocation parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,title,description,null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards)
+                .withParentId(parent);
+    }
+
+    protected Advancement.Builder ChildAdvancement(ItemStack icon, String title, String description, Advancement parent, FrameType frame,
+                                                   boolean showToast, boolean announceToChat, boolean hidden, AdvancementRewards rewards){
+        return Advancement.Builder.builder()
+                .withDisplay(
+                        new DisplayInfo(icon,new StringTextComponent(title),new StringTextComponent(description),null,frame,showToast,announceToChat,hidden)
+                )
+                .withRewards(rewards)
+                .withParent(parent);
+    }
+
     protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
         return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
     }
@@ -335,5 +415,49 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
 
     protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
         return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
+    }
+
+    protected Advancement.Builder makeMobAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : MOB_ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), KilledTrigger.Instance.playerKilledEntity());
+        }
+
+        return builder;
+    }
+
+    protected Advancement.Builder makeEntityAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), KilledTrigger.Instance.playerKilledEntity(EntityPredicate.Builder.create().type(entitytype)));
+        }
+
+        return builder;
+    }
+
+    protected Advancement.Builder makeMobKnifeAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : MOB_ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
+                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),EntityPredicate.Builder.create().type(entitytype).build(),new DamageSourcePredicate(
+                    false,false,false,false, false,
+                    false,false,false,EntityPredicate.ANY,
+                    EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
+                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
+                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY)).build())));
+        }
+
+        return builder;
+    }
+
+    protected Advancement.Builder makeEntityKnifeAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
+                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),EntityPredicate.Builder.create().type(entitytype).build(),new DamageSourcePredicate(
+                    false,false,false,false, false,
+                    false,false,false,EntityPredicate.ANY,
+                    EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
+                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
+                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY)).build())));
+        }
+
+        return builder;
     }
 }
