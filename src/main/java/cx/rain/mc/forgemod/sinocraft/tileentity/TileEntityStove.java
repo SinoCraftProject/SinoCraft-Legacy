@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.tileentity;
+/*package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 
@@ -8,4 +8,4 @@ public class TileEntityStove extends TileEntity {
     }
 
 
-}
+}*/

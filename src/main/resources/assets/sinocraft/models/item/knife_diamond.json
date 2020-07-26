@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sinocraft:item/bark_peach"
+    "layer0": "sinocraft:item/knife_diamond"
   }
 }

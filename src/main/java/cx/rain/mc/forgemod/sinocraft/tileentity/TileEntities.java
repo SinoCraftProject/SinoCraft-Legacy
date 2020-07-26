@@ -11,6 +11,6 @@ public class TileEntities {
     public static final DeferredRegister<TileEntityType<?>> REGISTRY =
             new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, SinoCraft.MODID);
 
-    public static RegistryObject<TileEntityType<TileEntityStove>> STOVE = REGISTRY.register("stove",
-            () -> TileEntityType.Builder.create(TileEntityStove::new, Blocks.STOVE.get()).build(null));
+    /*public static RegistryObject<TileEntityType<TileEntityStove>> STOVE = REGISTRY.register("stove",
+            () -> TileEntityType.Builder.create(TileEntityStove::new, Blocks.STOVE.get()).build(null));*/
 }

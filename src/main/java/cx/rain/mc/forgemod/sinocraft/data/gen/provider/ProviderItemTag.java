@@ -23,6 +23,6 @@ public class ProviderItemTag extends ItemTagsProvider {
         this.copy(TagBlock.LOG_WALNUT,TagItem.LOG_WALNUT);
         this.copy(BlockTags.LOGS, ItemTags.LOGS);
         this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
-        getBuilder(KNIFE).add(Items.KNIFE_IRON.get());
+        getBuilder(KNIFE).add(Items.KNIFE_IRON.get(),Items.KNIFE_GOLD.get(),Items.KNIFE_DIAMOND.get());
     }
 }
