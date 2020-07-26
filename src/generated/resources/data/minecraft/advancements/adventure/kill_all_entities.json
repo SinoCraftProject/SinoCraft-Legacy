@@ -7,7 +7,7 @@
       "translate": "advancement.minecraft.adventure.kill_all_entities.title"
     },
     "description": {
-      "translate": "advancement.sinocraft.basic.kill_all_entities.description"
+      "translate": "advancement.minecraft.adventure.kill_all_entities.description"
     },
     "frame": "challenge",
     "show_toast": true,

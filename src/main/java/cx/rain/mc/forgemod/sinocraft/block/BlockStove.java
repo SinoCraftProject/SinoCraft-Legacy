@@ -1,6 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.block;
+/*package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityStove;
+//import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityStove;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
@@ -21,9 +21,9 @@ public class BlockStove extends ContainerBlock {
         return BlockRenderType.MODEL;
     }
 
-    @Nullable
+    /*@Nullable
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileEntityStove();
     }
-}
+}*/

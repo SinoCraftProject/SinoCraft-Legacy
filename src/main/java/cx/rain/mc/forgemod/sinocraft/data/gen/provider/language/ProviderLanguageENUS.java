@@ -76,7 +76,9 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.EGGPLANT, "Eggplant");
         addItem(Items.CABBAGE, "Chinese Cabbage");
         addItem(Items.BARK,"Bark");
-        addItem(Items.KNIFE_IRON,"Knife");
+        addItem(Items.KNIFE_IRON,"Iron Knife");
+        addItem(Items.KNIFE_GOLD,"Gold Knife");
+        addItem(Items.KNIFE_DIAMOND,"Diamond Knife");
     }
 
     private void addBlocks() {

@@ -99,7 +99,9 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.EGGPLANT, "茄子");
         addItem(Items.CABBAGE, "白菜");
         addItem(Items.BARK,"树皮");
-        addItem(Items.KNIFE_IRON,"小刀");
+        addItem(Items.KNIFE_IRON,"铁小刀");
+        addItem(Items.KNIFE_GOLD,"金小刀");
+        addItem(Items.KNIFE_DIAMOND,"钻石小刀");
     }
 
     private void addBlocks() {

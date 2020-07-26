@@ -61,7 +61,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
         );
 
         Advancements.put(new ResourceLocation("minecraft","adventure/kill_all_entities"),makeEntityAdvancement(ChildAdvancement(
-                new ItemStack(Items.KNIFE_IRON.get()),"advancement.minecraft.adventure.kill_all_entities.title","advancement.sinocraft.basic.kill_all_entities.description",
+                new ItemStack(Items.KNIFE_IRON.get()),"advancement.minecraft.adventure.kill_all_entities.title","advancement.minecraft.adventure.kill_all_entities.description",
                 new ResourceLocation("minecraft","adventure/kill_all_mobs"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(500)).
                 withParent(Advancements.get(new ResourceLocation(ID,"basic/root")).build(new ResourceLocation("minecraft","adventure/kill_all_mobs"))
         )));
@@ -72,7 +72,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
                 )
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/kill_all_entities_with_knife"),makeMobKnifeAdvancement(ChildAdvancement(
+        Advancements.put(new ResourceLocation(ID,"basic/kill_all_entities_with_knife"),makeEntityKnifeAdvancement(ChildAdvancement(
                 new ItemStack(Items.KNIFE_IRON.get()),"advancement.sinocraft.basic.kill_all_entities_with_knife.title","advancement.sinocraft.basic.kill_all_entities_with_knife.description",
                 new ResourceLocation(ID,"basic/kill_all_mobs_with_knife"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(1000))
                 )
