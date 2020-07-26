@@ -83,7 +83,6 @@ public class ItemKnife extends SwordItem {
                             new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                             context.getPos(),context.getItem());
-                    SinoCraft.getInstance().getLog().info("!!!");
                 };
             }
             return null;

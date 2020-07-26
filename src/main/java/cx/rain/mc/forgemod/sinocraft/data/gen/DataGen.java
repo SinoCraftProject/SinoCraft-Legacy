@@ -34,6 +34,7 @@ public class DataGen {
             generator.addProvider(new ProviderLanguageENUS(generator));
             generator.addProvider(new ProviderAdvancement(generator));
             generator.addProvider(new ProviderRecipe(generator));
+            generator.addProvider(new ProviderLootTable(generator));
         }
     }
 }

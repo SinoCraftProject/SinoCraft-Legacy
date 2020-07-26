@@ -14,6 +14,6 @@ public class GroupTools extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Items.KNIFE.get());
+        return new ItemStack(Items.KNIFE_IRON.get());
     }
 }

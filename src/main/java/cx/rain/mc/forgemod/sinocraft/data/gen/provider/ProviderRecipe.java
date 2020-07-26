@@ -20,7 +20,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
 
     @Override
     protected void registerRecipes() {
-        ShapedRecipeBuilder.shapedRecipe(Items.KNIFE.get()).
+        ShapedRecipeBuilder.shapedRecipe(Items.KNIFE_IRON.get()).
                 key('@',net.minecraft.item.Items.STICK.getItem()).
                 key('#',net.minecraft.item.Items.IRON_INGOT.getItem()).
                 patternLine("  @").

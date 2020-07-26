@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:knife"
+      "item": "sinocraft:knife_iron"
     },
     "title": {
       "translate": "advancement.sinocraft.basic.get_bark.title"
@@ -16,12 +16,25 @@
   },
   "parent": "sinocraft:basic/knife",
   "criteria": {
+    "get_bark": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:bark"
+          }
+        ]
+      }
+    },
     "use_knife": {
       "trigger": "sinocraft:shave_bark_with_knife",
       "conditions": {}
     }
   },
   "requirements": [
+    [
+      "get_bark"
+    ],
     [
       "use_knife"
     ]

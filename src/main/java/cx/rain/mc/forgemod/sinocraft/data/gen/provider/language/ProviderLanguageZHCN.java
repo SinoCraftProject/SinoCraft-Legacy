@@ -47,12 +47,24 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     private void addAdvancements(){
         add("advancement.sinocraft.basic.root.title","感谢使用华夏文明模组！");
         add("advancement.sinocraft.basic.root.description","感谢使用华夏文明模组！");
+
         add("advancement.sinocraft.basic.knife.title","刀");
         add("advancement.sinocraft.basic.knife.description","获得一把小刀");
+
         add("advancement.sinocraft.basic.knife_killed.title","小刀也能毙命");
         add("advancement.sinocraft.basic.knife_killed.description","用小刀杀死一个生物");
+
         add("advancement.sinocraft.basic.get_bark.title","给树脱衣！");
         add("advancement.sinocraft.basic.get_bark.description","用小刀剥下并捡起一棵树的树皮");
+
+        add("advancement.minecraft.adventure.kill_all_entities.title","大屠杀!");
+        add("advancement.minecraft.adventure.kill_all_entities.description","杀死每一种生物.");
+
+        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.title","怪物大师");
+        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.description","用小刀杀死每一种怪物.");
+
+        add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","真正的屠杀!");
+        add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","用小刀杀死每一种生物.");
     }
 
     private void addItemGroups() {
@@ -87,7 +99,7 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.EGGPLANT, "茄子");
         addItem(Items.CABBAGE, "白菜");
         addItem(Items.BARK,"树皮");
-        addItem(Items.KNIFE,"小刀");
+        addItem(Items.KNIFE_IRON,"小刀");
     }
 
     private void addBlocks() {

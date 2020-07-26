@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:knife"
+      "item": "sinocraft:knife_iron"
     },
     "title": {
       "translate": "advancement.sinocraft.basic.knife_killed.title"
@@ -31,7 +31,7 @@
           "source_entity": {
             "equipment": {
               "mainhand": {
-                "item": "sinocraft:knife"
+                "tag": "sinocraft:knife"
               }
             }
           }
