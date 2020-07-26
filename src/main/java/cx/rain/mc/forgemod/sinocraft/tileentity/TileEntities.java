@@ -13,4 +13,7 @@ public class TileEntities {
 
     /*public static RegistryObject<TileEntityType<TileEntityStove>> STOVE = REGISTRY.register("stove",
             () -> TileEntityType.Builder.create(TileEntityStove::new, Blocks.STOVE.get()).build(null));*/
+
+    public static RegistryObject<TileEntityType<TileEntityVat>> VAT = REGISTRY.register("vat",
+            () -> TileEntityType.Builder.create(TileEntityVat::new, Blocks.VAT.get()).build(null));
 }
