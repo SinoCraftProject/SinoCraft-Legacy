@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.LogBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
@@ -25,11 +26,6 @@ import java.util.Map;
 
 public class ItemKnife extends SwordItem {
 	public static List<IFactory<IShave,ItemUseContext>> shaveManagers = new ArrayList();
-
-	public static void dropItem(World worldIn, BlockPos pos, ItemStack stack){
-        worldIn.addEntity(new ItemEntity(worldIn.getWorld(),
-                pos.getX(),pos.getY(),pos.getZ(),stack));
-    }
 
 	public static class DefaultManager implements IFactory<IShave, ItemUseContext> {
         private static Map<Block, IShave> recipes = new HashMap();
@@ -75,8 +71,7 @@ public class ItemKnife extends SwordItem {
                     BlockLog block = (BlockLog)context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(context.getPos(),
                             block.type.getTag().LogStripped.get().getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
-                    dropItem(context.getWorld(), context.getPos(),
-                            new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
+                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                             context.getPos(),context.getItem());
                 };

@@ -6,6 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.client.Render;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -39,6 +40,7 @@ public class SinoCraft {
         new Blocks(bus);
         new BlockItems(bus);
         new Items(bus);
+        new TileEntities(bus);
         new RegistryTrigger();
     }
 

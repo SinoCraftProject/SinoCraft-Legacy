@@ -1,5 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -8,6 +10,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,15 +25,23 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TileEntityVat extends TileEntity implements ITickableTileEntity {
+public class TileEntityVat extends TileEntity implements ITickableTileEntity, IMachine {
     private static Map<ItemStack,ItemStack> recipes = new HashMap<>();
+    private static Map<ItemStack,FluidStack> recipes2 = new HashMap<>();
     private static Map<Item,Boolean> canInsert = new HashMap<>();
+    private IMachine.MachineState state;
 
     private ItemStack item = ItemStack.EMPTY;
     private FluidStack fluid = FluidStack.EMPTY;
+    int progress=0;
 
     public static void registerRecipe(ItemStack material,ItemStack result){
         recipes.put(material,result);
+        canInsert.put(material.getItem(),true);
+    }
+
+    public static void registerRecipe(ItemStack material,FluidStack result){
+        recipes2.put(material,result);
         canInsert.put(material.getItem(),true);
     }
 
@@ -41,6 +52,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
     public TileEntityVat() {
         super(TileEntities.VAT.get());
         registerDefaultRecipes();
+        state=MachineState.CLOSE;
     }
 
     @Nonnull
@@ -71,7 +83,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
                     if (stack.isEmpty())
                         return ItemStack.EMPTY;
 
-                    if (!isItemValid(slot, stack)||canInsert.containsKey(stack.getItem())&&canInsert.get(stack.getItem()))
+                    if (!isItemValid(slot, stack))
                         return stack;
 
                     validateSlotIndex(slot);
@@ -149,7 +161,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
 
                 @Override
                 public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                    return true;
+                    return canInsert.containsKey(stack.getItem())&&canInsert.get(stack.getItem());
                 }
             }).cast();
         }
@@ -243,6 +255,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
                     return stack;
                 }
             }).cast();
+
         }
         else {
             return super.getCapability(cap, side);
@@ -251,9 +264,10 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
 
     @Override
     public void tick() {
-        if(!(recipes.containsKey(item)&&canInsert.get(item)&&fluid.getAmount()>500)){
+        if(!(recipes.containsKey(item)||recipes2.containsKey(item)&&fluid.getAmount()>=500)){
             return;
         }
+        SinoCraft.getInstance().getLog().info("!!!");
     }
 
     @Override
@@ -268,5 +282,21 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity {
         fluid=FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
         item=ItemStack.read(compound.getCompound("stacks"));
         super.read(compound);
+    }
+
+    @Override
+    public MachineState getWorkingState() {
+        return state;
+    }
+
+    @Override
+    public void setWorkingState(MachineState state) {
+        this.state=state;
+    }
+
+    @Override
+    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
+        list.add(item);
+        return list;
     }
 }

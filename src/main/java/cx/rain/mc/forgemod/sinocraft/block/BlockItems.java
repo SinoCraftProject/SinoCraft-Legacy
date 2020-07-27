@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
@@ -54,6 +55,8 @@ public class BlockItems {
     public static RegistryObject<Item> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockItem(Blocks.WHITE_MARBLE.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockItem(Blocks.RED_MARBLE.get(), new Item.Properties().group(Groups.BLOCKS)));
     public static RegistryObject<Item> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockItem(Blocks.BLACK_MARBLE.get(), new Item.Properties().group(Groups.BLOCKS)));
+
+    public static RegistryObject<Item> VAT = REGISTRY.register("vat", () -> new BlockItem(Blocks.VAT.get(), new Item.Properties().group(Groups.BLOCKS)));
 
     public BlockItems(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering block items.");
