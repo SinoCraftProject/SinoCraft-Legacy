@@ -1,9 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -180,7 +178,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
 
                 @Override
                 public int getTankCapacity(int tank) {
-                    return 2000;
+                    return 1000;
                 }
 
                 @Override
@@ -190,7 +188,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
 
                 @Override
                 public int fill(FluidStack resource, FluidAction action) {
-                    if (resource.isEmpty()||resource.getFluid()!= Fluids.WATER)
+                    if (resource.isEmpty())
                     {
                         return 0;
                     }
@@ -198,24 +196,24 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
                     {
                         if (fluid.isEmpty())
                         {
-                            return Math.min(2000, resource.getAmount());
+                            return Math.min(1000, resource.getAmount());
                         }
                         if (!fluid.isFluidEqual(resource))
                         {
                             return 0;
                         }
-                        return Math.min(2000 - fluid.getAmount(), resource.getAmount());
+                        return Math.min(1000 - fluid.getAmount(), resource.getAmount());
                     }
                     if (fluid.isEmpty())
                     {
-                        fluid = new FluidStack(resource, Math.min(2000, resource.getAmount()));
+                        fluid = new FluidStack(resource, Math.min(1000, resource.getAmount()));
                         return fluid.getAmount();
                     }
                     if (!fluid.isFluidEqual(resource))
                     {
                         return 0;
                     }
-                    int filled = 2000 - fluid.getAmount();
+                    int filled = 1000 - fluid.getAmount();
 
                     if (resource.getAmount() < filled)
                     {
@@ -224,7 +222,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
                     }
                     else
                     {
-                        fluid.setAmount(2000);
+                        fluid.setAmount(1000);
                     }
                     return filled;
                 }
@@ -264,10 +262,12 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
 
     @Override
     public void tick() {
-        if(!(recipes.containsKey(item)||recipes2.containsKey(item)&&fluid.getAmount()>=500)){
+        if(this.world.isRemote){
             return;
         }
-        SinoCraft.getInstance().getLog().info("!!!");
+        if((recipes.containsKey(item)||recipes2.containsKey(item)&&fluid.getAmount()>=1000)){
+
+        }
     }
 
     @Override

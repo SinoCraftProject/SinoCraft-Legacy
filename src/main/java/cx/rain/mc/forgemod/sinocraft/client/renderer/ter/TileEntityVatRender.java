@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.client.renderer.ter;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sun.javafx.geom.Vec3f;
-import com.sun.javafx.geom.Vec4d;
 import com.sun.javafx.geom.Vec4f;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
 import net.minecraft.client.Minecraft;
@@ -11,13 +10,16 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec2f;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public TileEntityVatRender(TileEntityRendererDispatcher dispatcher) {
@@ -74,44 +76,52 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public static Vec4f RGBAToGLColor(Vec4f rgba){
         rgba.x/=256;
         rgba.y/=256;
-        rgba.w/=256;
-        rgba.z/=100;
+        rgba.z/=256;
+        rgba.w/=100;
         return rgba;
     }
     public static Vec4f GLColorToRGBA(Vec4f glColor){
         glColor.x*=256;
         glColor.y*=256;
-        glColor.w*=256;
-        glColor.z*=100;
+        glColor.z*=256;
+        glColor.w*=100;
         return glColor;
     }
-    public static Vec4f NumberToRGBA(int rgb,int alpha){
-        int b=rgb/(256*256);
-        int g=(rgb-b*256*256)/256;
-        int r=rgb-b*256*256-g*256;
-        return new Vec4f(r,g,b,alpha);
+    public static Vec4f NumberToRGBA(int color){
+        int a=color>>>24;
+        int r=(color&0xff0000)>>16;
+        int g=(color&0xff00)>>8;
+        int b=color&0xff;
+        return new Vec4f(r,g,b,a);
     }
-    public static Vec4f NumberToGLColor(int rgb,int alpha){
-        Vec4f rgba = NumberToRGBA(rgb,alpha);
+    public static Vec4f NumberToGLColor(int color){
+        Vec4f rgba = NumberToRGBA(color);
         return RGBAToGLColor(rgba);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).
-                apply(Fluids.WATER.getAttributes().getStillTexture());
-        IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
-        matrixStack.push();
-       // matrixStack.scale(0.7f,0.7f,0.7f);
-        matrixStack.translate(0.0,1.5,0.0);
-        addSquare(vertex,matrixStack,
-                new Vec3f(0,1,1.0f),new Vec3f(1,1,1.0f),
-                new Vec3f(1,0,1.0f),new Vec3f(0,0,1.0f),
-                new Vec4f(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
-                NumberToGLColor(0x3f76e4,1)
-        );
-        matrixStack.pop();
+        if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
+            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0)!= FluidStack.EMPTY){
+                Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).
+                        getFluidInTank(0).getFluid();
+                TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
+                        apply(fluid.getAttributes().getStillTexture());
+                IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
+                matrixStack.push();
+                matrixStack.scale(0.75f,1.0f,0.75f);
+                matrixStack.translate(0.18,0.00001,0.18);
+                addSquare(vertex,matrixStack,
+                        new Vec3f(0,1,1),new Vec3f(1,1,1),
+                        new Vec3f(1,1,0),new Vec3f(0,1,0),
+                        new Vec4f(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
+                        NumberToGLColor(fluid.getAttributes().getColor())
+                );
+                matrixStack.pop();
+            }
+        }
     }
 }

@@ -11,8 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
@@ -25,6 +30,13 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("deprecation")
 public class BlockVat extends BlockMachineBase {
+    protected static final VoxelShape OUT_SHAPE = VoxelShapes.fullCube();
+    protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
+            OUT_SHAPE, Block.makeCuboidShape(
+                    2.0D, 2.0D, 2.0D,
+                    14.0D, 16.0D, 14.0D),
+            IBooleanFunction.ONLY_FIRST);
+
     public BlockVat() {
         super(Block.Properties.create(Material.WOOD)
                 .hardnessAndResistance(3.0F)
@@ -56,7 +68,7 @@ public class BlockVat extends BlockMachineBase {
                         ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
                         ItemStack backup = stack;
                         backup=handler.insertItem(0,backup,false);
-                        if(backup!=player.getHeldItem(handIn)){
+                        if(backup!=stack){
                             player.getHeldItem(handIn).shrink(1);
                             return ActionResultType.SUCCESS;
                         }
@@ -84,5 +96,22 @@ public class BlockVat extends BlockMachineBase {
         else{
             return ActionResultType.PASS;
         }
+    }
+
+    //@Override
+    //public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    //    return SHAPE;
+    //}
+
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
+    }
+
+    public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return OUT_SHAPE;
+    }
+
+    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 }
