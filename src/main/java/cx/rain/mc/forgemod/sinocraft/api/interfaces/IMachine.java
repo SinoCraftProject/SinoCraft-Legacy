@@ -1,6 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.api.interfaces;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 
 /**
  * All Tile Entity of machines must implement this interface
@@ -49,4 +51,6 @@ public interface IMachine {
             this.name=name;
         }
     }
+
+    NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list);
 }

@@ -6,8 +6,12 @@ import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
 import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 public class ProviderBlockState extends BlockStateProvider {
     public ProviderBlockState(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -54,6 +58,39 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(Blocks.WHITE_MARBLE.get());
         simpleBlock(Blocks.RED_MARBLE.get());
         simpleBlock(Blocks.BLACK_MARBLE.get());
+
+        simpleBlock(Blocks.VAT.get(), models().withExistingParent("block/vat",mcLoc("block/block")).
+                texture("particle",modLoc("block/vat_side")).
+                texture("top",modLoc("block/vat_top")).
+                texture("bottom",modLoc("block/vat_bottom")).
+                texture("side",modLoc("block/vat_side")).
+                texture("inside",modLoc("block/vat_bottom")).
+                element().
+                    from(0,0,0).to(16,2,16).
+                        face(Direction.UP).texture("#inside").cullface(Direction.UP).end().
+                        face(Direction.DOWN).texture("#bottom").cullface(Direction.DOWN).end().
+                end().
+                element().
+                    from(0,0,0).to(2,16,16).
+                        face(Direction.UP).texture("#top").cullface(Direction.UP).end().
+                        face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).end().
+                        face(Direction.SOUTH).texture("#side").cullface(Direction.SOUTH).end().
+                        face(Direction.WEST).texture("#side").cullface(Direction.WEST).end().
+                        face(Direction.EAST).texture("#side").cullface(Direction.EAST).end().
+                end().
+                element().
+                     from(14,0,0).to(16,16,16).
+                        face(Direction.UP).texture("#top").cullface(Direction.UP).end().
+                        face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).end().
+                        face(Direction.SOUTH).texture("#side").cullface(Direction.UP).end().
+                end().
+                element().
+                    from(2,0,14).to(14,16,16).
+                        face(Direction.UP).texture("#top").cullface(Direction.UP).end().
+                        face(Direction.NORTH).texture("#side").cullface(Direction.UP).end().
+                        face(Direction.SOUTH).texture("#side").cullface(Direction.SOUTH).end().
+                end()
+        );
 
         getVariantBuilder(Blocks.WHITE_RADISH_PLANT.get())
                 .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("white_radish_plant_stage_0", modLoc("block/white_radish_plant_stage_0"))).addModel()

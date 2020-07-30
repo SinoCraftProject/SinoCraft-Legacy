@@ -1,7 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
+import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.block.BlockState;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.math.BlockPos;
@@ -10,8 +12,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static cx.rain.mc.forgemod.sinocraft.item.ItemKnife.dropItem;
 
 public class ShaveBase implements IShave {
     protected BlockState block;
@@ -39,7 +39,7 @@ public class ShaveBase implements IShave {
         BlockPos pos = context.getPos();
         world.setBlockState(pos,block);
         for(ItemStack stack : stacks){
-            dropItem(context.getWorld(),pos,stack);
+            InventoryHelper.spawnItemStack(world, pos.getX(),pos.getY(),pos.getZ(), stack);
         }
     }
 }

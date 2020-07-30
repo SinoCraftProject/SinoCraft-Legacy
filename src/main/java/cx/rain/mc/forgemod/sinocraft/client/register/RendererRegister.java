@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.client;
+package cx.rain.mc.forgemod.sinocraft.client.register;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.entity.RendererBuffalo;
