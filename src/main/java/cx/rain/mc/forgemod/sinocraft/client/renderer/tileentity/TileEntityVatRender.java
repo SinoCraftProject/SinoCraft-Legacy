@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.client.renderer.ter;
+package cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -7,17 +7,19 @@ import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec4;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+
+import java.util.Random;
 
 public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public TileEntityVatRender(TileEntityRendererDispatcher dispatcher) {
@@ -80,6 +82,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         rgba.w/=100;
         return rgba;
     }
+
     public static Vec4<Float> GLColorToRGBA(Vec4<Float> glColor){
         glColor.x*=256;
         glColor.y*=256;
@@ -87,6 +90,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         glColor.w*=100;
         return glColor;
     }
+
     public static Vec4<Float> NumberToRGBA(int color){
         float a=color>>>24;
         float r=(color&0xff0000)>>16;
@@ -94,9 +98,22 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         float b=color&0xff;
         return new Vec4(r,g,b,a);
     }
+
     public static Vec4<Float> NumberToGLColor(int color){
         Vec4<Float> rgba = NumberToRGBA(color);
         return RGBAToGLColor(rgba);
+    }
+
+    public static void RenderFluid(Fluid fluid,IRenderTypeBuffer buffer,MatrixStack stack){
+        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
+                apply(fluid.getAttributes().getStillTexture());
+        IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
+        addSquare(vertex,stack,
+                new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
+                new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
+                new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
+                NumberToGLColor(fluid.getAttributes().getColor())
+        );
     }
 
     @SuppressWarnings("deprecation")
@@ -106,21 +123,32 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
             if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0)!= FluidStack.EMPTY){
-                Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).
-                        getFluidInTank(0).getFluid();
-                TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
-                        apply(fluid.getAttributes().getStillTexture());
-                IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
                 matrixStack.translate(0.18,0.00001,0.18);
-                addSquare(vertex,matrixStack,
-                        new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
-                        new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
-                        new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
-                        NumberToGLColor(fluid.getAttributes().getColor())
+                RenderFluid(
+                        te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid(),
+                        buffer,matrixStack
                 );
                 matrixStack.pop();
+            }
+        }
+        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
+            ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
+            if(stack!=ItemStack.EMPTY){
+                for (int i=0;i<stack.getCount();i++){
+                    matrixStack.push();
+                    matrixStack.scale(0.3f,0.3f,0.3f);
+                    double x=new Random(i).nextDouble()-0.18;
+                    x=(x*2)-x;
+                    double z=new Random(i*2).nextDouble()-0.18;
+                    z=(z*2)-z;
+                    //matrixStack.translate(0.5,0.5,0.5);
+                    matrixStack.translate(x,0.95f,z);
+                    itemRenderer.renderItem(null,stack, ItemCameraTransforms.TransformType.GROUND,false,matrixStack,buffer
+                            ,te.getWorld(),combinedLightIn,combinedOverlayIn);
+                    matrixStack.pop();
+                }
             }
         }
     }

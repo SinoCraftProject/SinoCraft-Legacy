@@ -3,15 +3,16 @@ package cx.rain.mc.forgemod.sinocraft.block;
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -40,7 +41,8 @@ public class BlockVat extends BlockMachineBase {
     public BlockVat() {
         super(Block.Properties.create(Material.WOOD)
                 .hardnessAndResistance(3.0F)
-                .sound(SoundType.WOOD));
+                .sound(SoundType.WOOD)
+                .notSolid());
     }
 
     @Nullable
@@ -51,7 +53,7 @@ public class BlockVat extends BlockMachineBase {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(worldIn.isRemote&&handIn!=Hand.MAIN_HAND){
+        if(worldIn.isRemote||handIn!=Hand.MAIN_HAND){
             return ActionResultType.SUCCESS;
         }
         if(worldIn.getTileEntity(pos) instanceof TileEntityVat){
@@ -97,11 +99,6 @@ public class BlockVat extends BlockMachineBase {
             return ActionResultType.PASS;
         }
     }
-
-    //@Override
-    //public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    //    return SHAPE;
-    //}
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;

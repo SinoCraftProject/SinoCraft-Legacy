@@ -1,5 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.block;
+package cx.rain.mc.forgemod.sinocraft.hook.common;
 
+import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 
 public class BlockAdditions {

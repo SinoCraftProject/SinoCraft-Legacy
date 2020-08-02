@@ -32,7 +32,6 @@ public abstract class BlockMachineBase extends Block {
             DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     public static final EnumProperty<IMachine.MachineState> STATE =
             EnumProperty.create("state", IMachine.MachineState.class);
-    protected static boolean keepInventory;
 
     public BlockMachineBase(Properties properties) {
         super(properties);

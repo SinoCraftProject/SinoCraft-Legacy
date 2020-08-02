@@ -1,11 +1,11 @@
-package cx.rain.mc.forgemod.sinocraft.client;
+package cx.rain.mc.forgemod.sinocraft.hook.client;
 
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 
-public class Render {
-    public static void ChangeRender() {
+public class ChangeRenderType {
+    public ChangeRenderType(){
         RenderTypeLookup.setRenderLayer(Blocks.WHITE_RADISH_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SUMMER_RADISH_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.GREEN_RADISH_PLANT.get(), RenderType.getCutout());
@@ -17,5 +17,6 @@ public class Render {
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_MULBERRY.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PLUM.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(Blocks.VAT.get(),RenderType.getTranslucent());
     }
 }

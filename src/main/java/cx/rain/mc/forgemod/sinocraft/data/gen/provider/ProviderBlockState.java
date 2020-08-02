@@ -79,7 +79,15 @@ public class ProviderBlockState extends BlockStateProvider {
                         face(Direction.EAST).texture("#side").cullface(Direction.EAST).end().
                 end().
                 element().
-                     from(14,0,0).to(16,16,16).
+                    from(14,0,0).to(16,16,16).
+                        face(Direction.UP).texture("#top").cullface(Direction.UP).end().
+                        face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).end().
+                        face(Direction.SOUTH).texture("#side").cullface(Direction.SOUTH).end().
+                        face(Direction.WEST).texture("#side").cullface(Direction.UP).end().
+                        face(Direction.EAST).texture("#side").cullface(Direction.EAST).end().
+                end().
+                element().
+                     from(2,0,0).to(14,16,16).
                         face(Direction.UP).texture("#top").cullface(Direction.UP).end().
                         face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).end().
                         face(Direction.SOUTH).texture("#side").cullface(Direction.UP).end().

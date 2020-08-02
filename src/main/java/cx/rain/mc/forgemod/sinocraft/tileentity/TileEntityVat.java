@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -44,7 +43,6 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
     }
 
     private void registerDefaultRecipes(){
-        registerRecipe(new ItemStack(Items.BARK.get(),3),new ItemStack(Items.WOOD_PULP.get()));
     }
 
     public TileEntityVat() {
@@ -265,7 +263,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
         if(this.world.isRemote){
             return;
         }
-        if((recipes.containsKey(item)||recipes2.containsKey(item)&&fluid.getAmount()>=1000)){
+        if(((recipes.containsKey(item)&&fluid.getAmount()>=1000)||(recipes2.containsKey(item)&&fluid.getAmount()>=2000))){
 
         }
     }
