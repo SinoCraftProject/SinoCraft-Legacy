@@ -16,9 +16,9 @@ modId="sinocraft" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
  # A display name for the mod
-displayName="SinoCraft" #mandatory
+displayName="Sino Craft" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
-#updateJSONURL="https://github.com/CultureMC/CultureCraft/blob/master/update.json" #optional
+#updateJSONURL="https://github.com/SinoCraftProject/SinoCraft/blob/master/update.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://github.com/SinoCraftProject/SinoCraft" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
@@ -30,6 +30,8 @@ authors="AmemiyaSigure(Qiu YuLuo), Luo_ShiJian, theFlySong, YaoZ and Victoria" #
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A minecraft mod with Chinese culture.
+
+Thank you for using it
 '''
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
