@@ -39,3 +39,14 @@ List行命名首字母要大写且在50个字母以内
 每行100个字
 
 标题不超过40个字
+
+示例:
+更新A:
+
+List A:
+  Updata a
+  Fix b
+  Tip c
+
+List B:
+  Other d
