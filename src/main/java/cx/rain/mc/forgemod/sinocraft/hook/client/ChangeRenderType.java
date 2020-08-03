@@ -17,6 +17,5 @@ public class ChangeRenderType {
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_MULBERRY.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PLUM.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.VAT.get(),RenderType.getTranslucent());
     }
 }

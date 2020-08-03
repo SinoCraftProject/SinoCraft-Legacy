@@ -29,6 +29,8 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
+import static net.minecraft.block.BlockRenderType.ENTITYBLOCK_ANIMATED;
+
 @SuppressWarnings("deprecation")
 public class BlockVat extends BlockMachineBase {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.fullCube();
@@ -41,8 +43,7 @@ public class BlockVat extends BlockMachineBase {
     public BlockVat() {
         super(Block.Properties.create(Material.WOOD)
                 .hardnessAndResistance(3.0F)
-                .sound(SoundType.WOOD)
-                .notSolid());
+                .sound(SoundType.WOOD));
     }
 
     @Nullable
@@ -100,14 +101,17 @@ public class BlockVat extends BlockMachineBase {
         }
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
+    @Override
     public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return OUT_SHAPE;
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }

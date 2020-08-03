@@ -13,10 +13,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = SinoCraft.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlindTER {
+
     @SubscribeEvent
     public static void blind(FMLClientSetupEvent event) {
-        ClientRegistry.bindTileEntityRenderer(TileEntities.VAT.get(), (
-                tileEntityRendererDispatcher -> new TileEntityVatRender(tileEntityRendererDispatcher)));
+        ClientRegistry.bindTileEntityRenderer(TileEntities.VAT.get(), TileEntityVatRender::new);
         SinoCraft.getInstance().getLog().info("Registering TER");
     }
 }

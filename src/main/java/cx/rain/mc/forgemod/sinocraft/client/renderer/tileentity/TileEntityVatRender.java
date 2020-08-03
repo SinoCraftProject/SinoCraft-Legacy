@@ -104,36 +104,29 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         return RGBAToGLColor(rgba);
     }
 
-    public static void RenderFluid(Fluid fluid,IRenderTypeBuffer buffer,MatrixStack stack){
-        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
-                apply(fluid.getAttributes().getStillTexture());
-        IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
-        addSquare(vertex,stack,
-                new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
-                new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
-                new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
-                NumberToGLColor(fluid.getAttributes().getColor())
-        );
-    }
-
     @SuppressWarnings("deprecation")
     @Override
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
-            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0)!= FluidStack.EMPTY){
+            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
-                matrixStack.translate(0.18,0.00001,0.18);
-                RenderFluid(
-                        te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid(),
-                        buffer,matrixStack
-                );
+                matrixStack.translate(0.18,0.01,0.18);
+                Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid();
+                TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
+                        apply(fluid.getAttributes().getStillTexture());
+                IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
+                addSquare(vertex,matrixStack,
+                        new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
+                        new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
+                        new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
+                        NumberToGLColor(fluid.getAttributes().getColor()));
                 matrixStack.pop();
             }
         }
-        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
+        /*if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
             if(stack!=ItemStack.EMPTY){
                 for (int i=0;i<stack.getCount();i++){
@@ -150,6 +143,6 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                     matrixStack.pop();
                 }
             }
-        }
+        }*/
     }
 }
