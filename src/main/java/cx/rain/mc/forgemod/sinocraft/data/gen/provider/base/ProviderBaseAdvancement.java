@@ -191,10 +191,10 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
             //complete
             public void writeRewards(JsonWriter out,Advancement adv) throws IOException {
                 AdvancementRewards rewards = adv.getRewards();
-                int experience = (int)ProtectedHelper.getField(AdvancementRewards.class,rewards,"experience");
-                ResourceLocation[] recipes = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class,rewards,"recipes");
-                ResourceLocation[] loots = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class,rewards,"loot");
-                FunctionObject.CacheableFunction function =  (FunctionObject.CacheableFunction)ProtectedHelper.getField(AdvancementRewards.class,rewards,"function");
+                int experience = (int) ProtectedHelper.getField(AdvancementRewards.class,rewards,"field_192115_b");
+                ResourceLocation[] recipes = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class,rewards,"field_192117_d");
+                ResourceLocation[] loots = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class,rewards,"field_192116_c");
+                FunctionObject.CacheableFunction function =  (FunctionObject.CacheableFunction)ProtectedHelper.getField(AdvancementRewards.class,rewards,"field_193129_e");
                 out.name("rewards").beginObject();
                     if(experience!=0){
                         out.name("experience").value(experience);

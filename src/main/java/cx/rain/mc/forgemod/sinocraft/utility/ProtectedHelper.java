@@ -1,12 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.AxeItem;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -16,7 +12,8 @@ import java.util.Map;
 public class ProtectedHelper {
     public static void addAxeStrippingMap(Block originWood, Block outputWood) {
         try {
-            Field field = AxeItem.class.getDeclaredField("BLOCK_STRIPPING_MAP");
+
+            Field field = ObfuscationReflectionHelper.findField(AxeItem.class,"field_203176_a");
             field.setAccessible(true);
 
             Field modifiersField = Field.class.getDeclaredField("modifiers");
@@ -32,9 +29,9 @@ public class ProtectedHelper {
         }
     }
 
-    public static Object getStaticField(Class<? extends Object> clazz,String name,boolean isFinal){
+    public static <T> Object getStaticField(Class<? super T> clazz,String name,boolean isFinal){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             if(isFinal){
@@ -50,21 +47,21 @@ public class ProtectedHelper {
         return null;
     }
 
-    public static Object getStaticField(Class<? extends Object> clazz,String name){
+    public static <T> Object getStaticField(Class<? super T> clazz, String name){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             return field.get(null);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static Object getField(Class<? extends Object> clazz,Object obj,String name,boolean isFinal){
+    public static <T> Object getField(Class<? super T> clazz,Object obj,String name,boolean isFinal){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             if(isFinal){
@@ -80,21 +77,21 @@ public class ProtectedHelper {
         return null;
     }
 
-    public static Object getField(Class<? extends Object> clazz,Object obj,String name){
+    public static <T> Object getField(Class<? super T> clazz,Object obj,String name){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             return field.get(obj);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static void setStaticField(Class<? extends Object> clazz,String name,Object value,boolean isFinal){
+    public static <T> void setStaticField(Class<? super T> clazz,String name,Object value,boolean isFinal){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             if(isFinal){
@@ -109,20 +106,20 @@ public class ProtectedHelper {
         }
     }
 
-    public static void setStaticField(Class<? extends Object> clazz,String name,Object value){
+    public static <T> void setStaticField(Class<? super T> clazz,String name,Object value){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             field.set(null,value);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
-    public static void setField(Class<? extends Object> clazz,Object obj,String name,Object value,boolean isFinal){
+    public static <T> void setField(Class<? super T> clazz,Object obj,String name,Object value,boolean isFinal){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             if(isFinal){
@@ -137,13 +134,13 @@ public class ProtectedHelper {
         }
     }
 
-    public static void setField(Class<? extends Object> clazz,Object obj,String name,Object value){
+    public static <T> void setField(Class<? super T> clazz,Object obj,String name,Object value){
         try {
-            Field field = clazz.getDeclaredField(name);
+            Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
             field.set(obj,value);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }

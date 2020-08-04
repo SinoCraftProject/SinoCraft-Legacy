@@ -1,2 +1,4 @@
 # SinoCraft
-A minecraft mod with Chinese culture. 
+A minecraft mod with chinese culture.
+
+Welcome to participate!

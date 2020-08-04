@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.world.gen;
 
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
@@ -36,8 +37,8 @@ public class Features {
     // Todo: Change Log or Leaves to place.
     public static final TreeFeatureConfig TREE_PLUM_CONFIG =
             new TreeFeatureConfig.Builder(
-                    new SimpleBlockStateProvider(Blocks.LOG_WALNUT.get().getDefaultState()),
-                    new SimpleBlockStateProvider(Blocks.LEAVES_WALNUT.get().getDefaultState()),
+                    new SimpleBlockStateProvider(Blocks.LOG_PLUM.get().getDefaultState()),
+                    new SimpleBlockStateProvider(Blocks.LEAVES_PLUM.get().getDefaultState()),
                     new PineFoliagePlacer(1, 0))
                     .baseHeight(4)
                     .foliageHeight(3)
@@ -54,4 +55,12 @@ public class Features {
                     .setSapling((IPlantable) Blocks.SAPLING_MULBERRY.get())
                     .build();
 
+    public static final OreFeatureConfig WHITE_MARBLE_CONFIG = new OreFeatureConfig(
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.BLACK_MARBLE.get().getDefaultState(), 17);
+
+    public static final OreFeatureConfig BLACK_MARBLE_CONFIG = new OreFeatureConfig(
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.BLACK_MARBLE.get().getDefaultState(), 17);
+
+    public static final OreFeatureConfig RED_MARBLE_CONFIG = new OreFeatureConfig(
+            OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.RED_MARBLE.get().getDefaultState(), 17);
 }

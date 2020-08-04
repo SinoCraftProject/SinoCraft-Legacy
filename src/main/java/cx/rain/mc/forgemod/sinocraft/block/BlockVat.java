@@ -3,15 +3,16 @@ package cx.rain.mc.forgemod.sinocraft.block;
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -27,6 +28,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
+
+import static net.minecraft.block.BlockRenderType.ENTITYBLOCK_ANIMATED;
 
 @SuppressWarnings("deprecation")
 public class BlockVat extends BlockMachineBase {
@@ -51,7 +54,7 @@ public class BlockVat extends BlockMachineBase {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(worldIn.isRemote&&handIn!=Hand.MAIN_HAND){
+        if(worldIn.isRemote||handIn!=Hand.MAIN_HAND){
             return ActionResultType.SUCCESS;
         }
         if(worldIn.getTileEntity(pos) instanceof TileEntityVat){
@@ -98,19 +101,17 @@ public class BlockVat extends BlockMachineBase {
         }
     }
 
-    //@Override
-    //public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    //    return SHAPE;
-    //}
-
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
+    @Override
     public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return OUT_SHAPE;
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }

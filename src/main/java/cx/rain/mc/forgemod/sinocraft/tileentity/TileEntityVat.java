@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
+import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,7 +45,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
     }
 
     private void registerDefaultRecipes(){
-        registerRecipe(new ItemStack(Items.BARK.get(),3),new ItemStack(Items.WOOD_PULP.get()));
+        registerRecipe(new ItemStack(Items.BARK.get(),3),new FluidStack(Fluids.WOOD_PULP.get(),1000));
     }
 
     public TileEntityVat() {
@@ -265,8 +266,22 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
         if(this.world.isRemote){
             return;
         }
-        if((recipes.containsKey(item)||recipes2.containsKey(item)&&fluid.getAmount()>=1000)){
-
+        if(((recipes.containsKey(item)&&fluid.getAmount()>=1000)||(recipes2.containsKey(item)&&fluid.getAmount()>=1000))){
+            progress++;
+            if(progress == 400) {
+                progress = 0;
+                fluid = FluidStack.EMPTY;
+                if (recipes.containsKey(item)) {
+                    this.item = recipes.get(item);
+                }
+                else if (recipes2.containsKey(item)) {
+                    this.fluid = recipes2.get(item);
+                    item = ItemStack.EMPTY;
+                }
+            }
+        }
+        else {
+            progress = 0;
         }
     }
 

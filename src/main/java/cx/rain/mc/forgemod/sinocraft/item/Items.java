@@ -4,9 +4,11 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
@@ -40,11 +42,12 @@ public class Items {
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).fastToEat().build()));
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(Groups.MISC)));
-    public static RegistryObject<Item> WOOD_PULP = REGISTRY.register("wood_pulp",()->new Item(new Item.Properties().group(Groups.MISC)));
 
     public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron",()->new ItemKnife(ItemTier.IRON));
     public static RegistryObject<Item> KNIFE_GOLD = REGISTRY.register("knife_gold",()->new ItemKnife(ItemTier.GOLD));
     public static RegistryObject<Item> KNIFE_DIAMOND = REGISTRY.register("knife_diamond",()->new ItemKnife(ItemTier.DIAMOND));
+    public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(Fluids.WOOD_PULP, new Item.Properties().group(Groups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties()));
 
     public Items(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering items.");

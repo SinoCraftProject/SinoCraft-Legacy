@@ -1,10 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft;
 
 import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
-import cx.rain.mc.forgemod.sinocraft.block.BlockAdditions;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import cx.rain.mc.forgemod.sinocraft.client.Render;
+import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
+import cx.rain.mc.forgemod.sinocraft.hook.client.RenderHook;
+import cx.rain.mc.forgemod.sinocraft.hook.Hooks;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -41,6 +42,7 @@ public class SinoCraft {
         new BlockItems(bus);
         new Items(bus);
         new TileEntities(bus);
+        new Fluids(bus);
         new RegistryTrigger();
     }
 
@@ -55,14 +57,14 @@ public class SinoCraft {
     private void setup(final FMLCommonSetupEvent event) {
         Log.info("Hello Minecraft!");
 
-        new BlockAdditions();
+        Hooks.hookCommon(event);
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        Render.ChangeRender();
+        Hooks.hookClient(event);
     }
 
     private void setupServer(final FMLDedicatedServerSetupEvent event) {
-
+        Hooks.hookServer(event);
     }
 }

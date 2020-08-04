@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "side": "sinocraft:block/log_peach_stripped",
-    "end": "sinocraft:block/log_peach_top"
-  }
-}

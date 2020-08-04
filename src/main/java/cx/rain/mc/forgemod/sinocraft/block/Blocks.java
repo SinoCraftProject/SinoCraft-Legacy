@@ -6,12 +6,15 @@ import cx.rain.mc.forgemod.sinocraft.block.base.*;
 import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
 import cx.rain.mc.forgemod.sinocraft.enumerate.MarbleType;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import cx.rain.mc.forgemod.sinocraft.structure.tree.TreeMulberry;
 import cx.rain.mc.forgemod.sinocraft.structure.tree.TreePeach;
 import cx.rain.mc.forgemod.sinocraft.structure.tree.TreePlum;
 import cx.rain.mc.forgemod.sinocraft.structure.tree.TreeWalnut;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -71,6 +74,8 @@ public class Blocks {
 
     //public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
     public static RegistryObject<Block> VAT = REGISTRY.register("vat", () -> new BlockVat());
+
+    public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()->Fluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 
     public Blocks(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering blocks.");
