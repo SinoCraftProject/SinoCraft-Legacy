@@ -70,7 +70,7 @@ public class BlockVat extends BlockMachineBase {
                     if(!player.getHeldItem(handIn).isEmpty()){
                         ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
                         ItemStack backup = stack;
-                        backup=handler.insertItem(0,backup,false);
+                        backup=handler.insertItem(1,backup,false);
                         if(backup!=stack){
                             player.getHeldItem(handIn).shrink(1);
                             return ActionResultType.SUCCESS;
@@ -86,7 +86,12 @@ public class BlockVat extends BlockMachineBase {
                             handler.getStackInSlot(0).shrink(1);
                             return ActionResultType.SUCCESS;
                         }
-                        else{
+                        else{if(!handler.getStackInSlot(1).isEmpty()){
+                            ItemStack stack = new ItemStack(handler.getStackInSlot(1).getItem());
+                            player.setHeldItem(handIn,stack);
+                            handler.getStackInSlot(1).shrink(1);
+                            return ActionResultType.SUCCESS;
+                        }
                             return ActionResultType.FAIL;
                         }
                     }

@@ -1,11 +1,16 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.ByteArrayNBT;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -18,30 +23,41 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TileEntityVat extends TileEntity implements ITickableTileEntity, IMachine {
-    private static Map<ItemStack,ItemStack> recipes = new HashMap<>();
-    private static Map<ItemStack,FluidStack> recipes2 = new HashMap<>();
-    private static Map<Item,Boolean> canInsert = new HashMap<>();
-    private IMachine.MachineState state;
+public class TileEntityVat extends TileEntityMachineBase {
+    private static Map<Item,ItemStack> recipes = new HashMap<>();
+    private static Map<Item,FluidStack> recipes2 = new HashMap<>();
+    private static Map<Item,Integer> consume = new HashMap<>();
 
-    private ItemStack item = ItemStack.EMPTY;
+    private ItemStackHandler itemHandler = new ItemStackHandler(2){
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+            return consume.containsKey(stack.getItem());
+        }
+    };
+
     private FluidStack fluid = FluidStack.EMPTY;
     int progress=0;
 
     public static void registerRecipe(ItemStack material,ItemStack result){
-        recipes.put(material,result);
-        canInsert.put(material.getItem(),true);
+        recipes.put(material.getItem(),result);
+        consume.put(material.getItem(),material.getCount());
     }
 
     public static void registerRecipe(ItemStack material,FluidStack result){
-        recipes2.put(material,result);
-        canInsert.put(material.getItem(),true);
+        recipes2.put(material.getItem(),result);
+        consume.put(material.getItem(),material.getCount());
     }
 
     private void registerDefaultRecipes(){
@@ -58,111 +74,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if(cap==CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(()-> new IItemHandler(){
-                @Override
-                public int getSlots() {
-                    return 1;
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack getStackInSlot(int slot) {
-                    return item;
-                }
-
-                protected void validateSlotIndex(int slot)
-                {
-                    if (slot != 0)
-                        throw new RuntimeException("Slot " + slot + " not in valid range - [0," + 1 + ")");
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                    if (stack.isEmpty())
-                        return ItemStack.EMPTY;
-
-                    if (!isItemValid(slot, stack))
-                        return stack;
-
-                    validateSlotIndex(slot);
-
-                    int limit = Math.min(getSlotLimit(slot), stack.getMaxStackSize());
-
-                    if (!item.isEmpty())
-                    {
-                        if (!ItemHandlerHelper.canItemStacksStack(stack, item))
-                            return stack;
-
-                        limit -= item.getCount();
-                    }
-
-                    if (limit <= 0)
-                        return stack;
-
-                    boolean reachedLimit = stack.getCount() > limit;
-
-                    if (!simulate)
-                    {
-                        if (item.isEmpty())
-                        {
-                            item = reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, limit) : stack;
-                        }
-                        else
-                        {
-                            item.grow(reachedLimit ? limit : stack.getCount());
-                        }
-                    }
-
-                    return reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, stack.getCount()- limit) : ItemStack.EMPTY;
-                }
-
-                @Nonnull
-                @Override
-                public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                    if (amount == 0)
-                        return ItemStack.EMPTY;
-
-                    validateSlotIndex(slot);
-
-                    if (item.isEmpty())
-                        return ItemStack.EMPTY;
-
-                    int toExtract = Math.min(amount, item.getMaxStackSize());
-
-                    if (item.getCount() <= toExtract)
-                    {
-                        if (!simulate)
-                        {
-                            item=ItemStack.EMPTY;
-                            return item;
-                        }
-                        else
-                        {
-                            return item.copy();
-                        }
-                    }
-                    else
-                    {
-                        if (!simulate)
-                        {
-                            item = ItemHandlerHelper.copyStackWithSize(item, item.getCount() - toExtract);
-                        }
-
-                        return ItemHandlerHelper.copyStackWithSize(item, toExtract);
-                    }
-                }
-
-                @Override
-                public int getSlotLimit(int slot) {
-                    return 64;
-                }
-
-                @Override
-                public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                    return canInsert.containsKey(stack.getItem())&&canInsert.get(stack.getItem());
-                }
-            }).cast();
+            return LazyOptional.of(()-> itemHandler).cast();
         }
         else if(cap== CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
             return LazyOptional.of(()-> new IFluidHandler(){
@@ -205,6 +117,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
                         }
                         return Math.min(1000 - fluid.getAmount(), resource.getAmount());
                     }
+                    markDirty();
                     if (fluid.isEmpty())
                     {
                         fluid = new FluidStack(resource, Math.min(1000, resource.getAmount()));
@@ -241,6 +154,7 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
                 @Nonnull
                 @Override
                 public FluidStack drain(int maxDrain, FluidAction action) {
+                    markDirty();
                     int drained = maxDrain;
                     if (fluid.getAmount() < drained)
                     {
@@ -266,21 +180,26 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
         if(this.world.isRemote){
             return;
         }
-        if(((recipes.containsKey(item)&&fluid.getAmount()>=1000)||(recipes2.containsKey(item)&&fluid.getAmount()>=1000))){
-            progress++;
-            if(progress == 400) {
-                progress = 0;
-                fluid = FluidStack.EMPTY;
-                if (recipes.containsKey(item)) {
-                    this.item = recipes.get(item);
-                }
-                else if (recipes2.containsKey(item)) {
-                    this.fluid = recipes2.get(item);
-                    item = ItemStack.EMPTY;
+        ItemStack stack = itemHandler.getStackInSlot(1);
+        if(consume.containsKey(stack.getItem())){
+            if(consume.get(stack.getItem()) >= stack.getCount()) {
+                progress++;
+                if(progress == 400) {
+                    progress = 0;
+                    if (recipes.containsKey(stack.getItem())) {
+                        itemHandler.insertItem(0,recipes.get(stack.getItem()),false);
+                        this.itemHandler.extractItem(1,-consume.get(stack.getItem()),false);
+                        fluid = FluidStack.EMPTY;
+                    }
+                    else if (recipes2.containsKey(stack.getItem())) {
+                        this.fluid = recipes2.get(stack.getItem());
+                        this.itemHandler.extractItem(1,-consume.get(stack.getItem()),false);
+                    }
                 }
             }
         }
         else {
+            SinoCraft.getInstance().getLog().info("AZ");
             progress = 0;
         }
     }
@@ -288,30 +207,21 @@ public class TileEntityVat extends TileEntity implements ITickableTileEntity, IM
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound.put("fluid",fluid.writeToNBT(new CompoundNBT()));
-        compound.put("stacks",item.write(new CompoundNBT()));
+        compound.put("stacks",itemHandler.serializeNBT());
         return super.write(compound);
     }
 
     @Override
     public void read(CompoundNBT compound) {
         fluid=FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
-        item=ItemStack.read(compound.getCompound("stacks"));
+        itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(compound);
     }
 
     @Override
-    public MachineState getWorkingState() {
-        return state;
-    }
-
-    @Override
-    public void setWorkingState(MachineState state) {
-        this.state=state;
-    }
-
-    @Override
     public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(item);
+        list.add(itemHandler.getStackInSlot(0));
+        list.add(itemHandler.getStackInSlot(1));
         return list;
     }
 }
