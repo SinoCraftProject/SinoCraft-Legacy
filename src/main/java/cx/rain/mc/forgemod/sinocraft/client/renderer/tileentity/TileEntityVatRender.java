@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec2;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec4;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -110,7 +112,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
-            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
+            //if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
                 matrixStack.translate(0.18,0.01,0.18);
@@ -124,24 +126,24 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                         new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
                         NumberToGLColor(fluid.getAttributes().getColor()));
                 matrixStack.pop();
-            }
+            //}
         }
         if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
             if(stack!=ItemStack.EMPTY){
-                for (int i=0;i<stack.getCount();i++){
+                //for (int i=0;i<stack.getCount();i++){
                     matrixStack.push();
                     matrixStack.scale(0.3f,0.3f,0.3f);
-                    double x=new Random(i).nextDouble()-0.18;
-                    x=(x*2)-x;
-                    double z=new Random(i*2).nextDouble()-0.18;
-                    z=(z*2)-z;
+                    //double x=new Random(i).nextDouble();
+                    //x=(x*2)-x;
+                    //double z=new Random(i*2).nextDouble();
+                    //z=(z*2)-z;
                     //matrixStack.translate(0.5,0.5,0.5);
-                    matrixStack.translate(x,0.95f,z);
-                    itemRenderer.renderItem(null,stack, ItemCameraTransforms.TransformType.GROUND,false,matrixStack,buffer
-                            ,te.getWorld(),combinedLightIn,combinedOverlayIn);
+                    matrixStack.translate(0.3,0.95f,0.3);
+                    itemRenderer.renderItem(null,stack, ItemCameraTransforms.TransformType.GROUND,
+                            false,matrixStack,buffer,te.getWorld(),combinedLightIn,combinedOverlayIn);
                     matrixStack.pop();
-                }
+                //}
             }
         }
     }
