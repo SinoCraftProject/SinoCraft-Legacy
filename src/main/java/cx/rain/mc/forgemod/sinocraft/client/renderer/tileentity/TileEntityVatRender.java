@@ -109,7 +109,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        /*if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
+        if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
             if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
@@ -126,7 +126,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                 matrixStack.pop();
             }
         }
-        /*if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
+        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
             if(stack!=ItemStack.EMPTY){
                 for (int i=0;i<stack.getCount();i++){
@@ -143,6 +143,6 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                     matrixStack.pop();
                 }
             }
-        }*/
+        }
     }
 }
