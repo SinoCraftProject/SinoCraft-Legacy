@@ -57,6 +57,8 @@ public class BlockItems {
     public static RegistryObject<Item> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockItem(Blocks.BLACK_MARBLE.get(), new Item.Properties().group(Groups.BLOCKS)));
 
     public static RegistryObject<Item> VAT = REGISTRY.register("vat", () -> new BlockItem(Blocks.VAT.get(), new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> STONE_MILL = REGISTRY.register("stone_mill", () -> new BlockItem(Blocks.STONE_MILL.get(), new Item.Properties().group(Groups.BLOCKS)));
+    public static RegistryObject<Item> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockItem(Blocks.PAPER_DRYING_RACK.get(), new Item.Properties().group(Groups.BLOCKS)));
 
     public BlockItems(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering block items.");

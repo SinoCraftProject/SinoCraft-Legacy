@@ -72,6 +72,8 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 out.name("display").beginObject();
                     out.name("icon").beginObject();
                         out.name("item").value(info.getIcon().getItem().getRegistryName().toString());
+                        if (info.getIcon().hasTag())
+                            out.name("nbt").value(info.getIcon().getTag().toString());
                     out.endObject();
                     out.name("title").beginObject();
                            out.name("translate").value(info.getTitle().getString());

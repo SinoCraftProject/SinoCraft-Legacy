@@ -74,6 +74,8 @@ public class Blocks {
 
     //public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
     public static RegistryObject<Block> VAT = REGISTRY.register("vat", () -> new BlockVat());
+    public static RegistryObject<Block> STONE_MILL = REGISTRY.register("stone_mill", () -> new BlockStoneMill());
+    public static RegistryObject<Block> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockPaperDryingRack());
 
     public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()->Fluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 

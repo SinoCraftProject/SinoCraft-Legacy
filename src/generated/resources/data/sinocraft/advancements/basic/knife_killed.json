@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:knife_iron"
+      "item": "sinocraft:knife_iron",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "advancement.sinocraft.basic.knife_killed.title"
