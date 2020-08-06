@@ -2,10 +2,13 @@ package cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec2;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec4;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
+import net.minecraft.block.GrassBlock;
+import net.minecraft.block.GrassPathBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -15,6 +18,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -109,18 +114,20 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+        float top = 0;
         if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
-            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
+            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY && te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getAmount() != 0){
+                top = 3.5f;
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
-                matrixStack.translate(0.18,0.01,0.18);
+                matrixStack.translate(0.18,(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getAmount() / 1000.0)-0.1,0.18);
                 Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid();
                 TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
                         apply(fluid.getAttributes().getStillTexture());
                 IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
                 addSquare(vertex,matrixStack,
-                        new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
-                        new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
+                        new Vec3(0.0f,0.0f,1.0f),new Vec3(1.0f,0.0f,1.0f),
+                        new Vec3(1.0f,0.0f,0.0f),new Vec3(0.0f,0.0f,0.0f),
                         new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
                         NumberToGLColor(fluid.getAttributes().getColor()));
                 matrixStack.pop();
@@ -128,18 +135,28 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         }
         if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
+            int lc = 0;
             if(stack!=ItemStack.EMPTY){
-                for (int i=0;i<stack.getCount();i++){
+                lc = stack.getCount();
+                for (int i=0;i<Math.min(stack.getCount(), 16);i++){
                     matrixStack.push();
-                    matrixStack.scale(0.3f,0.3f,0.3f);
-                    double x=new Random(i).nextDouble()-0.18;
-                    x=(x*2)-x;
-                    double z=new Random(i*2).nextDouble()-0.18;
-                    z=(z*2)-z;
-                    //matrixStack.translate(0.5,0.5,0.5);
-                    matrixStack.translate(x,0.95f,z);
-                    itemRenderer.renderItem(null,stack, ItemCameraTransforms.TransformType.GROUND,false,matrixStack,buffer
-                            ,te.getWorld(),combinedLightIn,combinedOverlayIn);
+                    matrixStack.scale(0.2f, 0.2f, 0.2f);
+                    //matrixStack.translate(0,1,0);
+                    matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
+                    itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED,true,matrixStack,buffer,
+                            combinedLightIn,combinedOverlayIn,itemRenderer.getItemModelWithOverrides(stack,te.getWorld(),null));
+                    matrixStack.pop();
+                }
+            }
+            stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(1);
+            if(stack!=ItemStack.EMPTY) {
+                for (int i = lc; i < Math.min(stack.getCount() + lc, 16); i++) {
+                    matrixStack.push();
+                    matrixStack.scale(0.2f, 0.2f, 0.2f);
+                    //matrixStack.translate(0,1,0);
+                    matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
+                    itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, true, matrixStack, buffer,
+                            combinedLightIn, combinedOverlayIn, itemRenderer.getItemModelWithOverrides(stack, te.getWorld(), null));
                     matrixStack.pop();
                 }
             }
