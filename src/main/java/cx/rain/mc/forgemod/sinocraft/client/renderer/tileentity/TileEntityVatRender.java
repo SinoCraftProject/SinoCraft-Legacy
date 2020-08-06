@@ -114,18 +114,20 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRendererDispatcher();
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+        float top = 0;
         if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) !=null){
-            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
+            if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY && te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getAmount() != 0){
+                top = 3.5f;
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
-                matrixStack.translate(0.18,-0.1,0.18);
+                matrixStack.translate(0.18,(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getAmount() / 1000.0)-0.1,0.18);
                 Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid();
                 TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
                         apply(fluid.getAttributes().getStillTexture());
                 IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
                 addSquare(vertex,matrixStack,
-                        new Vec3(0.0f,1.0f,1.0f),new Vec3(1.0f,1.0f,1.0f),
-                        new Vec3(1.0f,1.0f,0.0f),new Vec3(0.0f,1.0f,0.0f),
+                        new Vec3(0.0f,0.0f,1.0f),new Vec3(1.0f,0.0f,1.0f),
+                        new Vec3(1.0f,0.0f,0.0f),new Vec3(0.0f,0.0f,0.0f),
                         new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
                         NumberToGLColor(fluid.getAttributes().getColor()));
                 matrixStack.pop();
@@ -140,7 +142,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                     matrixStack.push();
                     matrixStack.scale(0.2f, 0.2f, 0.2f);
                     //matrixStack.translate(0,1,0);
-                    matrixStack.translate(i % 4 + 1,4.5f, i / 4 + 1);
+                    matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
                     itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED,true,matrixStack,buffer,
                             combinedLightIn,combinedOverlayIn,itemRenderer.getItemModelWithOverrides(stack,te.getWorld(),null));
                     matrixStack.pop();
@@ -152,7 +154,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                     matrixStack.push();
                     matrixStack.scale(0.2f, 0.2f, 0.2f);
                     //matrixStack.translate(0,1,0);
-                    matrixStack.translate(i % 4 + 1,4.5f, i / 4 + 1);
+                    matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
                     itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, true, matrixStack, buffer,
                             combinedLightIn, combinedOverlayIn, itemRenderer.getItemModelWithOverrides(stack, te.getWorld(), null));
                     matrixStack.pop();

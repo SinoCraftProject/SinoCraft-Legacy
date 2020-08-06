@@ -181,7 +181,7 @@ public class TileEntityVat extends TileEntityMachineBase {
             return;
         }
         ItemStack stack = itemHandler.getStackInSlot(1);
-        if(consume.containsKey(stack.getItem())){
+        if(consume.containsKey(stack.getItem())&&fluid.getAmount()>=1000&&fluid.getFluid()==net.minecraft.fluid.Fluids.WATER){
             if(consume.get(stack.getItem()) <= stack.getCount()) {
                 progress++;
                 if(progress == 400) {
@@ -189,7 +189,7 @@ public class TileEntityVat extends TileEntityMachineBase {
                     if (recipes.containsKey(stack.getItem())) {
                         itemHandler.insertItem(0,recipes.get(stack.getItem()),false);
                         this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
-                        fluid = FluidStack.EMPTY;
+                        this.fluid = FluidStack.EMPTY;
                     }
                     else if (recipes2.containsKey(stack.getItem())) {
                         this.fluid = recipes2.get(stack.getItem());
