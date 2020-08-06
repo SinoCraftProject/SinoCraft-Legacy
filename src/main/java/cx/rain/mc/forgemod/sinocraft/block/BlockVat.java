@@ -83,13 +83,13 @@ public class BlockVat extends BlockMachineBase {
                         if(!handler.getStackInSlot(0).isEmpty()){
                             ItemStack stack = new ItemStack(handler.getStackInSlot(0).getItem());
                             player.setHeldItem(handIn,stack);
-                            handler.getStackInSlot(0).shrink(1);
+                            handler.extractItem(0,1,false);
                             return ActionResultType.SUCCESS;
                         }
                         else{if(!handler.getStackInSlot(1).isEmpty()){
                             ItemStack stack = new ItemStack(handler.getStackInSlot(1).getItem());
                             player.setHeldItem(handIn,stack);
-                            handler.getStackInSlot(1).shrink(1);
+                            handler.extractItem(1,1,false);
                             return ActionResultType.SUCCESS;
                         }
                             return ActionResultType.FAIL;

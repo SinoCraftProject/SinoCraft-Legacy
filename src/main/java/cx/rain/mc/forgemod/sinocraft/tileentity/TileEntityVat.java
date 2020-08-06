@@ -182,24 +182,23 @@ public class TileEntityVat extends TileEntityMachineBase {
         }
         ItemStack stack = itemHandler.getStackInSlot(1);
         if(consume.containsKey(stack.getItem())){
-            if(consume.get(stack.getItem()) >= stack.getCount()) {
+            if(consume.get(stack.getItem()) <= stack.getCount()) {
                 progress++;
                 if(progress == 400) {
                     progress = 0;
                     if (recipes.containsKey(stack.getItem())) {
                         itemHandler.insertItem(0,recipes.get(stack.getItem()),false);
-                        this.itemHandler.extractItem(1,-consume.get(stack.getItem()),false);
+                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
                         fluid = FluidStack.EMPTY;
                     }
                     else if (recipes2.containsKey(stack.getItem())) {
                         this.fluid = recipes2.get(stack.getItem());
-                        this.itemHandler.extractItem(1,-consume.get(stack.getItem()),false);
+                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
                     }
                 }
             }
         }
         else {
-            SinoCraft.getInstance().getLog().info("AZ");
             progress = 0;
         }
     }

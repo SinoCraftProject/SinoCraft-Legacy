@@ -7,6 +7,8 @@ import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec2;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.api.util.math.Vec4;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
+import net.minecraft.block.GrassBlock;
+import net.minecraft.block.GrassPathBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -16,6 +18,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -115,7 +118,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
             if(te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY){
                 matrixStack.push();
                 matrixStack.scale(0.75f,1.0f,0.75f);
-                matrixStack.translate(0.18,0.01,0.18);
+                matrixStack.translate(0.18,-0.1,0.18);
                 Fluid fluid = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getFluid();
                 TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
                         apply(fluid.getAttributes().getStillTexture());
@@ -130,18 +133,28 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
         }
         if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
+            int lc = 0;
             if(stack!=ItemStack.EMPTY){
-                for (int i=0;i<stack.getCount();i++){
+                lc = stack.getCount();
+                for (int i=0;i<Math.min(stack.getCount(), 16);i++){
                     matrixStack.push();
-                    matrixStack.scale(0.3f,0.3f,0.3f);
-                    double x=new Random(i).nextDouble();
-                    x=(x*2)-x;
-                    double z=new Random(i*2).nextDouble();
-                    z=(z*2)-z;
-                    //matrixStack.translate(0.5,0.5,0.5);
-                    matrixStack.translate(x,0.95f,z);
-                    itemRenderer.renderItem(null,stack, ItemCameraTransforms.TransformType.GROUND,
-                            false,matrixStack,buffer,te.getWorld(),combinedLightIn,combinedOverlayIn);
+                    matrixStack.scale(0.2f, 0.2f, 0.2f);
+                    //matrixStack.translate(0,1,0);
+                    matrixStack.translate(i % 4 + 1,4.5f, i / 4 + 1);
+                    itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED,true,matrixStack,buffer,
+                            combinedLightIn,combinedOverlayIn,itemRenderer.getItemModelWithOverrides(stack,te.getWorld(),null));
+                    matrixStack.pop();
+                }
+            }
+            stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(1);
+            if(stack!=ItemStack.EMPTY) {
+                for (int i = lc; i < Math.min(stack.getCount() + lc, 16); i++) {
+                    matrixStack.push();
+                    matrixStack.scale(0.2f, 0.2f, 0.2f);
+                    //matrixStack.translate(0,1,0);
+                    matrixStack.translate(i % 4 + 1,4.5f, i / 4 + 1);
+                    itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, true, matrixStack, buffer,
+                            combinedLightIn, combinedOverlayIn, itemRenderer.getItemModelWithOverrides(stack, te.getWorld(), null));
                     matrixStack.pop();
                 }
             }
