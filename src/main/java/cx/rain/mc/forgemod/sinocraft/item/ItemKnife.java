@@ -6,6 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLog;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LogBlock;
@@ -14,6 +15,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -62,15 +65,11 @@ public class ItemKnife extends SwordItem {
 
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
-            if(type.getWorld().getBlockState(type.getPos()).getBlock() instanceof BlockLog){
-                BlockLog b = (BlockLog) type.getWorld().getBlockState(type.getPos()).getBlock();
-                if(b.kind!= BlockLog.KIND.LOG){
-                    return null;
-                }
+            if(type.getWorld().getBlockState(type.getPos()).getBlock() instanceof LogBlock){
                 return (context) -> {
-                    BlockLog block = (BlockLog)context.getWorld().getBlockState(context.getPos()).getBlock();
-                    context.getWorld().setBlockState(context.getPos(),
-                            block.type.getTag().LogStripped.get().getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
+                    LogBlock block = (LogBlock)context.getWorld().getBlockState(context.getPos()).getBlock();
+                    context.getWorld().setBlockState(
+                            context.getPos(), ((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a")).get(block).getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
                     InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                             context.getPos(),context.getItem());
@@ -92,21 +91,25 @@ public class ItemKnife extends SwordItem {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-	    if(context.getWorld().isRemote){
-	        return ActionResultType.PASS;
-        }
 	    for(IFactory<IShave,ItemUseContext> shaveManager : shaveManagers){
             try {
                 IShave shave=shaveManager.get(context,null);
                 if(shave!=null){
-                    shave.Shave(context);
-                    RegistryTrigger.SHAVE_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
-                            context.getPos(),context.getItem());
+                    if(!context.getWorld().isRemote){
+                        shave.Shave(context);
+                        RegistryTrigger.SHAVE_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
+                                context.getPos(),context.getItem());
+                        context.getWorld().notifyBlockUpdate(context.getPos(), context.getWorld().getBlockState(context.getPos()), context.getWorld().getBlockState(context.getPos()), 2);
+                    }
+                    context.getWorld().playSound(context.getPlayer(),context.getPos(), SoundEvents.ITEM_AXE_STRIP, SoundCategory.PLAYERS, 1.0f, 1.0f);
                     return ActionResultType.SUCCESS;
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 e.printStackTrace();
             }
+        }
+        if (context.getWorld().isRemote) {
+            return ActionResultType.SUCCESS;
         }
         return ActionResultType.FAIL;
     }

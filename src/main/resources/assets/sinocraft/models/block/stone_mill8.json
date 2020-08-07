@@ -1,0 +1,51 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "sinocraft:model/blocks/stone_mill1_bottom",
+		"1": "sinocraft:model/blocks/stone_mill1_side",
+		"2": "sinocraft:model/blocks/stone_mill1_top",
+		"4": "sinocraft:model/blocks/stone_mill2_side",
+		"5": "sinocraft:model/blocks/stone_mill2_top",
+		"particle": "sinocraft:model/blocks/stone_mill1_bottom"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 6, 3],
+			"to": [13, 11, 13],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 10, 5], "texture": "#4"},
+				"east": {"uv": [0, 0, 10, 5], "texture": "#4"},
+				"south": {"uv": [0, 0, 10, 5], "texture": "#4"},
+				"west": {"uv": [0, 0, 10, 5], "texture": "#4"},
+				"up": {"uv": [0, 0, 10, 10], "rotation": 180, "texture": "#5"},
+				"down": {"uv": [0, 0, 10, 10], "rotation": 180, "texture": "#5"}
+			}
+		},
+		{
+			"from": [9, 8, -8],
+			"to": [11, 10, 3],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 14, 2, 16], "texture": "#5"},
+				"east": {"uv": [0, 14, 11, 16], "texture": "#4"},
+				"south": {"uv": [0, 14, 2, 16], "texture": "#5"},
+				"west": {"uv": [0, 14, 11, 16], "texture": "#4"},
+				"up": {"uv": [14, 0, 16, 11], "rotation": 180, "texture": "#4"},
+				"down": {"uv": [14, 0, 16, 11], "rotation": 180, "texture": "#4"}
+			}
+		}
+	]
+}

@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  *
  * @author Infinity_rain
  */
-public abstract class BlockMachineBase extends Block {
+@SuppressWarnings("deprecation")
+public abstract class BlockMachineBase extends BlockActivatable {
     public static final DirectionProperty FACING =
             DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     public static final EnumProperty<IMachine.MachineState> STATE =

@@ -16,11 +16,6 @@ public class BlockStove extends ContainerBlock {
         super(Properties.create(Material.GOURD, MaterialColor.GRAY));
     }
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
     /*@Nullable
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {

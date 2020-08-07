@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:knife_iron"
+      "item": "sinocraft:knife_gold",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "advancement.sinocraft.basic.kill_all_mobs_with_knife.title"

@@ -7,8 +7,13 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.registry.Registry;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public abstract class TileEntityMachineBase extends TileEntity implements ITickableTileEntity, IMachine {
     protected IMachine.MachineState state;
@@ -30,7 +35,7 @@ public abstract class TileEntityMachineBase extends TileEntity implements ITicka
     @Nullable
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(pos, 1, getUpdateTag());
+        return new SUpdateTileEntityPacket(pos,1,getUpdateTag());
     }
 
     @Override
