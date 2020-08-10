@@ -1,17 +1,20 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
+import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
+import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import net.minecraft.block.Block;
 import net.minecraft.block.LogBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.IProperty;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.*;
 
 public class ProviderBlockState extends BlockStateProvider {
     public ProviderBlockState(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -58,6 +61,67 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(Blocks.WHITE_MARBLE.get());
         simpleBlock(Blocks.RED_MARBLE.get());
         simpleBlock(Blocks.BLACK_MARBLE.get());
+
+        simpleBlock(Blocks.VAT.get(), this.models().getExistingFile(modLoc("block/vat")));
+
+        MultiPartBlockStateBuilder STONE_MILL = getMultipartBuilder(Blocks.STONE_MILL.get());
+        for (int i = 1 ; i <= 16 ; i ++) {
+            STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).
+                    addModel().
+                        condition(BlockStoneMill.ROTATE, i).
+                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                        condition(BlockStoneMill.FACING, Direction.NORTH).
+                    end();
+
+            STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
+                    addModel().
+                        condition(BlockStoneMill.ROTATE, i).
+                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                        condition(BlockStoneMill.FACING, Direction.SOUTH).
+                    end();
+
+            STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
+                    addModel().
+                        condition(BlockStoneMill.ROTATE, i).
+                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                        condition(BlockStoneMill.FACING, Direction.WEST).
+                    end();
+
+            STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
+                    addModel().
+                        condition(BlockStoneMill.ROTATE, i).
+                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                        condition(BlockStoneMill.FACING, Direction.EAST).
+                    end();
+        }
+
+        MultiPartBlockStateBuilder PAPER_DRYING_RACK = getMultipartBuilder(Blocks.PAPER_DRYING_RACK.get());
+
+        for (int i = 0 ; i <= 4 ; i ++) {
+            PAPER_DRYING_RACK.part().modelFile(this.models().getExistingFile(modLoc("block/paper_drying_rack" + i))).
+                    addModel().
+                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.FACING, Direction.NORTH).
+                    end();
+
+            PAPER_DRYING_RACK.part().modelFile(this.models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(180).
+                    addModel().
+                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.FACING, Direction.SOUTH).
+                    end();
+
+            PAPER_DRYING_RACK.part().modelFile(this.models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(270).
+                    addModel().
+                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.FACING, Direction.WEST).
+                    end();
+
+            PAPER_DRYING_RACK.part().modelFile(this.models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
+                    addModel().
+                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.FACING, Direction.EAST).
+                    end();
+        }
 
         getVariantBuilder(Blocks.WHITE_RADISH_PLANT.get())
                 .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("white_radish_plant_stage_0", modLoc("block/white_radish_plant_stage_0"))).addModel()
