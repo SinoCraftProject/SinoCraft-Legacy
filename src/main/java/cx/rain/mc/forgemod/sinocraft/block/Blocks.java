@@ -72,7 +72,7 @@ public class Blocks {
     public static RegistryObject<Block> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));
     public static RegistryObject<Block> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockMarble(MarbleType.BLACK));
 
-    //public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
+    public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
     public static RegistryObject<Block> VAT = REGISTRY.register("vat", () -> new BlockVat());
     public static RegistryObject<Block> STONE_MILL = REGISTRY.register("stone_mill", () -> new BlockStoneMill());
     public static RegistryObject<Block> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockPaperDryingRack());

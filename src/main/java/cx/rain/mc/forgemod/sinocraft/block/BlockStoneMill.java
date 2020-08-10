@@ -25,6 +25,11 @@ public class BlockStoneMill extends BlockMachineBase {
     }
 
     @Override
+    public boolean hasTileEntity(BlockState state) {
+        return false;
+    }
+
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(ROTATE);
@@ -37,7 +42,7 @@ public class BlockStoneMill extends BlockMachineBase {
 
     @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        state.with(ROTATE,(state.get(ROTATE) + 1) % 16 + 1);
+        worldIn.setBlockState(pos,state.with(ROTATE,Math.max((state.get(ROTATE) + 1) % 16, 1)));
         return ActionResultType.SUCCESS;
     }
 }

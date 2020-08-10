@@ -1,9 +1,0 @@
-{
-  "multipart": [
-    {"when": {"level": "0"}, "apply": {"model": "sinocraft:block/paper_drying_rack0"}},
-    {"when": {"level": "1"}, "apply": {"model": "sinocraft:block/paper_drying_rack1"}},
-    {"when": {"level": "2"}, "apply": {"model": "sinocraft:block/paper_drying_rack2"}},
-    {"when": {"level": "3"}, "apply": {"model": "sinocraft:block/paper_drying_rack3"}},
-    {"when": {"level": "4"}, "apply": {"model": "sinocraft:block/paper_drying_rack4"}}
-  ]
-}
