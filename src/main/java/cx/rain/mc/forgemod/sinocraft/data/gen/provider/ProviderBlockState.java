@@ -5,6 +5,7 @@ import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
+import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
@@ -123,6 +124,49 @@ public class ProviderBlockState extends BlockStateProvider {
                     end();
         }
 
+        MultiPartBlockStateBuilder STOVE = getMultipartBuilder(Blocks.STOVE.get());
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
+                condition(BlockStove.FACING, Direction.NORTH).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(180).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
+                condition(BlockStove.FACING, Direction.SOUTH).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(270).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
+                condition(BlockStove.FACING, Direction.WEST).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(90).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
+                condition(BlockStove.FACING, Direction.EAST).
+                end();
+
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.NORTH).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(180).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.SOUTH).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(270).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.WEST).
+                end();
+        STOVE.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(90).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.EAST).
+                end();
+
         getVariantBuilder(Blocks.WHITE_RADISH_PLANT.get())
                 .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("white_radish_plant_stage_0", modLoc("block/white_radish_plant_stage_0"))).addModel()
                 .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("white_radish_plant_stage_1", modLoc("block/white_radish_plant_stage_0"))).addModel()
@@ -168,6 +212,5 @@ public class ProviderBlockState extends BlockStateProvider {
                 .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("chili_pepper_plant_stage_5", modLoc("block/chili_pepper_plant_stage_5"))).addModel()
                 .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("chili_pepper_plant_stage_6", modLoc("block/chili_pepper_plant_stage_6"))).addModel()
                 .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("chili_pepper_plant_stage_7", modLoc("block/chili_pepper_plant_stage_7"))).addModel();
-
     }
 }

@@ -21,7 +21,8 @@ public class BlockStoneMill extends BlockMachineBase {
     public BlockStoneMill() {
         super(Block.Properties.create(Material.WOOD)
                 .hardnessAndResistance(3.0F)
-                .sound(SoundType.WOOD));
+                .sound(SoundType.WOOD)
+                .notSolid());
     }
 
     @Override
