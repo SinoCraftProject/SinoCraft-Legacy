@@ -79,6 +79,10 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("knife_iron").parent(GENERATED).texture("layer0",modLoc("item/knife_iron"));
         getBuilder("knife_gold").parent(GENERATED).texture("layer0",modLoc("item/knife_gold"));
         getBuilder("knife_diamond").parent(GENERATED).texture("layer0",modLoc("item/knife_diamond"));
+        getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
+        getBuilder("china_ink").parent(GENERATED).texture("layer0",modLoc("item/china_ink"));
+        getBuilder("bucket_wood_pulp").parent(GENERATED).texture("layer0",modLoc("item/bucket_wood_pulp"));
+        getBuilder("xuan_paper").parent(GENERATED).texture("layer0",modLoc("item/xuan_paper"));
     }
 
     @Override

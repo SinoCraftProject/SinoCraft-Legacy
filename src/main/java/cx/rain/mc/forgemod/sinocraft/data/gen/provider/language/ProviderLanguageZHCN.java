@@ -102,6 +102,8 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.KNIFE_IRON,"铁小刀");
         addItem(Items.KNIFE_GOLD,"金小刀");
         addItem(Items.KNIFE_DIAMOND,"钻石小刀");
+        addItem(Items.CHINESE_BRUSH,"毛笔");
+        addItem(Items.CHINA_INK,"墨");
     }
 
     private void addBlocks() {
@@ -140,6 +142,11 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addBlock(Blocks.WHITE_MARBLE, "汉白玉大理石");
         addBlock(Blocks.RED_MARBLE, "南江红大理石");
         addBlock(Blocks.BLACK_MARBLE, "晶墨玉大理石");
+
+        addBlock(Blocks.STOVE, "炉灶");
+        addBlock(Blocks.VAT, "桶");
+        addBlock(Blocks.PAPER_DRYING_RACK, "晾纸架");
+        addBlock(Blocks.STONE_MILL, "石磨");
     }
 
     private void addEntities() {

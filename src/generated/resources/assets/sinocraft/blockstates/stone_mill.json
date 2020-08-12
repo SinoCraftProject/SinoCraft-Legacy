@@ -3,7 +3,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "1"
       },
       "apply": {
@@ -13,7 +13,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "1"
       },
       "apply": {
@@ -24,7 +24,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "1"
       },
       "apply": {
@@ -35,7 +35,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "1"
       },
       "apply": {
@@ -46,7 +46,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "2"
       },
       "apply": {
@@ -56,7 +56,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "2"
       },
       "apply": {
@@ -67,7 +67,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "2"
       },
       "apply": {
@@ -78,7 +78,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "2"
       },
       "apply": {
@@ -89,7 +89,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "3"
       },
       "apply": {
@@ -99,7 +99,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "3"
       },
       "apply": {
@@ -110,7 +110,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "3"
       },
       "apply": {
@@ -121,7 +121,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "3"
       },
       "apply": {
@@ -132,7 +132,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "4"
       },
       "apply": {
@@ -142,7 +142,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "4"
       },
       "apply": {
@@ -153,7 +153,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "4"
       },
       "apply": {
@@ -164,7 +164,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "4"
       },
       "apply": {
@@ -175,7 +175,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "5"
       },
       "apply": {
@@ -185,7 +185,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "5"
       },
       "apply": {
@@ -196,7 +196,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "5"
       },
       "apply": {
@@ -207,7 +207,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "5"
       },
       "apply": {
@@ -218,7 +218,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "6"
       },
       "apply": {
@@ -228,7 +228,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "6"
       },
       "apply": {
@@ -239,7 +239,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "6"
       },
       "apply": {
@@ -250,7 +250,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "6"
       },
       "apply": {
@@ -261,7 +261,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "7"
       },
       "apply": {
@@ -271,7 +271,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "7"
       },
       "apply": {
@@ -282,7 +282,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "7"
       },
       "apply": {
@@ -293,7 +293,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "7"
       },
       "apply": {
@@ -304,7 +304,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "8"
       },
       "apply": {
@@ -314,7 +314,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "8"
       },
       "apply": {
@@ -325,7 +325,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "8"
       },
       "apply": {
@@ -336,7 +336,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "8"
       },
       "apply": {
@@ -347,7 +347,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "9"
       },
       "apply": {
@@ -357,7 +357,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "9"
       },
       "apply": {
@@ -368,7 +368,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "9"
       },
       "apply": {
@@ -379,7 +379,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "9"
       },
       "apply": {
@@ -390,7 +390,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "10"
       },
       "apply": {
@@ -400,7 +400,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "10"
       },
       "apply": {
@@ -411,7 +411,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "10"
       },
       "apply": {
@@ -422,7 +422,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "10"
       },
       "apply": {
@@ -433,7 +433,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "11"
       },
       "apply": {
@@ -443,7 +443,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "11"
       },
       "apply": {
@@ -454,7 +454,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "11"
       },
       "apply": {
@@ -465,7 +465,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "11"
       },
       "apply": {
@@ -476,7 +476,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "12"
       },
       "apply": {
@@ -486,7 +486,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "12"
       },
       "apply": {
@@ -497,7 +497,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "12"
       },
       "apply": {
@@ -508,7 +508,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "12"
       },
       "apply": {
@@ -519,7 +519,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "13"
       },
       "apply": {
@@ -529,7 +529,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "13"
       },
       "apply": {
@@ -540,7 +540,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "13"
       },
       "apply": {
@@ -551,7 +551,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "13"
       },
       "apply": {
@@ -562,7 +562,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "14"
       },
       "apply": {
@@ -572,7 +572,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "14"
       },
       "apply": {
@@ -583,7 +583,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "14"
       },
       "apply": {
@@ -594,7 +594,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "14"
       },
       "apply": {
@@ -605,7 +605,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "15"
       },
       "apply": {
@@ -615,7 +615,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "15"
       },
       "apply": {
@@ -626,7 +626,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "15"
       },
       "apply": {
@@ -637,7 +637,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "15"
       },
       "apply": {
@@ -648,7 +648,7 @@
     {
       "when": {
         "facing": "north",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "16"
       },
       "apply": {
@@ -658,7 +658,7 @@
     {
       "when": {
         "facing": "south",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "16"
       },
       "apply": {
@@ -669,7 +669,7 @@
     {
       "when": {
         "facing": "west",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "16"
       },
       "apply": {
@@ -680,7 +680,7 @@
     {
       "when": {
         "facing": "east",
-        "state": "idle|working|overload|close|damaged",
+        "state": "close|overload|damaged|working|idle",
         "rotate": "16"
       },
       "apply": {

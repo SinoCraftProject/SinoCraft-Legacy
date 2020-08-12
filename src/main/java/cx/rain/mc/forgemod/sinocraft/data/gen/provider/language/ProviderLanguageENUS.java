@@ -79,6 +79,8 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.KNIFE_IRON,"Iron Knife");
         addItem(Items.KNIFE_GOLD,"Gold Knife");
         addItem(Items.KNIFE_DIAMOND,"Diamond Knife");
+        addItem(Items.CHINESE_BRUSH,"Chinese Brush");
+        addItem(Items.CHINA_INK,"China Ink");
     }
 
     private void addBlocks() {
@@ -117,6 +119,11 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addBlock(Blocks.WHITE_MARBLE, "White Marble");
         addBlock(Blocks.RED_MARBLE, "Red Marble");
         addBlock(Blocks.BLACK_MARBLE, "Black Marble");
+
+        addBlock(Blocks.STOVE, "Stove");
+        addBlock(Blocks.VAT, "Vat");
+        addBlock(Blocks.PAPER_DRYING_RACK, "Paper Drying Rack");
+        addBlock(Blocks.STONE_MILL, "Stone Mill");
     }
 
     private void addEntities() {

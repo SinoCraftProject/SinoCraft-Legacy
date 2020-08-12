@@ -59,5 +59,10 @@ public class ProviderBlockLootTable extends ProviderBaseBlockLootTable {
         getLootTables().put(Blocks.MILLET_PLANT.get(), tableWithPools(droppingSeeds("millet_seeds", Items.MILLET_SEED.get()), droppingCropsWithChanceByAge("millet", Blocks.MILLET_PLANT.get(), 7, Items.MILLET_SEED.get(), 2, 5)));
         getLootTables().put(Blocks.SORGHUM_PLANT.get(), tableWithPools(droppingSeeds("sorghum_seeds", Items.SORGHUM_SEED.get()), droppingCropsWithChanceByAge("sorghum", Blocks.SORGHUM_PLANT.get(), 7, Items.SORGHUM_SEED.get(), 2, 5)));
         getLootTables().put(Blocks.SOYBEAN_PLANT.get(), tableWithPools(droppingSeeds("soybean_seeds", Items.SOYBEAN.get()), droppingCropsWithChanceByAge("soybean", Blocks.SOYBEAN_PLANT.get(), 7, Items.SOYBEAN.get(), 2, 5)));
+
+        getLootTables().put(Blocks.STONE_MILL.get(), tableNormal("black_marble", Blocks.STONE_MILL.get()));
+        getLootTables().put(Blocks.PAPER_DRYING_RACK.get(), tableNormal("black_marble", Blocks.PAPER_DRYING_RACK.get()));
+        getLootTables().put(Blocks.VAT.get(), tableNormal("vat", Blocks.VAT.get()));
+        getLootTables().put(Blocks.STOVE.get(), tableNormal("black_marble", Blocks.STOVE.get()));
     }
 }

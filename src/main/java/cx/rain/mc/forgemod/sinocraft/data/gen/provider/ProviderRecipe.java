@@ -6,9 +6,12 @@ import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 public class ProviderRecipe extends ProviderBaseRecipe {
@@ -48,5 +51,8 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 addIngredient(TagItem.LOG_WALNUT).
                 addCriterion("has_log", this.hasItem(Blocks.LOG_WALNUT.get())).
                 build(consumer,new ResourceLocation(ID,"plank_walnut1"));
+
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(net.minecraft.item.Items.CHARCOAL), Items.CHINA_INK.get(), 2.0f, 800).
+                addCriterion("has_charcoal", this.hasItem(net.minecraft.item.Items.CHARCOAL)).build(consumer, new ResourceLocation(ID, "ink_charcoal_smelt"));
     }
 }

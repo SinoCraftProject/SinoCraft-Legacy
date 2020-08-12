@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:charcoal"
+  },
+  "result": "sinocraft:china_ink",
+  "experience": 2.0,
+  "cookingtime": 800
+}
