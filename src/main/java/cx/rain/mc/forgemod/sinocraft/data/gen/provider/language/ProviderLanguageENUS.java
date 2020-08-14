@@ -43,6 +43,9 @@ public class ProviderLanguageENUS extends LanguageProvider {
 
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","Real slaughter!");
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","Kill one of every living entities with knife.");
+
+        add("advancement.sinocraft.basic.get_china_ink.title","Smell of ink!");
+        add("advancement.sinocraft.basic.get_china_ink.description","Get china ink.");
     }
 
     private void addItemGroups() {
@@ -81,6 +84,10 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.KNIFE_DIAMOND,"Diamond Knife");
         addItem(Items.CHINESE_BRUSH,"Chinese Brush");
         addItem(Items.CHINA_INK,"China Ink");
+        addItem(Items.CHARCOAL_BLACK,"Charcoal Black");
+        addItem(Items.INK_STONE, "Ink Stone");
+        addItem(Items.XUAN_PAPER, "Xuan Paper");
+        addItem(Items.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
     }
 
     private void addBlocks() {

@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft;
 
-import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
-import cx.rain.mc.forgemod.sinocraft.hook.client.RenderHook;
+import cx.rain.mc.forgemod.sinocraft.gui.Containers;
 import cx.rain.mc.forgemod.sinocraft.hook.Hooks;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
@@ -43,6 +43,7 @@ public class SinoCraft {
         new Items(bus);
         new TileEntities(bus);
         new Fluids(bus);
+        new Containers(bus);
         new RegistryTrigger();
     }
 

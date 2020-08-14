@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sinocraft:ink_stone"
+    },
+    {
+      "item": "sinocraft:charcoal_black"
+    },
+    {
+      "item": "sinocraft:charcoal_black"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:potion"
+    }
+  ],
+  "result": {
+    "item": "sinocraft:china_ink"
+  }
+}

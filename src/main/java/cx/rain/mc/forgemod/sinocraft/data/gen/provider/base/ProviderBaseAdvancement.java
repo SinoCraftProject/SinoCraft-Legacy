@@ -190,7 +190,6 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 }
             }
 
-            //complete
             public void writeRewards(JsonWriter out,Advancement adv) throws IOException {
                 AdvancementRewards rewards = adv.getRewards();
                 int experience = (int) ProtectedHelper.getField(AdvancementRewards.class,rewards,"field_192115_b");

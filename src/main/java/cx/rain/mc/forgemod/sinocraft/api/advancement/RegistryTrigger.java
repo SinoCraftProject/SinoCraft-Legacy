@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.advanement;
+package cx.rain.mc.forgemod.sinocraft.api.advancement;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.RightClickBlockWithItemTrigger;

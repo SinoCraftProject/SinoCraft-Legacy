@@ -5,6 +5,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,19 +21,19 @@ public class Ores {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.BLACK_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 20, 30)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
             );
 
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.WHITE_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 20, 30)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
             );
 
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.RED_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_DEPTH_AVERAGE.configure(new DepthAverageConfig(8, 20, 30)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
             );
         }
     }
