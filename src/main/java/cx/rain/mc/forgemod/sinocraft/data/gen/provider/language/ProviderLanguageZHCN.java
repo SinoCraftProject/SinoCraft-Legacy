@@ -65,6 +65,10 @@ public class ProviderLanguageZHCN extends LanguageProvider {
 
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","真正的屠杀!");
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","用小刀杀死每一种生物.");
+    
+
+        add("advancement.sinocraft.basic.get_china_ink.title","墨香扑鼻!");
+        add("advancement.sinocraft.basic.get_china_ink.description","获得墨.");
     }
 
     private void addItemGroups() {
@@ -104,6 +108,10 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.KNIFE_DIAMOND,"钻石小刀");
         addItem(Items.CHINESE_BRUSH,"毛笔");
         addItem(Items.CHINA_INK,"墨");
+        addItem(Items.CHARCOAL_BLACK,"炭黑");
+        addItem(Items.INK_STONE, "砚");
+        addItem(Items.XUAN_PAPER, "宣纸");
+        addItem(Items.BUCKET_WOOD_PULP, "木浆桶");
     }
 
     private void addBlocks() {

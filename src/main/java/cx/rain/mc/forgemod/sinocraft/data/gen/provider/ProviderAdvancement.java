@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderBaseAdvancement;
@@ -77,6 +77,14 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
         Advancements.put(new ResourceLocation(ID,"basic/kill_all_entities_with_knife"),makeEntityKnifeAdvancement(ChildAdvancement(
                 new ItemStack(Items.KNIFE_DIAMOND.get()),"advancement.sinocraft.basic.kill_all_entities_with_knife.title","advancement.sinocraft.basic.kill_all_entities_with_knife.description",
                 new ResourceLocation(ID,"basic/kill_all_mobs_with_knife"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(1000))
+                )
+        );
+		
+		Advancements.put(new ResourceLocation(ID,"basic/get_china_ink"),ChildAdvancement(
+                new ItemStack(Items.CHINA_INK.get()),"advancement.sinocraft.basic.get_china_ink.title","advancement.sinocraft.basic.get_china_ink.description",
+                new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+                withRequirementsStrategy(IRequirementsStrategy.AND).
+                withCriterion("get_china_ink",this.hasItem(Items.CHINA_INK.get())
                 )
         );
     }

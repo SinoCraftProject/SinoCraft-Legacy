@@ -6,6 +6,7 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import net.minecraftforge.common.IPlantable;
 
 public class Features {
@@ -39,12 +40,14 @@ public class Features {
             new TreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.LOG_PLUM.get().getDefaultState()),
                     new SimpleBlockStateProvider(Blocks.LEAVES_PLUM.get().getDefaultState()),
-                    new PineFoliagePlacer(1, 0))
-                    .baseHeight(4)
-                    .foliageHeight(3)
-                    .trunkHeight(3)
-                    .ignoreVines()
-                    .setSapling((IPlantable) Blocks.SAPLING_PLUM.get())
+                    new SpruceFoliagePlacer(2, 1)).
+                    baseHeight(6).
+                    heightRandA(3).
+                    trunkHeight(1).
+                    trunkHeightRandom(1).
+                    trunkTopOffsetRandom(2).
+                    ignoreVines().
+                    setSapling((IPlantable) Blocks.SAPLING_PLUM.get())
                     .build();
 
     public static final TreeFeatureConfig TREE_MULBERRY_CONFIG =
@@ -56,7 +59,7 @@ public class Features {
                     .build();
 
     public static final OreFeatureConfig WHITE_MARBLE_CONFIG = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.BLACK_MARBLE.get().getDefaultState(), 17);
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.WHITE_MARBLE.get().getDefaultState(), 17);
 
     public static final OreFeatureConfig BLACK_MARBLE_CONFIG = new OreFeatureConfig(
             OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.BLACK_MARBLE.get().getDefaultState(), 17);

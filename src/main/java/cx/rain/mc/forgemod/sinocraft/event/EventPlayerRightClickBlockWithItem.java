@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.event;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.advanement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

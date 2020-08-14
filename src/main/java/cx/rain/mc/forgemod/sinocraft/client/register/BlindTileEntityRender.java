@@ -12,7 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = SinoCraft.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class BlindTER {
+public class BlindTileEntityRender {
 
     @SubscribeEvent
     public static void blind(FMLClientSetupEvent event) {

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:charcoal"
   },
-  "result": "sinocraft:china_ink",
+  "result": "sinocraft:charcoal_black",
   "experience": 2.0,
-  "cookingtime": 800
+  "cookingtime": 400
 }
