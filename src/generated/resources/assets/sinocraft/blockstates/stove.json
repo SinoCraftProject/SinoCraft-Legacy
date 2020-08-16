@@ -2,8 +2,8 @@
   "multipart": [
     {
       "when": {
-        "state": "close",
-        "facing": "north"
+        "facing": "north",
+        "state": "close"
       },
       "apply": {
         "model": "sinocraft:block/stove_off"
@@ -11,8 +11,8 @@
     },
     {
       "when": {
-        "state": "close",
-        "facing": "south"
+        "facing": "south",
+        "state": "close"
       },
       "apply": {
         "model": "sinocraft:block/stove_off",
@@ -21,8 +21,8 @@
     },
     {
       "when": {
-        "state": "close",
-        "facing": "west"
+        "facing": "west",
+        "state": "close"
       },
       "apply": {
         "model": "sinocraft:block/stove_off",
@@ -31,8 +31,8 @@
     },
     {
       "when": {
-        "state": "close",
-        "facing": "east"
+        "facing": "east",
+        "state": "close"
       },
       "apply": {
         "model": "sinocraft:block/stove_off",
@@ -41,8 +41,8 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
-        "facing": "north"
+        "facing": "north",
+        "state": "idle|damaged|working|overload"
       },
       "apply": {
         "model": "sinocraft:block/stove_on"
@@ -50,8 +50,8 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
-        "facing": "south"
+        "facing": "south",
+        "state": "idle|damaged|working|overload"
       },
       "apply": {
         "model": "sinocraft:block/stove_on",
@@ -60,8 +60,8 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
-        "facing": "west"
+        "facing": "west",
+        "state": "idle|damaged|working|overload"
       },
       "apply": {
         "model": "sinocraft:block/stove_on",
@@ -70,8 +70,8 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
-        "facing": "east"
+        "facing": "east",
+        "state": "idle|damaged|working|overload"
       },
       "apply": {
         "model": "sinocraft:block/stove_on",

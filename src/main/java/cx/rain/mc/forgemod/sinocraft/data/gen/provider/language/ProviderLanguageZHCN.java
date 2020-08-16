@@ -95,6 +95,13 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.MILLET, "小米");
         addItem(Items.SORGHUM, "高粱米");
 
+        addItem(Items.FLOUR, "面粉");
+        addItem(Items.DOUGH, "面团");
+        addItem(Items.DUMPLING, "饺子");
+        addItem(Items.DUMPLING_WRAPPER, "饺子皮");
+        addItem(Items.COOKED_DUMPLING, "熟饺子");
+        addItem(Items.STUFFING, "馅");
+
         addItem(BlockItems.GREEN_RADISH, "青萝卜");
         addItem(BlockItems.SUMMER_RADISH, "水萝卜");
         addItem(BlockItems.WHITE_RADISH, "白萝卜");

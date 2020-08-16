@@ -71,6 +71,13 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.MILLET, "Millet");
         addItem(Items.SORGHUM, "Sorghum");
 
+        addItem(Items.FLOUR, "Flour");
+        addItem(Items.DOUGH, "Dough");
+        addItem(Items.DUMPLING, "Dumpling");
+        addItem(Items.DUMPLING_WRAPPER, "Dumpling Wrapper");
+        addItem(Items.COOKED_DUMPLING, "Cooked Dumpling");
+        addItem(Items.STUFFING, "Stuffing");
+
         addItem(BlockItems.GREEN_RADISH, "Green Radish");
         addItem(BlockItems.SUMMER_RADISH, "Summer Radish");
         addItem(BlockItems.WHITE_RADISH, "White Radish");

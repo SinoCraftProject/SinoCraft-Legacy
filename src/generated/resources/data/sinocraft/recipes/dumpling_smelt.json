@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sinocraft:dumpling"
+  },
+  "result": "sinocraft:cooked_dumpling",
+  "experience": 2.0,
+  "cookingtime": 400
+}

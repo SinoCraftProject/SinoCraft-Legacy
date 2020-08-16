@@ -15,7 +15,7 @@ public class Containers {
     public static final DeferredRegister<ContainerType<?>> REGISTRY = new DeferredRegister<>(ForgeRegistries.CONTAINERS, SinoCraft.MODID);
     public static RegistryObject<ContainerType<ContainerChineseBrush>> CHINESE_BRUSH = REGISTRY.register("chinese_brush", () ->
             IForgeContainerType.create((int windowId, PlayerInventory inv, PacketBuffer data) ->
-                    new ContainerChineseBrush(windowId, new Inventory(2), inv)
+                    new ContainerChineseBrush(windowId, new Inventory(3), inv)
             )
     );
 

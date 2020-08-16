@@ -74,17 +74,24 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("summer_radish").parent(GENERATED).texture("layer0", modLoc("item/summer_radish"));
         getBuilder("green_radish").parent(GENERATED).texture("layer0", modLoc("item/green_radish"));
 
-        getBuilder("bark").parent(GENERATED).texture("layer0",modLoc("item/bark"));
+        getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
+        getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));
+        getBuilder("dumpling_wrapper").parent(GENERATED).texture("layer0", modLoc("item/dumpling_wrapper"));
+        getBuilder("dumpling").parent(GENERATED).texture("layer0", modLoc("item/dumpling"));
+        getBuilder("cooked_dumpling").parent(GENERATED).texture("layer0", modLoc("item/cooked_dumpling"));
+        getBuilder("stuffing").parent(GENERATED).texture("layer0", modLoc("item/stuffing"));
 
-        getBuilder("knife_iron").parent(GENERATED).texture("layer0",modLoc("item/knife_iron"));
-        getBuilder("knife_gold").parent(GENERATED).texture("layer0",modLoc("item/knife_gold"));
-        getBuilder("knife_diamond").parent(GENERATED).texture("layer0",modLoc("item/knife_diamond"));
-        getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
+        getBuilder("bark").parent(GENERATED).texture("layer0",modLoc("item/bark"));
         getBuilder("china_ink").parent(GENERATED).texture("layer0",modLoc("item/china_ink"));
         getBuilder("bucket_wood_pulp").parent(GENERATED).texture("layer0",modLoc("item/bucket_wood_pulp"));
         getBuilder("xuan_paper").parent(GENERATED).texture("layer0",modLoc("item/xuan_paper"));
         getBuilder("charcoal_black").parent(GENERATED).texture("layer0", modLoc("item/charcoal_black"));
         getBuilder("ink_stone").parent(GENERATED).texture("layer0", modLoc("item/ink_stone"));
+
+        getBuilder("knife_iron").parent(GENERATED).texture("layer0",modLoc("item/knife_iron"));
+        getBuilder("knife_gold").parent(GENERATED).texture("layer0",modLoc("item/knife_gold"));
+        getBuilder("knife_diamond").parent(GENERATED).texture("layer0",modLoc("item/knife_diamond"));
+        getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
     }
 
     @Override
