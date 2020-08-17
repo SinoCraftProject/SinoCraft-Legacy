@@ -8,11 +8,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 public class ContainerChineseBrush extends Container {
+    public IInventory inventory;
+
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
         super(Containers.CHINESE_BRUSH.get(), id);
-        this.addSlot(new Slot(itemInventory, 0, 140, 124));
+        this.inventory = itemInventory;
+        this.addSlot(new Slot(itemInventory, 0, 10, 21));
+        this.addSlot(new Slot(itemInventory, 1, 10, 60));
+        this.addSlot(new Slot(itemInventory, 2, 10, 198));
         itemInventory.setInventorySlotContents(0, new ItemStack(Items.DIAMOND));
-        layoutPlayerInventorySlots(playerInventory, 8, 124);
+        itemInventory.setInventorySlotContents(1, new ItemStack(Items.IRON_AXE));
+        itemInventory.setInventorySlotContents(2, new ItemStack(Items.RED_SAND));
+        layoutPlayerInventorySlots(playerInventory, 16, 154);
+    }
+
+    @Override
+    public void onContainerClosed(PlayerEntity playerIn) {
+        super.onContainerClosed(playerIn);
+        this.clearContainer(playerIn, playerIn.world, this.inventory);
     }
 
     private int addSlotRange(IInventory inventory, int index, int x, int y, int amount, int dx) {

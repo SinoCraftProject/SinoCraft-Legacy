@@ -12,6 +12,7 @@ public class BlockMarble extends Block {
         super(Properties.create(Material.ROCK, typeIn.getColor())
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(2)
+                .hardnessAndResistance(1.5F, 6.0F)
         );
 
         type = typeIn;

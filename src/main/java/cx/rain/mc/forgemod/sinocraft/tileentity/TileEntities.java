@@ -18,6 +18,9 @@ public class TileEntities {
     public static RegistryObject<TileEntityType<TileEntityVat>> VAT = REGISTRY.register("vat",
             () -> TileEntityType.Builder.create(TileEntityVat::new, Blocks.VAT.get()).build(null));
 
+    public static RegistryObject<TileEntityType<TileEntityStoneMill>> STONE_MILL = REGISTRY.register("stone_mill",
+            () -> TileEntityType.Builder.create(TileEntityStoneMill::new, Blocks.STONE_MILL.get()).build(null));
+
     public TileEntities(IEventBus bus) {
         SinoCraft.getInstance().getLog().info("Registering tileentities.");
         REGISTRY.register(bus);

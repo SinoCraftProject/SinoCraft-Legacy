@@ -25,7 +25,15 @@ public class TileEntityVat extends TileEntityMachineBase {
     private static Map<Item,FluidStack> recipes2 = new HashMap<>();
     private static Map<Item,Integer> consume = new HashMap<>();
 
-    private ItemStackHandler itemHandler = new ItemStackHandler(2){
+    private class VatItemHandler extends ItemStackHandler {
+        public VatItemHandler() {
+            super(2);
+        }
+
+        public void setResult(ItemStack result) {
+            stacks.set(0, result);
+        }
+
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -35,7 +43,9 @@ public class TileEntityVat extends TileEntityMachineBase {
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             return consume.containsKey(stack.getItem());
         }
-    };
+    }
+
+    private VatItemHandler itemHandler = new VatItemHandler();
 
     private FluidStack fluid = FluidStack.EMPTY;
     int progress=0;
@@ -52,6 +62,7 @@ public class TileEntityVat extends TileEntityMachineBase {
 
     private void registerDefaultRecipes(){
         registerRecipe(new ItemStack(Items.BARK.get(),3),new FluidStack(Fluids.WOOD_PULP.get(),1000));
+        registerRecipe(new ItemStack(Items.FLOUR.get(),2),new ItemStack(Items.DOUGH.get()));
     }
 
     public TileEntityVat() {
@@ -177,7 +188,7 @@ public class TileEntityVat extends TileEntityMachineBase {
                 if(progress == 400) {
                     progress = 0;
                     if (recipes.containsKey(stack.getItem())) {
-                        itemHandler.insertItem(0,recipes.get(stack.getItem()),false);
+                        itemHandler.setResult(recipes.get(stack.getItem()));
                         this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
                         this.fluid = FluidStack.EMPTY;
                     }

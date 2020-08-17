@@ -11,7 +11,9 @@ import net.minecraft.util.text.StringTextComponent;
 import javax.annotation.Nullable;
 
 public class ContainerChineseBrushProvider implements INamedContainerProvider {
-    private Inventory inventory = new Inventory(2);
+    private Inventory inventory = new Inventory(3){
+
+    };
 
     public ContainerChineseBrushProvider() {
 

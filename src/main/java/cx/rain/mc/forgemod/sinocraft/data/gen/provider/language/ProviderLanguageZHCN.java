@@ -65,10 +65,12 @@ public class ProviderLanguageZHCN extends LanguageProvider {
 
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","真正的屠杀!");
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","用小刀杀死每一种生物.");
-    
 
         add("advancement.sinocraft.basic.get_china_ink.title","墨香扑鼻!");
         add("advancement.sinocraft.basic.get_china_ink.description","获得墨.");
+
+        add("advancement.sinocraft.basic.get_stone_mill.title","磨坊主");
+        add("advancement.sinocraft.basic.get_stone_mill.description","获得石磨.");
     }
 
     private void addItemGroups() {
@@ -94,6 +96,13 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.RICE, "大米");
         addItem(Items.MILLET, "小米");
         addItem(Items.SORGHUM, "高粱米");
+
+        addItem(Items.FLOUR, "面粉");
+        addItem(Items.DOUGH, "面团");
+        addItem(Items.DUMPLING, "饺子");
+        addItem(Items.DUMPLING_WRAPPER, "饺子皮");
+        addItem(Items.COOKED_DUMPLING, "熟饺子");
+        addItem(Items.STUFFING, "馅");
 
         addItem(BlockItems.GREEN_RADISH, "青萝卜");
         addItem(BlockItems.SUMMER_RADISH, "水萝卜");
