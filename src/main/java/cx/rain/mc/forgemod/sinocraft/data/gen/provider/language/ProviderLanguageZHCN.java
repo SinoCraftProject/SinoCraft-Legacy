@@ -65,10 +65,12 @@ public class ProviderLanguageZHCN extends LanguageProvider {
 
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","真正的屠杀!");
         add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","用小刀杀死每一种生物.");
-    
 
         add("advancement.sinocraft.basic.get_china_ink.title","墨香扑鼻!");
         add("advancement.sinocraft.basic.get_china_ink.description","获得墨.");
+
+        add("advancement.sinocraft.basic.get_stone_mill.title","磨坊主");
+        add("advancement.sinocraft.basic.get_stone_mill.description","获得石磨.");
     }
 
     private void addItemGroups() {

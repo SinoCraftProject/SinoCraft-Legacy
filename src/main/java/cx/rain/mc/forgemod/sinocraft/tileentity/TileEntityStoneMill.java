@@ -23,10 +23,6 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
     private static Map<Item,ItemStack> recipes = new HashMap<>();
 
     private ItemStackHandler itemHandler = new ItemStackHandler(1){
-        public void setResult(ItemStack stack) {
-            stacks.set(1, stack);
-        }
-
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();

@@ -46,6 +46,9 @@ public class ProviderLanguageENUS extends LanguageProvider {
 
         add("advancement.sinocraft.basic.get_china_ink.title","Smell of ink!");
         add("advancement.sinocraft.basic.get_china_ink.description","Get china ink.");
+
+        add("advancement.sinocraft.basic.get_stone_mill.title","Miller");
+        add("advancement.sinocraft.basic.get_stone_mill.description","Get stone mill.");
     }
 
     private void addItemGroups() {

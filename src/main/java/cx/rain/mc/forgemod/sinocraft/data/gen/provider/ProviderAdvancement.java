@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
+import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderBaseAdvancement;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
@@ -85,6 +86,14 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
                 new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
                 withCriterion("get_china_ink",this.hasItem(Items.CHINA_INK.get())
+                )
+        );
+
+        Advancements.put(new ResourceLocation(ID,"basic/get_stone_mill"),ChildAdvancement(
+                new ItemStack(Items.CHINA_INK.get()),"advancement.sinocraft.basic.get_stone_mill.title","advancement.sinocraft.basic.get_stone_mill.description",
+                new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+                withRequirementsStrategy(IRequirementsStrategy.AND).
+                withCriterion("get_stone_mill",this.hasItem(Blocks.STONE_MILL.get())
                 )
         );
     }

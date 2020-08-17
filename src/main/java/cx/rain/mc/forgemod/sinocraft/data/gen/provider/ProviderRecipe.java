@@ -84,6 +84,15 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 addCriterion("has_plank", this.hasItem(ItemTags.PLANKS)).
                 build(consumer,new ResourceLocation(ID,"vat"));
 
+        ShapedRecipeBuilder.shapedRecipe(Blocks.PAPER_DRYING_RACK.get()).
+                key('#', ItemTags.PLANKS).
+                key('|', net.minecraft.item.Items.STICK).
+                patternLine("  #").
+                patternLine(" #|").
+                patternLine("# |").
+                addCriterion("has_plank", this.hasItem(ItemTags.PLANKS)).
+                build(consumer,new ResourceLocation(ID,"paper_drying_rack"));
+
         ShapelessRecipeBuilder.shapelessRecipe(Blocks.PLANK_MULBERRY.get(),4).
                 addIngredient(TagItem.LOG_MULBERRY).
                 addCriterion("has_log", this.hasItem(Blocks.LOG_MULBERRY.get())).
