@@ -11,6 +11,8 @@ public class ProviderItemModel extends ItemModelProvider {
     public static final ModelFile.UncheckedModelFile GENERATED =
             new ModelFile.UncheckedModelFile("item/generated");
 
+    public static final ModelFile.UncheckedModelFile TEMPLATE_SPAWN_EGG = new ModelFile.UncheckedModelFile("item/template_spawn_egg");
+
     public ProviderItemModel(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, SinoCraft.MODID, exFileHelper);
     }
@@ -92,6 +94,8 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("knife_gold").parent(GENERATED).texture("layer0",modLoc("item/knife_gold"));
         getBuilder("knife_diamond").parent(GENERATED).texture("layer0",modLoc("item/knife_diamond"));
         getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
+
+        getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
     }
 
     @Override

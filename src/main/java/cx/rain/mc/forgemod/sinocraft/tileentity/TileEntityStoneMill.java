@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
-import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TileEntityStoneMill extends TileEntityMachineBase {
-    private static Map<Item,ItemStack> recipes = new HashMap<>();
+    private static Map<String,ItemStack> recipes = new HashMap<>();
 
     private ItemStackHandler itemHandler = new ItemStackHandler(1){
         @Override
@@ -30,14 +29,14 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
 
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            return recipes.containsKey(stack.getItem());
+            return recipes.containsKey(stack.getItem().getRegistryName().toString());
         }
     };
 
     int progress=0;
 
     public static void registerRecipe(Item material,ItemStack result){
-        recipes.put(material,result);
+        recipes.put(material.getRegistryName().toString(),result);
     }
 
     private void registerDefaultRecipes(){
@@ -72,7 +71,7 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
         progress ++;
         if (progress == 20) {
             progress = 0;
-            InventoryHelper.spawnItemStack(world,pos.getX(),pos.getY(),pos.getZ(),recipes.get(itemHandler.getStackInSlot(0).getItem()));
+            InventoryHelper.spawnItemStack(world,pos.getX(),pos.getY(),pos.getZ(),recipes.get(itemHandler.getStackInSlot(0).getItem().getRegistryName().toString()).copy());
             itemHandler.extractItem(0,1,false);
         }
         markDirty();

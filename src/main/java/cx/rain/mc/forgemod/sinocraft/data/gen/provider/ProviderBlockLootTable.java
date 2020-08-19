@@ -41,7 +41,7 @@ public class ProviderBlockLootTable extends ProviderBaseBlockLootTable {
         getLootTables().put(Blocks.LOG_MULBERRY_BARK.get(), tableNormal("log_mulberry_skin", Blocks.LOG_MULBERRY_BARK.get()));
         getLootTables().put(Blocks.LOG_MULBERRY_STRIPPED_BARK.get(), tableNormal("log_mulberry_stripped_skin", Blocks.LOG_MULBERRY_STRIPPED_BARK.get()));
         getLootTables().put(Blocks.PLANK_MULBERRY.get(), tableNormal("plank_mulberry", Blocks.PLANK_MULBERRY.get()));
-        getLootTables().put(Blocks.LEAVES_MULBERRY.get(), tableWithPools(droppingSilkwormAndSaplingAndSticksWithChance("leaves_mulberry_sapling", Items.SILKWORM.get(), Blocks.SAPLING_MULBERRY.get()), droppingLeavesWithShearsOrSilkTouch("leaves_mulberry", Blocks.LEAVES_MULBERRY.get())));
+        getLootTables().put(Blocks.LEAVES_MULBERRY.get(), tableWithPools(droppingSilkwormAndSaplingAndSticksWithChance("leaves_mulberry_sapling", net.minecraft.block.Blocks.AIR, Blocks.SAPLING_MULBERRY.get()), droppingLeavesWithShearsOrSilkTouch("leaves_mulberry", Blocks.LEAVES_MULBERRY.get())));
         getLootTables().put(Blocks.SAPLING_MULBERRY.get(), tableNormal("sapling_mulberry", Blocks.SAPLING_MULBERRY.get()));
 
         getLootTables().put(Blocks.WHITE_MARBLE.get(), tableNormal("white_marble", Blocks.WHITE_MARBLE.get()));
@@ -53,12 +53,12 @@ public class ProviderBlockLootTable extends ProviderBaseBlockLootTable {
         getLootTables().put(Blocks.WHITE_RADISH_PLANT.get(), tableWithPools(droppingSeeds("white_radish_seed", Blocks.WHITE_RADISH_PLANT.get()), droppingCropsByAge("white_radish", Blocks.WHITE_RADISH_PLANT.get(), 7, Blocks.WHITE_RADISH_PLANT.get())));
         getLootTables().put(Blocks.CHILI_PEPPER_PLANT.get(), tableWithPools(droppingSeeds("chili_pepper_seeds", Items.CHILI_PEPPER_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("chili_pepper", Blocks.CHILI_PEPPER_PLANT.get(), 7, Items.CHILI_PEPPER_SEED.get(), Items.CHILI_PEPPER.get())));
         getLootTables().put(Blocks.GREEN_PEPPER_PLANT.get(), tableWithPools(droppingSeeds("green_pepper_seeds", Items.GREEN_PEPPER_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("green_pepper", Blocks.GREEN_PEPPER_PLANT.get(), 7, Items.GREEN_PEPPER_SEED.get(), Items.GREEN_PEPPER.get())));
-        getLootTables().put(Blocks.EGGPLANT_PLANT.get(), tableWithPools(droppingSeeds("eggplant_seeds", Items.EGGPLANT_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("eggplant", Blocks.EGGPLANT_PLANT.get(), 7, Items.EGGPLANT_SEED.get(), Items.EGGPLANT.get())));
-        getLootTables().put(Blocks.CABBAGE_PLANT.get(), tableWithPools(droppingSeeds("cabbage_seeds", Items.CABBAGE_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("cabbage", Blocks.CABBAGE_PLANT.get(), 7, Items.CABBAGE_SEED.get(), Items.CABBAGE.get())));
-        getLootTables().put(Blocks.RICE_PLANT.get(), tableWithPools(droppingSeeds("rice_seeds", Items.RICE_SEED.get()), droppingCropsWithChanceByAge("rice", Blocks.RICE_PLANT.get(), 7, Items.RICE_SEED.get(), 2, 5)));
-        getLootTables().put(Blocks.MILLET_PLANT.get(), tableWithPools(droppingSeeds("millet_seeds", Items.MILLET_SEED.get()), droppingCropsWithChanceByAge("millet", Blocks.MILLET_PLANT.get(), 7, Items.MILLET_SEED.get(), 2, 5)));
-        getLootTables().put(Blocks.SORGHUM_PLANT.get(), tableWithPools(droppingSeeds("sorghum_seeds", Items.SORGHUM_SEED.get()), droppingCropsWithChanceByAge("sorghum", Blocks.SORGHUM_PLANT.get(), 7, Items.SORGHUM_SEED.get(), 2, 5)));
-        getLootTables().put(Blocks.SOYBEAN_PLANT.get(), tableWithPools(droppingSeeds("soybean_seeds", Items.SOYBEAN.get()), droppingCropsWithChanceByAge("soybean", Blocks.SOYBEAN_PLANT.get(), 7, Items.SOYBEAN.get(), 2, 5)));
+        //getLootTables().put(Blocks.EGGPLANT_PLANT.get(), tableWithPools(droppingSeeds("eggplant_seeds", Items.EGGPLANT_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("eggplant", Blocks.EGGPLANT_PLANT.get(), 7, Items.EGGPLANT_SEED.get(), Items.EGGPLANT.get())));
+        //getLootTables().put(Blocks.CABBAGE_PLANT.get(), tableWithPools(droppingSeeds("cabbage_seeds", Items.CABBAGE_SEED.get()), droppingSeedsAndFruitsWithChanceByAge("cabbage", Blocks.CABBAGE_PLANT.get(), 7, Items.CABBAGE_SEED.get(), Items.CABBAGE.get())));
+        //getLootTables().put(Blocks.RICE_PLANT.get(), tableWithPools(droppingSeeds("rice_seeds", Items.RICE_SEED.get()), droppingCropsWithChanceByAge("rice", Blocks.RICE_PLANT.get(), 7, Items.RICE_SEED.get(), 2, 5)));
+        //getLootTables().put(Blocks.MILLET_PLANT.get(), tableWithPools(droppingSeeds("millet_seeds", Items.MILLET_SEED.get()), droppingCropsWithChanceByAge("millet", Blocks.MILLET_PLANT.get(), 7, Items.MILLET_SEED.get(), 2, 5)));
+        //getLootTables().put(Blocks.SORGHUM_PLANT.get(), tableWithPools(droppingSeeds("sorghum_seeds", Items.SORGHUM_SEED.get()), droppingCropsWithChanceByAge("sorghum", Blocks.SORGHUM_PLANT.get(), 7, Items.SORGHUM_SEED.get(), 2, 5)));
+        //getLootTables().put(Blocks.SOYBEAN_PLANT.get(), tableWithPools(droppingSeeds("soybean_seeds", Items.SOYBEAN.get()), droppingCropsWithChanceByAge("soybean", Blocks.SOYBEAN_PLANT.get(), 7, Items.SOYBEAN.get(), 2, 5)));
 
         getLootTables().put(Blocks.STONE_MILL.get(), tableNormal("black_marble", Blocks.STONE_MILL.get()));
         getLootTables().put(Blocks.PAPER_DRYING_RACK.get(), tableNormal("black_marble", Blocks.PAPER_DRYING_RACK.get()));

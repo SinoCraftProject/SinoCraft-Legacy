@@ -29,12 +29,12 @@ public class Blocks {
     public static RegistryObject<Block> GREEN_RADISH_PLANT = REGISTRY.register("green_radish_plant", () -> new BlockPlant(PlantType.GREEN_RADISH, BlockItems.GREEN_RADISH));
     public static RegistryObject<Block> CHILI_PEPPER_PLANT = REGISTRY.register("chili_pepper_plant", () -> new BlockPlant(PlantType.CHILI_PEPPER, Items.CHILI_PEPPER_SEED));
     public static RegistryObject<Block> GREEN_PEPPER_PLANT = REGISTRY.register("green_pepper_plant", () -> new BlockPlant(PlantType.GREEN_PEPPER, Items.GREEN_PEPPER_SEED));
-    public static RegistryObject<Block> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> new BlockPlant(PlantType.CABBAGE, Items.EGGPLANT_SEED));
-    public static RegistryObject<Block> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> new BlockPlant(PlantType.CABBAGE, Items.CABBAGE_SEED));
-    public static RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant", () -> new BlockPlant(PlantType.RICE, Items.RICE_SEED));
-    public static RegistryObject<Block> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new BlockPlant(PlantType.MILLET, Items.MILLET_SEED));
-    public static RegistryObject<Block> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new BlockPlant(PlantType.SOYBEAN, Items.SOYBEAN));
-    public static RegistryObject<Block> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new BlockPlant(PlantType.SORGHUM, Items.SORGHUM_SEED));
+    //public static RegistryObject<Block> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> new BlockPlant(PlantType.CABBAGE, Items.EGGPLANT_SEED));
+    //public static RegistryObject<Block> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> new BlockPlant(PlantType.CABBAGE, Items.CABBAGE_SEED));
+    //public static RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant", () -> new BlockPlant(PlantType.RICE, Items.RICE_SEED));
+    //public static RegistryObject<Block> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new BlockPlant(PlantType.MILLET, Items.MILLET_SEED));
+    //public static RegistryObject<Block> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new BlockPlant(PlantType.SOYBEAN, Items.SOYBEAN));
+    //public static RegistryObject<Block> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new BlockPlant(PlantType.SORGHUM, Items.SORGHUM_SEED));
 
     public static RegistryObject<Block> LOG_PEACH = REGISTRY.register("log_peach", () -> new BlockLog(LogType.PEACH, BlockLog.KIND.LOG));
     public static RegistryObject<Block> LOG_PEACH_BARK = REGISTRY.register("log_peach_bark", () -> new BlockLog(LogType.PEACH, BlockLog.KIND.LOG_BARK));

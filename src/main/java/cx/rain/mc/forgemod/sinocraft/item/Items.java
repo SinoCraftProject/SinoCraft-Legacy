@@ -23,17 +23,17 @@ public class Items {
 
     public static RegistryObject<Item> CHILI_PEPPER_SEED = REGISTRY.register("chili_pepper_seed", () -> new ItemSeed(Blocks.CHILI_PEPPER_PLANT.get(), PlantType.CHILI_PEPPER));
     public static RegistryObject<Item> GREEN_PEPPER_SEED = REGISTRY.register("green_pepper_seed", () -> new ItemSeed(Blocks.GREEN_PEPPER_PLANT.get(), PlantType.GREEN_PEPPER));
-    public static RegistryObject<Item> EGGPLANT_SEED = REGISTRY.register("eggplant_seed", () -> new ItemSeed(Blocks.EGGPLANT_PLANT.get(), PlantType.EGGPLANT));
-    public static RegistryObject<Item> CABBAGE_SEED = REGISTRY.register("cabbage_seed", () -> new ItemSeed(Blocks.CABBAGE_PLANT.get(), PlantType.CABBAGE));
-    public static RegistryObject<Item> RICE_SEED = REGISTRY.register("rice_seed", () -> new ItemSeed(Blocks.RICE_PLANT.get(), PlantType.RICE));
-    public static RegistryObject<Item> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(Blocks.MILLET_PLANT.get(), PlantType.MILLET));
-    public static RegistryObject<Item> SORGHUM_SEED = REGISTRY.register("sorghum_seed", () -> new ItemSeed(Blocks.SORGHUM_PLANT.get(), PlantType.SORGHUM));
+    //public static RegistryObject<Item> EGGPLANT_SEED = REGISTRY.register("eggplant_seed", () -> new ItemSeed(Blocks.EGGPLANT_PLANT.get(), PlantType.EGGPLANT));
+    //public static RegistryObject<Item> CABBAGE_SEED = REGISTRY.register("cabbage_seed", () -> new ItemSeed(Blocks.CABBAGE_PLANT.get(), PlantType.CABBAGE));
+    //public static RegistryObject<Item> RICE_SEED = REGISTRY.register("rice_seed", () -> new ItemSeed(Blocks.RICE_PLANT.get(), PlantType.RICE));
+    //public static RegistryObject<Item> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(Blocks.MILLET_PLANT.get(), PlantType.MILLET));
+    //public static RegistryObject<Item> SORGHUM_SEED = REGISTRY.register("sorghum_seed", () -> new ItemSeed(Blocks.SORGHUM_PLANT.get(), PlantType.SORGHUM));
 
-    public static RegistryObject<Item> SOYBEAN = REGISTRY.register("soybean", () -> new ItemSeed(Blocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
+    //public static RegistryObject<Item> SOYBEAN = REGISTRY.register("soybean", () -> new ItemSeed(Blocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
     public static RegistryObject<Item> RICE = REGISTRY.register("rice", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE)));
     public static RegistryObject<Item> MILLET = REGISTRY.register("millet", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE)));
     public static RegistryObject<Item> SORGHUM = REGISTRY.register("sorghum", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE)));
-    public static RegistryObject<Item> SILKWORM = REGISTRY.register("silkworm", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE)));
+    //public static RegistryObject<Item> SILKWORM = REGISTRY.register("silkworm", () -> new Item(new Item.Properties().group(Groups.AGRICULTURE)));
 
     public static RegistryObject<Item> FLOUR = REGISTRY.register("flour", () -> new Item(new Item.Properties().group(Groups.FOODS)));
     public static RegistryObject<Item> DOUGH = REGISTRY.register("dough", () -> new Item(new Item.Properties().group(Groups.FOODS)));

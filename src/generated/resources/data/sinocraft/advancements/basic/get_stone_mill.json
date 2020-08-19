@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:china_ink",
-      "nbt": "{Damage:0}"
+      "item": "sinocraft:flour"
     },
     "title": {
       "translate": "advancement.sinocraft.basic.get_stone_mill.title"

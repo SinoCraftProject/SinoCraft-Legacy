@@ -8,6 +8,7 @@ import cx.rain.mc.forgemod.sinocraft.gui.Containers;
 import cx.rain.mc.forgemod.sinocraft.hook.Hooks;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -16,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static net.minecraft.entity.EntityType.ZOMBIE;
 
 @SuppressWarnings("deprecation")
 @Mod(value = SinoCraft.MODID)
@@ -32,7 +35,6 @@ public class SinoCraft {
 
     public SinoCraft() {
         INSTANCE = this;
-
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::setupClient);

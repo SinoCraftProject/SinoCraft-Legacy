@@ -53,7 +53,8 @@ public class Entities {
         //primaryColorIn是底色，secondaryColorIn是斑点的颜色
         //填入的为十六进制RGB颜色转换为的十进制值
         //直接获取十进制颜色的网页：https://www.shuxuele.com/hexadecimal-decimal-colors.html
-        //下面建议注册的ID 为 spawn_egg_***
+        //下面建议注册的ID 为 spawn_egg_***(错误
+        //不能加注册ID!!!
         event.getRegistry().register(new SpawnEggItem(ENTITY_BUFFALO, 11434029, 13027014,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName("spawn_egg_buffalo"));
         /*

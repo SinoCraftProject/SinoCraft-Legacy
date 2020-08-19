@@ -90,7 +90,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
         );
 
         Advancements.put(new ResourceLocation(ID,"basic/get_stone_mill"),ChildAdvancement(
-                new ItemStack(Items.CHINA_INK.get()),"advancement.sinocraft.basic.get_stone_mill.title","advancement.sinocraft.basic.get_stone_mill.description",
+                new ItemStack(Items.FLOUR.get()),"advancement.sinocraft.basic.get_stone_mill.title","advancement.sinocraft.basic.get_stone_mill.description",
                 new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
                 withCriterion("get_stone_mill",this.hasItem(Blocks.STONE_MILL.get())

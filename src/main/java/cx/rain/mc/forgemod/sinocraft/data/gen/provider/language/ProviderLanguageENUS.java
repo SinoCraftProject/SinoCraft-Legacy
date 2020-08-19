@@ -64,12 +64,12 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(Items.PEACH, "Peach");
         addItem(Items.CHILI_PEPPER_SEED, "Chilipepper Seeds");
         addItem(Items.GREEN_PEPPER_SEED, "Green Pepper Seeds");
-        addItem(Items.CABBAGE_SEED, "Chinese Cabbage Seeds");
-        addItem(Items.EGGPLANT_SEED, "Eggplant Seeds");
-        addItem(Items.RICE_SEED, "Rice Seeds");
-        addItem(Items.MILLET_SEED, "Millet Seeds");
-        addItem(Items.SORGHUM_SEED, "Sorghum Seeds");
-        addItem(Items.SOYBEAN, "Soybean");
+        //addItem(Items.CABBAGE_SEED, "Chinese Cabbage Seeds");
+        //addItem(Items.EGGPLANT_SEED, "Eggplant Seeds");
+        //addItem(Items.RICE_SEED, "Rice Seeds");
+        //addItem(Items.MILLET_SEED, "Millet Seeds");
+        //addItem(Items.SORGHUM_SEED, "Sorghum Seeds");
+        //addItem(Items.SOYBEAN, "Soybean");
         addItem(Items.RICE, "Rice");
         addItem(Items.MILLET, "Millet");
         addItem(Items.SORGHUM, "Sorghum");
