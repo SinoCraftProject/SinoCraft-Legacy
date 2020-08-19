@@ -21,19 +21,19 @@ public class Ores {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.BLACK_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 128)))
             );
 
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.WHITE_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 128)))
             );
 
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                     Feature.ORE.withConfiguration(
                             Features.RED_MARBLE_CONFIG
-                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 128)))
+                    ).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 128)))
             );
         }
     }
