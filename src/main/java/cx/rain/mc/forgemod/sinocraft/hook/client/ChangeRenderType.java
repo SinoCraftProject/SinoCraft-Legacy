@@ -11,8 +11,8 @@ public class ChangeRenderType {
         RenderTypeLookup.setRenderLayer(Blocks.GREEN_RADISH_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.CHILI_PEPPER_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.GREEN_PEPPER_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.EGGPLANT_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(Blocks.CABBAGE_PLANT.get(), RenderType.getCutout());
+        //RenderTypeLookup.setRenderLayer(Blocks.EGGPLANT_PLANT.get(), RenderType.getCutout());
+        //RenderTypeLookup.setRenderLayer(Blocks.CABBAGE_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_PEACH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_WALNUT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(Blocks.SAPLING_MULBERRY.get(), RenderType.getCutout());

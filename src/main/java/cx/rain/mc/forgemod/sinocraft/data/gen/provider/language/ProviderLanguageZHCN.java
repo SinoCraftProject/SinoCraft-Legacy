@@ -87,12 +87,12 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(Items.PEACH, "桃子");
         addItem(Items.CHILI_PEPPER_SEED, "辣椒种子");
         addItem(Items.GREEN_PEPPER_SEED, "青椒种子");
-        addItem(Items.CABBAGE_SEED, "白菜种子");
-        addItem(Items.EGGPLANT_SEED, "茄子种子");
-        addItem(Items.RICE_SEED, "稻谷");
-        addItem(Items.MILLET_SEED, "谷子");
-        addItem(Items.SORGHUM_SEED, "高粱");
-        addItem(Items.SOYBEAN, "大豆");
+        //addItem(Items.CABBAGE_SEED, "白菜种子");
+        //addItem(Items.EGGPLANT_SEED, "茄子种子");
+        //addItem(Items.RICE_SEED, "稻谷");
+        //addItem(Items.MILLET_SEED, "谷子");
+        //addItem(Items.SORGHUM_SEED, "高粱");
+        //addItem(Items.SOYBEAN, "大豆");
         addItem(Items.RICE, "大米");
         addItem(Items.MILLET, "小米");
         addItem(Items.SORGHUM, "高粱米");

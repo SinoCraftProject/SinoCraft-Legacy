@@ -41,7 +41,7 @@
     },
     {
       "when": {
-        "state": "working|overload|idle|damaged",
+        "state": "damaged|overload|idle|working",
         "facing": "north"
       },
       "apply": {
@@ -50,7 +50,7 @@
     },
     {
       "when": {
-        "state": "working|overload|idle|damaged",
+        "state": "damaged|overload|idle|working",
         "facing": "south"
       },
       "apply": {
@@ -60,7 +60,7 @@
     },
     {
       "when": {
-        "state": "working|overload|idle|damaged",
+        "state": "damaged|overload|idle|working",
         "facing": "west"
       },
       "apply": {
@@ -70,7 +70,7 @@
     },
     {
       "when": {
-        "state": "working|overload|idle|damaged",
+        "state": "damaged|overload|idle|working",
         "facing": "east"
       },
       "apply": {
