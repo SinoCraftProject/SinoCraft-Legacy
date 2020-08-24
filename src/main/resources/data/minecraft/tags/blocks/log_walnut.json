@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "sinocraft:log_walnut",
+    "sinocraft:log_walnut_bark",
+    "sinocraft:log_walnut_stripped",
+    "sinocraft:log_walnut_stripped_bark"
+  ]
+}
