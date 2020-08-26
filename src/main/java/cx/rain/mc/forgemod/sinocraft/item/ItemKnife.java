@@ -61,7 +61,7 @@ public class ItemKnife extends SwordItem {
 
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
-            if((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a").get(type.getWorld().getBlockState(type.getPos()).getBlock()) != null){
+            if(((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a")).get(type.getWorld().getBlockState(type.getPos()).getBlock()) != null){
                 return (context) -> {
                     LogBlock block = (LogBlock)context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(
