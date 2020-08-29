@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "minecraft:charcoal"
-  },
-  "result": "sinocraft:charcoal_black",
-  "experience": 2.0,
-  "cookingtime": 400
-}
