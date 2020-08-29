@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.data.TagItem;

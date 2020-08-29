@@ -1,14 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft;
 
-import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
-import cx.rain.mc.forgemod.sinocraft.gui.Containers;
-import cx.rain.mc.forgemod.sinocraft.hook.Hooks;
+import cx.rain.mc.forgemod.sinocraft.gui.container.Containers;
+import cx.rain.mc.forgemod.sinocraft.side.Sides;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,8 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static net.minecraft.entity.EntityType.ZOMBIE;
 
 @SuppressWarnings("deprecation")
 @Mod(value = SinoCraft.MODID)
@@ -60,14 +57,14 @@ public class SinoCraft {
     private void setup(final FMLCommonSetupEvent event) {
         Log.info("Hello Minecraft!");
 
-        Hooks.hookCommon(event);
+        Sides.hookCommon(event);
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        Hooks.hookClient(event);
+        Sides.hookClient(event);
     }
 
     private void setupServer(final FMLDedicatedServerSetupEvent event) {
-        Hooks.hookServer(event);
+        Sides.hookServer(event);
     }
 }

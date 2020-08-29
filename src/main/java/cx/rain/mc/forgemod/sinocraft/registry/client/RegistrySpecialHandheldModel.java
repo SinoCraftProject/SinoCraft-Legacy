@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.registry.client;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.client.ModelHandheld;
+import cx.rain.mc.forgemod.sinocraft.side.client.ModelHandheld;
 import net.minecraft.client.renderer.model.*;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
