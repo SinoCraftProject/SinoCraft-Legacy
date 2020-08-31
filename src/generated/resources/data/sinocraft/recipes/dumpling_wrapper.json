@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sinocraft:dough"
+    }
+  ],
+  "result": {
+    "item": "sinocraft:dumpling_wrapper"
+  }
+}

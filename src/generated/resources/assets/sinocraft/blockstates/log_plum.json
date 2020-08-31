@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "sinocraft:block/log_plum",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "sinocraft:block/log_plum"
+    },
+    "axis=z": {
+      "model": "sinocraft:block/log_plum",
+      "x": 90
+    }
+  }
+}

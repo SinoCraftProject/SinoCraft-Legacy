@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "sinocraft:log_walnut"
+    }
+  ],
+  "result": {
+    "item": "sinocraft:plank_walnut",
+    "count": 4
+  }
+}

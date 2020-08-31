@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sinocraft:radish_green"
+          "name": "sinocraft:green_radish"
         }
       ]
     },
@@ -27,7 +27,7 @@
               }
             }
           ],
-          "name": "sinocraft:radish_green"
+          "name": "sinocraft:green_radish"
         }
       ],
       "conditions": [

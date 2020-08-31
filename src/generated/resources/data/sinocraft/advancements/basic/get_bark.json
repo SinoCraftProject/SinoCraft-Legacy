@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:knife_iron",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.basic.get_bark.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.basic.get_bark.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/knife",
+  "criteria": {
+    "get_bark": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:bark"
+          }
+        ]
+      }
+    },
+    "use_knife": {
+      "trigger": "sinocraft:shave_bark_with_knife",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "get_bark"
+    ],
+    [
+      "use_knife"
+    ]
+  ],
+  "rewards": {}
+}
