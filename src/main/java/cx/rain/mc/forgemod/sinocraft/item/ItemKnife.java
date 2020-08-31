@@ -61,11 +61,11 @@ public class ItemKnife extends SwordItem {
 
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
-            if(type.getWorld().getBlockState(type.getPos()).getBlock() instanceof LogBlock){
+            if(((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a")).get(type.getWorld().getBlockState(type.getPos()).getBlock()) != null){
                 return (context) -> {
                     LogBlock block = (LogBlock)context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(
-                            context.getPos(), ((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a")).get(block).getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
+                            context.getPos(), (((Map<Block, Block>)ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a"))).get(block).getDefaultState().with(LogBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(LogBlock.AXIS)));
                     InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                             context.getPos(),context.getItem());
