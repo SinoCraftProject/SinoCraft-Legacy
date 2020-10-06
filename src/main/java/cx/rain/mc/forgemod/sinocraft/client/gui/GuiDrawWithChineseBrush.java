@@ -14,8 +14,8 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
 
     protected GuiDrawWithChineseBrush(ContainerChineseBrush screenContainer, PlayerInventory playerInventory, ITextComponent titleIn) {
         super(screenContainer,playerInventory,titleIn);
-        this.xSize = 211;
-        this.ySize = 216;
+        this.xSize = 212;
+        this.ySize = 236;
     }
 
     @Override
@@ -43,8 +43,7 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
 
         this.minecraft.getTextureManager().bindTexture(BACKGROUND);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.blit(guiLeft, guiTop, 0, 0, 0, 241, 211, 211, 241);
-        //int x0, int y0, int z, float u0, float v0, int width, int height, int textureHeight, int textureWidth
+        this.blit(guiLeft, guiTop, 0, 0, 0, xSize, ySize, 256, 256);
     }
 
     @Override

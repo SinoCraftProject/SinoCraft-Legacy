@@ -24,9 +24,9 @@ public class ItemChineseBrush extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         if (! world.isRemote) {
-            //NetworkHooks.openGui((ServerPlayerEntity) player, new ContainerChineseBrushProvider(), (PacketBuffer packerBuffer) -> {
-            //    packerBuffer.writeItemStack(player.getHeldItem(hand));
-            //});
+            NetworkHooks.openGui((ServerPlayerEntity) player, new ContainerChineseBrushProvider(), (PacketBuffer packerBuffer) -> {
+                packerBuffer.writeItemStack(player.getHeldItem(hand));
+            });
         }
         return ActionResult.resultSuccess(player.getHeldItem(hand));
     }
