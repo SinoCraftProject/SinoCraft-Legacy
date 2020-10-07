@@ -6,9 +6,11 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.IIntArray;
 
 public class ContainerChineseBrush extends Container {
     public IInventory inventory;
+    public int color;
 
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
         super(Containers.CHINESE_BRUSH.get(), id);
@@ -20,6 +22,7 @@ public class ContainerChineseBrush extends Container {
         itemInventory.setInventorySlotContents(1, new ItemStack(Items.IRON_AXE));
         itemInventory.setInventorySlotContents(2, new ItemStack(Items.RED_SAND));
         layoutPlayerInventorySlots(playerInventory, 26, 154);
+        color = 0;
     }
 
     @Override
@@ -61,5 +64,13 @@ public class ContainerChineseBrush extends Container {
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         return ItemStack.EMPTY;
+    }
+
+    public void incColor() {
+        color = Math.min(16, color + 1);
+    }
+
+    public void decColor() {
+        color = Math.max(0, color - 1);
     }
 }
