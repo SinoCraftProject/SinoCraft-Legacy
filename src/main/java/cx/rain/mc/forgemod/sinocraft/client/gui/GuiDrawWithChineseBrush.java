@@ -3,10 +3,12 @@ package cx.rain.mc.forgemod.sinocraft.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.ContainerChineseBrush;
+import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -23,14 +25,16 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
 
     @Override
     protected void init() {
-        buttonUp = new Button(16, 112,11,7,"null",(button)->{this.container.incColor();}) {
+        super.init();
+        buttonUp = new Button(guiLeft + 16, guiTop + 112,11,7,"null",(button)->{this.container.incColor();SinoCraft.getInstance().getLog().info("test");}) {
             @Override
             public void render(int mouseX, int mouseY, float partialTicks) {
+                this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
                 Minecraft.getInstance().getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
                 RenderSystem.enableAlphaTest();
                 RenderSystem.enableBlend();
-                if (mouseX >= this.x && mouseY >= this.y && mouseX <= this.x + this.width && mouseY <= this.y + this.height) {
+                if (this.isHovered()) {
                     this.blit(this.x, this.y, 11, 243, this.width, this.height, 256, 256);
                 }
                 else {
@@ -40,14 +44,15 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
                 RenderSystem.disableBlend();
             }
         };
-        buttonDown = new Button(16, 166,11,7,"null",(button)->{this.container.decColor();}) {
+        buttonDown = new Button(guiLeft + 16, guiTop + 166,11,7,"null",(button)->{this.container.decColor();SinoCraft.getInstance().getLog().info("test");}) {
             @Override
             public void render(int mouseX, int mouseY, float partialTicks) {
+                this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
                 Minecraft.getInstance().getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
                 RenderSystem.enableAlphaTest();
                 RenderSystem.enableBlend();
-                if (mouseX >= this.x && mouseY >= this.y && mouseX <= this.x + this.width && mouseY <= this.y + this.height) {
+                if (this.isHovered()) {
                     this.blit(this.x, this.y, 0, 243, this.width, this.height, 256, 256);
                 }
                 else {
@@ -57,6 +62,8 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
                 RenderSystem.disableBlend();
             }
         };
+        this.addButton(buttonUp);
+        this.addButton(buttonDown);
         super.init();
     }
 
@@ -67,16 +74,36 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
         renderHoveredToolTip(mouseX, mouseY);
     }
 
-    //@Override
-    //public boolean mouseClicked(double mouseX, double mouseY, int keyCode) {
-    //    return super.mouseClicked(mouseX, mouseY, keyCode);
-    //}
+    @Override
+    public void tick() {
+        if (container.inventory.getStackInSlot(2).equals(ItemStack.EMPTY) && (! container.inventory.getStackInSlot(0).equals(ItemStack.EMPTY))) {
+            container.inventory.setInventorySlotContents(2, new ItemStack(Items.XUAN_PAPER.get()));
+            container.inventory.getStackInSlot(0).shrink(1);
+        }
+    }
+
+    protected void draw() {
+
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int keyCode) {
+        if (super.mouseClicked(mouseX, mouseY, keyCode)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int keyCode, double p_mouseDragged_6_, double p_mouseDragged_8_) {
+        if (super.mouseDragged(mouseX, mouseY, keyCode, p_mouseDragged_6_, p_mouseDragged_8_)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-
-        //ItemStack paper = this.container.getSlot(0).getStack();
-
         this.minecraft.getTextureManager().bindTexture(GUI);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.blit(guiLeft, guiTop, 0, 0, 0, xSize, ySize, 256, 256);
@@ -84,12 +111,7 @@ public class GuiDrawWithChineseBrush extends ContainerScreen<ContainerChineseBru
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        //this.minecraft.getTextureManager().bindTexture(PAINT_UNIT);
-        //RenderSystem.color4f(0, 0, 0, 1.0f);
-        //this.blit(this.width / 2 - 150,10,0,0,0.0f,4,4,2,2);
-        buttonUp.render(mouseX, mouseY, 20);
-        buttonDown.render(mouseX, mouseY, 20);
-        this.drawString(this.font, Integer.toString(this.container.color), 14, 139, 0x000000);
+        this.drawString(this.font, Integer.toString(this.container.color), 18, 139, 0xffffff);
     }
 
     public static GuiDrawWithChineseBrush create(ContainerChineseBrush container, PlayerInventory inventory, ITextComponent title) {

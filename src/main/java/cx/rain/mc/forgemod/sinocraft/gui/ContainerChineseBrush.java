@@ -1,12 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.gui;
 
+import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.IIntArray;
 
 public class ContainerChineseBrush extends Container {
     public IInventory inventory;
@@ -15,13 +14,25 @@ public class ContainerChineseBrush extends Container {
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
         super(Containers.CHINESE_BRUSH.get(), id);
         this.inventory = itemInventory;
-        this.addSlot(new Slot(itemInventory, 0, 11, 19));
-        this.addSlot(new Slot(itemInventory, 1, 11, 58));
-        this.addSlot(new Slot(itemInventory, 2, 11, 180));
-        itemInventory.setInventorySlotContents(0, new ItemStack(Items.DIAMOND));
-        itemInventory.setInventorySlotContents(1, new ItemStack(Items.IRON_AXE));
-        itemInventory.setInventorySlotContents(2, new ItemStack(Items.RED_SAND));
-        layoutPlayerInventorySlots(playerInventory, 26, 154);
+        this.addSlot(new Slot(itemInventory, 0, 14, 23) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return stack.getItem().equals(Items.XUAN_PAPER.get());
+            }
+        });
+        this.addSlot(new Slot(itemInventory, 1, 14, 66) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return stack.getItem().equals(Items.CHINA_INK.get());
+            }
+        });
+        this.addSlot(new Slot(itemInventory, 2, 14, 203) {
+            @Override
+            public int getSlotStackLimit() {
+                return 1;
+            }
+        });
+        layoutPlayerInventorySlots(playerInventory, 45, 155);
         color = 0;
     }
 
