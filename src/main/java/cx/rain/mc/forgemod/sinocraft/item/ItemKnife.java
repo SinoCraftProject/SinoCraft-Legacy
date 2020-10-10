@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.api.advancement.RegistryTrigger;
+import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
