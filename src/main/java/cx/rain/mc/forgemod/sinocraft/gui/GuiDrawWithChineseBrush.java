@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.gui.ContainerChineseBrush;
+import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
