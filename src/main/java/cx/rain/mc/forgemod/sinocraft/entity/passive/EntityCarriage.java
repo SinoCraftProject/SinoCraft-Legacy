@@ -19,7 +19,7 @@ public class EntityCarriage extends AnimalEntity {
 
 
     public EntityCarriage(World worldIn) {
-        super(Entities.ENTITY_BUFFALO, worldIn);
+        super(Entities.ENTITY_BUFFALO.get(), worldIn);
     }
 
     public EntityCarriage(EntityType<? extends EntityBuffalo> type, World worldIn) {

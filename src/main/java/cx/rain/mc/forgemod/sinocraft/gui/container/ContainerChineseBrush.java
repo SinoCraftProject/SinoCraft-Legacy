@@ -6,30 +6,26 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIntArray;
 
-public class ContainerChineseBrush extends Container {
+public class ContainerChineseBrush extends Container implements IIntArray {
     public IInventory inventory;
-    public int color;
+    public byte color;
 
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
         super(Containers.CHINESE_BRUSH.get(), id);
         this.inventory = itemInventory;
-        this.addSlot(new Slot(itemInventory, 0, 14, 23) {
+        trackIntArray(this);
+        this.addSlot(new Slot(inventory, 0, 14, 23) {
             @Override
             public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(Items.XUAN_PAPER.get());
+                return stack.getItem().equals(Items.XUAN_PAPER.get()) || stack == ItemStack.EMPTY;
             }
         });
-        this.addSlot(new Slot(itemInventory, 1, 14, 66) {
+        this.addSlot(new Slot(inventory, 1, 14, 66) {
             @Override
             public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(Items.CHINA_INK.get());
-            }
-        });
-        this.addSlot(new Slot(itemInventory, 2, 14, 203) {
-            @Override
-            public int getSlotStackLimit() {
-                return 1;
+                return stack.getItem().equals(Items.CHINA_INK.get()) || stack.getItem().equals(Items.INK_STONE.get()) || stack == ItemStack.EMPTY;
             }
         });
         layoutPlayerInventorySlots(playerInventory, 45, 155);
@@ -78,10 +74,25 @@ public class ContainerChineseBrush extends Container {
     }
 
     public void incColor() {
-        color = Math.min(16, color + 1);
+        color = (byte) Math.max(inventory.getStackInSlot(1).getDamage(), Math.min(15, color + 1));
     }
 
     public void decColor() {
-        color = Math.max(0, color - 1);
+        color = (byte) Math.max(0, color - 1);
+    }
+
+    @Override
+    public int get(int i) {
+        return color;
+    }
+
+    @Override
+    public void set(int i, int value) {
+        color = (byte) value;
+    }
+
+    @Override
+    public int size() {
+        return 1;
     }
 }

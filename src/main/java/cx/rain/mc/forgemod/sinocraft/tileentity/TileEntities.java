@@ -22,7 +22,7 @@ public class TileEntities {
             () -> TileEntityType.Builder.create(TileEntityStoneMill::new, Blocks.STONE_MILL.get()).build(null));
 
     public TileEntities(IEventBus bus) {
-        SinoCraft.getInstance().getLog().info("Registering tileentities.");
+        SinoCraft.getLog().info("Registering tileentities.");
         REGISTRY.register(bus);
     }
 }

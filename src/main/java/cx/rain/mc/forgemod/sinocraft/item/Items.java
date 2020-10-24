@@ -2,20 +2,20 @@ package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
+import cx.rain.mc.forgemod.sinocraft.entity.Entities;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Consumer;
 
 public class Items {
     public static final DeferredRegister<Item> REGISTRY =
@@ -49,8 +49,13 @@ public class Items {
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(Groups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(Fluids.WOOD_PULP, new Item.Properties().group(Groups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties().group(Groups.MISC)));
-    public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink",()->new Item(new Item.Properties().group(Groups.MISC).defaultMaxDamage(186)));
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties().group(Groups.MISC).maxStackSize(1)));
+    public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink",()->new Item(new Item.Properties().group(Groups.MISC).defaultMaxDamage(186)) {
+        @Override
+        public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+            return 0;
+        }
+    });
     public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black",()->new Item(new Item.Properties().group(Groups.MISC)));
     
     public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron",()->new ItemKnife(ItemTier.IRON));
@@ -59,8 +64,10 @@ public class Items {
     public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush",()->new ItemChineseBrush());
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone",()->new Item(new Item.Properties().group(Groups.TOOLS)));
 
+    public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(Entities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
+
     public Items(IEventBus bus) {
-        SinoCraft.getInstance().getLog().info("Registering items.");
+        SinoCraft.getLog().info("Registering items.");
         REGISTRY.register(bus);
     }
 }

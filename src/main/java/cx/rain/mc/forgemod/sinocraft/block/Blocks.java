@@ -80,7 +80,7 @@ public class Blocks {
     public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()->Fluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 
     public Blocks(IEventBus bus) {
-        SinoCraft.getInstance().getLog().info("Registering blocks.");
+        SinoCraft.getLog().info("Registering blocks.");
         REGISTRY.register(bus);
     }
 }
