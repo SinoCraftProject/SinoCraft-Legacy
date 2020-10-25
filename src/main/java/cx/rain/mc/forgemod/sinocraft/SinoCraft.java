@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft;
 import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.Blocks;
+import cx.rain.mc.forgemod.sinocraft.entity.Entities;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.gui.container.Containers;
 import cx.rain.mc.forgemod.sinocraft.side.Sides;
@@ -28,7 +29,7 @@ public class SinoCraft {
 
     private static SinoCraft INSTANCE = null;
 
-    private final Logger Log = LogManager.getLogger(SinoCraft.NAME);
+    private final Logger logger = LogManager.getLogger(SinoCraft.NAME);
 
     public SinoCraft() {
         INSTANCE = this;
@@ -39,6 +40,7 @@ public class SinoCraft {
 
         new Blocks(bus);
         new BlockItems(bus);
+        new Entities(bus);
         new Items(bus);
         new TileEntities(bus);
         new Fluids(bus);
@@ -50,21 +52,21 @@ public class SinoCraft {
         return INSTANCE;
     }
 
-    public Logger getLog() {
-        return Log;
-    }
-
     private void setup(final FMLCommonSetupEvent event) {
-        Log.info("Hello Minecraft!");
+        logger.info("Hello Minecraft!");
 
-        Sides.hookCommon(event);
+        Sides.Common(event);
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        Sides.hookClient(event);
+        Sides.Client(event);
     }
 
     private void setupServer(final FMLDedicatedServerSetupEvent event) {
-        Sides.hookServer(event);
+        Sides.Server(event);
+    }
+
+    public static Logger getLog() {
+        return INSTANCE.logger;
     }
 }

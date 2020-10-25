@@ -167,6 +167,6 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     }
 
     private void addEntities() {
-        addEntityType(() -> Entities.ENTITY_BUFFALO, "水牛");
+        addEntityType(() -> Entities.ENTITY_BUFFALO.get(), "水牛");
     }
 }

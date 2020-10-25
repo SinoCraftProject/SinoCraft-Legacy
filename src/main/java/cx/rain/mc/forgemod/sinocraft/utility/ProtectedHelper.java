@@ -29,7 +29,7 @@ public class ProtectedHelper {
         }
     }
 
-    public static <T> Object getStaticField(Class<? super T> clazz,String name,boolean isFinal){
+    public static <R, T> R getStaticField(Class<? super T> clazz,String name,boolean isFinal){
         try {
             Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
@@ -40,26 +40,26 @@ public class ProtectedHelper {
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
             }
 
-            return field.get(null);
+            return (R)field.get(null);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static <T> Object getStaticField(Class<? super T> clazz, String name){
+    public static <R, T> R getStaticField(Class<? super T> clazz, String name){
         try {
             Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
-            return field.get(null);
+            return (R)field.get(null);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static <T> Object getField(Class<? super T> clazz,Object obj,String name,boolean isFinal){
+    public static <R, T> R getField(Class<? super T> clazz,Object obj,String name,boolean isFinal){
         try {
             Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
@@ -70,19 +70,19 @@ public class ProtectedHelper {
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
             }
 
-            return field.get(obj);
+            return (R)field.get(obj);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static <T> Object getField(Class<? super T> clazz,Object obj,String name){
+    public static <R, T> R getField(Class<? super T> clazz,Object obj,String name){
         try {
             Field field = ObfuscationReflectionHelper.<T>findField(clazz,name);
             field.setAccessible(true);
 
-            return field.get(obj);
+            return (R)field.get(obj);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

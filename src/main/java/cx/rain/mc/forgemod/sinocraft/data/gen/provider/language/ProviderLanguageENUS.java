@@ -144,6 +144,6 @@ public class ProviderLanguageENUS extends LanguageProvider {
     }
 
     private void addEntities() {
-        addEntityType(() -> Entities.ENTITY_BUFFALO, "Buffalo");
+        addEntityType(() -> Entities.ENTITY_BUFFALO.get(), "Buffalo");
     }
 }

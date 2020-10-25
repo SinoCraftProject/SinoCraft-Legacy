@@ -15,6 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class RendererRegister {
     @SubscribeEvent
     public static void onClientSetUpEvent(FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(Entities.ENTITY_BUFFALO, RendererBuffalo::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.ENTITY_BUFFALO.get(), RendererBuffalo::new);
     }
 }
