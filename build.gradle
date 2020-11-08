@@ -30,7 +30,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: '20201010-1.15.1'
+    mappings channel: 'snapshot', version: '20201107-1.15.1'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -96,6 +96,9 @@ repositories {
     }
     jcenter()
     mavenCentral()
+    flatDir {
+        dirs("libs")
+    }
 }
 
 configurations {
@@ -126,6 +129,8 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    runtimeOnly fg.deobf(name: "NBTEdit")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
