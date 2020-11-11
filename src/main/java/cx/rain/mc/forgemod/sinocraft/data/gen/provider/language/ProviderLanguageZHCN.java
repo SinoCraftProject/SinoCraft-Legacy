@@ -45,8 +45,8 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     }
 
     private void addAdvancements(){
-        add("advancement.sinocraft.basic.root.title","感谢使用华夏文明模组！");
-        add("advancement.sinocraft.basic.root.description","感谢使用华夏文明模组！");
+        add("advancement.sinocraft.basic.root.title","感谢使用华夏工艺模组！");
+        add("advancement.sinocraft.basic.root.description","感谢使用华夏工艺模组！");
 
         add("advancement.sinocraft.basic.knife.title","刀");
         add("advancement.sinocraft.basic.knife.description","获得一把小刀");
