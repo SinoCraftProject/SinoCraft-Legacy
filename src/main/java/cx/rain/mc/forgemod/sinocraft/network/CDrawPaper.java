@@ -39,11 +39,11 @@ public class CDrawPaper implements IMessage{
                 ContainerChineseBrush container = (ContainerChineseBrush) context.get().getSender().openContainer;
                 CompoundNBT nbt = container.inventory.getStackInSlot(0).getOrCreateTag();
                 if (! nbt.contains("pixels")) {
-                    nbt.putByteArray("pixels", new byte[16 * 16]);
+                    nbt.putByteArray("pixels", new byte[32 * 32]);
                 }
                 int inknum = container.inventory.getStackInSlot(1).getMaxDamage() - container.inventory.getStackInSlot(1).getDamage();
-                if (inknum >= this.pack.color && this.pack.pos.x * 16 + this.pack.pos.y < 256) {
-                    nbt.getByteArray("pixels")[this.pack.pos.x * 16 + this.pack.pos.y] = this.pack.color;
+                if (inknum >= this.pack.color && this.pack.pos.x * 32 + this.pack.pos.y < 1024) {
+                    nbt.getByteArray("pixels")[this.pack.pos.x * 32 + this.pack.pos.y] = this.pack.color;
                     container.inventory.getStackInSlot(1).damageItem(inknum, context.get().getSender(),
                             e -> container.inventory.setInventorySlotContents(1, new ItemStack(Items.INK_STONE.get()))
                     );
