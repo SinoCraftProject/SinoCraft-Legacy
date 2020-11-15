@@ -23,6 +23,7 @@ public class ItemChineseBrush extends Item {
             NetworkHooks.openGui((ServerPlayerEntity) player, new ContainerChineseBrushProvider(), (PacketBuffer packerBuffer) -> {
                 packerBuffer.writeItemStack(player.getHeldItem(hand));
             });
+
         }
         return ActionResult.resultSuccess(player.getHeldItem(hand));
     }
