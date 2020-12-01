@@ -174,12 +174,12 @@ public class TileEntityVat extends TileEntityMachineBase {
                 if (progress == 400) {
                     progress = 0;
                     if (recipes.containsKey(stack.getItem())) {
-                        itemHandler.setResult(recipes.get(stack.getItem()));
-                        this.itemHandler.extractItem(1, consume.get(stack.getItem()), false);
+                        itemHandler.setResult(recipes.get(stack.getItem()).copy());
+                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
                         this.fluid = FluidStack.EMPTY;
                     } else if (recipes2.containsKey(stack.getItem())) {
-                        this.fluid = recipes2.get(stack.getItem());
-                        this.itemHandler.extractItem(1, consume.get(stack.getItem()), false);
+                        this.fluid = recipes2.get(stack.getItem()).copy();
+                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
                     }
                 }
             }

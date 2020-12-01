@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
@@ -122,7 +123,7 @@ public class BlockVat extends BlockMachineBase {
                 } else {
                     action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, true);
                     if (action.success) {
-                        worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f
                         return ActionResultType.SUCCESS;
                     }
                 }

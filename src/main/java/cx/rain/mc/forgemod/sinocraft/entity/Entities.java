@@ -27,19 +27,17 @@ public class Entities {
 
     public static final RegistryObject<EntityType<EntityBuffalo>> ENTITY_BUFFALO = REGISTRY.register("buffalo", () -> EntityType.Builder
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)
-            .size(1.4F, 1.4F).build("null"));
+            .size(1.4F, 1.4F).build("arrow"));
 
-
-    //EntityType.Builder.build()的参数可以随便写一个字符串，因为data fixer目前不能用于mod，写啥都会抛出一个WARN
     public static final EntityType<EntityGoal> ENTITY_GOAL = EntityType.Builder//山羊
             .create(EntityGoal::new, EntityClassification.MISC)
-            .size(1.4F, 1.4F).build("null");
+            .size(1.4F, 1.4F).build("arrow");
     public static final EntityType<EntityTerraCotta> ENTITY_TERRACOTTA = EntityType.Builder//兵马俑
             .create((EntityType.IFactory<EntityTerraCotta>) EntityTerraCotta::new, EntityClassification.MISC)
-            .size(1.4F, 1.4F).build("null");
+            .size(1.4F, 1.4F).build("arrow");
     public static final EntityType<EntityEmperor> ENTITY_EMPEROR = EntityType.Builder//国王
             .create((EntityType.IFactory<EntityEmperor>) EntityEmperor::new, EntityClassification.MISC)
-            .size(1.4F, 1.4F).build("null");
+            .size(1.4F, 1.4F).build("arrow");
 
     /**
      * 之前使用DeferredRegister注册实体，但无法使注册实体在注册刷怪蛋之前触发，导致注册刷怪蛋出错

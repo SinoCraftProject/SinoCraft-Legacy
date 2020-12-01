@@ -6,12 +6,25 @@ import cx.rain.mc.forgemod.sinocraft.entity.Entities;
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import cx.rain.mc.forgemod.sinocraft.gui.GuiXuanPaper;
+import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrushProvider;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -49,7 +62,17 @@ public class Items {
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(Groups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(Fluids.WOOD_PULP, new Item.Properties().group(Groups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties().group(Groups.MISC).maxStackSize(1)));
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties().group(Groups.MISC).maxStackSize(1)) {
+        @Override
+        public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+            if (world.isRemote) {
+                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                    Minecraft.getInstance().displayGuiScreen(GuiXuanPaper.create(player.getHeldItem(hand).getOrCreateTag().getByteArray("pixels")));
+                });
+            }
+            return ActionResult.resultSuccess(player.getHeldItem(hand));
+        }
+    });
     public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink",()->new Item(new Item.Properties().group(Groups.MISC).defaultMaxDamage(186)) {
         @Override
         public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {

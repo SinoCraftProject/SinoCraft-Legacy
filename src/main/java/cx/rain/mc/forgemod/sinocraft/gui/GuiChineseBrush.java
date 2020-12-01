@@ -90,14 +90,14 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             }
 
             if (pixels == null) {
-                pixels = new byte[16 * 16];
+                pixels = new byte[32 * 32];
             }
 
-            int sx = 61, sy = 14, unit = 8;
+            int sx = 61, sy = 14, unit = 4;
 
-            for (int i = 0 ; i < 16 ; i ++) {
-                for (int j = 0 ; j < 16 ; j ++) {
-                    float color = 0.0625f * (16 - pixels[i * 16 + j]);
+            for (int i = 0 ; i < 32 ; i ++) {
+                for (int j = 0 ; j < 32 ; j ++) {
+                    float color = 0.0625f * (16 - pixels[i * 32 + j]);
                     if (color == 0.0625f) {
                         color = 0.0f;
                     }
@@ -124,13 +124,13 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                 pixels = paper.getTag().getByteArray("pixels");
             }
             else {
-                pixels = new byte[16 * 16];
+                pixels = new byte[32 * 32];
             }
 
             //this.container.inventory.getStackInSlot(1).damageItem(this.container.color, this.minecraft.player, (e)->{});
 
-            int x = (int) (Math.round(mouseX) - guiLeft - 61) / 8;
-            int y = (int) (Math.round(mouseY) - guiTop - 14) / 8;
+            int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
+            int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
             Networks.INSTANCE.sendToServer(new CDrawPaper(
                     new CDrawPaper.Pack(
@@ -159,11 +159,11 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             }
 
             if (pixels == null) {
-                pixels = new byte[16 * 16];
+                pixels = new byte[32 * 32];
             }
 
-            int x = (int) (Math.round(mouseX) - guiLeft - 61) / 8;
-            int y = (int) (Math.round(mouseY) - guiTop - 14) / 8;
+            int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
+            int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
             Networks.INSTANCE.sendToServer(new CDrawPaper(
                     new CDrawPaper.Pack(
