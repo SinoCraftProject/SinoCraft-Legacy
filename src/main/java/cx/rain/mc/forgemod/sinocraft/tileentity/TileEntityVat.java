@@ -21,9 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TileEntityVat extends TileEntityMachineBase {
-    private static Map<Item,ItemStack> recipes = new HashMap<>();
-    private static Map<Item,FluidStack> recipes2 = new HashMap<>();
-    private static Map<Item,Integer> consume = new HashMap<>();
+    private static Map<Item, ItemStack> recipes = new HashMap<>();
+    private static Map<Item, FluidStack> recipes2 = new HashMap<>();
+    private static Map<Item, Integer> consume = new HashMap<>();
 
     private class VatItemHandler extends ItemStackHandler {
         public VatItemHandler() {
@@ -48,37 +48,36 @@ public class TileEntityVat extends TileEntityMachineBase {
     private VatItemHandler itemHandler = new VatItemHandler();
 
     private FluidStack fluid = FluidStack.EMPTY;
-    int progress=0;
+    int progress = 0;
 
-    public static void registerRecipe(ItemStack material,ItemStack result){
-        recipes.put(material.getItem(),result);
-        consume.put(material.getItem(),material.getCount());
+    public static void registerRecipe(ItemStack material, ItemStack result) {
+        recipes.put(material.getItem(), result);
+        consume.put(material.getItem(), material.getCount());
     }
 
-    public static void registerRecipe(ItemStack material,FluidStack result){
-        recipes2.put(material.getItem(),result);
-        consume.put(material.getItem(),material.getCount());
+    public static void registerRecipe(ItemStack material, FluidStack result) {
+        recipes2.put(material.getItem(), result);
+        consume.put(material.getItem(), material.getCount());
     }
 
-    private void registerDefaultRecipes(){
-        registerRecipe(new ItemStack(Items.BARK.get(),3),new FluidStack(Fluids.WOOD_PULP.get(),1000));
-        registerRecipe(new ItemStack(Items.FLOUR.get(),2),new ItemStack(Items.DOUGH.get()));
+    private void registerDefaultRecipes() {
+        registerRecipe(new ItemStack(Items.BARK.get(), 3), new FluidStack(Fluids.WOOD_PULP.get(), 1000));
+        registerRecipe(new ItemStack(Items.FLOUR.get(), 2), new ItemStack(Items.DOUGH.get()));
     }
 
     public TileEntityVat() {
         super(TileEntities.VAT.get());
         registerDefaultRecipes();
-        state=MachineState.CLOSE;
+        state = MachineState.CLOSE;
     }
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap==CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(()-> itemHandler).cast();
-        }
-        else if(cap== CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            return LazyOptional.of(()-> new IFluidHandler(){
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> itemHandler).cast();
+        } else if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> new IFluidHandler() {
                 @Override
                 public int getTanks() {
                     return 1;
@@ -102,41 +101,32 @@ public class TileEntityVat extends TileEntityMachineBase {
 
                 @Override
                 public int fill(FluidStack resource, FluidAction action) {
-                    if (resource.isEmpty())
-                    {
+                    if (resource.isEmpty()) {
                         return 0;
                     }
-                    if (action.simulate())
-                    {
-                        if (fluid.isEmpty())
-                        {
+                    if (action.simulate()) {
+                        if (fluid.isEmpty()) {
                             return Math.min(1000, resource.getAmount());
                         }
-                        if (!fluid.isFluidEqual(resource))
-                        {
+                        if (!fluid.isFluidEqual(resource)) {
                             return 0;
                         }
                         return Math.min(1000 - fluid.getAmount(), resource.getAmount());
                     }
                     markDirty();
-                    if (fluid.isEmpty())
-                    {
+                    if (fluid.isEmpty()) {
                         fluid = new FluidStack(resource, Math.min(1000, resource.getAmount()));
                         return fluid.getAmount();
                     }
-                    if (!fluid.isFluidEqual(resource))
-                    {
+                    if (!fluid.isFluidEqual(resource)) {
                         return 0;
                     }
                     int filled = 1000 - fluid.getAmount();
 
-                    if (resource.getAmount() < filled)
-                    {
+                    if (resource.getAmount() < filled) {
                         fluid.grow(resource.getAmount());
                         filled = resource.getAmount();
-                    }
-                    else
-                    {
+                    } else {
                         fluid.setAmount(1000);
                     }
                     return filled;
@@ -145,8 +135,7 @@ public class TileEntityVat extends TileEntityMachineBase {
                 @Nonnull
                 @Override
                 public FluidStack drain(FluidStack resource, FluidAction action) {
-                    if (resource.isEmpty() || !resource.isFluidEqual(fluid))
-                    {
+                    if (resource.isEmpty() || !resource.isFluidEqual(fluid)) {
                         return FluidStack.EMPTY;
                     }
                     return drain(resource.getAmount(), action);
@@ -157,63 +146,58 @@ public class TileEntityVat extends TileEntityMachineBase {
                 public FluidStack drain(int maxDrain, FluidAction action) {
                     markDirty();
                     int drained = maxDrain;
-                    if (fluid.getAmount() < drained)
-                    {
+                    if (fluid.getAmount() < drained) {
                         drained = fluid.getAmount();
                     }
                     FluidStack stack = new FluidStack(fluid, drained);
-                    if (action.execute() && drained > 0)
-                    {
+                    if (action.execute() && drained > 0) {
                         fluid.shrink(drained);
                     }
                     return stack;
                 }
             }).cast();
 
-        }
-        else {
+        } else {
             return super.getCapability(cap, side);
         }
     }
 
     @Override
     public void tick() {
-        if(this.world.isRemote){
+        if (this.world.isRemote) {
             return;
         }
         ItemStack stack = itemHandler.getStackInSlot(1);
-        if(consume.containsKey(stack.getItem())&&fluid.getAmount()>=1000&&fluid.getFluid()==net.minecraft.fluid.Fluids.WATER){
-            if(consume.get(stack.getItem()) <= stack.getCount()) {
+        if (consume.containsKey(stack.getItem()) && fluid.getAmount() >= 1000 && fluid.getFluid() == net.minecraft.fluid.Fluids.WATER) {
+            if (consume.get(stack.getItem()) <= stack.getCount()) {
                 progress++;
-                if(progress == 400) {
+                if (progress == 400) {
                     progress = 0;
                     if (recipes.containsKey(stack.getItem())) {
                         itemHandler.setResult(recipes.get(stack.getItem()));
-                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
+                        this.itemHandler.extractItem(1, consume.get(stack.getItem()), false);
                         this.fluid = FluidStack.EMPTY;
-                    }
-                    else if (recipes2.containsKey(stack.getItem())) {
+                    } else if (recipes2.containsKey(stack.getItem())) {
                         this.fluid = recipes2.get(stack.getItem());
-                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
+                        this.itemHandler.extractItem(1, consume.get(stack.getItem()), false);
                     }
                 }
             }
-        }
-        else {
+        } else {
             progress = 0;
         }
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-        compound.put("fluid",fluid.writeToNBT(new CompoundNBT()));
-        compound.put("stacks",itemHandler.serializeNBT());
+        compound.put("fluid", fluid.writeToNBT(new CompoundNBT()));
+        compound.put("stacks", itemHandler.serializeNBT());
         return super.write(compound);
     }
 
     @Override
     public void read(CompoundNBT compound) {
-        fluid=FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
+        fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(compound);
     }

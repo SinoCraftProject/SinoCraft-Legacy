@@ -57,49 +57,44 @@ public class BlockVat extends BlockMachineBase {
 
     @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(handIn!=Hand.MAIN_HAND){
+        if (handIn != Hand.MAIN_HAND) {
             return ActionResultType.PASS;
         }
-        if(worldIn.isRemote) {
-            if(worldIn.getTileEntity(pos) instanceof TileEntityVat){
+        if (worldIn.isRemote) {
+            if (worldIn.getTileEntity(pos) instanceof TileEntityVat) {
                 TileEntityVat tileEntity = (TileEntityVat) worldIn.getTileEntity(pos);
-                if(FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null)!=null){
+                if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                     IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
-                    FluidActionResult action=FluidUtil.tryEmptyContainer(player.getHeldItem(handIn),handler,999999,player,false);
+                    FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, false);
                     if (action.success) {
-                        worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
-                    }
-                    else{
-                        action=FluidUtil.tryFillContainer(player.getHeldItem(handIn),handler,999999,player,false);
-                        if(action.success) {
-                            worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    } else {
+                        action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, false);
+                        if (action.success) {
+                            worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
                         }
                     }
                     return ActionResultType.FAIL;
-                }
-                else {
+                } else {
                     IItemHandler handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
-                    if(!player.getHeldItem(handIn).isEmpty()){
+                    if (!player.getHeldItem(handIn).isEmpty()) {
                         ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
                         ItemStack backup = stack;
-                        backup=handler.insertItem(1,backup,true);
-                        if(backup!=stack){
-                            worldIn.playSound(player,pos,SoundEvents.ENTITY_ITEM_PICKUP,SoundCategory.PLAYERS,1.0f,1.0f);
+                        backup = handler.insertItem(1, backup, true);
+                        if (backup != stack) {
+                            worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
-                        }
-                        else {
+                        } else {
                             return ActionResultType.FAIL;
                         }
-                    }
-                    else{
-                        if(!handler.getStackInSlot(0).isEmpty()){
-                            worldIn.playSound(player,pos,SoundEvents.ENTITY_ITEM_PICKUP,SoundCategory.PLAYERS,1.0f,1.0f);
+                    } else {
+                        if (!handler.getStackInSlot(0).isEmpty()) {
+                            worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
-                        }
-                        else if(!handler.getStackInSlot(1).isEmpty()){
-                            worldIn.playSound(player,pos,SoundEvents.ENTITY_ITEM_PICKUP,SoundCategory.PLAYERS,1.0f,1.0f);
+                        } else if (!handler.getStackInSlot(1).isEmpty()) {
+                            worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
                         }
                         return ActionResultType.FAIL;
@@ -112,60 +107,54 @@ public class BlockVat extends BlockMachineBase {
     }
 
     @Override
-    public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+    public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
             return ActionResultType.PASS;
         }
-        if(worldIn.getTileEntity(pos) instanceof TileEntityVat){
+        if (worldIn.getTileEntity(pos) instanceof TileEntityVat) {
             TileEntityVat tileEntity = (TileEntityVat) worldIn.getTileEntity(pos);
-            if(FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null)!=null){
+            if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                 IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
-                FluidActionResult action=FluidUtil.tryEmptyContainer(player.getHeldItem(handIn),handler,999999,player,true);
+                FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, true);
                 if (action.success) {
-                    worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     return ActionResultType.SUCCESS;
-                }
-                else{
-                    action=FluidUtil.tryFillContainer(player.getHeldItem(handIn),handler,999999,player,true);
-                    if(action.success) {
-                        worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                } else {
+                    action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, true);
+                    if (action.success) {
+                        worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
                     }
                 }
                 return ActionResultType.FAIL;
-            }
-            else{
+            } else {
                 IItemHandler handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
-                if(handler!=null){
-                    if(!player.getHeldItem(handIn).isEmpty()){
+                if (handler != null) {
+                    if (!player.getHeldItem(handIn).isEmpty()) {
                         ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
                         ItemStack backup = stack;
-                        backup=handler.insertItem(1,backup,false);
-                        if(backup!=stack){
+                        backup = handler.insertItem(1, backup, false);
+                        if (backup != stack) {
                             player.getHeldItem(handIn).shrink(1);
                             return ActionResultType.SUCCESS;
-                        }
-                        else {
+                        } else {
                             return ActionResultType.FAIL;
                         }
-                    }
-                    else{
-                        if(!handler.getStackInSlot(0).isEmpty()){
+                    } else {
+                        if (!handler.getStackInSlot(0).isEmpty()) {
                             ItemStack stack = new ItemStack(handler.getStackInSlot(0).getItem());
-                            player.setHeldItem(handIn,stack);
-                            handler.extractItem(0,1,false);
+                            player.setHeldItem(handIn, stack);
+                            handler.extractItem(0, 1, false);
                             return ActionResultType.SUCCESS;
-                        }
-                        else if(!handler.getStackInSlot(1).isEmpty()){
+                        } else if (!handler.getStackInSlot(1).isEmpty()) {
                             ItemStack stack = new ItemStack(handler.getStackInSlot(1).getItem());
-                            player.setHeldItem(handIn,stack);
-                            handler.extractItem(1,1,false);
+                            player.setHeldItem(handIn, stack);
+                            handler.extractItem(1, 1, false);
                             return ActionResultType.SUCCESS;
                         }
                         return ActionResultType.FAIL;
                     }
-                }
-                else{
+                } else {
                     return ActionResultType.FAIL;
                 }
             }
