@@ -43,7 +43,7 @@ public interface IMachine {
          * @return The enum constant's name
          */
         @Override
-        public String getName(){
+        public String getString() {
             return name;
         }
 

@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "sinocraft:block/log_peach_stripped",
+      "model": "sinocraft:block/log_peach_stripped_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "sinocraft:block/log_peach_stripped"
     },
     "axis=z": {
-      "model": "sinocraft:block/log_peach_stripped",
+      "model": "sinocraft:block/log_peach_stripped_horizontal",
       "x": 90
     }
   }

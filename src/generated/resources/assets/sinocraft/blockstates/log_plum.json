@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "sinocraft:block/log_plum",
+      "model": "sinocraft:block/log_plum_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "sinocraft:block/log_plum"
     },
     "axis=z": {
-      "model": "sinocraft:block/log_plum",
+      "model": "sinocraft:block/log_plum_horizontal",
       "x": 90
     }
   }

@@ -12,9 +12,12 @@ public class EventPlayerRightClickBlockWithItem {
 
     @SubscribeEvent
     public static void onClick(PlayerInteractEvent.RightClickBlock event) {
+        // Fixme: Broken!
+        /*
         if(!event.getWorld().isRemote){
             RegistryTrigger.RIGHT_CLICK_BLOCK_WITH_ITEM.test((ServerPlayerEntity) event.getPlayer(),
                     event.getPos(),event.getPlayer().getHeldItem(event.getHand()));
         }
+         */
     }
 }

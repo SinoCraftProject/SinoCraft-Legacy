@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.tileentity;
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -196,10 +197,10 @@ public class TileEntityVat extends TileEntityMachineBase {
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
-        itemHandler.deserializeNBT(compound.getCompound("stacks"));
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT nbt) {
+        fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound("fluid"));
+        itemHandler.deserializeNBT(nbt.getCompound("stacks"));
+        super.read(state, nbt);
     }
 
     @Override

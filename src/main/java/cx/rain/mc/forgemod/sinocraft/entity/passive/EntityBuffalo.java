@@ -13,6 +13,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+
+import javax.annotation.Nullable;
 
 public class EntityBuffalo extends AnimalEntity {
 
@@ -36,12 +39,13 @@ public class EntityBuffalo extends AnimalEntity {
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
     }
 
-    @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
-    }
+    // Fixme: Change to static method.
+//    @Override
+//    protected void registerAttributes() {
+//        super.registerAttributes();
+//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
+//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
+//    }
 
     @Override
     protected SoundEvent getAmbientSound() {
@@ -69,12 +73,13 @@ public class EntityBuffalo extends AnimalEntity {
     }
 
     @Override
-    public EntityBuffalo createChild(AgeableEntity ageable) {
-        return Entities.ENTITY_BUFFALO.get().create(this.world);
-    }
-
-    @Override
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return this.isChild() ? sizeIn.height * 0.95F : 1.3F;
+    }
+
+    @Nullable
+    @Override
+    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+        return Entities.ENTITY_BUFFALO.get().create(this.world);
     }
 }

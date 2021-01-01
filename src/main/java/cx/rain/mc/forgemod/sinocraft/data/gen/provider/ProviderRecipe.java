@@ -25,6 +25,8 @@ public class ProviderRecipe extends ProviderBaseRecipe {
 
     @Override
     protected void registerRecipes() {
+        // Todo: Rewrite needed.
+        /*
         ShapedRecipeBuilder.shapedRecipe(Items.KNIFE_IRON.get()).
                 key('@', net.minecraft.item.Items.STICK).
                 key('#', net.minecraft.item.Items.IRON_INGOT).
@@ -144,6 +146,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
 
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(Items.DUMPLING.get()), Items.COOKED_DUMPLING.get(), 2.0f, 400).
                 addCriterion("has_dumpling", this.hasItem(Items.DUMPLING.get())).build(consumer, new ResourceLocation(ID, "dumpling_smelt"));
+         */
     }
 
     private void RegisterShapedRecipes() {

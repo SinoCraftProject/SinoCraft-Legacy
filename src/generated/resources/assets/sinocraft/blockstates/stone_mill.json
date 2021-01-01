@@ -2,9 +2,9 @@
   "multipart": [
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "1"
+        "rotate": "1",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill1"
@@ -12,9 +12,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "1"
+        "rotate": "1",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill1",
@@ -23,9 +23,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "1"
+        "rotate": "1",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill1",
@@ -34,9 +34,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "1"
+        "rotate": "1",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill1",
@@ -45,9 +45,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "2"
+        "rotate": "2",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill2"
@@ -55,9 +55,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "2"
+        "rotate": "2",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill2",
@@ -66,9 +66,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "2"
+        "rotate": "2",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill2",
@@ -77,9 +77,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "2"
+        "rotate": "2",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill2",
@@ -88,9 +88,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "3"
+        "rotate": "3",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill3"
@@ -98,9 +98,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "3"
+        "rotate": "3",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill3",
@@ -109,9 +109,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "3"
+        "rotate": "3",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill3",
@@ -120,9 +120,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "3"
+        "rotate": "3",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill3",
@@ -131,9 +131,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "4"
+        "rotate": "4",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill4"
@@ -141,9 +141,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "4"
+        "rotate": "4",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill4",
@@ -152,9 +152,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "4"
+        "rotate": "4",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill4",
@@ -163,9 +163,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "4"
+        "rotate": "4",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill4",
@@ -174,9 +174,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "5"
+        "rotate": "5",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill5"
@@ -184,9 +184,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "5"
+        "rotate": "5",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill5",
@@ -195,9 +195,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "5"
+        "rotate": "5",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill5",
@@ -206,9 +206,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "5"
+        "rotate": "5",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill5",
@@ -217,9 +217,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "6"
+        "rotate": "6",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill6"
@@ -227,9 +227,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "6"
+        "rotate": "6",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill6",
@@ -238,9 +238,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "6"
+        "rotate": "6",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill6",
@@ -249,9 +249,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "6"
+        "rotate": "6",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill6",
@@ -260,9 +260,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "7"
+        "rotate": "7",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill7"
@@ -270,9 +270,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "7"
+        "rotate": "7",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill7",
@@ -281,9 +281,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "7"
+        "rotate": "7",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill7",
@@ -292,9 +292,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "7"
+        "rotate": "7",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill7",
@@ -303,9 +303,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "8"
+        "rotate": "8",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill8"
@@ -313,9 +313,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "8"
+        "rotate": "8",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill8",
@@ -324,9 +324,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "8"
+        "rotate": "8",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill8",
@@ -335,9 +335,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "8"
+        "rotate": "8",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill8",
@@ -346,9 +346,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "9"
+        "rotate": "9",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill9"
@@ -356,9 +356,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "9"
+        "rotate": "9",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill9",
@@ -367,9 +367,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "9"
+        "rotate": "9",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill9",
@@ -378,9 +378,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "9"
+        "rotate": "9",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill9",
@@ -389,9 +389,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "10"
+        "rotate": "10",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill10"
@@ -399,9 +399,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "10"
+        "rotate": "10",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill10",
@@ -410,9 +410,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "10"
+        "rotate": "10",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill10",
@@ -421,9 +421,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "10"
+        "rotate": "10",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill10",
@@ -432,9 +432,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "11"
+        "rotate": "11",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill11"
@@ -442,9 +442,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "11"
+        "rotate": "11",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill11",
@@ -453,9 +453,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "11"
+        "rotate": "11",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill11",
@@ -464,9 +464,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "11"
+        "rotate": "11",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill11",
@@ -475,9 +475,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "12"
+        "rotate": "12",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill12"
@@ -485,9 +485,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "12"
+        "rotate": "12",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill12",
@@ -496,9 +496,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "12"
+        "rotate": "12",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill12",
@@ -507,9 +507,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "12"
+        "rotate": "12",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill12",
@@ -518,9 +518,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "13"
+        "rotate": "13",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill13"
@@ -528,9 +528,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "13"
+        "rotate": "13",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill13",
@@ -539,9 +539,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "13"
+        "rotate": "13",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill13",
@@ -550,9 +550,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "13"
+        "rotate": "13",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill13",
@@ -561,9 +561,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "14"
+        "rotate": "14",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill14"
@@ -571,9 +571,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "14"
+        "rotate": "14",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill14",
@@ -582,9 +582,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "14"
+        "rotate": "14",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill14",
@@ -593,9 +593,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "14"
+        "rotate": "14",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill14",
@@ -604,9 +604,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "15"
+        "rotate": "15",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill15"
@@ -614,9 +614,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "15"
+        "rotate": "15",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill15",
@@ -625,9 +625,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "15"
+        "rotate": "15",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill15",
@@ -636,9 +636,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "15"
+        "rotate": "15",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill15",
@@ -647,9 +647,9 @@
     },
     {
       "when": {
-        "facing": "north",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "16"
+        "rotate": "16",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill16"
@@ -657,9 +657,9 @@
     },
     {
       "when": {
-        "facing": "south",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "16"
+        "rotate": "16",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill16",
@@ -668,9 +668,9 @@
     },
     {
       "when": {
-        "facing": "west",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "16"
+        "rotate": "16",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill16",
@@ -679,9 +679,9 @@
     },
     {
       "when": {
-        "facing": "east",
-        "state": "working|overload|damaged|idle|close",
-        "rotate": "16"
+        "rotate": "16",
+        "state": "close|idle|working|overload|damaged",
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stone_mill16",

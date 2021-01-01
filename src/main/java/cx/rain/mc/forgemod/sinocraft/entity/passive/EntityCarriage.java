@@ -3,15 +3,15 @@ package cx.rain.mc.forgemod.sinocraft.entity.passive;
 import cx.rain.mc.forgemod.sinocraft.entity.Entities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-/** 未完成
- *  等材质与模型 ， 使用方法右键上车，打开gui选择驿站
- *  会自动探路
- */
+import javax.annotation.Nullable;
+
+// Todo: Waiting for textures and models.
 public class EntityCarriage extends AnimalEntity {
 
     private EatGrassGoal eatGrassGoal;
@@ -39,15 +39,18 @@ public class EntityCarriage extends AnimalEntity {
         }
         super.livingTick();
     }
+
+    // Fixme: Static method, see LivingEntity#registerAttributes.
+//    @Override
+//    protected void registerAttributes() {
+//        super.registerAttributes();
+//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(26.0D);
+//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.28D);
+//    }
+
+    @Nullable
     @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(26.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.28D);
-    }
-    @Override
-    public EntityCarriage createChild(AgeableEntity ageable) {
+    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
-
 }

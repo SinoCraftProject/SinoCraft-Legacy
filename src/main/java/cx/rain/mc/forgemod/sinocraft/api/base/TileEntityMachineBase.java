@@ -1,19 +1,15 @@
 package cx.rain.mc.forgemod.sinocraft.api.base;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.registry.Registry;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public abstract class TileEntityMachineBase extends TileEntity implements ITickableTileEntity, IMachine {
     protected IMachine.MachineState state;
@@ -40,7 +36,7 @@ public abstract class TileEntityMachineBase extends TileEntity implements ITicka
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        handleUpdateTag(pkt.getNbtCompound());
+        handleUpdateTag(getBlockState(), pkt.getNbtCompound());
     }
 
     @Override
@@ -49,8 +45,8 @@ public abstract class TileEntityMachineBase extends TileEntity implements ITicka
     }
 
     @Override
-    public void handleUpdateTag(CompoundNBT tag) {
-        this.read(tag);
+    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+        this.read(state, tag);
     }
 
     @Override

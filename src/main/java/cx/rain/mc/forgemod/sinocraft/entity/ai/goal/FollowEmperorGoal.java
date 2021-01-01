@@ -106,7 +106,7 @@ public class FollowEmperorGoal extends Goal {
     }
 
     private void tryToTeleportNearEntity() {
-        BlockPos blockpos = new BlockPos(this.owner);
+        BlockPos blockpos = new BlockPos(owner.getPosX(), owner.getPosY(), owner.getPosZ());
 
         for(int i = 0; i < 10; ++i) {
             int j = this.getRandomNumber(-3, 3);
@@ -133,7 +133,7 @@ public class FollowEmperorGoal extends Goal {
     }
 
     private boolean isTeleportFriendlyBlock(BlockPos posIn) {
-        PathNodeType pathnodetype = WalkNodeProcessor.getLocalizedPathNodeType(this.world, posIn.getX(), posIn.getY(), posIn.getZ());
+        PathNodeType pathnodetype = WalkNodeProcessor.func_237231_a_(this.world, new BlockPos.Mutable(posIn.getX(), posIn.getY(), posIn.getZ()));
         if (pathnodetype != PathNodeType.WALKABLE) {
             return false;
         } else {
@@ -141,7 +141,7 @@ public class FollowEmperorGoal extends Goal {
             if (!this.teleportToLeaves && blockstate.getBlock() instanceof LeavesBlock) {
                 return false;
             } else {
-                BlockPos blockpos = posIn.subtract(new BlockPos(this.tameable));
+                BlockPos blockpos = posIn.subtract(new BlockPos(tameable.getPosX(), tameable.getPosY(), tameable.getPosZ()));
                 return this.world.hasNoCollisions(this.tameable, this.tameable.getBoundingBox().offset(blockpos));
             }
         }

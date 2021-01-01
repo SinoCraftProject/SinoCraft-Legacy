@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockItems {
     public static final DeferredRegister<Item> REGISTRY =
-            new DeferredRegister<>(ForgeRegistries.ITEMS, SinoCraft.MODID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, SinoCraft.MODID);
 
     public static RegistryObject<Item> WHITE_RADISH = REGISTRY.register("white_radish", () -> new BlockNamedItem(Blocks.WHITE_RADISH_PLANT.get(), new Item.Properties().group(Groups.FOODS).food(new Food.Builder().hunger(3).saturation(4).build()).setNoRepair()));
     public static RegistryObject<Item> SUMMER_RADISH = REGISTRY.register("summer_radish", () -> new BlockNamedItem(Blocks.SUMMER_RADISH_PLANT.get(), new Item.Properties().group(Groups.FOODS).food(new Food.Builder().hunger(2).saturation(3).build()).setNoRepair()));

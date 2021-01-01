@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.item.Items;
+import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -85,10 +86,10 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        itemHandler.deserializeNBT(compound.getCompound("stacks"));
-        progress = compound.getInt("progress");
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT nbt) {
+        itemHandler.deserializeNBT(nbt.getCompound("stacks"));
+        progress = nbt.getInt("progress");
+        super.read(state, nbt);
     }
 
     @Override

@@ -64,16 +64,16 @@ public abstract class ProviderBaseRecipe implements IDataProvider {
         return "Recipes";
     }
 
-
-    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
-        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
-    }
-
-    protected InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
-        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
-    }
-
-    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
-        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
-    }
+    // Fixme: Broken!
+//    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
+//        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
+//    }
+//
+//    protected InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
+//        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
+//    }
+//
+//    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
+//        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
+//    }
 }

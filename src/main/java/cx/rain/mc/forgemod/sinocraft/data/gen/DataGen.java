@@ -5,9 +5,9 @@ import cx.rain.mc.forgemod.sinocraft.data.gen.provider.*;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.ProviderAdvancement;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageENUS;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.language.ProviderLanguageZHCN;
+import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
-import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -26,8 +26,9 @@ public class DataGen {
         }
 
         if (event.includeServer()) {
-            generator.addProvider(new ProviderBlockTag(generator));
-            generator.addProvider(new ProviderItemTag(generator));
+            BlockTagsProvider blockTagsProvider = new ProviderBlockTag(generator, helper);
+            generator.addProvider(blockTagsProvider);
+            generator.addProvider(new ProviderItemTag(generator, helper, blockTagsProvider));
             generator.addProvider(new ProviderBlockLootTable(generator));
 
             generator.addProvider(new ProviderLanguageZHCN(generator));

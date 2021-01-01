@@ -3,12 +3,12 @@ package cx.rain.mc.forgemod.sinocraft.data;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.block.Block;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 public class TagBlock {
-    public static final Tag<Block> LOG_PEACH = new BlockTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_peach"));
-    public static final Tag<Block> LOG_WALNUT = new BlockTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_walnut"));
-    public static final Tag<Block> LOG_PLUM = new BlockTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_plum"));
-    public static final Tag<Block> LOG_MULBERRY = new BlockTags.Wrapper(new ResourceLocation(SinoCraft.MODID, "log_mulberry"));
+    public static final Tags.IOptionalNamedTag<Block> LOG_PEACH = BlockTags.createOptional(new ResourceLocation(SinoCraft.MODID, "log_peach"));
+    public static final Tags.IOptionalNamedTag<Block> LOG_WALNUT = BlockTags.createOptional(new ResourceLocation(SinoCraft.MODID, "log_walnut"));
+    public static final Tags.IOptionalNamedTag<Block> LOG_PLUM = BlockTags.createOptional(new ResourceLocation(SinoCraft.MODID, "log_plum"));
+    public static final Tags.IOptionalNamedTag<Block> LOG_MULBERRY = BlockTags.createOptional(new ResourceLocation(SinoCraft.MODID, "log_mulberry"));
 }

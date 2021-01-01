@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.gui;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -25,7 +26,7 @@ public class GuiXuanPaper extends Screen {
         super.init();
     }
 
-    protected void draw() {
+    protected void draw(MatrixStack matrixStack) {
         this.minecraft.getTextureManager().bindTexture(GUI);
 
         int sx = 61, sy = 14, unit = 4;
@@ -36,18 +37,18 @@ public class GuiXuanPaper extends Screen {
                     color = 0.0f;
                 }
                 RenderSystem.color3f(color, color, color);
-                blit(sx + i * unit, sy + j * unit, 0, 22, 236, unit, unit, 256, 256);
+                blit(matrixStack, sx + i * unit, sy + j * unit, 0, 22, 236, unit, unit, 256, 256);
             }
         }
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks) {
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         RenderSystem.pushMatrix();
         RenderSystem.translatef((float)guiLeft, (float)guiTop, 0.0F);
-        draw();
+        draw(matrixStack);
         RenderSystem.popMatrix();
-        super.render(mouseX, mouseY, partialTicks);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
     public static GuiXuanPaper create(byte[] pixels) {

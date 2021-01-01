@@ -23,7 +23,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod.EventBusSubscriber(modid = SinoCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Entities {
     public static final DeferredRegister<EntityType<?>> REGISTRY =
-            new DeferredRegister<>(ForgeRegistries.ENTITIES, SinoCraft.MODID);
+            DeferredRegister.create(ForgeRegistries.ENTITIES, SinoCraft.MODID);
 
     public static final RegistryObject<EntityType<EntityBuffalo>> ENTITY_BUFFALO = REGISTRY.register("buffalo", () -> EntityType.Builder
             .create((EntityType.IFactory<EntityBuffalo>) EntityBuffalo::new, EntityClassification.MISC)

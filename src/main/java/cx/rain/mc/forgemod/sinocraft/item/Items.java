@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 
 public class Items {
     public static final DeferredRegister<Item> REGISTRY =
-            new DeferredRegister<>(ForgeRegistries.ITEMS, SinoCraft.MODID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, SinoCraft.MODID);
 
     public static RegistryObject<Item> CHILI_PEPPER_SEED = REGISTRY.register("chili_pepper_seed", () -> new ItemSeed(Blocks.CHILI_PEPPER_PLANT.get(), PlantType.CHILI_PEPPER));
     public static RegistryObject<Item> GREEN_PEPPER_SEED = REGISTRY.register("green_pepper_seed", () -> new ItemSeed(Blocks.GREEN_PEPPER_PLANT.get(), PlantType.GREEN_PEPPER));
