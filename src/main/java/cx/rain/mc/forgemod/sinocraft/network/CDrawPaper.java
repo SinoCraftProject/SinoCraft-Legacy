@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.network;
 
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -45,7 +45,7 @@ public class CDrawPaper implements IMessage{
                 if (inknum >= this.pack.color && this.pack.pos.x * 32 + this.pack.pos.y < 1024) {
                     nbt.getByteArray("pixels")[this.pack.pos.x * 32 + this.pack.pos.y] = this.pack.color;
                     container.inventory.getStackInSlot(1).damageItem(inknum, context.get().getSender(),
-                            e -> container.inventory.setInventorySlotContents(1, new ItemStack(Items.INK_STONE.get()))
+                            e -> container.inventory.setInventorySlotContents(1, new ItemStack(ModItems.INK_STONE.get()))
                     );
                 }
                 container.inventory.getStackInSlot(0).setTag(nbt);

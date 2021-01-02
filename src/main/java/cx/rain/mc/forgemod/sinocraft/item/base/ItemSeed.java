@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.item.base;
 
 import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
-import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -11,7 +11,7 @@ public class ItemSeed extends BlockItem {
 
     public ItemSeed(Block blockIn, PlantType typeIn) {
         super(blockIn, new Item.Properties()
-                .group(Groups.AGRICULTURE)
+                .group(ModGroups.AGRICULTURE)
                 .setNoRepair());
         type = typeIn;
     }

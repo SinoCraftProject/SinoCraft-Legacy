@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W W",
+    "W W",
+    "WSW"
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "minecraft:slabs"
+    }
+  },
+  "result": {
+    "item": "sinocraft:vat"
+  }
+}

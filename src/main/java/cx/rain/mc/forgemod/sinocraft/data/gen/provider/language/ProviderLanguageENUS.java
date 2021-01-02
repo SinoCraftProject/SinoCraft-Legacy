@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider.language;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -61,89 +61,89 @@ public class ProviderLanguageENUS extends LanguageProvider {
     }
 
     private void addItems() {
-        addItem(Items.PEACH, "Peach");
-        addItem(Items.CHILI_PEPPER_SEED, "Chilipepper Seeds");
-        addItem(Items.GREEN_PEPPER_SEED, "Green Pepper Seeds");
-        //addItem(Items.CABBAGE_SEED, "Chinese Cabbage Seeds");
-        //addItem(Items.EGGPLANT_SEED, "Eggplant Seeds");
-        //addItem(Items.RICE_SEED, "Rice Seeds");
-        //addItem(Items.MILLET_SEED, "Millet Seeds");
-        //addItem(Items.SORGHUM_SEED, "Sorghum Seeds");
-        //addItem(Items.SOYBEAN, "Soybean");
-        addItem(Items.RICE, "Rice");
-        addItem(Items.MILLET, "Millet");
-        addItem(Items.SORGHUM, "Sorghum");
+        addItem(ModItems.PEACH, "Peach");
+        addItem(ModItems.CHILI_PEPPER_SEED, "Chilipepper Seeds");
+        addItem(ModItems.GREEN_PEPPER_SEED, "Green Pepper Seeds");
+        addItem(ModItems.CABBAGE_SEED, "Chinese Cabbage Seeds");
+        addItem(ModItems.EGGPLANT_SEED, "Eggplant Seeds");
+        addItem(ModItems.RICE_SEED, "Rice Seeds");
+        addItem(ModItems.MILLET_SEED, "Millet Seeds");
+        addItem(ModItems.SORGHUM_SEED, "Sorghum Seeds");
+        addItem(ModItems.SOYBEAN, "Soybean");
+        addItem(ModItems.RICE, "Rice");
+        addItem(ModItems.MILLET, "Millet");
+        addItem(ModItems.SORGHUM, "Sorghum");
 
-        addItem(Items.FLOUR, "Flour");
-        addItem(Items.DOUGH, "Dough");
-        addItem(Items.DUMPLING, "Dumpling");
-        addItem(Items.DUMPLING_WRAPPER, "Dumpling Wrapper");
-        addItem(Items.COOKED_DUMPLING, "Cooked Dumpling");
-        addItem(Items.STUFFING, "Stuffing");
+        addItem(ModItems.FLOUR, "Flour");
+        addItem(ModItems.DOUGH, "Dough");
+        addItem(ModItems.DUMPLING, "Dumpling");
+        addItem(ModItems.DUMPLING_WRAPPER, "Dumpling Wrapper");
+        addItem(ModItems.COOKED_DUMPLING, "Cooked Dumpling");
+        addItem(ModItems.STUFFING, "Stuffing");
 
-        addItem(BlockItems.GREEN_RADISH, "Green Radish");
-        addItem(BlockItems.SUMMER_RADISH, "Summer Radish");
-        addItem(BlockItems.WHITE_RADISH, "White Radish");
-        addItem(Items.CHILI_PEPPER, "Chilipepper");
-        addItem(Items.GREEN_PEPPER, "Green Pepper");
-        addItem(Items.EGGPLANT, "Eggplant");
-        addItem(Items.CABBAGE, "Chinese Cabbage");
-        addItem(Items.BARK,"Bark");
-        addItem(Items.KNIFE_IRON,"Iron Knife");
-        addItem(Items.KNIFE_GOLD,"Gold Knife");
-        addItem(Items.KNIFE_DIAMOND,"Diamond Knife");
-        addItem(Items.CHINESE_BRUSH,"Chinese Brush");
-        addItem(Items.CHINA_INK,"China Ink");
-        addItem(Items.CHARCOAL_BLACK,"Charcoal Black");
-        addItem(Items.INK_STONE, "Ink Stone");
-        addItem(Items.XUAN_PAPER, "Xuan Paper");
-        addItem(Items.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
+        addItem(ModBlockItems.GREEN_RADISH, "Green Radish");
+        addItem(ModBlockItems.SUMMER_RADISH, "Summer Radish");
+        addItem(ModBlockItems.WHITE_RADISH, "White Radish");
+        addItem(ModItems.CHILI_PEPPER, "Chilipepper");
+        addItem(ModItems.GREEN_PEPPER, "Green Pepper");
+        addItem(ModItems.EGGPLANT, "Eggplant");
+        addItem(ModItems.CABBAGE, "Chinese Cabbage");
+        addItem(ModItems.BARK,"Bark");
+        addItem(ModItems.KNIFE_IRON,"Iron Knife");
+        addItem(ModItems.KNIFE_GOLD,"Gold Knife");
+        addItem(ModItems.KNIFE_DIAMOND,"Diamond Knife");
+        addItem(ModItems.CHINESE_BRUSH,"Chinese Brush");
+        addItem(ModItems.CHINA_INK,"China Ink");
+        addItem(ModItems.CHARCOAL_BLACK,"Charcoal Black");
+        addItem(ModItems.INK_STONE, "Ink Stone");
+        addItem(ModItems.XUAN_PAPER, "Xuan Paper");
+        addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
     }
 
     private void addBlocks() {
-        addBlock(Blocks.LOG_PEACH, "Peach Log");
-        addBlock(Blocks.LOG_PEACH_STRIPPED, "Stripped Peach Log");
-        addBlock(Blocks.LOG_PEACH_BARK, "Peach Wood");
-        addBlock(Blocks.LOG_PEACH_STRIPPED_BARK, "Stripped Peach Wood");
-        addBlock(Blocks.PLANK_PEACH, "Peach Plank");
-        addBlock(Blocks.LEAVES_PEACH, "Peach Leaves");
-        addBlock(Blocks.SAPLING_PEACH, "Peach Sapling");
+        addBlock(ModBlocks.LOG_PEACH, "Peach Log");
+        addBlock(ModBlocks.LOG_PEACH_STRIPPED, "Stripped Peach Log");
+        addBlock(ModBlocks.LOG_PEACH_BARK, "Peach Wood");
+        addBlock(ModBlocks.LOG_PEACH_STRIPPED_BARK, "Stripped Peach Wood");
+        addBlock(ModBlocks.PLANK_PEACH, "Peach Plank");
+        addBlock(ModBlocks.LEAVES_PEACH, "Peach Leaves");
+        addBlock(ModBlocks.SAPLING_PEACH, "Peach Sapling");
 
-        addBlock(Blocks.LOG_WALNUT, "Walnut Log");
-        addBlock(Blocks.LOG_WALNUT_STRIPPED, "Stripped Walnut Log");
-        addBlock(Blocks.LOG_WALNUT_BARK, "Walnut Wood");
-        addBlock(Blocks.LOG_WALNUT_STRIPPED_BARK, "Stripped Walnut Wood");
-        addBlock(Blocks.PLANK_WALNUT, "Walnut Plank");
-        addBlock(Blocks.LEAVES_WALNUT, "Walnut Leaves");
-        addBlock(Blocks.SAPLING_WALNUT, "Walnut Sapling");
+        addBlock(ModBlocks.LOG_WALNUT, "Walnut Log");
+        addBlock(ModBlocks.LOG_WALNUT_STRIPPED, "Stripped Walnut Log");
+        addBlock(ModBlocks.LOG_WALNUT_BARK, "Walnut Wood");
+        addBlock(ModBlocks.LOG_WALNUT_STRIPPED_BARK, "Stripped Walnut Wood");
+        addBlock(ModBlocks.PLANK_WALNUT, "Walnut Plank");
+        addBlock(ModBlocks.LEAVES_WALNUT, "Walnut Leaves");
+        addBlock(ModBlocks.SAPLING_WALNUT, "Walnut Sapling");
 
-        addBlock(Blocks.LOG_PLUM, "Plum Log");
-        addBlock(Blocks.LOG_PLUM_STRIPPED, "Stripped Plum Log");
-        addBlock(Blocks.LOG_PLUM_BARK, "Plum Wood");
-        addBlock(Blocks.LOG_PLUM_STRIPPED_BARK, "Stripped Plum Wood");
-        addBlock(Blocks.PLANK_PLUM, "Plum Plank");
-        addBlock(Blocks.LEAVES_PLUM, "Plum Leaves");
-        addBlock(Blocks.SAPLING_PLUM, "Plum Sapling");
+        addBlock(ModBlocks.LOG_PLUM, "Plum Log");
+        addBlock(ModBlocks.LOG_PLUM_STRIPPED, "Stripped Plum Log");
+        addBlock(ModBlocks.LOG_PLUM_BARK, "Plum Wood");
+        addBlock(ModBlocks.LOG_PLUM_STRIPPED_BARK, "Stripped Plum Wood");
+        addBlock(ModBlocks.PLANK_PLUM, "Plum Plank");
+        addBlock(ModBlocks.LEAVES_PLUM, "Plum Leaves");
+        addBlock(ModBlocks.SAPLING_PLUM, "Plum Sapling");
 
-        addBlock(Blocks.LOG_MULBERRY, "Mulberry Log");
-        addBlock(Blocks.LOG_MULBERRY_STRIPPED, "Stripped Mulberry Log");
-        addBlock(Blocks.LOG_MULBERRY_BARK, "Mulberry Wood");
-        addBlock(Blocks.LOG_MULBERRY_STRIPPED_BARK, "Stripped Mulberry Wood");
-        addBlock(Blocks.PLANK_MULBERRY, "Mulberry Plank");
-        addBlock(Blocks.LEAVES_MULBERRY, "Mulberry Leaves");
-        addBlock(Blocks.SAPLING_MULBERRY, "Mulberry Sapling");
+        addBlock(ModBlocks.LOG_MULBERRY, "Mulberry Log");
+        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED, "Stripped Mulberry Log");
+        addBlock(ModBlocks.LOG_MULBERRY_BARK, "Mulberry Wood");
+        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED_BARK, "Stripped Mulberry Wood");
+        addBlock(ModBlocks.PLANK_MULBERRY, "Mulberry Plank");
+        addBlock(ModBlocks.LEAVES_MULBERRY, "Mulberry Leaves");
+        addBlock(ModBlocks.SAPLING_MULBERRY, "Mulberry Sapling");
 
-        addBlock(Blocks.WHITE_MARBLE, "White Marble");
-        addBlock(Blocks.RED_MARBLE, "Red Marble");
-        addBlock(Blocks.BLACK_MARBLE, "Black Marble");
+        addBlock(ModBlocks.WHITE_MARBLE, "White Marble");
+        addBlock(ModBlocks.RED_MARBLE, "Red Marble");
+        addBlock(ModBlocks.BLACK_MARBLE, "Black Marble");
 
-        addBlock(Blocks.STOVE, "Stove");
-        addBlock(Blocks.VAT, "Vat");
-        addBlock(Blocks.PAPER_DRYING_RACK, "Paper Drying Rack");
-        addBlock(Blocks.STONE_MILL, "Stone Mill");
+        addBlock(ModBlocks.STOVE, "Stove");
+        addBlock(ModBlocks.VAT, "Vat");
+        addBlock(ModBlocks.PAPER_DRYING_RACK, "Paper Drying Rack");
+        addBlock(ModBlocks.STONE_MILL, "Stone Mill");
     }
 
     private void addEntities() {
-        addEntityType(() -> Entities.ENTITY_BUFFALO.get(), "Buffalo");
+        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "Buffalo");
     }
 }

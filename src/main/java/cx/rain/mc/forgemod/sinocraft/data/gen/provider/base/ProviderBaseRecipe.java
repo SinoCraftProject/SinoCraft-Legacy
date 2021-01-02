@@ -1,79 +1,33 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider.base;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.data.*;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.criterion.*;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.RecipeProvider;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.function.Consumer;
-
-public abstract class ProviderBaseRecipe implements IDataProvider {
-    private static final Logger LOGGER = LogManager.getLogger();
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    protected Map<ResourceLocation,IFinishedRecipe> recipes = new HashMap();
-    protected Consumer<IFinishedRecipe>  consumer = (recipe) -> {
-        recipes.put(recipe.getID(),recipe);
-    };
-    private DataGenerator generator;
-
+public abstract class ProviderBaseRecipe extends RecipeProvider {
     public ProviderBaseRecipe(DataGenerator generatorIn) {
-        generator = generatorIn;
+        super(generatorIn);
     }
 
-    protected abstract void registerRecipes();
-
-    @Override
-    public void act(DirectoryCache cache) {
-        registerRecipes();
-
-        writeRecipe(cache, recipes);
+    protected ICriterionInstance triggerItem(IItemProvider item) {
+        return InventoryChangeTrigger.Instance.forItems(getPredicateFromItem(item));
     }
 
-    private void writeRecipe(DirectoryCache cache, Map<ResourceLocation,IFinishedRecipe> recipes) {
-        Path outputFolder = generator.getOutputFolder();
-        recipes.forEach((key, recipe) -> {
-            Path path = getPath(outputFolder, key);
-            try {
-                IDataProvider.save(GSON, cache, recipe.getRecipeJson(), path);
-            } catch (IOException e) {
-                LOGGER.error("Couldn't write advancements {}", path, e);
-            }
-        });
-
+    protected ICriterionInstance triggerItem(ITag<Item> tag) {
+        return InventoryChangeTrigger.Instance.forItems(getPredicateFromTag(tag));
     }
 
-    private static Path getPath(Path pathIn, ResourceLocation id) {
-        return pathIn.resolve("data/" + id.getNamespace() + "/recipes/" + id.getPath() + ".json");
+    protected ItemPredicate getPredicateFromItem(IItemProvider item) {
+        return new ItemPredicate(null, item.asItem(), MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED,
+                EnchantmentPredicate.enchantments, EnchantmentPredicate.enchantments, null, NBTPredicate.ANY);
     }
 
-    @Override
-    public String getName() {
-        return "Recipes";
+    protected ItemPredicate getPredicateFromTag(ITag<Item> tag) {
+        return new ItemPredicate(tag, null, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED,
+                EnchantmentPredicate.enchantments, EnchantmentPredicate.enchantments, null, NBTPredicate.ANY);
     }
-
-    // Fixme: Broken!
-//    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
-//        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
-//    }
-//
-//    protected InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
-//        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
-//    }
-//
-//    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
-//        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
-//    }
 }

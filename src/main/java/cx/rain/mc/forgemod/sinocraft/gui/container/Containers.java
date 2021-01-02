@@ -20,7 +20,7 @@ public class Containers {
     );
 
     public Containers(IEventBus bus) {
-        SinoCraft.getInstance().getLog().info("Registering items.");
+        SinoCraft.getInstance().getLog().info("Registering containers.");
         REGISTRY.register(bus);
     }
 }

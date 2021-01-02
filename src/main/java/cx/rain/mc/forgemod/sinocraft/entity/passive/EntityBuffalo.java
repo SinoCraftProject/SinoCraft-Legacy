@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.entity.passive;
 
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 public class EntityBuffalo extends AnimalEntity {
 
     public EntityBuffalo(World worldIn) {
-        super(Entities.ENTITY_BUFFALO.get(), worldIn);
+        super(ModEntities.ENTITY_BUFFALO.get(), worldIn);
     }
 
     public EntityBuffalo(EntityType<? extends EntityBuffalo> type, World worldIn) {
@@ -80,6 +80,6 @@ public class EntityBuffalo extends AnimalEntity {
     @Nullable
     @Override
     public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return Entities.ENTITY_BUFFALO.get().create(this.world);
+        return ModEntities.ENTITY_BUFFALO.get().create(this.world);
     }
 }

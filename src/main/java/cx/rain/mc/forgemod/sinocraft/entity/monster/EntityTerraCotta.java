@@ -9,7 +9,7 @@ import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 
 import java.util.EnumSet;
 
@@ -25,7 +25,7 @@ public class EntityTerraCotta extends MonsterEntity {
         super(type, worldIn);
     }
     public EntityTerraCotta(World worldIn){
-        super(Entities.ENTITY_TERRACOTTA, worldIn);
+        super(ModEntities.ENTITY_TERRACOTTA, worldIn);
 
     }
     @Override

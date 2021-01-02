@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.entity.passive;
 
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -56,7 +56,7 @@ public class EntityGoal extends AnimalEntity {
     @Nullable
     @Override
     public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return Entities.ENTITY_GOAL.create(this.world);
+        return ModEntities.ENTITY_GOAL.create(this.world);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.group;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -14,6 +14,6 @@ public class GroupDecorate extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Blocks.SAPLING_PEACH.get());
+        return new ItemStack(ModBlocks.SAPLING_PEACH.get());
     }
 }

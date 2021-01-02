@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.side.client.register;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.side.client.renderer.entity.RendererBuffalo;
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,6 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class RendererRegister {
     @SubscribeEvent
     public static void onClientSetUpEvent(FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(Entities.ENTITY_BUFFALO.get(), RendererBuffalo::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_BUFFALO.get(), RendererBuffalo::new);
     }
 }

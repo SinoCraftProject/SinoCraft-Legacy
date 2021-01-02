@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -41,7 +41,7 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
     }
 
     private void registerDefaultRecipes(){
-        registerRecipe(net.minecraft.item.Items.WHEAT, new ItemStack(Items.FLOUR.get()));
+        registerRecipe(net.minecraft.item.Items.WHEAT, new ItemStack(ModItems.FLOUR.get()));
     }
 
     public TileEntityStoneMill() {

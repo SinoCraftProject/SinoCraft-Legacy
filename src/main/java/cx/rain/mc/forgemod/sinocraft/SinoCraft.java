@@ -1,13 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft;
 
 import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
-import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
-import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.gui.container.Containers;
 import cx.rain.mc.forgemod.sinocraft.side.Sides;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -38,12 +38,12 @@ public class SinoCraft {
         bus.addListener(this::setupClient);
         bus.addListener(this::setupServer);
 
-        new Blocks(bus);
-        new BlockItems(bus);
-        new Entities(bus);
-        new Items(bus);
+        new ModBlocks(bus);
+        new ModBlockItems(bus);
+        new ModEntities(bus);
+        new ModItems(bus);
         new TileEntities(bus);
-        new Fluids(bus);
+        new ModFluids(bus);
         new Containers(bus);
         new RegistryTrigger();
     }

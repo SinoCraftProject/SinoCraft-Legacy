@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
-import cx.rain.mc.forgemod.sinocraft.fluid.Fluids;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,8 +62,8 @@ public class TileEntityVat extends TileEntityMachineBase {
     }
 
     private void registerDefaultRecipes() {
-        registerRecipe(new ItemStack(Items.BARK.get(), 3), new FluidStack(Fluids.WOOD_PULP.get(), 1000));
-        registerRecipe(new ItemStack(Items.FLOUR.get(), 2), new ItemStack(Items.DOUGH.get()));
+        registerRecipe(new ItemStack(ModItems.BARK.get(), 3), new FluidStack(ModFluids.WOOD_PULP.get(), 1000));
+        registerRecipe(new ItemStack(ModItems.FLOUR.get(), 2), new ItemStack(ModItems.DOUGH.get()));
     }
 
     public TileEntityVat() {

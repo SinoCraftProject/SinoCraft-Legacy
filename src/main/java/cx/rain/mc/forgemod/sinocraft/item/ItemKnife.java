@@ -1,16 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockActivatable;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
-import cx.rain.mc.forgemod.sinocraft.group.Groups;
+import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
@@ -70,7 +67,7 @@ public class ItemKnife extends SwordItem {
                             context.getWorld().getBlockState(context.getPos()).getBlock();
                     context.getWorld().setBlockState(
                             context.getPos(), (STRIPPING_MAP.get(block).getDefaultState().with(RotatedPillarBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(RotatedPillarBlock.AXIS))));
-                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(Items.BARK.get(), context.getWorld().getRandom().nextInt(2)));
+                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(ModItems.BARK.get(), context.getWorld().getRandom().nextInt(2)));
                     // Fixme: Broken!
                     //RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
                     //        context.getPos(),context.getItem());
@@ -81,7 +78,7 @@ public class ItemKnife extends SwordItem {
     }
 
     public ItemKnife(IItemTier tier) {
-        super(tier,2,-3.0f,new Item.Properties().group(Groups.TOOLS));
+        super(tier,2,-3.0f,new Item.Properties().group(ModGroups.TOOLS));
         initManager();
     }
 

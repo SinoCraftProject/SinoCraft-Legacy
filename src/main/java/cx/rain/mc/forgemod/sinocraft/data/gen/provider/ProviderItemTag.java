@@ -1,9 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.data.TagBlock;
-import cx.rain.mc.forgemod.sinocraft.data.TagItem;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.data.tag.TagBlock;
+import cx.rain.mc.forgemod.sinocraft.data.tag.TagItem;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -11,7 +11,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import static cx.rain.mc.forgemod.sinocraft.data.TagItem.KNIFE;
+import static cx.rain.mc.forgemod.sinocraft.data.tag.TagItem.KNIFE;
 
 public class ProviderItemTag extends ItemTagsProvider {
     public ProviderItemTag(DataGenerator generatorIn, ExistingFileHelper helper, BlockTagsProvider blockTagsProvider) {
@@ -26,6 +26,6 @@ public class ProviderItemTag extends ItemTagsProvider {
         this.copy(TagBlock.LOG_WALNUT,TagItem.LOG_WALNUT);
         this.copy(BlockTags.LOGS, ItemTags.LOGS);
         this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
-        getOrCreateBuilder(KNIFE).add(Items.KNIFE_IRON.get(),Items.KNIFE_GOLD.get(),Items.KNIFE_DIAMOND.get());
+        getOrCreateBuilder(KNIFE).add(ModItems.KNIFE_IRON.get(), ModItems.KNIFE_GOLD.get(), ModItems.KNIFE_DIAMOND.get());
     }
 }

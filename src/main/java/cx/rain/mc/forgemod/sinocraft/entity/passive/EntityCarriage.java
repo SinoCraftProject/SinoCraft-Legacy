@@ -1,9 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.entity.passive;
 
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.World;
@@ -19,7 +18,7 @@ public class EntityCarriage extends AnimalEntity {
 
 
     public EntityCarriage(World worldIn) {
-        super(Entities.ENTITY_BUFFALO.get(), worldIn);
+        super(ModEntities.ENTITY_BUFFALO.get(), worldIn);
     }
 
     public EntityCarriage(EntityType<? extends EntityBuffalo> type, World worldIn) {

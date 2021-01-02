@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "sinocraft:block/log_peach_stripped"
-  }
-}

@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.group;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -14,6 +14,6 @@ public class GroupTools extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Items.KNIFE_IRON.get());
+        return new ItemStack(ModItems.KNIFE_IRON.get());
     }
 }

@@ -1,12 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.world.gen;
 
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
-import net.minecraftforge.common.IPlantable;
 
 public class Features {
     // Fixme: BlobFoliagePlacer arguments.
@@ -59,11 +54,11 @@ public class Features {
 //                    .build();
 
     public static final OreFeatureConfig WHITE_MARBLE_CONFIG = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.WHITE_MARBLE.get().getDefaultState(), 17);
+            OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.WHITE_MARBLE.get().getDefaultState(), 17);
 
     public static final OreFeatureConfig BLACK_MARBLE_CONFIG = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.BLACK_MARBLE.get().getDefaultState(), 17);
+            OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.BLACK_MARBLE.get().getDefaultState(), 17);
 
     public static final OreFeatureConfig RED_MARBLE_CONFIG = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.RED_MARBLE.get().getDefaultState(), 17);
+            OreFeatureConfig.FillerBlockType.NETHERRACK, ModBlocks.RED_MARBLE.get().getDefaultState(), 17);
 }

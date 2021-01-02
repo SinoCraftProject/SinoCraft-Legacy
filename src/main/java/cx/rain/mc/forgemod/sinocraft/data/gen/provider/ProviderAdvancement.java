@@ -1,20 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
-import cx.rain.mc.forgemod.sinocraft.block.BlockItems;
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
-import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.data.gen.provider.base.ProviderBaseAdvancement;
-import cx.rain.mc.forgemod.sinocraft.item.Items;
-import net.minecraft.advancements.*;
-import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 
 public class ProviderAdvancement extends ProviderBaseAdvancement {
     public static final String ID = SinoCraft.MODID;

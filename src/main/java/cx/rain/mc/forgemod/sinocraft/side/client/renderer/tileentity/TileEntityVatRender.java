@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec4;
 import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
-import cx.rain.mc.forgemod.sinocraft.utility.RenderUtil;
+import cx.rain.mc.forgemod.sinocraft.utility.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -39,11 +39,11 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                 TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).
                         apply(fluid.getAttributes().getStillTexture());
                 IVertexBuilder vertex = buffer.getBuffer(RenderType.getText(sprite.getAtlasTexture().getTextureLocation()));
-                RenderUtil.addSquare(vertex,matrixStack,
+                RenderHelper.addSquare(vertex,matrixStack,
                         new Vec3(0.0f,0.0f,1.0f),new Vec3(1.0f,0.0f,1.0f),
                         new Vec3(1.0f,0.0f,0.0f),new Vec3(0.0f,0.0f,0.0f),
                         new Vec4(sprite.getMinU(),sprite.getMaxU(),sprite.getMinV(),sprite.getMaxV()),
-                        RenderUtil.NumberToGLColor(fluid.getAttributes().getColor()));
+                        RenderHelper.NumberToGLColor(fluid.getAttributes().getColor()));
                 matrixStack.pop();
             }
         }

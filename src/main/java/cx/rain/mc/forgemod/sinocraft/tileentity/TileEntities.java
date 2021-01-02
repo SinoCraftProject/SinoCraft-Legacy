@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.Blocks;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,10 +16,10 @@ public class TileEntities {
             () -> TileEntityType.Builder.create(TileEntityStove::new, Blocks.STOVE.get()).build(null));*/
 
     public static RegistryObject<TileEntityType<TileEntityVat>> VAT = REGISTRY.register("vat",
-            () -> TileEntityType.Builder.create(TileEntityVat::new, Blocks.VAT.get()).build(null));
+            () -> TileEntityType.Builder.create(TileEntityVat::new, ModBlocks.VAT.get()).build(null));
 
     public static RegistryObject<TileEntityType<TileEntityStoneMill>> STONE_MILL = REGISTRY.register("stone_mill",
-            () -> TileEntityType.Builder.create(TileEntityStoneMill::new, Blocks.STONE_MILL.get()).build(null));
+            () -> TileEntityType.Builder.create(TileEntityStoneMill::new, ModBlocks.STONE_MILL.get()).build(null));
 
     public TileEntities(IEventBus bus) {
         SinoCraft.getLog().info("Registering tileentities.");

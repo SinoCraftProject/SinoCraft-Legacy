@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.gui.container;
 
-import cx.rain.mc.forgemod.sinocraft.item.Items;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
@@ -19,13 +19,13 @@ public class ContainerChineseBrush extends Container implements IIntArray {
         this.addSlot(new Slot(inventory, 0, 14, 23) {
             @Override
             public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(Items.XUAN_PAPER.get()) || stack == ItemStack.EMPTY;
+                return stack.getItem().equals(ModItems.XUAN_PAPER.get()) || stack == ItemStack.EMPTY;
             }
         });
         this.addSlot(new Slot(inventory, 1, 14, 66) {
             @Override
             public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(Items.CHINA_INK.get()) || stack.getItem().equals(Items.INK_STONE.get()) || stack == ItemStack.EMPTY;
+                return stack.getItem().equals(ModItems.CHINA_INK.get()) || stack.getItem().equals(ModItems.INK_STONE.get()) || stack == ItemStack.EMPTY;
             }
         });
         layoutPlayerInventorySlots(playerInventory, 45, 155);

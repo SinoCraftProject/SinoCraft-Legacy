@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.entity.passive;
 
-import cx.rain.mc.forgemod.sinocraft.entity.Entities;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.world.World;
@@ -15,7 +15,7 @@ public class EntityEmperor extends MobEntity {
         super(type, worldIn);
     }
     public EntityEmperor(World worldIn) {
-        super(Entities.ENTITY_EMPEROR, worldIn);
+        super(ModEntities.ENTITY_EMPEROR, worldIn);
     }
     /*
     protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID;

@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.data.gen.provider.base;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import cx.rain.mc.forgemod.sinocraft.data.TagItem;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.criterion.*;
