@@ -42,7 +42,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.PEACH_LOG_STRIPPED_BARK.get());
         simpleBlockItem(ModBlockItems.PEACH_PLANK.get());
         simpleBlockItem(ModBlockItems.PEACH_LEAVES.get());
-        simpleItem(ModBlockItems.PEACH_SAPLING.get(), modLoc("block/tree/peach_sapling"));
+        simpleItem(ModBlockItems.PEACH_SAPLING.get(), modLoc("block/peach_sapling"));
 
         simpleBlockItem(ModBlockItems.WALNUT_LOG.get());
         simpleBlockItem(ModBlockItems.WALNUT_LOG_STRIPPED.get());
@@ -50,7 +50,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.WALNUT_LOG_STRIPPED_BARK.get());
         simpleBlockItem(ModBlockItems.WALNUT_PLANK.get());
         simpleBlockItem(ModBlockItems.WALNUT_LEAVES.get());
-        simpleItem(ModBlockItems.WALNUT_SAPLING.get(), modLoc("block/tree/walnut_sapling"));
+        simpleItem(ModBlockItems.WALNUT_SAPLING.get(), modLoc("block/walnut_sapling"));
 
         simpleBlockItem(ModBlockItems.PLUM_LOG.get());
         simpleBlockItem(ModBlockItems.PLUM_LOG_STRIPPED.get());
@@ -58,7 +58,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.PLUM_LOG_STRIPPED_BARK.get());
         simpleBlockItem(ModBlockItems.PLUM_PLANK.get());
         simpleBlockItem(ModBlockItems.PLUM_LEAVES.get());
-        simpleItem(ModBlockItems.PLUM_SAPLING.get(), modLoc("block/tree/plum_sapling"));
+        simpleItem(ModBlockItems.PLUM_SAPLING.get(), modLoc("block/plum_sapling"));
 
         simpleBlockItem(ModBlockItems.MULBERRY_LOG.get());
         simpleBlockItem(ModBlockItems.MULBERRY_LOG_STRIPPED.get());
@@ -66,7 +66,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.MULBERRY_LOG_STRIPPED_BARK.get());
         simpleBlockItem(ModBlockItems.MULBERRY_PLANK.get());
         simpleBlockItem(ModBlockItems.MULBERRY_LEAVES.get());
-        simpleItem(ModBlockItems.MULBERRY_SAPLING.get(), modLoc("block/tree/mulberry_sapling"));
+        simpleItem(ModBlockItems.MULBERRY_SAPLING.get(), modLoc("block/mulberry_sapling"));
 
         simpleBlockItem(ModBlockItems.WHITE_MARBLE.get());
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());

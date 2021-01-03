@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "sinocraft:block/tree/peach_sapling"
-  }
-}

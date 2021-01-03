@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "sinocraft:block/tree/plum_log_side",
-    "end": "sinocraft:block/tree/plum_log_end"
-  }
-}
