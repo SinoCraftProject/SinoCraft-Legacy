@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "sinocraft:block/tree/peach_log_side",
+    "end": "sinocraft:block/tree/peach_log_end"
+  }
+}

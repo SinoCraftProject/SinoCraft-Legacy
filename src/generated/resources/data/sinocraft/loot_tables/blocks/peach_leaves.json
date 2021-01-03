@@ -1,0 +1,141 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "leaves_peach_sapling",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "sinocraft:peach_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 37,
+          "name": "minecraft:air"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:alternative",
+            "terms": [
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "item": "minecraft:shears"
+                }
+              },
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:silk_touch",
+                      "levels": {
+                        "min": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "leaves_peach",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sinocraft:peach_leaves"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:alternative",
+          "terms": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "item": "minecraft:shears"
+              }
+            },
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "enchantments": [
+                  {
+                    "enchantment": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leaves_peach_fruits",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sinocraft:peach"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 49,
+          "name": "minecraft:air"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:alternative",
+            "terms": [
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "item": "minecraft:shears"
+                }
+              },
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:silk_touch",
+                      "levels": {
+                        "min": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "sinocraft:peach_leaves",
+          "properties": {
+            "mature": "true"
+          }
+        }
+      ]
+    }
+  ]
+}

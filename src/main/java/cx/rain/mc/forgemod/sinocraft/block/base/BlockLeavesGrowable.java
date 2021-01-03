@@ -19,19 +19,14 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Random;
 
-public class BlockLeavesGrowable extends LeavesBlock implements IGrowable {
+public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
     private LogType type = null;
     private RegistryObject<Item> fruitRegistry = null;
 
     public BlockLeavesGrowable(LogType typeIn, RegistryObject<Item> fruitRegistryIn) {
-        super(Properties.create(Material.LEAVES)
-                .sound(SoundType.PLANT)
-                .hardnessAndResistance(0.2F)
-                .tickRandomly()
-                .notSolid()
-        );
+        super(typeIn);
         type = typeIn;
         fruitRegistry = fruitRegistryIn;
 

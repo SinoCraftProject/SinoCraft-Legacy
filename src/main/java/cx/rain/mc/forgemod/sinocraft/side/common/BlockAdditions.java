@@ -9,9 +9,9 @@ public class BlockAdditions {
     }
 
     private void addWoodStripping() {
-        ProtectedHelper.addAxeStrippingMap(ModBlocks.LOG_PEACH.get(), ModBlocks.LOG_PEACH_STRIPPED.get());
-        ProtectedHelper.addAxeStrippingMap(ModBlocks.LOG_WALNUT.get(), ModBlocks.LOG_WALNUT_STRIPPED.get());
-        ProtectedHelper.addAxeStrippingMap(ModBlocks.LOG_PLUM.get(), ModBlocks.LOG_PLUM_STRIPPED.get());
-        ProtectedHelper.addAxeStrippingMap(ModBlocks.LOG_MULBERRY.get(), ModBlocks.LOG_MULBERRY_STRIPPED.get());
+        ProtectedHelper.addAxeStrippingMap(ModBlocks.PEACH_LOG.get(), ModBlocks.PEACH_LOG_STRIPPED.get());
+        ProtectedHelper.addAxeStrippingMap(ModBlocks.WALNUT_LOG.get(), ModBlocks.WALNUT_LOG_STRIPPED.get());
+        ProtectedHelper.addAxeStrippingMap(ModBlocks.PLUM_LOG.get(), ModBlocks.PLUM_LOG_STRIPPED.get());
+        ProtectedHelper.addAxeStrippingMap(ModBlocks.MULBERRY_LOG.get(), ModBlocks.MULBERRY_LOG_STRIPPED.get());
     }
 }

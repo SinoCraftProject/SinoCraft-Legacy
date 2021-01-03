@@ -1,8 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.data.gen.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -17,43 +22,55 @@ public class ProviderItemModel extends ItemModelProvider {
         super(gen, SinoCraft.MODID, exFileHelper);
     }
 
+    private ModelFile getModel(String loc) {
+        return new ModelFile.UncheckedModelFile(new ResourceLocation(modid, loc));
+    }
+
+    protected void simpleItem(Item item, ResourceLocation texture) {
+        singleTexture(item.getRegistryName().getPath(), mcLoc("generated"), "layer0", texture);
+    }
+
+    protected void simpleBlockItem(Item blockItem) {
+        getBuilder(blockItem.getRegistryName().getPath()).parent(getModel("block/" + blockItem.getRegistryName().getPath()));
+    }
+
     @Override
     protected void registerModels() {
-        getBuilder("log_peach").parent(getModel("block/log_peach"));
-        getBuilder("log_peach_bark").parent(getModel("block/log_peach_bark"));
-        getBuilder("log_peach_stripped").parent(getModel("block/log_peach_stripped"));
-        getBuilder("log_peach_stripped_bark").parent(getModel("block/log_peach_stripped_bark"));
-        getBuilder("leaves_peach").parent(getModel("block/leaves_peach"));
-        getBuilder("plank_peach").parent(getModel("block/plank_peach"));
-        getBuilder("sapling_peach").parent(GENERATED).texture("layer0", modLoc("block/sapling_peach"));
-        
-        getBuilder("log_walnut").parent(getModel("block/log_walnut"));
-        getBuilder("log_walnut_bark").parent(getModel("block/log_walnut_bark"));
-        getBuilder("log_walnut_stripped").parent(getModel("block/log_walnut_stripped"));
-        getBuilder("log_walnut_stripped_bark").parent(getModel("block/log_walnut_stripped_bark"));
-        getBuilder("leaves_walnut").parent(getModel("block/leaves_walnut"));
-        getBuilder("plank_walnut").parent(getModel("block/plank_walnut"));
-        getBuilder("sapling_walnut").parent(GENERATED).texture("layer0", modLoc("block/sapling_walnut"));
+        simpleBlockItem(ModBlockItems.PEACH_LOG.get());
+        simpleBlockItem(ModBlockItems.PEACH_LOG_STRIPPED.get());
+        simpleBlockItem(ModBlockItems.PEACH_LOG_BARK.get());
+        simpleBlockItem(ModBlockItems.PEACH_LOG_STRIPPED_BARK.get());
+        simpleBlockItem(ModBlockItems.PEACH_PLANK.get());
+        simpleBlockItem(ModBlockItems.PEACH_LEAVES.get());
+        simpleItem(ModBlockItems.PEACH_SAPLING.get(), modLoc("block/tree/peach_sapling"));
 
-        getBuilder("log_plum").parent(getModel("block/log_plum"));
-        getBuilder("log_plum_bark").parent(getModel("block/log_plum_bark"));
-        getBuilder("log_plum_stripped").parent(getModel("block/log_plum_stripped"));
-        getBuilder("log_plum_stripped_bark").parent(getModel("block/log_plum_stripped_bark"));
-        getBuilder("leaves_plum").parent(getModel("block/leaves_plum"));
-        getBuilder("plank_plum").parent(getModel("block/plank_plum"));
-        getBuilder("sapling_plum").parent(GENERATED).texture("layer0", modLoc("block/sapling_plum"));
+        simpleBlockItem(ModBlockItems.WALNUT_LOG.get());
+        simpleBlockItem(ModBlockItems.WALNUT_LOG_STRIPPED.get());
+        simpleBlockItem(ModBlockItems.WALNUT_LOG_BARK.get());
+        simpleBlockItem(ModBlockItems.WALNUT_LOG_STRIPPED_BARK.get());
+        simpleBlockItem(ModBlockItems.WALNUT_PLANK.get());
+        simpleBlockItem(ModBlockItems.WALNUT_LEAVES.get());
+        simpleItem(ModBlockItems.WALNUT_SAPLING.get(), modLoc("block/tree/walnut_sapling"));
 
-        getBuilder("log_mulberry").parent(getModel("block/log_mulberry"));
-        getBuilder("log_mulberry_bark").parent(getModel("block/log_mulberry_bark"));
-        getBuilder("log_mulberry_stripped").parent(getModel("block/log_mulberry_stripped"));
-        getBuilder("log_mulberry_stripped_bark").parent(getModel("block/log_mulberry_stripped_bark"));
-        getBuilder("leaves_mulberry").parent(getModel("block/leaves_mulberry"));
-        getBuilder("plank_mulberry").parent(getModel("block/plank_mulberry"));
-        getBuilder("sapling_mulberry").parent(GENERATED).texture("layer0", modLoc("block/sapling_mulberry"));
+        simpleBlockItem(ModBlockItems.PLUM_LOG.get());
+        simpleBlockItem(ModBlockItems.PLUM_LOG_STRIPPED.get());
+        simpleBlockItem(ModBlockItems.PLUM_LOG_BARK.get());
+        simpleBlockItem(ModBlockItems.PLUM_LOG_STRIPPED_BARK.get());
+        simpleBlockItem(ModBlockItems.PLUM_PLANK.get());
+        simpleBlockItem(ModBlockItems.PLUM_LEAVES.get());
+        simpleItem(ModBlockItems.PLUM_SAPLING.get(), modLoc("block/tree/plum_sapling"));
 
-        getBuilder("white_marble").parent(getModel("block/white_marble"));
-        getBuilder("red_marble").parent(getModel("block/red_marble"));
-        getBuilder("black_marble").parent(getModel("block/black_marble"));
+        simpleBlockItem(ModBlockItems.MULBERRY_LOG.get());
+        simpleBlockItem(ModBlockItems.MULBERRY_LOG_STRIPPED.get());
+        simpleBlockItem(ModBlockItems.MULBERRY_LOG_BARK.get());
+        simpleBlockItem(ModBlockItems.MULBERRY_LOG_STRIPPED_BARK.get());
+        simpleBlockItem(ModBlockItems.MULBERRY_PLANK.get());
+        simpleBlockItem(ModBlockItems.MULBERRY_LEAVES.get());
+        simpleItem(ModBlockItems.MULBERRY_SAPLING.get(), modLoc("block/tree/mulberry_sapling"));
+
+        simpleBlockItem(ModBlockItems.WHITE_MARBLE.get());
+        simpleBlockItem(ModBlockItems.RED_MARBLE.get());
+        simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
         getBuilder("peach").parent(GENERATED).texture("layer0", modLoc("item/peach"));
         getBuilder("chili_pepper_seed").parent(GENERATED).texture("layer0", modLoc("item/chili_pepper_seed"));
@@ -96,14 +113,5 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
 
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
-    }
-
-    @Override
-    public String getName() {
-        return "Item Models";
-    }
-
-    private ModelFile getModel(String loc) {
-        return new ModelFile.UncheckedModelFile(new ResourceLocation(modid, loc));
     }
 }

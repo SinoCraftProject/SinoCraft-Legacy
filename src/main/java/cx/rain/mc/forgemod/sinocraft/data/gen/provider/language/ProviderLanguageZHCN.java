@@ -102,37 +102,37 @@ public class ProviderLanguageZHCN extends LanguageProvider {
     }
 
     private void addBlocks() {
-        addBlock(ModBlocks.LOG_PEACH, "桃树原木");
-        addBlock(ModBlocks.LOG_PEACH_STRIPPED, "去皮桃树原木");
-        addBlock(ModBlocks.LOG_PEACH_BARK, "桃树树皮块");
-        addBlock(ModBlocks.LOG_PEACH_STRIPPED_BARK, "去皮桃树树皮块");
-        addBlock(ModBlocks.PLANK_PEACH, "桃树木板");
-        addBlock(ModBlocks.LEAVES_PEACH, "桃树树叶");
-        addBlock(ModBlocks.SAPLING_PEACH, "桃树树苗");
+        addBlock(ModBlocks.PEACH_LOG, "桃树原木");
+        addBlock(ModBlocks.PEACH_LOG_STRIPPED, "去皮桃树原木");
+        addBlock(ModBlocks.PEACH_LOG_BARK, "桃树树皮块");
+        addBlock(ModBlocks.PEACH_LOG_STRIPPED_BARK, "去皮桃树树皮块");
+        addBlock(ModBlocks.PEACH_PLANK, "桃树木板");
+        addBlock(ModBlocks.PEACH_LEAVES, "桃树树叶");
+        addBlock(ModBlocks.PEACH_SAPLING, "桃树树苗");
 
-        addBlock(ModBlocks.LOG_WALNUT, "核桃树原木");
-        addBlock(ModBlocks.LOG_WALNUT_STRIPPED, "去皮核桃树原木");
-        addBlock(ModBlocks.LOG_WALNUT_BARK, "核桃树树皮块");
-        addBlock(ModBlocks.LOG_WALNUT_STRIPPED_BARK, "去皮核桃树树皮块");
-        addBlock(ModBlocks.PLANK_WALNUT, "核桃树木板");
-        addBlock(ModBlocks.LEAVES_WALNUT, "核桃树树叶");
-        addBlock(ModBlocks.SAPLING_WALNUT, "核桃树树苗");
+        addBlock(ModBlocks.WALNUT_LOG, "核桃树原木");
+        addBlock(ModBlocks.WALNUT_LOG_STRIPPED, "去皮核桃树原木");
+        addBlock(ModBlocks.WALNUT_LOG_BARK, "核桃树树皮块");
+        addBlock(ModBlocks.WALNUT_LOG_STRIPPED_BARK, "去皮核桃树树皮块");
+        addBlock(ModBlocks.WALNUT_PLANK, "核桃树木板");
+        addBlock(ModBlocks.WALNUT_LEAVES, "核桃树树叶");
+        addBlock(ModBlocks.WALNUT_SAPLING, "核桃树树苗");
 
-        addBlock(ModBlocks.LOG_PLUM, "梅花原木");
-        addBlock(ModBlocks.LOG_PLUM_STRIPPED, "去皮梅花原木");
-        addBlock(ModBlocks.LOG_PLUM_BARK, "梅花树皮块");
-        addBlock(ModBlocks.LOG_PLUM_STRIPPED_BARK, "去皮梅花树皮块");
-        addBlock(ModBlocks.PLANK_PLUM, "梅花木板");
-        addBlock(ModBlocks.LEAVES_PLUM, "梅花树叶");
-        addBlock(ModBlocks.SAPLING_PLUM, "梅花树苗");
+        addBlock(ModBlocks.PLUM_LOG, "梅花原木");
+        addBlock(ModBlocks.PLUM_LOG_STRIPPED, "去皮梅花原木");
+        addBlock(ModBlocks.PLUM_LOG_BARK, "梅花树皮块");
+        addBlock(ModBlocks.PLUM_LOG_STRIPPED_BARK, "去皮梅花树皮块");
+        addBlock(ModBlocks.PLUM_PLANK, "梅花木板");
+        addBlock(ModBlocks.PLUM_LEAVES, "梅花树叶");
+        addBlock(ModBlocks.PLUM_SAPLING, "梅花树苗");
 
-        addBlock(ModBlocks.LOG_MULBERRY, "桑树原木");
-        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED, "去皮桑树原木");
-        addBlock(ModBlocks.LOG_MULBERRY_BARK, "桑树树皮块");
-        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED_BARK, "去皮桑树树皮块");
-        addBlock(ModBlocks.PLANK_MULBERRY, "桑树木板");
-        addBlock(ModBlocks.LEAVES_MULBERRY, "桑树树叶");
-        addBlock(ModBlocks.SAPLING_MULBERRY, "桑树树苗");
+        addBlock(ModBlocks.MULBERRY_LOG, "桑树原木");
+        addBlock(ModBlocks.MULBERRY_LOG_STRIPPED, "去皮桑树原木");
+        addBlock(ModBlocks.MULBERRY_LOG_BARK, "桑树树皮块");
+        addBlock(ModBlocks.MULBERRY_LOG_STRIPPED_BARK, "去皮桑树树皮块");
+        addBlock(ModBlocks.MULBERRY_PLANK, "桑树木板");
+        addBlock(ModBlocks.MULBERRY_LEAVES, "桑树树叶");
+        addBlock(ModBlocks.MULBERRY_SAPLING, "桑树树苗");
 
         addBlock(ModBlocks.WHITE_MARBLE, "汉白玉大理石");
         addBlock(ModBlocks.RED_MARBLE, "南江红大理石");

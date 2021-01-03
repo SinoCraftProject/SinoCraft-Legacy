@@ -32,7 +32,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .patternLine("WSW")
                 .key('W', ItemTags.PLANKS)
                 .key('S', ItemTags.SLABS)
-                .addCriterion("got_wood", triggerItem(ItemTags.PLANKS))
+                .addCriterion("got_wood", hasItem(ItemTags.PLANKS))
                 .build(consumer);
     }
 

@@ -8,6 +8,7 @@ import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
@@ -19,42 +20,51 @@ public class ProviderBlockState extends BlockStateProvider {
         super(gen, SinoCraft.MODID, exFileHelper);
     }
 
+    protected void blocksTreeTrunkAndPlank(Block trunk, Block trunkStripped, Block trunkBark, Block trunkStrippedBark,
+                                           Block plankBlock, String side, String stripped, String end, String plank) {
+        blockTreeLog(trunk, side, end);
+        blockTreeLog(trunkStripped, stripped, end);
+        simpleBlock(trunkBark, side);
+        simpleBlock(trunkStrippedBark, stripped);
+        simpleBlock(plankBlock, plank);
+    }
+
+    protected void cropsStage(BlockPlant plant, int stageCount, String name) {
+        VariantBlockStateBuilder builder = getVariantBuilder(plant);
+        for (int i = 0; i < stageCount; i++) {
+            builder.partialState().with(plant.getStage(), i).modelForState().modelFile(
+                    models().crop(name + "_" + i, modLoc("block/crop/" + name + "_" + i))).addModel();
+        }
+    }
+
+    protected void simpleBlock(Block block, String texture) {
+        simpleBlock(block, models().cubeAll("tree/" + texture, modLoc("block/tree/" + texture)));
+    }
+
+    protected void blockTreeLog(Block block, String side, String end) {
+        axisBlock((RotatedPillarBlock) block, modLoc("block/tree/" + side), modLoc("block/tree/" + end));
+    }
+
     @Override
     protected void registerStatesAndModels() {
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_PEACH.get(), modLoc("block/log_peach_side"), modLoc("block/log_peach_top"));
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_PEACH_STRIPPED.get(), modLoc("block/log_peach_stripped"), modLoc("block/log_peach_top"));
-        simpleBlock(ModBlocks.LOG_PEACH_BARK.get(), models().cubeAll("log_peach_bark", modLoc("block/log_peach_side")));
-        simpleBlock(ModBlocks.LOG_PEACH_STRIPPED_BARK.get(), models().cubeAll("log_peach_stripped_bark", modLoc("block/log_peach_stripped")));
-        simpleBlock(ModBlocks.PLANK_PEACH.get());
-        getVariantBuilder(ModBlocks.LEAVES_PEACH.get())
-                .partialState().with(BlockLeavesGrowable.getMatureProperty(), false).modelForState().modelFile(models().cubeAll("leaves_peach", modLoc("block/leaves_peach"))).addModel()
-                .partialState().with(BlockLeavesGrowable.getMatureProperty(), true).modelForState().modelFile(models().cubeAll("leaves_peach_mature", modLoc("block/leaves_peach_mature"))).addModel();
-        simpleBlock(ModBlocks.SAPLING_PEACH.get(), models().cross("sapling_peach", modLoc("block/sapling_peach")));
+        blocksTreeTrunkAndPlank(ModBlocks.PEACH_LOG.get(), ModBlocks.PEACH_LOG_STRIPPED.get(), ModBlocks.PEACH_LOG_BARK.get(), ModBlocks.PEACH_LOG_STRIPPED_BARK.get(), ModBlocks.PEACH_PLANK.get(), "peach_log_side", "peach_log_stripped", "peach_log_end", "peach_plank");
+        getVariantBuilder(ModBlocks.PEACH_LEAVES.get())
+                .partialState().with(BlockLeavesGrowable.getMatureProperty(), false).modelForState().modelFile(models().cubeAll("peach_leaves", modLoc("block/tree/peach_leaves"))).addModel()
+                .partialState().with(BlockLeavesGrowable.getMatureProperty(), true).modelForState().modelFile(models().cubeAll("peach_leaves_mature", modLoc("block/tree/peach_leaves_mature"))).addModel();
+        simpleBlock(ModBlocks.PEACH_SAPLING.get(), models().cross("peach_sapling", modLoc("block/tree/peach_sapling")));
 
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_WALNUT.get(), modLoc("block/log_walnut_side"), modLoc("block/log_walnut_top"));
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_WALNUT_STRIPPED.get(), modLoc("block/log_walnut_stripped"), modLoc("block/log_walnut_top"));
-        simpleBlock(ModBlocks.LOG_WALNUT_BARK.get(), models().cubeAll("log_walnut_bark", modLoc("block/log_walnut_side")));
-        simpleBlock(ModBlocks.LOG_WALNUT_STRIPPED_BARK.get(), models().cubeAll("log_walnut_stripped_bark", modLoc("block/log_walnut_stripped")));
-        simpleBlock(ModBlocks.PLANK_WALNUT.get());
-        simpleBlock(ModBlocks.LEAVES_WALNUT.get());
-        simpleBlock(ModBlocks.SAPLING_WALNUT.get(), models().cross("sapling_walnut", modLoc("block/sapling_walnut")));
+        blocksTreeTrunkAndPlank(ModBlocks.WALNUT_LOG.get(), ModBlocks.WALNUT_LOG_STRIPPED.get(), ModBlocks.WALNUT_LOG_BARK.get(), ModBlocks.WALNUT_LOG_STRIPPED_BARK.get(), ModBlocks.WALNUT_PLANK.get(), "walnut_log_side", "walnut_log_stripped", "walnut_log_end", "walnut_plank");
+        simpleBlock(ModBlocks.WALNUT_LEAVES.get(), models().cubeAll("walnut_plank", modLoc("block/tree/walnut_leaves")));
+        simpleBlock(ModBlocks.WALNUT_SAPLING.get(), models().cross("walnut_sapling", modLoc("block/tree/walnut_sapling")));
 
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_MULBERRY.get(), modLoc("block/log_mulberry_side"), modLoc("block/log_mulberry_top"));
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_MULBERRY_STRIPPED.get(), modLoc("block/log_mulberry_stripped"), modLoc("block/log_mulberry_top"));
-        simpleBlock(ModBlocks.LOG_MULBERRY_BARK.get(), models().cubeAll("log_mulberry_bark", modLoc("block/log_mulberry_side")));
-        simpleBlock(ModBlocks.LOG_MULBERRY_STRIPPED_BARK.get(), models().cubeAll("log_mulberry_stripped_bark", modLoc("block/log_mulberry_stripped")));
-        simpleBlock(ModBlocks.PLANK_MULBERRY.get());
-        simpleBlock(ModBlocks.LEAVES_MULBERRY.get());
-        simpleBlock(ModBlocks.SAPLING_MULBERRY.get(), models().cross("sapling_mulberry", modLoc("block/sapling_mulberry")));
+        blocksTreeTrunkAndPlank(ModBlocks.MULBERRY_LOG.get(), ModBlocks.MULBERRY_LOG_STRIPPED.get(), ModBlocks.MULBERRY_LOG_BARK.get(), ModBlocks.MULBERRY_LOG_STRIPPED_BARK.get(), ModBlocks.MULBERRY_PLANK.get(), "mulberry_log_side", "mulberry_log_stripped", "mulberry_log_end", "mulberry_plank");
+        simpleBlock(ModBlocks.MULBERRY_LEAVES.get(), models().cubeAll("mulberry_plank", modLoc("block/tree/mulberry_leaves")));
+        simpleBlock(ModBlocks.MULBERRY_SAPLING.get(), models().cross("mulberry_sapling", modLoc("block/tree/mulberry_sapling")));
 
 
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_PLUM.get(), modLoc("block/log_plum_side"), modLoc("block/log_plum_top"));
-        axisBlock((RotatedPillarBlock) ModBlocks.LOG_PLUM_STRIPPED.get(), modLoc("block/log_plum_stripped"), modLoc("block/log_plum_top"));
-        simpleBlock(ModBlocks.LOG_PLUM_BARK.get(), models().cubeAll("log_plum_bark", modLoc("block/log_plum_side")));
-        simpleBlock(ModBlocks.LOG_PLUM_STRIPPED_BARK.get(), models().cubeAll("log_plum_stripped_bark", modLoc("block/log_plum_stripped")));
-        simpleBlock(ModBlocks.PLANK_PLUM.get());
-        simpleBlock(ModBlocks.LEAVES_PLUM.get());
-        simpleBlock(ModBlocks.SAPLING_PLUM.get(), models().cross("sapling_plum", modLoc("block/sapling_plum")));
+        blocksTreeTrunkAndPlank(ModBlocks.PLUM_LOG.get(), ModBlocks.PLUM_LOG_STRIPPED.get(), ModBlocks.PLUM_LOG_BARK.get(), ModBlocks.PLUM_LOG_STRIPPED_BARK.get(), ModBlocks.PLUM_PLANK.get(), "plum_log_side", "plum_log_stripped", "plum_log_end", "plum_plank");
+        simpleBlock(ModBlocks.PLUM_LEAVES.get(), models().cubeAll("plum_leaves", modLoc("block/tree/plum_leaves")));
+        simpleBlock(ModBlocks.PLUM_SAPLING.get(), models().cross("plum_sapling", modLoc("block/tree/plum_sapling")));
 
         simpleBlock(ModBlocks.WHITE_MARBLE.get());
         simpleBlock(ModBlocks.RED_MARBLE.get());
@@ -63,39 +73,39 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(ModBlocks.VAT.get(), this.models().getExistingFile(modLoc("block/vat")));
 
         MultiPartBlockStateBuilder STONE_MILL = getMultipartBuilder(ModBlocks.STONE_MILL.get());
-        for (int i = 1 ; i <= 16 ; i ++) {
+        for (int i = 1; i <= 16; i++) {
             STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).
                     addModel().
-                        condition(BlockStoneMill.ROTATE, i).
-                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
-                        condition(BlockStoneMill.FACING, Direction.NORTH).
+                    condition(BlockStoneMill.ROTATE, i).
+                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                    condition(BlockStoneMill.FACING, Direction.NORTH).
                     end();
 
             STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
                     addModel().
-                        condition(BlockStoneMill.ROTATE, i).
-                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
-                        condition(BlockStoneMill.FACING, Direction.SOUTH).
+                    condition(BlockStoneMill.ROTATE, i).
+                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                    condition(BlockStoneMill.FACING, Direction.SOUTH).
                     end();
 
             STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
                     addModel().
-                        condition(BlockStoneMill.ROTATE, i).
-                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
-                        condition(BlockStoneMill.FACING, Direction.WEST).
+                    condition(BlockStoneMill.ROTATE, i).
+                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                    condition(BlockStoneMill.FACING, Direction.WEST).
                     end();
 
             STONE_MILL.part().modelFile(this.models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
                     addModel().
-                        condition(BlockStoneMill.ROTATE, i).
-                        condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
-                        condition(BlockStoneMill.FACING, Direction.EAST).
+                    condition(BlockStoneMill.ROTATE, i).
+                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
+                    condition(BlockStoneMill.FACING, Direction.EAST).
                     end();
         }
 
         MultiPartBlockStateBuilder PAPER_DRYING_RACK = getMultipartBuilder(ModBlocks.PAPER_DRYING_RACK.get());
 
-        for (int i = 0 ; i <= 4 ; i ++) {
+        for (int i = 0; i <= 4; i++) {
             PAPER_DRYING_RACK.part().modelFile(this.models().getExistingFile(modLoc("block/paper_drying_rack" + i))).
                     addModel().
                     condition(BlockPaperDryingRack.LEVEL, i).
@@ -164,50 +174,9 @@ public class ProviderBlockState extends BlockStateProvider {
                 condition(BlockStove.FACING, Direction.EAST).
                 end();
 
-        getVariantBuilder(ModBlocks.WHITE_RADISH_PLANT.get())
-                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("white_radish_plant_stage_0", modLoc("block/white_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("white_radish_plant_stage_1", modLoc("block/white_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("white_radish_plant_stage_2", modLoc("block/white_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("white_radish_plant_stage_3", modLoc("block/white_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("white_radish_plant_stage_4", modLoc("block/white_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("white_radish_plant_stage_5", modLoc("block/white_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("white_radish_plant_stage_6", modLoc("block/white_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("white_radish_plant_stage_7", modLoc("block/white_radish_plant_stage_3"))).addModel();
-        getVariantBuilder(ModBlocks.SUMMER_RADISH_PLANT.get())
-                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("summer_radish_plant_stage_0", modLoc("block/summer_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("summer_radish_plant_stage_1", modLoc("block/summer_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("summer_radish_plant_stage_2", modLoc("block/summer_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("summer_radish_plant_stage_3", modLoc("block/summer_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("summer_radish_plant_stage_4", modLoc("block/summer_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("summer_radish_plant_stage_5", modLoc("block/summer_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("summer_radish_plant_stage_6", modLoc("block/summer_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("summer_radish_plant_stage_7", modLoc("block/summer_radish_plant_stage_3"))).addModel();
-        getVariantBuilder(ModBlocks.GREEN_RADISH_PLANT.get())
-                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("green_radish_plant_stage_0", modLoc("block/green_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("green_radish_plant_stage_1", modLoc("block/green_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("green_radish_plant_stage_2", modLoc("block/green_radish_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("green_radish_plant_stage_3", modLoc("block/green_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("green_radish_plant_stage_4", modLoc("block/green_radish_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("green_radish_plant_stage_5", modLoc("block/green_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("green_radish_plant_stage_6", modLoc("block/green_radish_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("green_radish_plant_stage_7", modLoc("block/green_radish_plant_stage_3"))).addModel();
-        getVariantBuilder(ModBlocks.GREEN_PEPPER_PLANT.get())
-                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("green_pepper_plant_stage_0", modLoc("block/green_pepper_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("green_pepper_plant_stage_1", modLoc("block/green_pepper_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("green_pepper_plant_stage_2", modLoc("block/green_pepper_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("green_pepper_plant_stage_3", modLoc("block/green_pepper_plant_stage_3"))).addModel()
-                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("green_pepper_plant_stage_4", modLoc("block/green_pepper_plant_stage_4"))).addModel()
-                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("green_pepper_plant_stage_5", modLoc("block/green_pepper_plant_stage_5"))).addModel()
-                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("green_pepper_plant_stage_6", modLoc("block/green_pepper_plant_stage_6"))).addModel()
-                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("green_pepper_plant_stage_7", modLoc("block/green_pepper_plant_stage_7"))).addModel();
-        getVariantBuilder(ModBlocks.CHILI_PEPPER_PLANT.get())
-                .partialState().with(BlockPlant.AGE, 0).modelForState().modelFile(models().crop("chili_pepper_plant_stage_0", modLoc("block/chili_pepper_plant_stage_0"))).addModel()
-                .partialState().with(BlockPlant.AGE, 1).modelForState().modelFile(models().crop("chili_pepper_plant_stage_1", modLoc("block/chili_pepper_plant_stage_1"))).addModel()
-                .partialState().with(BlockPlant.AGE, 2).modelForState().modelFile(models().crop("chili_pepper_plant_stage_2", modLoc("block/chili_pepper_plant_stage_2"))).addModel()
-                .partialState().with(BlockPlant.AGE, 3).modelForState().modelFile(models().crop("chili_pepper_plant_stage_3", modLoc("block/chili_pepper_plant_stage_3"))).addModel()
-                .partialState().with(BlockPlant.AGE, 4).modelForState().modelFile(models().crop("chili_pepper_plant_stage_4", modLoc("block/chili_pepper_plant_stage_4"))).addModel()
-                .partialState().with(BlockPlant.AGE, 5).modelForState().modelFile(models().crop("chili_pepper_plant_stage_5", modLoc("block/chili_pepper_plant_stage_5"))).addModel()
-                .partialState().with(BlockPlant.AGE, 6).modelForState().modelFile(models().crop("chili_pepper_plant_stage_6", modLoc("block/chili_pepper_plant_stage_6"))).addModel()
-                .partialState().with(BlockPlant.AGE, 7).modelForState().modelFile(models().crop("chili_pepper_plant_stage_7", modLoc("block/chili_pepper_plant_stage_7"))).addModel();
+        cropsStage((BlockPlant) ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant_stage");
+        cropsStage((BlockPlant) ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant_stage");
+        cropsStage((BlockPlant) ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant_stage");
+        cropsStage((BlockPlant) ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant_stage");
     }
 }

@@ -101,37 +101,37 @@ public class ProviderLanguageENUS extends LanguageProvider {
     }
 
     private void addBlocks() {
-        addBlock(ModBlocks.LOG_PEACH, "Peach Log");
-        addBlock(ModBlocks.LOG_PEACH_STRIPPED, "Stripped Peach Log");
-        addBlock(ModBlocks.LOG_PEACH_BARK, "Peach Wood");
-        addBlock(ModBlocks.LOG_PEACH_STRIPPED_BARK, "Stripped Peach Wood");
-        addBlock(ModBlocks.PLANK_PEACH, "Peach Plank");
-        addBlock(ModBlocks.LEAVES_PEACH, "Peach Leaves");
-        addBlock(ModBlocks.SAPLING_PEACH, "Peach Sapling");
+        addBlock(ModBlocks.PEACH_LOG, "Peach Log");
+        addBlock(ModBlocks.PEACH_LOG_STRIPPED, "Stripped Peach Log");
+        addBlock(ModBlocks.PEACH_LOG_BARK, "Peach Wood");
+        addBlock(ModBlocks.PEACH_LOG_STRIPPED_BARK, "Stripped Peach Wood");
+        addBlock(ModBlocks.PEACH_PLANK, "Peach Plank");
+        addBlock(ModBlocks.PEACH_LEAVES, "Peach Leaves");
+        addBlock(ModBlocks.PEACH_SAPLING, "Peach Sapling");
 
-        addBlock(ModBlocks.LOG_WALNUT, "Walnut Log");
-        addBlock(ModBlocks.LOG_WALNUT_STRIPPED, "Stripped Walnut Log");
-        addBlock(ModBlocks.LOG_WALNUT_BARK, "Walnut Wood");
-        addBlock(ModBlocks.LOG_WALNUT_STRIPPED_BARK, "Stripped Walnut Wood");
-        addBlock(ModBlocks.PLANK_WALNUT, "Walnut Plank");
-        addBlock(ModBlocks.LEAVES_WALNUT, "Walnut Leaves");
-        addBlock(ModBlocks.SAPLING_WALNUT, "Walnut Sapling");
+        addBlock(ModBlocks.WALNUT_LOG, "Walnut Log");
+        addBlock(ModBlocks.WALNUT_LOG_STRIPPED, "Stripped Walnut Log");
+        addBlock(ModBlocks.WALNUT_LOG_BARK, "Walnut Wood");
+        addBlock(ModBlocks.WALNUT_LOG_STRIPPED_BARK, "Stripped Walnut Wood");
+        addBlock(ModBlocks.WALNUT_PLANK, "Walnut Plank");
+        addBlock(ModBlocks.WALNUT_LEAVES, "Walnut Leaves");
+        addBlock(ModBlocks.WALNUT_SAPLING, "Walnut Sapling");
 
-        addBlock(ModBlocks.LOG_PLUM, "Plum Log");
-        addBlock(ModBlocks.LOG_PLUM_STRIPPED, "Stripped Plum Log");
-        addBlock(ModBlocks.LOG_PLUM_BARK, "Plum Wood");
-        addBlock(ModBlocks.LOG_PLUM_STRIPPED_BARK, "Stripped Plum Wood");
-        addBlock(ModBlocks.PLANK_PLUM, "Plum Plank");
-        addBlock(ModBlocks.LEAVES_PLUM, "Plum Leaves");
-        addBlock(ModBlocks.SAPLING_PLUM, "Plum Sapling");
+        addBlock(ModBlocks.PLUM_LOG, "Plum Log");
+        addBlock(ModBlocks.PLUM_LOG_STRIPPED, "Stripped Plum Log");
+        addBlock(ModBlocks.PLUM_LOG_BARK, "Plum Wood");
+        addBlock(ModBlocks.PLUM_LOG_STRIPPED_BARK, "Stripped Plum Wood");
+        addBlock(ModBlocks.PLUM_PLANK, "Plum Plank");
+        addBlock(ModBlocks.PLUM_LEAVES, "Plum Leaves");
+        addBlock(ModBlocks.PLUM_SAPLING, "Plum Sapling");
 
-        addBlock(ModBlocks.LOG_MULBERRY, "Mulberry Log");
-        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED, "Stripped Mulberry Log");
-        addBlock(ModBlocks.LOG_MULBERRY_BARK, "Mulberry Wood");
-        addBlock(ModBlocks.LOG_MULBERRY_STRIPPED_BARK, "Stripped Mulberry Wood");
-        addBlock(ModBlocks.PLANK_MULBERRY, "Mulberry Plank");
-        addBlock(ModBlocks.LEAVES_MULBERRY, "Mulberry Leaves");
-        addBlock(ModBlocks.SAPLING_MULBERRY, "Mulberry Sapling");
+        addBlock(ModBlocks.MULBERRY_LOG, "Mulberry Log");
+        addBlock(ModBlocks.MULBERRY_LOG_STRIPPED, "Stripped Mulberry Log");
+        addBlock(ModBlocks.MULBERRY_LOG_BARK, "Mulberry Wood");
+        addBlock(ModBlocks.MULBERRY_LOG_STRIPPED_BARK, "Stripped Mulberry Wood");
+        addBlock(ModBlocks.MULBERRY_PLANK, "Mulberry Plank");
+        addBlock(ModBlocks.MULBERRY_LEAVES, "Mulberry Leaves");
+        addBlock(ModBlocks.MULBERRY_SAPLING, "Mulberry Sapling");
 
         addBlock(ModBlocks.WHITE_MARBLE, "White Marble");
         addBlock(ModBlocks.RED_MARBLE, "Red Marble");

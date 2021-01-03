@@ -19,37 +19,37 @@ public class ModBlockItems {
     public static RegistryObject<Item> SUMMER_RADISH = REGISTRY.register("summer_radish", () -> new BlockNamedItem(ModBlocks.SUMMER_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.FOODS).food(new Food.Builder().hunger(2).saturation(3).build()).setNoRepair()));
     public static RegistryObject<Item> GREEN_RADISH = REGISTRY.register("green_radish", () -> new BlockNamedItem(ModBlocks.GREEN_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.FOODS).food(new Food.Builder().hunger(2).saturation(5).build()).setNoRepair()));
 
-    public static RegistryObject<Item> LOG_PEACH = REGISTRY.register("log_peach", () -> new BlockItem(ModBlocks.LOG_PEACH.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PEACH_BARK = REGISTRY.register("log_peach_bark", () -> new BlockItem(ModBlocks.LOG_PEACH_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PEACH_STRIPPED = REGISTRY.register("log_peach_stripped", () -> new BlockItem(ModBlocks.LOG_PEACH_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PEACH_STRIPPED_BARK = REGISTRY.register("log_peach_stripped_bark", () -> new BlockItem(ModBlocks.LOG_PEACH_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> PLANK_PEACH = REGISTRY.register("plank_peach", () -> new BlockItem(ModBlocks.PLANK_PEACH.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LEAVES_PEACH = REGISTRY.register("leaves_peach", () -> new BlockItem(ModBlocks.LEAVES_PEACH.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> SAPLING_PEACH = REGISTRY.register("sapling_peach", () -> new BlockItem(ModBlocks.SAPLING_PEACH.get(), new Item.Properties().group(ModGroups.DECORATE)));
+    public static RegistryObject<Item> PEACH_LOG = REGISTRY.register("peach_log", () -> new BlockItem(ModBlocks.PEACH_LOG.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_LOG_BARK = REGISTRY.register("peach_log_bark", () -> new BlockItem(ModBlocks.PEACH_LOG_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_LOG_STRIPPED = REGISTRY.register("peach_log_stripped", () -> new BlockItem(ModBlocks.PEACH_LOG_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_LOG_STRIPPED_BARK = REGISTRY.register("peach_log_stripped_bark", () -> new BlockItem(ModBlocks.PEACH_LOG_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_PLANK = REGISTRY.register("peach_plank", () -> new BlockItem(ModBlocks.PEACH_PLANK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_LEAVES = REGISTRY.register("peach_leaves", () -> new BlockItem(ModBlocks.PEACH_LEAVES.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PEACH_SAPLING = REGISTRY.register("peach_sapling", () -> new BlockItem(ModBlocks.PEACH_SAPLING.get(), new Item.Properties().group(ModGroups.DECORATE)));
 
-    public static RegistryObject<Item> LOG_WALNUT = REGISTRY.register("log_walnut", () -> new BlockItem(ModBlocks.LOG_WALNUT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_WALNUT_BARK = REGISTRY.register("log_walnut_bark", () -> new BlockItem(ModBlocks.LOG_WALNUT_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_WALNUT_STRIPPED = REGISTRY.register("log_walnut_stripped", () -> new BlockItem(ModBlocks.LOG_WALNUT_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_WALNUT_STRIPPED_BARK = REGISTRY.register("log_walnut_stripped_bark", () -> new BlockItem(ModBlocks.LOG_WALNUT_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> PLANK_WALNUT = REGISTRY.register("plank_walnut", () -> new BlockItem(ModBlocks.PLANK_WALNUT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LEAVES_WALNUT = REGISTRY.register("leaves_walnut", () -> new BlockItem(ModBlocks.LEAVES_WALNUT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> SAPLING_WALNUT = REGISTRY.register("sapling_walnut", () -> new BlockItem(ModBlocks.SAPLING_WALNUT.get(), new Item.Properties().group(ModGroups.DECORATE)));
+    public static RegistryObject<Item> WALNUT_LOG = REGISTRY.register("walnut_log", () -> new BlockItem(ModBlocks.WALNUT_LOG.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_LOG_BARK = REGISTRY.register("walnut_log_bark", () -> new BlockItem(ModBlocks.WALNUT_LOG_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_LOG_STRIPPED = REGISTRY.register("walnut_log_stripped", () -> new BlockItem(ModBlocks.WALNUT_LOG_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_LOG_STRIPPED_BARK = REGISTRY.register("walnut_log_stripped_bark", () -> new BlockItem(ModBlocks.WALNUT_LOG_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_PLANK = REGISTRY.register("walnut_plank", () -> new BlockItem(ModBlocks.WALNUT_PLANK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_LEAVES = REGISTRY.register("walnut_leaves", () -> new BlockItem(ModBlocks.WALNUT_LEAVES.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> WALNUT_SAPLING = REGISTRY.register("walnut_sapling", () -> new BlockItem(ModBlocks.WALNUT_SAPLING.get(), new Item.Properties().group(ModGroups.DECORATE)));
 
-    public static RegistryObject<Item> LOG_PLUM = REGISTRY.register("log_plum", () -> new BlockItem(ModBlocks.LOG_PLUM.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PLUM_BARK = REGISTRY.register("log_plum_bark", () -> new BlockItem(ModBlocks.LOG_PLUM_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PLUM_STRIPPED = REGISTRY.register("log_plum_stripped", () -> new BlockItem(ModBlocks.LOG_PLUM_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_PLUM_STRIPPED_BARK = REGISTRY.register("log_plum_stripped_bark", () -> new BlockItem(ModBlocks.LOG_PLUM_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> PLANK_PLUM = REGISTRY.register("plank_plum", () -> new BlockItem(ModBlocks.PLANK_PLUM.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LEAVES_PLUM = REGISTRY.register("leaves_plum", () -> new BlockItem(ModBlocks.LEAVES_PLUM.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> SAPLING_PLUM = REGISTRY.register("sapling_plum", () -> new BlockItem(ModBlocks.SAPLING_PLUM.get(), new Item.Properties().group(ModGroups.DECORATE)));
+    public static RegistryObject<Item> PLUM_LOG = REGISTRY.register("plum_log", () -> new BlockItem(ModBlocks.PLUM_LOG.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_LOG_BARK = REGISTRY.register("plum_log_bark", () -> new BlockItem(ModBlocks.PLUM_LOG_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_LOG_STRIPPED = REGISTRY.register("plum_log_stripped", () -> new BlockItem(ModBlocks.PLUM_LOG_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_LOG_STRIPPED_BARK = REGISTRY.register("plum_log_stripped_bark", () -> new BlockItem(ModBlocks.PLUM_LOG_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_PLANK = REGISTRY.register("plum_plank", () -> new BlockItem(ModBlocks.PLUM_PLANK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_LEAVES = REGISTRY.register("plum_leaves", () -> new BlockItem(ModBlocks.PLUM_LEAVES.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> PLUM_SAPLING = REGISTRY.register("plum_sapling", () -> new BlockItem(ModBlocks.PLUM_SAPLING.get(), new Item.Properties().group(ModGroups.DECORATE)));
 
-    public static RegistryObject<Item> LOG_MULBERRY = REGISTRY.register("log_mulberry", () -> new BlockItem(ModBlocks.LOG_MULBERRY.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_MULBERRY_BARK = REGISTRY.register("log_mulberry_bark", () -> new BlockItem(ModBlocks.LOG_MULBERRY_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_MULBERRY_STRIPPED = REGISTRY.register("log_mulberry_stripped", () -> new BlockItem(ModBlocks.LOG_MULBERRY_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LOG_MULBERRY_STRIPPED_BARK = REGISTRY.register("log_mulberry_stripped_bark", () -> new BlockItem(ModBlocks.LOG_MULBERRY_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> PLANK_MULBERRY = REGISTRY.register("plank_mulberry", () -> new BlockItem(ModBlocks.PLANK_MULBERRY.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> LEAVES_MULBERRY = REGISTRY.register("leaves_mulberry", () -> new BlockItem(ModBlocks.LEAVES_MULBERRY.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<Item> SAPLING_MULBERRY = REGISTRY.register("sapling_mulberry", () -> new BlockItem(ModBlocks.SAPLING_MULBERRY.get(), new Item.Properties().group(ModGroups.DECORATE)));
+    public static RegistryObject<Item> MULBERRY_LOG = REGISTRY.register("mulberry_log", () -> new BlockItem(ModBlocks.MULBERRY_LOG.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_LOG_BARK = REGISTRY.register("mulberry_log_bark", () -> new BlockItem(ModBlocks.MULBERRY_LOG_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_LOG_STRIPPED = REGISTRY.register("mulberry_log_stripped", () -> new BlockItem(ModBlocks.MULBERRY_LOG_STRIPPED.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_LOG_STRIPPED_BARK = REGISTRY.register("mulberry_log_stripped_bark", () -> new BlockItem(ModBlocks.MULBERRY_LOG_STRIPPED_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_PLANK = REGISTRY.register("mulberry_plank", () -> new BlockItem(ModBlocks.MULBERRY_PLANK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_LEAVES = REGISTRY.register("mulberry_leaves", () -> new BlockItem(ModBlocks.MULBERRY_LEAVES.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<Item> MULBERRY_SAPLING = REGISTRY.register("mulberry_sapling", () -> new BlockItem(ModBlocks.MULBERRY_SAPLING.get(), new Item.Properties().group(ModGroups.DECORATE)));
 
     public static RegistryObject<Item> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockItem(ModBlocks.WHITE_MARBLE.get(), new Item.Properties().group(ModGroups.BLOCKS)));
     public static RegistryObject<Item> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockItem(ModBlocks.RED_MARBLE.get(), new Item.Properties().group(ModGroups.BLOCKS)));

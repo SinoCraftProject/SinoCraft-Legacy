@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "sinocraft:block/tree/plum_log_side"
+  }
+}

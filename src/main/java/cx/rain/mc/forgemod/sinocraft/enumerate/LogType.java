@@ -7,17 +7,17 @@ import net.minecraftforge.fml.RegistryObject;
 
 public enum LogType {
     PEACH("peach", MaterialColor.PINK_TERRACOTTA,
-            new TypeTag(ModBlocks.LOG_PEACH, ModBlocks.LOG_PEACH_STRIPPED,
-                    ModBlocks.LOG_PEACH_BARK, ModBlocks.LOG_PEACH_STRIPPED_BARK, ModBlocks.LEAVES_PEACH)),
+            new TypeTag(ModBlocks.PEACH_LOG, ModBlocks.PEACH_LOG_STRIPPED,
+                    ModBlocks.PEACH_LOG_BARK, ModBlocks.PEACH_LOG_STRIPPED_BARK, ModBlocks.PEACH_LEAVES)),
     WALNUT("walnut", MaterialColor.OBSIDIAN,
-            new TypeTag(ModBlocks.LOG_WALNUT, ModBlocks.LOG_WALNUT_STRIPPED, ModBlocks.LOG_WALNUT_BARK,
-                    ModBlocks.LOG_WALNUT_STRIPPED_BARK, ModBlocks.LEAVES_WALNUT)),
+            new TypeTag(ModBlocks.WALNUT_LOG, ModBlocks.WALNUT_LOG_STRIPPED, ModBlocks.WALNUT_LOG_BARK,
+                    ModBlocks.WALNUT_LOG_STRIPPED_BARK, ModBlocks.WALNUT_LEAVES)),
     PLUM("plum", MaterialColor.PINK_TERRACOTTA,
-            new TypeTag(ModBlocks.LOG_PLUM, ModBlocks.LOG_PLUM_STRIPPED, ModBlocks.LOG_PLUM_BARK,
-                    ModBlocks.LOG_PLUM_STRIPPED_BARK, ModBlocks.LEAVES_PLUM)),
+            new TypeTag(ModBlocks.PLUM_LOG, ModBlocks.PLUM_LOG_STRIPPED, ModBlocks.PLUM_LOG_BARK,
+                    ModBlocks.PLUM_LOG_STRIPPED_BARK, ModBlocks.PLUM_LEAVES)),
     MULBERRY("mulberry", MaterialColor.OBSIDIAN,
-            new TypeTag(ModBlocks.LOG_MULBERRY, ModBlocks.LOG_MULBERRY_STRIPPED, ModBlocks.LOG_MULBERRY_BARK,
-                    ModBlocks.LOG_MULBERRY_STRIPPED_BARK, ModBlocks.LEAVES_MULBERRY));
+            new TypeTag(ModBlocks.MULBERRY_LOG, ModBlocks.MULBERRY_LOG_STRIPPED, ModBlocks.MULBERRY_LOG_BARK,
+                    ModBlocks.MULBERRY_LOG_STRIPPED_BARK, ModBlocks.MULBERRY_LEAVES));
 
     private String name;
     private MaterialColor color;

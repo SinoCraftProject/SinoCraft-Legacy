@@ -14,6 +14,6 @@ public class GroupDecorate extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(ModBlocks.SAPLING_PEACH.get());
+        return new ItemStack(ModBlocks.PEACH_SAPLING.get());
     }
 }

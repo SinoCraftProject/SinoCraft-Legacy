@@ -11,10 +11,10 @@ public class ChangeRenderType {
         RenderTypeLookup.setRenderLayer(ModBlocks.GREEN_RADISH_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.CHILI_PEPPER_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.GREEN_PEPPER_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SAPLING_PEACH.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SAPLING_WALNUT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SAPLING_MULBERRY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SAPLING_PLUM.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.WALNUT_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MULBERRY_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PLUM_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.STONE_MILL.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PAPER_DRYING_RACK.get(), RenderType.getCutout());
     }
