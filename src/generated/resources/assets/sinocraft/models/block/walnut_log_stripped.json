@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "side": "sinocraft:block/walnut_log_stripped",
+    "end": "sinocraft:block/walnut_log_end",
+    "all": "sinocraft:block/walnut_log_stripped"
+  }
+}

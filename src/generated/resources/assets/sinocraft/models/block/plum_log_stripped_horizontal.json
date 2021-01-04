@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "sinocraft:block/plum_log_stripped",
+    "end": "sinocraft:block/plum_log_end"
+  }
+}

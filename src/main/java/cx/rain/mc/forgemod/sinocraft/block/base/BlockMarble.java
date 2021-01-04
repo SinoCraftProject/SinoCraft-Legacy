@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
-import cx.rain.mc.forgemod.sinocraft.enumerate.MarbleType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.MarbleType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;

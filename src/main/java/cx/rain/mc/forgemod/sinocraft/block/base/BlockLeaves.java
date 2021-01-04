@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
-import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogType;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
-import cx.rain.mc.forgemod.sinocraft.enumerate.LogType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogType;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,12 +23,12 @@ public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
     private LogType type = null;
-    private RegistryObject<Item> fruitRegistry = null;
+    private RegistryObject<Item> fruit = null;
 
     public BlockLeavesGrowable(LogType typeIn, RegistryObject<Item> fruitRegistryIn) {
         super(typeIn);
         type = typeIn;
-        fruitRegistry = fruitRegistryIn;
+        fruit = fruitRegistryIn;
 
         setDefaultState(getStateContainer().getBaseState()
                 .with(DISTANCE, 7)
@@ -100,7 +100,7 @@ public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity,
                                              Hand hand, BlockRayTraceResult traceResult) {
         if (isMature(state)) {
-            playerEntity.dropItem(new ItemStack(fruitRegistry.get()), false, false);
+            world.addEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(fruit.get())));
             setMature(world, pos, state, false);
             return ActionResultType.SUCCESS;
         }

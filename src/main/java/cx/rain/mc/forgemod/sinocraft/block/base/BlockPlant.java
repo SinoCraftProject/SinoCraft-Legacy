@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
-import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
@@ -44,7 +44,7 @@ public class BlockPlant extends CropsBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int age = state.get(getAgeProperty());
-        int stage = age / (this.stage.getMaxStage() / 4);
+        int stage = age / ((this.stage.getMaxStage() + 1) / 4);
         return SHAPES[stage];
     }
 

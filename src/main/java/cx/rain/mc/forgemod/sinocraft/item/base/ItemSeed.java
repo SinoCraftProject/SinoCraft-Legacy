@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item.base;
 
-import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;

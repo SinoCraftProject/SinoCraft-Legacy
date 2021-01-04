@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "sinocraft:block/celery_cabbage_stage_0"
+    },
+    "stage=1": {
+      "model": "sinocraft:block/celery_cabbage_stage_1"
+    },
+    "stage=2": {
+      "model": "sinocraft:block/celery_cabbage_stage_2"
+    },
+    "stage=3": {
+      "model": "sinocraft:block/celery_cabbage_stage_3"
+    }
+  }
+}

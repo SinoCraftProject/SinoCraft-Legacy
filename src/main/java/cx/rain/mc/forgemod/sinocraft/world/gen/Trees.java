@@ -1,10 +1,12 @@
 package cx.rain.mc.forgemod.sinocraft.world.gen;
 
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,7 +17,8 @@ import static net.minecraft.world.biome.Biome.Category.*;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Trees {
     @SubscribeEvent
-    public static void onSetUpEvent(FMLCommonSetupEvent event) {
+    public static void onFMLCommonSetup(FMLCommonSetupEvent event) {
+        ForgeRegistries.BIOMES.getValue(Biomes.BIRCH_FOREST.getLocation());
         for (Biome biome : ForgeRegistries.BIOMES) {
             // Fixme: Broken!
             /*

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "sinocraft:peach_log",
+    "sinocraft:peach_log_bark",
+    "sinocraft:peach_log_stripped",
+    "sinocraft:peach_log_stripped_bark"
+  ]
+}

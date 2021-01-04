@@ -3,7 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.item;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
-import cx.rain.mc.forgemod.sinocraft.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.gui.GuiXuanPaper;
