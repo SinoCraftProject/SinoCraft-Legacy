@@ -1,16 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.world.tree;
 
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
-import cx.rain.mc.forgemod.sinocraft.world.gen.Features;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.util.Direction;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import javax.annotation.Nullable;
 import java.util.Random;

@@ -1,7 +1,8 @@
-package cx.rain.mc.forgemod.sinocraft.network;
+package cx.rain.mc.forgemod.sinocraft.network.packet;
 
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.network.IMessage;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class DrawPaperC2SPacket implements IMessage{
+public class DrawPaperC2SPacket implements IMessage {
     private Pack pack;
 
     public DrawPaperC2SPacket(Pack pack) {
