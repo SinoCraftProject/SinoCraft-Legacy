@@ -1,14 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
-import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -32,8 +29,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
-
-import static net.minecraft.block.BlockRenderType.ENTITYBLOCK_ANIMATED;
 
 @SuppressWarnings("deprecation")
 public class BlockVat extends BlockMachineBase {

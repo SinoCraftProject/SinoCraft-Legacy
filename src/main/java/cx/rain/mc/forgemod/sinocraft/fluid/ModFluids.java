@@ -21,7 +21,7 @@ public class ModFluids {
     public static ForgeFlowingFluid.Properties WOOD_PULP_PROPERTIES = new ForgeFlowingFluid.Properties(WOOD_PULP, WOOD_PULP_FLOWING, FluidAttributes.builder(new ResourceLocation(SinoCraft.MODID,"block/wood_pulp_still"), new ResourceLocation(SinoCraft.MODID,"block/wood_pulp_flow")).color(0xFFBC8129).density(10)).bucket(ModItems.BUCKET_WOOD_PULP).block(()-> (FlowingFluidBlock) ModBlocks.WOOD_PULP_BLOCK.get()).slopeFindDistance(3).explosionResistance(100F);
 
     public ModFluids(IEventBus bus) {
-        SinoCraft.getLog().info("Registering fluids.");
+        SinoCraft.getLogger().info("Registering fluids.");
         REGISTRY.register(bus);
     }
 }

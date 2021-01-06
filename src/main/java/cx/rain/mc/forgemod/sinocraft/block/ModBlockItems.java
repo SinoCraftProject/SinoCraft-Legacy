@@ -61,7 +61,7 @@ public class ModBlockItems {
     public static RegistryObject<Item> STOVE = REGISTRY.register("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties().group(ModGroups.BLOCKS)));
 
     public ModBlockItems(IEventBus bus) {
-        SinoCraft.getInstance().getLog().info("Registering block items.");
+        SinoCraft.getInstance().getLogger().info("Registering block items.");
         REGISTRY.register(bus);
     }
 }

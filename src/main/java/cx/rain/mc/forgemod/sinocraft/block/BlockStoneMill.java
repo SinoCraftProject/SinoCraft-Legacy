@@ -1,8 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
-import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityStoneMill;
-import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntityVat;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStoneMill;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -20,10 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 

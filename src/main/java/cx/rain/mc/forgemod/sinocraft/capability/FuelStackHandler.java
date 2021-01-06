@@ -26,7 +26,7 @@ public class FuelStackHandler extends ItemStackHandler {
 
         if (FurnaceTileEntity.isFuel(stack) && stacks.get(slot).isEmpty()) {
             super.insertItem(slot, new ItemStack(stack.getItem(), 1), simulate);
-            SinoCraft.getInstance().getLog().info("Added " + stack.getDisplayName() + " in slot " + slot);
+            SinoCraft.getInstance().getLogger().info("Added " + stack.getDisplayName() + " in slot " + slot);
             stack.shrink(1);
         }
         return stack;

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
-import cx.rain.mc.forgemod.sinocraft.network.CDrawPaper;
+import cx.rain.mc.forgemod.sinocraft.network.DrawPaperC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
 import net.minecraft.client.Minecraft;
@@ -136,8 +136,8 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
             int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
-            Networks.INSTANCE.sendToServer(new CDrawPaper(
-                    new CDrawPaper.Pack(
+            Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
+                    new DrawPaperC2SPacket.Pack(
                             new Vec2(x, y), this.container.color
                     )
             ));
@@ -169,8 +169,8 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
             int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
-            Networks.INSTANCE.sendToServer(new CDrawPaper(
-                    new CDrawPaper.Pack(
+            Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
+                    new DrawPaperC2SPacket.Pack(
                             new Vec2(x, y), this.container.color
                     )
             ));

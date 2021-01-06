@@ -1,14 +1,15 @@
 package cx.rain.mc.forgemod.sinocraft;
 
-import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.gui.container.Containers;
-import cx.rain.mc.forgemod.sinocraft.side.Sides;
+import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
+import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.tileentity.TileEntities;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
+import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
+import cx.rain.mc.forgemod.sinocraft.utility.BlockAdditions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,8 +24,8 @@ import org.apache.logging.log4j.Logger;
 public class SinoCraft {
     public static final String MODID = "sinocraft";
     public static final String NAME = "SinoCraft";
-    public static final String MC_VERSION = "1.15.2";
-    public static final String MOD_VERSION = "1.0.0";
+    public static final String MC_VERSION = "1.16.4";
+    public static final String MOD_VERSION = "1.1.0";
     public static final String VERSION = MC_VERSION + "-" + MOD_VERSION;
 
     private static SinoCraft INSTANCE = null;
@@ -33,6 +34,7 @@ public class SinoCraft {
 
     public SinoCraft() {
         INSTANCE = this;
+
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
         bus.addListener(this::setupClient);
@@ -42,10 +44,9 @@ public class SinoCraft {
         new ModBlockItems(bus);
         new ModEntities(bus);
         new ModItems(bus);
-        new TileEntities(bus);
+        new ModTileEntities(bus);
         new ModFluids(bus);
-        new Containers(bus);
-        new RegistryTrigger();
+        new ModContainers(bus);
     }
 
     public static SinoCraft getInstance() {
@@ -55,18 +56,19 @@ public class SinoCraft {
     private void setup(final FMLCommonSetupEvent event) {
         logger.info("Hello Minecraft!");
 
-        Sides.Common(event);
+        new BlockAdditions();
+        Networks.setup();
+        Networks.registerMessages();
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        Sides.Client(event);
+        new RenderHook();
     }
 
     private void setupServer(final FMLDedicatedServerSetupEvent event) {
-        Sides.Server(event);
     }
 
-    public static Logger getLog() {
+    public static Logger getLogger() {
         return INSTANCE.logger;
     }
 }

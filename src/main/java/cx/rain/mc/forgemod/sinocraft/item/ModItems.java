@@ -85,7 +85,7 @@ public class ModItems {
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
 
     public ModItems(IEventBus bus) {
-        SinoCraft.getLog().info("Registering items.");
+        SinoCraft.getLogger().info("Registering items.");
         REGISTRY.register(bus);
     }
 }

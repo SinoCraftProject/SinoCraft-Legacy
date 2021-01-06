@@ -10,26 +10,26 @@ public class Networks {
     private static int ID = 0;
 
     private static int nextID() {
-        return ID ++;
+        return ID++;
     }
 
     public static void setup() {
-        SinoCraft.getLog().info("Registering networks.");
+        SinoCraft.getLogger().info("Registering networks.");
         INSTANCE = NetworkRegistry.newSimpleChannel(
-                new ResourceLocation(SinoCraft.MODID + ":channel1"),
+                new ResourceLocation(SinoCraft.MODID + "paper_drawing"),
                 () -> SinoCraft.VERSION,
-                (version) -> true,
-                (version) -> true
+                SinoCraft.VERSION::equals,
+                SinoCraft.VERSION::equals
         );
     }
 
     public static void registerMessages() {
         INSTANCE.registerMessage(
                 nextID(),
-                CDrawPaper.class,
-                CDrawPaper::serialize,
-                CDrawPaper::new,
-                CDrawPaper::handler
+                DrawPaperC2SPacket.class,
+                DrawPaperC2SPacket::serialize,
+                DrawPaperC2SPacket::new,
+                DrawPaperC2SPacket::handler
         );
     }
 }

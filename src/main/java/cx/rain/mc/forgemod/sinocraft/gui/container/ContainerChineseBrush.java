@@ -13,7 +13,7 @@ public class ContainerChineseBrush extends Container implements IIntArray {
     public byte color;
 
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
-        super(Containers.CHINESE_BRUSH.get(), id);
+        super(ModContainers.CHINESE_BRUSH.get(), id);
         this.inventory = itemInventory;
         trackIntArray(this);
         this.addSlot(new Slot(inventory, 0, 14, 23) {

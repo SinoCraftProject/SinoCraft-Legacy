@@ -8,9 +8,6 @@ import cx.rain.mc.forgemod.sinocraft.entity.passive.EntityGoal;
 import cx.rain.mc.forgemod.sinocraft.item.ModSpawnEggItem;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -45,7 +42,7 @@ public class ModEntities {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        SinoCraft.getInstance().getLog().info("Registering entity spawn eggs.");
+        SinoCraft.getInstance().getLogger().info("Registering entity spawn eggs.");
         ModSpawnEggItem.initEggs();
     }
 
@@ -66,7 +63,7 @@ public class ModEntities {
     }*/
 
     public ModEntities(IEventBus bus) {
-        SinoCraft.getLog().info("Registering entities.");
+        SinoCraft.getLogger().info("Registering entities.");
         REGISTRY.register(bus);
     }
 }
