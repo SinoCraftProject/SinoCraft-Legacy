@@ -1,14 +1,17 @@
 buildscript {
     repositories {
-        //maven { url = 'http://lss233.littleservice.cn/repositories/minecraft' }
+        //maven { url = "https://maven.aliyun.com/repository/public"}
+        //maven { url = "https://lss233.littleservice.cn/repositories/forgedev" }
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
     }
     dependencies {
+        //classpath group: 'com.otakusaikou.fgcn', name: 'ForgeGradleCN', version: '3.+', changing: true
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+// apply plugin: 'com.otakusaikou.fgcn'
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
