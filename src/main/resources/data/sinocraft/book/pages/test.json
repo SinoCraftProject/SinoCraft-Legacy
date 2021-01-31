@@ -1,0 +1,12 @@
+{
+  "components": [
+    {
+      "id": "sinocraft:text",
+      "text": {
+        "text": "Hello, World!"
+      },
+      "x": 100,
+      "y": 100
+    }
+  ]
+}

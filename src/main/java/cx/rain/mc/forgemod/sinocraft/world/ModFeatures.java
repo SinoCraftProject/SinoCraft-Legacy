@@ -22,9 +22,7 @@ public class ModFeatures {
         RegistryKey<Biome> biome = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES,
                 Objects.requireNonNull(event.getName(), "Who registered null name biome, naming criticism!"));
 
-        System.out.println("0");
         if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD)) {
-            System.out.println("1");
             addFeatureWorld(gen);
         }
 
