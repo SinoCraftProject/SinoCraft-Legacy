@@ -10,7 +10,7 @@ public class TutorialEmpty extends TutorialComponent{
     }
 
     @Override
-    public void fromJson(JsonObject object) {
+    public void fromJson(JsonObject j_root) {
     }
 
     @Override

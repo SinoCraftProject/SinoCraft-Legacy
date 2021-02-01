@@ -21,5 +21,5 @@ public abstract class TutorialComponent implements IRenderable {
     public void onHover() {
     }
 
-    public abstract void fromJson(JsonObject object);
+    public abstract void fromJson(JsonObject j_root);
 }

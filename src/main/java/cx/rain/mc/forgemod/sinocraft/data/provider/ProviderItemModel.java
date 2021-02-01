@@ -112,6 +112,8 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("knife_diamond").parent(GENERATED).texture("layer0",modLoc("item/knife_diamond"));
         getBuilder("chinese_brush").parent(GENERATED).texture("layer0",modLoc("item/chinese_brush"));
 
+        getBuilder("adust_food").parent(GENERATED).texture("layer0",modLoc("item/adust_food"));
+
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
     }
 }

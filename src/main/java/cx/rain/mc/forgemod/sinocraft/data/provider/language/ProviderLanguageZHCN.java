@@ -99,6 +99,7 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(ModItems.INK_STONE, "砚");
         addItem(ModItems.XUAN_PAPER, "宣纸");
         addItem(ModItems.BUCKET_WOOD_PULP, "木浆桶");
+        addItem(ModItems.ADUST_FOOD, "烧焦的食物");
     }
 
     private void addBlocks() {

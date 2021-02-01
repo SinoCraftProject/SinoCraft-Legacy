@@ -62,7 +62,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
 
     private void addItems() {
         addItem(ModItems.PEACH, "Peach");
-        addItem(ModItems.CHILI_PEPPER_SEED, "Chilipepper Seeds");
+        addItem(ModItems.CHILI_PEPPER_SEED, "Chili pepper Seeds");
         addItem(ModItems.GREEN_PEPPER_SEED, "Green Pepper Seeds");
         addItem(ModItems.CABBAGE_SEED, "Chinese Cabbage Seeds");
         addItem(ModItems.EGGPLANT_SEED, "Eggplant Seeds");
@@ -84,7 +84,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(ModBlockItems.GREEN_RADISH, "Green Radish");
         addItem(ModBlockItems.SUMMER_RADISH, "Summer Radish");
         addItem(ModBlockItems.WHITE_RADISH, "White Radish");
-        addItem(ModItems.CHILI_PEPPER, "Chilipepper");
+        addItem(ModItems.CHILI_PEPPER, "Chili pepper");
         addItem(ModItems.GREEN_PEPPER, "Green Pepper");
         addItem(ModItems.EGGPLANT, "Eggplant");
         addItem(ModItems.CABBAGE, "Chinese Cabbage");
@@ -98,6 +98,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
+        addItem(ModItems.ADUST_FOOD, "Adust food");
     }
 
     private void addBlocks() {

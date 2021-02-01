@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.crafting.cooking;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.ICookingRecpie;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.ICookingTool;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IThermal;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -75,8 +76,7 @@ public class CookingRecipes extends ForgeRegistryEntry<ICookingRecpie> implement
         if (te instanceof IThermal) {
             int t = ((IThermal) te).getThermal();
             if (t > maxThermal) {
-                // Fixme
-                return ItemStack.EMPTY;
+                return new ItemStack(ModItems.ADUST_FOOD.get());
             } else {
                 return recipeResult;
             }

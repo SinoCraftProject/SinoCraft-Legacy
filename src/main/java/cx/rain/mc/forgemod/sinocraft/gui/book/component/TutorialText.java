@@ -17,10 +17,10 @@ public class TutorialText extends TutorialComponent{
     }
 
     @Override
-    public void fromJson(JsonObject json) {
-        component = ITextComponent.Serializer.getComponentFromJson(json.get("text"));
-        x = json.getAsJsonPrimitive("x").getAsInt();
-        y = json.getAsJsonPrimitive("y").getAsInt();
+    public void fromJson(JsonObject j_root) {
+        component = ITextComponent.Serializer.getComponentFromJson(j_root.get("text"));
+        x = j_root.getAsJsonPrimitive("x").getAsInt();
+        y = j_root.getAsJsonPrimitive("y").getAsInt();
     }
 
     @Override

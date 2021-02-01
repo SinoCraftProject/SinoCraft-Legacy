@@ -3,8 +3,14 @@ package cx.rain.mc.forgemod.sinocraft.entity.passive;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -39,13 +45,12 @@ public class EntityCarriage extends AnimalEntity {
         super.livingTick();
     }
 
-    // Fixme: Static method, see LivingEntity#registerAttributes.
-//    @Override
-//    protected void registerAttributes() {
-//        super.registerAttributes();
-//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(26.0D);
-//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.28D);
-//    }
+    @Override
+    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(26.0D);
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.28D);
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    }
 
     @Nullable
     @Override

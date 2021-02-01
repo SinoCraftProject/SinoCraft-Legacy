@@ -3,15 +3,19 @@ package cx.rain.mc.forgemod.sinocraft.entity.passive;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -39,13 +43,12 @@ public class EntityBuffalo extends AnimalEntity {
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
     }
 
-    // Fixme: Change to static method.
-//    @Override
-//    protected void registerAttributes() {
-//        super.registerAttributes();
-//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
-//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
-//    }
+    @Override
+    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0);
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2);
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    }
 
     @Override
     protected SoundEvent getAmbientSound() {

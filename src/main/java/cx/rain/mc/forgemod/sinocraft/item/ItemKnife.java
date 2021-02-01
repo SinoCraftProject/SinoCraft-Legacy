@@ -4,15 +4,15 @@ import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
-import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.item.AxeItem;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -59,18 +59,12 @@ public class ItemKnife extends SwordItem {
 
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
-            Map<Block, Block> STRIPPING_MAP = ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a");
-            if(STRIPPING_MAP.get(type.getWorld().getBlockState(type.getPos()).getBlock()) != null){
+            BlockState strip_state = AxeItem.getAxeStrippingState(type.getWorld().getBlockState(type.getPos()));
+            if(strip_state != null){
                 return (context) -> {
-                    // Fixme: Check if log block or not.
-                    RotatedPillarBlock block = (RotatedPillarBlock)
-                            context.getWorld().getBlockState(context.getPos()).getBlock();
-                    context.getWorld().setBlockState(
-                            context.getPos(), (STRIPPING_MAP.get(block).getDefaultState().with(RotatedPillarBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(RotatedPillarBlock.AXIS))));
-                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(ModItems.BARK.get(), context.getWorld().getRandom().nextInt(2)));
-                    // Fixme: Broken!
-                    //RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
-                    //        context.getPos(),context.getItem());
+                    context.getWorld().setBlockState(context.getPos(), strip_state);
+                    CriteriaTriggers.RIGHT_CLICK_BLOCK_WITH_ITEM.test((ServerPlayerEntity) context.getPlayer(),
+                            context.getPos(),context.getItem());
                 };
             }
             return null;
@@ -95,9 +89,9 @@ public class ItemKnife extends SwordItem {
                 if(shave!=null){
                     if(!context.getWorld().isRemote){
                         shave.Shave(context);
-                        // Fixme: Broken!
-                        //RegistryTrigger.SHAVE_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
-                        //        context.getPos(),context.getItem());
+                        CriteriaTriggers.RIGHT_CLICK_BLOCK_WITH_ITEM.test((ServerPlayerEntity) context.getPlayer(),
+                                        context.getPos(),context.getItem());
+
                         context.getWorld().notifyBlockUpdate(context.getPos(), context.getWorld().getBlockState(context.getPos()), context.getWorld().getBlockState(context.getPos()), 2);
                     }
                     context.getWorld().playSound(context.getPlayer(),context.getPos(), SoundEvents.ITEM_AXE_STRIP, SoundCategory.PLAYERS, 1.0f, 1.0f);

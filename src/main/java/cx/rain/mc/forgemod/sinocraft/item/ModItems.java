@@ -54,6 +54,7 @@ public class ModItems {
     public static RegistryObject<Item> GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).build()));
     public static RegistryObject<Item> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).build()));
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).build()));
+    public static RegistryObject<Item> ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood(new Food.Builder().hunger(1).saturation(0).build()));
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
