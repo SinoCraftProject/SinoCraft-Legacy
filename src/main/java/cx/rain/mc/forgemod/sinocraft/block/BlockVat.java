@@ -61,12 +61,12 @@ public class BlockVat extends BlockMachineBase {
                 TileEntityVat tileEntity = (TileEntityVat) worldIn.getTileEntity(pos);
                 if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                     IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
-                    FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, false);
+                    FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, true);
                     if (action.success) {
                         worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
                     } else {
-                        action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, false);
+                        action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, true);
                         if (action.success) {
                             worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
@@ -111,12 +111,13 @@ public class BlockVat extends BlockMachineBase {
             TileEntityVat tileEntity = (TileEntityVat) worldIn.getTileEntity(pos);
             if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                 IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
-                FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, true);
+                ItemStack stack = player.getHeldItem(handIn);
+                FluidActionResult action = FluidUtil.tryEmptyContainer(stack, handler, 999999, player, true);
                 if (action.success) {
                     worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     return ActionResultType.SUCCESS;
                 } else {
-                    action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, true);
+                    action = FluidUtil.tryFillContainer(stack, handler, 999999, player, true);
                     if (action.success) {
                         worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
