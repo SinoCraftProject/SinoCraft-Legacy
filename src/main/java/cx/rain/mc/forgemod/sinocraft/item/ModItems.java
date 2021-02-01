@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.item;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
@@ -62,9 +63,13 @@ public class ModItems {
         @Override
         public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
             if (world.isRemote) {
-                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-                    Minecraft.getInstance().displayGuiScreen(GuiXuanPaper.create(player.getHeldItem(hand).getOrCreateTag().getByteArray("pixels")));
-                });
+                DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
+                        Minecraft.getInstance().displayGuiScreen(
+                                GuiXuanPaper.create(
+                                        player.getHeldItem(hand).getOrCreateTag().getByteArray("pixels")
+                                )
+                        )
+                );
             }
             return ActionResult.resultSuccess(player.getHeldItem(hand));
         }
@@ -76,7 +81,7 @@ public class ModItems {
         }
     });
     public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black",()->new Item(new Item.Properties().group(ModGroups.MISC)));
-    
+
     public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron",()->new ItemKnife(ItemTier.IRON));
     public static RegistryObject<Item> KNIFE_GOLD = REGISTRY.register("knife_gold",()->new ItemKnife(ItemTier.GOLD));
     public static RegistryObject<Item> KNIFE_DIAMOND = REGISTRY.register("knife_diamond",()->new ItemKnife(ItemTier.DIAMOND));
@@ -84,6 +89,19 @@ public class ModItems {
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone",()->new Item(new Item.Properties().group(ModGroups.TOOLS)));
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
+    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", ()->new Item(new Item.Properties().group(ModGroups.MISC)){
+        @Override
+        public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+            if (world.isRemote) {
+                DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
+                        Minecraft.getInstance().displayGuiScreen(
+                                GuiTutorialBook.create("sinocraft:test")
+                        )
+                );
+            }
+            return ActionResult.resultSuccess(player.getHeldItem(hand));
+        }
+    });
 
     public ModItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering items.");

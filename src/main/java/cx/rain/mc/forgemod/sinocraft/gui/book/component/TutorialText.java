@@ -7,13 +7,13 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 
-public class TutorialText extends TutorialComponent{
+public class TutorialText extends GuiTutorialBook.TutorialComponent {
     protected IFormattableTextComponent component;
     protected int x;
     protected int y;
 
-    public TutorialText(GuiTutorialBook gui) {
-        super(gui);
+    public TutorialText(GuiTutorialBook.Page page) {
+        super(page);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class TutorialText extends TutorialComponent{
 
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        AbstractGui.drawString(stack, gui.getMinecraft().fontRenderer, component, x, y, component.getStyle().getColor().getColor());
+        AbstractGui.drawString(stack, page.getGUI().getMinecraft().fontRenderer, component, x, y, component.getStyle().getColor().getColor());
     }
 }

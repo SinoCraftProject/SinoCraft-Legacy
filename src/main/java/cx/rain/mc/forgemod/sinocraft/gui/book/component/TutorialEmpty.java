@@ -4,9 +4,9 @@ import com.google.gson.JsonObject;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 
-public class TutorialEmpty extends TutorialComponent{
-    public TutorialEmpty(GuiTutorialBook gui) {
-        super(gui);
+public class TutorialEmpty extends GuiTutorialBook.TutorialComponent {
+    public TutorialEmpty(GuiTutorialBook.Page page) {
+        super(page);
     }
 
     @Override

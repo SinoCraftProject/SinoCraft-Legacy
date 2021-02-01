@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:flour"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.basic.get_stone_mill.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.basic.get_stone_mill.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/root",
+  "criteria": {
+    "get_stone_mill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:stone_mill"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_stone_mill"
+    ]
+  ],
+  "rewards": {}
+}
