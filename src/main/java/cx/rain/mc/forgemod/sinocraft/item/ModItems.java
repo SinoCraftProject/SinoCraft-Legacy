@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.item;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
@@ -15,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,6 +56,7 @@ public class ModItems {
     public static RegistryObject<Item> GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood(new Food.Builder().hunger(2).saturation(3).build()));
     public static RegistryObject<Item> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).build()));
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).build()));
+    public static RegistryObject<Item> ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood(new Food.Builder().hunger(1).saturation(0).build()));
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
@@ -61,8 +64,21 @@ public class ModItems {
         @Override
         public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
             if (world.isRemote) {
-                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
                     Minecraft.getInstance().displayGuiScreen(GuiXuanPaper.create(player.getHeldItem(hand).getOrCreateTag().getByteArray("pixels")));
+                });
+            }
+            return ActionResult.resultSuccess(player.getHeldItem(hand));
+        }
+    });
+    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book",()->new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
+        @Override
+        public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+            if (world.isRemote) {
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                    Minecraft.getInstance().displayGuiScreen(
+                            GuiTutorialBook.create(new ResourceLocation("sinocraft:t"))
+                    );
                 });
             }
             return ActionResult.resultSuccess(player.getHeldItem(hand));

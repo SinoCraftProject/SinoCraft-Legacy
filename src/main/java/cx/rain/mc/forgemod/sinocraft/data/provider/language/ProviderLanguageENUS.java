@@ -98,6 +98,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
+        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
     }
 
     private void addBlocks() {

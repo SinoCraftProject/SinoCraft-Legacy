@@ -5,10 +5,10 @@ import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.client.gui.IRenderable;
 
 public abstract class TutorialComponent implements IRenderable {
-    protected GuiTutorialBook gui;
+    protected GuiTutorialBook.Page page;
 
-    public TutorialComponent(GuiTutorialBook gui) {
-        this.gui = gui;
+    public TutorialComponent(GuiTutorialBook.Page page) {
+        this.page = page;
     }
 
     public boolean canClick() {
