@@ -1,6 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.event;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -9,9 +11,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EventPlayerLoggedIn {
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        /*
-        event.getPlayer().sendMessage(
-                new TranslationTextComponent("message.sinocraft.player.join.welcome"));
-         */
+        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(ModItems.TUTORIAL_BOOK.get()));
     }
 }
