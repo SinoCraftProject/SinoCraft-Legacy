@@ -27,6 +27,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.PlayerInvWrapper;
+import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -61,12 +63,12 @@ public class BlockVat extends BlockMachineBase {
                 TileEntityVat tileEntity = (TileEntityVat) worldIn.getTileEntity(pos);
                 if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                     IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
-                    FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, true);
+                    FluidActionResult action = FluidUtil.tryEmptyContainer(player.getHeldItem(handIn), handler, 999999, player, false);
                     if (action.success) {
                         worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
                     } else {
-                        action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, true);
+                        action = FluidUtil.tryFillContainer(player.getHeldItem(handIn), handler, 999999, player, false);
                         if (action.success) {
                             worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                             return ActionResultType.SUCCESS;
@@ -112,13 +114,16 @@ public class BlockVat extends BlockMachineBase {
             if (FluidUtil.getFluidHandler(player.getHeldItem(handIn)).orElse(null) != null) {
                 IFluidHandler handler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null);
                 ItemStack stack = player.getHeldItem(handIn);
-                FluidActionResult action = FluidUtil.tryEmptyContainer(stack, handler, 999999, player, true);
+                PlayerInvWrapper invWrap = new PlayerInvWrapper(player.inventory);
+                FluidActionResult action = FluidUtil.tryEmptyContainerAndStow(stack, handler, invWrap, Integer.MAX_VALUE, player, true);
                 if (action.success) {
+                    player.setHeldItem(handIn, action.result);
                     worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     return ActionResultType.SUCCESS;
                 } else {
-                    action = FluidUtil.tryFillContainer(stack, handler, 999999, player, true);
+                    action = FluidUtil.tryFillContainerAndStow(stack, handler, invWrap, Integer.MAX_VALUE, player, true);
                     if (action.success) {
+                        player.setHeldItem(handIn, action.result);
                         worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
                     }

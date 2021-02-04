@@ -3,6 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.entity.passive;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.World;
@@ -39,13 +43,13 @@ public class EntityCarriage extends AnimalEntity {
         super.livingTick();
     }
 
-    // Fixme: Static method, see LivingEntity#registerAttributes.
-//    @Override
-//    protected void registerAttributes() {
-//        super.registerAttributes();
-//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(26.0D);
-//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.28D);
-//    }
+    static {
+        AttributeModifierMap.MutableAttribute attr = MobEntity.func_233666_p_();
+        attr.createMutableAttribute(Attributes.MAX_HEALTH, 26.0D);
+        attr.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.28D);
+        //TODO: change null
+        GlobalEntityTypeAttributes.put(null, attr.create());
+    }
 
     @Nullable
     @Override

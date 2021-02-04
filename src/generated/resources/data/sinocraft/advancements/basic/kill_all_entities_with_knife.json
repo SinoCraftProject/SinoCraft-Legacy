@@ -1,0 +1,1760 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:knife_diamond",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.basic.kill_all_entities_with_knife.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.basic.kill_all_entities_with_knife.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/kill_all_mobs_with_knife",
+  "criteria": {
+    "minecraft:cave_spider": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:cave_spider"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:spider": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:spider"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:zombified_piglin": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:zombified_piglin"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:enderman": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:enderman"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:blaze": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:blaze"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:creeper": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:creeper"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:evoker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:evoker"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:ghast": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:ghast"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:guardian": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:guardian"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:husk": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:husk"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:magma_cube": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:magma_cube"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:shulker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:shulker"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:silverfish": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:silverfish"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:skeleton": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:skeleton"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:slime": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:slime"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:stray": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:stray"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:vindicator": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:vindicator"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:witch": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:witch"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:wither_skeleton": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:wither_skeleton"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:zombie": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:zombie"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:zombie_villager": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:zombie_villager"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:phantom": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:phantom"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:drowned": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:drowned"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:pillager": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:pillager"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:ravager": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:ravager"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:bat": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:bat"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:bee": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:bee"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:cat": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:cat"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:chicken": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:chicken"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:cow": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:cow"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:dolphin": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:dolphin"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:donkey": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:donkey"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:fox": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:fox"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:horse": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:horse"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:iron_golem": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:iron_golem"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:llama": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:llama"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:mooshroom": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:mooshroom"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:mule": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:mule"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:ocelot": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:ocelot"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:panda": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:panda"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:parrot": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:parrot"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:pig": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:pig"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:polar_bear": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:polar_bear"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:pufferfish": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:pufferfish"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:rabbit": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:rabbit"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:salmon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:salmon"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:sheep": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:sheep"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:snow_golem": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:snow_golem"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:squid": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:squid"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:villager": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:villager"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    },
+    "minecraft:wolf": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:wolf"
+            },
+            "entity": "this"
+          }
+        ],
+        "killing_blow": {
+          "is_projectile": false,
+          "is_explosion": false,
+          "bypasses_armor": false,
+          "bypasses_invulnerability": false,
+          "bypasses_magic": false,
+          "is_fire": false,
+          "is_magic": false,
+          "is_lightning": false,
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "sinocraft:knife"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "minecraft:cave_spider"
+    ],
+    [
+      "minecraft:spider"
+    ],
+    [
+      "minecraft:zombified_piglin"
+    ],
+    [
+      "minecraft:enderman"
+    ],
+    [
+      "minecraft:blaze"
+    ],
+    [
+      "minecraft:creeper"
+    ],
+    [
+      "minecraft:evoker"
+    ],
+    [
+      "minecraft:ghast"
+    ],
+    [
+      "minecraft:guardian"
+    ],
+    [
+      "minecraft:husk"
+    ],
+    [
+      "minecraft:magma_cube"
+    ],
+    [
+      "minecraft:shulker"
+    ],
+    [
+      "minecraft:silverfish"
+    ],
+    [
+      "minecraft:skeleton"
+    ],
+    [
+      "minecraft:slime"
+    ],
+    [
+      "minecraft:stray"
+    ],
+    [
+      "minecraft:vindicator"
+    ],
+    [
+      "minecraft:witch"
+    ],
+    [
+      "minecraft:wither_skeleton"
+    ],
+    [
+      "minecraft:zombie"
+    ],
+    [
+      "minecraft:zombie_villager"
+    ],
+    [
+      "minecraft:phantom"
+    ],
+    [
+      "minecraft:drowned"
+    ],
+    [
+      "minecraft:pillager"
+    ],
+    [
+      "minecraft:ravager"
+    ],
+    [
+      "minecraft:bat"
+    ],
+    [
+      "minecraft:bee"
+    ],
+    [
+      "minecraft:cat"
+    ],
+    [
+      "minecraft:chicken"
+    ],
+    [
+      "minecraft:cow"
+    ],
+    [
+      "minecraft:dolphin"
+    ],
+    [
+      "minecraft:donkey"
+    ],
+    [
+      "minecraft:fox"
+    ],
+    [
+      "minecraft:horse"
+    ],
+    [
+      "minecraft:iron_golem"
+    ],
+    [
+      "minecraft:llama"
+    ],
+    [
+      "minecraft:mooshroom"
+    ],
+    [
+      "minecraft:mule"
+    ],
+    [
+      "minecraft:ocelot"
+    ],
+    [
+      "minecraft:panda"
+    ],
+    [
+      "minecraft:parrot"
+    ],
+    [
+      "minecraft:pig"
+    ],
+    [
+      "minecraft:polar_bear"
+    ],
+    [
+      "minecraft:pufferfish"
+    ],
+    [
+      "minecraft:rabbit"
+    ],
+    [
+      "minecraft:salmon"
+    ],
+    [
+      "minecraft:sheep"
+    ],
+    [
+      "minecraft:snow_golem"
+    ],
+    [
+      "minecraft:squid"
+    ],
+    [
+      "minecraft:villager"
+    ],
+    [
+      "minecraft:wolf"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  }
+}

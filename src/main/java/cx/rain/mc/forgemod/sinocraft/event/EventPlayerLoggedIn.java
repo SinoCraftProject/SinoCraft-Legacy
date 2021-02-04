@@ -11,6 +11,5 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EventPlayerLoggedIn {
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(ModItems.TUTORIAL_BOOK.get()));
     }
 }

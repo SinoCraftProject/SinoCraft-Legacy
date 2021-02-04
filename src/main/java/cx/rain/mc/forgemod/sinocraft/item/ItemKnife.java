@@ -10,9 +10,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -59,18 +61,11 @@ public class ItemKnife extends SwordItem {
 
         @Override
         public IShave get(ItemUseContext type, @Nullable Object[] args){
-            Map<Block, Block> STRIPPING_MAP = ProtectedHelper.getStaticField(AxeItem.class, "field_203176_a");
-            if(STRIPPING_MAP.get(type.getWorld().getBlockState(type.getPos()).getBlock()) != null){
+            BlockState result = AxeItem.getAxeStrippingState(type.getWorld().getBlockState(type.getPos()));
+            if (result != null && (BlockTags.LOGS.contains(type.getWorld().getBlockState(type.getPos()).getBlock()))) {
                 return (context) -> {
-                    // Fixme: Check if log block or not.
-                    RotatedPillarBlock block = (RotatedPillarBlock)
-                            context.getWorld().getBlockState(context.getPos()).getBlock();
-                    context.getWorld().setBlockState(
-                            context.getPos(), (STRIPPING_MAP.get(block).getDefaultState().with(RotatedPillarBlock.AXIS,context.getWorld().getBlockState(context.getPos()).get(RotatedPillarBlock.AXIS))));
-                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(ModItems.BARK.get(), context.getWorld().getRandom().nextInt(2)));
-                    // Fixme: Broken!
-                    //RegistryTrigger.SHAVE_BARK_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
-                    //        context.getPos(),context.getItem());
+                    context.getWorld().setBlockState(context.getPos(), result);
+                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(ModItems.BARK.get(), context.getWorld().getRandom().nextInt(2) + 1));
                 };
             }
             return null;
@@ -95,9 +90,6 @@ public class ItemKnife extends SwordItem {
                 if(shave!=null){
                     if(!context.getWorld().isRemote){
                         shave.Shave(context);
-                        // Fixme: Broken!
-                        //RegistryTrigger.SHAVE_WITH_KNIFE.test((ServerPlayerEntity) context.getPlayer(),
-                        //        context.getPos(),context.getItem());
                         context.getWorld().notifyBlockUpdate(context.getPos(), context.getWorld().getBlockState(context.getPos()), context.getWorld().getBlockState(context.getPos()), 2);
                     }
                     context.getWorld().playSound(context.getPlayer(),context.getPos(), SoundEvents.ITEM_AXE_STRIP, SoundCategory.PLAYERS, 1.0f, 1.0f);

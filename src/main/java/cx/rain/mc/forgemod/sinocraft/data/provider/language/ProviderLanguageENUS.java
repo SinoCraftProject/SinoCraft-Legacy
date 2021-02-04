@@ -57,6 +57,7 @@ public class ProviderLanguageENUS extends LanguageProvider {
         add("itemGroup.sinocraft.agriculture", "SinoCraft | Agriculture");
         add("itemGroup.sinocraft.foods", "SinoCraft | Foods");
         add("itemGroup.sinocraft.combat", "SinoCraft | Combat");
+        add("itemGroup.sinocraft.tools", "SinoCraft | Tools");
         add("itemGroup.sinocraft.misc", "SinoCraft | Miscellaneous");
     }
 
