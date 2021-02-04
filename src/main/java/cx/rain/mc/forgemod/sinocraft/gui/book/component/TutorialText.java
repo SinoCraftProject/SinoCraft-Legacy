@@ -12,8 +12,8 @@ public class TutorialText extends TutorialComponent{
     protected int x;
     protected int y;
 
-    public TutorialText(GuiTutorialBook gui) {
-        super(gui);
+    public TutorialText(GuiTutorialBook.Page page) {
+        super(page);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class TutorialText extends TutorialComponent{
 
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        AbstractGui.drawString(stack, gui.getMinecraft().fontRenderer, component, x, y, component.getStyle().getColor().getColor());
+        AbstractGui.drawString(stack, page.gui.getMinecraft().fontRenderer, component, x, y, component.getStyle().getColor().getColor());
     }
 }

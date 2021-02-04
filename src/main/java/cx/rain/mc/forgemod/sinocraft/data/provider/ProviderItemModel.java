@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
@@ -28,6 +29,10 @@ public class ProviderItemModel extends ItemModelProvider {
 
     protected void simpleItem(Item item, ResourceLocation texture) {
         singleTexture(item.getRegistryName().getPath(), mcLoc("generated"), "layer0", texture);
+    }
+
+    protected void simpleItem(Item item) {
+        this.simpleItem(item, modLoc("item/" + item.getRegistryName().getPath()));
     }
 
     protected void simpleBlockItem(Item blockItem) {
@@ -72,18 +77,20 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
-        getBuilder("peach").parent(GENERATED).texture("layer0", modLoc("item/peach"));
-        getBuilder("chili_pepper_seed").parent(GENERATED).texture("layer0", modLoc("item/chili_pepper_seed"));
-        getBuilder("green_pepper_seed").parent(GENERATED).texture("layer0", modLoc("item/green_pepper_seed"));
-        getBuilder("eggplant_seed").parent(GENERATED).texture("layer0", modLoc("item/eggplant_seed"));
-        getBuilder("cabbage_seed").parent(GENERATED).texture("layer0", modLoc("item/cabbage_seed"));
-        getBuilder("rice_seed").parent(GENERATED).texture("layer0", modLoc("item/rice_seed"));
-        getBuilder("millet_seed").parent(GENERATED).texture("layer0", modLoc("item/millet_seed"));
-        getBuilder("sorghum_seed").parent(GENERATED).texture("layer0", modLoc("item/sorghum_seed"));
-        getBuilder("soybean").parent(GENERATED).texture("layer0", modLoc("item/soybean"));
-        getBuilder("rice").parent(GENERATED).texture("layer0", modLoc("item/rice"));
-        getBuilder("millet").parent(GENERATED).texture("layer0", modLoc("item/millet"));
-        getBuilder("sorghum").parent(GENERATED).texture("layer0", modLoc("item/sorghum"));
+        simpleItem(ModItems.PEACH.get());
+        simpleItem(ModItems.CHILI_PEPPER_SEED.get());
+        simpleItem(ModItems.GREEN_PEPPER_SEED.get());
+        simpleItem(ModItems.EGGPLANT_SEED.get());
+        simpleItem(ModItems.ADUST_FOOD.get());
+        simpleItem(ModItems.CABBAGE_SEED.get());
+        simpleItem(ModItems.RICE_SEED.get());
+        simpleItem(ModItems.MILLET_SEED.get());
+        simpleItem(ModItems.SORGHUM_SEED.get());
+        simpleItem(ModItems.SOYBEAN.get());
+        simpleItem(ModItems.RICE.get());
+        simpleItem(ModItems.MILLET.get());
+        simpleItem(ModItems.SORGHUM.get());
+        simpleItem(ModItems.TUTORIAL_BOOK.get());
 
         getBuilder("chili_pepper").parent(GENERATED).texture("layer0", modLoc("item/chili_pepper"));
         getBuilder("green_pepper").parent(GENERATED).texture("layer0", modLoc("item/green_pepper"));

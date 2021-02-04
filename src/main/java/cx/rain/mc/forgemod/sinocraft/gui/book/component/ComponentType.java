@@ -14,12 +14,12 @@ public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEnt
     public static DeferredRegister<ComponentType<?>> REGISTRY =
             DeferredRegister.create(TUTORIAL_COMPONENT, SinoCraft.MODID);
 
-    protected Function<GuiTutorialBook, T> genComponent;
-    protected ComponentType(Function<GuiTutorialBook, T> genComponent) {
+    protected Function<GuiTutorialBook.Page, T> genComponent;
+    protected ComponentType(Function<GuiTutorialBook.Page, T> genComponent) {
         this.genComponent = genComponent;
     }
 
-    public static <R extends TutorialComponent> ComponentType<R> create(Function<GuiTutorialBook, R> genComponent) {
+    public static <R extends TutorialComponent> ComponentType<R> create(Function<GuiTutorialBook.Page, R> genComponent) {
         return new ComponentType(genComponent);
     }
 }

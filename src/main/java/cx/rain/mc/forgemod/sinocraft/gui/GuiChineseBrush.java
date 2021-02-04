@@ -25,6 +25,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
         super(screenContainer, playerInventory, titleIn);
         this.xSize = 212;
         this.ySize = 236;
+
     }
 
     @Override
@@ -79,7 +80,6 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
         renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         renderHoveredTooltip(matrixStack, mouseX, mouseY);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
     protected void draw(MatrixStack matrixStack) {
