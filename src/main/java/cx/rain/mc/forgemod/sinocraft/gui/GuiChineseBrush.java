@@ -42,9 +42,9 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                 RenderSystem.enableAlphaTest();
                 RenderSystem.enableBlend();
                 if (this.isHovered()) {
-                    this.blit(matrixStack, this.x, this.y, 11, 243, this.width, this.height, 256, 256);
+                    this.blit(matrixStack, this.x, this.y, 11, 243, this.width, this.height);
                 } else {
-                    this.blit(matrixStack, this.x, this.y, 11, 236, this.width, this.height, 256, 256);
+                    this.blit(matrixStack, this.x, this.y, 11, 236, this.width, this.height);
                 }
                 RenderSystem.disableAlphaTest();
                 RenderSystem.disableBlend();
@@ -62,9 +62,9 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                 RenderSystem.enableAlphaTest();
                 RenderSystem.enableBlend();
                 if (this.isHovered()) {
-                    this.blit(matrixStack, this.x, this.y, 0, 243, this.width, this.height, 256, 256);
+                    this.blit(matrixStack, this.x, this.y, 0, 243, this.width, this.height);
                 } else {
-                    this.blit(matrixStack, this.x, this.y, 0, 236, this.width, this.height, 256, 256);
+                    this.blit(matrixStack, this.x, this.y, 0, 236, this.width, this.height);
                 }
                 RenderSystem.disableAlphaTest();
                 RenderSystem.disableBlend();
@@ -107,7 +107,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                         color = 0.0f;
                     }
                     RenderSystem.color3f(color, color, color);
-                    blit(matrixStack, sx + i * unit, sy + j * unit, 0, 22, 236, unit, unit, 256, 256);
+                    blit(matrixStack, sx + i * unit, sy + j * unit,  22, 236, unit, unit);
                 }
             }
         }
@@ -183,7 +183,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         this.minecraft.getTextureManager().bindTexture(GUI);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.blit(matrixStack, guiLeft, guiTop, 0, 0, 0, xSize, ySize, 256, 256);
+        this.blit(matrixStack, guiLeft, guiTop,  0, 0, xSize, ySize);
     }
 
     @Override

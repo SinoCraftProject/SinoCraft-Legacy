@@ -77,7 +77,7 @@ public class ModItems {
             if (world.isRemote) {
                 DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
                     Minecraft.getInstance().displayGuiScreen(
-                            GuiTutorialBook.create(new ResourceLocation("sinocraft:t"))
+                            GuiTutorialBook.create(new ResourceLocation("sinocraft:tutorial"))
                     );
                 });
             }
