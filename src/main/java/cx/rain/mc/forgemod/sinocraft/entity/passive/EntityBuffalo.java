@@ -3,6 +3,9 @@ package cx.rain.mc.forgemod.sinocraft.entity.passive;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,6 +30,13 @@ public class EntityBuffalo extends AnimalEntity {
         super(type, worldIn);
     }
 
+    static {
+        AttributeModifierMap.MutableAttribute attr = MobEntity.func_233666_p_();
+        attr.createMutableAttribute(Attributes.MAX_HEALTH, 20.0D);
+        attr.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D);
+        GlobalEntityTypeAttributes.put(ModEntities.ENTITY_BUFFALO.get(), attr.create());
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
@@ -38,14 +48,6 @@ public class EntityBuffalo extends AnimalEntity {
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
     }
-
-    // Fixme: Change to static method.
-//    @Override
-//    protected void registerAttributes() {
-//        super.registerAttributes();
-//        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
-//        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
-//    }
 
     @Override
     protected SoundEvent getAmbientSound() {

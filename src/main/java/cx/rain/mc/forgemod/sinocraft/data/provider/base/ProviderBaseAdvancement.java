@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.base;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import cx.rain.mc.forgemod.sinocraft.data.tag.TagItem;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.criterion.*;
@@ -13,6 +14,7 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -397,27 +399,28 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
                 .withParent(parent);
     }
 
-    // Fixme: Almost all providers are broken.
-//    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
-//        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
-//    }
-//
-//    protected InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
-//        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
-//    }
+    protected InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
+        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
+    }
+
+    protected InventoryChangeTrigger.Instance hasItem(ITag<Item> tagIn) {
+        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
+    }
 
     protected ItemPredicate baseProvider(IItemProvider itemIn){
         return ItemPredicate.Builder.create().item(itemIn).build();
     }
 
-    protected  ItemPredicate baseProvider(Tag<Item> tagIn){
+    protected  ItemPredicate baseProvider(ITag<Item> tagIn){
         return ItemPredicate.Builder.create().tag(tagIn).build();
     }
 
-    // Fixme: Broken!
-//    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
-//        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
-//    }
+    protected InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
+        return new InventoryChangeTrigger.Instance(
+                EntityPredicate.AndPredicate.ANY_AND,
+                MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED,
+                MinMaxBounds.IntBound.UNBOUNDED, predicates);
+    }
 
     protected Advancement.Builder makeMobAdvancement(Advancement.Builder builder) {
         for(EntityType<?> entitytype : MOB_ENTITIES) {
@@ -435,32 +438,49 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
         return builder;
     }
 
-    // Fixme: Broken!
-//    protected Advancement.Builder makeMobKnifeAdvancement(Advancement.Builder builder) {
-//        for(EntityType<?> entitytype : MOB_ENTITIES) {
-//            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
-//                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),EntityPredicate.Builder.create().type(entitytype).build(),new DamageSourcePredicate(
-//                    false,false,false,false, false,
-//                    false,false,false,EntityPredicate.ANY,
-//                    EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
-//                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
-//                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY)).build())));
-//        }
-//
-//        return builder;
-//    }
-//
-//    protected Advancement.Builder makeEntityKnifeAdvancement(Advancement.Builder builder) {
-//        for(EntityType<?> entitytype : ENTITIES) {
-//            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
-//                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),EntityPredicate.Builder.create().type(entitytype).build(),new DamageSourcePredicate(
-//                    false,false,false,false, false,
-//                    false,false,false,EntityPredicate.ANY,
-//                    EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
-//                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
-//                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY)).build())));
-//        }
-//
-//        return builder;
-//    }
+    protected Advancement.Builder makeMobKnifeAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : MOB_ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
+                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),
+                    EntityPredicate.AndPredicate.ANY_AND,
+                    EntityPredicate.AndPredicate.createAndFromEntityCondition(
+                            EntityPredicate.Builder.create().type(entitytype).build()
+                    ),new DamageSourcePredicate(
+                            false,false,false,false,
+                    false, false,false,false,
+                            EntityPredicate.ANY, EntityPredicate.Builder.create().equipment(
+                                    new EntityEquipmentPredicate(
+                                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
+                                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY
+                                    )
+                            ).build()
+                    )
+            ));
+        }
+
+        return builder;
+    }
+
+    protected Advancement.Builder makeEntityKnifeAdvancement(Advancement.Builder builder) {
+        for(EntityType<?> entitytype : ENTITIES) {
+            builder.withCriterion(Registry.ENTITY_TYPE.getKey(entitytype).toString(), new KilledTrigger.Instance(
+                    CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),
+                    EntityPredicate.AndPredicate.ANY_AND,
+                    EntityPredicate.AndPredicate.createAndFromEntityCondition(
+                            EntityPredicate.Builder.create().type(entitytype).build()
+                    ),new DamageSourcePredicate(
+                            false,false,false,false,
+                            false, false,false,false,
+                            EntityPredicate.ANY, EntityPredicate.Builder.create().equipment(
+                                    new EntityEquipmentPredicate(
+                                            ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
+                                            this.baseProvider(TagItem.KNIFE),ItemPredicate.ANY
+                                    )
+                            ).build()
+                    )
+            ));
+        }
+
+        return builder;
+    }
 }

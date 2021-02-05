@@ -50,11 +50,13 @@ public class GuiTutorialBook extends Screen {
             this.gui = gui;
             this.isLeft = isLeft;
             background = new ResourceLocation(j_root.getAsJsonPrimitive("background").getAsString());
+            background = new ResourceLocation(background.getNamespace(), "textures/gui/" + background.getPath() + ".png");
             JsonArray j_arr = j_root.getAsJsonArray("components");
         }
 
         @Override
         public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
+            this.gui.getMinecraft().getTextureManager().bindTexture(background);
             if (isLeft) {
                 blit(stack, -64, 0, 0, 0, 128, 182);
             }
@@ -116,7 +118,6 @@ public class GuiTutorialBook extends Screen {
 
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        this.getMinecraft().getTextureManager().bindTexture(GUI);
         this.fillGradient(stack, 0, 0, this.width, this.height, -1072689136, -804253680);
         stack.push();
         stack.translate((float)guiLeft, (float)guiTop, 0.0F);
