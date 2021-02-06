@@ -12,6 +12,7 @@ import net.minecraft.client.audio.SimpleSound;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.IRenderable;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ChangePageButton;
 import net.minecraft.client.multiplayer.ServerData;
@@ -77,10 +78,10 @@ public class GuiTutorialBook extends Screen {
         public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
             this.gui.getMinecraft().getTextureManager().bindTexture(background);
             if (isLeft) {
-                blit(stack, -64, 0, 0, 0, 128, 182);
+                blit(stack, -64, 0, 0, 0, 128, 181);
             }
             else {
-                blit(stack, 64, 0, 128, 0, 128, 182);
+                blit(stack, 64, 0, 128, 0, 128, 181);
             }
         }
     }
@@ -96,7 +97,7 @@ public class GuiTutorialBook extends Screen {
         private boolean isNextPage;
 
         public ChangePageButton(int x, int y, GuiTutorialBook gui, boolean isNextPage) {
-            super(x, y, 34, 22, new StringTextComponent("null"), (button)->{
+            super(x, y, 17, 11, new StringTextComponent("null"), (button)->{
                 System.out.println("click1");
                 if (isNextPage) {
                     gui.nextPage();
@@ -110,7 +111,7 @@ public class GuiTutorialBook extends Screen {
 
         @Override
         public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-            if (!((gui.nowPage == -1 && ! isNextPage) || (gui.nowPage == gui.pages.size() && isNextPage))) {
+            if (!((gui.nowPage == -1 && ! isNextPage) || (gui.nowPage + 1 >= gui.pages.size() && isNextPage))) {
                 this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
                 int i = isHovered ? 11: 0;
                 int j = isNextPage ?  0: 17;
@@ -122,7 +123,7 @@ public class GuiTutorialBook extends Screen {
                     GUI = gui.pages.get(gui.nowPage).background;
                 }
                 Minecraft.getInstance().getTextureManager().bindTexture(GUI);
-                this.blit(matrixStack, this.x , this.y, j, i + 182, 17, 11);
+                this.blit(matrixStack, this.x , this.y, j, i + 181, 17, 11);
             }
         }
 
@@ -210,7 +211,12 @@ public class GuiTutorialBook extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        System.out.println("click2");
+        System.out.println("[click2] x: " + mouseX + "y: " + mouseY);
+        for (Widget w : buttons) {
+            if(w.isMouseOver(mouseX, mouseY)) {
+                w.onClick(mouseX, mouseY);
+            }
+        }
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
