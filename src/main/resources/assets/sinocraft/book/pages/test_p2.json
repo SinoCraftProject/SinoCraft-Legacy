@@ -1,0 +1,13 @@
+{
+  "background": "sinocraft:tutorial_book",
+  "components": [
+    {
+      "id": "sinocraft:text",
+      "text": {
+        "text": "Hello, World!"
+      },
+      "x": 10,
+      "y": 20
+    }
+  ]
+}

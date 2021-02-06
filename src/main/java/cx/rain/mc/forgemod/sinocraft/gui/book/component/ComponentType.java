@@ -3,6 +3,8 @@ package cx.rain.mc.forgemod.sinocraft.gui.book.component;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.*;
 
 import java.util.function.Function;
@@ -14,6 +16,13 @@ public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEnt
     public static DeferredRegister<ComponentType<?>> REGISTRY =
             DeferredRegister.create(TUTORIAL_COMPONENT, SinoCraft.MODID);
 
+    public static RegistryObject<ComponentType<TutorialText>> TEXT = REGISTRY.register(
+            "text", () -> ComponentType.create(TutorialText::new));
+
+    public static void init(IEventBus bus) {
+        REGISTRY.register(bus);
+    }
+
     protected Function<GuiTutorialBook.Page, T> genComponent;
     protected ComponentType(Function<GuiTutorialBook.Page, T> genComponent) {
         this.genComponent = genComponent;
@@ -21,5 +30,9 @@ public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEnt
 
     public static <R extends TutorialComponent> ComponentType<R> create(Function<GuiTutorialBook.Page, R> genComponent) {
         return new ComponentType(genComponent);
+    }
+
+    public T getComponent(GuiTutorialBook.Page page) {
+        return genComponent.apply(page);
     }
 }

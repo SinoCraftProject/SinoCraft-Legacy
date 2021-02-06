@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.gui.book.component.ComponentType;
 import cx.rain.mc.forgemod.sinocraft.gui.book.component.TutorialComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SimpleSound;
@@ -72,17 +73,37 @@ public class GuiTutorialBook extends Screen {
             background = new ResourceLocation(j_root.getAsJsonPrimitive("background").getAsString());
             background = new ResourceLocation(background.getNamespace(), "textures/gui/" + background.getPath() + ".png");
             JsonArray j_arr = j_root.getAsJsonArray("components");
+            if (j_arr != null) {
+                for (JsonElement ele : j_arr) {
+                    ComponentType<? extends TutorialComponent> t_component = ComponentType.TUTORIAL_COMPONENT.getValue(new ResourceLocation(
+                            ele.getAsJsonObject().getAsJsonPrimitive("id").getAsString())
+                    );
+                    if (t_component == null) {
+                        throw new IllegalStateException("Invalid Component " + ele.getAsJsonObject().getAsJsonPrimitive("id").getAsString());
+                    }
+                    TutorialComponent component = t_component.getComponent(this);
+                    component.fromJson(ele.getAsJsonObject());
+                    components.add(component);
+                }
+            }
         }
 
         @Override
         public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
             this.gui.getMinecraft().getTextureManager().bindTexture(background);
+            stack.push();
             if (isLeft) {
                 blit(stack, -64, 0, 0, 0, 128, 181);
+                stack.translate(-64, 0, 0);
             }
             else {
                 blit(stack, 64, 0, 128, 0, 128, 181);
+                stack.translate(64, 0, 0);
             }
+            for (TutorialComponent component : components) {
+                component.render(stack, mouseX, mouseY, partialTicks);
+            }
+            stack.pop();
         }
     }
     protected List<Page> pages = new ArrayList();
@@ -98,7 +119,6 @@ public class GuiTutorialBook extends Screen {
 
         public ChangePageButton(int x, int y, GuiTutorialBook gui, boolean isNextPage) {
             super(x, y, 17, 11, new StringTextComponent("null"), (button)->{
-                System.out.println("click1");
                 if (isNextPage) {
                     gui.nextPage();
                 } else {
@@ -128,7 +148,6 @@ public class GuiTutorialBook extends Screen {
         }
 
         public void playDownSound(SoundHandler handler) {
-            System.out.println("click2");
             handler.play(SimpleSound.master(SoundEvents.ITEM_BOOK_PAGE_TURN, 1.0F));
         }
     }
@@ -196,22 +215,18 @@ public class GuiTutorialBook extends Screen {
 
     public void jmpPage(int index) {
         this.nowPage = index;
-        System.out.println("j:" + nowPage);
     }
 
     public void nextPage() {
         this.nowPage += 2;
-        System.out.println("n:" + nowPage);
     }
 
     public void lastPage() {
         this.nowPage -= 2;
-        System.out.println("l:" + nowPage);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        System.out.println("[click2] x: " + mouseX + "y: " + mouseY);
         for (Widget w : buttons) {
             if(w.isMouseOver(mouseX, mouseY)) {
                 w.onClick(mouseX, mouseY);
