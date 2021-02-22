@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "side": "sinocraft:block/plum_log_stripped",
-    "end": "sinocraft:block/plum_log_end",
-    "all": "sinocraft:block/plum_log_stripped"
-  }
-}

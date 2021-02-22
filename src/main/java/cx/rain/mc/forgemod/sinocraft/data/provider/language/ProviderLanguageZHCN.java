@@ -22,33 +22,33 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addAdvancements();
     }
 
-    private void addAdvancements(){
-        add("advancement.sinocraft.basic.root.title","感谢使用华夏工艺模组！");
-        add("advancement.sinocraft.basic.root.description","感谢使用华夏工艺模组！");
+    private void addAdvancements() {
+        add("advancement.sinocraft.root.title", "欢迎使用 SinoCraft 华夏工艺！");
+        add("advancement.sinocraft.root.description", "有服章之美谓之华，有礼仪之邦谓之夏。");
 
-        add("advancement.sinocraft.basic.knife.title","刀");
-        add("advancement.sinocraft.basic.knife.description","获得一把小刀");
+        add("advancement.sinocraft.knife.title", "刀");
+        add("advancement.sinocraft.knife.description", "获得一把小刀。");
 
-        add("advancement.sinocraft.basic.knife_killed.title","小刀也能毙命");
-        add("advancement.sinocraft.basic.knife_killed.description","用小刀杀死一个生物");
+        add("advancement.sinocraft.kill_entity_by_knives.title", "刺客");
+        add("advancement.sinocraft.kill_entity_by_knives.description", "用小刀杀死一个生物。");
 
-        add("advancement.sinocraft.basic.get_bark.title","给树脱衣！");
-        add("advancement.sinocraft.basic.get_bark.description","用小刀剥下并捡起一棵树的树皮");
+        add("advancement.sinocraft.get_bark.title", "Don't starve.");
+        add("advancement.sinocraft.get_bark.description", "用小刀剥下一棵树的树皮。");
 
-        add("advancement.minecraft.adventure.kill_all_entities.title","大屠杀!");
-        add("advancement.minecraft.adventure.kill_all_entities.description","杀死每一种生物.");
+        add("advancement.sinocraft.kill_all_mobs_with_knife.title", "怪物大师");
+        add("advancement.sinocraft.kill_all_mobs_with_knife.description", "用小刀杀死每一种怪物。");
 
-        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.title","怪物大师");
-        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.description","用小刀杀死每一种怪物.");
+        add("advancement.sinocraft.kill_all_entities_with_knife.title", "刺客的盛宴");
+        add("advancement.sinocraft.kill_all_entities_with_knife.description", "杀死每一种生物。");
 
-        add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","真正的屠杀!");
-        add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","用小刀杀死每一种生物.");
+        add("advancement.sinocraft.get_china_ink.title", "粉墨登场");
+        add("advancement.sinocraft.get_china_ink.description", "获得墨汁。");
 
-        add("advancement.sinocraft.basic.get_china_ink.title","墨香扑鼻!");
-        add("advancement.sinocraft.basic.get_china_ink.description","获得墨.");
+        add("advancement.sinocraft.write_on_paper.title", "纸上描眉目，不辨妍或媸。");
+        add("advancement.sinocraft.write_on_paper.description", "在纸上着墨。");
 
-        add("advancement.sinocraft.basic.get_stone_mill.title","磨坊主");
-        add("advancement.sinocraft.basic.get_stone_mill.description","获得石磨.");
+        add("advancement.sinocraft.get_stone_mill.title", "磨坊主");
+        add("advancement.sinocraft.get_stone_mill.description", "制作石磨。");
     }
 
     private void addItemGroups() {
@@ -89,13 +89,13 @@ public class ProviderLanguageZHCN extends LanguageProvider {
         addItem(ModItems.GREEN_PEPPER, "青椒");
         addItem(ModItems.EGGPLANT, "茄子");
         addItem(ModItems.CABBAGE, "白菜");
-        addItem(ModItems.BARK,"树皮");
-        addItem(ModItems.KNIFE_IRON,"铁小刀");
-        addItem(ModItems.KNIFE_GOLD,"金小刀");
-        addItem(ModItems.KNIFE_DIAMOND,"钻石小刀");
-        addItem(ModItems.CHINESE_BRUSH,"毛笔");
-        addItem(ModItems.CHINA_INK,"墨");
-        addItem(ModItems.CHARCOAL_BLACK,"炭黑");
+        addItem(ModItems.BARK, "树皮");
+        addItem(ModItems.KNIFE_IRON, "铁小刀");
+        addItem(ModItems.KNIFE_GOLD, "金小刀");
+        addItem(ModItems.KNIFE_DIAMOND, "钻石小刀");
+        addItem(ModItems.CHINESE_BRUSH, "毛笔");
+        addItem(ModItems.CHINA_INK, "墨");
+        addItem(ModItems.CHARCOAL_BLACK, "炭黑");
         addItem(ModItems.INK_STONE, "砚");
         addItem(ModItems.XUAN_PAPER, "宣纸");
         addItem(ModItems.BUCKET_WOOD_PULP, "木浆桶");

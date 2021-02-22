@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.advancement.RegistryTrigger;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseAdvancement;
@@ -28,84 +27,83 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
     }
 
     /**
-     * 如果有依赖关系请把子进度放在副进度后Put
+     * Put advancement after dependencies.
      */
     @Override
     protected void registerAdvancements() {
-        Advancements.put(new ResourceLocation(ID,"basic/root"),RootAdvancement(
-                new ItemStack(ModBlockItems.WHITE_MARBLE.get()),"advancement.sinocraft.basic.root.title","advancement.sinocraft.basic.root.description",
-                new ResourceLocation(ID,"textures/gui/advancements/backgrounds/white_marble.png"),
-                FrameType.TASK,false,true,false,new AdvancementRewards.Builder().addExperience(0)).
-                withCriterion("only",new TickTrigger.Instance(EntityPredicate.AndPredicate.ANY_AND))
+        // SinoCraft root advancement.
+        Advancements.put(new ResourceLocation(ID, "basic/root"), RootAdvancement(
+                new ItemStack(ModBlockItems.WHITE_MARBLE.get()), "advancement.sinocraft.root.title", "advancement.sinocraft.root.description",
+                new ResourceLocation(ID, "textures/gui/advancements/backgrounds/white_marble.png"),
+                FrameType.TASK, false, false, false, new AdvancementRewards.Builder().addExperience(0)).
+                withCriterion("only", new TickTrigger.Instance(EntityPredicate.AndPredicate.ANY_AND))
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/knife"),ChildAdvancement(
-                new ItemStack(ModItems.KNIFE_IRON.get()),"advancement.sinocraft.basic.knife.title","advancement.sinocraft.basic.knife.description",
-                new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
-                withCriterion("knife",this.hasItem(TagItem.KNIFE))
+        // Got knife.
+        Advancements.put(new ResourceLocation(ID, "basic/knife"), ChildAdvancement(
+                new ItemStack(ModItems.KNIFE_IRON.get()), "advancement.sinocraft.knife.title", "advancement.sinocraft.knife.description",
+                new ResourceLocation(ID, "basic/root"), FrameType.TASK, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
+                withCriterion("knife", this.hasItem(TagItem.KNIFE))
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/knife_killed"),ChildAdvancement(
-                new ItemStack(ModItems.KNIFE_IRON.get()),"advancement.sinocraft.basic.knife_killed.title","advancement.sinocraft.basic.knife_killed.description",
-                new ResourceLocation(ID,"basic/knife"),FrameType.GOAL,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+        // Kill entity by knives.
+        Advancements.put(new ResourceLocation(ID, "basic/kill_entity_by_knives"), ChildAdvancement(
+                new ItemStack(ModItems.KNIFE_IRON.get()), "advancement.sinocraft.kill_entity_by_knives.title", "advancement.sinocraft.knife_killed.description",
+                new ResourceLocation(ID, "basic/knife"), FrameType.GOAL, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
                 withCriterion("knife", new KilledTrigger.Instance(
                         CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(),
                         EntityPredicate.AndPredicate.ANY_AND,
                         EntityPredicate.AndPredicate.ANY_AND,
                         new DamageSourcePredicate(
-                                false,false,false,false, false,
-                        false,false,false, EntityPredicate.ANY,
-                        EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
-                                ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,ItemPredicate.ANY,
-                                this.baseProvider(TagItem.KNIFE), ItemPredicate.ANY)).build()
-                )
+                                false, false, false, false, false,
+                                false, false, false, EntityPredicate.ANY,
+                                EntityPredicate.Builder.create().equipment(new EntityEquipmentPredicate(
+                                        ItemPredicate.ANY, ItemPredicate.ANY, ItemPredicate.ANY, ItemPredicate.ANY,
+                                        this.baseProvider(TagItem.KNIFE), ItemPredicate.ANY)).build()
+                        )
                 ))
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/get_bark"),ChildAdvancement(
-                new ItemStack(ModItems.KNIFE_IRON.get()),"advancement.sinocraft.basic.get_bark.title","advancement.sinocraft.basic.get_bark.description",
-                new ResourceLocation(ID,"basic/knife"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+        // Got bark.
+        Advancements.put(new ResourceLocation(ID, "basic/get_bark"), ChildAdvancement(
+                new ItemStack(ModItems.KNIFE_IRON.get()), "advancement.sinocraft.get_bark.title", "advancement.sinocraft.get_bark.description",
+                new ResourceLocation(ID, "basic/knife"), FrameType.TASK, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
-                withCriterion("get_bark",this.hasItem(ModItems.BARK.get())).
-                withCriterion("use_knife",new RightClickBlockWithItemTrigger.Instance(
+                withCriterion("get_bark", this.hasItem(ModItems.BARK.get())).
+                withCriterion("use_knife", new RightClickBlockWithItemTrigger.Instance(
                         EntityPredicate.AndPredicate.ANY_AND,
                         LocationPredicate.Builder.builder().block(
                                 BlockPredicate.Builder.createBuilder().setTag(BlockTags.LOGS).build()
-                        ).build(), ItemPredicate.Builder.create().tag(TagItem.KNIFE).build()
+                        ).build(),
+                        ItemPredicate.Builder.create().tag(TagItem.KNIFE).build()
                 ))
         );
 
-        Advancements.put(new ResourceLocation("minecraft","adventure/kill_all_entities"),makeEntityAdvancement(ChildAdvancement(
-                EnchantItem(new ItemStack(net.minecraft.item.Items.DIAMOND_SWORD), Enchantments.SHARPNESS,3),"advancement.minecraft.adventure.kill_all_entities.title","advancement.minecraft.adventure.kill_all_entities.description",
-                new ResourceLocation("minecraft","adventure/kill_all_mobs"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(500)).
-                withParent(Advancements.get(new ResourceLocation(ID,"basic/root")).build(new ResourceLocation("minecraft","adventure/kill_all_mobs"))
-        )));
-
-        Advancements.put(new ResourceLocation(ID,"basic/kill_all_mobs_with_knife"),makeMobKnifeAdvancement(ChildAdvancement(
-                new ItemStack(ModItems.KNIFE_GOLD.get()),"advancement.sinocraft.basic.kill_all_mobs_with_knife.title","advancement.sinocraft.basic.kill_all_mobs_with_knife.description",
-                new ResourceLocation(ID,"basic/knife_killed"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(500))
+        Advancements.put(new ResourceLocation(ID, "basic/kill_all_mobs_with_knife"), makeMobKnifeAdvancement(ChildAdvancement(
+                new ItemStack(ModItems.KNIFE_GOLD.get()), "advancement.sinocraft.kill_all_mobs_with_knife.title", "advancement.sinocraft.kill_all_mobs_with_knife.description",
+                new ResourceLocation(ID, "basic/kill_entity_by_knives"), FrameType.CHALLENGE, true, true, false, new AdvancementRewards.Builder().addExperience(500))
                 )
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/kill_all_entities_with_knife"),makeEntityKnifeAdvancement(ChildAdvancement(
-                new ItemStack(ModItems.KNIFE_DIAMOND.get()),"advancement.sinocraft.basic.kill_all_entities_with_knife.title","advancement.sinocraft.basic.kill_all_entities_with_knife.description",
-                new ResourceLocation(ID,"basic/kill_all_mobs_with_knife"),FrameType.CHALLENGE,true,true,false,new AdvancementRewards.Builder().addExperience(1000))
+        Advancements.put(new ResourceLocation(ID, "basic/kill_all_entities_with_knife"), makeEntityKnifeAdvancement(ChildAdvancement(
+                new ItemStack(ModItems.KNIFE_DIAMOND.get()), "advancement.sinocraft.kill_all_entities_with_knife.title", "advancement.sinocraft.kill_all_entities_with_knife.description",
+                new ResourceLocation(ID, "basic/kill_all_mobs_with_knife"), FrameType.CHALLENGE, true, true, false, new AdvancementRewards.Builder().addExperience(1000))
                 )
         );
-		
-		Advancements.put(new ResourceLocation(ID,"basic/get_china_ink"),ChildAdvancement(
-                new ItemStack(ModItems.CHINA_INK.get()),"advancement.sinocraft.basic.get_china_ink.title","advancement.sinocraft.basic.get_china_ink.description",
-                new ResourceLocation(ID,"basic/root"),FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+
+        Advancements.put(new ResourceLocation(ID, "basic/get_china_ink"), ChildAdvancement(
+                new ItemStack(ModItems.CHINA_INK.get()), "advancement.sinocraft.get_china_ink.title", "advancement.sinocraft.get_china_ink.description",
+                new ResourceLocation(ID, "basic/root"), FrameType.TASK, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
-                withCriterion("get_china_ink",this.hasItem(ModItems.CHINA_INK.get())
+                withCriterion("get_china_ink", this.hasItem(ModItems.CHINA_INK.get())
                 )
         );
 
-        Advancements.put(new ResourceLocation(ID,"basic/get_stone_mill"),ChildAdvancement(
-                new ItemStack(ModItems.FLOUR.get()),"advancement.sinocraft.basic.get_stone_mill.title","advancement.sinocraft.basic.get_stone_mill.description",
-                new ResourceLocation(ID,"basic/root"), FrameType.TASK,true,true,false,new AdvancementRewards.Builder().addExperience(0)).
+        Advancements.put(new ResourceLocation(ID, "basic/get_stone_mill"), ChildAdvancement(
+                new ItemStack(ModItems.FLOUR.get()), "advancement.sinocraft.get_stone_mill.title", "advancement.sinocraft.get_stone_mill.description",
+                new ResourceLocation(ID, "basic/root"), FrameType.TASK, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
-                withCriterion("get_stone_mill",this.hasItem(ModBlocks.STONE_MILL.get())
+                withCriterion("get_stone_mill", this.hasItem(ModBlocks.STONE_MILL.get())
                 )
         );
     }
@@ -116,7 +114,7 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
     }
 
     public static ItemStack EnchantItem(ItemStack stack, Enchantment enchant, int level) {
-        stack.addEnchantment(enchant,level);
+        stack.addEnchantment(enchant, level);
         return stack;
     }
 }

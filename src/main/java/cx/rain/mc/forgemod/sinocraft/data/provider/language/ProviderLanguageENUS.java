@@ -22,33 +22,30 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addAdvancements();
     }
 
-    private void addAdvancements(){
-        add("advancement.sinocraft.basic.root.title","Welcome to SinoCraft!");
-        add("advancement.sinocraft.basic.root.description","Welcome to SinoCraft!");
+    private void addAdvancements() {
+        add("advancement.sinocraft.root.title", "Welcome to SinoCraft!");
+        add("advancement.sinocraft.root.description", "Welcome to SinoCraft!");
 
-        add("advancement.sinocraft.basic.knife.title","Knife");
-        add("advancement.sinocraft.basic.knife.description","Get a knife.");
+        add("advancement.sinocraft.knife.title", "Knife");
+        add("advancement.sinocraft.knife.description", "Get a knife.");
 
-        add("advancement.sinocraft.basic.knife_killed.title","Knife can kill too");
-        add("advancement.sinocraft.basic.knife_killed.description","Kill a entity with a knife.");
+        add("advancement.sinocraft.kill_entity_by_knives.title", "Knife can kill too");
+        add("advancement.sinocraft.kill_entity_by_knives.description", "Kill a entity with a knife.");
 
-        add("advancement.sinocraft.basic.get_bark.title","Strip the tree!");
-        add("advancement.sinocraft.basic.get_bark.description","Shave a tree with knife and get the bark.");
+        add("advancement.sinocraft.get_bark.title", "Strip the tree!");
+        add("advancement.sinocraft.get_bark.description", "Shave a tree with knife and get the bark.");
 
-        add("advancement.minecraft.adventure.kill_all_entities.title","Slaughter!");
-        add("advancement.minecraft.adventure.kill_all_entities.description","Kill one of every living entities.");
+        add("advancement.sinocraft.kill_all_mobs_with_knife.title", "Mob Master");
+        add("advancement.sinocraft.kill_all_mobs_with_knife.description", "Kill one of every mobs with knife.");
 
-        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.title","Mob Master");
-        add("advancement.sinocraft.basic.kill_all_mobs_with_knife.description","Kill one of every mobs with knife.");
+        add("advancement.sinocraft.kill_all_entities_with_knife.title", "Real slaughter!");
+        add("advancement.sinocraft.kill_all_entities_with_knife.description", "Kill one of every living entities with knife.");
 
-        add("advancement.sinocraft.basic.kill_all_entities_with_knife.title","Real slaughter!");
-        add("advancement.sinocraft.basic.kill_all_entities_with_knife.description","Kill one of every living entities with knife.");
+        add("advancement.sinocraft.get_china_ink.title", "Smell of ink!");
+        add("advancement.sinocraft.get_china_ink.description", "Get china ink.");
 
-        add("advancement.sinocraft.basic.get_china_ink.title","Smell of ink!");
-        add("advancement.sinocraft.basic.get_china_ink.description","Get china ink.");
-
-        add("advancement.sinocraft.basic.get_stone_mill.title","Miller");
-        add("advancement.sinocraft.basic.get_stone_mill.description","Get stone mill.");
+        add("advancement.sinocraft.get_stone_mill.title", "Miller");
+        add("advancement.sinocraft.get_stone_mill.description", "Get stone mill.");
     }
 
     private void addItemGroups() {
@@ -89,13 +86,13 @@ public class ProviderLanguageENUS extends LanguageProvider {
         addItem(ModItems.GREEN_PEPPER, "Green Pepper");
         addItem(ModItems.EGGPLANT, "Eggplant");
         addItem(ModItems.CABBAGE, "Chinese Cabbage");
-        addItem(ModItems.BARK,"Bark");
-        addItem(ModItems.KNIFE_IRON,"Iron Knife");
-        addItem(ModItems.KNIFE_GOLD,"Gold Knife");
-        addItem(ModItems.KNIFE_DIAMOND,"Diamond Knife");
-        addItem(ModItems.CHINESE_BRUSH,"Chinese Brush");
-        addItem(ModItems.CHINA_INK,"China Ink");
-        addItem(ModItems.CHARCOAL_BLACK,"Charcoal Black");
+        addItem(ModItems.BARK, "Bark");
+        addItem(ModItems.KNIFE_IRON, "Iron Knife");
+        addItem(ModItems.KNIFE_GOLD, "Gold Knife");
+        addItem(ModItems.KNIFE_DIAMOND, "Diamond Knife");
+        addItem(ModItems.CHINESE_BRUSH, "Chinese Brush");
+        addItem(ModItems.CHINA_INK, "China Ink");
+        addItem(ModItems.CHARCOAL_BLACK, "Charcoal Black");
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
