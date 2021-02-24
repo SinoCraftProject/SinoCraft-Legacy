@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "sinocraft:block/eggplant_stage_0"
+    },
+    "stage=1": {
+      "model": "sinocraft:block/eggplant_stage_1"
+    },
+    "stage=2": {
+      "model": "sinocraft:block/eggplant_stage_2"
+    },
+    "stage=3": {
+      "model": "sinocraft:block/eggplant_stage_3"
+    },
+    "stage=4": {
+      "model": "sinocraft:block/eggplant_stage_4"
+    },
+    "stage=5": {
+      "model": "sinocraft:block/eggplant_stage_5"
+    },
+    "stage=6": {
+      "model": "sinocraft:block/eggplant_stage_6"
+    },
+    "stage=7": {
+      "model": "sinocraft:block/eggplant_stage_7"
+    }
+  }
+}

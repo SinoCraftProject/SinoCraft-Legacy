@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "sinocraft:block/green_pepper_plant_stage_2"
+  }
+}

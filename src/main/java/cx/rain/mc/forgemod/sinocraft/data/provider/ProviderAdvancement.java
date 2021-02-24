@@ -13,9 +13,7 @@ import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 

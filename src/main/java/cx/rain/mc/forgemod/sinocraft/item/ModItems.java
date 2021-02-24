@@ -58,9 +58,9 @@ public class ModItems {
     public static RegistryObject<Item> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(new Food.Builder().hunger(3).saturation(4).build()));
     public static RegistryObject<Item> ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood(new Food.Builder().hunger(1).saturation(0).build()));
 
-    public static RegistryObject<Item> BARK = REGISTRY.register("bark",()->new Item(new Item.Properties().group(ModGroups.MISC)));
+    public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper",()->new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
         @Override
         public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
             if (world.isRemote) {
@@ -71,7 +71,7 @@ public class ModItems {
             return ActionResult.resultSuccess(player.getHeldItem(hand));
         }
     });
-    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book",()->new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
+    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
         @Override
         public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
             if (world.isRemote) {
@@ -84,19 +84,19 @@ public class ModItems {
             return ActionResult.resultSuccess(player.getHeldItem(hand));
         }
     });
-    public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink",()->new Item(new Item.Properties().group(ModGroups.MISC).defaultMaxDamage(186)) {
+    public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink", () -> new Item(new Item.Properties().group(ModGroups.MISC).defaultMaxDamage(186)) {
         @Override
         public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
             return 0;
         }
     });
-    public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black",()->new Item(new Item.Properties().group(ModGroups.MISC)));
-    
-    public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron",()->new ItemKnife(ItemTier.IRON));
-    public static RegistryObject<Item> KNIFE_GOLD = REGISTRY.register("knife_gold",()->new ItemKnife(ItemTier.GOLD));
-    public static RegistryObject<Item> KNIFE_DIAMOND = REGISTRY.register("knife_diamond",()->new ItemKnife(ItemTier.DIAMOND));
-    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush",()->new ItemChineseBrush());
-    public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone",()->new Item(new Item.Properties().group(ModGroups.TOOLS)));
+    public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
+
+    public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));
+    public static RegistryObject<Item> KNIFE_GOLD = REGISTRY.register("knife_gold", () -> new ItemKnife(ItemTier.GOLD));
+    public static RegistryObject<Item> KNIFE_DIAMOND = REGISTRY.register("knife_diamond", () -> new ItemKnife(ItemTier.DIAMOND));
+    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush", () -> new ItemChineseBrush());
+    public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone", () -> new Item(new Item.Properties().group(ModGroups.TOOLS)));
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
 

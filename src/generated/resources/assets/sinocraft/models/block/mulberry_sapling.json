@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sinocraft:block/mulberry_sapling"
+  }
+}

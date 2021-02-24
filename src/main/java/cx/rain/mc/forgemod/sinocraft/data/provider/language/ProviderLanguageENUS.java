@@ -3,14 +3,15 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
-public class ProviderLanguageENUS extends LanguageProvider {
+public class ProviderLanguageENUS extends ProviderLanguage {
     public ProviderLanguageENUS(DataGenerator gen) {
-        super(gen, SinoCraft.MODID, "en_us");
+        super(gen, "en_us");
     }
 
     @Override
