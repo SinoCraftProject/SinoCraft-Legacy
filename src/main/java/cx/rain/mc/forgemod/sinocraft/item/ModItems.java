@@ -60,17 +60,8 @@ public class ModItems {
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
-        @Override
-        public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-            if (world.isRemote) {
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                    Minecraft.getInstance().displayGuiScreen(GuiXuanPaper.create(player.getHeldItem(hand).getOrCreateTag().getByteArray("pixels")));
-                });
-            }
-            return ActionResult.resultSuccess(player.getHeldItem(hand));
-        }
-    });
+    public static RegistryObject<Item> EMPTY_XUAN_PAPER = REGISTRY.register("empty_xuan_paper", () -> new EmptyXuanPaper());
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new XuanPaper());
     public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
         @Override
         public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
