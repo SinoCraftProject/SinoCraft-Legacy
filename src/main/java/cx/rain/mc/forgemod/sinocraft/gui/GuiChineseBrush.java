@@ -131,6 +131,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                 pixels = new byte[32 * 32];
             }
 
+            //TODO
             //this.container.inventory.getStackInSlot(1).damageItem(this.container.color, this.minecraft.player, (e)->{});
 
             int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;

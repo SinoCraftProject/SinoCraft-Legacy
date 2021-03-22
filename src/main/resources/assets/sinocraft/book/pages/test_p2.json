@@ -7,7 +7,20 @@
         "text": "Hello, World!"
       },
       "x": 10,
-      "y": 20
+      "y": 20,
+      "transform": {
+        "translate": [1.0, 1.0, 0.0],
+        "scale": [1.2, 1.2, 1.0],
+        "rotate": [20, 30, 0]
+      }
+    },
+    {
+      "id": "sinocraft:item",
+      "item": {
+        "id": "minecraft:diamonds"
+      },
+      "x": 90,
+      "y": 50
     }
   ]
 }
