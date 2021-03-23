@@ -1,3 +1,21 @@
 {
-  "background": "sinocraft:tutorial_book"
+  "background": "sinocraft:tutorial_book",
+  "components": [
+    {
+      "id": "sinocraft:image",
+      "image": {
+        "path": "sinocraft:textures/entity/ox",
+        "width": 128,
+        "height": 128
+      },
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "sinocraft:crafting_recipe",
+      "recipe": "sinocraft:vat",
+      "x": 30,
+      "y": 200
+    }
+  ]
 }

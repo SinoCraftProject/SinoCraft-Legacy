@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.network;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
+import cx.rain.mc.forgemod.sinocraft.network.packet.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -31,6 +31,20 @@ public class Networks {
                 DrawPaperC2SPacket::serialize,
                 DrawPaperC2SPacket::new,
                 DrawPaperC2SPacket::handler
+        );
+        INSTANCE.registerMessage(
+                nextID(),
+                GetRecipeC2SPacket.class,
+                GetRecipeC2SPacket::serialize,
+                GetRecipeC2SPacket::new,
+                GetRecipeC2SPacket::handler
+        );
+        INSTANCE.registerMessage(
+                nextID(),
+                GetRecipeS2CPacket.class,
+                GetRecipeS2CPacket::serialize,
+                GetRecipeS2CPacket::new,
+                GetRecipeS2CPacket::handler
         );
     }
 }

@@ -19,6 +19,15 @@ public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEnt
     public static RegistryObject<ComponentType<TutorialText>> TEXT = REGISTRY.register(
             "text", () -> ComponentType.create(TutorialText::new));
 
+    public static RegistryObject<ComponentType<TutorialImage>> IMAGE = REGISTRY.register(
+            "image", () -> ComponentType.create(TutorialImage::new));
+
+    public static RegistryObject<ComponentType<TutorialItem>> ITEM = REGISTRY.register(
+            "item", () -> ComponentType.create(TutorialItem::new));
+
+    public static RegistryObject<ComponentType<TutorialCraftingRecipe>> CRAFTING_RECIPE = REGISTRY.register(
+            "crafting_recipe", () -> ComponentType.create(TutorialCraftingRecipe::new));
+
     public static void init(IEventBus bus) {
         REGISTRY.register(bus);
     }
