@@ -3,12 +3,15 @@ package cx.rain.mc.forgemod.sinocraft.gui.book.component;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.*;
 
 import java.util.function.Function;
 
+@OnlyIn(Dist.CLIENT)
 public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEntry<ComponentType<? extends TutorialComponent>> {
     public static ComponentType<TutorialEmpty> EMPTY = ComponentType.create(TutorialEmpty::new);
 
