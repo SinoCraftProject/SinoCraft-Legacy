@@ -5,7 +5,10 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class TutorialImage extends TutorialComponent{
     public ResourceLocation image;
     public int u = 0;

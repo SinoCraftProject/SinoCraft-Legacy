@@ -14,8 +14,8 @@
     {
       "id": "sinocraft:crafting_recipe",
       "recipe": "sinocraft:vat",
-      "x": 30,
-      "y": 200
+      "x": 50,
+      "y": 100
     }
   ]
 }

@@ -3,7 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.gui.book.component;
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.client.gui.IRenderable;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public abstract class TutorialComponent implements IRenderable {
     protected GuiTutorialBook.Page page;
     protected ComponentHelper.Transformer transformer;

@@ -10,7 +10,6 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-//TODO
 public class GetRecipeS2CPacket implements IMessage {
     private static Consumer<IRecipe<?>> callback;
     private Pack pack;

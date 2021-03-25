@@ -7,17 +7,28 @@ import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.network.packet.GetRecipeC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.packet.GetRecipeS2CPacket;
-import net.minecraft.client.gui.recipebook.GhostRecipe;
-import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.RepairItemRecipe;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+//TODO
+@OnlyIn(Dist.CLIENT)
 public class TutorialCraftingRecipe extends TutorialComponent{
-    public IRecipe<?> recipe;
+    private static ResourceLocation BACKGROUND = new ResourceLocation("sinocraft:textures/gui/book/craft_back.png");
+    public RecipeMatcher recipe;
     public int x;
     public int y;
+    public float time;
 
     public TutorialCraftingRecipe(GuiTutorialBook.Page page) {
         super(page);
@@ -26,9 +37,9 @@ public class TutorialCraftingRecipe extends TutorialComponent{
     @Override
     public void fromJson(JsonObject json) {
         super.fromJson(json);
-        this.recipe = new RepairItemRecipe(new ResourceLocation("sinocraft:_checker_recipe"));
+        this.recipe = null;
         GetRecipeS2CPacket.setCallback((recipe) -> {
-            this.recipe = recipe;
+            this.recipe = new RecipeMatcher(recipe);
         });
         Networks.INSTANCE.sendToServer(new GetRecipeC2SPacket(
                 new GetRecipeC2SPacket.Pack(
@@ -39,17 +50,56 @@ public class TutorialCraftingRecipe extends TutorialComponent{
         y = json.getAsJsonPrimitive("y").getAsInt();
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static class RecipeMatcher {
+        private List<List<ItemStack>> items = new ArrayList();
+        public IRecipe<?> recipe;
+
+        public RecipeMatcher(IRecipe<?> recipe) {
+            this.recipe = recipe;
+            items.add(Collections.singletonList(recipe.getRecipeOutput()));
+            NonNullList<Ingredient> ingredients = recipe.getIngredients();
+            for (Ingredient ingredient : ingredients) {
+                if (ingredient.hasNoMatchingItems()) {
+                    items.add(Collections.singletonList(ItemStack.EMPTY));
+                }
+                else {
+                    items.add(Arrays.asList(ingredient.getMatchingStacks()));
+                }
+            }
+        }
+
+        public ItemStack getMatchItem(int index, float time) {
+            return items.get(index).get((int)Math.floor(time) % items.get(index).size());
+        }
+
+        public List<ItemStack> getMatchItems(float time) {
+            List<ItemStack> result = new ArrayList<>();
+            for (List<ItemStack> item : items) {
+                result.add(item.get((int)Math.floor(time / 10) % item.size()));
+            }
+            return result;
+        }
+    }
+
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        if (recipe.getId().toString().equals("sinocraft:_checker_recipe"))
+        time += partialTicks;
+        if (recipe == null)
             return;
+        if (recipe.recipe.getType() != IRecipeType.CRAFTING)
+            throw new IllegalStateException("Except Get Crafting Recipe");
         stack.push();
         transformer.doTranslate(stack);
-        if (recipe.getType() != IRecipeType.CRAFTING)
-            throw new IllegalStateException("Except Get Crafting Recipe");
-        GhostRecipe gr = new GhostRecipe();
-        gr.setRecipe(recipe);
-        gr.func_238922_a_(stack, page.getGui().getMinecraft(), x, y, true, partialTicks);
+        this.page.getGui().getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI(recipe.getMatchItem(0, time), 60 + x,  18 + y);
+        int pos = -1;
+        for (ItemStack itemStack : recipe.getMatchItems(time)) {
+            pos ++;
+            if (pos == 0) {
+                continue;
+            }
+            this.page.getGui().getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI(itemStack, ((pos - 1) % 3) * 18 + x, ((pos - 1) / 3) * 18 + y);
+        }
         stack.pop();
     }
 }
