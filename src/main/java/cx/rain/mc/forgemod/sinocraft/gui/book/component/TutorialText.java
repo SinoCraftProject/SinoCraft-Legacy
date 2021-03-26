@@ -7,22 +7,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class TutorialText extends TutorialComponent{
     protected IFormattableTextComponent component;
-    protected int x;
-    protected int y;
 
     public TutorialText(GuiTutorialBook.Page page) {
         super(page);
     }
 
     @Override
-    public void fromJson(JsonObject json) {
-        super.fromJson(json);
-        component = ITextComponent.Serializer.getComponentFromJson(json.get("text"));
-        x = json.getAsJsonPrimitive("x").getAsInt();
-        y = json.getAsJsonPrimitive("y").getAsInt();
+    public void fromJson(JsonObject object) {
+        super.fromJson(object);
+        component = ITextComponent.Serializer.getComponentFromJson(object.get("text"));
     }
 
     @Override

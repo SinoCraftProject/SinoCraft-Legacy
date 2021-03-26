@@ -16,23 +16,19 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class TutorialItem extends TutorialComponent{
     public ItemStack item;
-    public int x;
-    public int y;
 
     public TutorialItem(GuiTutorialBook.Page page) {
         super(page);
     }
 
     @Override
-    public void fromJson(JsonObject json) {
-        super.fromJson(json);
+    public void fromJson(JsonObject object) {
+        super.fromJson(object);
         try {
-            item = ItemStack.read(JsonToNBT.getTagFromJson(json.getAsJsonObject("item").toString()));
+            item = ItemStack.read(JsonToNBT.getTagFromJson(object.getAsJsonObject("item").toString()));
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
         }
-        x = json.getAsJsonPrimitive("x").getAsInt();
-        y = json.getAsJsonPrimitive("y").getAsInt();
     }
 
     @Override

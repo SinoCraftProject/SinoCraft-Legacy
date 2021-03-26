@@ -2,11 +2,13 @@ package cx.rain.mc.forgemod.sinocraft.gui.book.component;
 
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.network.packet.GetRecipeC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.packet.GetRecipeS2CPacket;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
@@ -23,11 +25,9 @@ import java.util.List;
 
 //TODO
 @OnlyIn(Dist.CLIENT)
-public class TutorialCraftingRecipe extends TutorialComponent{
+public class TutorialCraftingRecipe extends TutorialComponent {
     private static ResourceLocation BACKGROUND = new ResourceLocation("sinocraft:textures/gui/book/craft_back.png");
     public RecipeMatcher recipe;
-    public int x;
-    public int y;
     public float time;
 
     public TutorialCraftingRecipe(GuiTutorialBook.Page page) {
@@ -46,8 +46,6 @@ public class TutorialCraftingRecipe extends TutorialComponent{
                         new ResourceLocation(json.getAsJsonPrimitive("recipe").getAsString()))
                 )
         );
-        x = json.getAsJsonPrimitive("x").getAsInt();
-        y = json.getAsJsonPrimitive("y").getAsInt();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -91,7 +89,11 @@ public class TutorialCraftingRecipe extends TutorialComponent{
             throw new IllegalStateException("Except Get Crafting Recipe");
         stack.push();
         transformer.doTranslate(stack);
-        this.page.getGui().getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI(recipe.getMatchItem(0, time), 60 + x,  18 + y);
+        this.page.getGui().getMinecraft().textureManager.bindTexture(BACKGROUND);
+        AbstractGui.blit(stack, x - 2, y - 2, 0, 0, 93, 56, 256, 256);
+        RenderSystem.pushMatrix();
+        RenderSystem.multMatrix(stack.getLast().getMatrix());
+        this.page.getGui().getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI(recipe.getMatchItem(0, time), 75 + x,  18 + y);
         int pos = -1;
         for (ItemStack itemStack : recipe.getMatchItems(time)) {
             pos ++;
@@ -100,6 +102,7 @@ public class TutorialCraftingRecipe extends TutorialComponent{
             }
             this.page.getGui().getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI(itemStack, ((pos - 1) % 3) * 18 + x, ((pos - 1) / 3) * 18 + y);
         }
+        RenderSystem.popMatrix();
         stack.pop();
     }
 }
