@@ -17,23 +17,15 @@ public abstract class TutorialComponent implements IRenderable {
         this.page = page;
     }
 
-    public boolean canClick() {
-        return false;
-    }
-
-    public void onClick(int mouseX, int mouseY, int key) {
-    }
-
-    public void onHover(int mouseX, int mouseY) {
-    }
-
-    public boolean isHovered(int mouseX, int mouseY) {
-        return false;
-    }
-
     public void fromJson(JsonObject object) {
         transformer = new ComponentHelper.Transformer(object.getAsJsonObject("transform"));
         x = object.getAsJsonPrimitive("x").getAsInt();
         y = object.getAsJsonPrimitive("y").getAsInt();
+    }
+
+    public void init() {
+    }
+    
+    public void onTerminate() {
     }
 }

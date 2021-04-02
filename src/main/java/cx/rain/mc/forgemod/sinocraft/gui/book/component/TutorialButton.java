@@ -2,9 +2,13 @@ package cx.rain.mc.forgemod.sinocraft.gui.book.component;
 
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.IGuiEventListener;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -13,7 +17,7 @@ import java.lang.reflect.Method;
 
 //TODO
 @OnlyIn(Dist.CLIENT)
-public class TutorialButton extends TutorialComponent{
+public class TutorialButton extends TutorialComponent {
     private static class Image {
         public ResourceLocation image;
         public int u = 0;
@@ -27,18 +31,19 @@ public class TutorialButton extends TutorialComponent{
     private Method onClick;
     private Image general = new Image();
     private Image onHover = new Image();
-    private boolean hovered;
     private int width;
     private int height;
+    private Button button;
+    public JsonObject args;
 
     public TutorialButton(GuiTutorialBook.Page page) {
         super(page);
     }
 
     private void loadImage(JsonObject object, Image image) {
-        image.image = new ResourceLocation(object.getAsJsonPrimitive("path").getAsString() + ".png");
-        image.image_width = object.getAsJsonPrimitive("width").getAsInt();
-        image.image_height = object.getAsJsonPrimitive("height").getAsInt();
+        image.image = new ResourceLocation(object.getAsJsonPrimitive("image").getAsString() + ".png");
+        image.image_width = object.getAsJsonPrimitive("image_width").getAsInt();
+        image.image_height = object.getAsJsonPrimitive("image_height").getAsInt();
         image.width = image.image_width;
         image.height = image.image_height;
         if (object.has("u"))
@@ -57,44 +62,39 @@ public class TutorialButton extends TutorialComponent{
         loadImage(object.getAsJsonObject("general"), general);
         loadImage(object.getAsJsonObject("on_hover"), onHover);
         try {
-            String clazz = object.getAsJsonPrimitive("classIn").getAsString();
-            String method = object.getAsJsonPrimitive("onClick").getAsString();
-            onClick = Class.forName(clazz).getDeclaredMethod(method, int.class, int.class, TutorialButton.class, GuiTutorialBook.class);
+            String clazz = object.getAsJsonPrimitive("class_in").getAsString();
+            String method = object.getAsJsonPrimitive("on_click").getAsString();
+            onClick = Class.forName(clazz).getDeclaredMethod(method, TutorialButton.class, GuiTutorialBook.class);
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
+        args = object.getAsJsonObject("args");
         width = object.getAsJsonPrimitive("width").getAsInt();
         height = object.getAsJsonPrimitive("height").getAsInt();
     }
 
     @Override
-    public boolean canClick() {
-        return true;
-    }
-
-    @Override
-    public void onClick(int mouseX, int mouseY, int key) {
-        try {
-            onClick.invoke(null, mouseX, mouseY, this, this.page.getGui());
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean isHovered(int mouseX, int mouseY) {
-        return mouseX >= x && mouseX < x + width && mouseY >= y - height && mouseY < y;
-    }
-
-    @Override
-    public void onHover(int mouseX, int mouseY) {
-        hovered = true;
+    public void init() {
+        button = new Button(x, y, width, height, new StringTextComponent(""), button -> {
+            try {
+                onClick.invoke(null, this, this.page.getGui());
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }) {
+            @Override
+            public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+            }
+        };
+        this.page.addTutorialButton(button);
+        super.init();
     }
 
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         stack.push();
         transformer.doTranslate(stack);
-        if (hovered) {
+        if (! button.isHovered()) {
             page.getGui().getMinecraft().textureManager.bindTexture(general.image);
             AbstractGui.blit(stack, x, y, page.getGui().getBlitOffset(), general.u, general.v, general.width, general.height, general.image_width, general.image_height);
         }
@@ -102,7 +102,11 @@ public class TutorialButton extends TutorialComponent{
             page.getGui().getMinecraft().textureManager.bindTexture(onHover.image);
             AbstractGui.blit(stack, x, y, page.getGui().getBlitOffset(), onHover.u, onHover.v, onHover.width, onHover.height, onHover.image_width, onHover.image_height);
         }
-        hovered = false;
         stack.pop();
+    }
+
+    @Override
+    public void onTerminate() {
+        this.page.removeTutorialButton(button);
     }
 }

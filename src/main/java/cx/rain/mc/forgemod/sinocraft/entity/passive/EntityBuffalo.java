@@ -21,11 +21,6 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 
 public class EntityBuffalo extends AnimalEntity {
-
-    public EntityBuffalo(World worldIn) {
-        super(ModEntities.ENTITY_BUFFALO.get(), worldIn);
-    }
-
     public EntityBuffalo(EntityType<? extends EntityBuffalo> type, World worldIn) {
         super(type, worldIn);
     }

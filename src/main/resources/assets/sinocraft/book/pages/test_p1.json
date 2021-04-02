@@ -16,6 +16,36 @@
       "recipe": "sinocraft:vat",
       "x": 0,
       "y": 100
+    },
+    {
+      "id": "sinocraft:button",
+      "general": {
+        "image": "sinocraft:textures/gui/tutorial_book",
+        "image_width": 256,
+        "image_height": 256,
+        "u": 0,
+        "v": 182,
+        "width": 17,
+        "height": 11
+      },
+      "on_hover": {
+        "image": "sinocraft:textures/gui/tutorial_book",
+        "image_width": 256,
+        "image_height": 256,
+        "u": 0,
+        "v": 193,
+        "width": 17,
+        "height": 11
+      },
+      "class_in": "cx.rain.mc.forgemod.sinocraft.gui.book.component.ButtonUtils",
+      "on_click": "loadNewBook",
+      "args": {
+        "book": "sinocraft:test"
+      },
+      "x": 10,
+      "y": 75,
+      "width": 17,
+      "height": 11
     }
   ]
 }
