@@ -28,6 +28,7 @@ import java.util.List;
 public class TutorialCraftingRecipe extends TutorialComponent {
     private static ResourceLocation BACKGROUND = new ResourceLocation("sinocraft:textures/gui/book/craft_back.png");
     public RecipeMatcher recipe;
+    public ResourceLocation recipe_id;
     public float time;
 
     public TutorialCraftingRecipe(GuiTutorialBook.Page page) {
@@ -37,15 +38,8 @@ public class TutorialCraftingRecipe extends TutorialComponent {
     @Override
     public void fromJson(JsonObject json) {
         super.fromJson(json);
+        recipe_id = new ResourceLocation(json.getAsJsonPrimitive("recipe").getAsString());
         this.recipe = null;
-        GetRecipeS2CPacket.setCallback((recipe) -> {
-            this.recipe = new RecipeMatcher(recipe);
-        });
-        Networks.INSTANCE.sendToServer(new GetRecipeC2SPacket(
-                new GetRecipeC2SPacket.Pack(
-                        new ResourceLocation(json.getAsJsonPrimitive("recipe").getAsString()))
-                )
-        );
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -104,5 +98,11 @@ public class TutorialCraftingRecipe extends TutorialComponent {
         }
         RenderSystem.popMatrix();
         stack.pop();
+    }
+
+    @Override
+    public void init() {
+        GetRecipeS2CPacket.setCallback((recipe) -> this.recipe = new RecipeMatcher(recipe));
+        Networks.INSTANCE.sendToServer(new GetRecipeC2SPacket(new GetRecipeC2SPacket.Pack(recipe_id)));
     }
 }

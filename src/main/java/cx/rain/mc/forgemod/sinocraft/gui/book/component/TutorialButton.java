@@ -34,6 +34,7 @@ public class TutorialButton extends TutorialComponent {
     private int width;
     private int height;
     private Button button;
+    public JsonObject args;
 
     public TutorialButton(GuiTutorialBook.Page page) {
         super(page);
@@ -67,6 +68,7 @@ public class TutorialButton extends TutorialComponent {
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
+        args = object.getAsJsonObject("args");
         width = object.getAsJsonPrimitive("width").getAsInt();
         height = object.getAsJsonPrimitive("height").getAsInt();
     }
@@ -86,10 +88,6 @@ public class TutorialButton extends TutorialComponent {
         };
         this.page.addTutorialButton(button);
         super.init();
-    }
-
-    public static void testClick(TutorialButton button, GuiTutorialBook gui) {
-        SinoCraft.getLogger().info("I Click it just now");
     }
 
     @Override

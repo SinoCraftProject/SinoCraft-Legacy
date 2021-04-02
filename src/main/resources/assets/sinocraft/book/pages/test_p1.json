@@ -37,8 +37,11 @@
         "width": 17,
         "height": 11
       },
-      "class_in": "cx.rain.mc.forgemod.sinocraft.gui.book.component.TutorialButton",
-      "on_click": "testClick",
+      "class_in": "cx.rain.mc.forgemod.sinocraft.gui.book.component.ButtonUtils",
+      "on_click": "loadNewBook",
+      "args": {
+        "book": "sinocraft:test"
+      },
       "x": 10,
       "y": 75,
       "width": 17,

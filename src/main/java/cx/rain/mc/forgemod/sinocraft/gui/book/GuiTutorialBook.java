@@ -128,14 +128,12 @@ public class GuiTutorialBook extends Screen {
         private boolean isNextPage;
 
         public ChangePageButton(int x, int y, GuiTutorialBook gui, boolean isNextPage) {
-            super(x, y, 17, 11, new StringTextComponent("null"), (button)->{
-                gui.do_terminate();
+            super(x, y, 17, 11, new StringTextComponent("null"), button -> {
                 if (isNextPage) {
                     gui.nextPage();
                 } else {
                     gui.lastPage();
                 }
-                gui.do_init();
             });
             this.isNextPage = isNextPage;
             this.gui = gui;
@@ -170,7 +168,6 @@ public class GuiTutorialBook extends Screen {
         this.guiTop = (this.height - this.ySize) / 2;
         this.buttons.add(new ChangePageButton(this.guiLeft - 64, this.guiTop + 192, this, false));
         this.buttons.add(new ChangePageButton(this.guiLeft + 192, this.guiTop + 192, this, true));
-        SinoCraft.getLogger().info(buttons.size());
         super.init();
     }
 
@@ -200,8 +197,11 @@ public class GuiTutorialBook extends Screen {
         }
     }
 
-    protected GuiTutorialBook(ITextComponent title, ResourceLocation path) {
-        super(title);
+    public void loadBook(ResourceLocation path)
+    {
+        wfa = new ArrayList<>();
+        wfd = new ArrayList<>();
+        pages = new ArrayList();
         List<ResourceLocation> l_pages = new ArrayList();
         path = new ResourceLocation(path.getNamespace(), "book/" + path.getPath() + ".json");
         try {
@@ -235,6 +235,12 @@ public class GuiTutorialBook extends Screen {
                 e.printStackTrace();
             }
         }
+        nowPage = -1;
+    }
+
+    protected GuiTutorialBook(ITextComponent title, ResourceLocation path) {
+        super(title);
+        loadBook(path);
     }
 
     @Override
@@ -261,15 +267,21 @@ public class GuiTutorialBook extends Screen {
     }
 
     public void jmpPage(int index) {
+        do_terminate();
         this.nowPage = index;
+        do_init();
     }
 
     public void nextPage() {
+        do_terminate();
         this.nowPage += 2;
+        do_init();
     }
 
     public void lastPage() {
+        do_terminate();
         this.nowPage -= 2;
+        do_init();
     }
 
     @Override
@@ -278,7 +290,6 @@ public class GuiTutorialBook extends Screen {
             if (w.isMouseOver(mouseX, mouseY)) {
                 w.onClick(mouseX, mouseY);
             }
-            SinoCraft.getLogger().info(w.x + ":" + w.y + "#" + mouseX + ":" + mouseY);
         }
         return super.mouseClicked(mouseX, mouseY, button);
     }
