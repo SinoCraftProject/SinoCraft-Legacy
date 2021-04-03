@@ -58,7 +58,7 @@ public class BlockStoneMill extends BlockMachineBase {
                     ItemStack backup = stack;
                     backup=handler.insertItem(0,backup,true);
                     if(backup!=stack){
-                        worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        worldIn.playSound(player,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         return ActionResultType.SUCCESS;
                     }
                     else {
@@ -68,7 +68,7 @@ public class BlockStoneMill extends BlockMachineBase {
                 else{
                     if(!handler.getStackInSlot(0).isEmpty()){
                         if (player.isSneaking()) {
-                            worldIn.playSound(player,pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                            worldIn.playSound(player,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                         }
                         return ActionResultType.SUCCESS;
                     }
@@ -79,7 +79,7 @@ public class BlockStoneMill extends BlockMachineBase {
                 return ActionResultType.FAIL;
             }
         }
-        return ActionResultType.SUCCESS;
+        return ActionResultType.PASS;
     }
 
     @Override
@@ -120,6 +120,6 @@ public class BlockStoneMill extends BlockMachineBase {
                 return ActionResultType.FAIL;
             }
         }
-        return ActionResultType.SUCCESS;
+        return ActionResultType.PASS;
     }
 }

@@ -14,10 +14,10 @@ public interface IWaterPower {
 
     /**
      * Set water power
-     * @param WaterPower Water power
+     * @param wp Water power
      * @author flysong
      */
-    void setWaterPower(int WaterPower);
+    void setWaterPower(int wp);
 
     /**
      * Reset water power
@@ -27,15 +27,15 @@ public interface IWaterPower {
 
     /**
      * Add water power
-     * @param WaterPower Water power
+     * @param wp Water power
      * @author flysong
      */
-    void addWaterPower(int WaterPower);
+    void addWaterPower(int wp);
 
     /**
      * Sub water power
-     * @param WaterPower Water power
+     * @param wp Water power
      * @author flysong
      */
-    void subWaterPower(int WaterPower);
+    void subWaterPower(int wp);
 }

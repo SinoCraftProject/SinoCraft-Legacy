@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.capability;
+package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IWindEnergy;
 import net.minecraft.nbt.INBT;

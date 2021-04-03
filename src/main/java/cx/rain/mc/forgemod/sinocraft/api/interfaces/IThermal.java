@@ -7,17 +7,17 @@ package cx.rain.mc.forgemod.sinocraft.api.interfaces;
 public interface IThermal {
     /**
      * Get thermal
-     * @return Thermal
+     * @return thermal
      * @author flysong
      */
     int getThermal();
 
     /**
      * Set thermal
-     * @param Thermal Thermal
+     * @param thermal thermal
      * @author flysong
      */
-    void setThermal(int Thermal);
+    void setThermal(int thermal);
 
     /**
      * Reset thermal
@@ -27,15 +27,15 @@ public interface IThermal {
 
     /**
      * Add thermal
-     * @param Thermal Thermal
+     * @param thermal thermal
      * @author flysong
      */
-    void addThermal(int Thermal);
+    void addThermal(int thermal);
 
     /**
      * Sub thermal
-     * @param Thermal Thermal
+     * @param thermal thermal
      * @author flysong
      */
-    void subThermal(int Thermal);
+    void subThermal(int thermal);
 }

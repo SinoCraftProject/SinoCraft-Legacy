@@ -12,10 +12,23 @@ import net.minecraft.tileentity.TileEntityType;
 import javax.annotation.Nullable;
 
 public abstract class TileEntityMachineBase extends TileEntity implements ITickableTileEntity, IMachine {
-    protected IMachine.MachineState state;
+    protected MachineState state;
 
     public TileEntityMachineBase(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
+        state = MachineState.CLOSE;
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        compound.putString("machine_state", state.toString());
+        return super.write(compound);
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT compound) {
+        this.state = MachineState.valueOf(compound.getString("machine_state"));
+        super.read(state, compound);
     }
 
     @Override

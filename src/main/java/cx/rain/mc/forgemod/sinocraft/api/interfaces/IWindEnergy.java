@@ -14,10 +14,10 @@ public interface IWindEnergy {
 
     /**
      * Set wind energy
-     * @param WindEnergy Wind energy
+     * @param we Wind energy
      * @author flysong
      */
-    void setWindEnergy(int WindEnergy);
+    void setWindEnergy(int we);
 
     /**
      * Reset wind energy
@@ -27,15 +27,15 @@ public interface IWindEnergy {
 
     /**
      * Add wind energy
-     * @param WindEnergy Wind energy
+     * @param we Wind energy
      * @author flysong
      */
-    void addWindEnergy(int WindEnergy);
+    void addWindEnergy(int we);
 
     /**
      * Sub wind energy
-     * @param WindEnergy Wind energy
+     * @param we Wind energy
      * @author flysong
      */
-    void subWindEnergy(int WindEnergy);
+    void subWindEnergy(int we);
 }
