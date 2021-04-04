@@ -76,7 +76,7 @@ public class EntityBuffalo extends AnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
         return ModEntities.ENTITY_BUFFALO.get().create(this.world);
     }
 }

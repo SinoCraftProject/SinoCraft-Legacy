@@ -35,6 +35,12 @@ public class EntityCarriage extends AnimalEntity {
     }
 
 
+    @Nullable
+    @Override
+    public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+        return null;
+    }
+
     @Override
     public void livingTick() {
         if (this.world.isRemote) {
@@ -49,11 +55,5 @@ public class EntityCarriage extends AnimalEntity {
         attr.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.28D);
         //TODO: change null
         GlobalEntityTypeAttributes.put(null, attr.create());
-    }
-
-    @Nullable
-    @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return null;
     }
 }

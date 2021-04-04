@@ -83,7 +83,8 @@ public class TutorialButton extends TutorialComponent {
             }
         }) {
             @Override
-            public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+            public void renderWidget(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+                super.renderWidget(matrixStack, mouseX, mouseY, partialTicks);
             }
         };
         this.page.addTutorialButton(button);
