@@ -17,7 +17,7 @@ public class TreeMulberry extends Tree {
             new SimpleBlockStateProvider(ModBlocks.MULBERRY_LOG.get().getDefaultState().with(RotatedPillarBlock.AXIS,
                     Direction.Axis.Y)),
             new SimpleBlockStateProvider(ModBlocks.MULBERRY_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(3), 3),
+            new FancyFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(3), 3),
             new FancyTrunkPlacer(7, 2, 0),
             new TwoLayerFeature(1, 0, 1))
             .setIgnoreVines()

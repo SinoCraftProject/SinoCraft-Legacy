@@ -37,7 +37,7 @@ public class BlockPlant extends CropsBlock {
         // AS: Replace StateContainer.
         StateContainer.Builder<Block, BlockState> builder = new StateContainer.Builder<>(this);
         fillStateContainer(builder, stageIn);
-        stateContainer = builder.func_235882_a_(Block::getDefaultState, BlockState::new);
+        stateContainer = builder.createStateContainer(Block::getDefaultState, BlockState::new);
         setDefaultState(stateContainer.getBaseState().with(getStage(), 0));
     }
 

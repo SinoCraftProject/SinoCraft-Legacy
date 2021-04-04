@@ -133,7 +133,7 @@ public class FollowEmperorGoal extends Goal {
     }
 
     private boolean isTeleportFriendlyBlock(BlockPos posIn) {
-        PathNodeType pathnodetype = WalkNodeProcessor.func_237231_a_(this.world, new BlockPos.Mutable(posIn.getX(), posIn.getY(), posIn.getZ()));
+        PathNodeType pathnodetype = WalkNodeProcessor.getFloorNodeType(this.world, new BlockPos.Mutable(posIn.getX(), posIn.getY(), posIn.getZ()));
         if (pathnodetype != PathNodeType.WALKABLE) {
             return false;
         } else {

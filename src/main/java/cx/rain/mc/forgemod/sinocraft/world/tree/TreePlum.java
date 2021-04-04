@@ -17,7 +17,7 @@ public class TreePlum extends Tree {
             new SimpleBlockStateProvider(ModBlocks.PLUM_LOG.get().getDefaultState().with(RotatedPillarBlock.AXIS,
                     Direction.Axis.Y)),
             new SimpleBlockStateProvider(ModBlocks.PLUM_LEAVES.get().getDefaultState()),
-            new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+            new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
             new StraightTrunkPlacer(3, 2, 0),
             new TwoLayerFeature(1, 0, 1))
             .setIgnoreVines()

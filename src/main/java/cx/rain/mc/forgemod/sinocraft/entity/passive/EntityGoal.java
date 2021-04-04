@@ -53,18 +53,18 @@ public class EntityGoal extends AnimalEntity {
         super.updateAITasks();
     }
 
-    @Nullable
-    @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return ModEntities.ENTITY_GOAL.create(this.world);
-    }
-
     @Override
     public void livingTick() {
         if (this.world.isRemote) {
             this.exampleTimer = Math.max(0, this.exampleTimer - 1);
         }
         super.livingTick();
+    }
+
+    @Nullable
+    @Override
+    public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+        return ModEntities.ENTITY_GOAL.create(this.world);
     }
 
     @Override
