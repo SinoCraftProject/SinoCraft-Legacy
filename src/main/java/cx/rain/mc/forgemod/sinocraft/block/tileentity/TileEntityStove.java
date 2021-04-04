@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.capability.FuelStackHandler;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IThermal;
@@ -15,7 +14,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -57,16 +55,28 @@ public class TileEntityStove extends TileEntityMachineBase implements IThermal {
 
     @Override
     public void tick() {
-        if (this.world.isRemote)
+        if (this.world.isRemote || this.state == MachineState.DAMAGED)
             return;
         if (thermal == 0 && this.state != MachineState.CLOSE) {
             this.state = MachineState.CLOSE;
             this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
             markDirty();
         }
-        if (thermal > 0 && this.state != MachineState.WORKING) {
+        if (thermal > 0 && thermal < 10000 && this.state != MachineState.WORKING) {
             this.state = MachineState.WORKING;
             this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
+            markDirty();
+        }
+        if (thermal > 10000 && thermal < 20000 && this.state != MachineState.OVERLOAD) {
+            this.state = MachineState.OVERLOAD;
+            this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
+            markDirty();
+        }
+        if (thermal > 20000 && this.state != MachineState.DAMAGED) {
+            this.state = MachineState.DAMAGED;
+            this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
+            resetThermal();
+            this.burn_cd = 0;
             markDirty();
         }
         if (thermal > 0) {

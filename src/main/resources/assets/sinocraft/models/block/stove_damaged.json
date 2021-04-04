@@ -1,0 +1,55 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "sinocraft:block/stove_top_damaged",
+		"1": "sinocraft:block/stove_bottom_damaged",
+		"2": "sinocraft:block/stove_east_damaged",
+		"3": "sinocraft:block/stove_side_damaged",
+		"particle": "sinocraft:block/stove_top_damaged"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 13, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 9], "texture": "#2"},
+				"east": {"uv": [0, 0, 16, 12], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#3"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#3"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [34, -45, 28],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"head": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"fixed": {
+			"rotation": [0, 90, 0]
+		}
+	}
+}

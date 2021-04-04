@@ -41,7 +41,7 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
+        "state": "idle|working",
         "facing": "north"
       },
       "apply": {
@@ -50,7 +50,7 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
+        "state": "idle|working",
         "facing": "south"
       },
       "apply": {
@@ -60,7 +60,7 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
+        "state": "idle|working",
         "facing": "west"
       },
       "apply": {
@@ -70,11 +70,89 @@
     },
     {
       "when": {
-        "state": "idle|working|overload|damaged",
+        "state": "idle|working",
         "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/stove_on",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "overload",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_overloaded"
+      }
+    },
+    {
+      "when": {
+        "state": "overload",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_overloaded",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "state": "overload",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_overloaded",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "state": "overload",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_overloaded",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "damaged",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_damaged"
+      }
+    },
+    {
+      "when": {
+        "state": "damaged",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_damaged",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "state": "damaged",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_damaged",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "state": "damaged",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "sinocraft:block/stove_damaged",
         "y": 90
       }
     }

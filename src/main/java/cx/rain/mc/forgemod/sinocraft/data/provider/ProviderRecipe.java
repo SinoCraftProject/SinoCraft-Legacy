@@ -1,12 +1,20 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 
@@ -22,6 +30,20 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerShapedRecipes(consumer);
         registerShapelessRecipes(consumer);
         registerFurnaceRecipes(consumer);
+        registerSoakRecipes(consumer);
+    }
+
+    private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
+        consumer.accept(new SoakRecipe(
+                new ItemStack(ModItems.FLOUR.get(), 2),
+                new ItemStack(ModItems.DOUGH.get()),
+                new ResourceLocation(ID + ":dough")
+        ));
+        consumer.accept(new SoakRecipe(
+                new ItemStack(ModItems.BARK.get(), 3),
+                new FluidStack(ModFluids.WOOD_PULP.get(), 1000),
+                new ResourceLocation(ID + ":wood_pulp")
+        ));
     }
 
     private void registerShapedRecipes(Consumer<IFinishedRecipe> consumer) {

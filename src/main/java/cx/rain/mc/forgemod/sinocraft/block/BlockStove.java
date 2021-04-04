@@ -44,7 +44,6 @@ public class BlockStove extends BlockMachineBase {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        SinoCraft.getLogger().info(state.get(LEVEL));
         return new TileEntityStove(state.get(LEVEL));
     }
 
@@ -78,6 +77,9 @@ public class BlockStove extends BlockMachineBase {
     }
 
     public static Direction RotateDirection(Direction rotation, Direction direction) {
+        if (direction == Direction.UP || direction == Direction.DOWN) {
+            return direction;
+        }
         if (rotation == Direction.WEST) {
             return direction.rotateY();
         }
@@ -120,5 +122,20 @@ public class BlockStove extends BlockMachineBase {
             }
         }
         return ActionResultType.PASS;
+    }
+
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        switch (state.get(STATE)) {
+            case CLOSE:
+            case DAMAGED:
+                return 0;
+            case IDLE:
+            case WORKING:
+                return 7;
+            case OVERLOAD:
+                return 15;
+        }
+        return 0;
     }
 }
