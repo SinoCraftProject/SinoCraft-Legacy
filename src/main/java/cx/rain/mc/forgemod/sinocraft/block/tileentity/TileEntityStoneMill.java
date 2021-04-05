@@ -34,7 +34,7 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
         }
     };
 
-    int progress=0;
+    private int progress=0;
 
     public static void registerRecipe(Item material,ItemStack result){
         recipes.put(material.getRegistryName().toString(),result);
@@ -86,10 +86,10 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        itemHandler.deserializeNBT(nbt.getCompound("stacks"));
-        progress = nbt.getInt("progress");
-        super.read(state, nbt);
+    public void read(BlockState state, CompoundNBT compound) {
+        itemHandler.deserializeNBT(compound.getCompound("stacks"));
+        progress = compound.getInt("progress");
+        super.read(state, compound);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.capability;
+package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.item.ItemStack;
@@ -9,7 +9,6 @@ import javax.annotation.Nonnull;
 
 /**
  * Fuel Item Stack Handler
- * Each of slots leave with 1 fuel
  */
 public class FuelStackHandler extends ItemStackHandler {
     public FuelStackHandler(int size) {
@@ -24,22 +23,14 @@ public class FuelStackHandler extends ItemStackHandler {
             return ItemStack.EMPTY;
         }
 
-        if (FurnaceTileEntity.isFuel(stack) && stacks.get(slot).isEmpty()) {
+        if (FurnaceTileEntity.isFuel(stack) && (stacks.get(slot).isEmpty() || stacks.get(slot).getItem().equals(stack.getItem()))) {
             super.insertItem(slot, new ItemStack(stack.getItem(), 1), simulate);
-            SinoCraft.getInstance().getLogger().info("Added " + stack.getDisplayName() + " in slot " + slot);
-            stack.shrink(1);
         }
         return stack;
     }
 
-    @Nonnull
-    @Override
-    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return stacks.get(slot);
-    }
-
     @Override
     public int getSlotLimit(int slot) {
-        return 1;
+        return 64;
     }
 }

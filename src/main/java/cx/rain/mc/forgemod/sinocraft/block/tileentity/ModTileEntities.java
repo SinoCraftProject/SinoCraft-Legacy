@@ -18,6 +18,9 @@ public class ModTileEntities {
     public static RegistryObject<TileEntityType<TileEntityStoneMill>> STONE_MILL = REGISTRY.register("stone_mill",
             () -> TileEntityType.Builder.create(TileEntityStoneMill::new, ModBlocks.STONE_MILL.get()).build(null));
 
+    public static RegistryObject<TileEntityType<TileEntityStove>> STOVE = REGISTRY.register("stove",
+            () -> TileEntityType.Builder.create(TileEntityStove::new, ModBlocks.STOVE.get()).build(null));
+
     public ModTileEntities(IEventBus bus) {
         SinoCraft.getLogger().info("Registering tile entities.");
         REGISTRY.register(bus);

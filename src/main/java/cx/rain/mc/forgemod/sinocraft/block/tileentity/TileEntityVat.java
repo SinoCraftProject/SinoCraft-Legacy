@@ -1,10 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
-import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
@@ -15,17 +14,12 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TileEntityVat extends TileEntityMachineBase {
-    private static Map<Item, ItemStack> recipes = new HashMap<>();
-    private static Map<Item, FluidStack> recipes2 = new HashMap<>();
-    private static Map<Item, Integer> consume = new HashMap<>();
-
     private class VatItemHandler extends ItemStackHandler {
         public VatItemHandler() {
             super(2);
@@ -37,39 +31,33 @@ public class TileEntityVat extends TileEntityMachineBase {
 
         @Override
         protected void onContentsChanged(int slot) {
+            ISoakRecipe old = cur_recipe;
+            cur_recipe = null;
+            for (ISoakRecipe recipe : SoakRecipeSerializer.recipes.values()) {
+                if (recipe.matches(new RecipeWrapper(this), world)) {
+                    cur_recipe = recipe;
+                }
+            }
+            if (old != cur_recipe) {
+                progress = 0;
+            }
             markDirty();
         }
 
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            return consume.containsKey(stack.getItem());
+            return true;
         }
     }
 
     private VatItemHandler itemHandler = new VatItemHandler();
 
     private FluidStack fluid = FluidStack.EMPTY;
+    private ISoakRecipe cur_recipe;
     int progress = 0;
-
-    public static void registerRecipe(ItemStack material, ItemStack result) {
-        recipes.put(material.getItem(), result);
-        consume.put(material.getItem(), material.getCount());
-    }
-
-    public static void registerRecipe(ItemStack material, FluidStack result) {
-        recipes2.put(material.getItem(), result);
-        consume.put(material.getItem(), material.getCount());
-    }
-
-    private void registerDefaultRecipes() {
-        registerRecipe(new ItemStack(ModItems.BARK.get(), 3), new FluidStack(ModFluids.WOOD_PULP.get(), 1000));
-        registerRecipe(new ItemStack(ModItems.FLOUR.get(), 2), new ItemStack(ModItems.DOUGH.get()));
-    }
 
     public TileEntityVat() {
         super(ModTileEntities.VAT.get());
-        registerDefaultRecipes();
-        state = MachineState.CLOSE;
     }
 
     @Nonnull
@@ -168,24 +156,19 @@ public class TileEntityVat extends TileEntityMachineBase {
         if (this.world.isRemote) {
             return;
         }
-        ItemStack stack = itemHandler.getStackInSlot(1);
-        if (consume.containsKey(stack.getItem()) && fluid.getAmount() >= 1000 && fluid.getFluid() == net.minecraft.fluid.Fluids.WATER) {
-            if (consume.get(stack.getItem()) <= stack.getCount()) {
-                progress++;
-                if (progress == 400) {
-                    progress = 0;
-                    if (recipes.containsKey(stack.getItem())) {
-                        itemHandler.setResult(recipes.get(stack.getItem()).copy());
-                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
-                        this.fluid = FluidStack.EMPTY;
-                    } else if (recipes2.containsKey(stack.getItem())) {
-                        this.fluid = recipes2.get(stack.getItem()).copy();
-                        this.itemHandler.extractItem(1,consume.get(stack.getItem()),false);
-                    }
+        if (cur_recipe != null && fluid.getAmount() >= 1000 && fluid.getFluid() == net.minecraft.fluid.Fluids.WATER) {
+            progress ++;
+            if (progress == 400) {
+                progress = 0;
+                if (cur_recipe.getRecipeOutput() != null) {
+                    itemHandler.setResult(cur_recipe.getCraftingResult(new RecipeWrapper(itemHandler)));
+                    this.fluid = FluidStack.EMPTY;
                 }
+                else {
+                    this.fluid = cur_recipe.getFluidResult();
+                }
+                this.itemHandler.extractItem(1,cur_recipe.getItem().getCount(),false);
             }
-        } else {
-            progress = 0;
         }
     }
 
@@ -197,10 +180,10 @@ public class TileEntityVat extends TileEntityMachineBase {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound("fluid"));
-        itemHandler.deserializeNBT(nbt.getCompound("stacks"));
-        super.read(state, nbt);
+    public void read(BlockState state, CompoundNBT compound) {
+        fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
+        itemHandler.deserializeNBT(compound.getCompound("stacks"));
+        super.read(state, compound);
     }
 
     @Override

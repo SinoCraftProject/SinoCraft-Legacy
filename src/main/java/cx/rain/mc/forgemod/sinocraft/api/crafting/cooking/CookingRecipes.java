@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting.cooking;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.cooking;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.ICookingRecpie;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.ICookingTool;

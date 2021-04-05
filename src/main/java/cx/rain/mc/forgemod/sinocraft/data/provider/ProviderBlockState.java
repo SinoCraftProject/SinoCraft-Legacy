@@ -152,22 +152,64 @@ public class ProviderBlockState extends BlockStateProvider {
 
         stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).
                 addModel().
-                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
                 condition(BlockStove.FACING, Direction.NORTH).
                 end();
         stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(180).
                 addModel().
-                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
                 condition(BlockStove.FACING, Direction.SOUTH).
                 end();
         stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(270).
                 addModel().
-                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
                 condition(BlockStove.FACING, Direction.WEST).
                 end();
         stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(90).
                 addModel().
-                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING, IMachine.MachineState.OVERLOAD, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
+                condition(BlockStove.FACING, Direction.EAST).
+                end();
+
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
+                condition(BlockStove.FACING, Direction.NORTH).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(180).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
+                condition(BlockStove.FACING, Direction.SOUTH).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(270).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
+                condition(BlockStove.FACING, Direction.WEST).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(90).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
+                condition(BlockStove.FACING, Direction.EAST).
+                end();
+
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.NORTH).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(180).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.SOUTH).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(270).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
+                condition(BlockStove.FACING, Direction.WEST).
+                end();
+        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(90).
+                addModel().
+                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
                 condition(BlockStove.FACING, Direction.EAST).
                 end();
 
