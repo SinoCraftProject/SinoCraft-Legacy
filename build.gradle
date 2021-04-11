@@ -122,7 +122,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    implementation fg.deobf("dev:nbtedit:0.10.0")
+    implementation fg.deobf("dev:NBTEdit:0.10.0")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
