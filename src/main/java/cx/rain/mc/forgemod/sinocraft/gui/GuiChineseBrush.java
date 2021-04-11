@@ -106,9 +106,6 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 32; j++) {
                     float color = 0.0625f * (16 - pixels[i * 32 + j]);
-                    if (color == 0.0625f) {
-                        color = 0.0f;
-                    }
                     RenderSystem.color3f(color, color, color);
                     blit(matrixStack, sx + i * unit, sy + j * unit,  22, 236, unit, unit);
                 }

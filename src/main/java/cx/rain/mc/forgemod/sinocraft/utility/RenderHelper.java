@@ -32,14 +32,16 @@ public class RenderHelper {
         }
         else {
             builder.pos(matrixStack.getLast().getMatrix(), pos.x, pos.y, pos.z)
-                    .color(color.x, color.y, color.z, color.w)
-                    .tex(uv.x, uv.y)
-                    .lightmap(0, 240)
-                    .normal(1, 0, 0)
-                    .endVertex();
-        }
-        if (uv != null) {
-            builder.tex(uv.x, uv.y);
+                    .color(color.x, color.y, color.z, color.w);
+            if (uv != null) {
+                builder.tex(uv.x, uv.y);
+            }
+            else {
+                builder.tex(0, 0);
+            }
+            builder.lightmap(0, 240)
+                    .normal(1, 0, 0);
+            builder.endVertex();
         }
     }
 

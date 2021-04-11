@@ -34,8 +34,8 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
                 "无物为真，诸行皆可",
                 "用小刀杀死一个生物。");
         addAdvancement("get_bark",
-                "Don't starve.",
-                "用小刀剥下一棵树的树皮。");
+                "周扒皮",
+                "用小刀扒下一棵树的树皮。");
         addAdvancement("kill_all_mobs_with_knife",
                 "怪物大师",
                 "用小刀杀死每一种怪物。");
