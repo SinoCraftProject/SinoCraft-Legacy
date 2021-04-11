@@ -74,7 +74,7 @@ public class ContainerChineseBrush extends Container implements IIntArray {
     }
 
     public void incColor() {
-        color = (byte) Math.max(inventory.getStackInSlot(1).getDamage(), Math.min(15, color + 1));
+        color = (byte) Math.max(inventory.getStackInSlot(1).getDamage(), Math.min(16, color + 1));
     }
 
     public void decColor() {

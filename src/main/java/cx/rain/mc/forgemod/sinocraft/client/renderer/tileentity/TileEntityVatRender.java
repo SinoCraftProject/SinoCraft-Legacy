@@ -55,7 +55,6 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                 for (int i=0;i<Math.min(stack.getCount(), 16);i++){
                     matrixStack.push();
                     matrixStack.scale(0.2f, 0.2f, 0.2f);
-                    //matrixStack.translate(0,1,0);
                     matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
                     itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED,true,matrixStack,buffer,
                             combinedLightIn,combinedOverlayIn,itemRenderer.getItemModelWithOverrides(stack,te.getWorld(),null));
@@ -67,7 +66,6 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
                 for (int i = lc; i < Math.min(stack.getCount() + lc, 16); i++) {
                     matrixStack.push();
                     matrixStack.scale(0.2f, 0.2f, 0.2f);
-                    //matrixStack.translate(0,1,0);
                     matrixStack.translate(i % 4 + 1,1 + top, i / 4 + 1);
                     itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, true, matrixStack, buffer,
                             combinedLightIn, combinedOverlayIn, itemRenderer.getItemModelWithOverrides(stack, te.getWorld(), null));

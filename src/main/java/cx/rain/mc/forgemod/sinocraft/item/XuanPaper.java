@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
+import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.item.XuanPaperItemStackTileEntityRenderer;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.gui.GuiXuanPaper;
 import net.minecraft.client.Minecraft;
@@ -16,7 +17,9 @@ public class XuanPaper extends Item {
     public XuanPaper() {
         super(new Properties()
                 .group(ModGroups.MISC)
-                .maxStackSize(1));
+                .maxStackSize(1)
+                .setISTER(() -> XuanPaperItemStackTileEntityRenderer::new)
+        );
     }
 
     @Override
