@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 public class SinoCraft {
     public static final String MODID = "sinocraft";
     public static final String NAME = "SinoCraft";
-    public static final String MC_VERSION = "1.16.4";
+    public static final String MC_VERSION = "1.16.5";
     public static final String MOD_VERSION = "1.1.0";
     public static final String VERSION = MC_VERSION + "-" + MOD_VERSION;
 

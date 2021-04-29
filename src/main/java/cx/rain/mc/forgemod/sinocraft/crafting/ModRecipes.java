@@ -21,7 +21,7 @@ public class ModRecipes {
     public static final RegistryObject<SoakRecipeSerializer> SOAK_SERIALIZER = REGISTRY.register("soak", SoakRecipeSerializer::new);
 
     public ModRecipes(IEventBus bus) {
-        SinoCraft.getLogger().info("Registering Special Recipes");
+        SinoCraft.getLogger().info("Registering recipes.");
         REGISTRY.register(bus);
     }
 }
