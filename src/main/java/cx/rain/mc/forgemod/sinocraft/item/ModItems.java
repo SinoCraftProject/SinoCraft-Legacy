@@ -7,7 +7,6 @@ import cx.rain.mc.forgemod.sinocraft.gui.book.GuiTutorialBook;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
-import cx.rain.mc.forgemod.sinocraft.gui.GuiXuanPaper;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
 import net.minecraft.client.Minecraft;
@@ -61,26 +60,9 @@ public class ModItems {
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
     public static RegistryObject<Item> EMPTY_XUAN_PAPER = REGISTRY.register("empty_xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new XuanPaper());
-    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(1)) {
-        @Override
-        public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-            if (world.isRemote) {
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                    Minecraft.getInstance().displayGuiScreen(
-                            GuiTutorialBook.create(new ResourceLocation("sinocraft:tutorial"))
-                    );
-                });
-            }
-            return ActionResult.resultSuccess(player.getHeldItem(hand));
-        }
-    });
-    public static RegistryObject<Item> CHINA_INK = REGISTRY.register("china_ink", () -> new Item(new Item.Properties().group(ModGroups.MISC).defaultMaxDamage(186)) {
-        @Override
-        public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-            return 0;
-        }
-    });
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new ItemXuanPaper());
+    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new ItemTutorialBook());
+    public static RegistryObject<Item> CHINESE_INK = REGISTRY.register("chinese_ink", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(64)));
     public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
 
     public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));

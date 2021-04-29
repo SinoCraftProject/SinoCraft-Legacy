@@ -1,12 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft.gui.container;
 
+import cx.rain.mc.forgemod.sinocraft.gui.slot.SlotInk;
+import cx.rain.mc.forgemod.sinocraft.gui.slot.SlotXuanPaperIn;
+import cx.rain.mc.forgemod.sinocraft.gui.slot.SlotXuanPaperOut;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraft.util.IIntArray;
+import net.minecraft.world.World;
 
 public class ContainerChineseBrush extends Container implements IIntArray {
     public IInventory inventory;
@@ -15,27 +21,52 @@ public class ContainerChineseBrush extends Container implements IIntArray {
     protected ContainerChineseBrush(int id, IInventory itemInventory, IInventory playerInventory) {
         super(ModContainers.CHINESE_BRUSH.get(), id);
         this.inventory = itemInventory;
-        trackIntArray(this);
-        this.addSlot(new Slot(inventory, 0, 14, 23) {
-            @Override
-            public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(ModItems.XUAN_PAPER.get()) || stack == ItemStack.EMPTY;
-            }
-        });
-        this.addSlot(new Slot(inventory, 1, 14, 66) {
-            @Override
-            public boolean isItemValid(ItemStack stack) {
-                return stack.getItem().equals(ModItems.CHINA_INK.get()) || stack.getItem().equals(ModItems.INK_STONE.get()) || stack == ItemStack.EMPTY;
-            }
-        });
+        addSlots();
         layoutPlayerInventorySlots(playerInventory, 45, 155);
         color = 0;
+    }
+
+    private void addSlots() {
+        this.addSlot(new SlotXuanPaperIn(inventory, 0, 14, 23) {
+            @Override
+            public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
+                inventory.setInventorySlotContents(2, ItemStack.EMPTY);
+                return super.onTake(thePlayer, stack);
+            }
+        });
+        this.addSlot(new SlotInk(inventory, 1, 14, 66));
+        this.addSlot(new SlotXuanPaperOut(inventory, 2, 14, 203) {
+            @Override
+            public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
+                ItemStack paper = inventory.getStackInSlot(0);
+                paper.setCount(paper.getCount() - 1);
+                ItemStack ink = inventory.getStackInSlot(1);
+                ink.setCount(ink.getCount() - 1);
+                return super.onTake(thePlayer, stack);
+            }
+        });
     }
 
     @Override
     public void onContainerClosed(PlayerEntity playerIn) {
         super.onContainerClosed(playerIn);
-        this.clearContainer(playerIn, playerIn.world, this.inventory);
+        clearContainer(playerIn, playerIn.world, this.inventory);
+    }
+
+    // qyl: Override this for preventing the item stack in output slot drops, then duplicate xuan paper.
+    @Override
+    protected void clearContainer(PlayerEntity playerIn, World worldIn, IInventory inventoryIn) {
+        if (!playerIn.isAlive()
+                || playerIn instanceof ServerPlayerEntity
+                && ((ServerPlayerEntity) playerIn).hasDisconnected()) {
+            for (int j = 0; j < 2; ++j) {
+                playerIn.dropItem(inventoryIn.removeStackFromSlot(j), false);
+            }
+        } else {
+            for (int i = 0; i < 2; ++i) {
+                playerIn.inventory.placeItemBackInInventory(worldIn, inventoryIn.removeStackFromSlot(i));
+            }
+        }
     }
 
     private int addSlotRange(IInventory inventory, int index, int x, int y, int amount, int dx) {
@@ -65,12 +96,35 @@ public class ContainerChineseBrush extends Container implements IIntArray {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return true;
+        return playerIn.getHeldItem(Hand.MAIN_HAND).getItem() == ModItems.CHINESE_BRUSH.get()
+                || playerIn.getHeldItem(Hand.OFF_HAND).getItem() == ModItems.CHINESE_BRUSH.get();
     }
 
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        return ItemStack.EMPTY;
+        ItemStack result = ItemStack.EMPTY;
+
+        Slot slot = inventorySlots.get(index);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack stackInSlot = slot.getStack();
+
+            result = stackInSlot.copy();
+            if (index < 3) {
+                if (!this.mergeItemStack(stackInSlot, 3, this.inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(stackInSlot, 0, 3, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (stackInSlot.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+        }
+
+        return result;
     }
 
     public void incColor() {
@@ -81,18 +135,18 @@ public class ContainerChineseBrush extends Container implements IIntArray {
         color = (byte) Math.max(0, color - 1);
     }
 
+    // qyl: Don't delete lines below, used for auth sync data.
     @Override
-    public int get(int i) {
-        return color;
+    public int get(int index) {
+        return 0;
     }
 
     @Override
-    public void set(int i, int value) {
-        color = (byte) value;
+    public void set(int index, int value) {
     }
 
     @Override
     public int size() {
-        return 1;
+        return 0;
     }
 }

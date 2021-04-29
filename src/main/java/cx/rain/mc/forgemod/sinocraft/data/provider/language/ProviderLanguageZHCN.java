@@ -1,13 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.LanguageProvider;
 
 public class ProviderLanguageZHCN extends ProviderLanguage {
     public ProviderLanguageZHCN(DataGenerator gen) {
@@ -26,7 +24,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     private void addAdvancements() {
         addAdvancement("root",
                 "欢迎使用 SinoCraft 华夏工艺！",
-                "有服章之美谓之华，有礼仪之邦谓之夏。");
+                "有服章之美谓之华，有礼仪之大谓之夏。");
         addAdvancement("knife",
                 "刀",
                 "获得一把小刀。");
@@ -105,7 +103,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.KNIFE_GOLD, "金质小刀");
         addItem(ModItems.KNIFE_DIAMOND, "钻石小刀");
         addItem(ModItems.CHINESE_BRUSH, "毛笔");
-        addItem(ModItems.CHINA_INK, "墨汁");
+        addItem(ModItems.CHINESE_INK, "墨汁");
         addItem(ModItems.CHARCOAL_BLACK, "炭黑");
         addItem(ModItems.INK_STONE, "砚台");
         addItem(ModItems.EMPTY_XUAN_PAPER, "空白的宣纸");

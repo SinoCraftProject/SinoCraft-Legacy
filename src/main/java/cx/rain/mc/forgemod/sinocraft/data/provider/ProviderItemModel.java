@@ -108,7 +108,7 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("stuffing").parent(GENERATED).texture("layer0", modLoc("item/stuffing"));
 
         getBuilder("bark").parent(GENERATED).texture("layer0",modLoc("item/bark"));
-        getBuilder("china_ink").parent(GENERATED).texture("layer0",modLoc("item/china_ink"));
+        getBuilder("chinese_ink").parent(GENERATED).texture("layer0",modLoc("item/chinese_ink"));
         getBuilder("bucket_wood_pulp").parent(GENERATED).texture("layer0",modLoc("item/bucket_wood_pulp"));
         getBuilder("xuan_paper").parent(GENERATED).texture("layer0",modLoc("item/xuan_paper"));
         getBuilder("empty_xuan_paper").parent(GENERATED).texture("layer0",modLoc("item/xuan_paper"));

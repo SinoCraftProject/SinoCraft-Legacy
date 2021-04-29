@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:china_ink",
-      "nbt": "{Damage:0}"
+      "item": "sinocraft:chinese_ink"
     },
     "title": {
       "translate": "advancement.sinocraft.get_china_ink.title"
@@ -22,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "sinocraft:china_ink"
+            "item": "sinocraft:chinese_ink"
           }
         ]
       }

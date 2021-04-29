@@ -1,13 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.LanguageProvider;
 
 public class ProviderLanguageENUS extends ProviderLanguage {
     public ProviderLanguageENUS(DataGenerator gen) {
@@ -92,7 +90,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.KNIFE_GOLD, "Gold Knife");
         addItem(ModItems.KNIFE_DIAMOND, "Diamond Knife");
         addItem(ModItems.CHINESE_BRUSH, "Chinese Brush");
-        addItem(ModItems.CHINA_INK, "China Ink");
+        addItem(ModItems.CHINESE_INK, "China Ink");
         addItem(ModItems.CHARCOAL_BLACK, "Charcoal Black");
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
