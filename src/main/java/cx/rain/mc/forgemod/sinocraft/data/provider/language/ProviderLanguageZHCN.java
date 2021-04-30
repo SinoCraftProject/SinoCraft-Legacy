@@ -77,7 +77,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.CABBAGE_SEED, "白菜种子");
         addItem(ModItems.EGGPLANT_SEED, "茄子种子");
         addItem(ModItems.RICE_SEED, "稻谷");
-        addItem(ModItems.MILLET_SEED, "谷子");
+        addItem(ModItems.MILLET_SEED, "粟");
         addItem(ModItems.SORGHUM_SEED, "高粱");
         addItem(ModItems.SOYBEAN, "大豆");
         addItem(ModItems.RICE, "大米");
