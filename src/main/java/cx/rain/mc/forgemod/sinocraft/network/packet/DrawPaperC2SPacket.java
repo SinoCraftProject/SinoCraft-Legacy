@@ -63,6 +63,7 @@ public class DrawPaperC2SPacket implements IMessage {
 
                 if (this.pack.pos.x * 32 + this.pack.pos.y < 1024) {
                     nbt.getByteArray("pixels")[this.pack.pos.x * 32 + this.pack.pos.y] = this.pack.color;
+                    // Todo: Add brush effect.
                 }
 
                 if (this.pack.color == 0) {
