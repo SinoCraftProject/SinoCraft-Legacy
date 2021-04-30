@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sinocraft:item/xuan_paper"
+    "layer0": "sinocraft:item/empty_xuan_paper"
   }
 }
