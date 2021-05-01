@@ -1,6 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotSerializer;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import net.minecraft.item.crafting.IRecipe;
@@ -19,6 +21,7 @@ public class ModRecipes {
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SinoCraft.MODID);
 
     public static final RegistryObject<SoakRecipeSerializer> SOAK_SERIALIZER = REGISTRY.register("soak", SoakRecipeSerializer::new);
+    public static final RegistryObject<IronPotSerializer> IRON_POT_SERIALIZER = REGISTRY.register("iron_pot", IronPotSerializer::new);
 
     public ModRecipes(IEventBus bus) {
         SinoCraft.getLogger().info("Registering recipes.");
