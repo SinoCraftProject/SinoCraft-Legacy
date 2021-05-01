@@ -1,6 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
@@ -11,6 +13,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -31,6 +35,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerShapelessRecipes(consumer);
         registerFurnaceRecipes(consumer);
         registerSoakRecipes(consumer);
+        registerIronPotRecipes(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -44,6 +49,12 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 new FluidStack(ModFluids.WOOD_PULP.get(), 1000),
                 new ResourceLocation(ID + ":wood_pulp")
         ));
+    }
+
+    private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
+        for (IronPotRecipes recipe: ModIronPotRecipes.IRON_POT_RECIPES) {
+            consumer.accept(recipe);
+        }
     }
 
     private void registerShapedRecipes(Consumer<IFinishedRecipe> consumer) {
