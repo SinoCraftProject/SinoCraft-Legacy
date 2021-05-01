@@ -9,8 +9,6 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import java.util.ArrayList;
-
 /**
  * @author NmmOC7
  */
@@ -183,5 +181,9 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
         }
 
         return result;
+    }
+
+    public NonNullList<ItemStack> getInput() {
+        return this.INPUT_LIST;
     }
 }
