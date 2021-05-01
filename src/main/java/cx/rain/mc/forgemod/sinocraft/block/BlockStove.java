@@ -1,135 +1,59 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStove;
-import net.minecraft.block.Block;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.common.ForgeHooks;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
-
-public class BlockStove extends BlockMachineBase {
-    public static IntegerProperty LEVEL = IntegerProperty.create("level",1,4);
-
-    public BlockStove(int level) {
-        super(Properties.create(Material.GOURD, MaterialColor.GRAY).notSolid());
-        this.setDefaultState(this.getDefaultState().with(LEVEL, level));
+public class BlockStove extends BlockHorizontal {
+    public BlockStove() {
+        super(AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GRAY));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
-        builder.add(LEVEL);
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos,
+                                             PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        ItemStack stack = player.getHeldItem(handIn);
+        if (isFuel(stack)) {
+            TileEntity tile = worldIn.getTileEntity(pos);
+            if (tile instanceof TileEntityStove) {
+                TileEntityStove stove = (TileEntityStove) tile;
+                stove.addBurnTime(getItemBurnTime(stack));
+                return ActionResultType.SUCCESS;
+            }
+        }
+        return ActionResultType.PASS;
+    }
+
+    public static boolean isFuel(ItemStack stack) {
+        return ForgeHooks.getBurnTime(stack) > 0;
+    }
+
+    public static int getItemBurnTime(ItemStack stack) {
+        return ForgeHooks.getBurnTime(stack);
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileEntityStove(state.get(LEVEL));
-    }
-
-    @Override
-    public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityStove) {
-            TileEntityStove tileEntity = (TileEntityStove) worldIn.getTileEntity(pos);
-            IItemHandler handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, state.get(FACING)).orElse(null);
-            if (handler != null) {
-                if(!player.getHeldItem(handIn).isEmpty()){
-                    ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
-                    ItemStack backup = stack;
-                    backup=handler.insertItem(0,backup,true);
-                    if(backup!=stack){
-                        worldIn.playSound(player,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                        return ActionResultType.SUCCESS;
-                    }
-                    else {
-                        return ActionResultType.FAIL;
-                    }
-                }
-                else {
-                    return ActionResultType.FAIL;
-                }
-            }
-            else {
-                return ActionResultType.FAIL;
-            }
-        }
-        return ActionResultType.PASS;
-    }
-
-    public static Direction RotateDirection(Direction rotation, Direction direction) {
-        if (direction == Direction.UP || direction == Direction.DOWN) {
-            return direction;
-        }
-        if (rotation == Direction.WEST) {
-            return direction.rotateY();
-        }
-        if (rotation == Direction.EAST) {
-            return direction.rotateYCCW();
-        }
-        if (rotation == Direction.NORTH) {
-            return direction;
-        }
-        if (rotation == Direction.SOUTH) {
-            return direction.rotateY().rotateY();
-        }
-        return direction;
-    }
-
-    @Override
-    public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityStove) {
-            TileEntityStove tileEntity = (TileEntityStove) worldIn.getTileEntity(pos);
-            IItemHandler handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, RotateDirection(state.get(FACING), hit.getFace())).orElse(null);
-            if (handler != null) {
-                if(!player.getHeldItem(handIn).isEmpty()){
-                    ItemStack stack = new ItemStack(player.getHeldItem(handIn).getItem());
-                    ItemStack backup = stack;
-                    backup=handler.insertItem(0,backup,false);
-                    if(backup!=stack){
-                        player.getHeldItem(handIn).shrink(1);
-                        return ActionResultType.SUCCESS;
-                    }
-                    else {
-                        return ActionResultType.FAIL;
-                    }
-                }
-                else {
-                    return ActionResultType.FAIL;
-                }
-            }
-            else {
-                return ActionResultType.FAIL;
-            }
-        }
-        return ActionResultType.PASS;
-    }
-
-    @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        switch (state.get(STATE)) {
-            case CLOSE:
-            case DAMAGED:
-                return 0;
-            case IDLE:
-            case WORKING:
-                return 7;
-            case OVERLOAD:
-                return 15;
-        }
-        return 0;
+        return new TileEntityStove();
     }
 }

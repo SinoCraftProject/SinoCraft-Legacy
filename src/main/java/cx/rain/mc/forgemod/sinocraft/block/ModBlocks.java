@@ -74,10 +74,11 @@ public class ModBlocks {
     public static RegistryObject<Block> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));
     public static RegistryObject<Block> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockMarble(MarbleType.BLACK));
 
-    public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove(1));
+    public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
     public static RegistryObject<Block> VAT = REGISTRY.register("vat", BlockVat::new);
     public static RegistryObject<Block> STONE_MILL = REGISTRY.register("stone_mill", BlockStoneMill::new);
     public static RegistryObject<Block> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
+    public static RegistryObject<Block> BLOCK_IRON_POT = REGISTRY.register("iron_pot", BlockIronPot::new);
 
     public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 
