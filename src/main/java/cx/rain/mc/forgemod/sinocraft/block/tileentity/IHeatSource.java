@@ -1,7 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 public interface IHeatSource {
-    public int getHeatValue();
+    public double getHeat();
 
-    public void setHeatValue(int value);
+    public void setHeat(double value);
+
+    public void addHeat(double value);
+
+    public void subHeat(double value);
 }
