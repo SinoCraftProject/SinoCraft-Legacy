@@ -205,6 +205,7 @@ public class ProviderBlockState extends BlockStateProvider {
         addCrops();
         addTrees();
         addBuildingBlocks();
+        addMachineBlocks();
     }
 
     private void addCrops() {
@@ -259,5 +260,9 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(ModBlocks.WHITE_MARBLE.get());
         simpleBlock(ModBlocks.RED_MARBLE.get());
         simpleBlock(ModBlocks.BLACK_MARBLE.get());
+    }
+
+    private void addMachineBlocks() {
+        //MultiPartBlockStateBuilder builder = new MultiPartBlockStateBuilder(ModBlocks.STOVE.get());
     }
 }

@@ -1,11 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 
 public class TileEntityStove extends TileEntity implements ITickableTileEntity, IHeatSource, IHasBurnTime {
-    private int heatValue = 0;
-
+    private double heat = 0;
     private int burnTime = 0;
 
     public TileEntityStove() {
@@ -14,17 +16,57 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
 
     @Override
     public void tick() {
+        if (isBurning()) {
+            modifyHeat();
+            burn();
+        }
+    }
 
+    private void modifyHeat() {
+        BlockPos left = getPos().offset(getBlockState().get(BlockStove.FACING).rotateY(), 1);
+        BlockPos right = getPos().offset(getBlockState().get(BlockStove.FACING).rotateYCCW(), 1);
+
+        internalModify(left);
+        internalModify(right);
+    }
+
+    private void internalModify(BlockPos pos) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof IHeatModifier) {
+            IHeatModifier modifier = (IHeatModifier) tile;
+            heat *= modifier.getModifyValue();
+        }
+    }
+
+    private void burn() {
+        burnTime--;
+
+        BlockPos up = getPos().offset(Direction.UP, 1);
+        TileEntity tile = world.getTileEntity(up);
+        if (tile instanceof IStoveWorker) {
+            IStoveWorker worker = (IStoveWorker) tile;
+            worker.work(heat);
+        }
     }
 
     @Override
-    public int getHeatValue() {
-        return heatValue;
+    public double getHeat() {
+        return heat;
     }
 
     @Override
-    public void setHeatValue(int value) {
-        heatValue = value;
+    public void setHeat(double value) {
+        heat = value;
+    }
+
+    @Override
+    public void addHeat(double value) {
+        heat += value;
+    }
+
+    @Override
+    public void subHeat(double value) {
+        heat -= value;
     }
 
     @Override
