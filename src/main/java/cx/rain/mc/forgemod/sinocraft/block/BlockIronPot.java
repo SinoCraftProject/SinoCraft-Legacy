@@ -28,13 +28,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author NmmOC7
  */
-public class BlockIronPot extends Block {
-    public static final DirectionProperty FACING =
-            DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
-    public static final EnumProperty<IMachine.MachineState> STATE =
-            EnumProperty.create("state", IMachine.MachineState.class);
-
-
+public class BlockIronPot extends BlockMachineBase {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(0, 0, 0, 1, 0.5, 1));
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
@@ -59,7 +53,35 @@ public class BlockIronPot extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
+            TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
+            ItemStack holdingStack = player.getHeldItem(handIn);
+
+            if (!holdingStack.isEmpty()) {
+                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
+
+                return ActionResultType.SUCCESS;
+            } else {
+                if (tileEntity.getOutput().isEmpty()) {
+                    if (player.isSneaking()) {
+                        worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
+
+                        return ActionResultType.SUCCESS;
+                    }
+                } else {
+                    worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
+
+                    return ActionResultType.SUCCESS;
+                }
+            }
+        }
+
+        return ActionResultType.FAIL;
+    }
+
+    @Override
+    public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
             TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
             ItemStack holdingStack = player.getHeldItem(handIn);
@@ -99,38 +121,5 @@ public class BlockIronPot extends Block {
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
-    }
-
-    @javax.annotation.Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING,STATE);
-    }
-
-    @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-            NonNullList<ItemStack> stacks = NonNullList.create();
-            if(tileentity instanceof IMachine){
-                stacks = ((IMachine) tileentity).getDropsItem(stacks);
-            }
-
-            for(ItemStack stack : stacks){
-                InventoryHelper.spawnItemStack(worldIn,pos.getX(),pos.getY(),pos.getZ(),stack);
-            }
-
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
-        }
     }
 }

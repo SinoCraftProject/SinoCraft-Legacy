@@ -14,6 +14,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
@@ -54,13 +55,24 @@ public class ClientEventHandler {
                         int x = event.getWindow().getScaledWidth();
                         int y = event.getWindow().getScaledHeight();
 
+                        NonNullList<ItemStack> items = tileEntity.clientInput;
+
                         for (int i = 0; i < 6; i++) {
-                            mc.getItemRenderer().renderItemAndEffectIntoGUI(tileEntity.getStackInSlot(i), (x / 2 - 60) + 20 * i, y / 2 + 30);
+                            int stackX = x / 2 - 92 + 23 * i;
+                            int stackY = y / 2 + 30;
+
+                            renderItem(items.get(i), stackX, stackY);
                         }
+
+                        renderItem(tileEntity.clientOutput, x / 2 - 69, y / 2 + 30);
                     }
                 }
             }
         }
+    }
+
+    public static void renderItem(ItemStack stack, int x, int y) {
+        Minecraft.getInstance().getItemRenderer().renderItemAndEffectIntoGUI(stack, x, y);
     }
 
     public static RayTraceResult rayTrace(Entity entity, double playerReach, float partialTicks) {

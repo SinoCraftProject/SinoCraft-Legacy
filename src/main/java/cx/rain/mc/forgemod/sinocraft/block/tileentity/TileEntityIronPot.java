@@ -3,26 +3,26 @@ package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author NmmOC7
  */
 public class TileEntityIronPot extends TileEntityMachineBase implements IInventory {
-    private final NonNullList<ItemStack> INPUT_LIST = NonNullList.withSize(6, ItemStack.EMPTY);
-    private ItemStack output = ItemStack.EMPTY;
+    private final IronPotItemHandler ITEM_HANDLER = new IronPotItemHandler();
 
-    private int progress = 0;
+    @OnlyIn(Dist.CLIENT)
+    public NonNullList<ItemStack> clientInput = ITEM_HANDLER.getInput();
+    @OnlyIn(Dist.CLIENT)
+    public ItemStack clientOutput = ITEM_HANDLER.getOutput();
 
     public TileEntityIronPot() {
         super(ModTileEntities.IRON_POT.get());
@@ -30,94 +30,73 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.addAll(INPUT_LIST);
-        list.add(output);
+        list.addAll(ITEM_HANDLER.getInput());
+        list.add(ITEM_HANDLER.getOutput());
         return list;
     }
 
+    private int progress = 0;
+
     @Override
     public void tick() {
-        progress++;
+        if (!this.world.isRemote) {
+            progress++;
 
-        if (progress >= 40 && output.isEmpty()) {
-            for (IronPotRecipes recipe : ModIronPotRecipes.IRON_POT_RECIPES) {
-                if (recipe.matches(this, this.world)) {
-                    for (ItemStack input: recipe.input) {
-                        for (ItemStack stack: this.INPUT_LIST) {
-                            if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
-                                stack.shrink(input.getCount());
-                                break;
+            if (progress >= 40 && ITEM_HANDLER.getOutput().isEmpty()) {
+                for (IronPotRecipes recipe : ModIronPotRecipes.IRON_POT_RECIPES) {
+                    if (recipe.matches(this, this.world)) {
+                        for (ItemStack input : recipe.input) {
+                            for (int i = 0; i < ITEM_HANDLER.getSlots() - 1; i++) {
+                                ItemStack stack = ITEM_HANDLER.getStackInSlot(i);
+
+                                if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
+                                    ITEM_HANDLER.decrStackSize(i, input.getCount());
+                                    break;
+                                }
                             }
                         }
+
+                        this.ITEM_HANDLER.setOutput(recipe.getCraftingResult(this));
                     }
-
-                    output = recipe.getCraftingResult(this);
                 }
-            }
 
-            this.progress = 0;
+                this.progress = 0;
+            }
         }
     }
 
     @Override
     public int getSizeInventory() {
-        return INPUT_LIST.size();
+        return ITEM_HANDLER.getSlots();
     }
 
     @Override
     public boolean isEmpty() {
-        boolean result = true;
+        return ITEM_HANDLER.isEmpty();
+    }
 
-        for (ItemStack stack: INPUT_LIST) {
-            if (!stack.isEmpty()) {
-                result = false;
-                break;
-            }
-        }
+    @Override
+    public ItemStack getStackInSlot(int index) {
+        return ITEM_HANDLER.getStackInSlot(index);
+    }
 
-        if (output.isEmpty()) {
-            result = false;
-        }
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        return ITEM_HANDLER.decrStackSize(index, count);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        ItemStack result = ITEM_HANDLER.getStackInSlot(index).copy();
+
+        this.ITEM_HANDLER.setStackInSlot(index, ItemStack.EMPTY);
 
         return result;
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
-        if (index == 6) {
-            return output;
-        }
-
-        return index >= this.getSizeInventory() ? ItemStack.EMPTY : this.INPUT_LIST.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
-        if (index == 6) {
-            return this.output.split(count);
-        }
-
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.INPUT_LIST, index, count);
-        return itemstack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index) {
-        if (index == 6) {
-            this.output = ItemStack.EMPTY;
-        }
-
-        return ItemStackHelper.getAndRemove(this.INPUT_LIST, index);
-    }
-
-    @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if (index == 6) {
-            this.output = stack;
-            return;
-        }
-
-        this.INPUT_LIST.set(index, stack);
+        this.ITEM_HANDLER.setStackInSlot(index, stack);
     }
 
     @Override
@@ -127,12 +106,11 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public void clear() {
-        this.INPUT_LIST.clear();
-        this.output = ItemStack.EMPTY;
+        this.ITEM_HANDLER.clear();
     }
 
     public boolean hasItemStack(ItemStack stack) {
-        for (ItemStack input: this.INPUT_LIST) {
+        for (ItemStack input: ITEM_HANDLER.getInput()) {
             if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
                 return true;
             }
@@ -142,45 +120,13 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     }
 
     public int addStackToInput(ItemStack stack) {
-        int remain = stack.getCount();
-
-        for (int i = 0; i <= 5; i++) {
-            ItemStack input = this.getStackInSlot(i);
-
-            if (input.isEmpty()) {
-                ItemStack newStack = stack.copy();
-                newStack.setCount(remain);
-
-                INPUT_LIST.set(i, newStack);
-                remain = 0;
-                break;
-            }
-            else if (input.getItem() == stack.getItem()) {
-                if (input.getMaxStackSize() - remain >= stack.getCount()) {
-                    ItemStack newStack = input.copy();
-                    newStack.setCount(remain + stack.getCount());
-
-                    INPUT_LIST.set(i, newStack);
-                    remain = 0;
-                    break;
-                }
-                else {
-                    ItemStack newStack = stack.copy();
-                    newStack.setCount(stack.getMaxStackSize());
-
-                    INPUT_LIST.set(i, newStack);
-                    remain -= input.getMaxStackSize() - input.getCount();
-                }
-            }
-        }
-
-        return remain;
+        return ITEM_HANDLER.addStack(stack);
     }
 
     public ItemStack removeStackOnInput() {
         ItemStack result = ItemStack.EMPTY;
 
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < 6; i++) {
             if (!this.getStackInSlot(i).isEmpty()) {
                 result = this.getStackInSlot(i).copy();
                 this.setInventorySlotContents(i, ItemStack.EMPTY);
@@ -195,15 +141,110 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     public ItemStack removeStackOnOutput() {
         ItemStack result = ItemStack.EMPTY;
 
-        if (!this.output.isEmpty()) {
-            result = this.output.copy();
-            this.output = ItemStack.EMPTY;
+        if (!ITEM_HANDLER.getOutput().isEmpty()) {
+            result = ITEM_HANDLER.getOutput();
+            ITEM_HANDLER.setOutput(ItemStack.EMPTY);
         }
 
         return result;
     }
 
     public NonNullList<ItemStack> getInput() {
-        return this.INPUT_LIST;
+        return ITEM_HANDLER.getInput();
+    }
+
+    public ItemStack getOutput() {
+        return ITEM_HANDLER.getOutput();
+    }
+
+    private class IronPotItemHandler extends ItemStackHandler {
+        public IronPotItemHandler() {
+            super(7);
+        }
+
+        public NonNullList<ItemStack> getInput() {
+            NonNullList<ItemStack> result = NonNullList.withSize(6, ItemStack.EMPTY);
+
+            for (int i = 0; i < 6; i++) {
+                result.set(i, this.stacks.get(i).copy());
+            }
+
+            return result;
+        }
+
+        public ItemStack getOutput() {
+            return this.stacks.get(6).copy();
+        }
+
+        public void setOutput(ItemStack output) {
+            this.setStackInSlot(6, output);
+        }
+
+        public int addStack(ItemStack stack) {
+            int remain = stack.getCount();
+
+            for (int i = 0; i <= 5; i++) {
+                ItemStack input = this.getStackInSlot(i);
+
+                if (input.isEmpty()) {
+                    ItemStack newStack = stack.copy();
+                    newStack.setCount(remain);
+
+                    setStackInSlot(i, newStack);
+                    remain = 0;
+                    break;
+                }
+                else if (input.getItem() == stack.getItem()) {
+                    if (input.getMaxStackSize() - remain >= stack.getCount()) {
+                        ItemStack newStack = input.copy();
+                        newStack.setCount(remain + stack.getCount());
+
+                        setStackInSlot(i, newStack);
+                        remain = 0;
+                        break;
+                    }
+                    else {
+                        ItemStack newStack = stack.copy();
+                        newStack.setCount(stack.getMaxStackSize());
+
+                        setStackInSlot(i, newStack);
+                        remain -= input.getMaxStackSize() - input.getCount();
+                    }
+                }
+            }
+
+            return remain;
+        }
+
+        public void clear() {
+            this.stacks.clear();
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return true;
+        }
+
+        public boolean isEmpty() {
+            boolean result = true;
+
+            for (ItemStack stack: this.stacks) {
+                if (!stack.isEmpty()) {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        public ItemStack decrStackSize(int index, int count) {
+            return ItemStackHelper.getAndSplit(this.stacks, index, count);
+        }
     }
 }
