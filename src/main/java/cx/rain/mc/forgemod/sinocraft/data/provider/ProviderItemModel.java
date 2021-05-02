@@ -40,6 +40,11 @@ public class ProviderItemModel extends ItemModelProvider {
                 .parent(getModel("block/" + blockItem.getRegistryName().getPath()));
     }
 
+    protected void namedBlockItem(BlockItem blockItem, String name) {
+        getBuilder(blockItem.getRegistryName().getPath())
+                .parent(getModel("block/" + name));
+    }
+
     protected void axisBlockItem(BlockItem blockItem) {
         getBuilder(blockItem.getRegistryName().getPath())
                 .parent(getModel("block/" + blockItem.getRegistryName().getPath() + "_horizontal"));
@@ -148,6 +153,6 @@ public class ProviderItemModel extends ItemModelProvider {
 
     private void addMachineBlockItems() {
         simpleBlockItem(ModBlockItems.VAT.get());
-        simpleBlockItem(ModBlockItems.STOVE.get());
+        namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
     }
 }
