@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityIronPot;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
@@ -8,11 +9,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.EnumProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -36,6 +40,10 @@ public class BlockIronPot extends BlockMachineBase {
         super(Block.Properties.create(Material.IRON)
                 .hardnessAndResistance(3.0F)
                 .sound(SoundType.ANVIL));
+
+        this.setDefaultState(this.getDefaultState()
+                .with(FACING, Direction.NORTH)
+                .with(STATE, IMachine.MachineState.CLOSE));
     }
 
     @Nullable
@@ -46,62 +54,58 @@ public class BlockIronPot extends BlockMachineBase {
 
     @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
-                TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
-                ItemStack holdingStack = player.getHeldItem(handIn);
+        if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
+            TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
+            ItemStack holdingStack = player.getHeldItem(handIn);
 
-                if (!holdingStack.isEmpty()) {
-                    holdingStack.setCount(tileEntity.addStackToInput(holdingStack));
+            if (!holdingStack.isEmpty()) {
+                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-                    return ActionResultType.SUCCESS;
-                } else {
-                    if (tileEntity.getStackInSlot(7).isEmpty()) {
-                        if (player.isSneaking()) {
-                            player.setHeldItem(handIn, tileEntity.removeStackOnInput());
-
-                            return ActionResultType.SUCCESS;
-                        }
-                    } else {
-                        player.setHeldItem(handIn, tileEntity.removeStackOnOutput());
+                return ActionResultType.SUCCESS;
+            } else {
+                if (tileEntity.getOutput().isEmpty()) {
+                    if (player.isSneaking()) {
+                        worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
                         return ActionResultType.SUCCESS;
                     }
+                } else {
+                    worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
+
+                    return ActionResultType.SUCCESS;
                 }
             }
         }
 
-        return ActionResultType.PASS;
+        return ActionResultType.FAIL;
     }
 
     @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isRemote) {
-            if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
-                TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
-                ItemStack holdingStack = player.getHeldItem(handIn);
+        if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
+            TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
+            ItemStack holdingStack = player.getHeldItem(handIn);
 
-                if (!holdingStack.isEmpty()) {
-                    holdingStack.setCount(holdingStack.getCount() - tileEntity.addStackToInput(holdingStack));
+            if (!holdingStack.isEmpty()) {
+                holdingStack.shrink(holdingStack.getCount() - tileEntity.addStackToInput(holdingStack));
 
-                    return ActionResultType.SUCCESS;
-                } else {
-                    if (tileEntity.getStackInSlot(7).isEmpty()) {
-                        if (player.isSneaking()) {
-                            player.setHeldItem(handIn, tileEntity.removeStackOnInput());
-
-                            return ActionResultType.SUCCESS;
-                        }
-                    } else {
-                        player.setHeldItem(handIn, tileEntity.removeStackOnOutput());
+                return ActionResultType.SUCCESS;
+            } else {
+                if (tileEntity.getStackInSlot(6).isEmpty()) {
+                    if (player.isSneaking()) {
+                        player.setHeldItem(handIn, tileEntity.removeStackOnInput());
 
                         return ActionResultType.SUCCESS;
                     }
+                } else {
+                    player.setHeldItem(handIn, tileEntity.removeStackOnOutput());
+
+                    return ActionResultType.SUCCESS;
                 }
             }
         }
 
-        return ActionResultType.PASS;
+        return ActionResultType.FAIL;
     }
 
     @Override
