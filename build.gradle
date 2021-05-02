@@ -91,7 +91,20 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        name = "Local Maven"
         url = "file://${projectDir}/libs"
+    }
+    maven {
+        name = "JEI Maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "JEI Fallback Maven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "Hwyla Maven"
+        url = "https://maven.tehnut.info"
     }
 }
 
@@ -122,6 +135,12 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
 
     implementation fg.deobf("dev:NBTEdit:0.10.0")
+
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:1.10.+:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:1.10.+")
+
+    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.+:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.+")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
