@@ -96,7 +96,7 @@ repositories {
     }
     maven {
         name = "JEI Maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
+        url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
         name = "JEI Maven Fallback"
