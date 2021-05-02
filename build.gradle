@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.1.0'
+version = "${mc_version}-1.1.0"
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'sinocraft'
 
@@ -91,7 +91,20 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        name = "Local Maven"
         url = "file://${projectDir}/libs"
+    }
+    maven {
+        name = "JEI Maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "JEI Fallback Maven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "Hwyla Maven"
+        url = "https://maven.tehnut.info"
     }
 }
 
@@ -122,6 +135,12 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
 
     implementation fg.deobf("dev:NBTEdit:0.10.0")
+
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}")
+
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
