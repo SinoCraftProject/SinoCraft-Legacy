@@ -35,7 +35,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerShapelessRecipes(consumer);
         registerFurnaceRecipes(consumer);
         registerSoakRecipes(consumer);
-        registerIronPotRecipes(consumer);
+        //registerIronPotRecipes(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {

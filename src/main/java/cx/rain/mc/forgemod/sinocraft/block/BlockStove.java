@@ -51,6 +51,7 @@ public class BlockStove extends BlockHorizontal {
             if (tile instanceof TileEntityStove) {
                 TileEntityStove stove = (TileEntityStove) tile;
                 stove.addBurnTime(FuelHelper.getItemBurnTime(stack));
+                stack.shrink(1);
                 return ActionResultType.SUCCESS;
             }
         }

@@ -39,14 +39,23 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
     }
 
     private void burn() {
-        burnTime--;
+        if (burnTime >= 0) {
+            setBurnState(true);
+            burnTime--;
 
-        BlockPos up = getPos().offset(Direction.UP, 1);
-        TileEntity tile = world.getTileEntity(up);
-        if (tile instanceof IStoveWorker) {
-            IStoveWorker worker = (IStoveWorker) tile;
-            worker.work(heat);
+            BlockPos up = getPos().offset(Direction.UP, 1);
+            TileEntity tile = world.getTileEntity(up);
+            if (tile instanceof IStoveWorker) {
+                IStoveWorker worker = (IStoveWorker) tile;
+                worker.work(heat);
+            }
+        } else {
+            setBurnState(false);
         }
+    }
+
+    public void setBurnState(boolean burning) {
+        world.setBlockState(pos, getBlockState().with(BlockStove.BURNING, burning));
     }
 
     @Override
