@@ -3,11 +3,17 @@ package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author NmmOC7
@@ -15,6 +21,8 @@ import net.minecraft.util.NonNullList;
 public class TileEntityIronPot extends TileEntityMachineBase implements IInventory {
     private final NonNullList<ItemStack> INPUT_LIST = NonNullList.withSize(6, ItemStack.EMPTY);
     private ItemStack output = ItemStack.EMPTY;
+
+    private int progress = 0;
 
     public TileEntityIronPot() {
         super(ModTileEntities.IRON_POT.get());
@@ -29,12 +37,25 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public void tick() {
-        if (output.isEmpty()) {
-            for (IronPotRecipes recipe: ModIronPotRecipes.IRON_POT_RECIPES) {
+        progress++;
+
+        if (progress >= 40 && output.isEmpty()) {
+            for (IronPotRecipes recipe : ModIronPotRecipes.IRON_POT_RECIPES) {
                 if (recipe.matches(this, this.world)) {
+                    for (ItemStack input: recipe.input) {
+                        for (ItemStack stack: this.INPUT_LIST) {
+                            if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
+                                stack.shrink(input.getCount());
+                                break;
+                            }
+                        }
+                    }
+
                     output = recipe.getCraftingResult(this);
                 }
             }
+
+            this.progress = 0;
         }
     }
 
@@ -63,7 +84,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        if (index == 7) {
+        if (index == 6) {
             return output;
         }
 
@@ -72,7 +93,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        if (index == 7) {
+        if (index == 6) {
             return this.output.split(count);
         }
 
@@ -82,7 +103,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        if (index == 7) {
+        if (index == 6) {
             this.output = ItemStack.EMPTY;
         }
 
@@ -91,7 +112,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if (index == 7) {
+        if (index == 6) {
             this.output = stack;
             return;
         }
@@ -112,8 +133,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     public boolean hasItemStack(ItemStack stack) {
         for (ItemStack input: this.INPUT_LIST) {
-            if (stack.isItemEqual(input)
-                    && stack.getCount() >= input.getCount()) {
+            if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
                 return true;
             }
         }
@@ -124,8 +144,8 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     public int addStackToInput(ItemStack stack) {
         int remain = stack.getCount();
 
-        for (int i = 0; i < INPUT_LIST.size(); i++) {
-            ItemStack input = INPUT_LIST.get(i);
+        for (int i = 0; i <= 5; i++) {
+            ItemStack input = this.getStackInSlot(i);
 
             if (input.isEmpty()) {
                 ItemStack newStack = stack.copy();
@@ -160,10 +180,10 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     public ItemStack removeStackOnInput() {
         ItemStack result = ItemStack.EMPTY;
 
-        for (int i = 0; i < 5; i++) {
-            if (!this.INPUT_LIST.get(i).isEmpty()) {
-                result = INPUT_LIST.get(i).copy();
-                INPUT_LIST.set(i, ItemStack.EMPTY);
+        for (int i = 0; i <= 5; i++) {
+            if (!this.getStackInSlot(i).isEmpty()) {
+                result = this.getStackInSlot(i).copy();
+                this.setInventorySlotContents(i, ItemStack.EMPTY);
 
                 break;
             }

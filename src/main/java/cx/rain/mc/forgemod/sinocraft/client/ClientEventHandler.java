@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.client;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
@@ -35,26 +36,6 @@ import java.lang.reflect.Method;
 @OnlyIn(Dist.CLIENT)
 public class ClientEventHandler {
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        Entity viewpoint = Minecraft.getInstance().getRenderViewEntity();
-        if (viewpoint != null) {
-            RayTraceResult target = rayTrace(viewpoint, Minecraft.getInstance().playerController.getBlockReachDistance(), 0);
-
-            if (target.getType() == RayTraceResult.Type.BLOCK) {
-                BlockRayTraceResult result = (BlockRayTraceResult) target;
-                TileEntity tileEntity = viewpoint.world.getTileEntity(result.getPos());
-
-                if (tileEntity instanceof TileEntityIronPot) {
-                    TileEntityIronPot tileEntityIronPot = (TileEntityIronPot) tileEntity;
-
-
-                }
-            }
-        }
-
-    }
-
-    @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
             Minecraft mc = Minecraft.getInstance();
@@ -69,14 +50,12 @@ public class ClientEventHandler {
 
                     if (te instanceof TileEntityIronPot) {
                         TileEntityIronPot tileEntity = (TileEntityIronPot) te;
-                        MainWindow window = event.getWindow();
 
-                        GlStateManager.enableBlend();
+                        int x = event.getWindow().getScaledWidth();
+                        int y = event.getWindow().getScaledHeight();
 
                         for (int i = 0; i < 6; i++) {
-                            ItemStack stack = tileEntity.getInput().get(i);
-
-
+                            mc.getItemRenderer().renderItemAndEffectIntoGUI(tileEntity.getStackInSlot(i), (x / 2 - 60) + 20 * i, y / 2 + 30);
                         }
                     }
                 }

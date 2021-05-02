@@ -22,9 +22,9 @@ import java.util.Optional;
  * @author NmmOC7
  */
 public class IronPotRecipes implements IRecipe<TileEntityIronPot>, IFinishedRecipe {
-    ResourceLocation id;
-    ItemStack[] input;
-    ItemStack output;
+    public ResourceLocation id;
+    public ItemStack[] input;
+    public ItemStack output;
 
     public IronPotRecipes(ItemStack[] input, ItemStack output, ResourceLocation id) {
         this.id = id;
