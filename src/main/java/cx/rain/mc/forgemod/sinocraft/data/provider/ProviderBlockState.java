@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
+import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
@@ -40,11 +41,11 @@ public class ProviderBlockState extends BlockStateProvider {
                 models().cubeColumn(block.getRegistryName().getPath(), modLoc(side), modLoc(end));
         getVariantBuilder(block)
                 .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
-                        .modelForState().modelFile(modelBuilder).rotationX(90).rotationY(90).addModel()
+                .modelForState().modelFile(modelBuilder).rotationX(90).rotationY(90).addModel()
                 .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
-                        .modelForState().modelFile(modelBuilder).rotationY(90).addModel()
+                .modelForState().modelFile(modelBuilder).rotationY(90).addModel()
                 .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
-                        .modelForState().modelFile(modelBuilder).rotationX(90).addModel();
+                .modelForState().modelFile(modelBuilder).rotationX(90).addModel();
 
     }
 
@@ -52,11 +53,13 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(block, models().cubeAll(block.getRegistryName().getPath(), modLoc("block/" + all)));
     }
 
-    protected void cropsStage(BlockPlant plant, int stageCount, String name) {
+    protected void cropsStaged(BlockPlant plant, int stageCount, String name) {
         VariantBlockStateBuilder builder = getVariantBuilder(plant);
         for (int i = 0; i < stageCount; i++) {
-            builder.partialState().with(plant.getStage(), i).modelForState().modelFile(
-                    models().crop("block/" + name + "_" + i, modLoc("block/" + name + "_" + i))).addModel();
+            builder.partialState().with(plant.getStage(), i).modelForState()
+                    .modelFile(models().crop("block/" + name + "_stage_" + i,
+                            modLoc("block/" + name + "_stage_" + i)))
+                    .addModel();
         }
     }
 
@@ -116,92 +119,6 @@ public class ProviderBlockState extends BlockStateProvider {
                     end();
         }
 
-        // Todo: Remake stove.
-//        MultiPartBlockStateBuilder stove = getMultipartBuilder(ModBlocks.STOVE.get());
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
-//                condition(BlockStove.FACING, Direction.NORTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(180).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
-//                condition(BlockStove.FACING, Direction.SOUTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(270).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
-//                condition(BlockStove.FACING, Direction.WEST).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_off"))).rotationY(90).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.CLOSE).
-//                condition(BlockStove.FACING, Direction.EAST).
-//                end();
-//
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
-//                condition(BlockStove.FACING, Direction.NORTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(180).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
-//                condition(BlockStove.FACING, Direction.SOUTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(270).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
-//                condition(BlockStove.FACING, Direction.WEST).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_on"))).rotationY(90).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.IDLE, IMachine.MachineState.WORKING).
-//                condition(BlockStove.FACING, Direction.EAST).
-//                end();
-//
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
-//                condition(BlockStove.FACING, Direction.NORTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(180).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
-//                condition(BlockStove.FACING, Direction.SOUTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(270).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
-//                condition(BlockStove.FACING, Direction.WEST).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_overloaded"))).rotationY(90).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.OVERLOAD).
-//                condition(BlockStove.FACING, Direction.EAST).
-//                end();
-//
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
-//                condition(BlockStove.FACING, Direction.NORTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(180).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
-//                condition(BlockStove.FACING, Direction.SOUTH).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(270).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
-//                condition(BlockStove.FACING, Direction.WEST).
-//                end();
-//        stove.part().modelFile(this.models().getExistingFile(modLoc("block/stove_damaged"))).rotationY(90).
-//                addModel().
-//                condition(BlockStove.STATE, IMachine.MachineState.DAMAGED).
-//                condition(BlockStove.FACING, Direction.EAST).
-//                end();
-
         addCrops();
         addTrees();
         addBuildingBlocks();
@@ -209,15 +126,15 @@ public class ProviderBlockState extends BlockStateProvider {
     }
 
     private void addCrops() {
-        cropsStage((BlockPlant) ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant_stage");
-        cropsStage((BlockPlant) ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant_stage");
-        cropsStage((BlockPlant) ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant_stage");
-        cropsStage((BlockPlant) ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant_stage");
-        cropsStage((BlockPlant) ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant_stage");
-        cropsStage((BlockPlant) ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage_stage");
-        cropsStage((BlockPlant) ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant_stage");
-        cropsStage((BlockPlant) ModBlocks.MILLET_PLANT.get(), 8, "millet_stage");
-        cropsStage((BlockPlant) ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean_stage");
+        cropsStaged((BlockPlant) ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant");
+        cropsStaged((BlockPlant) ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant");
+        cropsStaged((BlockPlant) ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant");
+        cropsStaged((BlockPlant) ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant");
+        cropsStaged((BlockPlant) ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant");
+        cropsStaged((BlockPlant) ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage");
+        cropsStaged((BlockPlant) ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
+        cropsStaged((BlockPlant) ModBlocks.MILLET_PLANT.get(), 8, "millet");
+        cropsStaged((BlockPlant) ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
     }
 
     private void addTrees() {
@@ -263,6 +180,24 @@ public class ProviderBlockState extends BlockStateProvider {
     }
 
     private void addMachineBlocks() {
-        //MultiPartBlockStateBuilder builder = new MultiPartBlockStateBuilder(ModBlocks.STOVE.get());
+        // Stove
+        VariantBlockStateBuilder builder = getVariantBuilder(ModBlocks.STOVE.get());
+        Direction direction = Direction.NORTH;
+        int rotates = 0;
+        for (int i = 0;i < 4;i++) {
+            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
+                    .modelForState()
+                    .modelFile(models().getExistingFile(modLoc("block/stove_off")))
+                    .rotationY(90 * rotates)
+                    .addModel();
+            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
+                    .modelForState()
+                    .modelFile(models().getExistingFile(modLoc("block/stove_on")))
+                    .rotationY(90 * rotates)
+                    .addModel();
+            direction = direction.rotateY();
+            rotates++;
+        }
+
     }
 }
