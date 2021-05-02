@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.1.0'
+version = "${mc_version}-1.1.0"
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'sinocraft'
 
@@ -136,11 +136,11 @@ dependencies {
 
     implementation fg.deobf("dev:NBTEdit:0.10.0")
 
-    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:1.10.+:api")
-    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:1.10.+")
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}")
 
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.+:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.+")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
