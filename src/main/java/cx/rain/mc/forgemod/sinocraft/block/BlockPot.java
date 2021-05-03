@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author NmmOC7
  */
-public class BlockPot extends BlockMachineBase {
+public class BlockPot extends BlockHorizontal {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(0, 0, 0, 1, 0.5, 1));
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
@@ -36,8 +35,7 @@ public class BlockPot extends BlockMachineBase {
                 .sound(SoundType.ANVIL));
 
         this.setDefaultState(this.getDefaultState()
-                .with(FACING, Direction.NORTH)
-                .with(STATE, IMachine.MachineState.CLOSE));
+                .with(FACING, Direction.NORTH));
     }
 
     @Nullable
@@ -46,7 +44,6 @@ public class BlockPot extends BlockMachineBase {
         return new TileEntityPot();
     }
 
-    @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
             TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
@@ -74,7 +71,6 @@ public class BlockPot extends BlockMachineBase {
         return ActionResultType.FAIL;
     }
 
-    @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
             TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);

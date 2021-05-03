@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
@@ -19,7 +18,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TileEntityStoneMill extends TileEntityMachineBase {
+public class TileEntityStoneMill extends TileEntityUpdatableBase {
     private static Map<String,ItemStack> recipes = new HashMap<>();
 
     private ItemStackHandler itemHandler = new ItemStackHandler(1){
