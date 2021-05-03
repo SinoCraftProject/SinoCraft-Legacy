@@ -71,25 +71,21 @@ public class ProviderBlockState extends BlockStateProvider {
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.NORTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.SOUTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.WEST).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.EAST).
                     end();
         }
@@ -98,22 +94,22 @@ public class ProviderBlockState extends BlockStateProvider {
         for (int i = 0; i <= 4; i++) {
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.NORTH).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(180).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.SOUTH).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(270).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.WEST).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.EAST).
                     end();
         }

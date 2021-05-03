@@ -27,13 +27,6 @@ public class TileEntityPot extends TileEntityUpdatableBase implements IInventory
         super(ModTileEntities.IRON_POT.get());
     }
 
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.addAll(ITEM_HANDLER.getInput());
-        list.add(ITEM_HANDLER.getOutput());
-        return list;
-    }
-
     private int progress = 0;
 
     @Override
