@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot;
+package cx.rain.mc.forgemod.sinocraft.crafting.potcooking;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -22,15 +22,15 @@ import java.util.Map;
 /**
  * @author NmmOC7
  */
-public class IronPotSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IronPotRecipes> {
-    public static Map<ResourceLocation, IronPotRecipes> recipes = new HashMap<>();
+public class PotCookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<PotCookingRecipe> {
+    public static Map<ResourceLocation, PotCookingRecipe> recipes = new HashMap<>();
 
-    public static void addRecipes(ResourceLocation id, IronPotRecipes recipe) {
+    public static void addRecipes(ResourceLocation id, PotCookingRecipe recipe) {
         recipes.put(id, recipe);
     }
 
     @Override
-    public IronPotRecipes read(ResourceLocation id, JsonObject json) {
+    public PotCookingRecipe read(ResourceLocation id, JsonObject json) {
         try {
             if (json.has("input") && json.has("output")) {
                 JsonArray inputJson = json.getAsJsonArray("input");
@@ -52,7 +52,7 @@ public class IronPotSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
                                 )
                         ).readStruct());
 
-                addRecipes(id, new IronPotRecipes(input, result, id));
+                addRecipes(id, new PotCookingRecipe(input, result, id));
             }
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class IronPotSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
 
     @Nullable
     @Override
-    public IronPotRecipes read(ResourceLocation id, PacketBuffer buffer) {
+    public PotCookingRecipe read(ResourceLocation id, PacketBuffer buffer) {
         CompoundNBT recipeNBT = buffer.readCompoundTag();
         ListNBT inputNBTList = (ListNBT) recipeNBT.get("input");
 
@@ -77,11 +77,11 @@ public class IronPotSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
 
         ItemStack output = ItemStack.read(outputNBT);
 
-        return new IronPotRecipes(input.toArray(new ItemStack[]{}), output, id);
+        return new PotCookingRecipe(input.toArray(new ItemStack[]{}), output, id);
     }
 
     @Override
-    public void write(PacketBuffer buffer, IronPotRecipes recipe) {
+    public void write(PacketBuffer buffer, PotCookingRecipe recipe) {
         CompoundNBT nbt = new CompoundNBT();
         ListNBT inputListNBT = new ListNBT();
 

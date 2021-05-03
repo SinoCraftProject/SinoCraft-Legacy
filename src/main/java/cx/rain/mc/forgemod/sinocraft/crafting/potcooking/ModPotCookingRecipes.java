@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot;
+package cx.rain.mc.forgemod.sinocraft.crafting.potcooking;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.item.ItemStack;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 /**
  * @author NmmOC7
  */
-public class ModIronPotRecipes {
-    public static final ArrayList<IronPotRecipes> IRON_POT_RECIPES = new ArrayList<>();
+public class ModPotCookingRecipes {
+    public static final ArrayList<PotCookingRecipe> POT_COOKING_RECIPES = new ArrayList<>();
 
-    public static final IronPotRecipes APPLE_RECIPE = new IronPotRecipes(
+    public static final PotCookingRecipe APPLE_RECIPE = new PotCookingRecipe(
             new ItemStack[]{new ItemStack(Items.RED_DYE)},
             new ItemStack(Items.APPLE),
             getRecipeResource("pot_apple")

@@ -1,36 +1,30 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting.vat;
+package cx.rain.mc.forgemod.sinocraft.crafting.soaking;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.NBTToSNBTConverter;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
+public final class SoakingRecipe implements ISoakingRecipe, IFinishedRecipe {
     private ItemStack item;
     private ItemStack result;
     private FluidStack fluid_result;
     private ResourceLocation id;
 
-    public SoakRecipe(ItemStack item, ItemStack result, ResourceLocation id) {
+    public SoakingRecipe(ItemStack item, ItemStack result, ResourceLocation id) {
         this.item = item;
         this.result = result;
         this.id = id;
     }
 
-    public SoakRecipe(ItemStack item, FluidStack fluid_result, ResourceLocation id) {
+    public SoakingRecipe(ItemStack item, FluidStack fluid_result, ResourceLocation id) {
         this.item = item;
         this.fluid_result = fluid_result;
         this.id = id;
@@ -87,7 +81,7 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return new SoakRecipeSerializer();
+        return new SoakingRecipeSerializer();
     }
 
     @Nullable

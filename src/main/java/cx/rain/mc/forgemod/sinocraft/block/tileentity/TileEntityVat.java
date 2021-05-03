@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipeSerializer;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -30,9 +30,9 @@ public class TileEntityVat extends TileEntityUpdatableBase {
 
         @Override
         protected void onContentsChanged(int slot) {
-            ISoakRecipe old = cur_recipe;
+            ISoakingRecipe old = cur_recipe;
             cur_recipe = null;
-            for (ISoakRecipe recipe : SoakRecipeSerializer.recipes.values()) {
+            for (ISoakingRecipe recipe : SoakingRecipeSerializer.recipes.values()) {
                 if (recipe.matches(new RecipeWrapper(this), world)) {
                     cur_recipe = recipe;
                 }
@@ -52,7 +52,7 @@ public class TileEntityVat extends TileEntityUpdatableBase {
     private VatItemHandler itemHandler = new VatItemHandler();
 
     private FluidStack fluid = FluidStack.EMPTY;
-    private ISoakRecipe cur_recipe;
+    private ISoakingRecipe cur_recipe;
     int progress = 0;
 
     public TileEntityVat() {
