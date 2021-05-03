@@ -21,8 +21,8 @@ public class ModTileEntities {
     public static RegistryObject<TileEntityType<TileEntityStove>> STOVE = REGISTRY.register("stove",
             () -> TileEntityType.Builder.create(TileEntityStove::new, ModBlocks.STOVE.get()).build(null));
 
-    public static RegistryObject<TileEntityType<TileEntityIronPot>> IRON_POT = REGISTRY.register("iron_pot",
-            () -> TileEntityType.Builder.create(TileEntityIronPot::new, ModBlocks.BLOCK_IRON_POT.get()).build(null));
+    public static RegistryObject<TileEntityType<TileEntityPot>> IRON_POT = REGISTRY.register("iron_pot",
+            () -> TileEntityType.Builder.create(TileEntityPot::new, ModBlocks.POT.get()).build(null));
 
     public ModTileEntities(IEventBus bus) {
         SinoCraft.getLogger().info("Registering tile entities.");

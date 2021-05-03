@@ -2,10 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityIronPot;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStoneMill;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -16,12 +14,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
 /**
  * @author NmmOC7
  */
-public class IronPotRecipes implements IRecipe<TileEntityIronPot>, IFinishedRecipe {
+public class IronPotRecipes implements IRecipe<TileEntityPot>, IFinishedRecipe {
     public ResourceLocation id;
     public ItemStack[] input;
     public ItemStack output;
@@ -35,7 +31,7 @@ public class IronPotRecipes implements IRecipe<TileEntityIronPot>, IFinishedReci
     }
 
     @Override
-    public boolean matches(TileEntityIronPot inv, World worldIn) {
+    public boolean matches(TileEntityPot inv, World worldIn) {
         boolean result = true;
 
         for (ItemStack stack: this.input) {
@@ -49,7 +45,7 @@ public class IronPotRecipes implements IRecipe<TileEntityIronPot>, IFinishedReci
     }
 
     @Override
-    public ItemStack getCraftingResult(TileEntityIronPot inv) {
+    public ItemStack getCraftingResult(TileEntityPot inv) {
         return this.output.copy();
     }
 
