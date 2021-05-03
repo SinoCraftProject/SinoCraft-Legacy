@@ -3,15 +3,24 @@ package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 
 /**
  * @author NmmOC7
@@ -57,10 +66,9 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
                         }
 
                         this.ITEM_HANDLER.setOutput(recipe.getCraftingResult(this));
+                        this.progress = 0;
                     }
                 }
-
-                this.progress = 0;
             }
         }
     }
@@ -111,7 +119,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
     public boolean hasItemStack(ItemStack stack) {
         for (ItemStack input: ITEM_HANDLER.getInput()) {
-            if (stack.isItemEqual(input) && stack.getCount() >= input.getCount()) {
+            if (stack.isItemEqual(input) && stack.getCount() <= input.getCount()) {
                 return true;
             }
         }
@@ -157,9 +165,107 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
         return ITEM_HANDLER.getOutput();
     }
 
+    @Override
+    public CompoundNBT getUpdateTag() {
+        CompoundNBT compoundNBT = super.getUpdateTag();
+
+        ListNBT inputs = new ListNBT();
+
+        for (ItemStack input: ITEM_HANDLER.getInput()) {
+            CompoundNBT inputNBT = new CompoundNBT();
+            input.write(inputNBT);
+            inputs.add(inputNBT);
+        }
+
+        compoundNBT.put("inputs", inputs);
+
+        CompoundNBT outputNBT = new CompoundNBT();
+        ITEM_HANDLER.getOutput().write(outputNBT);
+        compoundNBT.put("output", outputNBT);
+
+        return compoundNBT;
+    }
+
+    @Override
+    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+        ListNBT inputs = tag.getList("inputs", 9);
+        NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
+
+        for (INBT nbt: inputs) {
+            stacks.add(ItemStack.read((CompoundNBT) nbt));
+        }
+
+        CompoundNBT outputNBT = tag.getCompound("output");
+        stacks.set(6, ItemStack.read(outputNBT));
+
+        ITEM_HANDLER.setInput(stacks);
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+          CompoundNBT updateNBT = new CompoundNBT();
+          CompoundNBT changedItemNBT = new CompoundNBT();
+          ITEM_HANDLER.changedItem.getStack().write(changedItemNBT);
+
+          updateNBT.putInt("slot", ITEM_HANDLER.changedItem.getSlot());
+          updateNBT.put("stack", changedItemNBT);
+
+          return new SUpdateTileEntityPacket(pos, 1, updateNBT);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+          CompoundNBT updateNBT = pkt.getNbtCompound();
+
+          ITEM_HANDLER.setStackInSlot(updateNBT.getInt("slot"), ItemStack.read(updateNBT.getCompound("stack")));
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        ListNBT inputs = new ListNBT();
+
+        for (ItemStack stack: ITEM_HANDLER.getInput()) {
+            CompoundNBT stackNBT = new CompoundNBT();
+            stack.write(stackNBT);
+            inputs.add(stackNBT);
+        }
+
+        compound.put("inputs", inputs);
+
+        CompoundNBT outputNBT = new CompoundNBT();
+        ITEM_HANDLER.getOutput().write(outputNBT);
+        compound.put("output", outputNBT);
+
+        return super.write(compound);
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
+
+        NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
+
+        for (INBT inputNBT: compound.getList("inputs", 9)) {
+            stacks.add(ItemStack.read((CompoundNBT) inputNBT));
+        }
+
+        stacks.set(6, ItemStack.read(compound.getCompound("output")));
+
+        ITEM_HANDLER.setInput(stacks);
+
+        for (int i = 0; i < 7; i++) {
+            ITEM_HANDLER.onContentsChanged(i);
+        }
+    }
+
     private class IronPotItemHandler extends ItemStackHandler {
         public IronPotItemHandler() {
             super(7);
+        }
+
+        public void setInput(NonNullList<ItemStack> stacks) {
+            this.stacks = stacks;
         }
 
         public NonNullList<ItemStack> getInput() {
@@ -222,7 +328,30 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
 
         @Override
         protected void onContentsChanged(int slot) {
-            markDirty();
+            if (!world.isRemote) {
+                changedItem = new ChangedItem(slot, getStackInSlot(slot));
+                markDirty();
+            }
+        }
+
+        public ChangedItem changedItem = new ChangedItem(0, ItemStack.EMPTY);
+
+        private class ChangedItem {
+            private final int slot;
+            private final ItemStack stack;
+
+            public ChangedItem(int slot, ItemStack stack) {
+                this.slot = slot;
+                this.stack = stack;
+            }
+
+            public int getSlot() {
+                return slot;
+            }
+
+            public ItemStack getStack() {
+                return stack;
+            }
         }
 
         @Override
