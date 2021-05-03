@@ -23,7 +23,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
 
     private void addAdvancements() {
         addAdvancement("root",
-                "欢迎使用 SinoCraft 华夏工艺！",
+                "SinoCraft 华夏工艺",
                 "有服章之美谓之华，有礼仪之大谓之夏。");
         addAdvancement("knife",
                 "刀",
@@ -57,7 +57,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
                 "要您老八十一点都不贵。");
         addAdvancement("porridge_ready",
                 "食以粥为先",
-                "用炉灶煮粥。");
+                "用锅煮粥。");
     }
 
     private void addItemGroups() {
@@ -87,9 +87,6 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.FLOUR, "面粉");
         addItem(ModItems.DOUGH, "面团");
         addItem(ModItems.DUMPLING_WRAPPER, "饺子皮");
-//        addItem(ModItems.DUMPLING, "饺子");
-//        addItem(ModItems.COOKED_DUMPLING, "熟饺子");
-//        addItem(ModItems.STUFFING, "馅");
 
         addItem(ModBlockItems.GREEN_RADISH, "青萝卜");
         addItem(ModBlockItems.SUMMER_RADISH, "水萝卜");
@@ -149,8 +146,9 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlock(ModBlocks.RED_MARBLE, "南江红大理石");
         addBlock(ModBlocks.BLACK_MARBLE, "晶墨玉大理石");
 
-        addBlock(ModBlocks.STOVE, "炉灶");
+        addBlock(ModBlocks.STOVE, "灶台");
         addBlock(ModBlocks.VAT, "木缸");
+        addBlock(ModBlocks.POT, "铁锅");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "晾纸架");
         addBlock(ModBlocks.STONE_MILL, "石磨");
     }

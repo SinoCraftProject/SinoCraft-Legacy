@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author NmmOC7
  */
-public class TileEntityIronPot extends TileEntityMachineBase implements IInventory {
+public class TileEntityPot extends TileEntityMachineBase implements IInventory {
     private final IronPotItemHandler ITEM_HANDLER = new IronPotItemHandler();
 
     @OnlyIn(Dist.CLIENT)
@@ -24,7 +24,7 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     @OnlyIn(Dist.CLIENT)
     public ItemStack clientOutput = ITEM_HANDLER.getOutput();
 
-    public TileEntityIronPot() {
+    public TileEntityPot() {
         super(ModTileEntities.IRON_POT.get());
     }
 

@@ -2,19 +2,13 @@ package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityIronPot;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author NmmOC7
  */
-public class BlockIronPot extends BlockMachineBase {
+public class BlockPot extends BlockMachineBase {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(0, 0, 0, 1, 0.5, 1));
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
@@ -36,7 +30,7 @@ public class BlockIronPot extends BlockMachineBase {
                     14.0D, 8.0D, 14.0D),
             IBooleanFunction.ONLY_FIRST);
 
-    public BlockIronPot() {
+    public BlockPot() {
         super(Block.Properties.create(Material.IRON)
                 .hardnessAndResistance(3.0F)
                 .sound(SoundType.ANVIL));
@@ -49,13 +43,13 @@ public class BlockIronPot extends BlockMachineBase {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileEntityIronPot();
+        return new TileEntityPot();
     }
 
     @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
-            TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
+        if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
+            TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
             ItemStack holdingStack = player.getHeldItem(handIn);
 
             if (!holdingStack.isEmpty()) {
@@ -82,8 +76,8 @@ public class BlockIronPot extends BlockMachineBase {
 
     @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityIronPot) {
-            TileEntityIronPot tileEntity = (TileEntityIronPot) worldIn.getTileEntity(pos);
+        if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
+            TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
             ItemStack holdingStack = player.getHeldItem(handIn);
 
             if (!holdingStack.isEmpty()) {

@@ -1,21 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityIronPot;
-import net.minecraft.client.MainWindow;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -23,12 +15,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * @author NmmOC7
@@ -49,8 +37,8 @@ public class ClientEventHandler {
                     BlockRayTraceResult block = (BlockRayTraceResult) result;
                     TileEntity te = entity.world.getTileEntity(block.getPos());
 
-                    if (te instanceof TileEntityIronPot) {
-                        TileEntityIronPot tileEntity = (TileEntityIronPot) te;
+                    if (te instanceof TileEntityPot) {
+                        TileEntityPot tileEntity = (TileEntityPot) te;
 
                         int x = event.getWindow().getScaledWidth();
                         int y = event.getWindow().getScaledHeight();

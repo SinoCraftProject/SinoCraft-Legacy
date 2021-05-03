@@ -181,16 +181,16 @@ public class ProviderBlockState extends BlockStateProvider {
 
     private void addMachineBlocks() {
         // Stove
-        VariantBlockStateBuilder builder = getVariantBuilder(ModBlocks.STOVE.get());
+        VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
         Direction direction = Direction.NORTH;
         int rotates = 0;
         for (int i = 0;i < 4;i++) {
-            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
+            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
                     .rotationY(90 * rotates)
                     .addModel();
-            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
+            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_on")))
                     .rotationY(90 * rotates)
@@ -199,5 +199,7 @@ public class ProviderBlockState extends BlockStateProvider {
             rotates++;
         }
 
+        getVariantBuilder(ModBlocks.POT.get()).partialState().modelForState()
+                .modelFile(models().getExistingFile(modLoc("block/pot"))).addModel();
     }
 }
