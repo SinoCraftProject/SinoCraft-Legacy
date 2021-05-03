@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.PotCookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.ModPotCookingRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
@@ -15,7 +15,6 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,7 +43,7 @@ public class TileEntityPot extends TileEntityUpdatableBase implements IInventory
             progress++;
 
             if (progress >= 40 && ITEM_HANDLER.getOutput().isEmpty()) {
-                for (IronPotRecipes recipe : ModIronPotRecipes.IRON_POT_RECIPES) {
+                for (PotCookingRecipe recipe : ModPotCookingRecipes.POT_COOKING_RECIPES) {
                     if (recipe.matches(this, this.world)) {
                         for (ItemStack input : recipe.input) {
                             for (int i = 0; i < ITEM_HANDLER.getSlots() - 1; i++) {

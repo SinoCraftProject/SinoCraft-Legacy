@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot;
+package cx.rain.mc.forgemod.sinocraft.crafting.potcooking;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
@@ -17,17 +17,17 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author NmmOC7
  */
-public class IronPotRecipes implements IRecipe<TileEntityPot>, IFinishedRecipe {
+public class PotCookingRecipe implements IRecipe<TileEntityPot>, IFinishedRecipe {
     public ResourceLocation id;
     public ItemStack[] input;
     public ItemStack output;
 
-    public IronPotRecipes(ItemStack[] input, ItemStack output, ResourceLocation id) {
+    public PotCookingRecipe(ItemStack[] input, ItemStack output, ResourceLocation id) {
         this.id = id;
         this.input = input;
         this.output = output;
 
-        ModIronPotRecipes.IRON_POT_RECIPES.add(this);
+        ModPotCookingRecipes.POT_COOKING_RECIPES.add(this);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class IronPotRecipes implements IRecipe<TileEntityPot>, IFinishedRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return new IronPotSerializer();
+        return new PotCookingSerializer();
     }
 
     @Nullable
