@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,12 +28,11 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
-import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
 import javax.annotation.Nullable;
 
 @SuppressWarnings("deprecation")
-public class BlockVat extends BlockMachineBase {
+public class BlockVat extends BlockHorizontal {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.fullCube();
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
@@ -53,7 +52,6 @@ public class BlockVat extends BlockMachineBase {
         return new TileEntityVat();
     }
 
-    @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (handIn != Hand.MAIN_HAND) {
             return ActionResultType.PASS;
@@ -104,7 +102,6 @@ public class BlockVat extends BlockMachineBase {
         return ActionResultType.PASS;
     }
 
-    @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
             return ActionResultType.PASS;

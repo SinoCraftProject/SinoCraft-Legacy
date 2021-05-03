@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;

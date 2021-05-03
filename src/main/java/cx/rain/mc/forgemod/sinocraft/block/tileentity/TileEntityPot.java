@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author NmmOC7
  */
-public class TileEntityPot extends TileEntityMachineBase implements IInventory {
+public class TileEntityPot extends TileEntityUpdatableBase implements IInventory {
     private final IronPotItemHandler ITEM_HANDLER = new IronPotItemHandler();
 
     @OnlyIn(Dist.CLIENT)

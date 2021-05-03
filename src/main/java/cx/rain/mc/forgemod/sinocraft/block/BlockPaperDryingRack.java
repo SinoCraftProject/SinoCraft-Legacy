@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockActivatable;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.IItemContainer;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockPaperDryingRack extends BlockActivatable {
+public class BlockPaperDryingRack extends BlockHorizontal {
     public static IntegerProperty LEVEL = IntegerProperty.create("level",0,4);
     public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 
@@ -59,6 +59,10 @@ public class BlockPaperDryingRack extends BlockActivatable {
     }
 
     @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+    }
+
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (state.get(LEVEL) == 4 && (player.getHeldItem(handIn) == ItemStack.EMPTY || player.getHeldItem(handIn).getItem() == ModItems.XUAN_PAPER.get())){
             worldIn.playSound(player,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,1.0f);
@@ -71,7 +75,6 @@ public class BlockPaperDryingRack extends BlockActivatable {
         return ActionResultType.FAIL;
     }
 
-    @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (state.get(LEVEL) == 4 && (player.getHeldItem(handIn) == ItemStack.EMPTY || player.getHeldItem(handIn).getItem() == ModItems.XUAN_PAPER.get())){
             worldIn.setBlockState(pos,state.with(LEVEL, 0));
@@ -91,8 +94,8 @@ public class BlockPaperDryingRack extends BlockActivatable {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             NonNullList<ItemStack> stacks = NonNullList.create();
-            if(tileentity instanceof IMachine){
-                stacks = ((IMachine) tileentity).getDropsItem(stacks);
+            if(tileentity instanceof IItemContainer){
+                stacks = ((IItemContainer) tileentity).getItems();
             }
 
             for(ItemStack stack : stacks){
