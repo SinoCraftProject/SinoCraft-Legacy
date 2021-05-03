@@ -46,7 +46,6 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase {
     public TileEntityStoneMill() {
         super(ModTileEntities.STONE_MILL.get());
         registerDefaultRecipes();
-        state=MachineState.CLOSE;
     }
 
     @Nonnull
@@ -89,11 +88,5 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase {
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         progress = compound.getInt("progress");
         super.read(state, compound);
-    }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(itemHandler.getStackInSlot(0));
-        return list;
     }
 }

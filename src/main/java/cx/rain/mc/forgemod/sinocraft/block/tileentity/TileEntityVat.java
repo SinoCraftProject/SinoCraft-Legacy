@@ -184,11 +184,4 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(state, compound);
     }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(itemHandler.getStackInSlot(0));
-        list.add(itemHandler.getStackInSlot(1));
-        return list;
-    }
 }
