@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
 import net.minecraft.block.BlockState;
@@ -19,7 +18,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityVat extends TileEntityMachineBase {
+public class TileEntityVat extends TileEntityUpdatableBase {
     private class VatItemHandler extends ItemStackHandler {
         public VatItemHandler() {
             super(2);
@@ -184,12 +183,5 @@ public class TileEntityVat extends TileEntityMachineBase {
         fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(state, compound);
-    }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(itemHandler.getStackInSlot(0));
-        list.add(itemHandler.getStackInSlot(1));
-        return list;
     }
 }

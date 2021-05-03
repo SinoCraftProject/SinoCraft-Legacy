@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
 import net.minecraft.block.BlockState;
@@ -25,7 +24,7 @@ import javax.annotation.Nullable;
 /**
  * @author NmmOC7
  */
-public class TileEntityIronPot extends TileEntityMachineBase implements IInventory {
+public class TileEntityPot extends TileEntityUpdatableBase implements IInventory {
     private final IronPotItemHandler ITEM_HANDLER = new IronPotItemHandler();
 
     @OnlyIn(Dist.CLIENT)
@@ -33,15 +32,8 @@ public class TileEntityIronPot extends TileEntityMachineBase implements IInvento
     @OnlyIn(Dist.CLIENT)
     public ItemStack clientOutput = ITEM_HANDLER.getOutput();
 
-    public TileEntityIronPot() {
+    public TileEntityPot() {
         super(ModTileEntities.IRON_POT.get());
-    }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.addAll(ITEM_HANDLER.getInput());
-        list.add(ITEM_HANDLER.getOutput());
-        return list;
     }
 
     private int progress = 0;

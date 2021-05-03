@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityStove extends TileEntity implements ITickableTileEntity, IHeatSource, IHasBurnTime {
+public class TileEntityStove extends TileEntityUpdatableBase implements IHeatSource, IHasBurnTime {
     private double heat = 0;
     private int burnTime = 0;
 

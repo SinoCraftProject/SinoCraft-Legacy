@@ -154,5 +154,6 @@ public class ProviderItemModel extends ItemModelProvider {
     private void addMachineBlockItems() {
         simpleBlockItem(ModBlockItems.VAT.get());
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
+        simpleBlockItem(ModBlockItems.IRON_POT.get());
     }
 }

@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IMachine;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
@@ -72,25 +71,21 @@ public class ProviderBlockState extends BlockStateProvider {
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.NORTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.SOUTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.WEST).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.STATE, IMachine.MachineState.values()).
                     condition(BlockStoneMill.FACING, Direction.EAST).
                     end();
         }
@@ -99,22 +94,22 @@ public class ProviderBlockState extends BlockStateProvider {
         for (int i = 0; i <= 4; i++) {
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.NORTH).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(180).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.SOUTH).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(270).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.WEST).
                     end();
             paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
                     addModel().
-                    condition(BlockPaperDryingRack.LEVEL, i).
+                    condition(BlockPaperDryingRack.STATE, i).
                     condition(BlockPaperDryingRack.FACING, Direction.EAST).
                     end();
         }
@@ -181,16 +176,16 @@ public class ProviderBlockState extends BlockStateProvider {
 
     private void addMachineBlocks() {
         // Stove
-        VariantBlockStateBuilder builder = getVariantBuilder(ModBlocks.STOVE.get());
+        VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
         Direction direction = Direction.NORTH;
         int rotates = 0;
         for (int i = 0;i < 4;i++) {
-            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
+            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
                     .rotationY(90 * rotates)
                     .addModel();
-            builder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
+            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_on")))
                     .rotationY(90 * rotates)
@@ -199,5 +194,7 @@ public class ProviderBlockState extends BlockStateProvider {
             rotates++;
         }
 
+        getVariantBuilder(ModBlocks.POT.get()).partialState().modelForState()
+                .modelFile(models().getExistingFile(modLoc("block/pot"))).addModel();
     }
 }
