@@ -48,6 +48,16 @@ public class BlockPot extends Block {
         return new TileEntityPot();
     }
 
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isRemote) {
+            return clientActivated(state, worldIn, pos, player, handIn, hit);
+        }
+        else {
+            return serverActivated(state, worldIn, pos, player, handIn, hit);
+        }
+    }
+
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
             TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
