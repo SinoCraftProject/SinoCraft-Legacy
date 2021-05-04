@@ -22,11 +22,13 @@ import org.jetbrains.annotations.Nullable;
  * @author NmmOC7
  */
 public class BlockPot extends Block {
-    protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(0, 0, 0, 1, 0.5, 1));
+    public static final double P1 = 1d / 16d;
+
+    protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(P1, 0, P1, P1 * 15, P1 * 6, P1 * 15));
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
                     2.0D, 2.0D, 2.0D,
-                    14.0D, 8.0D, 14.0D),
+                    14.0D, 6.0D, 14.0D),
             IBooleanFunction.ONLY_FIRST);
 
     public BlockPot() {
