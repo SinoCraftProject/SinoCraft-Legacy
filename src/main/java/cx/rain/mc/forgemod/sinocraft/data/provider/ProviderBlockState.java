@@ -177,11 +177,12 @@ public class ProviderBlockState extends BlockStateProvider {
         for (int i = 0; i < 3; i++) {
             Direction paperDryingRackBuilderDirection = Direction.NORTH;
             for (int j = 0;j < 4;j++) {
-                paperDryingRackBuilder.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
-                        addModel().
-                        condition(BlockPaperDryingRack.STATE, i).
-                        condition(BlockPaperDryingRack.FACING, paperDryingRackBuilderDirection).
-                        end();
+                paperDryingRackBuilder.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i)))
+                        .rotationY(90 * j)
+                        .addModel()
+                        .condition(BlockPaperDryingRack.STATE, i)
+                        .condition(BlockPaperDryingRack.FACING, paperDryingRackBuilderDirection)
+                        .end();
                 paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
             }
         }
