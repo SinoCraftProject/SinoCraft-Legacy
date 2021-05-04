@@ -3,12 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -154,6 +152,6 @@ public class ProviderItemModel extends ItemModelProvider {
     private void addMachineBlockItems() {
         simpleBlockItem(ModBlockItems.VAT.get());
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
-        simpleBlockItem(ModBlockItems.IRON_POT.get());
+        simpleBlockItem(ModBlockItems.POT.get());
     }
 }

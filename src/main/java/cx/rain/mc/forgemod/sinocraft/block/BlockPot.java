@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author NmmOC7
  */
-public class BlockPot extends BlockHorizontal {
+public class BlockPot extends Block {
     protected static final VoxelShape OUT_SHAPE = VoxelShapes.create(new AxisAlignedBB(0, 0, 0, 1, 0.5, 1));
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(
             OUT_SHAPE, Block.makeCuboidShape(
@@ -33,9 +33,11 @@ public class BlockPot extends BlockHorizontal {
         super(Block.Properties.create(Material.IRON)
                 .hardnessAndResistance(3.0F)
                 .sound(SoundType.ANVIL));
+    }
 
-        this.setDefaultState(this.getDefaultState()
-                .with(FACING, Direction.NORTH));
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Nullable
