@@ -158,96 +158,36 @@ public class TileEntityPot extends TileEntityUpdatableBase implements IInventory
 
     @Override
     public CompoundNBT getUpdateTag() {
-        CompoundNBT compoundNBT = super.getUpdateTag();
-
-        ListNBT inputs = new ListNBT();
-
-        for (ItemStack input: ITEM_HANDLER.getInput()) {
-            CompoundNBT inputNBT = new CompoundNBT();
-            input.write(inputNBT);
-            inputs.add(inputNBT);
-        }
-
-        compoundNBT.put("inputs", inputs);
-
-        CompoundNBT outputNBT = new CompoundNBT();
-        ITEM_HANDLER.getOutput().write(outputNBT);
-        compoundNBT.put("output", outputNBT);
-
-        return compoundNBT;
+        return super.getUpdateTag().merge(ITEM_HANDLER.serializeNBT());
     }
 
     @Override
     public void handleUpdateTag(BlockState state, CompoundNBT tag) {
-        ListNBT inputs = tag.getList("inputs", 9);
-        NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
-
-        for (INBT nbt: inputs) {
-            stacks.add(ItemStack.read((CompoundNBT) nbt));
-        }
-
-        CompoundNBT outputNBT = tag.getCompound("output");
-        stacks.set(6, ItemStack.read(outputNBT));
-
-        ITEM_HANDLER.setInput(stacks);
+        super.handleUpdateTag(state, tag);
+        ITEM_HANDLER.deserializeNBT(tag);
     }
 
     @Nullable
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
-          CompoundNBT updateNBT = new CompoundNBT();
-          CompoundNBT changedItemNBT = new CompoundNBT();
-          ITEM_HANDLER.changedItem.getStack().write(changedItemNBT);
-
-          updateNBT.putInt("slot", ITEM_HANDLER.changedItem.getSlot());
-          updateNBT.put("stack", changedItemNBT);
-
-          return new SUpdateTileEntityPacket(pos, 1, updateNBT);
+          return new SUpdateTileEntityPacket(pos, 1, ITEM_HANDLER.serializeNBT());
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-          CompoundNBT updateNBT = pkt.getNbtCompound();
-
-          ITEM_HANDLER.setStackInSlot(updateNBT.getInt("slot"), ItemStack.read(updateNBT.getCompound("stack")));
+          ITEM_HANDLER.deserializeNBT(pkt.getNbtCompound());
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-        ListNBT inputs = new ListNBT();
-
-        for (ItemStack stack: ITEM_HANDLER.getInput()) {
-            CompoundNBT stackNBT = new CompoundNBT();
-            stack.write(stackNBT);
-            inputs.add(stackNBT);
-        }
-
-        compound.put("inputs", inputs);
-
-        CompoundNBT outputNBT = new CompoundNBT();
-        ITEM_HANDLER.getOutput().write(outputNBT);
-        compound.put("output", outputNBT);
-
-        return super.write(compound);
+        super.write(compound);
+        return compound.merge(ITEM_HANDLER.serializeNBT());
     }
 
     @Override
     public void read(BlockState state, CompoundNBT compound) {
         super.read(state, compound);
-
-        NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
-
-        for (INBT inputNBT: compound.getList("inputs", 9)) {
-            stacks.add(ItemStack.read((CompoundNBT) inputNBT));
-        }
-
-        stacks.set(6, ItemStack.read(compound.getCompound("output")));
-
-        ITEM_HANDLER.setInput(stacks);
-
-        for (int i = 0; i < 7; i++) {
-            ITEM_HANDLER.onContentsChanged(i);
-        }
+        ITEM_HANDLER.deserializeNBT(compound);
     }
 
     private class IronPotItemHandler extends ItemStackHandler {
