@@ -13,6 +13,8 @@ public abstract class BlockHorizontal extends Block {
 
     public BlockHorizontal(Properties properties) {
         super(properties);
+
+        setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
     }
 
     @Nullable

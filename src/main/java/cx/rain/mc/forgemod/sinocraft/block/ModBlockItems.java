@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
-import cx.rain.mc.forgemod.sinocraft.item.ItemBlockIronPot;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
@@ -60,7 +59,7 @@ public class ModBlockItems {
     public static RegistryObject<BlockItem> STONE_MILL = REGISTRY.register("stone_mill", () -> new BlockItem(ModBlocks.STONE_MILL.get(), new Item.Properties().group(ModGroups.BLOCKS)));
     public static RegistryObject<BlockItem> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockItem(ModBlocks.PAPER_DRYING_RACK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
     public static RegistryObject<BlockItem> STOVE = REGISTRY.register("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-    public static RegistryObject<BlockItem> IRON_POT = REGISTRY.register("iron_pot", ItemBlockIronPot::new);
+    public static RegistryObject<BlockItem> POT = REGISTRY.register("pot", () -> new BlockItem(ModBlocks.POT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
 
     public ModBlockItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering block items.");

@@ -90,29 +90,7 @@ public class ProviderBlockState extends BlockStateProvider {
                     end();
         }
 
-        MultiPartBlockStateBuilder paperDryingRack = getMultipartBuilder(ModBlocks.PAPER_DRYING_RACK.get());
-        for (int i = 0; i <= 4; i++) {
-            paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).
-                    addModel().
-                    condition(BlockPaperDryingRack.STATE, i).
-                    condition(BlockPaperDryingRack.FACING, Direction.NORTH).
-                    end();
-            paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(180).
-                    addModel().
-                    condition(BlockPaperDryingRack.STATE, i).
-                    condition(BlockPaperDryingRack.FACING, Direction.SOUTH).
-                    end();
-            paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(270).
-                    addModel().
-                    condition(BlockPaperDryingRack.STATE, i).
-                    condition(BlockPaperDryingRack.FACING, Direction.WEST).
-                    end();
-            paperDryingRack.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
-                    addModel().
-                    condition(BlockPaperDryingRack.STATE, i).
-                    condition(BlockPaperDryingRack.FACING, Direction.EAST).
-                    end();
-        }
+
 
         addCrops();
         addTrees();
@@ -177,24 +155,35 @@ public class ProviderBlockState extends BlockStateProvider {
     private void addMachineBlocks() {
         // Stove
         VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
-        Direction direction = Direction.NORTH;
-        int rotates = 0;
+        Direction stoveDirection = Direction.NORTH;
         for (int i = 0;i < 4;i++) {
-            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, false)
+            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
-                    .rotationY(90 * rotates)
+                    .rotationY(90 * i)
                     .addModel();
-            stoveBuilder.partialState().with(BlockStove.FACING, direction).with(BlockStove.BURNING, true)
+            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, true)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_on")))
-                    .rotationY(90 * rotates)
+                    .rotationY(90 * i)
                     .addModel();
-            direction = direction.rotateY();
-            rotates++;
+            stoveDirection = stoveDirection.rotateY();
         }
 
         getVariantBuilder(ModBlocks.POT.get()).partialState().modelForState()
                 .modelFile(models().getExistingFile(modLoc("block/pot"))).addModel();
+
+        MultiPartBlockStateBuilder paperDryingRackBuilder = getMultipartBuilder(ModBlocks.PAPER_DRYING_RACK.get());
+        for (int i = 0; i < 3; i++) {
+            Direction paperDryingRackBuilderDirection = Direction.NORTH;
+            for (int j = 0;j < 4;j++) {
+                paperDryingRackBuilder.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i))).rotationY(90).
+                        addModel().
+                        condition(BlockPaperDryingRack.STATE, i).
+                        condition(BlockPaperDryingRack.FACING, paperDryingRackBuilderDirection).
+                        end();
+                paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
+            }
+        }
     }
 }

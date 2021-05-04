@@ -2,36 +2,17 @@
   "multipart": [
     {
       "when": {
-        "level": "0",
+        "state": "0",
         "facing": "north"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack0"
-      }
-    },
-    {
-      "when": {
-        "level": "0",
-        "facing": "south"
-      },
-      "apply": {
         "model": "sinocraft:block/paper_drying_rack0",
-        "y": 180
+        "y": 90
       }
     },
     {
       "when": {
-        "level": "0",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack0",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "level": "0",
+        "state": "0",
         "facing": "east"
       },
       "apply": {
@@ -41,36 +22,37 @@
     },
     {
       "when": {
-        "level": "1",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack1"
-      }
-    },
-    {
-      "when": {
-        "level": "1",
+        "state": "0",
         "facing": "south"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack1",
-        "y": 180
+        "model": "sinocraft:block/paper_drying_rack0",
+        "y": 90
       }
     },
     {
       "when": {
-        "level": "1",
+        "state": "0",
         "facing": "west"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack1",
-        "y": 270
+        "model": "sinocraft:block/paper_drying_rack0",
+        "y": 90
       }
     },
     {
       "when": {
-        "level": "1",
+        "state": "1",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "1",
         "facing": "east"
       },
       "apply": {
@@ -80,36 +62,37 @@
     },
     {
       "when": {
-        "level": "2",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack2"
-      }
-    },
-    {
-      "when": {
-        "level": "2",
+        "state": "1",
         "facing": "south"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack2",
-        "y": 180
+        "model": "sinocraft:block/paper_drying_rack1",
+        "y": 90
       }
     },
     {
       "when": {
-        "level": "2",
+        "state": "1",
         "facing": "west"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack2",
-        "y": 270
+        "model": "sinocraft:block/paper_drying_rack1",
+        "y": 90
       }
     },
     {
       "when": {
-        "level": "2",
+        "state": "2",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "2",
         "facing": "east"
       },
       "apply": {
@@ -119,79 +102,21 @@
     },
     {
       "when": {
-        "level": "3",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack3"
-      }
-    },
-    {
-      "when": {
-        "level": "3",
+        "state": "2",
         "facing": "south"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack3",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "level": "3",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack3",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "level": "3",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack3",
+        "model": "sinocraft:block/paper_drying_rack2",
         "y": 90
       }
     },
     {
       "when": {
-        "level": "4",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack4"
-      }
-    },
-    {
-      "when": {
-        "level": "4",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack4",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "level": "4",
+        "state": "2",
         "facing": "west"
       },
       "apply": {
-        "model": "sinocraft:block/paper_drying_rack4",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "level": "4",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "sinocraft:block/paper_drying_rack4",
+        "model": "sinocraft:block/paper_drying_rack2",
         "y": 90
       }
     }

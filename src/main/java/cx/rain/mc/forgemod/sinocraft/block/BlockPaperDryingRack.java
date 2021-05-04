@@ -49,7 +49,7 @@ public class BlockPaperDryingRack extends BlockHorizontal {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
-        builder.add(STATE, FACING);
+        builder.add(STATE);
     }
 
     @Override
