@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

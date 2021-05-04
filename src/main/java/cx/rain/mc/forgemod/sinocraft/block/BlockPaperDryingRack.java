@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontalActivatable;
+import cx.rain.mc.forgemod.sinocraft.block.base.IBlockActivatable;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockPaperDryingRack extends BlockHorizontal {
+public class BlockPaperDryingRack extends BlockHorizontalActivatable implements IBlockActivatable {
     /**
      * State is a int value shows drying rack's state.
      * 0: There is no paper drying.
@@ -65,26 +66,35 @@ public class BlockPaperDryingRack extends BlockHorizontal {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onClientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack handStack = player.getHeldItem(handIn);
         if (state.get(STATE) == 0 && handStack.getItem() == ModItems.BUCKET_WOOD_PULP.get()) {
             setState(worldIn, pos, state, 1);
-            if (worldIn.isRemote) {
-                worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            } else {
-                worldIn.getPendingBlockTicks().scheduleTick(pos, this, 20 * 15);
-                player.setHeldItem(handIn, new ItemStack(Items.BUCKET));
-            }
+            worldIn.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
             return ActionResultType.SUCCESS;
         }
 
         if (state.get(STATE) == 2) {
             setState(worldIn, pos, state, 0);
-            if (worldIn.isRemote) {
-                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            } else {
-                worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
-            }
+            worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            return ActionResultType.SUCCESS;
+        }
+        return ActionResultType.PASS;
+    }
+
+    @Override
+    public ActionResultType onServerActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        ItemStack handStack = player.getHeldItem(handIn);
+        if (state.get(STATE) == 0 && handStack.getItem() == ModItems.BUCKET_WOOD_PULP.get()) {
+            setState(worldIn, pos, state, 1);
+            worldIn.getPendingBlockTicks().scheduleTick(pos, this, 20 * 15);
+            player.setHeldItem(handIn, new ItemStack(Items.BUCKET));
+            return ActionResultType.SUCCESS;
+        }
+
+        if (state.get(STATE) == 2) {
+            setState(worldIn, pos, state, 0);
+            worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
             return ActionResultType.SUCCESS;
         }
         return ActionResultType.PASS;
