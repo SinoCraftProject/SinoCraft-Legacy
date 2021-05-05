@@ -1,7 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.ISoakingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipeSerializer;
+import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -18,7 +19,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityVat extends TileEntityUpdatableBase {
+public class TileEntityVat extends TileEntityMachineBase {
     private class VatItemHandler extends ItemStackHandler {
         public VatItemHandler() {
             super(2);
@@ -30,9 +31,9 @@ public class TileEntityVat extends TileEntityUpdatableBase {
 
         @Override
         protected void onContentsChanged(int slot) {
-            ISoakingRecipe old = cur_recipe;
+            ISoakRecipe old = cur_recipe;
             cur_recipe = null;
-            for (ISoakingRecipe recipe : SoakingRecipeSerializer.recipes.values()) {
+            for (ISoakRecipe recipe : world.getRecipeManager().getRecipesForType(ModRecipes.SOAK)) {
                 if (recipe.matches(new RecipeWrapper(this), world)) {
                     cur_recipe = recipe;
                 }
@@ -52,7 +53,7 @@ public class TileEntityVat extends TileEntityUpdatableBase {
     private VatItemHandler itemHandler = new VatItemHandler();
 
     private FluidStack fluid = FluidStack.EMPTY;
-    private ISoakingRecipe cur_recipe;
+    private ISoakRecipe cur_recipe;
     int progress = 0;
 
     public TileEntityVat() {
@@ -183,5 +184,12 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(state, compound);
+    }
+
+    @Override
+    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
+        list.add(itemHandler.getStackInSlot(0));
+        list.add(itemHandler.getStackInSlot(1));
+        return list;
     }
 }

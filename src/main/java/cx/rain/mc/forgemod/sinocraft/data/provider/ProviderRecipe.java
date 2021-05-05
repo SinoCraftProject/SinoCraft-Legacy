@@ -1,9 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.PotCookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.ModPotCookingRecipes;
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.IronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ironpot.ModIronPotRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
@@ -31,16 +31,16 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerShapelessRecipes(consumer);
         registerFurnaceRecipes(consumer);
         registerSoakRecipes(consumer);
-        //registerIronPotRecipes(consumer);
+        registerIronPotRecipes(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(new SoakingRecipe(
+        consumer.accept(new SoakRecipe(
                 new ItemStack(ModItems.FLOUR.get(), 2),
                 new ItemStack(ModItems.DOUGH.get()),
                 new ResourceLocation(ID + ":dough")
         ));
-        consumer.accept(new SoakingRecipe(
+        consumer.accept(new SoakRecipe(
                 new ItemStack(ModItems.BARK.get(), 3),
                 new FluidStack(ModFluids.WOOD_PULP.get(), 1000),
                 new ResourceLocation(ID + ":wood_pulp")
@@ -48,7 +48,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
-        for (PotCookingRecipe recipe: ModPotCookingRecipes.POT_COOKING_RECIPES) {
+        for (IronPotRecipes recipe: ModIronPotRecipes.IRON_POT_RECIPES) {
             consumer.accept(recipe);
         }
     }
