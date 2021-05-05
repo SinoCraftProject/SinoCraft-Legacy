@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting.vat;
+package cx.rain.mc.forgemod.sinocraft.crafting.soaking;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -22,19 +22,19 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
+public final class SoakingRecipe implements ISoakingRecipe, IFinishedRecipe {
     private ItemStack item;
     private ItemStack result;
     private FluidStack fluid_result;
     private ResourceLocation id;
 
-    public SoakRecipe(ItemStack item, ItemStack result, ResourceLocation id) {
+    public SoakingRecipe(ItemStack item, ItemStack result, ResourceLocation id) {
         this.item = item;
         this.result = result;
         this.id = id;
     }
 
-    public SoakRecipe(ItemStack item, FluidStack fluid_result, ResourceLocation id) {
+    public SoakingRecipe(ItemStack item, FluidStack fluid_result, ResourceLocation id) {
         this.item = item;
         this.fluid_result = fluid_result;
         this.id = id;
@@ -129,9 +129,9 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
         return jsonobject;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SoakRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SoakingRecipe> {
         @Override
-        public SoakRecipe read(ResourceLocation id, JsonObject json) {
+        public SoakingRecipe read(ResourceLocation id, JsonObject json) {
             try {
                 ItemStack item = ItemStack.read(new JsonToNBT(new StringReader(
                         json.getAsJsonPrimitive("item").getAsString())
@@ -140,14 +140,14 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
                     ItemStack result = ItemStack.read(new JsonToNBT(new StringReader(
                             json.getAsJsonPrimitive("result").getAsString())
                     ).readStruct());
-                    return new SoakRecipe(item, result, id);
+                    return new SoakingRecipe(item, result, id);
                 }
                 else {
                     if (json.has("fluid_result")) {
                         FluidStack result = FluidStack.loadFluidStackFromNBT(new JsonToNBT(new StringReader(
                                 json.getAsJsonPrimitive("fluid_result").getAsString())
                         ).readStruct());
-                        return new SoakRecipe(item, result, id);
+                        return new SoakingRecipe(item, result, id);
                     }
                 }
             } catch (CommandSyntaxException e) {
@@ -158,20 +158,20 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
 
         @Nullable
         @Override
-        public SoakRecipe read(ResourceLocation id, PacketBuffer buffer) {
+        public SoakingRecipe read(ResourceLocation id, PacketBuffer buffer) {
             ItemStack item = ItemStack.read(buffer.readCompoundTag());
             if (buffer.readBoolean()) {
                 ItemStack result = ItemStack.read(buffer.readCompoundTag());
-                return new SoakRecipe(item, result, id);
+                return new SoakingRecipe(item, result, id);
             }
             else {
                 FluidStack result = FluidStack.loadFluidStackFromNBT(buffer.readCompoundTag());
-                return new SoakRecipe(item, result, id);
+                return new SoakingRecipe(item, result, id);
             }
         }
 
         @Override
-        public void write(PacketBuffer buffer, SoakRecipe recipe) {
+        public void write(PacketBuffer buffer, SoakingRecipe recipe) {
             CompoundNBT nbt = new CompoundNBT();
             recipe.getItem().write(nbt);
             buffer.writeCompoundTag(nbt);
