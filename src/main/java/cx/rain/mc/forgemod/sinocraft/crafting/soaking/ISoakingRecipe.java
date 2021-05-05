@@ -15,4 +15,6 @@ public interface ISoakingRecipe extends IRecipe<IInventory> {
     ItemStack getItem();
 
     FluidStack getFluidResult();
+
+    boolean isResultFluid();
 }

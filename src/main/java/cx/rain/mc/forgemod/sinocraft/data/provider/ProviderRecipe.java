@@ -1,10 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.PotCookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.potcooking.ModPotCookingRecipes;
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -31,7 +29,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerShapelessRecipes(consumer);
         registerFurnaceRecipes(consumer);
         registerSoakRecipes(consumer);
-        //registerIronPotRecipes(consumer);
+        registerIronPotRecipes(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -48,9 +46,6 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
-        for (PotCookingRecipe recipe: ModPotCookingRecipes.POT_COOKING_RECIPES) {
-            consumer.accept(recipe);
-        }
     }
 
     private void registerShapedRecipes(Consumer<IFinishedRecipe> consumer) {

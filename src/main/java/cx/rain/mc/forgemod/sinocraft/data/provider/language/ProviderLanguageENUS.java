@@ -19,6 +19,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlocks();
         addEntities();
         addAdvancements();
+        addMisc();
     }
 
     private void addAdvancements() {
@@ -55,6 +56,10 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         add("itemGroup.sinocraft.combat", "SinoCraft | Combat");
         add("itemGroup.sinocraft.tools", "SinoCraft | Tools");
         add("itemGroup.sinocraft.misc", "SinoCraft | Miscellaneous");
+    }
+
+    private void addMisc() {
+        add("gui.sinocraft.category.soak", "Soak");
     }
 
     private void addItems() {

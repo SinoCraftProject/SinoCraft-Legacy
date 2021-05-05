@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.crafting.soaking.ISoakingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipeSerializer;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -32,7 +32,7 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         protected void onContentsChanged(int slot) {
             ISoakingRecipe old = cur_recipe;
             cur_recipe = null;
-            for (ISoakingRecipe recipe : SoakingRecipeSerializer.recipes.values()) {
+            for (ISoakingRecipe recipe : world.getRecipeManager().getRecipesForType(ModRecipes.SOAKING)) {
                 if (recipe.matches(new RecipeWrapper(this), world)) {
                     cur_recipe = recipe;
                 }
@@ -183,5 +183,11 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         fluid = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluid"));
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         super.read(state, compound);
+    }
+
+    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
+        list.add(itemHandler.getStackInSlot(0));
+        list.add(itemHandler.getStackInSlot(1));
+        return list;
     }
 }

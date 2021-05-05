@@ -1,14 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityStove extends TileEntityUpdatableBase implements IHeatSource, IHasBurnTime {
-    private double heat = 0;
+import static cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities.*;
+
+public class TileEntityStove extends TileEntity implements ITickableTileEntity, IHeat {
+    private int thermal = 0;
     private int burnTime = 0;
+    private int burnSpeed = 1;
 
     public TileEntityStove() {
         super(ModTileEntities.STOVE.get());
@@ -17,12 +21,12 @@ public class TileEntityStove extends TileEntityUpdatableBase implements IHeatSou
     @Override
     public void tick() {
         if (isBurning()) {
-            modifyHeat();
+            modifyBurnSpeed();
             burn();
         }
     }
 
-    private void modifyHeat() {
+    private void modifyBurnSpeed() {
         BlockPos left = getPos().offset(getBlockState().get(BlockStove.FACING).rotateY(), 1);
         BlockPos right = getPos().offset(getBlockState().get(BlockStove.FACING).rotateYCCW(), 1);
 
@@ -32,73 +36,63 @@ public class TileEntityStove extends TileEntityUpdatableBase implements IHeatSou
 
     private void internalModify(BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof IHeatModifier) {
-            IHeatModifier modifier = (IHeatModifier) tile;
-            heat *= modifier.getModifyValue();
+        if (tile.getCapability(WIND_ENERGY_CAPABILITY).isPresent()) {
+            burnSpeed += tile.getCapability(WIND_ENERGY_CAPABILITY).orElse(null).getWindEnergy();
         }
     }
 
     private void burn() {
-        if (burnTime >= 0) {
-            setBurnState(true);
-            burnTime--;
+        burnTime -= burnSpeed;
+        thermal += burnSpeed;
 
-            BlockPos up = getPos().offset(Direction.UP, 1);
-            TileEntity tile = world.getTileEntity(up);
-            if (tile instanceof IStoveWorker) {
-                IStoveWorker worker = (IStoveWorker) tile;
-                worker.work(heat);
-            }
-        } else {
-            setBurnState(false);
+        BlockPos up = getPos().offset(Direction.UP, 1);
+        TileEntity tile = world.getTileEntity(up);
+        if (tile.getCapability(HEAT_CAPABILITY).isPresent()) {
+            tile.getCapability(HEAT_CAPABILITY).orElse(null).setHeat(thermal);
         }
     }
 
-    public void setBurnState(boolean burning) {
-        world.setBlockState(pos, getBlockState().with(BlockStove.BURNING, burning));
+    @Override
+    public int getHeat() {
+        return thermal;
     }
 
     @Override
-    public double getHeat() {
-        return heat;
+    public void setHeat(int value) {
+        thermal = value;
     }
 
     @Override
-    public void setHeat(double value) {
-        heat = value;
+    public void resetHeat() {
+        setHeat(0);
     }
 
     @Override
-    public void addHeat(double value) {
-        heat += value;
+    public void addHeat(int value) {
+        thermal += value;
     }
 
     @Override
-    public void subHeat(double value) {
-        heat -= value;
+    public void subHeat(int value) {
+        thermal -= value;
     }
 
-    @Override
     public int getBurnTime() {
         return burnTime;
     }
 
-    @Override
     public void setBurnTime(int time) {
         burnTime = time;
     }
 
-    @Override
     public void addBurnTime(int time) {
         burnTime += time;
     }
 
-    @Override
     public void subBurnTime(int time) {
         burnTime -= time;
     }
 
-    @Override
     public boolean isBurning() {
         return burnTime > 0;
     }
