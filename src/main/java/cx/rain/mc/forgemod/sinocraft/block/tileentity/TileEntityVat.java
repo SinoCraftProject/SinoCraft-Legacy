@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.ISoakRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.vat.SoakRecipeSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -33,7 +33,7 @@ public class TileEntityVat extends TileEntityMachineBase {
         protected void onContentsChanged(int slot) {
             ISoakRecipe old = cur_recipe;
             cur_recipe = null;
-            for (ISoakRecipe recipe : SoakRecipeSerializer.recipes.values()) {
+            for (ISoakRecipe recipe : world.getRecipeManager().getRecipesForType(ModRecipes.SOAK)) {
                 if (recipe.matches(new RecipeWrapper(this), world)) {
                     cur_recipe = recipe;
                 }

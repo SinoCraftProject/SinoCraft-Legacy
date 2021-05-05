@@ -19,6 +19,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlocks();
         addEntities();
         addAdvancements();
+        addMisc();
     }
 
     private void addAdvancements() {
@@ -68,6 +69,10 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItemGroup("combat", "华夏工艺 | 战斗");
         addItemGroup("tools", "华夏工艺 | 工具");
         addItemGroup("misc", "华夏工艺 | 杂项");
+    }
+
+    private void addMisc() {
+        add("gui.sinocraft.category.soak", "浸泡");
     }
 
     private void addItems() {

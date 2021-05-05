@@ -2,6 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.api.crafting.vat;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.NBTToSNBTConverter;
@@ -11,10 +13,12 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
@@ -87,7 +91,7 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return new SoakRecipeSerializer();
+        return new Serializer();
     }
 
     @Nullable
@@ -113,10 +117,75 @@ public final class SoakRecipe implements ISoakRecipe, IFinishedRecipe {
     }
 
     @Override
+    public boolean isResultFluid() {
+        return result == null;
+    }
+
+    @Override
     public JsonObject getRecipeJson() {
         JsonObject jsonobject = new JsonObject();
         jsonobject.addProperty("type", "sinocraft:soak");
         this.serialize(jsonobject);
         return jsonobject;
     }
+
+    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SoakRecipe> {
+        @Override
+        public SoakRecipe read(ResourceLocation id, JsonObject json) {
+            try {
+                ItemStack item = ItemStack.read(new JsonToNBT(new StringReader(
+                        json.getAsJsonPrimitive("item").getAsString())
+                ).readStruct());
+                if (json.has("result")) {
+                    ItemStack result = ItemStack.read(new JsonToNBT(new StringReader(
+                            json.getAsJsonPrimitive("result").getAsString())
+                    ).readStruct());
+                    return new SoakRecipe(item, result, id);
+                }
+                else {
+                    if (json.has("fluid_result")) {
+                        FluidStack result = FluidStack.loadFluidStackFromNBT(new JsonToNBT(new StringReader(
+                                json.getAsJsonPrimitive("fluid_result").getAsString())
+                        ).readStruct());
+                        return new SoakRecipe(item, result, id);
+                    }
+                }
+            } catch (CommandSyntaxException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public SoakRecipe read(ResourceLocation id, PacketBuffer buffer) {
+            ItemStack item = ItemStack.read(buffer.readCompoundTag());
+            if (buffer.readBoolean()) {
+                ItemStack result = ItemStack.read(buffer.readCompoundTag());
+                return new SoakRecipe(item, result, id);
+            }
+            else {
+                FluidStack result = FluidStack.loadFluidStackFromNBT(buffer.readCompoundTag());
+                return new SoakRecipe(item, result, id);
+            }
+        }
+
+        @Override
+        public void write(PacketBuffer buffer, SoakRecipe recipe) {
+            CompoundNBT nbt = new CompoundNBT();
+            recipe.getItem().write(nbt);
+            buffer.writeCompoundTag(nbt);
+            nbt = new CompoundNBT();
+            if (recipe.getRecipeOutput() != null) {
+                buffer.writeBoolean(true);
+                recipe.getRecipeOutput().write(nbt);
+            }
+            else {
+                buffer.writeBoolean(false);
+                recipe.getFluidResult().writeToNBT(nbt);
+            }
+            buffer.writeCompoundTag(nbt);
+        }
+    }
+
 }
