@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "${mc_version}-1.1.0"
+version = "${project.mc_version}-${project.sinocraft_version}"
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'sinocraft'
 
@@ -96,10 +96,10 @@ repositories {
     }
     maven {
         name = "JEI Maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
+        url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
-        name = "JEI Fallback Maven"
+        name = "JEI Maven Fallback"
         url = "https://modmaven.k-4u.nl"
     }
     maven {
@@ -136,11 +136,11 @@ dependencies {
 
     implementation fg.deobf("dev:NBTEdit:0.10.0")
 
-    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}:api")
-    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${project.jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${project.jei_version}")
 
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.BlockMachineBase;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStoneMill;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,7 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("deprecation")
-public class BlockStoneMill extends BlockMachineBase {
+public class BlockStoneMill extends BlockHorizontal {
     public static IntegerProperty ROTATE = IntegerProperty.create("rotate",1,16);
 
     public BlockStoneMill() {
@@ -47,7 +47,6 @@ public class BlockStoneMill extends BlockMachineBase {
         builder.add(ROTATE);
     }
 
-    @Override
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(worldIn.getTileEntity(pos) instanceof TileEntityStoneMill){
             TileEntityStoneMill tileEntity = (TileEntityStoneMill) worldIn.getTileEntity(pos);
@@ -82,7 +81,6 @@ public class BlockStoneMill extends BlockMachineBase {
         return ActionResultType.PASS;
     }
 
-    @Override
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(worldIn.getTileEntity(pos) instanceof TileEntityStoneMill){
             TileEntityStoneMill tileEntity = (TileEntityStoneMill) worldIn.getTileEntity(pos);

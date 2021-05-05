@@ -27,7 +27,10 @@ public class BlockStove extends BlockHorizontal {
     public static final BooleanProperty BURNING = BooleanProperty.create("burning");
 
     public BlockStove() {
-        super(AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GRAY));
+        super(AbstractBlock.Properties
+                .create(Material.GOURD, MaterialColor.GRAY)
+                .setRequiresTool()
+                .hardnessAndResistance(3.5F));
     }
 
     @Override
@@ -51,10 +54,19 @@ public class BlockStove extends BlockHorizontal {
             if (tile instanceof TileEntityStove) {
                 TileEntityStove stove = (TileEntityStove) tile;
                 stove.addBurnTime(FuelHelper.getItemBurnTime(stack));
+                stack.shrink(1);
                 return ActionResultType.SUCCESS;
             }
         }
         return ActionResultType.PASS;
+    }
+
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        if (state.get(BURNING)) {
+            return 14;
+        }
+        return super.getLightValue(state, world, pos);
     }
 
     @Override

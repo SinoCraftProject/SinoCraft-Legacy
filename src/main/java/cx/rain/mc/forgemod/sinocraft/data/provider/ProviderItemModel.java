@@ -3,12 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -40,6 +38,11 @@ public class ProviderItemModel extends ItemModelProvider {
                 .parent(getModel("block/" + blockItem.getRegistryName().getPath()));
     }
 
+    protected void namedBlockItem(BlockItem blockItem, String name) {
+        getBuilder(blockItem.getRegistryName().getPath())
+                .parent(getModel("block/" + name));
+    }
+
     protected void axisBlockItem(BlockItem blockItem) {
         getBuilder(blockItem.getRegistryName().getPath())
                 .parent(getModel("block/" + blockItem.getRegistryName().getPath() + "_horizontal"));
@@ -56,27 +59,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
         simpleItem(ModItems.PEACH.get());
-        simpleItem(ModItems.CHILI_PEPPER_SEED.get());
-        simpleItem(ModItems.GREEN_PEPPER_SEED.get());
-        simpleItem(ModItems.EGGPLANT_SEED.get());
-        simpleItem(ModItems.ADUST_FOOD.get());
-        simpleItem(ModItems.CABBAGE_SEED.get());
-        simpleItem(ModItems.RICE_SEED.get());
-        simpleItem(ModItems.MILLET_SEED.get());
-        simpleItem(ModItems.SORGHUM_SEED.get());
-        simpleItem(ModItems.SOYBEAN.get());
-        simpleItem(ModItems.RICE.get());
-        simpleItem(ModItems.MILLET.get());
-        simpleItem(ModItems.SORGHUM.get());
         simpleItem(ModItems.TUTORIAL_BOOK.get());
-
-        simpleItem(ModItems.CHILI_PEPPER.get(), modLoc("item/chili_pepper"));
-        simpleItem(ModItems.GREEN_PEPPER.get(), modLoc("item/green_pepper"));
-        simpleItem(ModItems.EGGPLANT.get(), modLoc("item/eggplant"));
-        simpleItem(ModItems.CABBAGE.get(), modLoc("item/chili_pepper"));
-        simpleItem(ModBlockItems.WHITE_RADISH.get(), modLoc("item/white_radish"));
-        simpleItem(ModBlockItems.SUMMER_RADISH.get(), modLoc("item/summer_radish"));
-        simpleItem(ModBlockItems.GREEN_RADISH.get(), modLoc("item/green_radish"));
 
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
         getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));
@@ -99,6 +82,9 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
         addTrees();
+        addCrops();
+        addTools();
+        addMachineBlockItems();
     }
 
     private void addTrees() {
@@ -133,5 +119,39 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.MULBERRY_PLANK.get());
         simpleBlockItem(ModBlockItems.MULBERRY_LEAVES.get());
         simpleItem(ModBlockItems.MULBERRY_SAPLING.get(), modLoc("block/mulberry_sapling"));
+    }
+
+    private void addCrops() {
+        simpleItem(ModItems.CHILI_PEPPER_SEED.get());
+        simpleItem(ModItems.GREEN_PEPPER_SEED.get());
+        simpleItem(ModItems.EGGPLANT_SEED.get());
+        simpleItem(ModItems.ADUST_FOOD.get());
+        simpleItem(ModItems.CABBAGE_SEED.get());
+        simpleItem(ModItems.RICE_SEED.get());
+        simpleItem(ModItems.MILLET_SEED.get());
+        simpleItem(ModItems.SORGHUM_SEED.get());
+        simpleItem(ModItems.SOYBEAN.get());
+        simpleItem(ModItems.RICE.get());
+        simpleItem(ModItems.MILLET.get());
+        simpleItem(ModItems.SORGHUM.get());
+        simpleItem(ModItems.CHILI_PEPPER.get());
+        simpleItem(ModItems.GREEN_PEPPER.get());
+        simpleItem(ModItems.EGGPLANT.get());
+        simpleItem(ModItems.CABBAGE.get());
+        simpleItem(ModBlockItems.WHITE_RADISH.get());
+        simpleItem(ModBlockItems.SUMMER_RADISH.get());
+        simpleItem(ModBlockItems.GREEN_RADISH.get());
+    }
+
+    private void addTools() {
+        simpleItem(ModItems.KNIFE_IRON.get());
+        simpleItem(ModItems.KNIFE_GOLD.get());
+        simpleItem(ModItems.KNIFE_DIAMOND.get());
+    }
+
+    private void addMachineBlockItems() {
+        simpleBlockItem(ModBlockItems.VAT.get());
+        namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
+        simpleBlockItem(ModBlockItems.POT.get());
     }
 }
