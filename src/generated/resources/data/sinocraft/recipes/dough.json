@@ -1,5 +1,5 @@
 {
-  "type": "sinocraft:soak",
+  "type": "sinocraft:soaking",
   "item": "{id:\"sinocraft:flour\",Count:2b}",
   "result": "{id:\"sinocraft:dough\",Count:1b}"
 }

@@ -58,7 +58,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
-        simpleItem(ModItems.PEACH.get());
         simpleItem(ModItems.TUTORIAL_BOOK.get());
 
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
@@ -69,21 +68,12 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("stuffing").parent(GENERATED).texture("layer0", modLoc("item/stuffing"));
         getBuilder("bucket_wood_pulp").parent(GENERATED).texture("layer0",modLoc("item/bucket_wood_pulp"));
 
-        simpleItem(ModItems.BARK.get(), modLoc("item/bark"));
-        simpleItem(ModItems.CHARCOAL_BLACK.get(), modLoc("item/charcoal_black"));
-        simpleItem(ModItems.CHINESE_BRUSH.get(), modLoc("item/chinese_brush"));
-        simpleItem(ModItems.INK_STONE.get(), modLoc("item/ink_stone"));
-        simpleItem(ModItems.CHINESE_INK.get(), modLoc("item/chinese_ink"));
-        simpleItem(ModItems.EMPTY_XUAN_PAPER.get(), modLoc("item/empty_xuan_paper"));
-        // Todo: Replace empty_xuan_paper to xuan_paper.
-        simpleItem(ModItems.XUAN_PAPER.get(), modLoc("item/empty_xuan_paper"));
-
-
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
         addTrees();
         addCrops();
         addTools();
+        addMisc();
         addMachineBlockItems();
     }
 
@@ -141,12 +131,27 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModBlockItems.WHITE_RADISH.get());
         simpleItem(ModBlockItems.SUMMER_RADISH.get());
         simpleItem(ModBlockItems.GREEN_RADISH.get());
+        simpleItem(ModItems.PEACH.get());
     }
 
     private void addTools() {
         simpleItem(ModItems.KNIFE_IRON.get());
         simpleItem(ModItems.KNIFE_GOLD.get());
         simpleItem(ModItems.KNIFE_DIAMOND.get());
+    }
+
+    private void addMisc() {
+        simpleItem(ModItems.BARK.get(), modLoc("item/bark"));
+        simpleItem(ModItems.CHARCOAL_BLACK.get(), modLoc("item/charcoal_black"));
+        simpleItem(ModItems.CHINESE_BRUSH.get(), modLoc("item/chinese_brush"));
+        simpleItem(ModItems.INK_STONE.get(), modLoc("item/ink_stone"));
+        simpleItem(ModItems.CHINESE_INK.get(), modLoc("item/chinese_ink"));
+        simpleItem(ModItems.EMPTY_XUAN_PAPER.get(), modLoc("item/empty_xuan_paper"));
+        // Todo: Replace empty_xuan_paper to xuan_paper.
+        simpleItem(ModItems.XUAN_PAPER.get(), modLoc("item/empty_xuan_paper"));
+
+        simpleItem(ModItems.DISH.get());
+        simpleItem(ModItems.HEROES_ASSEMBLE.get());
     }
 
     private void addMachineBlockItems() {
