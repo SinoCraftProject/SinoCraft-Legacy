@@ -90,10 +90,10 @@ public class ProviderAdvancement extends ProviderBaseAdvancement {
         );
 
         Advancements.put(new ResourceLocation(ID, "basic/get_china_ink"), ChildAdvancement(
-                new ItemStack(ModItems.CHINA_INK.get()), "advancement.sinocraft.get_china_ink.title", "advancement.sinocraft.get_china_ink.description",
+                new ItemStack(ModItems.CHINESE_INK.get()), "advancement.sinocraft.get_china_ink.title", "advancement.sinocraft.get_china_ink.description",
                 new ResourceLocation(ID, "basic/root"), FrameType.TASK, true, true, false, new AdvancementRewards.Builder().addExperience(0)).
                 withRequirementsStrategy(IRequirementsStrategy.AND).
-                withCriterion("get_china_ink", this.hasItem(ModItems.CHINA_INK.get())
+                withCriterion("get_china_ink", this.hasItem(ModItems.CHINESE_INK.get())
                 )
         );
 

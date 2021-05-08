@@ -1,13 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.LanguageProvider;
 
 public class ProviderLanguageZHCN extends ProviderLanguage {
     public ProviderLanguageZHCN(DataGenerator gen) {
@@ -21,12 +19,13 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlocks();
         addEntities();
         addAdvancements();
+        addMisc();
     }
 
     private void addAdvancements() {
         addAdvancement("root",
-                "欢迎使用 SinoCraft 华夏工艺！",
-                "有服章之美谓之华，有礼仪之邦谓之夏。");
+                "SinoCraft 华夏工艺",
+                "有服章之美谓之华，有礼仪之大谓之夏。");
         addAdvancement("knife",
                 "刀",
                 "获得一把小刀。");
@@ -34,8 +33,8 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
                 "无物为真，诸行皆可",
                 "用小刀杀死一个生物。");
         addAdvancement("get_bark",
-                "Don't starve.",
-                "用小刀剥下一棵树的树皮。");
+                "周扒皮",
+                "用小刀扒下一棵树的树皮。");
         addAdvancement("kill_all_mobs_with_knife",
                 "怪物大师",
                 "用小刀杀死每一种怪物。");
@@ -59,7 +58,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
                 "要您老八十一点都不贵。");
         addAdvancement("porridge_ready",
                 "食以粥为先",
-                "用炉灶煮粥。");
+                "用锅煮粥。");
     }
 
     private void addItemGroups() {
@@ -72,6 +71,10 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItemGroup("misc", "华夏工艺 | 杂项");
     }
 
+    private void addMisc() {
+        add("gui.sinocraft.category.soak", "浸泡");
+    }
+
     private void addItems() {
         addItem(ModItems.PEACH, "桃子");
         addItem(ModItems.CHILI_PEPPER_SEED, "辣椒种子");
@@ -79,7 +82,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.CABBAGE_SEED, "白菜种子");
         addItem(ModItems.EGGPLANT_SEED, "茄子种子");
         addItem(ModItems.RICE_SEED, "稻谷");
-        addItem(ModItems.MILLET_SEED, "谷子");
+        addItem(ModItems.MILLET_SEED, "粟");
         addItem(ModItems.SORGHUM_SEED, "高粱");
         addItem(ModItems.SOYBEAN, "大豆");
         addItem(ModItems.RICE, "大米");
@@ -89,9 +92,6 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.FLOUR, "面粉");
         addItem(ModItems.DOUGH, "面团");
         addItem(ModItems.DUMPLING_WRAPPER, "饺子皮");
-//        addItem(ModItems.DUMPLING, "饺子");
-//        addItem(ModItems.COOKED_DUMPLING, "熟饺子");
-//        addItem(ModItems.STUFFING, "馅");
 
         addItem(ModBlockItems.GREEN_RADISH, "青萝卜");
         addItem(ModBlockItems.SUMMER_RADISH, "水萝卜");
@@ -105,7 +105,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.KNIFE_GOLD, "金质小刀");
         addItem(ModItems.KNIFE_DIAMOND, "钻石小刀");
         addItem(ModItems.CHINESE_BRUSH, "毛笔");
-        addItem(ModItems.CHINA_INK, "墨汁");
+        addItem(ModItems.CHINESE_INK, "墨汁");
         addItem(ModItems.CHARCOAL_BLACK, "炭黑");
         addItem(ModItems.INK_STONE, "砚台");
         addItem(ModItems.EMPTY_XUAN_PAPER, "空白的宣纸");
@@ -151,8 +151,9 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlock(ModBlocks.RED_MARBLE, "南江红大理石");
         addBlock(ModBlocks.BLACK_MARBLE, "晶墨玉大理石");
 
-        addBlock(ModBlocks.STOVE, "炉灶");
+        addBlock(ModBlocks.STOVE, "灶台");
         addBlock(ModBlocks.VAT, "木缸");
+        addBlock(ModBlocks.POT, "铁锅");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "晾纸架");
         addBlock(ModBlocks.STONE_MILL, "石磨");
     }

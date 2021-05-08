@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -23,11 +24,11 @@ public class BlockPlant extends CropsBlock {
     };
 
     private PlantType type;
-    private RegistryObject<Item> seed;
+    private RegistryObject<? extends Item> seed;
     private StageProperty stage;
     protected final StateContainer<Block, BlockState> stateContainer;
 
-    public BlockPlant(PlantType typeIn, RegistryObject<Item> seedRegistryIn, StageProperty stageIn) {
+    public BlockPlant(PlantType typeIn, RegistryObject<? extends Item> seedRegistryIn, StageProperty stageIn) {
         super(Block.Properties.from(Blocks.CARROTS));
 
         type = typeIn;

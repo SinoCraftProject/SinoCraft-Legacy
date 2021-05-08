@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class DrawPaperC2SPacket implements IMessage {
@@ -19,7 +20,7 @@ public class DrawPaperC2SPacket implements IMessage {
     }
 
     public DrawPaperC2SPacket(PacketBuffer buffer) {
-        this.pack = new Pack(new Vec2<>(0,0), (byte)0);
+        this.pack = new Pack(new Vec2<>(0, 0), (byte) 0);
         deserialize(buffer);
     }
 
@@ -36,26 +37,49 @@ public class DrawPaperC2SPacket implements IMessage {
     @Override
     public void handler(Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
+            if (context.get().getSender() == null) {
+                return;
+            }
+
             if (context.get().getSender().openContainer instanceof ContainerChineseBrush) {
                 ContainerChineseBrush container = (ContainerChineseBrush) context.get().getSender().openContainer;
-                CompoundNBT nbt = container.inventory.getStackInSlot(0).getOrCreateTag();
-                if (! nbt.contains("pixels")) {
+                ItemStack paper = container.inventory.getStackInSlot(0);
+                ItemStack ink = container.inventory.getStackInSlot(1);
+
+                if (paper.isEmpty() || ink.isEmpty()) {
+                    return;
+                }
+
+                ItemStack output = container.inventory.getStackInSlot(2);
+
+                if (output.isEmpty()) {
+                    output = new ItemStack(ModItems.XUAN_PAPER.get());
+                }
+
+                CompoundNBT nbt = output.getOrCreateTag();
+                if (!nbt.contains("pixels")) {
                     nbt.putByteArray("pixels", new byte[32 * 32]);
                 }
-                int inknum = container.inventory.getStackInSlot(1).getMaxDamage() - container.inventory.getStackInSlot(1).getDamage();
-                if (inknum >= this.pack.color && this.pack.pos.x * 32 + this.pack.pos.y < 1024) {
+
+                if (this.pack.pos.x * 32 + this.pack.pos.y < 1024) {
                     nbt.getByteArray("pixels")[this.pack.pos.x * 32 + this.pack.pos.y] = this.pack.color;
-                    container.inventory.getStackInSlot(1).damageItem(inknum, context.get().getSender(),
-                            e -> container.inventory.setInventorySlotContents(1, new ItemStack(ModItems.INK_STONE.get()))
-                    );
+                    // Todo: Add brush effect.
                 }
-                container.inventory.getStackInSlot(0).setTag(nbt);
+
+                if (this.pack.color == 0) {
+                    if (Arrays.equals(nbt.getByteArray("pixels"), new byte[32 * 32])) {
+                        return;
+                    }
+                }
+
+                output.setTag(nbt);
+                container.inventory.setInventorySlotContents(2, output);
             }
         });
         context.get().setPacketHandled(true);
     }
 
-    public static class Pack implements IPack{
+    public static class Pack implements IPack {
         private Vec2<Integer> pos;
         private byte color;
 

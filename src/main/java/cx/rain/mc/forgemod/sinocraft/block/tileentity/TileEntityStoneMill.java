@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
@@ -19,7 +18,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TileEntityStoneMill extends TileEntityMachineBase {
+public class TileEntityStoneMill extends TileEntityUpdatableBase {
     private static Map<String,ItemStack> recipes = new HashMap<>();
 
     private ItemStackHandler itemHandler = new ItemStackHandler(1){
@@ -47,7 +46,6 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
     public TileEntityStoneMill() {
         super(ModTileEntities.STONE_MILL.get());
         registerDefaultRecipes();
-        state=MachineState.CLOSE;
     }
 
     @Nonnull
@@ -90,11 +88,5 @@ public class TileEntityStoneMill extends TileEntityMachineBase {
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         progress = compound.getInt("progress");
         super.read(state, compound);
-    }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(itemHandler.getStackInSlot(0));
-        return list;
     }
 }

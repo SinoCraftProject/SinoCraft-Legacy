@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft;
 
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.gui.book.component.ComponentType;
@@ -24,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 public class SinoCraft {
     public static final String MODID = "sinocraft";
     public static final String NAME = "SinoCraft";
-    public static final String MC_VERSION = "1.16.4";
+    public static final String MC_VERSION = "1.16.5";
     public static final String MOD_VERSION = "1.1.0";
     public static final String VERSION = MC_VERSION + "-" + MOD_VERSION;
 
@@ -47,6 +48,7 @@ public class SinoCraft {
         new ModTileEntities(bus);
         new ModFluids(bus);
         new ModContainers(bus);
+        new ModRecipes(bus);
         ComponentType.init(bus);
     }
 
