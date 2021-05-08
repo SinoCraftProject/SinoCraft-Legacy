@@ -29,10 +29,10 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
     /**
      * State is a int value shows drying rack's state.
      * 0: There is no paper drying.
-     * 1: Paper is drying.
-     * 2: Paper drying is finished.
+     * 1-3: Paper is drying.
+     * 4: Paper drying is finished.
      */
-    public static IntegerProperty STATE = IntegerProperty.create("state", 0, 2);
+    public static IntegerProperty STATE = IntegerProperty.create("state", 0, 4);
     public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 
     public BlockPaperDryingRack() {
@@ -60,8 +60,8 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
 
     @Override
     public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(STATE) == 1) {
-            world.setBlockState(pos, state.with(STATE, 2));
+        if (state.get(STATE) < 4) {
+            world.setBlockState(pos, state.with(STATE, state.get(STATE) + 1));
         }
     }
 
@@ -74,7 +74,7 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
             return ActionResultType.SUCCESS;
         }
 
-        if (state.get(STATE) == 2) {
+        if (state.get(STATE) == 4) {
             setState(worldIn, pos, state, 0);
             worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
             return ActionResultType.SUCCESS;
@@ -92,7 +92,7 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
             return ActionResultType.SUCCESS;
         }
 
-        if (state.get(STATE) == 2) {
+        if (state.get(STATE) == 4) {
             setState(worldIn, pos, state, 0);
             worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
             return ActionResultType.SUCCESS;
@@ -106,10 +106,12 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
 
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.get(STATE) == 2) {
+        if (state.get(STATE) == 4) {
             if (worldIn.isRemote) {
                 worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
             }
         }
     }
+
+
 }

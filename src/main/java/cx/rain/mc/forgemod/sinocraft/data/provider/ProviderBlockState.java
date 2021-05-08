@@ -91,7 +91,6 @@ public class ProviderBlockState extends BlockStateProvider {
         }
 
 
-
         addCrops();
         addTrees();
         addBuildingBlocks();
@@ -156,7 +155,7 @@ public class ProviderBlockState extends BlockStateProvider {
         // Stove
         VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
         Direction stoveDirection = Direction.NORTH;
-        for (int i = 0;i < 4;i++) {
+        for (int i = 0; i < 4; i++) {
             stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
@@ -174,9 +173,9 @@ public class ProviderBlockState extends BlockStateProvider {
                 .modelFile(models().getExistingFile(modLoc("block/pot"))).addModel();
 
         MultiPartBlockStateBuilder paperDryingRackBuilder = getMultipartBuilder(ModBlocks.PAPER_DRYING_RACK.get());
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i <= 4; i++) {
             Direction paperDryingRackBuilderDirection = Direction.NORTH;
-            for (int j = 0;j < 4;j++) {
+            for (int j = 0; j < 4; j++) {
                 paperDryingRackBuilder.part().modelFile(models().getExistingFile(modLoc("block/paper_drying_rack" + i)))
                         .rotationY(90 * j)
                         .addModel()

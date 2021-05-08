@@ -116,6 +116,84 @@
         "model": "sinocraft:block/paper_drying_rack2",
         "y": 270
       }
+    },
+    {
+      "when": {
+        "state": "3",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack3"
+      }
+    },
+    {
+      "when": {
+        "state": "3",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "3",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "state": "3",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack3",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "state": "4",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack4"
+      }
+    },
+    {
+      "when": {
+        "state": "4",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "state": "4",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack4",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "state": "4",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "sinocraft:block/paper_drying_rack4",
+        "y": 270
+      }
     }
   ]
 }
