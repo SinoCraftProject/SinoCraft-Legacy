@@ -17,6 +17,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItemGroups();
         addItems();
         addBlocks();
+        addTooltips();
         addEntities();
         addAdvancements();
         addMisc();
@@ -72,7 +73,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     }
 
     private void addMisc() {
-        add("gui.sinocraft.category.soak", "浸泡");
+        add("gui.sinocraft.category.soaking", "浸泡");
     }
 
     private void addItems() {
@@ -100,6 +101,9 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.GREEN_PEPPER, "青椒");
         addItem(ModItems.EGGPLANT, "茄子");
         addItem(ModItems.CABBAGE, "白菜");
+        addItem(ModItems.HEROES_ASSEMBLE, "群英荟萃");
+
+        addItem(ModItems.DISH, "盘子");
         addItem(ModItems.BARK, "树皮");
         addItem(ModItems.KNIFE_IRON, "铁质小刀");
         addItem(ModItems.KNIFE_GOLD, "金质小刀");
@@ -156,6 +160,10 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlock(ModBlocks.POT, "铁锅");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "晾纸架");
         addBlock(ModBlocks.STONE_MILL, "石磨");
+    }
+
+    private void addTooltips() {
+        addTooltip(ModItems.HEROES_ASSEMBLE, "我看就是萝卜开会。");
     }
 
     private void addEntities() {

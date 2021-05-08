@@ -124,7 +124,7 @@ public final class SoakingRecipe implements ISoakingRecipe, IFinishedRecipe {
     @Override
     public JsonObject getRecipeJson() {
         JsonObject jsonobject = new JsonObject();
-        jsonobject.addProperty("type", "sinocraft:soak");
+        jsonobject.addProperty("type", "sinocraft:soaking");
         this.serialize(jsonobject);
         return jsonobject;
     }

@@ -1,5 +1,5 @@
 {
-  "type": "sinocraft:soak",
+  "type": "sinocraft:soaking",
   "item": "{id:\"sinocraft:bark\",Count:3b}",
   "fluid_result": "{FluidName:\"sinocraft:wood_pulp\",Amount:1000}"
 }

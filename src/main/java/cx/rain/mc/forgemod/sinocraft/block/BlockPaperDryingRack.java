@@ -60,7 +60,7 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
 
     @Override
     public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(STATE) < 4) {
+        if (state.get(STATE) > 0 && state.get(STATE) < 4) {
             world.setBlockState(pos, state.with(STATE, state.get(STATE) + 1));
         }
     }
@@ -112,6 +112,4 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
             }
         }
     }
-
-
 }
