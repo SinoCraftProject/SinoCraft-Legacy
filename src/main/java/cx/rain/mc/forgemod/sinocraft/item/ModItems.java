@@ -48,7 +48,7 @@ public class ModItems {
     public static RegistryObject<Item> COOKED_DUMPLING = REGISTRY.register("cooked_dumpling", () -> new ItemFood(ModGroups.FOODS, new Food.Builder().hunger(6).saturation(0.2f).build()));
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
-    public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(net.minecraft.item.Items.BUCKET)));
+    public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(Items.BUCKET).maxStackSize(1)));
     public static RegistryObject<Item> EMPTY_XUAN_PAPER = REGISTRY.register("empty_xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new ItemXuanPaper());
     public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new ItemTutorialBook());

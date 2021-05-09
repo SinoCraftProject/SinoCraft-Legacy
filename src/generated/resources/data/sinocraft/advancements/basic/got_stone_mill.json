@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "item": "sinocraft:chinese_ink"
+      "item": "sinocraft:flour"
     },
     "title": {
-      "translate": "advancement.sinocraft.get_china_ink.title"
+      "translate": "advancement.sinocraft.got_stone_mill.title"
     },
     "description": {
-      "translate": "advancement.sinocraft.get_china_ink.description"
+      "translate": "advancement.sinocraft.got_stone_mill.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
   },
   "parent": "sinocraft:basic/root",
   "criteria": {
-    "get_china_ink": {
+    "got_stone_mill": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "sinocraft:chinese_ink"
+            "item": "sinocraft:stone_mill"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "get_china_ink"
+      "got_stone_mill"
     ]
   ],
   "rewards": {}
