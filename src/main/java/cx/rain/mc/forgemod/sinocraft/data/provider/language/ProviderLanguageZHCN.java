@@ -46,7 +46,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
                 "粉墨登场",
                 "获得墨汁。");
         addAdvancement("write_on_paper",
-                "纸上描眉目，不辨妍或媸。",
+                "纸上描眉目，不辨妍或媸",
                 "在纸上着墨。");
         addAdvancement("got_stone_mill",
                 "磨坊主",

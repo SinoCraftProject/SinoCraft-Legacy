@@ -43,6 +43,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            // Add the two lines below to solve mixin issues.
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 sinocraft {
                     source sourceSets.main
@@ -106,6 +110,10 @@ repositories {
         name = "Hwyla Maven"
         url = "https://maven.tehnut.info"
     }
+    maven {
+        name = "Patchouli Maven"
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 dependencies {
@@ -141,6 +149,9 @@ dependencies {
 
     compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}:api")
     runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}")
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${project.patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${project.patchouli_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
