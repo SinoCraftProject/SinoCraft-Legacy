@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:heroes_assemble"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.heroes_assembly.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.heroes_assembly.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "sinocraft:basic/eating_first",
+  "criteria": {
+    "heroes_assembly": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:heroes_assemble"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "heroes_assembly"
+    ]
+  ],
+  "rewards": {}
+}

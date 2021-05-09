@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:pot"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.porridge_ready.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.porridge_ready.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/eating_first",
+  "criteria": {
+    "eating_first": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:pot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eating_first"
+    ]
+  ],
+  "rewards": {}
+}

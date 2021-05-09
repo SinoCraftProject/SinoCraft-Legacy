@@ -27,13 +27,13 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addAdvancement("root",
                 "SinoCraft 华夏工艺",
                 "有服章之美谓之华，有礼仪之大谓之夏。");
-        addAdvancement("knife",
+        addAdvancement("got_knife",
                 "刀",
                 "获得一把小刀。");
         addAdvancement("kill_entity_by_knives",
                 "无物为真，诸行皆可",
                 "用小刀杀死一个生物。");
-        addAdvancement("get_bark",
+        addAdvancement("got_bark",
                 "周扒皮",
                 "用小刀扒下一棵树的树皮。");
         addAdvancement("kill_all_mobs_with_knife",
@@ -42,24 +42,24 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addAdvancement("kill_all_entities_with_knife",
                 "刺客的盛宴",
                 "用小刀杀死每一种生物。");
-        addAdvancement("get_china_ink",
+        addAdvancement("got_ink",
                 "粉墨登场",
                 "获得墨汁。");
         addAdvancement("write_on_paper",
                 "纸上描眉目，不辨妍或媸。",
                 "在纸上着墨。");
-        addAdvancement("get_stone_mill",
+        addAdvancement("got_stone_mill",
                 "磨坊主",
                 "制作石磨。");
         addAdvancement("eating_first",
                 "民以食为天",
-                "制作炉灶。");
-        addAdvancement("heroes_gathering",
-                "看看这道菜，群英荟萃",
-                "要您老八十一点都不贵。");
+                "搭锅做饭。");
         addAdvancement("porridge_ready",
                 "食以粥为先",
                 "用锅煮粥。");
+        addAdvancement("heroes_assembly",
+                "看看这道菜，群英荟萃",
+                "要您老八十一点都不贵。");
     }
 
     private void addItemGroups() {
