@@ -67,7 +67,6 @@ public class XuanPaperBakedModel implements IBakedModel {
 
     @Override
     public IBakedModel handlePerspective(ItemCameraTransforms.TransformType cameraTransformType, MatrixStack mat) {
-        // FIXME: 2021/4/29 Xuan paper on item frame shows its content.
         if (cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND
                 || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND
                 || cameraTransformType == ItemCameraTransforms.TransformType.FIXED) {
