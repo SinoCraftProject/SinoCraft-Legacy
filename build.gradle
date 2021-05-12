@@ -95,6 +95,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        url = 'https://files.minecraftforge.net/maven'
+    }
+    maven {
         name = "Local Maven"
         url = "file://${projectDir}/libs"
     }
