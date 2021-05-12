@@ -77,7 +77,7 @@ public class BlockVat extends BlockHorizontal {
                 }
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return ActionResultType.SUCCESS;
     }
 
     private void setHeldItem(World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, ItemStack heldItem, FluidActionResult result) {
