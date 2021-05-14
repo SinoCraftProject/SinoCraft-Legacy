@@ -1,6 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.utility.DataFixHelper;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
@@ -21,13 +23,18 @@ public class CapabilityHeat {
         @Override
         public INBT writeNBT(Capability<IHeat> capability, IHeat instance, Direction side)
         {
-            return IntNBT.valueOf(instance.getHeat());
+            CompoundNBT data = new CompoundNBT();
+            data.putInt("heat", instance.getHeat());
+            data.putInt("maxHeat", instance.getMaxHeat());
+            return data;
         }
 
         @Override
         public void readNBT(Capability<IHeat> capability, IHeat instance, Direction side, INBT nbt)
         {
-            instance.setHeat(((IntNBT)nbt).getInt());
+            CompoundNBT data = DataFixHelper.fixHeatData(nbt);
+            instance.setHeat(data.getInt("heat"));
+            instance.setMaxHeat(data.getInt("maxHeat"));
         }
     }
 
@@ -38,14 +45,15 @@ public class CapabilityHeat {
 
         @Override
         public IHeat call() throws Exception {
-            return new CapabilityHeat.Factory.Implementation();
+            return new Implementation();
         }
 
         /**
          * Heat output default implement
          */
-        private class Implementation implements IHeat {
+        private static class Implementation implements IHeat {
             private int heat;
+            private int maxHeat;
 
             @Override
             public int getHeat() {
@@ -60,6 +68,7 @@ public class CapabilityHeat {
             @Override
             public void resetHeat() {
                 this.heat=0;
+                this.maxHeat = 0;
             }
 
             @Override
@@ -71,6 +80,53 @@ public class CapabilityHeat {
             public void subHeat(int heat) {
                 this.heat-=heat;
             }
+
+            @Override
+            public void setMaxHeat(int heat) {
+                maxHeat = heat;
+            }
+
+            @Override
+            public int getMaxHeat() {
+                return maxHeat;
+            }
         }
     }
+
+    public static final IHeat NoHeat = new IHeat() {
+        @Override
+        public int getHeat() {
+            return 0;
+        }
+
+        @Override
+        public void setHeat(int heat) {
+
+        }
+
+        @Override
+        public void resetHeat() {
+
+        }
+
+        @Override
+        public void addHeat(int heat) {
+
+        }
+
+        @Override
+        public void subHeat(int heat) {
+
+        }
+
+        @Override
+        public void setMaxHeat(int heat) {
+
+        }
+
+        @Override
+        public int getMaxHeat() {
+            return 0;
+        }
+    };
 }
