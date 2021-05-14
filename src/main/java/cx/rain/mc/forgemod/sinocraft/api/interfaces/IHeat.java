@@ -38,4 +38,16 @@ public interface IHeat {
      * @author flysong
      */
     void subHeat(int heat);
+
+    /**
+     * Set max heat
+     * @param heat heat
+     */
+    void setMaxHeat(int heat);
+
+    /**
+     * Max heat
+     * @return heat
+     */
+    int getMaxHeat();
 }

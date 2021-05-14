@@ -35,6 +35,8 @@ import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
+
 /**
  * @author NmmOC7
  */
@@ -63,7 +65,7 @@ public class ClientEventHandler {
                         int x = event.getWindow().getScaledWidth();
                         int y = event.getWindow().getScaledHeight();
 
-                        NonNullList<ItemStack> items = tileEntity.getInput();
+                        List<ItemStack> items = tileEntity.getInput();
 
                         for (int i = 0; i < 6; i++) {
                             int stackX = x / 2 - 92 + 23 * i;

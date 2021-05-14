@@ -73,4 +73,31 @@ public class CapabilityWindEnergy {
             }
         }
     }
+
+    public static final IWindEnergy NoWind = new IWindEnergy() {
+        @Override
+        public int getWindEnergy() {
+            return 0;
+        }
+
+        @Override
+        public void setWindEnergy(int we) {
+
+        }
+
+        @Override
+        public void resetWindEnergy() {
+
+        }
+
+        @Override
+        public void addWindEnergy(int we) {
+
+        }
+
+        @Override
+        public void subWindEnergy(int we) {
+
+        }
+    };
 }

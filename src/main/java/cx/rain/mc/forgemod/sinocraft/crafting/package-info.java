@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package cx.rain.mc.forgemod.sinocraft.crafting.soaking;
+package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import mcp.MethodsReturnNonnullByDefault;
 

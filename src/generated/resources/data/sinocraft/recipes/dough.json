@@ -1,5 +1,14 @@
 {
   "type": "sinocraft:soaking",
-  "item": "{id:\"sinocraft:flour\",Count:2b}",
-  "result": "{id:\"sinocraft:dough\",Count:1b}"
+  "time": 400,
+  "ingredients": {
+    "item": {
+      "item": "sinocraft:flour",
+      "count": 2
+    },
+    "fluid": "minecraft:water"
+  },
+  "results": {
+    "item": "sinocraft:dough"
+  }
 }

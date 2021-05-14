@@ -1,16 +1,16 @@
 package cx.rain.mc.forgemod.sinocraft;
 
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
-import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
+import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.gui.book.component.ComponentType;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
-import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
-import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
+import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.utility.BlockAdditions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

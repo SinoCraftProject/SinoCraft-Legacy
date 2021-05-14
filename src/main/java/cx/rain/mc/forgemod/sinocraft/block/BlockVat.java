@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.block;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.VatFluidHandler;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.VatItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -56,24 +57,41 @@ public class BlockVat extends BlockHorizontal {
         if (!worldIn.isRemote()) {
             TileEntity te = worldIn.getTileEntity(pos);
             if (te instanceof TileEntityVat) {
-                VatFluidHandler vatHandler = ((TileEntityVat) te).getFluidHandler();
+                VatFluidHandler vatFluidHandler = ((TileEntityVat) te).getFluidHandler();
+                VatItemHandler vatItemHandler = ((TileEntityVat) te).getItemHandler();
                 ItemStack heldItem = player.getHeldItem(handIn);
                 if (heldItem.isEmpty()) {
                     if (player.isSneaking()) {
-                        vatHandler.clear();
+                        vatFluidHandler.clear();
                         return ActionResultType.SUCCESS;
+                    } else {
+                        ItemStack output = vatItemHandler.getStackInSlot(0);
+                        if (!output.isEmpty()) {
+                            vatItemHandler.setStackInSlot(0, ItemStack.EMPTY);
+                            player.setHeldItem(handIn, output.copy());
+                            return ActionResultType.SUCCESS;
+                        }
+                        ItemStack input = vatItemHandler.getStackInSlot(1);
+                        if (!input.isEmpty()) {
+                            vatItemHandler.setStackInSlot(1, ItemStack.EMPTY);
+                            player.setHeldItem(handIn, input.copy());
+                            return ActionResultType.SUCCESS;
+                        }
                     }
                 } else {
-                    FluidActionResult empty = FluidUtil.tryEmptyContainer(heldItem, vatHandler, 1000, player, true);
+                    FluidActionResult empty = FluidUtil.tryEmptyContainer(heldItem, vatFluidHandler, 1000, player, true);
                     if (empty.success) {
                         setHeldItem(worldIn, pos, player, handIn, heldItem, empty);
                         return ActionResultType.SUCCESS;
                     }
-                    FluidActionResult fill = FluidUtil.tryFillContainer(heldItem, vatHandler, 1000, player, true);
+                    FluidActionResult fill = FluidUtil.tryFillContainer(heldItem, vatFluidHandler, 1000, player, true);
                     if (fill.success) {
                         setHeldItem(worldIn, pos, player, handIn, heldItem, fill);
                         return ActionResultType.SUCCESS;
                     }
+                    ItemStack insertItem = vatItemHandler.insertItem(1, heldItem, false);
+                    player.setHeldItem(handIn, insertItem);
+                    return ActionResultType.SUCCESS;
                 }
             }
         }
