@@ -45,51 +45,7 @@ public class CapabilityHeat {
 
         @Override
         public IHeat call() throws Exception {
-            return new Implementation();
-        }
-
-        /**
-         * Heat output default implement
-         */
-        private static class Implementation implements IHeat {
-            private int heat;
-            private int maxHeat;
-
-            @Override
-            public int getHeat() {
-                return this.heat;
-            }
-
-            @Override
-            public void setHeat(int heat) {
-                this.heat=heat;
-            }
-
-            @Override
-            public void resetHeat() {
-                this.heat=0;
-                this.maxHeat = 0;
-            }
-
-            @Override
-            public void addHeat(int heat) {
-                this.heat+=heat;
-            }
-
-            @Override
-            public void subHeat(int heat) {
-                this.heat-=heat;
-            }
-
-            @Override
-            public void setMaxHeat(int heat) {
-                maxHeat = heat;
-            }
-
-            @Override
-            public int getMaxHeat() {
-                return maxHeat;
-            }
+            return new Heat();
         }
     }
 
@@ -152,4 +108,5 @@ public class CapabilityHeat {
             return 0;
         }
     };
+
 }

@@ -58,8 +58,9 @@ public class BlockPot extends Block {
     }
 
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
-            TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (te instanceof TileEntityPot) {
+            TileEntityPot tileEntity = (TileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
 
             if (!holdingStack.isEmpty()) {
@@ -85,8 +86,9 @@ public class BlockPot extends Block {
     }
 
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getTileEntity(pos) instanceof TileEntityPot) {
-            TileEntityPot tileEntity = (TileEntityPot) worldIn.getTileEntity(pos);
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (te instanceof TileEntityPot) {
+            TileEntityPot tileEntity = (TileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
 
             if (!holdingStack.isEmpty()) {
@@ -94,7 +96,7 @@ public class BlockPot extends Block {
 
                 return ActionResultType.SUCCESS;
             } else {
-                if (tileEntity.getStackInSlot(6).isEmpty()) {
+                if (tileEntity.getOutput().isEmpty()) {
                     if (player.isSneaking()) {
                         player.setHeldItem(handIn, tileEntity.removeStackOnInput());
 

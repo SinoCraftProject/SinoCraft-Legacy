@@ -1,15 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
-import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -33,19 +36,25 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(new SoakingRecipe(
-                new ItemStack(ModItems.FLOUR.get(), 2),
-                new ItemStack(ModItems.DOUGH.get()),
-                new ResourceLocation(ID + ":dough")
-        ));
-        consumer.accept(new SoakingRecipe(
-                new ItemStack(ModItems.BARK.get(), 3),
-                new FluidStack(ModFluids.WOOD_PULP.get(), 1000),
-                new ResourceLocation(ID + ":wood_pulp")
-        ));
+        consumer.accept(IModRecipes.getInstance().newSoakingRecipe(new ResourceLocation("sinocraft:dough"))
+                .setInput(Ingredient.fromItems(ModItems.FLOUR.get()), 2)
+                .setInput(Fluids.WATER)
+                .setOutput(new ItemStack(ModItems.DOUGH.get()))
+                .setTime(400).build());
+        consumer.accept(IModRecipes.getInstance().newSoakingRecipe(new ResourceLocation("sinocraft:wood_pulp"))
+                .setInput(Ingredient.fromItems(ModItems.BARK.get()), 3)
+                .setInput(Fluids.WATER)
+                .setOutput(new FluidStack(ModFluids.WOOD_PULP.get(), 1000))
+                .setTime(400).build());
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
+        consumer.accept(IModRecipes.getInstance().newCookingRecipe(new ResourceLocation("sinocraft:pot_apple"))
+                .addInput(Ingredient.fromItems(Items.RED_DYE))
+                .setOutput(new ItemStack(Items.APPLE))
+                .setHeat(1, Integer.MAX_VALUE)
+                .setTime(40)
+                .build());
     }
 
     private void registerShapedRecipes(Consumer<IFinishedRecipe> consumer) {
