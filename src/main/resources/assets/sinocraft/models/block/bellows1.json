@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sinocraft:block/bellows",
-		"2": "sinocraft:block/bellows_side",
-		"particle": "sinocraft:block/bellows_side"
+		"1": "sinocraft:block/bellows/bellows",
+		"2": "sinocraft:block/bellows/bellows_side",
+		"particle": "sinocraft:block/bellows/bellows_side"
 	},
 	"elements": [
 		{

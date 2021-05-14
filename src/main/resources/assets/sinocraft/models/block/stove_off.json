@@ -1,13 +1,13 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sinocraft:blockmodel/stove_back",
-		"2": "sinocraft:blockmodel/stove_back",
-		"3": "sinocraft:blockmodel/stove_bottom",
-		"4": "sinocraft:blockmodel/stove_front_off",
-		"8": "sinocraft:blockmodel/stove_up_off",
-		"9": "sinocraft:blockmodel/stove_side",
-		"particle": "sinocraft:blockmodel/stove_back"
+		"1": "sinocraft:block/stove/stove_back",
+		"2": "sinocraft:block/stove/stove_back",
+		"3": "sinocraft:block/stove/stove_bottom",
+		"4": "sinocraft:block/stove/stove_front_off",
+		"8": "sinocraft:block/stove/stove_up_off",
+		"9": "sinocraft:block/stove/stove_side",
+		"particle": "sinocraft:block/stove/stove_back"
 	},
 	"elements": [
 		{

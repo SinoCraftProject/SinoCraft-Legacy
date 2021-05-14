@@ -1,12 +1,12 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sinocraft:model/blocks/stone_mill1_bottom",
-		"1": "sinocraft:model/blocks/stone_mill1_side",
-		"2": "sinocraft:model/blocks/stone_mill1_top",
-		"4": "sinocraft:model/blocks/stone_mill2_side",
-		"5": "sinocraft:model/blocks/stone_mill2_top",
-		"particle": "sinocraft:model/blocks/stone_mill1_bottom"
+		"0": "sinocraft:block/stone_mill/stone_mill1_bottom",
+		"1": "sinocraft:block/stone_mill/stone_mill1_side",
+		"2": "sinocraft:block/stone_mill/stone_mill1_top",
+		"4": "sinocraft:block/stone_mill/stone_mill2_side",
+		"5": "sinocraft:block/stone_mill/stone_mill2_top",
+		"particle": "sinocraft:block/stone_mill/stone_mill1_bottom"
 	},
 	"elements": [
 		{
