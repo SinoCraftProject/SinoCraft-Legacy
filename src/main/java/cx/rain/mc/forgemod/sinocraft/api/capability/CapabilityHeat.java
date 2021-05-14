@@ -1,12 +1,12 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
-import cx.rain.mc.forgemod.sinocraft.utility.DataFixHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 
 import java.util.concurrent.Callable;
 
@@ -32,7 +32,7 @@ public class CapabilityHeat {
         @Override
         public void readNBT(Capability<IHeat> capability, IHeat instance, Direction side, INBT nbt)
         {
-            CompoundNBT data = DataFixHelper.fixHeatData(nbt);
+            CompoundNBT data = fixHeatData(nbt);
             instance.setHeat(data.getInt("heat"));
             instance.setMaxHeat(data.getInt("maxHeat"));
         }
@@ -90,6 +90,29 @@ public class CapabilityHeat {
             public int getMaxHeat() {
                 return maxHeat;
             }
+        }
+    }
+
+    public static CompoundNBT fixHeatData(INBT nbt) {
+        if (nbt instanceof IntNBT) {
+            CompoundNBT newData = new CompoundNBT();
+            newData.putInt("heat", ((IntNBT) nbt).getInt());
+            newData.putInt("maxHeat", 0);
+            return newData;
+        } else if (nbt instanceof CompoundNBT) {
+            CompoundNBT data = (CompoundNBT) nbt;
+            if (!data.contains("heat", Constants.NBT.TAG_INT)) {
+                data.putInt("heat", 0);
+            }
+            if (!data.contains("maxHeat", Constants.NBT.TAG_INT)) {
+                data.putInt("maxHeat", 0);
+            }
+            return data;
+        } else {
+            CompoundNBT newData = new CompoundNBT();
+            newData.putInt("heat", 0);
+            newData.putInt("maxHeat", 0);
+            return newData;
         }
     }
 
