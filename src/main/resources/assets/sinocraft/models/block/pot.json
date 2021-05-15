@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sinocraft:blockmodel/pot_0",
-		"1": "sinocraft:blockmodel/pot_1",
-		"particle": "sinocraft:blockmodel/pot_0"
+		"0": "sinocraft:block/pot_0",
+		"1": "sinocraft:block/pot_1",
+		"particle": "sinocraft:block/pot_0"
 	},
 	"elements": [
 		{

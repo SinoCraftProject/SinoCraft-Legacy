@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sinocraft:blockmodel/vat_bottom",
-		"1": "sinocraft:blockmodel/vat_side",
-		"2": "sinocraft:blockmodel/vat_top",
-		"particle": "sinocraft:blockmodel/vat_bottom"
+		"0": "sinocraft:block/vat_bottom",
+		"1": "sinocraft:block/vat_side",
+		"2": "sinocraft:block/vat_top",
+		"particle": "sinocraft:block/vat_bottom"
 	},
 	"elements": [
 		{

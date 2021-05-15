@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sinocraft:model/blocks/paper_drying_rack_column",
-		"2": "sinocraft:model/blocks/paper_drying_rack_board4",
-		"particle": "sinocraft:model/blocks/paper_drying_rack_board4"
+		"1": "sinocraft:block/paper_drying_rack_column",
+		"2": "sinocraft:block/paper_drying_rack_board4",
+		"particle": "sinocraft:block/paper_drying_rack_board4"
 	},
 	"elements": [
 		{
