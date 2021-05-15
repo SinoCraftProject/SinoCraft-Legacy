@@ -14,10 +14,13 @@ public interface IModRecipes {
 
     IRecipeType<ISoakingRecipe> getSoakingRecipe();
     IRecipeType<ICookingRecipe> getCookingRecipe();
+    IRecipeType<ISteamerRecipe> getSteamerRecipe();
 
     IModRecipeSerializer<? extends ISoakingRecipe> getSoakingSerializer();
     IModRecipeSerializer<? extends ICookingRecipe> getCookingSerializer();
+    IModRecipeSerializer<? extends ISteamerRecipe> getSteamerSerializer();
 
     ICookingRecipeBuilder newCookingRecipe(ResourceLocation id);
     ISoakingRecipeBuilder newSoakingRecipe(ResourceLocation id);
+    ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id);
 }
