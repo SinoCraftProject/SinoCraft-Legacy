@@ -13,12 +13,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModRecipes implements IModRecipes {
     private static final IRecipeType<ISoakingRecipe> SOAKING = IRecipeType.register("sinocraft:soaking");
     private static final IRecipeType<ICookingRecipe> COOKING = IRecipeType.register("sinocraft:cooking");
+    private static final IRecipeType<ISteamerRecipe> STEAMER = IRecipeType.register("sinocraft:steamer");
 
     private static final DeferredRegister<IRecipeSerializer<?>> REGISTRY =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SinoCraft.MODID);
 
     private static final RegistryObject<SoakingSerializer> SOAKING_SERIALIZER = REGISTRY.register("soaking", () -> SoakingSerializer.SERIALIZER);
     private static final RegistryObject<CookingSerializer> COOKING_SERIALIZER = REGISTRY.register("cooking", () -> CookingSerializer.SERIALIZER);
+    private static final RegistryObject<SteamerSerializer> STEAMER_SERIALIZER = REGISTRY.register("steamer", () -> SteamerSerializer.SERIALIZER);
 
     public ModRecipes(IEventBus bus) {
         SinoCraft.getLogger().info("Registering recipes.");
@@ -38,6 +40,11 @@ public class ModRecipes implements IModRecipes {
     }
 
     @Override
+    public IRecipeType<ISteamerRecipe> getSteamerRecipe() {
+        return STEAMER;
+    }
+
+    @Override
     public IModRecipeSerializer<? extends ISoakingRecipe> getSoakingSerializer() {
         return SOAKING_SERIALIZER.get();
     }
@@ -48,6 +55,11 @@ public class ModRecipes implements IModRecipes {
     }
 
     @Override
+    public IModRecipeSerializer<? extends ISteamerRecipe> getSteamerSerializer() {
+        return STEAMER_SERIALIZER.get();
+    }
+
+    @Override
     public ICookingRecipeBuilder newCookingRecipe(ResourceLocation id) {
         return CookingRecipe.builder(id);
     }
@@ -55,5 +67,10 @@ public class ModRecipes implements IModRecipes {
     @Override
     public ISoakingRecipeBuilder newSoakingRecipe(ResourceLocation id) {
         return SoakingRecipe.builder(id);
+    }
+
+    @Override
+    public ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id) {
+        return SteamerRecipe.builder(id);
     }
 }

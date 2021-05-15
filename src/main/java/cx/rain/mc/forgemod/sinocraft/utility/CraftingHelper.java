@@ -164,4 +164,19 @@ public class CraftingHelper {
         }
         throw new JsonSyntaxException("Json " + json + " is not a string or object");
     }
+
+    public static Ingredient deserializeVanillaIngredient(JsonElement json) {
+        if (json.isJsonNull()) {
+            return Ingredient.EMPTY;
+        } else if (json.isJsonPrimitive()) {
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.getAsString()));
+            if (item != null) {
+                return Ingredient.fromItems(item);
+            } else {
+                throw new JsonSyntaxException("Json " + json + " is not a string or object");
+            }
+        } else {
+            return Ingredient.deserialize(json);
+        }
+    }
 }
