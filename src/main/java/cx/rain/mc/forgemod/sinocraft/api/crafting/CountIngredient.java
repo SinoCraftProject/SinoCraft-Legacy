@@ -6,6 +6,8 @@ import net.minecraft.network.PacketBuffer;
 
 public class CountIngredient {
 
+    public static final CountIngredient EMPTY = new CountIngredient(Ingredient.EMPTY, 0);
+
     private final Ingredient ingredient;
     private final int count;
 

@@ -39,13 +39,13 @@ public final class SoakingRecipe implements ISoakingRecipe {
     }
 
     @Override
-    public int getInputCount() {
-        return inputItem == null ? 0 : inputItem.getCount();
+    public CountIngredient getInputItem() {
+        return inputItem == null ? CountIngredient.EMPTY : inputItem;
     }
 
     @Override
-    public int getFluidAmount() {
-        return inputFluid == null ? 0 : inputFluid.amount;
+    public FluidIngredient getInputFluid() {
+        return inputFluid == null ? FluidIngredient.EMPTY : inputFluid;
     }
 
     @Override

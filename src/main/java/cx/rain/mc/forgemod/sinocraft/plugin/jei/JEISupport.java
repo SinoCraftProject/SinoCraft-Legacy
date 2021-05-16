@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.plugin.jei.category.CookingCategory;
+import cx.rain.mc.forgemod.sinocraft.plugin.jei.category.SoakingCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -30,6 +31,7 @@ public class JEISupport implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new CookingCategory(registration.getJeiHelpers()));
+        registration.addRecipeCategories(new SoakingCategory(registration.getJeiHelpers()));
     }
 
     @Override
@@ -46,11 +48,13 @@ public class JEISupport implements IModPlugin {
         if (world != null) {
             RecipeManager recipeManager = world.getRecipeManager();
             registration.addRecipes(recipeManager.getRecipesForType(IModRecipes.getInstance().getCookingRecipe()), CookingCategory.ID);
+            registration.addRecipes(recipeManager.getRecipesForType(IModRecipes.getInstance().getSoakingRecipe()), SoakingCategory.ID);
         }
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.POT.get()), CookingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.VAT.get()), SoakingCategory.ID);
     }
 }

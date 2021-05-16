@@ -173,5 +173,6 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
 
     private void addGui() {
         add("sinocraft.jei.recipe.cooking", "铁锅");
+        add("sinocraft.jei.recipe.soaking", "木缸");
     }
 }

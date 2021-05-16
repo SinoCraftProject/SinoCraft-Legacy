@@ -69,16 +69,18 @@ public class TileEntityVat extends TileEntityUpdatableBase {
                 progress = 0;
                 currentRecipe = null;
                 // 消耗
-                ItemStack extractItem = itemHandler.extractItem(1, recipe.getInputCount(), true);
-                if (extractItem.getCount() < recipe.getInputCount()) {
+                int inputCount = recipe.getInputItem().getCount();
+                ItemStack extractItem = itemHandler.extractItem(1, inputCount, true);
+                if (extractItem.getCount() < inputCount) {
                     return;
                 }
-                FluidStack drain = fluidHandler.drain(recipe.getFluidAmount(), IFluidHandler.FluidAction.SIMULATE);
-                if (drain.getAmount() < recipe.getFluidAmount()) {
+                int fluidAmount = recipe.getInputFluid().getAmount();
+                FluidStack drain = fluidHandler.drain(fluidAmount, IFluidHandler.FluidAction.SIMULATE);
+                if (drain.getAmount() < fluidAmount) {
                     return;
                 }
-                itemHandler.extractItem(1, recipe.getInputCount(), false);
-                fluidHandler.drain(recipe.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
+                itemHandler.extractItem(1, fluidAmount, false);
+                fluidHandler.drain(fluidAmount, IFluidHandler.FluidAction.EXECUTE);
                 // 产出
                 ItemStack itemOutput = recipe.getRecipeOutput();
                 if (!itemOutput.isEmpty()) {

@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.utility.RenderHelper;
@@ -17,30 +16,25 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CookingCategory implements IRecipeCategory<ICookingRecipe> {
 
     public static final ResourceLocation ID = new ResourceLocation(SinoCraft.MODID, "jei_cooking");
 
-    private static final ResourceLocation BG = new ResourceLocation(SinoCraft.MODID, "textures/gui/jei/pot.png");
+    private static final ResourceLocation BG = new ResourceLocation(SinoCraft.MODID, "textures/gui/jei/cooking.png");
     private static final ITextComponent TITLE = new TranslationTextComponent("sinocraft.jei.recipe.cooking");
 
     private final IDrawable background;
     private final IDrawable icon;
 
     public CookingCategory(IJeiHelpers helper) {
-        int width = 179;
-        int height = 120;
-        background = helper.getGuiHelper().createDrawable(BG, 0, 0, width, height);
+        background = helper.getGuiHelper().createDrawable(BG, 0, 0, 179, 120);
         icon = helper.getGuiHelper().createDrawableIngredient(new ItemStack(ModBlocks.POT.get()));
     }
 
@@ -78,11 +72,7 @@ public class CookingCategory implements IRecipeCategory<ICookingRecipe> {
     public void setIngredients(ICookingRecipe recipe, IIngredients ingredients) {
         List<List<ItemStack>> inputs = new ArrayList<>();
         for (int i = 0; i < recipe.getInputSlotCount(); i++) {
-            CountIngredient input = recipe.getInput(i);
-            List<ItemStack> stacks = Arrays.stream(input.getIngredient().getMatchingStacks())
-                    .map(ItemStack::copy)
-                    .peek(stack -> stack.setCount(input.getCount()))
-                    .collect(Collectors.toList());
+            List<ItemStack> stacks = CategoryHelper.getInputItems(recipe.getInput(i));
             inputs.add(stacks);
         }
         ingredients.setInputLists(VanillaTypes.ITEM, inputs);

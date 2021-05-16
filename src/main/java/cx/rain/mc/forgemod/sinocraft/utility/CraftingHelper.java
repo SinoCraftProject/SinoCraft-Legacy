@@ -114,20 +114,20 @@ public class CraftingHelper {
     }
 
     public static JsonElement serializeFluidIngredient(FluidIngredient ingredient) {
-        if (ingredient.type == 0) {
-            if (ingredient.amount == 1000) {
+        if (ingredient.getType() == 0) {
+            if (ingredient.getAmount() == 1000) {
                 return new JsonPrimitive(ingredient.loc.toString());
             } else {
                 JsonObject object = new JsonObject();
                 object.addProperty("fluid", ingredient.loc.toString());
-                object.addProperty("amount", ingredient.amount);
+                object.addProperty("amount", ingredient.getAmount());
                 return object;
             }
         } else {
             JsonObject object = new JsonObject();
             object.addProperty("tag", ingredient.loc.toString());
-            if (ingredient.amount != 1000) {
-                object.addProperty("amount", ingredient.amount);
+            if (ingredient.getAmount() != 1000) {
+                object.addProperty("amount", ingredient.getAmount());
             }
             return object;
         }
