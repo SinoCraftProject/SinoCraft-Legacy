@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -6,12 +6,20 @@ import net.minecraft.network.PacketBuffer;
 
 public class CountIngredient {
 
-    public final Ingredient ingredient;
-    public final int count;
+    private final Ingredient ingredient;
+    private final int count;
 
     public CountIngredient(Ingredient ingredient, int count) {
         this.ingredient = ingredient;
         this.count = count;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public boolean match(ItemStack stack) {

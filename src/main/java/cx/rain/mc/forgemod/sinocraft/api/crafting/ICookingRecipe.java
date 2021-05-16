@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
 /**
@@ -42,13 +43,15 @@ public interface ICookingRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
 
     int getCookingTime();
 
-    int getInputCount(int index);
+    CountIngredient getInput(int index);
 
     int getInputSlotCount();
 
     int getMinHeat();
 
     int getMaxHeat();
+
+    ItemStack getAdustOutput();
 
     @Override
     default boolean canFit(int width, int height) {

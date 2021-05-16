@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;

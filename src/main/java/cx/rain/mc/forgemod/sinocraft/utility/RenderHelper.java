@@ -6,13 +6,18 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec3;
 import cx.rain.mc.forgemod.sinocraft.utility.math.Vec4;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
+import net.minecraft.util.StringUtils;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.*;
 
+@OnlyIn(Dist.CLIENT)
 public class RenderHelper {
     public static final VertexFormat POSITION_COLOR_NORMAL = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(POSITION_3F).add(COLOR_4UB).add().add(NORMAL_3B).build());
 
@@ -180,5 +185,69 @@ public class RenderHelper {
     public static Vec4<Float> NumberToGLColor(int color){
         Vec4<Float> rgba = NumberToRGBA(color);
         return RGBAToGLColor(rgba);
+    }
+
+    /**
+     * 绘制限制大小的文字
+     * @param text 文字
+     * @param matrix matrix
+     * @param renderer font renderer
+     * @param x x 坐标
+     * @param y y 坐标
+     * @param width 最大宽度，无限制则为 0
+     * @param height 最大高度，无限制则为 0
+     * @param color 颜色
+     * @param center 文字是否居中
+     */
+    public static void drawText(String text, MatrixStack matrix, FontRenderer renderer, int x, int y, int width, int height, int color, boolean center) {
+        if (StringUtils.isNullOrEmpty(text)) {
+            return;
+        }
+        int fontWidth = renderer.getStringWidth(text);
+        int fontHeight = renderer.getWordWrappedHeight(text, fontWidth);
+        if ((width <= 0 || fontWidth <= width) && (height <= 0 || fontHeight <= height)) {
+            if (!center) {
+                renderer.drawString(matrix, text, x, y, color);
+            } else {
+                int dx = (width - fontWidth) / 2;
+                int dy = (height - fontHeight) / 2;
+                renderer.drawString(matrix, text, x + dx, y + dy, color);
+            }
+        } else {
+            float scaleX = width <= 0 ? 1 : (float) width / fontWidth;
+            float scaleY = height <= 0 ? 1 : (float) height / fontHeight;
+            if (!center) {
+                float scale = Math.min(scaleX, scaleY);
+                matrix.push();
+                matrix.translate(x, y, 0);
+                matrix.scale(scale, scale, 1);
+                renderer.drawString(matrix, text, 0, 0, color);
+                matrix.pop();
+            } else {
+                if (scaleX < scaleY) {
+                    matrix.push();
+                    // scaleX
+                    if (height <= 0) {
+                        matrix.translate(x, y, 0);
+                    } else {
+                        matrix.translate(x, y + (height - fontHeight * scaleX) / 2, 0);
+                    }
+                    matrix.scale(scaleX, scaleX, 1);
+                    renderer.drawString(matrix, text, 0, 0, color);
+                    matrix.pop();
+                } else {
+                    matrix.push();
+                    // scaleY
+                    if (width <= 0) {
+                        matrix.translate(x, y, 0);
+                    } else {
+                        matrix.translate(x + (width - fontWidth * scaleY) / 2, y, 0);
+                    }
+                    matrix.scale(scaleY, scaleY, 1);
+                    renderer.drawString(matrix, text, 0, 0, color);
+                    matrix.pop();
+                }
+            }
+        }
     }
 }

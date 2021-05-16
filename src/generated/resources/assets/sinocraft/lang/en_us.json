@@ -94,5 +94,6 @@
   "itemGroup.sinocraft.decorate": "SinoCraft | Decorate",
   "itemGroup.sinocraft.foods": "SinoCraft | Foods",
   "itemGroup.sinocraft.misc": "SinoCraft | Miscellaneous",
-  "itemGroup.sinocraft.tools": "SinoCraft | Tools"
+  "itemGroup.sinocraft.tools": "SinoCraft | Tools",
+  "sinocraft.jei.recipe.cooking": "Iron Pot"
 }

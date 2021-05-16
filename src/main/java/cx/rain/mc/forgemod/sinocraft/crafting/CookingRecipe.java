@@ -1,10 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipeBuilder;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemStack;
@@ -52,8 +49,8 @@ public class CookingRecipe implements ICookingRecipe {
     }
 
     @Override
-    public int getInputCount(int index) {
-        return stacks.size() > index ? stacks.get(index).count : 0;
+    public CountIngredient getInput(int index) {
+        return stacks.get(index);
     }
 
     @Override
@@ -107,6 +104,11 @@ public class CookingRecipe implements ICookingRecipe {
     @Override
     public ItemStack getRecipeOutput() {
         return recipeResult;
+    }
+
+    @Override
+    public ItemStack getAdustOutput() {
+        return adustResult;
     }
 
     @Override

@@ -21,6 +21,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addEntities();
         addAdvancements();
         addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
@@ -167,6 +168,10 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "水牛");
+        addEntityType(ModEntities.ENTITY_BUFFALO, "水牛");
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "铁锅");
     }
 }
