@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import com.google.gson.JsonObject;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -32,6 +33,8 @@ public interface ISteamerRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
     int getMinHeat();
 
     int getMaxHeat();
+
+    ItemStack getAdustOutput();
 
     @Override
     default boolean canFit(int width, int height) {

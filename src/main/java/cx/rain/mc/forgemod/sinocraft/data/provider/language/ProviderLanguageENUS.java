@@ -154,5 +154,6 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     private void addGui() {
         add("sinocraft.jei.recipe.cooking", "Iron Pot");
         add("sinocraft.jei.recipe.soaking", "Vat");
+        add("sinocraft.jei.recipe.steamer", "Food Steamer");
     }
 }

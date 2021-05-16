@@ -36,7 +36,7 @@ public class SteamerSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         JsonArray heat = json.getAsJsonArray("heat");
         return builder.setTime(json.get("time").getAsInt())
                 .setInput(CraftingHelper.deserializeVanillaIngredient(json.get("ingredient")))
-                .setOutput(CraftingHelper.deserializeItem(json.get("adust")))
+                .setOutput(CraftingHelper.deserializeItem(json.get("result")))
                 .setHeat(heat.get(0).getAsInt(), heat.get(1).getAsInt())
                 .build();
     }

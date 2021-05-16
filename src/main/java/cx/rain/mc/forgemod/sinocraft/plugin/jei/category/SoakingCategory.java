@@ -35,7 +35,7 @@ public class SoakingCategory implements IRecipeCategory<ISoakingRecipe> {
 
     public SoakingCategory(IJeiHelpers helper) {
         background = helper.getGuiHelper().createDrawable(BG, 0, 0, 179, 120);
-        icon = helper.getGuiHelper().createDrawableIngredient(new ItemStack(ModBlocks.POT.get()));
+        icon = helper.getGuiHelper().createDrawableIngredient(new ItemStack(ModBlocks.VAT.get()));
     }
 
     @Override
