@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -62,6 +63,16 @@ public class SteamerRecipe implements ISteamerRecipe {
     @Override
     public ItemStack getRecipeOutput() {
         return output;
+    }
+
+    @Override
+    public ItemStack getAdustOutput() {
+        return adust;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return NonNullList.withSize(1, input);
     }
 
     @Override

@@ -70,14 +70,14 @@ public class TileEntityPot extends TileEntityUpdatableBase {
                 heat.setMaxHeat(0);
                 // 消耗
                 for (int i = 0; i < recipe.getInputSlotCount(); i++) {
-                    int inputCount = recipe.getInputCount(map[i]);
+                    int inputCount = recipe.getInput(map[i]).getCount();
                     ItemStack extractItem = itemHandler.extractItem(i, inputCount, true);
                     if (extractItem.getCount() < inputCount) {
                         return;
                     }
                 }
                 for (int i = 0; i < recipe.getInputSlotCount(); i++) {
-                    itemHandler.extractItem(i, recipe.getInputCount(map[i]), false);
+                    itemHandler.extractItem(i, recipe.getInput(map[i]).getCount(), false);
                 }
                 // 产出
                 ItemStack itemOutput = recipe.getCraftingResult(inv);

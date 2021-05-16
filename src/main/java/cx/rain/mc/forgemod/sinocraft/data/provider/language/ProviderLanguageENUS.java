@@ -20,6 +20,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addEntities();
         addAdvancements();
         addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
@@ -147,6 +148,12 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "Buffalo");
+        addEntityType(ModEntities.ENTITY_BUFFALO, "Buffalo");
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "Iron Pot");
+        add("sinocraft.jei.recipe.soaking", "Vat");
+        add("sinocraft.jei.recipe.steamer", "Food Steamer");
     }
 }

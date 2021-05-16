@@ -1,10 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -42,13 +39,13 @@ public final class SoakingRecipe implements ISoakingRecipe {
     }
 
     @Override
-    public int getInputCount() {
-        return inputItem == null ? 0 : inputItem.count;
+    public CountIngredient getInputItem() {
+        return inputItem == null ? CountIngredient.EMPTY : inputItem;
     }
 
     @Override
-    public int getFluidAmount() {
-        return inputFluid == null ? 0 : inputFluid.amount;
+    public FluidIngredient getInputFluid() {
+        return inputFluid == null ? FluidIngredient.EMPTY : inputFluid;
     }
 
     @Override

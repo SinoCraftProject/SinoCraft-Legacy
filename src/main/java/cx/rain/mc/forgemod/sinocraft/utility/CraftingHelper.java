@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
 import com.google.gson.*;
-import cx.rain.mc.forgemod.sinocraft.crafting.CountIngredient;
-import cx.rain.mc.forgemod.sinocraft.crafting.FluidIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.FluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -84,17 +84,18 @@ public class CraftingHelper {
     }
 
     public static JsonElement serializeIngredient(CountIngredient ingredient) {
-        JsonElement ingredientJson = ingredient.ingredient.serialize();
-        if (ingredient.count == 1) {
+        JsonElement ingredientJson = ingredient.getIngredient().serialize();
+        int count = ingredient.getCount();
+        if (count == 1) {
             return ingredientJson;
         }
         if (ingredientJson.isJsonObject()) {
-            ingredientJson.getAsJsonObject().addProperty("count", ingredient.count);
+            ingredientJson.getAsJsonObject().addProperty("count", count);
             return ingredientJson;
         } else {
             JsonObject object = new JsonObject();
             object.add("items", ingredientJson);
-            object.addProperty("count", ingredient.count);
+            object.addProperty("count", count);
             return object;
         }
     }
@@ -113,20 +114,20 @@ public class CraftingHelper {
     }
 
     public static JsonElement serializeFluidIngredient(FluidIngredient ingredient) {
-        if (ingredient.type == 0) {
-            if (ingredient.amount == 1000) {
+        if (ingredient.getType() == 0) {
+            if (ingredient.getAmount() == 1000) {
                 return new JsonPrimitive(ingredient.loc.toString());
             } else {
                 JsonObject object = new JsonObject();
                 object.addProperty("fluid", ingredient.loc.toString());
-                object.addProperty("amount", ingredient.amount);
+                object.addProperty("amount", ingredient.getAmount());
                 return object;
             }
         } else {
             JsonObject object = new JsonObject();
             object.addProperty("tag", ingredient.loc.toString());
-            if (ingredient.amount != 1000) {
-                object.addProperty("amount", ingredient.amount);
+            if (ingredient.getAmount() != 1000) {
+                object.addProperty("amount", ingredient.getAmount());
             }
             return object;
         }

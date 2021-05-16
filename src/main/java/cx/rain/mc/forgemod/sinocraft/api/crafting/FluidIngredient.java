@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -10,14 +10,16 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FluidIngredient {
 
+    public static final FluidIngredient EMPTY = new FluidIngredient(Fluids.EMPTY, 0);
+
     public final ResourceLocation loc;
     // fluid
-    public final Fluid fluid;
+    private final Fluid fluid;
     // tag
     private ITag<Fluid> tag;
 
-    public final int amount;
-    public final int type;
+    private final int amount;
+    private final int type;
 
     public FluidIngredient(Fluid fluid, int amount) {
         this.loc = fluid.delegate.name();
@@ -32,6 +34,22 @@ public class FluidIngredient {
         this.tag = FluidTags.getCollection().getTagByID(tag);
         this.amount = amount;
         this.type = 1;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public Fluid getFluid() {
+        return fluid;
+    }
+
+    public ITag<Fluid> getTag() {
+        return tag;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public boolean match(FluidStack stack) {

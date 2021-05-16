@@ -33,6 +33,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerFurnaceRecipes(consumer);
         registerSoakRecipes(consumer);
         registerIronPotRecipes(consumer);
+        registerSteamerRecipes(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -54,6 +55,15 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .setOutput(new ItemStack(Items.APPLE))
                 .setHeat(1, Integer.MAX_VALUE)
                 .setTime(40)
+                .build());
+    }
+
+    private void registerSteamerRecipes(Consumer<IFinishedRecipe> consumer) {
+        consumer.accept(IModRecipes.getInstance().newSteamerRecipe(new ResourceLocation("sinocraft:steamer_test"))
+                .setInput(Ingredient.fromItems(Items.APPLE))
+                .setOutput(new ItemStack(Items.ACACIA_LOG))
+                .setTime(100)
+                .setHeat(10, 100)
                 .build());
     }
 

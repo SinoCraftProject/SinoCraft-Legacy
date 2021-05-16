@@ -1,0 +1,15 @@
+{
+  "type": "sinocraft:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "time": 40,
+  "result": "minecraft:apple",
+  "adust": "sinocraft:adust_food",
+  "heat": [
+    1,
+    2147483647
+  ]
+}

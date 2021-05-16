@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Direction;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
 
 import javax.annotation.Nonnull;
@@ -17,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+@OnlyIn(Dist.CLIENT)
 public class XuanPaperBakedModel implements IBakedModel {
     private IBakedModel existingModel;
 

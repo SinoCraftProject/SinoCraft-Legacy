@@ -1,0 +1,13 @@
+{
+  "type": "sinocraft:steamer",
+  "time": 100,
+  "ingredient": {
+    "item": "minecraft:apple"
+  },
+  "result": "minecraft:acacia_log",
+  "adust": "sinocraft:adust_food",
+  "heat": [
+    10,
+    100
+  ]
+}
