@@ -58,6 +58,8 @@
   "block.sinocraft.walnut_plank": "Walnut Plank",
   "block.sinocraft.walnut_sapling": "Walnut Sapling",
   "block.sinocraft.white_marble": "White Marble",
+  "config.waila.plugin_sinocraft": "SinoCraft",
+  "config.waila.plugin_sinocraft.enabled": "Enabled",
   "entity.sinocraft.buffalo": "Buffalo",
   "gui.sinocraft.category.soak": "Soak",
   "item.sinocraft.bark": "Bark",

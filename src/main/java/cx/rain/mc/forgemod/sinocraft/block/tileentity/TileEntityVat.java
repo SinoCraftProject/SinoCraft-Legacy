@@ -176,6 +176,15 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         }
     }
 
+    @Nullable
+    public ISoakingRecipe getRecipe() {
+        return currentRecipe;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
     class ExtendedInventory extends RecipeWrapper implements IExtendedRecipeInventory {
 
         ExtendedInventory() {

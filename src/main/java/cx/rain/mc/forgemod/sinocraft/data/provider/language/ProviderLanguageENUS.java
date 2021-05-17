@@ -155,5 +155,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         add("sinocraft.jei.recipe.cooking", "Iron Pot");
         add("sinocraft.jei.recipe.soaking", "Vat");
         add("sinocraft.jei.recipe.steamer", "Food Steamer");
+        add("config.waila.plugin_sinocraft", "SinoCraft");
+        add("config.waila.plugin_sinocraft.enabled", "Enabled");
     }
 }

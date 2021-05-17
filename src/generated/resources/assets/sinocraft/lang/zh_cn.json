@@ -67,6 +67,8 @@
   "block.sinocraft.walnut_plank": "\u6838\u6843\u6811\u6728\u677F",
   "block.sinocraft.walnut_sapling": "\u6838\u6843\u6811\u6811\u82D7",
   "block.sinocraft.white_marble": "\u6C49\u767D\u7389\u5927\u7406\u77F3",
+  "config.waila.plugin_sinocraft": "\u534E\u590F\u5DE5\u827A",
+  "config.waila.plugin_sinocraft.enabled": "\u542F\u7528",
   "entity.sinocraft.buffalo": "\u6C34\u725B",
   "gui.sinocraft.category.soaking": "\u6D78\u6CE1",
   "item.sinocraft.bark": "\u6811\u76AE",

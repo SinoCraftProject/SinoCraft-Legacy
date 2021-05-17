@@ -175,5 +175,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         add("sinocraft.jei.recipe.cooking", "铁锅");
         add("sinocraft.jei.recipe.soaking", "木缸");
         add("sinocraft.jei.recipe.steamer", "蒸笼");
+        add("config.waila.plugin_sinocraft", "华夏工艺");
+        add("config.waila.plugin_sinocraft.enabled", "启用");
     }
 }

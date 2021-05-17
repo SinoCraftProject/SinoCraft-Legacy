@@ -1,9 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
 import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy;
 import cx.rain.mc.forgemod.sinocraft.api.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
+import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -12,7 +12,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
 
-import static cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities.*;
+import static cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities.WIND_ENERGY_CAPABILITY;
 
 public class TileEntityStove extends TileEntity implements ITickableTileEntity {
 
@@ -70,9 +70,7 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity {
 
         BlockPos up = getPos().offset(Direction.UP, 1);
         TileEntity tile = world.getTileEntity(up);
-        if (tile != null && tile.getCapability(HEAT_CAPABILITY).isPresent()) {
-            tile.getCapability(HEAT_CAPABILITY).orElse(CapabilityHeat.NoHeat).setHeat(heat.getHeat());
-        }
+        ModCapabilities.getHeat(tile).setHeat(heat.getHeat());
     }
 
     public int getBurnTime() {

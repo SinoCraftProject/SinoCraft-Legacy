@@ -76,7 +76,12 @@ public class CookingCategory implements IRecipeCategory<ICookingRecipe> {
             inputs.add(stacks);
         }
         ingredients.setInputLists(VanillaTypes.ITEM, inputs);
-        ingredients.setOutputs(VanillaTypes.ITEM, ImmutableList.of(recipe.getRecipeOutput(), recipe.getAdustOutput()));
+        ItemStack output = recipe.getRecipeOutput();
+        ItemStack adust = recipe.getAdustOutput();
+        List<ItemStack> result = new ArrayList<>();
+        if (!output.isEmpty()) result.add(output);
+        if (!adust.isEmpty()) result.add(adust);
+        ingredients.setOutputs(VanillaTypes.ITEM, result);
     }
 
     @Override
@@ -88,9 +93,9 @@ public class CookingCategory implements IRecipeCategory<ICookingRecipe> {
             itemGroups.set(i, ingredients.getInputs(VanillaTypes.ITEM).get(i));
         }
         itemGroups.init(slot, false, 90, 66);
-        itemGroups.set(slot, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
+        itemGroups.set(slot, recipe.getRecipeOutput());
         itemGroups.init(slot + 1, false, 90, 28);
-        itemGroups.set(slot + 1, ingredients.getOutputs(VanillaTypes.ITEM).get(1));
+        itemGroups.set(slot + 1, recipe.getAdustOutput());
     }
 
     @Override
