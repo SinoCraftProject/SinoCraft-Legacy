@@ -4,15 +4,19 @@ import cx.rain.mc.forgemod.sinocraft.api.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
+import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -58,16 +62,13 @@ public class TileEntityPot extends TileEntityUpdatableBase {
             cooldown = 40;
         }
         if (!outputItem.isEmpty()) {
-            outputItem = itemHandler.insertItem(0, outputItem, false);
+            outputItem = itemHandler.insertItem(6, outputItem, false);
         }
         ICookingRecipe recipe = currentRecipe;
         if (recipe != null) {
             if (progress >= recipe.getCookingTime()) {
                 if (!outputItem.isEmpty()) return;
                 int[] map = Arrays.copyOf(slotMap, recipe.getInputSlotCount());
-                progress = 0;
-                currentRecipe = null;
-                heat.setMaxHeat(0);
                 // 消耗
                 for (int i = 0; i < recipe.getInputSlotCount(); i++) {
                     int inputCount = recipe.getInput(map[i]).getCount();
@@ -83,12 +84,16 @@ public class TileEntityPot extends TileEntityUpdatableBase {
                 ItemStack itemOutput = recipe.getCraftingResult(inv);
                 if (!itemOutput.isEmpty()) {
                     itemOutput = itemOutput.copy();
-                    ItemStack insert = ItemHandlerHelper.insertItem(itemHandler, itemOutput, false);
+                    ItemStack insert = itemHandler.insertItem(6, itemOutput, false);
                     if (!insert.isEmpty()) {
                         outputItem = insert;
                         markDirty();
                     }
                 }
+
+                progress = 0;
+                currentRecipe = null;
+                heat.setMaxHeat(0);
             } else {
                 if (heat.getHeat() < recipe.getMinHeat()) {
                     progress = 0;
@@ -147,6 +152,15 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         }
     }
 
+    @Nullable
+    public ICookingRecipe getRecipe() {
+        return currentRecipe;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
     @Override
     public CompoundNBT getUpdateTag() {
         return super.getUpdateTag().merge(itemHandler.serializeNBT());
@@ -182,6 +196,8 @@ public class TileEntityPot extends TileEntityUpdatableBase {
             compound.putInt("progress", progress);
             compound.putIntArray("slotMap", slotMap);
         }
+        compound.putInt("heat", heat.getHeat());
+        compound.putInt("maxHeat", heat.getMaxHeat());
         return compound;
     }
 
@@ -205,6 +221,20 @@ public class TileEntityPot extends TileEntityUpdatableBase {
                         slotMap = compound.getIntArray("slotMap");
                     });
         }
+        heat.setHeat(compound.getInt("heat"));
+        heat.setMaxHeat(compound.getInt("maxHeat"));
+    }
+
+    @NotNull
+    @Override
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+        if (cap == ModCapabilities.HEAT_CAPABILITY) {
+            return LazyOptional.of(() -> heat).cast();
+        }
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> itemHandler).cast();
+        }
+        return super.getCapability(cap);
     }
 
     class ExtendedInventory extends RecipeWrapper implements IExtendedRecipeInventory {

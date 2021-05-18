@@ -5,9 +5,14 @@ import cx.rain.mc.forgemod.sinocraft.api.interfaces.*;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCapabilities {
@@ -31,5 +36,16 @@ public class ModCapabilities {
             CapabilityManager.INSTANCE.register(IWaterPower.class, new CapabilityWaterPower.Storage(), new CapabilityWaterPower.Factory());
             CapabilityManager.INSTANCE.register(IWindEnergy.class, new CapabilityWindEnergy.Storage(), new CapabilityWindEnergy.Factory());
         });
+    }
+
+    public static IHeat getHeat(@Nullable ICapabilityProvider provider) {
+        if (provider == null) {
+            return CapabilityHeat.NoHeat;
+        }
+        return provider.getCapability(HEAT_CAPABILITY).orElse(CapabilityHeat.NoHeat);
+    }
+
+    public static LazyOptional<IHeat> getHeatOpt(@Nullable ICapabilityProvider provider) {
+        return provider == null ? LazyOptional.empty() : provider.getCapability(HEAT_CAPABILITY);
     }
 }
