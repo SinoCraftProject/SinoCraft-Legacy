@@ -46,7 +46,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
     public CookingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
         CookingRecipe.Builder builder = new CookingRecipe.Builder(recipeId);
 
-        int size = buffer.readInt();
+        int size = buffer.readVarInt();
         for (int i = 0; i < size; i++) {
             Ingredient ingredient = Ingredient.read(buffer);
             int count = buffer.readVarInt();
@@ -55,13 +55,13 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
 
         return builder.setOutput(buffer.readItemStack())
                 .setAdustOutput(buffer.readItemStack())
-                .setHeat(buffer.readVarInt(), buffer.readInt())
+                .setHeat(buffer.readVarInt(), buffer.readVarInt())
                 .setTime(buffer.readVarInt()).build();
     }
 
     @Override
     public void write(PacketBuffer buffer, CookingRecipe recipe) {
-        buffer.writeInt(recipe.stacks.size());
+        buffer.writeVarInt(recipe.stacks.size());
         for (CountIngredient stack : recipe.stacks) {
             stack.getIngredient().write(buffer);
             buffer.writeVarInt(stack.getCount());

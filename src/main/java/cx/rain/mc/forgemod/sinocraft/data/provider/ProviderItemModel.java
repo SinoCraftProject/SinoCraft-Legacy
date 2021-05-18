@@ -58,7 +58,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
-        simpleItem(ModItems.TUTORIAL_BOOK.get());
+//         simpleItem(ModItems.TUTORIAL_BOOK.get());
 
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
         getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));

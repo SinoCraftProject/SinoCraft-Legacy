@@ -7,7 +7,6 @@ import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
 import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.gui.book.component.ComponentType;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
@@ -49,7 +48,8 @@ public class SinoCraft {
         new ModFluids(bus);
         new ModContainers(bus);
         new ModRecipes(bus);
-        ComponentType.init(bus);
+        // remove：client only
+        // ComponentType.init(bus);
     }
 
     public static SinoCraft getInstance() {
