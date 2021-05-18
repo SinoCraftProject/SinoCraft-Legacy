@@ -79,7 +79,7 @@ public class TileEntityVat extends TileEntityUpdatableBase {
                 if (drain.getAmount() < fluidAmount) {
                     return;
                 }
-                itemHandler.extractItem(1, fluidAmount, false);
+                itemHandler.extractItem(1, inputCount, false);
                 fluidHandler.drain(fluidAmount, IFluidHandler.FluidAction.EXECUTE);
                 // 产出
                 ItemStack itemOutput = recipe.getRecipeOutput();
