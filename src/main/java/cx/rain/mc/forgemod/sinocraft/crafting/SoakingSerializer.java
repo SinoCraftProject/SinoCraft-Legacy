@@ -1,8 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.FluidIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -12,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class SoakingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<SoakingRecipe> {
 
-    public static final SoakingSerializer SERIALIZER = new SoakingSerializer();
+    static final SoakingSerializer SERIALIZER = new SoakingSerializer();
 
     @Override
     public SoakingRecipe read(ResourceLocation id, JsonObject json) {

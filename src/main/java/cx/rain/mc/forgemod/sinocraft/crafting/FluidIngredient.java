@@ -1,5 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting;
 
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.network.PacketBuffer;
@@ -8,19 +9,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-/**
- * @deprecated Use {@link IFluidIngredient}
- *
- * @see IFluidIngredient
- * @see IFluidIngredient#EMPTY
- * @see IModRecipes#newFluidIngredient(ResourceLocation, int)
- * @see IModRecipes#newFluidIngredient(Fluid, int)
- */
-@Deprecated
 public class FluidIngredient implements IFluidIngredient {
-
-    @Deprecated
-    public static final FluidIngredient EMPTY = new FluidIngredient(Fluids.EMPTY, 0);
 
     private final ResourceLocation loc;
     // fluid
@@ -31,14 +20,14 @@ public class FluidIngredient implements IFluidIngredient {
     private final int amount;
     private final int type;
 
-    public FluidIngredient(Fluid fluid, int amount) {
+    FluidIngredient(Fluid fluid, int amount) {
         this.loc = fluid.delegate.name();
         this.fluid = fluid;
         this.amount = amount;
         this.type = 0;
     }
 
-    public FluidIngredient(ResourceLocation tag, int amount) {
+    FluidIngredient(ResourceLocation tag, int amount) {
         this.fluid = Fluids.EMPTY;
         this.loc = tag;
         this.tag = FluidTags.getCollection().getTagByID(tag);
@@ -83,7 +72,6 @@ public class FluidIngredient implements IFluidIngredient {
         return false;
     }
 
-    @Deprecated
     public static FluidIngredient read(PacketBuffer buffer) {
         if (buffer.readBoolean()) {
             Fluid fluid = buffer.readRegistryId();

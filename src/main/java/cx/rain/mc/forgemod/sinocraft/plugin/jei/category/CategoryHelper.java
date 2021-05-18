@@ -1,8 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.FluidIngredient;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -13,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class CategoryHelper {
 
-    public static List<ItemStack> getInputItems(CountIngredient input) {
-        if (input == CountIngredient.EMPTY || input.getCount() == 0) {
+    public static List<ItemStack> getInputItems(ICountIngredient input) {
+        if (input == ICountIngredient.EMPTY || input.getCount() == 0) {
             return Collections.emptyList();
         }
         return Arrays.stream(input.getIngredient().getMatchingStacks())
@@ -23,8 +22,8 @@ public class CategoryHelper {
                 .collect(Collectors.toList());
     }
 
-    public static List<FluidStack> getInputFluids(FluidIngredient input) {
-        if (input == FluidIngredient.EMPTY || input.getAmount() == 0) {
+    public static List<FluidStack> getInputFluids(IFluidIngredient input) {
+        if (input == IFluidIngredient.EMPTY || input.getAmount() == 0) {
             return Collections.emptyList();
         }
         if (input.getType() == 0) {

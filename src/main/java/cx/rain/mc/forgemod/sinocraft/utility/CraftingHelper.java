@@ -1,8 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
 import com.google.gson.*;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.FluidIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -83,7 +84,7 @@ public class CraftingHelper {
         throw new JsonSyntaxException("Json " + json + " is not a string or object");
     }
 
-    public static JsonElement serializeIngredient(CountIngredient ingredient) {
+    public static JsonElement serializeIngredient(ICountIngredient ingredient) {
         JsonElement ingredientJson = ingredient.getIngredient().serialize();
         int count = ingredient.getCount();
         if (count == 1) {
@@ -100,32 +101,32 @@ public class CraftingHelper {
         }
     }
 
-    public static CountIngredient deserializeIngredient(JsonElement json) {
+    public static ICountIngredient deserializeIngredient(JsonElement json) {
         if (json.isJsonObject()) {
             JsonObject object = json.getAsJsonObject();
             Ingredient ingredient = object.has("items")
                     ? Ingredient.deserialize(object.get("items"))
                     : Ingredient.deserialize(json);
             int count = object.has("count") ? object.get("count").getAsInt() : 1;
-            return new CountIngredient(ingredient, count);
+            return IModRecipes.getInstance().newCountIngredient(ingredient, count);
         } else {
-            return new CountIngredient(Ingredient.deserialize(json), 1);
+            return IModRecipes.getInstance().newCountIngredient(Ingredient.deserialize(json), 1);
         }
     }
 
-    public static JsonElement serializeFluidIngredient(FluidIngredient ingredient) {
+    public static JsonElement serializeFluidIngredient(IFluidIngredient ingredient) {
         if (ingredient.getType() == 0) {
             if (ingredient.getAmount() == 1000) {
-                return new JsonPrimitive(ingredient.loc.toString());
+                return new JsonPrimitive(ingredient.getResourceLocation().toString());
             } else {
                 JsonObject object = new JsonObject();
-                object.addProperty("fluid", ingredient.loc.toString());
+                object.addProperty("fluid", ingredient.getResourceLocation().toString());
                 object.addProperty("amount", ingredient.getAmount());
                 return object;
             }
         } else {
             JsonObject object = new JsonObject();
-            object.addProperty("tag", ingredient.loc.toString());
+            object.addProperty("tag", ingredient.getResourceLocation().toString());
             if (ingredient.getAmount() != 1000) {
                 object.addProperty("amount", ingredient.getAmount());
             }
@@ -133,22 +134,22 @@ public class CraftingHelper {
         }
     }
 
-    public static FluidIngredient deserializeFluidIngredient(JsonElement json) {
+    public static IFluidIngredient deserializeFluidIngredient(JsonElement json) {
         if (json.isJsonPrimitive()) {
             String id = json.getAsJsonPrimitive().getAsString();
             Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(id));
             if (fluid == null) {
                 throw new JsonSyntaxException("Unknown fluid '" + id + "'");
             }
-            return new FluidIngredient(fluid, 1000);
+            return IModRecipes.getInstance().newFluidIngredient(fluid, 1000);
         } else if (json.isJsonObject()) {
             JsonObject fluidObject = json.getAsJsonObject();
             if (fluidObject.has("tag")) {
                 ResourceLocation tag = new ResourceLocation(fluidObject.get("tag").getAsString());
                 if (fluidObject.has("amount")) {
-                    return new FluidIngredient(tag, fluidObject.get("amount").getAsInt());
+                    return IModRecipes.getInstance().newFluidIngredient(tag, fluidObject.get("amount").getAsInt());
                 } else {
-                    return new FluidIngredient(tag, 1000);
+                    return IModRecipes.getInstance().newFluidIngredient(tag, 1000);
                 }
             } else if (fluidObject.has("fluid")) {
                 String id = fluidObject.get("fluid").getAsString();
@@ -157,9 +158,9 @@ public class CraftingHelper {
                     throw new JsonSyntaxException("Unknown fluid '" + id + "'");
                 }
                 if (fluidObject.has("amount")) {
-                    return new FluidIngredient(fluid, fluidObject.get("amount").getAsInt());
+                    return IModRecipes.getInstance().newFluidIngredient(fluid, fluidObject.get("amount").getAsInt());
                 } else {
-                    return new FluidIngredient(fluid, 1000);
+                    return IModRecipes.getInstance().newFluidIngredient(fluid, 1000);
                 }
             }
         }

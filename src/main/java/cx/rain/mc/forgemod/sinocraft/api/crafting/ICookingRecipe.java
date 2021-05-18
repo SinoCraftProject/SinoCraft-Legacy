@@ -43,7 +43,7 @@ public interface ICookingRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
 
     int getCookingTime();
 
-    CountIngredient getInput(int index);
+    ICountIngredient getInput(int index);
 
     int getInputSlotCount();
 

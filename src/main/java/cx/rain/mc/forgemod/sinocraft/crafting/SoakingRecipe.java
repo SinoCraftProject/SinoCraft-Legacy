@@ -14,19 +14,15 @@ import org.jetbrains.annotations.Nullable;
 
 public final class SoakingRecipe implements ISoakingRecipe {
 
-    CountIngredient inputItem = null;
-    FluidIngredient inputFluid = null;
+    ICountIngredient inputItem = null;
+    IFluidIngredient inputFluid = null;
     ItemStack outputItem = ItemStack.EMPTY;
     FluidStack outputFluid = FluidStack.EMPTY;
     int time;
     final ResourceLocation id;
 
-    public static ISoakingRecipeBuilder builder(ResourceLocation id) {
+    static ISoakingRecipeBuilder builder(ResourceLocation id) {
         return new SoakingRecipe.Builder(id);
-    }
-
-    public static SoakingRecipe.Builder builder(String id) {
-        return new SoakingRecipe.Builder(new ResourceLocation(id));
     }
 
     SoakingRecipe(ResourceLocation id) {
@@ -39,13 +35,13 @@ public final class SoakingRecipe implements ISoakingRecipe {
     }
 
     @Override
-    public CountIngredient getInputItem() {
-        return inputItem == null ? CountIngredient.EMPTY : inputItem;
+    public ICountIngredient getInputItem() {
+        return inputItem == null ? ICountIngredient.EMPTY : inputItem;
     }
 
     @Override
-    public FluidIngredient getInputFluid() {
-        return inputFluid == null ? FluidIngredient.EMPTY : inputFluid;
+    public IFluidIngredient getInputFluid() {
+        return inputFluid == null ? IFluidIngredient.EMPTY : inputFluid;
     }
 
     @Override
@@ -125,7 +121,7 @@ public final class SoakingRecipe implements ISoakingRecipe {
             return this;
         }
 
-        public Builder setInput(CountIngredient ingredient) {
+        public Builder setInput(ICountIngredient ingredient) {
             recipe.inputItem = ingredient;
             return this;
         }
@@ -142,7 +138,7 @@ public final class SoakingRecipe implements ISoakingRecipe {
             return this;
         }
 
-        public Builder setInput(FluidIngredient ingredient) {
+        public Builder setInput(IFluidIngredient ingredient) {
             recipe.inputFluid = ingredient;
             return this;
         }

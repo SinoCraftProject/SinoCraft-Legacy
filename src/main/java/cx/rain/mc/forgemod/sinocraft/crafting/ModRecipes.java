@@ -2,8 +2,10 @@ package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -72,5 +74,20 @@ public class ModRecipes implements IModRecipes {
     @Override
     public ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id) {
         return SteamerRecipe.builder(id);
+    }
+
+    @Override
+    public ICountIngredient newCountIngredient(Ingredient ingredient, int count) {
+        return new CountIngredient(ingredient, count);
+    }
+
+    @Override
+    public IFluidIngredient newFluidIngredient(ResourceLocation fluidTag, int amount) {
+        return new FluidIngredient(fluidTag, amount);
+    }
+
+    @Override
+    public IFluidIngredient newFluidIngredient(Fluid fluid, int amount) {
+        return new FluidIngredient(fluid, amount);
     }
 }

@@ -51,9 +51,9 @@ public interface ISoakingRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
 
     int getSoakingTime();
 
-    CountIngredient getInputItem();
+    ICountIngredient getInputItem();
 
-    FluidIngredient getInputFluid();
+    IFluidIngredient getInputFluid();
 
     FluidStack getFluidOutput();
 

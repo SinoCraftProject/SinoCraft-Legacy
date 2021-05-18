@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class SteamerSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<SteamerRecipe> {
 
-    public static final SteamerSerializer SERIALIZER = new SteamerSerializer();
+    static final SteamerSerializer SERIALIZER = new SteamerSerializer();
 
     @Override
     public void write(JsonObject json, SteamerRecipe recipe) {

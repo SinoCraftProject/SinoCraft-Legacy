@@ -21,7 +21,7 @@ public class SteamerRecipe implements ISteamerRecipe {
     Ingredient input;
     ItemStack output, adust;
 
-    public static Builder builder(ResourceLocation id) {
+    static Builder builder(ResourceLocation id) {
         return new Builder(id);
     }
 

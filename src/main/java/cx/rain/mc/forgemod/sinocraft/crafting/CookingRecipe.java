@@ -29,7 +29,7 @@ public class CookingRecipe implements ICookingRecipe {
     ItemStack recipeResult = new ItemStack(ModItems.ADUST_FOOD.get());
     ItemStack adustResult = new ItemStack(ModItems.ADUST_FOOD.get());
     int time = 60;
-    final NonNullList<CountIngredient> stacks = NonNullList.create();
+    final NonNullList<ICountIngredient> stacks = NonNullList.create();
 
     public static CookingRecipe.Builder builder(ResourceLocation id) {
         return new Builder(id);
@@ -49,7 +49,7 @@ public class CookingRecipe implements ICookingRecipe {
     }
 
     @Override
-    public CountIngredient getInput(int index) {
+    public ICountIngredient getInput(int index) {
         return stacks.get(index);
     }
 
@@ -192,7 +192,7 @@ public class CookingRecipe implements ICookingRecipe {
             return this;
         }
 
-        public Builder addInput(CountIngredient ingredient) {
+        public Builder addInput(ICountIngredient ingredient) {
             recipe.stacks.add(ingredient);
             return this;
         }

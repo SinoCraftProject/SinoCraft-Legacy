@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.CountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<CookingRecipe> {
 
-    public static final CookingSerializer SERIALIZER = new CookingSerializer();
+    static final CookingSerializer SERIALIZER = new CookingSerializer();
 
     @Override
     public CookingRecipe read(ResourceLocation recipeId, JsonObject json) {
@@ -62,7 +62,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
     @Override
     public void write(PacketBuffer buffer, CookingRecipe recipe) {
         buffer.writeVarInt(recipe.stacks.size());
-        for (CountIngredient stack : recipe.stacks) {
+        for (ICountIngredient stack : recipe.stacks) {
             stack.getIngredient().write(buffer);
             buffer.writeVarInt(stack.getCount());
         }
