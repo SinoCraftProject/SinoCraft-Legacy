@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -169,7 +169,7 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         ISoakingRecipe old = currentRecipe;
         currentRecipe = null;
         if (world == null) return;
-        currentRecipe = world.getRecipeManager().getRecipe(IModRecipes.getInstance().getSoakingRecipe(), inv, world).orElse(null);
+        currentRecipe = world.getRecipeManager().getRecipe(SinoCraftAPI.getRecipes().getSoakingRecipe(), inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
             markDirty();

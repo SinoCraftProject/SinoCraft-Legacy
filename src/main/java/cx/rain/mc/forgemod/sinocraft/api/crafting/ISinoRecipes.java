@@ -4,15 +4,12 @@ import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 
-public interface IModRecipes {
+public interface ISinoRecipes {
 
-    Lazy<IModRecipes> INSTANCE = new Lazy<>();
-
-    static IModRecipes getInstance() {
-        return INSTANCE.get();
-    }
+    Lazy<ISinoRecipes> INSTANCE = new Lazy<>();
 
     IRecipeType<ISoakingRecipe> getSoakingRecipe();
     IRecipeType<ICookingRecipe> getCookingRecipe();
@@ -27,6 +24,6 @@ public interface IModRecipes {
     ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id);
 
     ICountIngredient newCountIngredient(Ingredient ingredient, int count);
-    IFluidIngredient newFluidIngredient(ResourceLocation fluidTag, int amount);
+    IFluidIngredient newFluidIngredient(ITag<Fluid> tag, int amount);
     IFluidIngredient newFluidIngredient(Fluid fluid, int amount);
 }

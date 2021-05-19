@@ -1,36 +1,33 @@
 package cx.rain.mc.forgemod.sinocraft.api.item;
 
 import com.google.common.collect.ImmutableList;
-import cx.rain.mc.forgemod.sinocraft.api.item.shave.IShaveable;
 import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.TieredItem;
+import net.minecraft.tags.ITag;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.function.Function;
 
-public interface IKnife extends IItemProvider {
+public interface IKnife {
 
     Lazy<IKnife> INSTANCE = new Lazy<>();
 
-    static IKnife getInstance() {
-        return INSTANCE.get();
+    @Nullable
+    TieredItem getKnife(IItemTier tier);
+
+    IShaveable newShaveable(Block block, BlockState replacedBlock, Collection<ItemStack> dropItems);
+
+    default IShaveable newShaveable(Block block, BlockState replacedBlock, ItemStack... dropItems) {
+        return newShaveable(block, replacedBlock, ImmutableList.copyOf(dropItems));
     }
 
-    void addShaveable(IShaveable shave);
+    IShaveable newShaveable(ITag<Block> tag, Function<BlockState, BlockState> replacedBlock, Function<BlockState, ItemStack> dropItems);
 
-    void addShaveable(Block block, BlockState replacedBlock, Collection<ItemStack> dropItems);
-
-    default void addShaveable(Block block, BlockState replacedBlock, ItemStack... dropItems) {
-        addShaveable(block, replacedBlock, ImmutableList.copyOf(dropItems));
-    }
-
-    void addShaveable(ResourceLocation blockTag, Function<BlockState, BlockState> replacedBlock, Collection<ItemStack> dropItems);
-
-    default void addShaveable(ResourceLocation blockTag, Function<BlockState, BlockState> replacedBlock, ItemStack... dropItems) {
-        addShaveable(blockTag, replacedBlock, ImmutableList.copyOf(dropItems));
-    }
+    void addShaveable(IShaveable shaveable, Item... knives);
 }

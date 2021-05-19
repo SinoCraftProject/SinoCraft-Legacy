@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.api.item.shave.IShaveable;
-import cx.rain.mc.forgemod.sinocraft.api.item.shave.ShaveResult;
+import cx.rain.mc.forgemod.sinocraft.api.item.IShaveable;
+import cx.rain.mc.forgemod.sinocraft.api.item.ShaveResult;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.shave.TagShave;
 import net.minecraft.block.BlockState;
@@ -20,12 +20,15 @@ import java.util.function.Function;
 
 public class ItemKnife extends SwordItem {
 
-    public static List<IShaveable> shaves = new ArrayList<>();
+    final static List<ItemKnife> KNIVES = new ArrayList<>();
+
+    final List<IShaveable> shaves = new ArrayList<>();
 
     public ItemKnife(IItemTier tier) {
         super(tier, 2, -3.0f, new Item.Properties().group(ModGroups.TOOLS));
         Function<BlockState, ItemStack> dropItem = state -> new ItemStack(ModItems.BARK.get(), random.nextInt(2) + 1);
         shaves.add(0, new TagShave(BlockTags.LOGS, AxeItem::getAxeStrippingState, dropItem));
+        KNIVES.add(this);
     }
 
     @Override

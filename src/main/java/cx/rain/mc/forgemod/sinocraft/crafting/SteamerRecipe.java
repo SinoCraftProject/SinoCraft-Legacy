@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -87,7 +87,7 @@ public class SteamerRecipe implements ISteamerRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return IModRecipes.getInstance().getSteamerRecipe();
+        return SinoCraftAPI.getRecipes().getSteamerRecipe();
     }
 
     public static class Builder implements ISteamerRecipeBuilder {

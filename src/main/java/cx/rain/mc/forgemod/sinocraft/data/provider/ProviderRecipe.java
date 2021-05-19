@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
@@ -37,12 +37,12 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(IModRecipes.getInstance().newSoakingRecipe(new ResourceLocation("sinocraft:dough"))
+        consumer.accept(SinoCraftAPI.getRecipes().newSoakingRecipe(new ResourceLocation("sinocraft:dough"))
                 .setInput(Ingredient.fromItems(ModItems.FLOUR.get()), 2)
                 .setInput(Fluids.WATER)
                 .setOutput(new ItemStack(ModItems.DOUGH.get()))
                 .setTime(400).build());
-        consumer.accept(IModRecipes.getInstance().newSoakingRecipe(new ResourceLocation("sinocraft:wood_pulp"))
+        consumer.accept(SinoCraftAPI.getRecipes().newSoakingRecipe(new ResourceLocation("sinocraft:wood_pulp"))
                 .setInput(Ingredient.fromItems(ModItems.BARK.get()), 3)
                 .setInput(Fluids.WATER)
                 .setOutput(new FluidStack(ModFluids.WOOD_PULP.get(), 1000))
@@ -50,7 +50,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(IModRecipes.getInstance().newCookingRecipe(new ResourceLocation("sinocraft:pot_apple"))
+        consumer.accept(SinoCraftAPI.getRecipes().newCookingRecipe(new ResourceLocation("sinocraft:pot_apple"))
                 .addInput(Ingredient.fromItems(Items.RED_DYE))
                 .setOutput(new ItemStack(Items.APPLE))
                 .setHeat(1, Integer.MAX_VALUE)
@@ -59,7 +59,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerSteamerRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(IModRecipes.getInstance().newSteamerRecipe(new ResourceLocation("sinocraft:steamer_test"))
+        consumer.accept(SinoCraftAPI.getRecipes().newSteamerRecipe(new ResourceLocation("sinocraft:steamer_test"))
                 .setInput(Ingredient.fromItems(Items.APPLE))
                 .setOutput(new ItemStack(Items.ACACIA_LOG))
                 .setTime(100)

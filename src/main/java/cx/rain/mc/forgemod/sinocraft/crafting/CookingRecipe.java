@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -118,7 +119,7 @@ public class CookingRecipe implements ICookingRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return IModRecipes.getInstance().getCookingRecipe();
+        return SinoCraftAPI.getRecipes().getCookingRecipe();
     }
 
     @Override

@@ -4,8 +4,8 @@ import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -27,10 +27,10 @@ public class FluidIngredient implements IFluidIngredient {
         this.type = 0;
     }
 
-    FluidIngredient(ResourceLocation tag, int amount) {
+    FluidIngredient(ITag<Fluid> tag, int amount) {
         this.fluid = Fluids.EMPTY;
-        this.loc = tag;
-        this.tag = FluidTags.getCollection().getTagByID(tag);
+        this.loc = TagCollectionManager.getManager().getFluidTags().getValidatedIdFromTag(tag);
+        this.tag = tag;
         this.amount = amount;
         this.type = 1;
     }
@@ -78,9 +78,13 @@ public class FluidIngredient implements IFluidIngredient {
             int amount = buffer.readInt();
             return new FluidIngredient(fluid, amount);
         } else {
-            ResourceLocation loc = buffer.readResourceLocation();
+            ResourceLocation tagName = buffer.readResourceLocation();
+            ITag<Fluid> tag = TagCollectionManager.getManager().getFluidTags().get(tagName);
+            if (tag == null) {
+                throw new NullPointerException("Can't find fluid tag named " + tagName);
+            }
             int amount = buffer.readInt();
-            return new FluidIngredient(loc, amount);
+            return new FluidIngredient(tag, amount);
         }
     }
 

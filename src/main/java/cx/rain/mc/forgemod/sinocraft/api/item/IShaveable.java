@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.item.shave;
+package cx.rain.mc.forgemod.sinocraft.api.item;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemUseContext;

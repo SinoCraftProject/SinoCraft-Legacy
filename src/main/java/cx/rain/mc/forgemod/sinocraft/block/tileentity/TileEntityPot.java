@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
 import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -146,7 +146,7 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         ICookingRecipe old = currentRecipe;
         currentRecipe = null;
         if (world == null) return;
-        currentRecipe = world.getRecipeManager().getRecipe(IModRecipes.getInstance().getCookingRecipe(), inv, world).orElse(null);
+        currentRecipe = world.getRecipeManager().getRecipe(SinoCraftAPI.getRecipes().getCookingRecipe(), inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
             markDirty();

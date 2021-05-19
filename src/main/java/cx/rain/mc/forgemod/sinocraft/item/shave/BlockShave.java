@@ -1,11 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.item.shave;
 
 import com.google.common.collect.ImmutableList;
-import cx.rain.mc.forgemod.sinocraft.api.item.shave.IShaveable;
-import cx.rain.mc.forgemod.sinocraft.api.item.shave.ShaveResult;
+import cx.rain.mc.forgemod.sinocraft.api.item.IShaveable;
+import cx.rain.mc.forgemod.sinocraft.api.item.ShaveResult;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 

@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.item.shave;
+package cx.rain.mc.forgemod.sinocraft.api.item;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;

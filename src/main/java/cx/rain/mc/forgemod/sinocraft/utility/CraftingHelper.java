@@ -1,13 +1,15 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
 import com.google.gson.*;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -108,9 +110,9 @@ public class CraftingHelper {
                     ? Ingredient.deserialize(object.get("items"))
                     : Ingredient.deserialize(json);
             int count = object.has("count") ? object.get("count").getAsInt() : 1;
-            return IModRecipes.getInstance().newCountIngredient(ingredient, count);
+            return SinoCraftAPI.getRecipes().newCountIngredient(ingredient, count);
         } else {
-            return IModRecipes.getInstance().newCountIngredient(Ingredient.deserialize(json), 1);
+            return SinoCraftAPI.getRecipes().newCountIngredient(Ingredient.deserialize(json), 1);
         }
     }
 
@@ -141,15 +143,19 @@ public class CraftingHelper {
             if (fluid == null) {
                 throw new JsonSyntaxException("Unknown fluid '" + id + "'");
             }
-            return IModRecipes.getInstance().newFluidIngredient(fluid, 1000);
+            return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, 1000);
         } else if (json.isJsonObject()) {
             JsonObject fluidObject = json.getAsJsonObject();
             if (fluidObject.has("tag")) {
-                ResourceLocation tag = new ResourceLocation(fluidObject.get("tag").getAsString());
+                ResourceLocation tagName = new ResourceLocation(fluidObject.get("tag").getAsString());
+                ITag<Fluid> tag = TagCollectionManager.getManager().getFluidTags().get(tagName);
+                if (tag == null) {
+                    throw new NullPointerException("Can't find fluid tag named " + tagName);
+                }
                 if (fluidObject.has("amount")) {
-                    return IModRecipes.getInstance().newFluidIngredient(tag, fluidObject.get("amount").getAsInt());
+                    return SinoCraftAPI.getRecipes().newFluidIngredient(tag, fluidObject.get("amount").getAsInt());
                 } else {
-                    return IModRecipes.getInstance().newFluidIngredient(tag, 1000);
+                    return SinoCraftAPI.getRecipes().newFluidIngredient(tag, 1000);
                 }
             } else if (fluidObject.has("fluid")) {
                 String id = fluidObject.get("fluid").getAsString();
@@ -158,9 +164,9 @@ public class CraftingHelper {
                     throw new JsonSyntaxException("Unknown fluid '" + id + "'");
                 }
                 if (fluidObject.has("amount")) {
-                    return IModRecipes.getInstance().newFluidIngredient(fluid, fluidObject.get("amount").getAsInt());
+                    return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, fluidObject.get("amount").getAsInt());
                 } else {
-                    return IModRecipes.getInstance().newFluidIngredient(fluid, 1000);
+                    return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, 1000);
                 }
             }
         }

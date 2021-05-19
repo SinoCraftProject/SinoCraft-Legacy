@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.network.PacketBuffer;
@@ -9,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidIngredient {
 
-    IFluidIngredient EMPTY = IModRecipes.getInstance().newFluidIngredient(Fluids.EMPTY, 0);
+    IFluidIngredient EMPTY = SinoCraftAPI.getRecipes().newFluidIngredient(Fluids.EMPTY, 0);
 
     int getType();
 

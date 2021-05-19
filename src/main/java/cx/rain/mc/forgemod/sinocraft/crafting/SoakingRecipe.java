@@ -1,12 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -99,7 +101,7 @@ public final class SoakingRecipe implements ISoakingRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return IModRecipes.getInstance().getSoakingRecipe();
+        return SinoCraftAPI.getRecipes().getSoakingRecipe();
     }
 
     public static class Builder implements ISoakingRecipeBuilder {
@@ -144,14 +146,14 @@ public final class SoakingRecipe implements ISoakingRecipe {
         }
 
         @Override
-        public Builder setInput(ResourceLocation fluidTag) {
-            recipe.inputFluid = new FluidIngredient(fluidTag, 1000);
+        public Builder setInput(ITag<Fluid> fluid) {
+            recipe.inputFluid = new FluidIngredient(fluid, 1000);
             return this;
         }
 
         @Override
-        public Builder setInput(ResourceLocation fluidTag, int amount) {
-            recipe.inputFluid = new FluidIngredient(fluidTag, amount);
+        public Builder setInput(ITag<Fluid> fluid, int amount) {
+            recipe.inputFluid = new FluidIngredient(fluid, amount);
             return this;
         }
 

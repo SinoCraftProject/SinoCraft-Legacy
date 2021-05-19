@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.jei;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.plugin.jei.category.CookingCategory;
 import cx.rain.mc.forgemod.sinocraft.plugin.jei.category.SoakingCategory;
@@ -49,9 +49,9 @@ public class JEISupport implements IModPlugin {
         }
         if (world != null) {
             RecipeManager recipeManager = world.getRecipeManager();
-            registration.addRecipes(recipeManager.getRecipesForType(IModRecipes.getInstance().getCookingRecipe()), CookingCategory.ID);
-            registration.addRecipes(recipeManager.getRecipesForType(IModRecipes.getInstance().getSoakingRecipe()), SoakingCategory.ID);
-            registration.addRecipes(recipeManager.getRecipesForType(IModRecipes.getInstance().getSteamerRecipe()), SteamerCategory.ID);
+            registration.addRecipes(recipeManager.getRecipesForType(SinoCraftAPI.getRecipes().getCookingRecipe()), CookingCategory.ID);
+            registration.addRecipes(recipeManager.getRecipesForType(SinoCraftAPI.getRecipes().getSoakingRecipe()), SoakingCategory.ID);
+            registration.addRecipes(recipeManager.getRecipesForType(SinoCraftAPI.getRecipes().getSteamerRecipe()), SteamerCategory.ID);
         }
     }
 

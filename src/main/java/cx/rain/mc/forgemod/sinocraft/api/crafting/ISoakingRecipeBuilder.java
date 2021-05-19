@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.api.crafting;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -16,9 +17,9 @@ public interface ISoakingRecipeBuilder {
 
     ISoakingRecipeBuilder setInput(Fluid fluid, int amount);
 
-    ISoakingRecipeBuilder setInput(ResourceLocation fluidTag);
+    ISoakingRecipeBuilder setInput(ITag<Fluid> fluid);
 
-    ISoakingRecipeBuilder setInput(ResourceLocation fluidTag, int amount);
+    ISoakingRecipeBuilder setInput(ITag<Fluid> fluid, int amount);
 
     ISoakingRecipeBuilder setOutput(ItemStack stack);
 
