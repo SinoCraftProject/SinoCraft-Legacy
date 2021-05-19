@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.waila;
 
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStove;
-import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
+import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
 import mcp.mobius.waila.api.ICommonAccessor;
 import mcp.mobius.waila.api.IDataAccessor;
 import mcp.mobius.waila.api.IPluginConfig;
@@ -30,7 +30,7 @@ public enum StoveProvider implements IWailaProvider {
             if (stove.isBurning()) {
                 data.putInt("burning", stove.getBurnTime());
             }
-            data.putInt("heat", ModCapabilities.getHeat(stove).getHeat());
+            data.putInt("heat", CapabilityHelper.getHeat(stove).getHeat());
         }
     }
 

@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.capability.Heat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
+import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
-import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -38,6 +38,7 @@ public class TileEntityPot extends TileEntityUpdatableBase {
 
     private int cooldown = 0;
     private int progress = 0;
+    private int maxHeat = 0;
     private ItemStack outputItem = ItemStack.EMPTY;
     private ICookingRecipe currentRecipe = null;
 
@@ -93,16 +94,16 @@ public class TileEntityPot extends TileEntityUpdatableBase {
 
                 progress = 0;
                 currentRecipe = null;
-                heat.setMaxHeat(0);
+                setMaxHeat(0);
             } else {
                 if (heat.getHeat() < recipe.getMinHeat()) {
                     progress = 0;
-                    heat.setMaxHeat(0);
+                    setMaxHeat(0);
                 } else {
                     progress++;
                     int heat = this.heat.getHeat();
-                    if (heat > this.heat.getMaxHeat()) {
-                        this.heat.setMaxHeat(heat);
+                    if (heat > maxHeat) {
+                        setMaxHeat(heat);
                     }
                 }
             }
@@ -152,6 +153,15 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         }
     }
 
+    private void setMaxHeat(int heat) {
+        maxHeat = heat;
+        markDirty();
+    }
+
+    public int getMaxHeat() {
+        return maxHeat;
+    }
+
     @Nullable
     public ICookingRecipe getRecipe() {
         return currentRecipe;
@@ -197,7 +207,7 @@ public class TileEntityPot extends TileEntityUpdatableBase {
             compound.putIntArray("slotMap", slotMap);
         }
         compound.putInt("heat", heat.getHeat());
-        compound.putInt("maxHeat", heat.getMaxHeat());
+        compound.putInt("maxHeat", maxHeat);
         return compound;
     }
 
@@ -222,13 +232,13 @@ public class TileEntityPot extends TileEntityUpdatableBase {
                     });
         }
         heat.setHeat(compound.getInt("heat"));
-        heat.setMaxHeat(compound.getInt("maxHeat"));
+        maxHeat = compound.getInt("maxHeat");
     }
 
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
-        if (cap == ModCapabilities.HEAT_CAPABILITY) {
+        if (cap == CapabilityHeat.CAPABILITY) {
             return LazyOptional.of(() -> heat).cast();
         }
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
@@ -260,7 +270,7 @@ public class TileEntityPot extends TileEntityUpdatableBase {
 
         @Override
         public int getMaxHeat() {
-            return heat.getMaxHeat();
+            return maxHeat;
         }
 
         @Override

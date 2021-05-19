@@ -1,107 +1,54 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IFactory;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IShave;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.defaultImpl.ShaveBase;
+import cx.rain.mc.forgemod.sinocraft.api.item.shave.IShaveable;
+import cx.rain.mc.forgemod.sinocraft.api.item.shave.ShaveResult;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
-import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
-import net.minecraft.block.Block;
+import cx.rain.mc.forgemod.sinocraft.item.shave.TagShave;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraftforge.common.Tags;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.function.Function;
 
 public class ItemKnife extends SwordItem {
-	public static List<IFactory<IShave,ItemUseContext>> shaveManagers = new ArrayList();
 
-	public static class DefaultManager implements IFactory<IShave, ItemUseContext> {
-        private static Map<Block, IShave> recipes = new HashMap();
-
-        public DefaultManager(){
-            initIShave();
-        }
-
-        private void initIShave(){
-
-        }
-
-        public static void addShaveRecipe(Block block,IShave shave){
-            recipes.put(block,shave);
-        }
-
-        public static void addShaveRecipe(Block block, BlockState replace, ItemStack... stacks){
-            addShaveRecipe(block,new ShaveBase(replace,stacks));
-        }
-
-        @Override
-        public IShave get(ItemUseContext type, @Nullable Object[] args){
-            if(recipes.containsKey(type.getWorld().getBlockState(type.getPos()).getBlock())){
-                return recipes.get(type.getWorld().getBlockState(type.getPos()).getBlock());
-            }
-            return null;
-        }
-    }
-
-    private static class ShaveBarkManager implements IFactory<IShave, ItemUseContext> {
-        public ShaveBarkManager(){
-
-        }
-
-        @Override
-        public IShave get(ItemUseContext type, @Nullable Object[] args){
-            BlockState result = AxeItem.getAxeStrippingState(type.getWorld().getBlockState(type.getPos()));
-            if (result != null && (BlockTags.LOGS.contains(type.getWorld().getBlockState(type.getPos()).getBlock()))) {
-                return (context) -> {
-                    context.getWorld().setBlockState(context.getPos(), result);
-                    InventoryHelper.spawnItemStack(context.getWorld(), context.getPos().getX(),context.getPos().getY(),context.getPos().getZ(), new ItemStack(ModItems.BARK.get(), context.getWorld().getRandom().nextInt(2) + 1));
-                };
-            }
-            return null;
-        }
-    }
+    public static List<IShaveable> shaves = new ArrayList<>();
 
     public ItemKnife(IItemTier tier) {
-        super(tier,2,-3.0f,new Item.Properties().group(ModGroups.TOOLS));
-        initManager();
-    }
-
-    void initManager(){
-	    shaveManagers.add(new DefaultManager());
-	    shaveManagers.add(new ShaveBarkManager());
+        super(tier, 2, -3.0f, new Item.Properties().group(ModGroups.TOOLS));
+        Function<BlockState, ItemStack> dropItem = state -> new ItemStack(ModItems.BARK.get(), random.nextInt(2) + 1);
+        shaves.add(0, new TagShave(BlockTags.LOGS, AxeItem::getAxeStrippingState, dropItem));
     }
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-	    for(IFactory<IShave,ItemUseContext> shaveManager : shaveManagers){
-            try {
-                IShave shave=shaveManager.get(context,null);
-                if(shave!=null){
-                    if(!context.getWorld().isRemote){
-                        shave.Shave(context);
-                        context.getWorld().notifyBlockUpdate(context.getPos(), context.getWorld().getBlockState(context.getPos()), context.getWorld().getBlockState(context.getPos()), 2);
-                    }
-                    context.getWorld().playSound(context.getPlayer(),context.getPos(), SoundEvents.ITEM_AXE_STRIP, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                    return ActionResultType.SUCCESS;
+        World world = context.getWorld();
+        BlockPos pos = context.getPos();
+        BlockState state = world.getBlockState(pos);
+        for (IShaveable shave : shaves) {
+            ShaveResult result = shave.onShave(state, context);
+            if (result.isSkip()) continue;
+            BlockState block = result.getReplacedBlock();
+            if (!world.isRemote) {
+                if (block != state) {
+                    world.setBlockState(pos, block);
+                    world.notifyBlockUpdate(pos, state, block, 2);
                 }
-            } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-                e.printStackTrace();
+                world.playSound(context.getPlayer(), pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.PLAYERS, 1.0f, 1.0f);
             }
-        }
-        if (context.getWorld().isRemote) {
+            for (ItemStack item : result.getDropItems()) {
+                InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), item);
+            }
             return ActionResultType.SUCCESS;
         }
-        return ActionResultType.FAIL;
+        return world.isRemote ? ActionResultType.SUCCESS : ActionResultType.FAIL;
     }
 }

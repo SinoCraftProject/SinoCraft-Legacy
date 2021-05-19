@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.interfaces;
+package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 /**
  * All Tile Entity of machines that can output MEnergy must implement this interface

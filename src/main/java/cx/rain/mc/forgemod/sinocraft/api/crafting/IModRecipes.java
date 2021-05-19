@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IModRecipes {
 
-    Lazy<IModRecipes> INSTANCE = new Lazy<>("未找到 SinoCraft Mod");
+    Lazy<IModRecipes> INSTANCE = new Lazy<>();
 
     static IModRecipes getInstance() {
         return INSTANCE.get();

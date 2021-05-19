@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;

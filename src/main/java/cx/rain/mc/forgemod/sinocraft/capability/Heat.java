@@ -1,13 +1,13 @@
-package cx.rain.mc.forgemod.sinocraft.api.capability;
+package cx.rain.mc.forgemod.sinocraft.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
 
 /**
  * Heat output default implement
  */
 public class Heat implements IHeat {
+
     private int heat;
-    private int maxHeat;
 
     @Override
     public int getHeat() {
@@ -25,7 +25,6 @@ public class Heat implements IHeat {
     @Override
     public void resetHeat() {
         this.heat = 0;
-        this.maxHeat = 0;
         onHeatChanged();
     }
 
@@ -42,19 +41,6 @@ public class Heat implements IHeat {
         if (heat != 0) {
             setHeat(Math.max(0, this.heat - heat));
         }
-    }
-
-    @Override
-    public void setMaxHeat(int heat) {
-        if (maxHeat != heat) {
-            maxHeat = heat;
-            onHeatChanged();
-        }
-    }
-
-    @Override
-    public int getMaxHeat() {
-        return maxHeat;
     }
 
     public void onHeatChanged() {

@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.interfaces;
+package cx.rain.mc.forgemod.sinocraft.api.capability;
 
 /**
  * All Tile Entity of machines that can output heat must implement this interface
@@ -38,16 +38,4 @@ public interface IHeat {
      * @author flysong
      */
     void subHeat(int heat);
-
-    /**
-     * Set max heat
-     * @param heat heat
-     */
-    void setMaxHeat(int heat);
-
-    /**
-     * Max heat
-     * @return heat
-     */
-    int getMaxHeat();
 }

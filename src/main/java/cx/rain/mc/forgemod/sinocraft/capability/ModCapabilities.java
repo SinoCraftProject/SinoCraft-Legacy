@@ -1,51 +1,28 @@
 package cx.rain.mc.forgemod.sinocraft.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.capability.*;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.*;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IME;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IWaterPower;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IWindEnergy;
+import cx.rain.mc.forgemod.sinocraft.capability.storage.HeatStorage;
+import cx.rain.mc.forgemod.sinocraft.capability.storage.MEStorage;
+import cx.rain.mc.forgemod.sinocraft.capability.storage.WaterPowerStorage;
+import cx.rain.mc.forgemod.sinocraft.capability.storage.WindEnergyStorage;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import javax.annotation.Nullable;
-import java.util.Optional;
-
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCapabilities {
-    @CapabilityInject(IHeat.class)
-    public static Capability<IHeat> HEAT_CAPABILITY;
-
-    @CapabilityInject(IME.class)
-    public static Capability<IME> ME_CAPABILITY;
-
-    @CapabilityInject(IWaterPower.class)
-    public static Capability<IWaterPower> WATER_POWER_CAPABILITY;
-
-    @CapabilityInject(IWindEnergy.class)
-    public static Capability<IWindEnergy> WIND_ENERGY_CAPABILITY;
 
     @SubscribeEvent
     public static void registerCapabilities(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            CapabilityManager.INSTANCE.register(IHeat.class, new CapabilityHeat.Storage(), new CapabilityHeat.Factory());
-            CapabilityManager.INSTANCE.register(IME.class, new CapabilityME.Storage(), new CapabilityME.Factory());
-            CapabilityManager.INSTANCE.register(IWaterPower.class, new CapabilityWaterPower.Storage(), new CapabilityWaterPower.Factory());
-            CapabilityManager.INSTANCE.register(IWindEnergy.class, new CapabilityWindEnergy.Storage(), new CapabilityWindEnergy.Factory());
+            CapabilityManager.INSTANCE.register(IHeat.class, HeatStorage.INSTANCE, Heat::new);
+            CapabilityManager.INSTANCE.register(IME.class, MEStorage.INSTANCE, ME::new);
+            CapabilityManager.INSTANCE.register(IWaterPower.class, WaterPowerStorage.INSTANCE, WaterPower::new);
+            CapabilityManager.INSTANCE.register(IWindEnergy.class, WindEnergyStorage.INSTANCE, WindEnergy::new);
         });
-    }
-
-    public static IHeat getHeat(@Nullable ICapabilityProvider provider) {
-        if (provider == null) {
-            return CapabilityHeat.NoHeat;
-        }
-        return provider.getCapability(HEAT_CAPABILITY).orElse(CapabilityHeat.NoHeat);
-    }
-
-    public static LazyOptional<IHeat> getHeatOpt(@Nullable ICapabilityProvider provider) {
-        return provider == null ? LazyOptional.empty() : provider.getCapability(HEAT_CAPABILITY);
     }
 }
