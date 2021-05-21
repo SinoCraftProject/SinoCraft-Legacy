@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.crafting;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
@@ -29,12 +30,12 @@ public class SteamerSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
 
     @Override
     public SteamerRecipe read(ResourceLocation recipeId, JsonObject json) {
-        SteamerRecipe.Builder builder = SteamerRecipe.builder(recipeId);
+        ISteamerRecipeBuilder builder = SteamerRecipe.builder(recipeId);
         if (json.has("adust")) {
             builder.setAdustOutput(CraftingHelper.deserializeItem(json.get("adust")));
         }
         JsonArray heat = json.getAsJsonArray("heat");
-        return builder.setTime(json.get("time").getAsInt())
+        return (SteamerRecipe) builder.setTime(json.get("time").getAsInt())
                 .setInput(CraftingHelper.deserializeVanillaIngredient(json.get("ingredient")))
                 .setOutput(CraftingHelper.deserializeItem(json.get("result")))
                 .setHeat(heat.get(0).getAsInt(), heat.get(1).getAsInt())
@@ -44,7 +45,7 @@ public class SteamerSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
     @Nullable
     @Override
     public SteamerRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-        return SteamerRecipe.builder(recipeId)
+        return (SteamerRecipe) SteamerRecipe.builder(recipeId)
                 .setTime(buffer.readVarInt())
                 .setInput(Ingredient.read(buffer))
                 .setOutput(buffer.readItemStack())

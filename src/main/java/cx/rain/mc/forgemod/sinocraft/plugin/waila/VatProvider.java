@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.awt.*;
-import java.security.Provider;
 import java.util.List;
 
 public enum VatProvider implements IWailaProvider {
@@ -34,7 +33,7 @@ public enum VatProvider implements IWailaProvider {
             return;
         }
         TileEntityVat vat = (TileEntityVat) tileEntity;
-        ISoakingRecipe recipe = vat.getRecipe();
+        ISoakingRecipe recipe = vat.getCurrentRecipe();
         if (recipe != null) {
             data.putString("recipe", recipe.getId().toString());
             data.putInt("process", vat.getProgress());

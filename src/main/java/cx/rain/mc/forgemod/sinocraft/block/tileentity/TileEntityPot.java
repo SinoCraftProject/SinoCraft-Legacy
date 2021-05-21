@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
-import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
+import cx.rain.mc.forgemod.sinocraft.capability.Heat;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -25,13 +25,13 @@ import java.util.List;
 /**
  * @author NmmOC7
  */
-public class TileEntityPot extends TileEntityUpdatableBase {
+public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityPot {
     private final PotItemHandler itemHandler = new PotItemHandler(this);
     private final Heat heat = new Heat() {
         @Override
         public void onHeatChanged() {
             markDirty();
-            updateRecipe();
+            reloadRecipe();
         }
     };
     private final ExtendedInventory inv = new ExtendedInventory();
@@ -110,7 +110,8 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         }
     }
 
-    public ItemStack removeStackOnInput() {
+    @Override
+    public ItemStack extractInput() {
         for (int i = 5; i >= 0; i--) {
             ItemStack stack = itemHandler.getStackInSlot(i);
             if (!stack.isEmpty()) {
@@ -121,7 +122,8 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         return ItemStack.EMPTY;
     }
 
-    public ItemStack removeStackOnOutput() {
+    @Override
+    public ItemStack extractOutput() {
         ItemStack stack = itemHandler.getStackInSlot(6);
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
@@ -130,23 +132,27 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         return stack.copy();
     }
 
-    public int addStackToInput(ItemStack stack) {
+    @Override
+    public int insertInput(ItemStack stack) {
         return itemHandler.addStack(stack);
     }
 
-    public List<ItemStack> getInput() {
+    @Override
+    public List<ItemStack> getInputs() {
         return itemHandler.getInputs();
     }
 
-    public ItemStack getOutput() {
+    @Override
+    public ItemStack getOutputs() {
         return itemHandler.getStackInSlot(6);
     }
 
-    public void updateRecipe() {
+    @Override
+    public void reloadRecipe() {
         ICookingRecipe old = currentRecipe;
         currentRecipe = null;
         if (world == null) return;
-        currentRecipe = world.getRecipeManager().getRecipe(SinoCraftAPI.getRecipes().getCookingRecipe(), inv, world).orElse(null);
+        currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.COOKING, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
             markDirty();
@@ -158,17 +164,28 @@ public class TileEntityPot extends TileEntityUpdatableBase {
         markDirty();
     }
 
+    @Override
     public int getMaxHeat() {
         return maxHeat;
     }
 
+    @Override
     @Nullable
-    public ICookingRecipe getRecipe() {
+    public ICookingRecipe getCurrentRecipe() {
         return currentRecipe;
     }
 
+    @Override
     public int getProgress() {
         return progress;
+    }
+
+    @Override
+    public void setProgress(int progress) {
+        if (progress != this.progress) {
+            this.progress = progress;
+            markDirty();
+        }
     }
 
     @Override

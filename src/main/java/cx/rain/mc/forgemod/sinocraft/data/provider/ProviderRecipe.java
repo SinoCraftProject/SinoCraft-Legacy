@@ -1,8 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.crafting.CookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.MillRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.SoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.SteamerRecipe;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -34,15 +37,16 @@ public class ProviderRecipe extends ProviderBaseRecipe {
         registerSoakRecipes(consumer);
         registerIronPotRecipes(consumer);
         registerSteamerRecipes(consumer);
+        registerStoneMillRecipe(consumer);
     }
 
     private void registerSoakRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(SinoCraftAPI.getRecipes().newSoakingRecipe(new ResourceLocation("sinocraft:dough"))
+        consumer.accept(SoakingRecipe.builder(new ResourceLocation("sinocraft:dough"))
                 .setInput(Ingredient.fromItems(ModItems.FLOUR.get()), 2)
                 .setInput(Fluids.WATER)
                 .setOutput(new ItemStack(ModItems.DOUGH.get()))
                 .setTime(400).build());
-        consumer.accept(SinoCraftAPI.getRecipes().newSoakingRecipe(new ResourceLocation("sinocraft:wood_pulp"))
+        consumer.accept(SoakingRecipe.builder(new ResourceLocation("sinocraft:wood_pulp"))
                 .setInput(Ingredient.fromItems(ModItems.BARK.get()), 3)
                 .setInput(Fluids.WATER)
                 .setOutput(new FluidStack(ModFluids.WOOD_PULP.get(), 1000))
@@ -50,7 +54,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(SinoCraftAPI.getRecipes().newCookingRecipe(new ResourceLocation("sinocraft:pot_apple"))
+        consumer.accept(CookingRecipe.builder(new ResourceLocation("sinocraft:pot_apple"))
                 .addInput(Ingredient.fromItems(Items.RED_DYE))
                 .setOutput(new ItemStack(Items.APPLE))
                 .setHeat(1, Integer.MAX_VALUE)
@@ -59,11 +63,19 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerSteamerRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(SinoCraftAPI.getRecipes().newSteamerRecipe(new ResourceLocation("sinocraft:steamer_test"))
+        consumer.accept(SteamerRecipe.builder(new ResourceLocation("sinocraft:steamer_test"))
                 .setInput(Ingredient.fromItems(Items.APPLE))
                 .setOutput(new ItemStack(Items.ACACIA_LOG))
                 .setTime(100)
                 .setHeat(10, 100)
+                .build());
+    }
+
+    private void registerStoneMillRecipe(Consumer<IFinishedRecipe> consumer) {
+        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_wheat"))
+                .setInput(Ingredient.fromItems(Items.WHEAT), 1)
+                .setOutput(new ItemStack(ModItems.FLOUR.get()))
+                .setTime(20)
                 .build());
     }
 

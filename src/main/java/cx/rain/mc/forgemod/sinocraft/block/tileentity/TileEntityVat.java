@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,7 +22,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityVat extends TileEntityUpdatableBase {
+public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityVat {
 
     private final VatItemHandler itemHandler = new VatItemHandler(this);
     private final VatFluidHandler fluidHandler = new VatFluidHandler(this);
@@ -165,24 +165,35 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         return list;
     }
 
+    @Override
     public void updateRecipe() {
         ISoakingRecipe old = currentRecipe;
         currentRecipe = null;
         if (world == null) return;
-        currentRecipe = world.getRecipeManager().getRecipe(SinoCraftAPI.getRecipes().getSoakingRecipe(), inv, world).orElse(null);
+        currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.SOAKING, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
             markDirty();
         }
     }
 
+    @Override
     @Nullable
-    public ISoakingRecipe getRecipe() {
+    public ISoakingRecipe getCurrentRecipe() {
         return currentRecipe;
     }
 
+    @Override
     public int getProgress() {
         return progress;
+    }
+
+    @Override
+    public void setProgress(int progress) {
+        if (progress != this.progress) {
+            this.progress = progress;
+            markDirty();
+        }
     }
 
     class ExtendedInventory extends RecipeWrapper implements IExtendedRecipeInventory {

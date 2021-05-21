@@ -13,6 +13,8 @@ public interface ICookingRecipeBuilder {
 
     ICookingRecipeBuilder setTime(int time);
 
+    ICookingRecipeBuilder addInput(ICountIngredient ingredient);
+
     ICookingRecipeBuilder addInput(Ingredient item);
 
     ICookingRecipeBuilder addInput(Ingredient item, int count);

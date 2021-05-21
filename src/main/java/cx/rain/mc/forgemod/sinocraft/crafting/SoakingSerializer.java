@@ -26,7 +26,7 @@ public class SoakingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         if (results.has("fluid")) {
             builder.setOutput(CraftingHelper.deserializeFluid(results.get("fluid")));
         }
-        return builder.build();
+        return (SoakingRecipe) builder.build();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SoakingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         if ((b & 0b10) == 0b10) {
             builder.setOutput(buffer.readFluidStack());
         }
-        return builder.build();
+        return (SoakingRecipe) builder.build();
     }
 
     @Override

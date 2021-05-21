@@ -24,7 +24,6 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings("deprecation")
 public class BlockStoneMill extends BlockHorizontal {
     public static IntegerProperty ROTATE = IntegerProperty.create("rotate",1,16);
 
@@ -107,7 +106,7 @@ public class BlockStoneMill extends BlockHorizontal {
                         }
                         else {
                             worldIn.setBlockState(pos,state.with(ROTATE,Math.max((state.get(ROTATE) + 1) % 16, 1)));
-                            tileEntity.onRotate();
+                            tileEntity.rotate();
                         }
                         return ActionResultType.SUCCESS;
                     }

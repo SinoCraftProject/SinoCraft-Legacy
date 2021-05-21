@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.Constants;
 
 import static cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy.CAPABILITY;
 
-public class TileEntityStove extends TileEntity implements ITickableTileEntity {
+public class TileEntityStove extends TileEntity implements ITickableTileEntity, cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStove {
 
     private int burnTime = 0;
     private int burnSpeed = 1;
@@ -73,22 +73,27 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity {
         CapabilityHelper.getHeat(tile).setHeat(heat.getHeat());
     }
 
+    @Override
     public int getBurnTime() {
         return burnTime;
     }
 
+    @Override
     public void setBurnTime(int time) {
         burnTime = time;
     }
 
+    @Override
     public void addBurnTime(int time) {
         burnTime += time;
     }
 
+    @Override
     public void subBurnTime(int time) {
         burnTime -= time;
     }
 
+    @Override
     public boolean isBurning() {
         return burnTime > 0;
     }

@@ -18,14 +18,14 @@ class PotItemHandler extends ItemStackHandler {
     @Override
     protected void onLoad() {
         super.onLoad();
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 
     @Override
     protected void onContentsChanged(int slot) {
         super.onContentsChanged(slot);
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 

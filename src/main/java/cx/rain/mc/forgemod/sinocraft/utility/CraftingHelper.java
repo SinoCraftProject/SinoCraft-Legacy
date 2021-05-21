@@ -1,9 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
 import com.google.gson.*;
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
+import cx.rain.mc.forgemod.sinocraft.crafting.CountIngredient;
+import cx.rain.mc.forgemod.sinocraft.crafting.FluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -110,9 +111,9 @@ public class CraftingHelper {
                     ? Ingredient.deserialize(object.get("items"))
                     : Ingredient.deserialize(json);
             int count = object.has("count") ? object.get("count").getAsInt() : 1;
-            return SinoCraftAPI.getRecipes().newCountIngredient(ingredient, count);
+            return new CountIngredient(ingredient, count);
         } else {
-            return SinoCraftAPI.getRecipes().newCountIngredient(Ingredient.deserialize(json), 1);
+            return new CountIngredient(Ingredient.deserialize(json), 1);
         }
     }
 
@@ -143,7 +144,7 @@ public class CraftingHelper {
             if (fluid == null) {
                 throw new JsonSyntaxException("Unknown fluid '" + id + "'");
             }
-            return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, 1000);
+            return new FluidIngredient(fluid, 1000);
         } else if (json.isJsonObject()) {
             JsonObject fluidObject = json.getAsJsonObject();
             if (fluidObject.has("tag")) {
@@ -153,9 +154,9 @@ public class CraftingHelper {
                     throw new NullPointerException("Can't find fluid tag named " + tagName);
                 }
                 if (fluidObject.has("amount")) {
-                    return SinoCraftAPI.getRecipes().newFluidIngredient(tag, fluidObject.get("amount").getAsInt());
+                    return new FluidIngredient(tag, fluidObject.get("amount").getAsInt());
                 } else {
-                    return SinoCraftAPI.getRecipes().newFluidIngredient(tag, 1000);
+                    return new FluidIngredient(tag, 1000);
                 }
             } else if (fluidObject.has("fluid")) {
                 String id = fluidObject.get("fluid").getAsString();
@@ -164,9 +165,9 @@ public class CraftingHelper {
                     throw new JsonSyntaxException("Unknown fluid '" + id + "'");
                 }
                 if (fluidObject.has("amount")) {
-                    return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, fluidObject.get("amount").getAsInt());
+                    return new FluidIngredient(fluid, fluidObject.get("amount").getAsInt());
                 } else {
-                    return SinoCraftAPI.getRecipes().newFluidIngredient(fluid, 1000);
+                    return new FluidIngredient(fluid, 1000);
                 }
             }
         }

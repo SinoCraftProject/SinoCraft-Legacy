@@ -38,7 +38,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         } else {
             throw new JsonSyntaxException("Not found heat range in recipe " + recipeId + ".");
         }
-        return builder.build();
+        return (CookingRecipe) builder.build();
     }
 
     @Nullable
@@ -53,7 +53,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
             builder.addInput(ingredient, count);
         }
 
-        return builder.setOutput(buffer.readItemStack())
+        return (CookingRecipe) builder.setOutput(buffer.readItemStack())
                 .setAdustOutput(buffer.readItemStack())
                 .setHeat(buffer.readVarInt(), buffer.readVarInt())
                 .setTime(buffer.readVarInt()).build();

@@ -20,14 +20,14 @@ public class FluidIngredient implements IFluidIngredient {
     private final int amount;
     private final int type;
 
-    FluidIngredient(Fluid fluid, int amount) {
+    public FluidIngredient(Fluid fluid, int amount) {
         this.loc = fluid.delegate.name();
         this.fluid = fluid;
         this.amount = amount;
         this.type = 0;
     }
 
-    FluidIngredient(ITag<Fluid> tag, int amount) {
+    public FluidIngredient(ITag<Fluid> tag, int amount) {
         this.fluid = Fluids.EMPTY;
         this.loc = TagCollectionManager.getManager().getFluidTags().getValidatedIdFromTag(tag);
         this.tag = tag;

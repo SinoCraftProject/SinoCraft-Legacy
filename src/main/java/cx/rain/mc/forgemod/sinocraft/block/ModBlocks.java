@@ -74,11 +74,11 @@ public class ModBlocks {
     public static RegistryObject<Block> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));
     public static RegistryObject<Block> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockMarble(MarbleType.BLACK));
 
-    public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove());
-    public static RegistryObject<Block> VAT = REGISTRY.register("vat", () -> new BlockVat());
-    public static RegistryObject<Block> STONE_MILL = REGISTRY.register("stone_mill", () -> new BlockStoneMill());
-    public static RegistryObject<Block> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockPaperDryingRack());
-    public static RegistryObject<Block> POT = REGISTRY.register("pot", () -> new BlockPot());
+    public static RegistryObject<BlockStove> STOVE = REGISTRY.register("stove", BlockStove::new);
+    public static RegistryObject<BlockVat> VAT = REGISTRY.register("vat", BlockVat::new);
+    public static RegistryObject<BlockStoneMill> STONE_MILL = REGISTRY.register("stone_mill", BlockStoneMill::new);
+    public static RegistryObject<BlockPaperDryingRack> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
+    public static RegistryObject<BlockPot> POT = REGISTRY.register("pot", BlockPot::new);
 
     public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 

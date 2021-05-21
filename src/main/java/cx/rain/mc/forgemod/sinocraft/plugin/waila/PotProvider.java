@@ -32,7 +32,7 @@ public enum PotProvider implements IWailaProvider {
             TileEntityPot pot = (TileEntityPot) tileEntity;
             IHeat heat = CapabilityHelper.getHeat(pot);
             data.putInt("heat", heat.getHeat());
-            ICookingRecipe recipe = pot.getRecipe();
+            ICookingRecipe recipe = pot.getCurrentRecipe();
             if (recipe != null) {
                 data.putInt("maxHeat", pot.getMaxHeat());
                 data.putInt("process", pot.getProgress());
@@ -53,14 +53,14 @@ public enum PotProvider implements IWailaProvider {
         }
 
         TileEntityPot pot = (TileEntityPot) tileEntity;
-        for (ItemStack item : pot.getInput()) {
+        for (ItemStack item : pot.getInputs()) {
             if (!item.isEmpty()) {
                 StringTextComponent input = new StringTextComponent(" -> ");
                 ProviderHelper.appendItemStack(input, item);
                 tooltip.add(input);
             }
         }
-        ItemStack outputItem = pot.getOutput();
+        ItemStack outputItem = pot.getOutputs();
         if (!outputItem.isEmpty()) {
             StringTextComponent output = new StringTextComponent(" <- ");
             ProviderHelper.appendItemStack(output, outputItem);

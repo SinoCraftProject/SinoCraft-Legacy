@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -23,7 +22,7 @@ public final class SoakingRecipe implements ISoakingRecipe {
     int time;
     final ResourceLocation id;
 
-    static ISoakingRecipeBuilder builder(ResourceLocation id) {
+    public static ISoakingRecipeBuilder builder(ResourceLocation id) {
         return new SoakingRecipe.Builder(id);
     }
 
@@ -101,10 +100,10 @@ public final class SoakingRecipe implements ISoakingRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return SinoCraftAPI.getRecipes().getSoakingRecipe();
+        return ModRecipes.SOAKING;
     }
 
-    public static class Builder implements ISoakingRecipeBuilder {
+    static class Builder implements ISoakingRecipeBuilder {
         SoakingRecipe recipe;
 
         Builder(ResourceLocation id) {
@@ -112,71 +111,71 @@ public final class SoakingRecipe implements ISoakingRecipe {
         }
 
         @Override
-        public Builder setInput(Ingredient ingredient) {
+        public ISoakingRecipeBuilder setInput(Ingredient ingredient) {
             recipe.inputItem = new CountIngredient(ingredient, 1);
             return this;
         }
 
         @Override
-        public Builder setInput(Ingredient ingredient, int count) {
+        public ISoakingRecipeBuilder setInput(Ingredient ingredient, int count) {
             recipe.inputItem = new CountIngredient(ingredient, count);
             return this;
         }
 
-        public Builder setInput(ICountIngredient ingredient) {
+        public ISoakingRecipeBuilder setInput(ICountIngredient ingredient) {
             recipe.inputItem = ingredient;
             return this;
         }
 
         @Override
-        public Builder setInput(Fluid fluid) {
+        public ISoakingRecipeBuilder setInput(Fluid fluid) {
             recipe.inputFluid = new FluidIngredient(fluid, 1000);
             return this;
         }
 
         @Override
-        public Builder setInput(Fluid fluid, int amount) {
+        public ISoakingRecipeBuilder setInput(Fluid fluid, int amount) {
             recipe.inputFluid = new FluidIngredient(fluid, amount);
             return this;
         }
 
-        public Builder setInput(IFluidIngredient ingredient) {
+        public ISoakingRecipeBuilder setInput(IFluidIngredient ingredient) {
             recipe.inputFluid = ingredient;
             return this;
         }
 
         @Override
-        public Builder setInput(ITag<Fluid> fluid) {
+        public ISoakingRecipeBuilder setInput(ITag<Fluid> fluid) {
             recipe.inputFluid = new FluidIngredient(fluid, 1000);
             return this;
         }
 
         @Override
-        public Builder setInput(ITag<Fluid> fluid, int amount) {
+        public ISoakingRecipeBuilder setInput(ITag<Fluid> fluid, int amount) {
             recipe.inputFluid = new FluidIngredient(fluid, amount);
             return this;
         }
 
         @Override
-        public Builder setOutput(ItemStack stack) {
+        public ISoakingRecipeBuilder setOutput(ItemStack stack) {
             recipe.outputItem = stack;
             return this;
         }
 
         @Override
-        public Builder setOutput(FluidStack stack) {
+        public ISoakingRecipeBuilder setOutput(FluidStack stack) {
             recipe.outputFluid = stack;
             return this;
         }
 
         @Override
-        public Builder setTime(int time) {
+        public ISoakingRecipeBuilder setTime(int time) {
             recipe.time = time;
             return this;
         }
 
         @Override
-        public SoakingRecipe build() {
+        public ISoakingRecipe build() {
             return recipe;
         }
     }

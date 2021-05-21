@@ -6,5 +6,7 @@ public interface ISinoItems {
 
     Lazy<ISinoItems> INSTANCE = new Lazy<>();
 
-    IKnife getKnife();
+    IModItems getItems();
+
+    IKnife getKnifeHelper();
 }

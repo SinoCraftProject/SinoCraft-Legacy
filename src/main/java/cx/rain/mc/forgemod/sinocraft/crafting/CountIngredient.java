@@ -10,7 +10,7 @@ public class CountIngredient implements ICountIngredient {
     private final Ingredient ingredient;
     private final int count;
 
-    CountIngredient(Ingredient ingredient, int count) {
+    public CountIngredient(Ingredient ingredient, int count) {
         this.ingredient = ingredient;
         this.count = count;
     }

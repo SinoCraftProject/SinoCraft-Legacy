@@ -1,9 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.SinoCraftAPI;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -32,12 +34,8 @@ public class CookingRecipe implements ICookingRecipe {
     int time = 60;
     final NonNullList<ICountIngredient> stacks = NonNullList.create();
 
-    public static CookingRecipe.Builder builder(ResourceLocation id) {
+    public static ICookingRecipeBuilder builder(ResourceLocation id) {
         return new Builder(id);
-    }
-
-    public static CookingRecipe.Builder builder(String id) {
-        return new Builder(new ResourceLocation(id));
     }
 
     CookingRecipe(ResourceLocation id) {
@@ -119,7 +117,7 @@ public class CookingRecipe implements ICookingRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return SinoCraftAPI.getRecipes().getCookingRecipe();
+        return ModRecipes.COOKING;
     }
 
     @Override
@@ -149,7 +147,7 @@ public class CookingRecipe implements ICookingRecipe {
         return null;
     }
 
-    public static class Builder implements ICookingRecipeBuilder {
+    static class Builder implements ICookingRecipeBuilder {
         final CookingRecipe recipe;
 
         Builder(ResourceLocation id) {
@@ -157,49 +155,50 @@ public class CookingRecipe implements ICookingRecipe {
         }
 
         @Override
-        public Builder setHeat(int min, int max) {
+        public ICookingRecipeBuilder setHeat(int min, int max) {
             recipe.minThermal = min;
             recipe.maxThermal = max;
             return this;
         }
 
         @Override
-        public Builder setOutput(ItemStack output) {
+        public ICookingRecipeBuilder setOutput(ItemStack output) {
             recipe.recipeResult = output;
             return this;
         }
 
         @Override
-        public Builder setAdustOutput(ItemStack output) {
+        public ICookingRecipeBuilder setAdustOutput(ItemStack output) {
             recipe.adustResult = output;
             return this;
         }
 
         @Override
-        public Builder setTime(int time) {
+        public ICookingRecipeBuilder setTime(int time) {
             recipe.time = time;
             return this;
         }
 
         @Override
-        public Builder addInput(Ingredient item) {
+        public ICookingRecipeBuilder addInput(Ingredient item) {
             recipe.stacks.add(new CountIngredient(item, 1));
             return this;
         }
 
         @Override
-        public Builder addInput(Ingredient item, int count) {
+        public ICookingRecipeBuilder addInput(Ingredient item, int count) {
             recipe.stacks.add(new CountIngredient(item, count));
             return this;
         }
 
-        public Builder addInput(ICountIngredient ingredient) {
+        @Override
+        public ICookingRecipeBuilder addInput(ICountIngredient ingredient) {
             recipe.stacks.add(ingredient);
             return this;
         }
 
         @Override
-        public CookingRecipe build() {
+        public ICookingRecipe build() {
             return recipe;
         }
     }

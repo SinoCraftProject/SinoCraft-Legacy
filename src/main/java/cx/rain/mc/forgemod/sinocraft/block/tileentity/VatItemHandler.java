@@ -15,7 +15,6 @@ public class VatItemHandler  extends ItemStackHandler {
     protected void onLoad() {
         super.onLoad();
         te.updateRecipe();
-        te.markDirty();
     }
 
     @Override

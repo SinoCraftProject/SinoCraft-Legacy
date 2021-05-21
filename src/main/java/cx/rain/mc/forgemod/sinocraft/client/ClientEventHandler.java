@@ -3,31 +3,26 @@ package cx.rain.mc.forgemod.sinocraft.client;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityPot;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import cx.rain.mc.forgemod.sinocraft.item.ItemXuanPaper;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.ModelManager;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.storage.MapData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -60,12 +55,12 @@ public class ClientEventHandler {
                     TileEntity te = entity.world.getTileEntity(block.getPos());
 
                     if (te instanceof TileEntityPot) {
-                        TileEntityPot tileEntity = (TileEntityPot) te;
+                        ITileEntityPot tileEntity = (ITileEntityPot) te;
 
                         int x = event.getWindow().getScaledWidth();
                         int y = event.getWindow().getScaledHeight();
 
-                        List<ItemStack> items = tileEntity.getInput();
+                        List<ItemStack> items = tileEntity.getInputs();
 
                         for (int i = 0; i < 6; i++) {
                             int stackX = x / 2 - 92 + 23 * i;
@@ -74,7 +69,7 @@ public class ClientEventHandler {
                             renderItem(items.get(i), stackX, stackY);
                         }
 
-                        renderItem(tileEntity.getOutput(), x / 2 - 69, y / 2 + 30);
+                        renderItem(tileEntity.getOutputs(), x / 2 - 69, y / 2 + 30);
                     }
                 }
             }
