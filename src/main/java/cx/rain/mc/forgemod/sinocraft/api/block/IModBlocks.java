@@ -1,102 +1,59 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraftforge.fml.RegistryObject;
 
+/**
+ * An interface to get all blocks from the mod.
+ */
 public interface IModBlocks {
-    RegistryObject<? extends Block> getWhiteRadishPlant();
 
-    RegistryObject<? extends Block> getSummerRadishPlant();
-
-    RegistryObject<? extends Block> getGreenRadishPlant();
-
-    RegistryObject<? extends Block> getChiliPepperPlant();
-
-    RegistryObject<? extends Block> getGreenPepperPlant();
-
-    RegistryObject<? extends Block> getEggplantPlant();
-
-    RegistryObject<? extends Block> getCabbagePlant();
-
-    RegistryObject<? extends Block> getRicePlant();
-
-    RegistryObject<? extends Block> getMilletPlant();
-
-    RegistryObject<? extends Block> getSoybeanPlant();
-
-    RegistryObject<? extends Block> getSorghumPlant();
-
-    RegistryObject<? extends Block> getPeachLog();
-
-    RegistryObject<? extends Block> getPeachLogBark();
-
-    RegistryObject<? extends Block> getPeachLogStripped();
-
-    RegistryObject<? extends Block> getPeachLogStrippedBark();
-
+    RegistryObject<? extends CropsBlock> getWhiteRadishPlant();
+    RegistryObject<? extends CropsBlock> getSummerRadishPlant();
+    RegistryObject<? extends CropsBlock> getGreenRadishPlant();
+    RegistryObject<? extends CropsBlock> getChiliPepperPlant();
+    RegistryObject<? extends CropsBlock> getGreenPepperPlant();
+    RegistryObject<? extends CropsBlock> getEggplantPlant();
+    RegistryObject<? extends CropsBlock> getCabbagePlant();
+    RegistryObject<? extends CropsBlock> getRicePlant();
+    RegistryObject<? extends CropsBlock> getMilletPlant();
+    RegistryObject<? extends CropsBlock> getSoybeanPlant();
+    RegistryObject<? extends CropsBlock> getSorghumPlant();
+    RegistryObject<? extends RotatedPillarBlock> getPeachLog();
+    RegistryObject<? extends RotatedPillarBlock> getPeachLogBark();
+    RegistryObject<? extends RotatedPillarBlock> getPeachLogStripped();
+    RegistryObject<? extends RotatedPillarBlock> getPeachLogStrippedBark();
     RegistryObject<? extends Block> getPeachPlank();
-
-    RegistryObject<? extends Block> getPeachLeaves();
-
-    RegistryObject<? extends Block> getPeachSapling();
-
-    RegistryObject<? extends Block> getWalnutLog();
-
-    RegistryObject<? extends Block> getWalnutLogBark();
-
-    RegistryObject<? extends Block> getWalnutLogStripped();
-
-    RegistryObject<? extends Block> getWalnutLogStrippedBark();
-
+    RegistryObject<? extends LeavesBlock> getPeachLeaves();
+    RegistryObject<? extends SaplingBlock> getPeachSapling();
+    RegistryObject<? extends RotatedPillarBlock> getWalnutLog();
+    RegistryObject<? extends RotatedPillarBlock> getWalnutLogBark();
+    RegistryObject<? extends RotatedPillarBlock> getWalnutLogStripped();
+    RegistryObject<? extends RotatedPillarBlock> getWalnutLogStrippedBark();
     RegistryObject<? extends Block> getWalnutPlank();
-
-    RegistryObject<? extends Block> getWalnutLeaves();
-
-    RegistryObject<? extends Block> getWalnutSapling();
-
-    RegistryObject<? extends Block> getPlumLog();
-
-    RegistryObject<? extends Block> getPlumLogBark();
-
-    RegistryObject<? extends Block> getPlumLogStripped();
-
-    RegistryObject<? extends Block> getPlumLogStrippedBark();
-
+    RegistryObject<? extends LeavesBlock> getWalnutLeaves();
+    RegistryObject<? extends SaplingBlock> getWalnutSapling();
+    RegistryObject<? extends RotatedPillarBlock> getPlumLog();
+    RegistryObject<? extends RotatedPillarBlock> getPlumLogBark();
+    RegistryObject<? extends RotatedPillarBlock> getPlumLogStripped();
+    RegistryObject<? extends RotatedPillarBlock> getPlumLogStrippedBark();
     RegistryObject<? extends Block> getPlumPlank();
-
-    RegistryObject<? extends Block> getPlumLeaves();
-
-    RegistryObject<? extends Block> getPlumSapling();
-
-    RegistryObject<? extends Block> getMulberryLog();
-
-    RegistryObject<? extends Block> getMulberryLogBark();
-
-    RegistryObject<? extends Block> getMulberryLogStripped();
-
-    RegistryObject<? extends Block> getMulberryLogStrippedBark();
-
+    RegistryObject<? extends LeavesBlock> getPlumLeaves();
+    RegistryObject<? extends SaplingBlock> getPlumSapling();
+    RegistryObject<? extends RotatedPillarBlock> getMulberryLog();
+    RegistryObject<? extends RotatedPillarBlock> getMulberryLogBark();
+    RegistryObject<? extends RotatedPillarBlock> getMulberryLogStripped();
+    RegistryObject<? extends RotatedPillarBlock> getMulberryLogStrippedBark();
     RegistryObject<? extends Block> getMulberryPlank();
-
-    RegistryObject<? extends Block> getMulberryLeaves();
-
-    RegistryObject<? extends Block> getMulberrySapling();
-
+    RegistryObject<? extends LeavesBlock> getMulberryLeaves();
+    RegistryObject<? extends SaplingBlock> getMulberrySapling();
     RegistryObject<? extends Block> getWhiteMarble();
-
     RegistryObject<? extends Block> getRedMarble();
-
     RegistryObject<? extends Block> getBlackMarble();
-
-    RegistryObject<? extends Block> getStove();
-
-    RegistryObject<? extends Block> getVat();
-
-    RegistryObject<? extends Block> getStoneMill();
-
-    RegistryObject<? extends Block> getPaperDryingRack();
-
+    RegistryObject<? extends HorizontalBlock> getStove();
+    RegistryObject<? extends HorizontalBlock> getVat();
+    RegistryObject<? extends HorizontalBlock> getStoneMill();
+    RegistryObject<? extends HorizontalBlock> getPaperDryingRack();
     RegistryObject<? extends Block> getPot();
-
     RegistryObject<? extends Block> getWoodPulpBlock();
 }

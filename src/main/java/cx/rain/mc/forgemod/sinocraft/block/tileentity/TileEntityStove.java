@@ -46,8 +46,8 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
     }
 
     private void modifyBurnSpeed() {
-        BlockPos left = getPos().offset(getBlockState().get(BlockStove.FACING).rotateY(), 1);
-        BlockPos right = getPos().offset(getBlockState().get(BlockStove.FACING).rotateYCCW(), 1);
+        BlockPos left = getPos().offset(getBlockState().get(BlockStove.HORIZONTAL_FACING).rotateY(), 1);
+        BlockPos right = getPos().offset(getBlockState().get(BlockStove.HORIZONTAL_FACING).rotateYCCW(), 1);
 
         internalModify(left);
         internalModify(right);

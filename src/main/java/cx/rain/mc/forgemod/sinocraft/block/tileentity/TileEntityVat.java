@@ -29,6 +29,7 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
     private final IExtendedRecipeInventory inv = new ExtendedInventory();
 
     private ISoakingRecipe currentRecipe;
+    private ResourceLocation recoveryRecipeLocation = null;
     private int progress = 0;
     // 未能完全输出的合成产物
     private ItemStack outputItem = ItemStack.EMPTY;
@@ -61,6 +62,12 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
         if (!outputFluid.isEmpty()) {
             int filled = fluidHandler.fill(outputFluid.copy(), IFluidHandler.FluidAction.EXECUTE);
             outputFluid.shrink(filled);
+        }
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ISoakingRecipe) recipe);
+            recoveryRecipeLocation = null;
         }
         ISoakingRecipe recipe = currentRecipe;
         if (recipe != null) {
@@ -140,14 +147,9 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
         currentRecipe = null;
         progress = 0;
         if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
-            assert world != null;
-            world.getRecipeManager().getRecipe(new ResourceLocation(compound.getString("recipe")))
-                    .filter(recipe -> recipe instanceof ISoakingRecipe)
-                    .ifPresent(recipe -> {
-                        currentRecipe = (ISoakingRecipe) recipe;
-                        progress = compound.getInt("process");
-                    });
+            recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
         }
+        progress = compound.getInt("process");
         super.read(state, compound);
     }
 
@@ -166,10 +168,16 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
     }
 
     @Override
-    public void updateRecipe() {
-        ISoakingRecipe old = currentRecipe;
-        currentRecipe = null;
+    public void reloadRecipe() {
         if (world == null) return;
+        ISoakingRecipe old;
+        if (recoveryRecipeLocation != null) {
+            old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .map(recipe -> (ISoakingRecipe) recipe)
+                    .orElse(currentRecipe);
+            recoveryRecipeLocation = null;
+        } else old = currentRecipe;
         currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.SOAKING, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
@@ -180,6 +188,12 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
     @Override
     @Nullable
     public ISoakingRecipe getCurrentRecipe() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ISoakingRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
         return currentRecipe;
     }
 

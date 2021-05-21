@@ -33,19 +33,64 @@ public interface ISinoRecipes {
     ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id);
     IMillRecipeBuilder newMillRecipe(ResourceLocation id);
 
+    /**
+     * Create new count ingredient instance,
+     */
     ICountIngredient newCountIngredient(Ingredient ingredient, int count);
+
+    /**
+     * Create new fluid ingredient instance by fluid tag and amount
+     */
     IFluidIngredient newFluidIngredient(ITag<Fluid> tag, int amount);
+
+    /**
+     * Create new fluid ingredient instance by fluid and amount
+     */
     IFluidIngredient newFluidIngredient(Fluid fluid, int amount);
 
+    /**
+     * Write an item stack to json.
+     */
     JsonElement serializeItem(ItemStack stack);
+
+    /**
+     * Write a fluid stack to json.
+     */
     JsonElement serializeFluid(FluidStack stack);
+
+    /**
+     * Write an item ingredient to json.
+     */
     JsonElement serializeItemIngredient(ICountIngredient ingredient);
+
+    /**
+     * Write a fluid ingredient to json.
+     */
     JsonElement serializeFluidIngredient(IFluidIngredient ingredient);
 
+    /**
+     * Read item stack from json.
+     */
     ItemStack deserializeItem(JsonElement json);
+
+    /**
+     * Read fluid stack from json.
+     */
     FluidStack deserializeFluid(JsonElement json);
+
+    /**
+     * Read ingredient from json.
+     */
     Ingredient deserializeVanillaIngredient(JsonElement json);
+
+    /**
+     * Read count ingredient from json.
+     */
     ICountIngredient deserializeItemIngredient(JsonElement json);
+
+    /**
+     * Read fluid ingredient from json.
+     */
     IFluidIngredient deserializeFluidIngredient(JsonElement json);
 
 }

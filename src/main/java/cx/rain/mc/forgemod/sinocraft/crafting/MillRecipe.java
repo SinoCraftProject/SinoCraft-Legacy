@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipeBuilder;
@@ -9,13 +8,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class MillRecipe implements IMillRecipe {
     final ResourceLocation id;
-    ICountIngredient input = ICountIngredient.EMPTY;
+    Ingredient input = Ingredient.EMPTY;
     ItemStack output = ItemStack.EMPTY;
     int time = 60;
 
@@ -29,7 +29,7 @@ public class MillRecipe implements IMillRecipe {
 
     @Override
     public boolean matches(IExtendedRecipeInventory inv, World worldIn) {
-        return inv.getItemCount() >= 0 && input.match(inv.getInputItem(0));
+        return inv.getItemCount() >= 0 && input.test(inv.getInputItem(0));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class MillRecipe implements IMillRecipe {
     }
 
     @Override
-    public ICountIngredient getInput() {
+    public Ingredient getInput() {
         return input;
     }
 
@@ -102,20 +102,14 @@ public class MillRecipe implements IMillRecipe {
         }
 
         @Override
-        public IMillRecipeBuilder setInput(ICountIngredient input) {
+        public IMillRecipeBuilder setInput(IItemProvider input) {
+            recipe.input = Ingredient.fromItems(input);
+            return this;
+        }
+
+        @Override
+        public IMillRecipeBuilder setInput(Ingredient input) {
             recipe.input = input;
-            return this;
-        }
-
-        @Override
-        public IMillRecipeBuilder setInput(ItemStack input) {
-            recipe.input = new CountIngredient(Ingredient.fromItems(input.getItem()), input.getCount());
-            return this;
-        }
-
-        @Override
-        public IMillRecipeBuilder setInput(Ingredient input, int count) {
-            recipe.input = new CountIngredient(input, count);
             return this;
         }
 

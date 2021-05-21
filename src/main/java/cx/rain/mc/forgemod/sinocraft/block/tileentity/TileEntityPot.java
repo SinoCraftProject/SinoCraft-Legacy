@@ -41,6 +41,7 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
     private int maxHeat = 0;
     private ItemStack outputItem = ItemStack.EMPTY;
     private ICookingRecipe currentRecipe = null;
+    private ResourceLocation recoveryRecipeLocation = null;
 
     private int[] slotMap = new int[6];
 
@@ -64,6 +65,12 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
         }
         if (!outputItem.isEmpty()) {
             outputItem = itemHandler.insertItem(6, outputItem, false);
+        }
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ICookingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ICookingRecipe) recipe);
+            recoveryRecipeLocation = null;
         }
         ICookingRecipe recipe = currentRecipe;
         if (recipe != null) {
@@ -116,7 +123,7 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
             ItemStack stack = itemHandler.getStackInSlot(i);
             if (!stack.isEmpty()) {
                 itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-                return stack.copy();
+                return stack;
             }
         }
         return ItemStack.EMPTY;
@@ -133,7 +140,7 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
     }
 
     @Override
-    public int insertInput(ItemStack stack) {
+    public ItemStack insertInput(ItemStack stack) {
         return itemHandler.addStack(stack);
     }
 
@@ -149,9 +156,15 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
 
     @Override
     public void reloadRecipe() {
-        ICookingRecipe old = currentRecipe;
-        currentRecipe = null;
         if (world == null) return;
+        ICookingRecipe old;
+        if (recoveryRecipeLocation != null) {
+            old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ICookingRecipe)
+                    .map(recipe -> (ICookingRecipe) recipe)
+                    .orElse(currentRecipe);
+            recoveryRecipeLocation = null;
+        } else old = currentRecipe;
         currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.COOKING, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
@@ -172,6 +185,12 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
     @Override
     @Nullable
     public ICookingRecipe getCurrentRecipe() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ICookingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ICookingRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
         return currentRecipe;
     }
 
@@ -239,15 +258,10 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
             outputItem = ItemStack.EMPTY;
         }
         if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
-            assert world != null;
-            world.getRecipeManager().getRecipe(new ResourceLocation(compound.getString("recipe")))
-                    .filter(recipe -> recipe instanceof ICookingRecipe)
-                    .ifPresent(recipe -> {
-                        currentRecipe = (ICookingRecipe) recipe;
-                        progress = compound.getInt("process");
-                        slotMap = compound.getIntArray("slotMap");
-                    });
+            recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
         }
+        progress = compound.getInt("process");
+        slotMap = compound.getIntArray("slotMap");
         heat.setHeat(compound.getInt("heat"));
         maxHeat = compound.getInt("maxHeat");
     }

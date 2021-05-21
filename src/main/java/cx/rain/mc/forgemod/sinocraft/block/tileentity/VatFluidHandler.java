@@ -16,7 +16,7 @@ public class VatFluidHandler extends FluidTank implements INBTSerializable<Compo
 
     @Override
     protected void onContentsChanged() {
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 

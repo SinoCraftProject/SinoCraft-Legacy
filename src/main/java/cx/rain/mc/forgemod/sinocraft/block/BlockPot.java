@@ -91,10 +91,8 @@ public class BlockPot extends Block {
         if (te instanceof TileEntityPot) {
             ITileEntityPot tileEntity = (ITileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
-
             if (!holdingStack.isEmpty()) {
-                holdingStack.shrink(holdingStack.getCount() - tileEntity.insertInput(holdingStack));
-
+                player.setHeldItem(handIn, tileEntity.insertInput(holdingStack));
                 return ActionResultType.SUCCESS;
             } else {
                 if (tileEntity.getOutputs().isEmpty()) {

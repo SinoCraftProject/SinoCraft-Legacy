@@ -2,14 +2,16 @@ package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 
+/**
+ * A stone mill recipe's builder
+ */
 public interface IMillRecipeBuilder {
 
-    IMillRecipeBuilder setInput(ICountIngredient input);
+    IMillRecipeBuilder setInput(IItemProvider input);
 
-    IMillRecipeBuilder setInput(ItemStack input);
-
-    IMillRecipeBuilder setInput(Ingredient input, int count);
+    IMillRecipeBuilder setInput(Ingredient input);
 
     IMillRecipeBuilder setOutput(ItemStack output);
 

@@ -8,6 +8,9 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
+/**
+ * An ingredient to match fluid stack by fluid or tag and amount.
+ */
 public interface IFluidIngredient {
 
     IFluidIngredient EMPTY = SinoCraftAPI.getRecipes().newFluidIngredient(Fluids.EMPTY, 0);
@@ -22,7 +25,13 @@ public interface IFluidIngredient {
 
     int getAmount();
 
+    /**
+     * test input fluid base on ingredient and amount.
+     */
     boolean match(FluidStack stack);
 
+    /**
+     * write the ingredient to network packet.
+     */
     void write(PacketBuffer buffer);
 }

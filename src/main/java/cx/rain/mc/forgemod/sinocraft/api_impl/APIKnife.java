@@ -1,7 +1,8 @@
-package cx.rain.mc.forgemod.sinocraft.item;
+package cx.rain.mc.forgemod.sinocraft.api_impl;
 
 import cx.rain.mc.forgemod.sinocraft.api.item.IKnife;
 import cx.rain.mc.forgemod.sinocraft.api.item.IShaveable;
+import cx.rain.mc.forgemod.sinocraft.item.ItemKnife;
 import cx.rain.mc.forgemod.sinocraft.item.shave.BlockShave;
 import cx.rain.mc.forgemod.sinocraft.item.shave.TagShave;
 import net.minecraft.block.Block;

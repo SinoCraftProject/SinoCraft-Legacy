@@ -8,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * A result after shave a block.
+ */
 public class ShaveResult {
 
     private static final ShaveResult SKIP = new ShaveResult(Blocks.AIR.getDefaultState(), ImmutableList.of(), true);

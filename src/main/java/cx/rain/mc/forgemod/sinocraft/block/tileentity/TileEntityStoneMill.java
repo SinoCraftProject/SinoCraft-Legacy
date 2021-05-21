@@ -27,6 +27,7 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
 
     private int progress = 0;
     private IMillRecipe currentRecipe = null;
+    private ResourceLocation recoveryRecipeLocation = null;
     private ItemStack outputStack = ItemStack.EMPTY;
 
     public TileEntityStoneMill() {
@@ -44,7 +45,14 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
     }
 
     @Override
-    public void tick() { }
+    public void tick() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
+    }
 
     @Override
     public void rotate() {
@@ -61,9 +69,8 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
         if (progress == currentRecipe.getTime()) {
             progress = 0;
             InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), currentRecipe.getRecipeOutput().copy());
-            int count = currentRecipe.getInput().getCount();
-            ItemStack simulate = itemHandler.extractItem(0, count, true);
-            if (simulate.getCount() >= count) {
+            ItemStack simulate = itemHandler.extractItem(0, 1, true);
+            if (!simulate.isEmpty()) {
                 outputStack = itemHandler.insertItem(0, currentRecipe.getRecipeOutput(), false);
             }
         }
@@ -72,6 +79,12 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
 
     @Override
     public IMillRecipe getCurrentRecipe() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
         return currentRecipe;
     }
 
@@ -80,10 +93,18 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
         if (itemHandler.getStackInSlot(0).isEmpty() || world == null) {
             if (currentRecipe != null) {
                 currentRecipe = null;
+                progress = 0;
             }
             return;
         }
-        IMillRecipe old = currentRecipe;
+        IMillRecipe old;
+        if (recoveryRecipeLocation != null) {
+            old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .map(recipe -> (IMillRecipe) recipe)
+                    .orElse(currentRecipe);
+            recoveryRecipeLocation = null;
+        } else old = currentRecipe;
         currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.MILL, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
@@ -104,6 +125,10 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
         }
     }
 
+    public ItemStackHandler getItemHandler() {
+        return itemHandler;
+    }
+
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound.put("stacks", itemHandler.serializeNBT());
@@ -120,13 +145,8 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         progress = compound.getInt("progress");
         outputStack = ItemStack.read(compound.getCompound("output"));
-        if (world != null && compound.contains("recipe", Constants.NBT.TAG_STRING)) {
-            ResourceLocation recipeId = new ResourceLocation(compound.getString("recipe"));
-            currentRecipe = (IMillRecipe) world.getRecipeManager().getRecipe(recipeId)
-                    .filter(r -> r instanceof IMillRecipe)
-                    .orElse(null);
-        } else {
-            currentRecipe = null;
+        if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
+            recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
         }
         super.read(state, compound);
     }

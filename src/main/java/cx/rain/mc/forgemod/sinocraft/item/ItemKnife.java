@@ -20,9 +20,9 @@ import java.util.function.Function;
 
 public class ItemKnife extends SwordItem {
 
-    final static List<ItemKnife> KNIVES = new ArrayList<>();
+    public final static List<ItemKnife> KNIVES = new ArrayList<>();
 
-    final List<IShaveable> shaves = new ArrayList<>();
+    public final List<IShaveable> shaves = new ArrayList<>();
 
     public ItemKnife(IItemTier tier) {
         super(tier, 2, -3.0f, new Item.Properties().group(ModGroups.TOOLS));
