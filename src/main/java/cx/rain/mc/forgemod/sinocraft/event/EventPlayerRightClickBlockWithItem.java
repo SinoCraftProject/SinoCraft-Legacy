@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.event;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

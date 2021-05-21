@@ -73,7 +73,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
 
     private void registerStoneMillRecipe(Consumer<IFinishedRecipe> consumer) {
         consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_wheat"))
-                .setInput(Ingredient.fromItems(Items.WHEAT), 1)
+                .setInput(Ingredient.fromItems(Items.WHEAT))
                 .setOutput(new ItemStack(ModItems.FLOUR.get()))
                 .setTime(20)
                 .build());

@@ -245,14 +245,8 @@ public class GuiTutorialBook extends Screen {
 
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        for (Widget w : wfd) {
-            if (buttons.contains(w)) {
-                buttons.remove(w);
-            }
-        }
-        for (Widget w : wfa) {
-            buttons.add(w);
-        }
+        buttons.removeAll(wfd);
+        buttons.addAll(wfa);
         this.fillGradient(stack, 0, 0, this.width, this.height, -1072689136, -804253680);
         super.render(stack, mouseX, mouseY, partialTicks);
         stack.push();

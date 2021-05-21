@@ -33,9 +33,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     @Override
     protected void init() {
         super.init();
-        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.incColor();
-        }) {
+        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> this.container.incColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
                 this.isHovered = mouseX >= this.x
@@ -56,9 +54,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             }
         };
 
-        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.decColor();
-        }) {
+        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> this.container.decColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
                 this.isHovered = mouseX >= this.x

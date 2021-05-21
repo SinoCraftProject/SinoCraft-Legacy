@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.base;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import cx.rain.mc.forgemod.sinocraft.data.tag.TagItem;
 import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.criterion.*;
@@ -17,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -185,10 +182,10 @@ public abstract class ProviderBaseAdvancement implements IDataProvider {
 
             public void writeRewards(JsonWriter out, Advancement adv) throws IOException {
                 AdvancementRewards rewards = adv.getRewards();
-                int experience = (int) ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192115_b");
-                ResourceLocation[] recipes = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192117_d");
-                ResourceLocation[] loots = (ResourceLocation[]) ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192116_c");
-                FunctionObject.CacheableFunction function = (FunctionObject.CacheableFunction) ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_193129_e");
+                int experience = ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192115_b");
+                ResourceLocation[] recipes = ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192117_d");
+                ResourceLocation[] loots = ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_192116_c");
+                FunctionObject.CacheableFunction function = ProtectedHelper.getField(AdvancementRewards.class, rewards, "field_193129_e");
                 out.name("rewards").beginObject();
                 if (experience != 0) {
                     out.name("experience").value(experience);

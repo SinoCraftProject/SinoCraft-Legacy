@@ -50,7 +50,7 @@ public class ModItems {
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(Items.BUCKET).maxStackSize(1)));
     public static RegistryObject<Item> EMPTY_XUAN_PAPER = REGISTRY.register("empty_xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new ItemXuanPaper());
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", ItemXuanPaper::new);
 //    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new ItemTutorialBook());
     public static RegistryObject<Item> CHINESE_INK = REGISTRY.register("chinese_ink", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(64)));
     public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
@@ -59,7 +59,7 @@ public class ModItems {
     public static RegistryObject<ItemKnife> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));
     public static RegistryObject<ItemKnife> KNIFE_GOLD = REGISTRY.register("knife_gold", () -> new ItemKnife(ItemTier.GOLD));
     public static RegistryObject<ItemKnife> KNIFE_DIAMOND = REGISTRY.register("knife_diamond", () -> new ItemKnife(ItemTier.DIAMOND));
-    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush", () -> new ItemChineseBrush());
+    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush", ItemChineseBrush::new);
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone", () -> new Item(new Item.Properties().group(ModGroups.TOOLS)));
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
