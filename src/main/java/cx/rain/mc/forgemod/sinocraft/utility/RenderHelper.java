@@ -19,7 +19,6 @@ import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.*;
 
 @OnlyIn(Dist.CLIENT)
 public class RenderHelper {
-    public static final VertexFormat POSITION_COLOR_NORMAL = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(POSITION_3F).add(COLOR_4UB).add().add(NORMAL_3B).build());
 
     public static void add(IVertexBuilder builder, MatrixStack matrixStack, Vector3f pos, @Nullable Vector2f uv) {
         add(builder, matrixStack, pos, new Vector4f(1.0f, 1.0f, 1.0f, 1.0f), uv);
