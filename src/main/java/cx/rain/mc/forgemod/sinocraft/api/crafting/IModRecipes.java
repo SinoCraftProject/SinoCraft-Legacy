@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
-import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
+import cx.rain.mc.forgemod.sinocraft.utility.Lazy;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 

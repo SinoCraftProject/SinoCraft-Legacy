@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy;
-import cx.rain.mc.forgemod.sinocraft.api.capability.Heat;
+import cx.rain.mc.forgemod.sinocraft.capability.CapabilityWindEnergy;
+import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
 import net.minecraft.block.BlockState;

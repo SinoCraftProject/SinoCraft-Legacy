@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.utility;
+package cx.rain.mc.forgemod.sinocraft.utility;
 
 public class Lazy<T> {
 

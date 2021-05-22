@@ -24,16 +24,14 @@ displayName="Sino Craft" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://github.com/SinoCraftProject/SinoCraft" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="logo.png" #optional
+#logoFile="logo.png" #optional
 # A text field displayed in the mod UI
 credits="The SaltedFish Club, DouYan, SQwatermark, HIMKing and jirufengyu." #optional
 # A text field displayed in the mod UI
-authors="AmemiyaSigure(QiuYuLuo), Luo_ShiJian, theFlySong, YaoZ and Victoria" #optional
+authors="AmemiyaSigure(QiuYuLuo), Luo_ShiJian, theFlySong, YaoZ, Victoria and luiqn2007" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A minecraft mod with Chinese craft.
-
-Thanks for playing.
+A minecraft mod with chinese crafting.
 '''
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
