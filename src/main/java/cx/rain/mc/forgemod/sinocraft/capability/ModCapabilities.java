@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.capability.*;
 import cx.rain.mc.forgemod.sinocraft.api.interfaces.*;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
