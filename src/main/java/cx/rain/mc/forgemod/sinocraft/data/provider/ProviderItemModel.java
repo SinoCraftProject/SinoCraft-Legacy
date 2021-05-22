@@ -132,6 +132,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModBlockItems.SUMMER_RADISH.get());
         simpleItem(ModBlockItems.GREEN_RADISH.get());
         simpleItem(ModItems.PEACH.get());
+        simpleItem(ModItems.SILKWORM.get());
     }
 
     private void addTools() {

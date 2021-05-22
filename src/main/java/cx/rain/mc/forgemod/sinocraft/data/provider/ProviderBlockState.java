@@ -90,7 +90,6 @@ public class ProviderBlockState extends BlockStateProvider {
                     end();
         }
 
-
         addCrops();
         addTrees();
         addBuildingBlocks();
@@ -107,6 +106,8 @@ public class ProviderBlockState extends BlockStateProvider {
         cropsStaged(ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
         cropsStaged(ModBlocks.MILLET_PLANT.get(), 8, "millet");
         cropsStaged(ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
+//        cropsStaged(ModBlocks.RICE_PLANT.get(), 8, "rice_plant");
+//        cropsStaged(ModBlocks.SORGHUM_PLANT.get(), 4, "sorghum_plant");
     }
 
     private void addTrees() {
