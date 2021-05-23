@@ -259,6 +259,7 @@ cd85c4b61ac7d45237ca3670b2bd2361f1b3e5c4 data/sinocraft/loot_tables/blocks/vat.j
 cb67f13ae74c05a41fa55776053f0a9258bc9d9e data/sinocraft/loot_tables/blocks/white_marble.json
 f2027fc59745ef772b58e7576cac1139e5fce2ac data/sinocraft/loot_tables/blocks/white_radish_plant.json
 ffbd50fd73db70004f492f92ac775897da0d586e data/sinocraft/recipes/dough.json
+700ea4e1fc4093fae268c4cda9b77f8fee5b5c25 data/sinocraft/recipes/mill_wheat.json
 d432a06b6f44936796abb7c25eed876c464668ed data/sinocraft/recipes/pot_apple.json
 496a8a95c341bb0708cecb28bc606079d6602242 data/sinocraft/recipes/steamer_test.json
 effecf8f6e700bc04567218f7881c177c88129e9 data/sinocraft/recipes/vat.json

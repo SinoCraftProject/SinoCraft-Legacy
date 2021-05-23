@@ -104,6 +104,6 @@ public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
             setMature(world, pos, state, false);
             return ActionResultType.SUCCESS;
         }
-        return ActionResultType.PASS;
+        return ActionResultType.FAIL;
     }
 }
