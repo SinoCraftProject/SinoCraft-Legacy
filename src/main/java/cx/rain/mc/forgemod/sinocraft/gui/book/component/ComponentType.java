@@ -44,7 +44,7 @@ public class ComponentType<T extends TutorialComponent> extends ForgeRegistryEnt
     }
 
     public static <R extends TutorialComponent> ComponentType<R> create(Function<GuiTutorialBook.Page, R> genComponent) {
-        return new ComponentType(genComponent);
+        return new ComponentType<>(genComponent);
     }
 
     public T getComponent(GuiTutorialBook.Page page) {

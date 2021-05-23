@@ -1,85 +1,142 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStoneMill;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
-public class TileEntityStoneMill extends TileEntityUpdatableBase {
-    private static Map<String,ItemStack> recipes = new HashMap<>();
+public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITileEntityStoneMill {
 
-    private ItemStackHandler itemHandler = new ItemStackHandler(1){
-        @Override
-        protected void onContentsChanged(int slot) {
-            markDirty();
-        }
+    private final ItemStackHandler itemHandler = new MillItemHandler(this);
+    private final ExtendedInventory inv = new ExtendedInventory();
 
-        @Override
-        public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            return recipes.containsKey(stack.getItem().getRegistryName().toString());
-        }
-    };
-
-    private int progress=0;
-
-    public static void registerRecipe(Item material,ItemStack result){
-        recipes.put(material.getRegistryName().toString(),result);
-    }
-
-    private void registerDefaultRecipes(){
-        registerRecipe(net.minecraft.item.Items.WHEAT, new ItemStack(ModItems.FLOUR.get()));
-    }
+    private int progress = 0;
+    private IMillRecipe currentRecipe = null;
+    private ResourceLocation recoveryRecipeLocation = null;
+    private ItemStack outputStack = ItemStack.EMPTY;
 
     public TileEntityStoneMill() {
         super(ModTileEntities.STONE_MILL.get());
-        registerDefaultRecipes();
     }
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap== CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(()-> itemHandler).cast();
-        }
-        else {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> itemHandler).cast();
+        } else {
             return super.getCapability(cap, side);
         }
     }
 
     @Override
     public void tick() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
     }
 
-    public void onRotate() {
-        if(itemHandler.getStackInSlot(0) == ItemStack.EMPTY) {
+    @Override
+    public void rotate() {
+        if (!outputStack.isEmpty()) {
+            outputStack = itemHandler.insertItem(0, outputStack, false);
+            if (outputStack.isEmpty()) {
+                return;
+            }
+        }
+        if (currentRecipe == null || world == null) {
             return;
         }
-        progress ++;
-        if (progress == 20) {
+        progress++;
+        if (progress == currentRecipe.getTime()) {
             progress = 0;
-            InventoryHelper.spawnItemStack(world,pos.getX(),pos.getY(),pos.getZ(),recipes.get(itemHandler.getStackInSlot(0).getItem().getRegistryName().toString()).copy());
-            itemHandler.extractItem(0,1,false);
+            InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), currentRecipe.getRecipeOutput().copy());
+            ItemStack simulate = itemHandler.extractItem(0, 1, true);
+            if (!simulate.isEmpty()) {
+                outputStack = itemHandler.insertItem(0, currentRecipe.getRecipeOutput(), false);
+            }
         }
         markDirty();
     }
 
     @Override
+    public IMillRecipe getCurrentRecipe() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
+        return currentRecipe;
+    }
+
+    @Override
+    public void reloadRecipe() {
+        if (itemHandler.getStackInSlot(0).isEmpty() || world == null) {
+            if (currentRecipe != null) {
+                currentRecipe = null;
+                progress = 0;
+            }
+            return;
+        }
+        IMillRecipe old;
+        if (recoveryRecipeLocation != null) {
+            old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof IMillRecipe)
+                    .map(recipe -> (IMillRecipe) recipe)
+                    .orElse(currentRecipe);
+            recoveryRecipeLocation = null;
+        } else old = currentRecipe;
+        currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.MILL, inv, world).orElse(null);
+        if (old != currentRecipe) {
+            progress = 0;
+            markDirty();
+        }
+    }
+
+    @Override
+    public int getProgress() {
+        return progress;
+    }
+
+    @Override
+    public void setProgress(int progress) {
+        if (this.progress != progress) {
+            this.progress = progress;
+            markDirty();
+        }
+    }
+
+    public ItemStackHandler getItemHandler() {
+        return itemHandler;
+    }
+
+    @Override
     public CompoundNBT write(CompoundNBT compound) {
-        compound.put("stacks",itemHandler.serializeNBT());
-        compound.putInt("progress",progress);
+        compound.put("stacks", itemHandler.serializeNBT());
+        compound.putInt("progress", progress);
+        compound.put("output", outputStack.serializeNBT());
+        if (currentRecipe != null) {
+            compound.putString("recipe", currentRecipe.getId().toString());
+        }
         return super.write(compound);
     }
 
@@ -87,6 +144,32 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase {
     public void read(BlockState state, CompoundNBT compound) {
         itemHandler.deserializeNBT(compound.getCompound("stacks"));
         progress = compound.getInt("progress");
+        outputStack = ItemStack.read(compound.getCompound("output"));
+        if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
+            recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
+        }
         super.read(state, compound);
+    }
+
+    class ExtendedInventory extends RecipeWrapper implements IExtendedRecipeInventory {
+
+        public ExtendedInventory() {
+            super(itemHandler);
+        }
+
+        @Override
+        public ItemStack getInputItem(int index) {
+            return itemHandler.getStackInSlot(0);
+        }
+
+        @Override
+        public int getItemCount() {
+            return 1;
+        }
+
+        @Override
+        public void setItemSlotMap(int input, int recipe) {
+
+        }
     }
 }

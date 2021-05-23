@@ -21,11 +21,9 @@ public class ItemTutorialBook extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         if (world.isRemote) {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                Minecraft.getInstance().displayGuiScreen(
-                        GuiTutorialBook.create(new ResourceLocation("sinocraft:tutorial"))
-                );
-            });
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Minecraft.getInstance().displayGuiScreen(
+                    GuiTutorialBook.create(new ResourceLocation("sinocraft:tutorial"))
+            ));
         }
         return ActionResult.resultSuccess(player.getHeldItem(hand));
     }

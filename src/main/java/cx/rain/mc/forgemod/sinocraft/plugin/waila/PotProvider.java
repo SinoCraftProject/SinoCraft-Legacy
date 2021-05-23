@@ -1,9 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.waila;
 
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
-import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
+import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
 import mcp.mobius.waila.api.ICommonAccessor;
 import mcp.mobius.waila.api.IDataAccessor;
 import mcp.mobius.waila.api.IPluginConfig;
@@ -30,11 +30,11 @@ public enum PotProvider implements IWailaProvider {
     public void appendServerData(CompoundNBT data, ServerPlayerEntity player, World world, TileEntity tileEntity) {
         if (tileEntity instanceof TileEntityPot) {
             TileEntityPot pot = (TileEntityPot) tileEntity;
-            IHeat heat = ModCapabilities.getHeat(pot);
+            IHeat heat = CapabilityHelper.getHeat(pot);
             data.putInt("heat", heat.getHeat());
-            ICookingRecipe recipe = pot.getRecipe();
+            ICookingRecipe recipe = pot.getCurrentRecipe();
             if (recipe != null) {
-                data.putInt("maxHeat", heat.getMaxHeat());
+                data.putInt("maxHeat", pot.getMaxHeat());
                 data.putInt("process", pot.getProgress());
                 data.putString("recipe", recipe.getId().toString());
             }
@@ -53,14 +53,14 @@ public enum PotProvider implements IWailaProvider {
         }
 
         TileEntityPot pot = (TileEntityPot) tileEntity;
-        for (ItemStack item : pot.getInput()) {
+        for (ItemStack item : pot.getInputs()) {
             if (!item.isEmpty()) {
                 StringTextComponent input = new StringTextComponent(" -> ");
                 ProviderHelper.appendItemStack(input, item);
                 tooltip.add(input);
             }
         }
-        ItemStack outputItem = pot.getOutput();
+        ItemStack outputItem = pot.getOutputs();
         if (!outputItem.isEmpty()) {
             StringTextComponent output = new StringTextComponent(" <- ");
             ProviderHelper.appendItemStack(output, outputItem);

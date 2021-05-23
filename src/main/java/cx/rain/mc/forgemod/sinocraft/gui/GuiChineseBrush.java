@@ -4,9 +4,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
-import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
+import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -17,6 +16,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
@@ -33,9 +34,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     @Override
     protected void init() {
         super.init();
-        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.incColor();
-        }) {
+        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> this.container.incColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
                 this.isHovered = mouseX >= this.x
@@ -56,9 +55,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             }
         };
 
-        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.decColor();
-        }) {
+        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> this.container.decColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
                 this.isHovered = mouseX >= this.x
@@ -109,7 +106,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
                 for (int j = 0; j < 32; j++) {
                     float color = 0.0625f * (16 - pixels[i * 32 + j]);
                     RenderSystem.color3f(color, color, color);
-                    blit(matrixStack, sx + i * unit, sy + j * unit,  22, 236, unit, unit);
+                    blit(matrixStack, sx + i * unit, sy + j * unit, 22, 236, unit, unit);
                 }
             }
         }
@@ -133,7 +130,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
             Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
-                    new DrawPaperC2SPacket.Pack(new Vec2(x, y), this.container.color)
+                    new DrawPaperC2SPacket.Pack(new Point(x, y), this.container.color)
             ));
 
             return true;
@@ -159,7 +156,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
 
             Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
                     new DrawPaperC2SPacket.Pack(
-                            new Vec2(x, y), this.container.color
+                            new Point(x, y), this.container.color
                     )
             ));
 
@@ -172,7 +169,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         this.minecraft.getTextureManager().bindTexture(GUI);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.blit(matrixStack, guiLeft, guiTop,  0, 0, xSize, ySize);
+        this.blit(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 
     @Override

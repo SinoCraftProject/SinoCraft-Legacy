@@ -25,10 +25,8 @@ public class SpecialHandheldModel {
 
     @SubscribeEvent
     public static void onFMLClientSetup(FMLClientSetupEvent event) {
-        ITEM_SPECIAL_HANDHELD_MODEL.forEach((item, additionString) -> {
-            ModelLoader.addSpecialModel(new ModelResourceLocation(
-                    item.getRegistryName() + "_" + additionString, "inventory"));
-        });
+        ITEM_SPECIAL_HANDHELD_MODEL.forEach((item, additionString) -> ModelLoader.addSpecialModel(new ModelResourceLocation(
+                item.getRegistryName() + "_" + additionString, "inventory")));
     }
 
     @SubscribeEvent

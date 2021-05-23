@@ -18,14 +18,14 @@ class PotItemHandler extends ItemStackHandler {
     @Override
     protected void onLoad() {
         super.onLoad();
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 
     @Override
     protected void onContentsChanged(int slot) {
         super.onContentsChanged(slot);
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 
@@ -33,39 +33,13 @@ class PotItemHandler extends ItemStackHandler {
         return stacks.subList(0, 6);
     }
 
-    public int addStack(ItemStack stack) {
-        int remain = stack.getCount();
-
+    public ItemStack addStack(ItemStack stack) {
         for (int i = 0; i <= 5; i++) {
             ItemStack input = this.getStackInSlot(i);
-
-            if (input.isEmpty()) {
-                ItemStack newStack = stack.copy();
-                newStack.setCount(remain);
-
-                setStackInSlot(i, newStack);
-                remain = 0;
-                break;
-            }
-            else if (input.getItem() == stack.getItem()) {
-                if (input.getMaxStackSize() - remain >= stack.getCount()) {
-                    ItemStack newStack = input.copy();
-                    newStack.setCount(remain + stack.getCount());
-
-                    setStackInSlot(i, newStack);
-                    remain = 0;
-                    break;
-                }
-                else {
-                    ItemStack newStack = stack.copy();
-                    newStack.setCount(stack.getMaxStackSize());
-
-                    setStackInSlot(i, newStack);
-                    remain -= input.getMaxStackSize() - input.getCount();
-                }
+            if (input.isEmpty() || input.getItem() == stack.getItem()) {
+                return insertItem(i, stack, false);
             }
         }
-
-        return remain;
+        return stack;
     }
 }

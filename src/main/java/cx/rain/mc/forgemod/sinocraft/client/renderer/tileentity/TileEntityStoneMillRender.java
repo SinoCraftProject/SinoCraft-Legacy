@@ -19,7 +19,6 @@ public class TileEntityStoneMillRender  extends TileEntityRenderer<TileEntitySto
         super(dispatcher);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void render(TileEntityStoneMill te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();

@@ -3,11 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.api.utility;
 public class Lazy<T> {
 
     private T value = null;
-    private final String error;
-
-    public Lazy(String error) {
-        this.error = error;
-    }
 
     public void set(T value) {
         if (this.value != null) {
@@ -18,8 +13,12 @@ public class Lazy<T> {
 
     public T get() {
         if (value == null) {
-            throw new UnsupportedOperationException("Value is not initialized: " + error);
+            throw new UnsupportedOperationException("Value is not initialized: Can't found SinoCraft mod");
         }
         return value;
+    }
+
+    public boolean hasInstance() {
+        return value != null;
     }
 }

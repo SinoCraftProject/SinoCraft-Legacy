@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;

@@ -71,22 +71,22 @@ public class ProviderBlockState extends BlockStateProvider {
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.NORTH).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.NORTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.SOUTH).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.SOUTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.WEST).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.WEST).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.EAST).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.EAST).
                     end();
         }
 
@@ -98,15 +98,15 @@ public class ProviderBlockState extends BlockStateProvider {
     }
 
     private void addCrops() {
-        cropsStaged((BlockPlant) ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant");
-        cropsStaged((BlockPlant) ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant");
-        cropsStaged((BlockPlant) ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage");
-        cropsStaged((BlockPlant) ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
-        cropsStaged((BlockPlant) ModBlocks.MILLET_PLANT.get(), 8, "millet");
-        cropsStaged((BlockPlant) ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
+        cropsStaged(ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant");
+        cropsStaged(ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant");
+        cropsStaged(ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant");
+        cropsStaged(ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant");
+        cropsStaged(ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant");
+        cropsStaged(ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage");
+        cropsStaged(ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
+        cropsStaged(ModBlocks.MILLET_PLANT.get(), 8, "millet");
+        cropsStaged(ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
     }
 
     private void addTrees() {
@@ -156,12 +156,12 @@ public class ProviderBlockState extends BlockStateProvider {
         VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
         Direction stoveDirection = Direction.NORTH;
         for (int i = 0; i < 4; i++) {
-            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, false)
+            stoveBuilder.partialState().with(BlockStove.HORIZONTAL_FACING, stoveDirection).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
                     .rotationY(90 * i)
                     .addModel();
-            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, true)
+            stoveBuilder.partialState().with(BlockStove.HORIZONTAL_FACING, stoveDirection).with(BlockStove.BURNING, true)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_on")))
                     .rotationY(90 * i)
@@ -180,7 +180,7 @@ public class ProviderBlockState extends BlockStateProvider {
                         .rotationY(90 * j)
                         .addModel()
                         .condition(BlockPaperDryingRack.STATE, i)
-                        .condition(BlockPaperDryingRack.FACING, paperDryingRackBuilderDirection)
+                        .condition(BlockPaperDryingRack.HORIZONTAL_FACING, paperDryingRackBuilderDirection)
                         .end();
                 paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
             }

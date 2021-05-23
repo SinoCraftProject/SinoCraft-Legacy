@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,13 +22,14 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityVat extends TileEntityUpdatableBase {
+public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityVat {
 
     private final VatItemHandler itemHandler = new VatItemHandler(this);
     private final VatFluidHandler fluidHandler = new VatFluidHandler(this);
     private final IExtendedRecipeInventory inv = new ExtendedInventory();
 
     private ISoakingRecipe currentRecipe;
+    private ResourceLocation recoveryRecipeLocation = null;
     private int progress = 0;
     // 未能完全输出的合成产物
     private ItemStack outputItem = ItemStack.EMPTY;
@@ -61,6 +62,12 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         if (!outputFluid.isEmpty()) {
             int filled = fluidHandler.fill(outputFluid.copy(), IFluidHandler.FluidAction.EXECUTE);
             outputFluid.shrink(filled);
+        }
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ISoakingRecipe) recipe);
+            recoveryRecipeLocation = null;
         }
         ISoakingRecipe recipe = currentRecipe;
         if (recipe != null) {
@@ -140,14 +147,9 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         currentRecipe = null;
         progress = 0;
         if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
-            assert world != null;
-            world.getRecipeManager().getRecipe(new ResourceLocation(compound.getString("recipe")))
-                    .filter(recipe -> recipe instanceof ISoakingRecipe)
-                    .ifPresent(recipe -> {
-                        currentRecipe = (ISoakingRecipe) recipe;
-                        progress = compound.getInt("process");
-                    });
+            recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
         }
+        progress = compound.getInt("process");
         super.read(state, compound);
     }
 
@@ -165,24 +167,47 @@ public class TileEntityVat extends TileEntityUpdatableBase {
         return list;
     }
 
-    public void updateRecipe() {
-        ISoakingRecipe old = currentRecipe;
-        currentRecipe = null;
+    @Override
+    public void reloadRecipe() {
         if (world == null) return;
-        currentRecipe = world.getRecipeManager().getRecipe(IModRecipes.getInstance().getSoakingRecipe(), inv, world).orElse(null);
+        ISoakingRecipe old;
+        if (recoveryRecipeLocation != null) {
+            old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .map(recipe -> (ISoakingRecipe) recipe)
+                    .orElse(currentRecipe);
+            recoveryRecipeLocation = null;
+        } else old = currentRecipe;
+        currentRecipe = world.getRecipeManager().getRecipe(ModRecipes.SOAKING, inv, world).orElse(null);
         if (old != currentRecipe) {
             progress = 0;
             markDirty();
         }
     }
 
+    @Override
     @Nullable
-    public ISoakingRecipe getRecipe() {
+    public ISoakingRecipe getCurrentRecipe() {
+        if (world != null && recoveryRecipeLocation != null) {
+            world.getRecipeManager().getRecipe(recoveryRecipeLocation)
+                    .filter(recipe -> recipe instanceof ISoakingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (ISoakingRecipe) recipe);
+            recoveryRecipeLocation = null;
+        }
         return currentRecipe;
     }
 
+    @Override
     public int getProgress() {
         return progress;
+    }
+
+    @Override
+    public void setProgress(int progress) {
+        if (progress != this.progress) {
+            this.progress = progress;
+            markDirty();
+        }
     }
 
     class ExtendedInventory extends RecipeWrapper implements IExtendedRecipeInventory {

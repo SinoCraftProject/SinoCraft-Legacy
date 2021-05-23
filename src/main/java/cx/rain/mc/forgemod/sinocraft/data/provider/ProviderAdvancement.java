@@ -6,15 +6,10 @@ import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseAdvancement;
 import cx.rain.mc.forgemod.sinocraft.data.tag.TagItem;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tags.BlockTags;
 
 public class ProviderAdvancement extends ProviderBaseAdvancement {
     public ProviderAdvancement(DataGenerator generatorIn) {

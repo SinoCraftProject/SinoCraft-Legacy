@@ -126,7 +126,7 @@ public class FollowEmperorGoal extends Goal {
         } else if (!this.isTeleportFriendlyBlock(new BlockPos(xIn, yIn, zIn))) {
             return false;
         } else {
-            this.tameable.setLocationAndAngles((double)((float)xIn + 0.5F), (double)yIn, (double)((float)zIn + 0.5F), this.tameable.rotationYaw, this.tameable.rotationPitch);
+            this.tameable.setLocationAndAngles((float)xIn + 0.5F, yIn, (float)zIn + 0.5F, this.tameable.rotationYaw, this.tameable.rotationPitch);
             this.navigator.clearPath();
             return true;
         }
