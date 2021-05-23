@@ -2,8 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec3;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec4;
+import cx.rain.mc.forgemod.sinocraft.api.utiltiy.math.Vec3;
+import cx.rain.mc.forgemod.sinocraft.api.utiltiy.math.Vec4;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import cx.rain.mc.forgemod.sinocraft.utility.RenderHelper;
 import net.minecraft.client.Minecraft;

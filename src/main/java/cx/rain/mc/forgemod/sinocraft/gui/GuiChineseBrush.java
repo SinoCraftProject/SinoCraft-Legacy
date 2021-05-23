@@ -6,7 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
 import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
+import cx.rain.mc.forgemod.sinocraft.api.utiltiy.math.Vec2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;

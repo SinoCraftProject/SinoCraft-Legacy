@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.math;
+package cx.rain.mc.forgemod.sinocraft.api.utiltiy.math;
 
 public class Vec4<T> {
     public T x;

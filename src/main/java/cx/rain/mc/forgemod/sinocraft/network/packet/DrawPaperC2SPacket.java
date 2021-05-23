@@ -3,7 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.network.packet;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.IMessage;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
+import cx.rain.mc.forgemod.sinocraft.api.utiltiy.math.Vec2;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
