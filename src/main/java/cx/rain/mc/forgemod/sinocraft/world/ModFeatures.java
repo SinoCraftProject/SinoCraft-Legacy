@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.world;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.world.config.Features;
+import cx.rain.mc.forgemod.sinocraft.world.config.FeatureConfigs;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -24,6 +24,18 @@ public class ModFeatures {
 
         if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD)) {
             addFeatureWorld(gen);
+
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.PLAINS)) {
+                addFeaturePlains(gen);
+            }
+
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
+                addFeatureForest(gen);
+            }
+
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MOUNTAIN)) {
+                addFeatureMountain(gen);
+            }
         }
 
         if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
@@ -32,11 +44,24 @@ public class ModFeatures {
     }
 
     private static void addFeatureWorld(BiomeGenerationSettingsBuilder generation) {
-        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Features.WHITE_MARBLE);
-        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Features.BLACK_MARBLE);
+        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureConfigs.WHITE_MARBLE);
+        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureConfigs.BLACK_MARBLE);
+    }
+
+    private static void addFeaturePlains(BiomeGenerationSettingsBuilder generation) {
+        generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeatureConfigs.MULBERRY_PLAINS);
+    }
+
+    private static void addFeatureForest(BiomeGenerationSettingsBuilder generation) {
+        generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeatureConfigs.PEACH);
+        generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeatureConfigs.WALNUT);
+    }
+
+    private static void addFeatureMountain(BiomeGenerationSettingsBuilder generation) {
+        generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeatureConfigs.PLUM);
     }
 
     private static void addFeatureNether(BiomeGenerationSettingsBuilder generation) {
-        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Features.RED_MARBLE);
+        generation.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, FeatureConfigs.RED_MARBLE);
     }
 }

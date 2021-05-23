@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class TreePeach extends Tree {
-    public static final BaseTreeFeatureConfig PEACH_TREE_CONFIG = new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig CONFIG = new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.PEACH_LOG.get().getDefaultState().with(RotatedPillarBlock.AXIS,
                     Direction.Axis.Y)),
             new SimpleBlockStateProvider(ModBlocks.PEACH_LEAVES.get().getDefaultState()),
             new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
-            new StraightTrunkPlacer(3, 2, 0),
+            new StraightTrunkPlacer(5, 2, 0),
             new TwoLayerFeature(1, 0, 1))
             .setIgnoreVines()
             .build();
@@ -26,6 +26,6 @@ public class TreePeach extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.TREE.withConfiguration(PEACH_TREE_CONFIG);
+        return Feature.TREE.withConfiguration(CONFIG);
     }
 }

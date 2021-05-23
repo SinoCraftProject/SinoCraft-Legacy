@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class TreeWalnut extends Tree {
-    public static final BaseTreeFeatureConfig TREE_WALNUT_CONFIG = new BaseTreeFeatureConfig.Builder(
+    public static final BaseTreeFeatureConfig CONFIG = new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.WALNUT_LOG.get().getDefaultState().with(RotatedPillarBlock.AXIS,
                     Direction.Axis.Y)),
             new SimpleBlockStateProvider(ModBlocks.WALNUT_LEAVES.get().getDefaultState()),
@@ -26,6 +26,6 @@ public class TreeWalnut extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.TREE.withConfiguration(TREE_WALNUT_CONFIG);
+        return Feature.TREE.withConfiguration(CONFIG);
     }
 }
