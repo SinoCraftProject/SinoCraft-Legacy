@@ -2,17 +2,17 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "chili_pepper_seeds",
+      "name": "soybean_seeds",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sinocraft:chili_pepper_seed"
+          "name": "sinocraft:soybean"
         }
       ]
     },
     {
-      "name": "chili_pepper",
+      "name": "soybean",
       "rolls": 1,
       "entries": [
         {
@@ -21,33 +21,19 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 3.0,
+                "min": 2.0,
+                "max": 5.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "sinocraft:chili_pepper_seed"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "sinocraft:chili_pepper"
+          "name": "sinocraft:soybean"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "sinocraft:chili_pepper_plant",
+          "block": "sinocraft:soybean_plant",
           "properties": {
             "stage": "7"
           }

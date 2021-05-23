@@ -1,15 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-
 import cx.rain.mc.forgemod.sinocraft.block.base.*;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogState;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogType;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.MarbleType;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
-import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreeMulberry;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePeach;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePlum;
@@ -26,17 +24,17 @@ public class ModBlocks {
     public static final DeferredRegister<Block> REGISTRY =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SinoCraft.MODID);
 
-    public static RegistryObject<BlockPlant> WHITE_RADISH_PLANT = REGISTRY.register("white_radish_plant", () -> new BlockPlant(PlantType.WHITE_RADISH, ModBlockItems.WHITE_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<BlockPlant> SUMMER_RADISH_PLANT = REGISTRY.register("summer_radish_plant", () -> new BlockPlant(PlantType.SUMMER_RADISH, ModBlockItems.SUMMER_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<BlockPlant> GREEN_RADISH_PLANT = REGISTRY.register("green_radish_plant", () -> new BlockPlant(PlantType.GREEN_RADISH, ModBlockItems.GREEN_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<BlockPlant> CHILI_PEPPER_PLANT = REGISTRY.register("chili_pepper_plant", () -> new BlockPlant(PlantType.CHILI_PEPPER, ModItems.CHILI_PEPPER_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<BlockPlant> GREEN_PEPPER_PLANT = REGISTRY.register("green_pepper_plant", () -> new BlockPlant(PlantType.GREEN_PEPPER, ModItems.GREEN_PEPPER_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<BlockPlant> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> new BlockPlant(PlantType.CABBAGE, ModItems.EGGPLANT_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<BlockPlant> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> new BlockPlant(PlantType.CABBAGE, ModItems.CABBAGE_SEED, StageProperty.STAGE_0_3));
-    public static RegistryObject<BlockPlant> RICE_PLANT = REGISTRY.register("rice_plant", () -> new BlockPlant(PlantType.RICE, ModItems.RICE_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<BlockPlant> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new BlockPlant(PlantType.MILLET, ModItems.MILLET_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<BlockPlant> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new BlockPlant(PlantType.SOYBEAN, ModItems.SOYBEAN, StageProperty.STAGE_0_3));
-    public static RegistryObject<BlockPlant> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new BlockPlant(PlantType.SORGHUM, ModItems.SORGHUM_SEED, StageProperty.STAGE_0_3));
+    public static RegistryObject<BlockPlant> WHITE_RADISH_PLANT = REGISTRY.register("white_radish_plant", () -> BlockPlant.create(PlantType.WHITE_RADISH));
+    public static RegistryObject<BlockPlant> SUMMER_RADISH_PLANT = REGISTRY.register("summer_radish_plant", () -> BlockPlant.create(PlantType.SUMMER_RADISH));
+    public static RegistryObject<BlockPlant> GREEN_RADISH_PLANT = REGISTRY.register("green_radish_plant", () -> BlockPlant.create(PlantType.GREEN_RADISH));
+    public static RegistryObject<BlockPlant> CHILI_PEPPER_PLANT = REGISTRY.register("chili_pepper_plant", () -> BlockPlant.create(PlantType.CHILI_PEPPER));
+    public static RegistryObject<BlockPlant> GREEN_PEPPER_PLANT = REGISTRY.register("green_pepper_plant", () -> BlockPlant.create(PlantType.GREEN_PEPPER));
+    public static RegistryObject<BlockPlant> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> BlockPlant.create(PlantType.EGGPLANT));
+    public static RegistryObject<BlockPlant> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> BlockPlant.create(PlantType.CABBAGE));
+    public static RegistryObject<BlockPlant> RICE_PLANT = REGISTRY.register("rice_plant", () -> BlockPlant.create(PlantType.RICE));
+    public static RegistryObject<BlockPlant> MILLET_PLANT = REGISTRY.register("millet_plant", () -> BlockPlant.create(PlantType.MILLET));
+    public static RegistryObject<BlockPlant> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> BlockPlant.create(PlantType.SOYBEAN));
+    public static RegistryObject<BlockPlant> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> BlockPlant.create(PlantType.SORGHUM));
 
     public static RegistryObject<BlockLog> PEACH_LOG = REGISTRY.register("peach_log", () -> new BlockLog(LogType.PEACH, LogState.LOG));
     public static RegistryObject<BlockLog> PEACH_LOG_BARK = REGISTRY.register("peach_log_bark", () -> new BlockLog(LogType.PEACH, LogState.LOG_BARK));

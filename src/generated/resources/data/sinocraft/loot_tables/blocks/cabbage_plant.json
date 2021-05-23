@@ -2,17 +2,17 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "chili_pepper_seeds",
+      "name": "cabbage_seeds",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sinocraft:chili_pepper_seed"
+          "name": "sinocraft:cabbage_seed"
         }
       ]
     },
     {
-      "name": "chili_pepper",
+      "name": "cabbage",
       "rolls": 1,
       "entries": [
         {
@@ -27,7 +27,7 @@
               }
             }
           ],
-          "name": "sinocraft:chili_pepper_seed"
+          "name": "sinocraft:cabbage_seed"
         },
         {
           "type": "minecraft:item",
@@ -41,13 +41,13 @@
               }
             }
           ],
-          "name": "sinocraft:chili_pepper"
+          "name": "sinocraft:cabbage"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "sinocraft:chili_pepper_plant",
+          "block": "sinocraft:cabbage_plant",
           "properties": {
             "stage": "7"
           }

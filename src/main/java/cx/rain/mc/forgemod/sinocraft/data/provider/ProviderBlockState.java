@@ -7,10 +7,13 @@ import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -52,13 +55,31 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(block, models().cubeAll(block.getRegistryName().getPath(), modLoc("block/" + all)));
     }
 
-    protected void cropsStaged(BlockPlant plant, int stageCount, String name) {
+    protected void cropsStaged(BlockPlant plant) {
+        cropsStaged(plant, plant.getType().getName());
+    }
+
+    protected void cropsStaged(BlockPlant plant, String name) {
         VariantBlockStateBuilder builder = getVariantBuilder(plant);
-        for (int i = 0; i < stageCount; i++) {
-            builder.partialState().with(plant.getStage(), i).modelForState()
-                    .modelFile(models().crop("block/" + name + "_stage_" + i,
-                            modLoc("block/" + name + "_stage_" + i)))
-                    .addModel();
+        PlantType type = plant.getType();
+        if (type.getMaxHeight() > 1) {
+            for (int i = 0; i <= plant.getMaxAge(); i++) {
+                builder.partialState().with(plant.getAgeProperty(), i).with(BlockPlantMulti.IS_TOP, true).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_top_" + i,
+                                modLoc("block/" + name + "_stage_top_" + i)))
+                        .addModel();
+                builder.partialState().with(plant.getAgeProperty(), i).with(BlockPlantMulti.IS_TOP, false).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_bottom_" + i,
+                                modLoc("block/" + name + "_stage_bottom_" + i)))
+                        .addModel();
+            }
+        } else {
+            for (int i = 0; i <= plant.getMaxAge(); i++) {
+                builder.partialState().with(plant.getAgeProperty(), i).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_" + i,
+                                modLoc("block/" + name + "_stage_" + i)))
+                        .addModel();
+            }
         }
     }
 
@@ -94,20 +115,24 @@ public class ProviderBlockState extends BlockStateProvider {
         addTrees();
         addBuildingBlocks();
         addMachineBlocks();
+
+        getVariantBuilder(ModBlocks.WOOD_PULP_BLOCK.get()).partialState().modelForState()
+                .modelFile(models().getBuilder("block/wood_pump").texture("particle", modLoc("block/wood_pulp_still")))
+                .addModel();
     }
 
     private void addCrops() {
-        cropsStaged(ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant");
-        cropsStaged(ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant");
-        cropsStaged(ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant");
-        cropsStaged(ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant");
-        cropsStaged(ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant");
-        cropsStaged(ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage");
-        cropsStaged(ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
-        cropsStaged(ModBlocks.MILLET_PLANT.get(), 8, "millet");
-        cropsStaged(ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
-//        cropsStaged(ModBlocks.RICE_PLANT.get(), 8, "rice_plant");
-//        cropsStaged(ModBlocks.SORGHUM_PLANT.get(), 4, "sorghum_plant");
+        cropsStaged(ModBlocks.WHITE_RADISH_PLANT.get(), "white_radish_plant");
+        cropsStaged(ModBlocks.SUMMER_RADISH_PLANT.get(), "summer_radish_plant");
+        cropsStaged(ModBlocks.GREEN_RADISH_PLANT.get(), "green_radish_plant");
+        cropsStaged(ModBlocks.GREEN_PEPPER_PLANT.get(), "green_pepper_plant");
+        cropsStaged(ModBlocks.CHILI_PEPPER_PLANT.get(), "chili_pepper_plant");
+        cropsStaged(ModBlocks.CABBAGE_PLANT.get(), "celery_cabbage");
+        cropsStaged(ModBlocks.EGGPLANT_PLANT.get(), "eggplant");
+        cropsStaged(ModBlocks.MILLET_PLANT.get(), "millet");
+        cropsStaged(ModBlocks.SOYBEAN_PLANT.get(), "soybean");
+        cropsStaged(ModBlocks.RICE_PLANT.get());
+        cropsStaged(ModBlocks.SORGHUM_PLANT.get());
     }
 
     private void addTrees() {

@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.client;
 
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,5 +28,8 @@ public class ChangeRenderType {
         RenderTypeLookup.setRenderLayer(ModBlocks.STONE_MILL.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PAPER_DRYING_RACK.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.STOVE.get(), RenderType.getCutout());
+
+        RenderTypeLookup.setRenderLayer(ModFluids.WOOD_PULP.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.WOOD_PULP_FLOWING.get(), RenderType.getTranslucent());
     }
 }
