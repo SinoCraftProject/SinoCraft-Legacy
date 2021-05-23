@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IHeat;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;

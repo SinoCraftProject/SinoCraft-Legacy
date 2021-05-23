@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IWindEnergy;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IWindEnergy;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;

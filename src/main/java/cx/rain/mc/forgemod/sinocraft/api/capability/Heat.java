@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IHeat;
 
 /**
  * Heat output default implement

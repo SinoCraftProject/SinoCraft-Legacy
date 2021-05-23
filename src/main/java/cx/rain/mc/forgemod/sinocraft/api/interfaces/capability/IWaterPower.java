@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.interfaces;
+package cx.rain.mc.forgemod.sinocraft.api.interfaces.capability;
 
 /**
  * All Tile Entity of machines that can output water power must implement this interface

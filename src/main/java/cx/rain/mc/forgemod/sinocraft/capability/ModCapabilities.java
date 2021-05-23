@@ -1,7 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.capability;
 
 import cx.rain.mc.forgemod.sinocraft.api.capability.*;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.*;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IHeat;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IME;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IWaterPower;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IWindEnergy;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -12,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import javax.annotation.Nullable;
-import java.util.Optional;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCapabilities {

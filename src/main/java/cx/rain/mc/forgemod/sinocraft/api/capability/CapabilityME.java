@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.capability;
 
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IME;
+import cx.rain.mc.forgemod.sinocraft.api.interfaces.capability.IME;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
