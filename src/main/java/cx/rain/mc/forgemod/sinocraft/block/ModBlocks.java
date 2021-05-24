@@ -80,6 +80,8 @@ public class ModBlocks {
 
     public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 
+    public static RegistryObject<Block> TEA_TABLE = REGISTRY.register("tea_table", BlockTeaTable::new);
+
     public ModBlocks(IEventBus bus) {
         SinoCraft.getLogger().info("Registering blocks.");
         REGISTRY.register(bus);

@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -118,6 +119,8 @@ public class ProviderBlockState extends BlockStateProvider {
         getVariantBuilder(ModBlocks.WOOD_PULP_BLOCK.get()).partialState().modelForState()
                 .modelFile(models().getBuilder("block/wood_pump").texture("particle", modLoc("block/wood_pulp_still")))
                 .addModel();
+
+        simpleBlock(ModBlocks.TEA_TABLE.get(), models().getExistingFile(new ResourceLocation("air")));
     }
 
     private void addCrops() {
