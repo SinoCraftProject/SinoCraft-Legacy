@@ -96,8 +96,7 @@ public class BlockPlant extends CropsBlock {
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getLightSubtracted(pos, 0) >= 9) {
-            int i = this.getAge(state);
-            if (i < this.getMaxAge()) {
+            if (canGrowTick(state, worldIn, pos)) {
                 float f = getGrowthChance(this, worldIn, pos);
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int)(25.0F / f) + 1) == 0)) {
                     grow(worldIn, pos, state, 1);
@@ -105,6 +104,10 @@ public class BlockPlant extends CropsBlock {
                 }
             }
         }
+    }
+
+    protected boolean canGrowTick(BlockState state, ServerWorld worldIn, BlockPos pos) {
+        return canGrow(worldIn, pos, state, false);
     }
 
     public void grow(World worldIn, BlockPos pos, BlockState state, int age) {

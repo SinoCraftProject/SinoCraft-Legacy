@@ -17,13 +17,14 @@ import java.util.Random;
 public class BlockPlantMulti extends BlockPlant {
 
     public static final BooleanProperty IS_TOP = BooleanProperty.create("top");
+    protected static final VoxelShape FULL_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
     protected BlockPlantMulti() {
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return isTop(state) ? super.getShape(state, worldIn, pos, context) : SHAPES[3];
+        return isTop(state) ? super.getShape(state, worldIn, pos, context) : FULL_SHAPE;
     }
 
     @Override
@@ -36,11 +37,11 @@ public class BlockPlantMulti extends BlockPlant {
     public void grow(World worldIn, BlockPos pos, BlockState state, int age) {
         int maxHeight = getType().getMaxHeight();
         int maxAge = getMaxAge();
-        int nextAge = maxAge + getAge(state);
+        int nextAge = age + getAge(state);
         if (isTop(state)) {
             if (nextAge <= maxAge) {
                 worldIn.setBlockState(pos, withAge(nextAge), 2);
-                updateDown(worldIn, pos, nextAge);
+                updateDown(worldIn, pos.down(), nextAge);
             } else {
                 if (getHeight(worldIn, pos, state) < maxHeight) {
                     int upAge = Math.min(maxAge, nextAge - maxAge);
@@ -81,19 +82,18 @@ public class BlockPlantMulti extends BlockPlant {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (isTop(state)) {
-            super.randomTick(state, worldIn, pos, random);
-        } else {
-            if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-            BlockPos up = pos.up();
-            BlockState top = worldIn.getBlockState(up);
-            if (top.getBlock() != this) {
-                worldIn.removeBlock(up, false);
-            } else {
-                worldIn.setBlockState(pos, withAge(0).with(IS_TOP, true));
-            }
-        }
+    protected boolean canGrowTick(BlockState state, ServerWorld worldIn, BlockPos pos) {
+        return isTop(state) && canGrow(worldIn, pos, state, false);
+    }
+
+    @Override
+    public boolean ticksRandomly(BlockState state) {
+        return isTop(state);
+    }
+
+    @Override
+    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return super.isValidGround(state, worldIn, pos) || (state.getBlock() == this && !isTop(state));
     }
 
     public int getHeight(IBlockReader worldIn, BlockPos pos, BlockState state) {
@@ -119,10 +119,9 @@ public class BlockPlantMulti extends BlockPlant {
     }
 
     private void updateDown(World worldIn, BlockPos pos, int age) {
-        BlockPos down = pos.down();
-        while (worldIn.getBlockState(down).getBlock() == this) {
-            worldIn.setBlockState(down, withAge(age).with(IS_TOP, false), 2);
-            down = down.down();
+        while (worldIn.getBlockState(pos).getBlock() == this) {
+            worldIn.setBlockState(pos, withAge(age).with(IS_TOP, false), 2);
+            pos = pos.down();
         }
     }
 }
