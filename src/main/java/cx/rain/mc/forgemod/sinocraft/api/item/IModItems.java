@@ -79,4 +79,6 @@ public interface IModItems {
     RegistryObject<? extends Item> getInkStone();
 
     RegistryObject<? extends Item> getBuffaloSpawnEgg();
+
+    RegistryObject<? extends Item> getTeaLeaf();
 }
