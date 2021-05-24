@@ -4,13 +4,19 @@ import cx.rain.mc.forgemod.sinocraft.api.block.*;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStove;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public enum APIBlocks implements ISinoBlocks {
@@ -56,6 +62,36 @@ public enum APIBlocks implements ISinoBlocks {
             return (ITileEntityVat) te;
         }
         return null;
+    }
+
+    @Override
+    public int getPlantHeight(IBlockReader worldIn, BlockPos pos, BlockState state) {
+        Block block = state.getBlock();
+        return block instanceof BlockPlantMulti ? ((BlockPlantMulti) block).getHeight(worldIn, pos, state) : 1;
+    }
+
+    @Override
+    public boolean isPlantTop(BlockState state) {
+        Block block = state.getBlock();
+        if (block instanceof BlockPlantMulti) {
+            return ((BlockPlantMulti) block).isTop(state);
+        } else {
+            return block instanceof BlockPlant;
+        }
+    }
+
+    @Override
+    public void growPlant(World worldIn, BlockPos pos, BlockState state, int age) {
+        Block block = state.getBlock();
+        if (block instanceof BlockPlant) {
+            ((BlockPlant) block).grow(worldIn, pos, state, age);
+        }
+    }
+
+    @Nullable
+    @Override
+    public IPlantType getPlantType(Block block) {
+        return block instanceof BlockPlant ? ((BlockPlant) block).getType() : null;
     }
 
     @Override

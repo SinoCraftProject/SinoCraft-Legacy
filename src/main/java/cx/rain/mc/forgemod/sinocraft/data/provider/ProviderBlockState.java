@@ -1,19 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -61,7 +60,7 @@ public class ProviderBlockState extends BlockStateProvider {
 
     protected void cropsStaged(BlockPlant plant, String name) {
         VariantBlockStateBuilder builder = getVariantBuilder(plant);
-        PlantType type = plant.getType();
+        IPlantType type = plant.getType();
         if (type.getMaxHeight() > 1) {
             for (int i = 0; i <= plant.getMaxAge(); i++) {
                 builder.partialState().with(plant.getAgeProperty(), i).with(BlockPlantMulti.IS_TOP, true).modelForState()

@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.utility.enumerate;
 
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import net.minecraft.item.Item;
@@ -12,7 +13,8 @@ import java.util.Random;
 import static cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty.STAGE_0_3;
 import static cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty.STAGE_0_7;
 
-public enum PlantType {
+public enum PlantType implements IPlantType {
+
     WHITE_RADISH("white_radish", 1, STAGE_0_3, ModBlockItems.WHITE_RADISH, 0, 2),
     SUMMER_RADISH("summer_radish", 1, STAGE_0_3, ModBlockItems.SUMMER_RADISH, 0, 2),
     GREEN_RADISH("green_radish", 1, STAGE_0_3, ModBlockItems.GREEN_RADISH, 0, 2),
@@ -40,22 +42,27 @@ public enum PlantType {
         this.maxBonemeal = maxBonemeal;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public int getMaxHeight() {
         return maxHeight;
     }
 
+    @Override
     public StageProperty getProperty() {
         return property;
     }
 
+    @Override
     public RegistryObject<? extends Item> getSeed() {
         return seed;
     }
 
+    @Override
     public int randomGrowAge(Random random) {
         return MathHelper.nextInt(random, minBonemeal, maxBonemeal);
     }

@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
+import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,16 +19,16 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class BlockPlant extends CropsBlock {
-    private static final VoxelShape[] SHAPES = new VoxelShape[]{
+    protected static final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private static final ThreadLocal<PlantType> BLOCK_TYPE = new ThreadLocal<>();
+    private static final ThreadLocal<IPlantType> BLOCK_TYPE = new ThreadLocal<>();
 
-    private final PlantType plantType;
+    private final IPlantType plantType;
 
     public static BlockPlant create(PlantType type) {
         BLOCK_TYPE.set(type);
@@ -106,7 +107,7 @@ public class BlockPlant extends CropsBlock {
         }
     }
 
-    protected void grow(World worldIn, BlockPos pos, BlockState state, int age) {
+    public void grow(World worldIn, BlockPos pos, BlockState state, int age) {
         int current = getAge(state);
         int maxAge = getMaxAge();
         if (current == maxAge) return;
@@ -114,7 +115,7 @@ public class BlockPlant extends CropsBlock {
         worldIn.setBlockState(pos, newState, 2);
     }
 
-    public PlantType getType() {
+    public IPlantType getType() {
         if (plantType == null) {
             return BLOCK_TYPE.get();
         }
