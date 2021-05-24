@@ -1,28 +1,32 @@
 package cx.rain.mc.forgemod.sinocraft.client;
 
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.fluid.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
 
 @OnlyIn(Dist.CLIENT)
 public class ChangeRenderType {
     public ChangeRenderType(){
-        RenderTypeLookup.setRenderLayer(ModBlocks.WHITE_RADISH_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SUMMER_RADISH_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.GREEN_RADISH_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.CHILI_PEPPER_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.GREEN_PEPPER_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.CABBAGE_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.EGGPLANT_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MILLET_PLANT.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SOYBEAN_PLANT.get(), RenderType.getCutout());
-
-        RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_SAPLING.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.WALNUT_SAPLING.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MULBERRY_SAPLING.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.PLUM_SAPLING.get(), RenderType.getCutout());
+        for (RegistryObject<Block> entry : ModBlocks.REGISTRY.getEntries()) {
+            Block block = entry.get();
+            // all crops and sapling blocks
+            if (block instanceof CropsBlock || block instanceof SaplingBlock) {
+                RenderTypeLookup.setRenderLayer(block, RenderType.getCutout());
+            }
+        }
+        for (RegistryObject<Fluid> entry : ModFluids.REGISTRY.getEntries()) {
+            RenderTypeLookup.setRenderLayer(entry.get(), RenderType.getTranslucent());
+        }
 
         RenderTypeLookup.setRenderLayer(ModBlocks.STONE_MILL.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PAPER_DRYING_RACK.get(), RenderType.getCutout());

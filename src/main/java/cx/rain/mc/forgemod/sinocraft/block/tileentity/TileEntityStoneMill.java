@@ -68,10 +68,10 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
         progress++;
         if (progress == currentRecipe.getTime()) {
             progress = 0;
-            InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), currentRecipe.getRecipeOutput().copy());
-            ItemStack simulate = itemHandler.extractItem(0, 1, true);
+            ItemStack output = currentRecipe.getRecipeOutput();
+            ItemStack simulate = itemHandler.extractItem(0, 1, false);
             if (!simulate.isEmpty()) {
-                outputStack = itemHandler.insertItem(0, currentRecipe.getRecipeOutput(), false);
+                InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), output.copy());
             }
         }
         markDirty();

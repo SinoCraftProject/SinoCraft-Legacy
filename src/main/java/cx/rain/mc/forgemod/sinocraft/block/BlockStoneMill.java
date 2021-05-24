@@ -40,6 +40,11 @@ public class BlockStoneMill extends BlockHorizontal {
     }
 
     @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(ROTATE);

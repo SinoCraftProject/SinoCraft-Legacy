@@ -1,8 +1,12 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -40,6 +44,29 @@ public interface ISinoBlocks {
      */
     @Nullable
     ITileEntityVat getAsVat(@Nullable TileEntity te);
+
+    // ==== Plant ======================================================================================================
+
+    /**
+     * Get the height of plant. If the max height is 1, return 1.
+     */
+    int getPlantHeight(IBlockReader worldIn, BlockPos pos, BlockState state);
+
+    /**
+     * True if the plant's max height is more than 1 and is top plant. If max height is 1, return if the block is mod plant.
+     */
+    boolean isPlantTop(BlockState state);
+
+    /**
+     * Grow the plant.
+     */
+    void growPlant(World worldIn, BlockPos pos, BlockState state, int age);
+
+    /**
+     * If the block is plant from mod, return the plant type, otherwise return null.
+     */
+    @Nullable
+    IPlantType getPlantType(Block block);
 
     // ==== Paper Drying ===============================================================================================
 
