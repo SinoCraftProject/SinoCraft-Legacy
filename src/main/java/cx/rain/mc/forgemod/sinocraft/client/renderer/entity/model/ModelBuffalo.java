@@ -207,24 +207,20 @@ public class ModelBuffalo extends AgeableModel<EntityBuffalo> {
             matrixStack.scale(0.75F, 0.75F, 0.75F);
 
             matrixStack.translate(0.0D, 1.0F, 0.25F);
-            this.getHeadParts().forEach((p_228230_8_) -> {
-                p_228230_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
+            this.getHeadParts().forEach((p_228230_8_) ->
+                    p_228230_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha));
             matrixStack.pop();
             matrixStack.push();
             matrixStack.scale(0.5F, 0.5F, 0.5F);
             matrixStack.translate(0.0D, 24.0F / 16.0F, 0.0D);
-            this.getBodyParts().forEach((p_228229_8_) -> {
-                p_228229_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
+            this.getBodyParts().forEach((p_228229_8_) ->
+                    p_228229_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha));
             matrixStack.pop();
         } else {
-            this.getHeadParts().forEach((p_228228_8_) -> {
-                p_228228_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
-            this.getBodyParts().forEach((p_228227_8_) -> {
-                p_228227_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
+            this.getHeadParts().forEach((p_228228_8_) ->
+                    p_228228_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha));
+            this.getBodyParts().forEach((p_228227_8_) ->
+                    p_228227_8_.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha));
         }
     }
 

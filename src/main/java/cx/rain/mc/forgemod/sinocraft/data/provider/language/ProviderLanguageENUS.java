@@ -20,6 +20,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addEntities();
         addAdvancements();
         addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
@@ -100,7 +101,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
-        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
+//        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
     }
 
     private void addBlocks() {
@@ -147,6 +148,14 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "Buffalo");
+        addEntityType(ModEntities.ENTITY_BUFFALO, "Buffalo");
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "Iron Pot");
+        add("sinocraft.jei.recipe.soaking", "Vat");
+        add("sinocraft.jei.recipe.steamer", "Food Steamer");
+        add("config.waila.plugin_sinocraft", "SinoCraft");
+        add("config.waila.plugin_sinocraft.enabled", "Enabled");
     }
 }

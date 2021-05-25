@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
 /**
@@ -42,13 +43,31 @@ public interface ICookingRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
 
     int getCookingTime();
 
-    int getInputCount(int index);
+    /**
+     * Get input ingredient by index.
+     * Index must less than {@link #getInputSlotCount()}
+     */
+    ICountIngredient getInput(int index);
 
+    /**
+     * Get the input count.
+     */
     int getInputSlotCount();
 
+    /**
+     * Get the min heat. If heat is less than it, the recipe will not begin.
+     */
     int getMinHeat();
 
+    /**
+     * Get the max heat. If any heat is more than it during crafting, it will return {@link #getAdustOutput()}.
+     */
     int getMaxHeat();
+
+    /**
+     * Return result if any heat is more than {@link #getMaxHeat()} during crafting.
+     */
+    ItemStack getAdustOutput();
 
     @Override
     default boolean canFit(int width, int height) {

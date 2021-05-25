@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "stage=0,top=false": {
+      "model": "sinocraft:block/sorghum_stage_bottom_0"
+    },
+    "stage=1,top=false": {
+      "model": "sinocraft:block/sorghum_stage_bottom_1"
+    },
+    "stage=2,top=false": {
+      "model": "sinocraft:block/sorghum_stage_bottom_2"
+    },
+    "stage=3,top=false": {
+      "model": "sinocraft:block/sorghum_stage_bottom_3"
+    },
+    "stage=0,top=true": {
+      "model": "sinocraft:block/sorghum_stage_top_0"
+    },
+    "stage=1,top=true": {
+      "model": "sinocraft:block/sorghum_stage_top_1"
+    },
+    "stage=2,top=true": {
+      "model": "sinocraft:block/sorghum_stage_top_2"
+    },
+    "stage=3,top=true": {
+      "model": "sinocraft:block/sorghum_stage_top_3"
+    }
+  }
+}

@@ -58,6 +58,8 @@
   "block.sinocraft.walnut_plank": "Walnut Plank",
   "block.sinocraft.walnut_sapling": "Walnut Sapling",
   "block.sinocraft.white_marble": "White Marble",
+  "config.waila.plugin_sinocraft": "SinoCraft",
+  "config.waila.plugin_sinocraft.enabled": "Enabled",
   "entity.sinocraft.buffalo": "Buffalo",
   "gui.sinocraft.category.soak": "Soak",
   "item.sinocraft.bark": "Bark",
@@ -85,7 +87,6 @@
   "item.sinocraft.sorghum": "Sorghum",
   "item.sinocraft.stuffing": "Stuffing",
   "item.sinocraft.summer_radish": "Summer Radish",
-  "item.sinocraft.tutorial_book": "\u300ASinoCraft\u300B",
   "item.sinocraft.white_radish": "White Radish",
   "item.sinocraft.xuan_paper": "Xuan Paper",
   "itemGroup.sinocraft.agriculture": "SinoCraft | Agriculture",
@@ -94,5 +95,8 @@
   "itemGroup.sinocraft.decorate": "SinoCraft | Decorate",
   "itemGroup.sinocraft.foods": "SinoCraft | Foods",
   "itemGroup.sinocraft.misc": "SinoCraft | Miscellaneous",
-  "itemGroup.sinocraft.tools": "SinoCraft | Tools"
+  "itemGroup.sinocraft.tools": "SinoCraft | Tools",
+  "sinocraft.jei.recipe.cooking": "Iron Pot",
+  "sinocraft.jei.recipe.soaking": "Vat",
+  "sinocraft.jei.recipe.steamer": "Food Steamer"
 }

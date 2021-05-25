@@ -14,14 +14,13 @@ public class VatItemHandler  extends ItemStackHandler {
     @Override
     protected void onLoad() {
         super.onLoad();
-        te.updateRecipe();
-        te.markDirty();
+        te.reloadRecipe();
     }
 
     @Override
     protected void onContentsChanged(int slot) {
         super.onContentsChanged(slot);
-        te.updateRecipe();
+        te.reloadRecipe();
         te.markDirty();
     }
 }

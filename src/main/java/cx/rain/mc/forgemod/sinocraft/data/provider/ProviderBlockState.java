@@ -1,12 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
@@ -52,13 +54,31 @@ public class ProviderBlockState extends BlockStateProvider {
         simpleBlock(block, models().cubeAll(block.getRegistryName().getPath(), modLoc("block/" + all)));
     }
 
-    protected void cropsStaged(BlockPlant plant, int stageCount, String name) {
+    protected void cropsStaged(BlockPlant plant) {
+        cropsStaged(plant, plant.getType().getName());
+    }
+
+    protected void cropsStaged(BlockPlant plant, String name) {
         VariantBlockStateBuilder builder = getVariantBuilder(plant);
-        for (int i = 0; i < stageCount; i++) {
-            builder.partialState().with(plant.getStage(), i).modelForState()
-                    .modelFile(models().crop("block/" + name + "_stage_" + i,
-                            modLoc("block/" + name + "_stage_" + i)))
-                    .addModel();
+        IPlantType type = plant.getType();
+        if (type.getMaxHeight() > 1) {
+            for (int i = 0; i <= plant.getMaxAge(); i++) {
+                builder.partialState().with(plant.getAgeProperty(), i).with(BlockPlantMulti.IS_TOP, true).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_top_" + i,
+                                modLoc("block/" + name + "_stage_top_" + i)))
+                        .addModel();
+                builder.partialState().with(plant.getAgeProperty(), i).with(BlockPlantMulti.IS_TOP, false).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_bottom_" + i,
+                                modLoc("block/" + name + "_stage_bottom_" + i)))
+                        .addModel();
+            }
+        } else {
+            for (int i = 0; i <= plant.getMaxAge(); i++) {
+                builder.partialState().with(plant.getAgeProperty(), i).modelForState()
+                        .modelFile(models().crop("block/" + name + "_stage_" + i,
+                                modLoc("block/" + name + "_stage_" + i)))
+                        .addModel();
+            }
         }
     }
 
@@ -71,42 +91,47 @@ public class ProviderBlockState extends BlockStateProvider {
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.NORTH).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.NORTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(180).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.SOUTH).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.SOUTH).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(270).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.WEST).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.WEST).
                     end();
             stoneMill.part().modelFile(models().getExistingFile(modLoc("block/stone_mill" + i))).rotationY(90).
                     addModel().
                     condition(BlockStoneMill.ROTATE, i).
-                    condition(BlockStoneMill.FACING, Direction.EAST).
+                    condition(BlockStoneMill.HORIZONTAL_FACING, Direction.EAST).
                     end();
         }
-
 
         addCrops();
         addTrees();
         addBuildingBlocks();
         addMachineBlocks();
+
+        getVariantBuilder(ModBlocks.WOOD_PULP_BLOCK.get()).partialState().modelForState()
+                .modelFile(models().getBuilder("block/wood_pump").texture("particle", modLoc("block/wood_pulp_still")))
+                .addModel();
     }
 
     private void addCrops() {
-        cropsStaged((BlockPlant) ModBlocks.WHITE_RADISH_PLANT.get(), 4, "white_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.SUMMER_RADISH_PLANT.get(), 4, "summer_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.GREEN_RADISH_PLANT.get(), 4, "green_radish_plant");
-        cropsStaged((BlockPlant) ModBlocks.GREEN_PEPPER_PLANT.get(), 8, "green_pepper_plant");
-        cropsStaged((BlockPlant) ModBlocks.CHILI_PEPPER_PLANT.get(), 8, "chili_pepper_plant");
-        cropsStaged((BlockPlant) ModBlocks.CABBAGE_PLANT.get(), 4, "celery_cabbage");
-        cropsStaged((BlockPlant) ModBlocks.EGGPLANT_PLANT.get(), 8, "eggplant");
-        cropsStaged((BlockPlant) ModBlocks.MILLET_PLANT.get(), 8, "millet");
-        cropsStaged((BlockPlant) ModBlocks.SOYBEAN_PLANT.get(), 4, "soybean");
+        cropsStaged(ModBlocks.WHITE_RADISH_PLANT.get(), "white_radish_plant");
+        cropsStaged(ModBlocks.SUMMER_RADISH_PLANT.get(), "summer_radish_plant");
+        cropsStaged(ModBlocks.GREEN_RADISH_PLANT.get(), "green_radish_plant");
+        cropsStaged(ModBlocks.GREEN_PEPPER_PLANT.get(), "green_pepper_plant");
+        cropsStaged(ModBlocks.CHILI_PEPPER_PLANT.get(), "chili_pepper_plant");
+        cropsStaged(ModBlocks.CABBAGE_PLANT.get(), "celery_cabbage");
+        cropsStaged(ModBlocks.EGGPLANT_PLANT.get(), "eggplant");
+        cropsStaged(ModBlocks.MILLET_PLANT.get(), "millet");
+        cropsStaged(ModBlocks.SOYBEAN_PLANT.get(), "soybean");
+        cropsStaged(ModBlocks.RICE_PLANT.get());
+        cropsStaged(ModBlocks.SORGHUM_PLANT.get());
     }
 
     private void addTrees() {
@@ -156,12 +181,12 @@ public class ProviderBlockState extends BlockStateProvider {
         VariantBlockStateBuilder stoveBuilder = getVariantBuilder(ModBlocks.STOVE.get());
         Direction stoveDirection = Direction.NORTH;
         for (int i = 0; i < 4; i++) {
-            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, false)
+            stoveBuilder.partialState().with(BlockStove.HORIZONTAL_FACING, stoveDirection).with(BlockStove.BURNING, false)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_off")))
                     .rotationY(90 * i)
                     .addModel();
-            stoveBuilder.partialState().with(BlockStove.FACING, stoveDirection).with(BlockStove.BURNING, true)
+            stoveBuilder.partialState().with(BlockStove.HORIZONTAL_FACING, stoveDirection).with(BlockStove.BURNING, true)
                     .modelForState()
                     .modelFile(models().getExistingFile(modLoc("block/stove_on")))
                     .rotationY(90 * i)
@@ -180,7 +205,7 @@ public class ProviderBlockState extends BlockStateProvider {
                         .rotationY(90 * j)
                         .addModel()
                         .condition(BlockPaperDryingRack.STATE, i)
-                        .condition(BlockPaperDryingRack.FACING, paperDryingRackBuilderDirection)
+                        .condition(BlockPaperDryingRack.HORIZONTAL_FACING, paperDryingRackBuilderDirection)
                         .end();
                 paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
             }

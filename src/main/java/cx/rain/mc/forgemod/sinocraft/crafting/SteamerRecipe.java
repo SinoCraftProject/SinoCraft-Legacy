@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipes;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -10,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -20,7 +20,7 @@ public class SteamerRecipe implements ISteamerRecipe {
     Ingredient input;
     ItemStack output, adust;
 
-    public static Builder builder(ResourceLocation id) {
+    public static ISteamerRecipeBuilder builder(ResourceLocation id) {
         return new Builder(id);
     }
 
@@ -65,6 +65,16 @@ public class SteamerRecipe implements ISteamerRecipe {
     }
 
     @Override
+    public ItemStack getAdustOutput() {
+        return adust;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return NonNullList.withSize(1, input);
+    }
+
+    @Override
     public ResourceLocation getId() {
         return id;
     }
@@ -76,10 +86,10 @@ public class SteamerRecipe implements ISteamerRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return IModRecipes.getInstance().getSteamerRecipe();
+        return ModRecipes.STEAMER;
     }
 
-    public static class Builder implements ISteamerRecipeBuilder {
+    static class Builder implements ISteamerRecipeBuilder {
         private final SteamerRecipe recipe;
 
         Builder(ResourceLocation id) {
@@ -87,38 +97,38 @@ public class SteamerRecipe implements ISteamerRecipe {
         }
 
         @Override
-        public Builder setInput(Ingredient ingredient) {
+        public ISteamerRecipeBuilder setInput(Ingredient ingredient) {
             recipe.input = ingredient;
             return this;
         }
 
         @Override
-        public Builder setOutput(ItemStack stack) {
+        public ISteamerRecipeBuilder setOutput(ItemStack stack) {
             recipe.output = stack;
             return this;
         }
 
         @Override
-        public Builder setAdustOutput(ItemStack stack) {
+        public ISteamerRecipeBuilder setAdustOutput(ItemStack stack) {
             recipe.adust = stack;
             return this;
         }
 
         @Override
-        public Builder setTime(int time) {
+        public ISteamerRecipeBuilder setTime(int time) {
             recipe.time = time;
             return this;
         }
 
         @Override
-        public Builder setHeat(int min, int max) {
+        public ISteamerRecipeBuilder setHeat(int min, int max) {
             recipe.minHeat = min;
             recipe.maxHeat = max;
             return this;
         }
 
         @Override
-        public SteamerRecipe build() {
+        public ISteamerRecipe build() {
             return recipe;
         }
     }

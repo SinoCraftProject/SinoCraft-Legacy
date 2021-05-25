@@ -3,24 +3,24 @@ package cx.rain.mc.forgemod.sinocraft.network.packet;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.IMessage;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class DrawPaperC2SPacket implements IMessage {
-    private Pack pack;
+    private final Pack pack;
 
     public DrawPaperC2SPacket(Pack pack) {
         this.pack = pack;
     }
 
     public DrawPaperC2SPacket(PacketBuffer buffer) {
-        this.pack = new Pack(new Vec2<>(0, 0), (byte) 0);
+        this.pack = new Pack(new Point(0, 0), (byte) 0);
         deserialize(buffer);
     }
 
@@ -80,10 +80,10 @@ public class DrawPaperC2SPacket implements IMessage {
     }
 
     public static class Pack implements IPack {
-        private Vec2<Integer> pos;
+        private Point pos;
         private byte color;
 
-        public Pack(Vec2<Integer> pos, byte color) {
+        public Pack(Point pos, byte color) {
             this.pos = pos;
             this.color = color;
         }
@@ -96,7 +96,7 @@ public class DrawPaperC2SPacket implements IMessage {
 
         @Override
         public void deserialize(PacketBuffer buffer) {
-            pos = new Vec2<>(buffer.readInt(), buffer.readInt());
+            pos = new Point(buffer.readInt(), buffer.readInt());
             color = buffer.readByte();
         }
     }

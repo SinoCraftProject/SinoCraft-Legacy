@@ -21,6 +21,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addEntities();
         addAdvancements();
         addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
@@ -115,7 +116,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.EMPTY_XUAN_PAPER, "空白的宣纸");
         addItem(ModItems.XUAN_PAPER, "宣纸");
         addItem(ModItems.BUCKET_WOOD_PULP, "木浆桶");
-        addItem(ModItems.TUTORIAL_BOOK, "《华夏工艺》");
+//         addItem(ModItems.TUTORIAL_BOOK, "《华夏工艺》");
     }
 
     private void addBlocks() {
@@ -167,6 +168,14 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "水牛");
+        addEntityType(ModEntities.ENTITY_BUFFALO, "水牛");
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "铁锅");
+        add("sinocraft.jei.recipe.soaking", "木缸");
+        add("sinocraft.jei.recipe.steamer", "蒸笼");
+        add("config.waila.plugin_sinocraft", "华夏工艺");
+        add("config.waila.plugin_sinocraft.enabled", "启用");
     }
 }

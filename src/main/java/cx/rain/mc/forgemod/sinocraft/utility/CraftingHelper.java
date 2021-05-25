@@ -1,12 +1,16 @@
 package cx.rain.mc.forgemod.sinocraft.utility;
 
 import com.google.gson.*;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import cx.rain.mc.forgemod.sinocraft.crafting.CountIngredient;
 import cx.rain.mc.forgemod.sinocraft.crafting.FluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -83,23 +87,24 @@ public class CraftingHelper {
         throw new JsonSyntaxException("Json " + json + " is not a string or object");
     }
 
-    public static JsonElement serializeIngredient(CountIngredient ingredient) {
-        JsonElement ingredientJson = ingredient.ingredient.serialize();
-        if (ingredient.count == 1) {
+    public static JsonElement serializeIngredient(ICountIngredient ingredient) {
+        JsonElement ingredientJson = ingredient.getIngredient().serialize();
+        int count = ingredient.getCount();
+        if (count == 1) {
             return ingredientJson;
         }
         if (ingredientJson.isJsonObject()) {
-            ingredientJson.getAsJsonObject().addProperty("count", ingredient.count);
+            ingredientJson.getAsJsonObject().addProperty("count", count);
             return ingredientJson;
         } else {
             JsonObject object = new JsonObject();
             object.add("items", ingredientJson);
-            object.addProperty("count", ingredient.count);
+            object.addProperty("count", count);
             return object;
         }
     }
 
-    public static CountIngredient deserializeIngredient(JsonElement json) {
+    public static ICountIngredient deserializeIngredient(JsonElement json) {
         if (json.isJsonObject()) {
             JsonObject object = json.getAsJsonObject();
             Ingredient ingredient = object.has("items")
@@ -112,27 +117,27 @@ public class CraftingHelper {
         }
     }
 
-    public static JsonElement serializeFluidIngredient(FluidIngredient ingredient) {
-        if (ingredient.type == 0) {
-            if (ingredient.amount == 1000) {
-                return new JsonPrimitive(ingredient.loc.toString());
+    public static JsonElement serializeFluidIngredient(IFluidIngredient ingredient) {
+        if (ingredient.getType() == 0) {
+            if (ingredient.getAmount() == 1000) {
+                return new JsonPrimitive(ingredient.getResourceLocation().toString());
             } else {
                 JsonObject object = new JsonObject();
-                object.addProperty("fluid", ingredient.loc.toString());
-                object.addProperty("amount", ingredient.amount);
+                object.addProperty("fluid", ingredient.getResourceLocation().toString());
+                object.addProperty("amount", ingredient.getAmount());
                 return object;
             }
         } else {
             JsonObject object = new JsonObject();
-            object.addProperty("tag", ingredient.loc.toString());
-            if (ingredient.amount != 1000) {
-                object.addProperty("amount", ingredient.amount);
+            object.addProperty("tag", ingredient.getResourceLocation().toString());
+            if (ingredient.getAmount() != 1000) {
+                object.addProperty("amount", ingredient.getAmount());
             }
             return object;
         }
     }
 
-    public static FluidIngredient deserializeFluidIngredient(JsonElement json) {
+    public static IFluidIngredient deserializeFluidIngredient(JsonElement json) {
         if (json.isJsonPrimitive()) {
             String id = json.getAsJsonPrimitive().getAsString();
             Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(id));
@@ -143,7 +148,11 @@ public class CraftingHelper {
         } else if (json.isJsonObject()) {
             JsonObject fluidObject = json.getAsJsonObject();
             if (fluidObject.has("tag")) {
-                ResourceLocation tag = new ResourceLocation(fluidObject.get("tag").getAsString());
+                ResourceLocation tagName = new ResourceLocation(fluidObject.get("tag").getAsString());
+                ITag<Fluid> tag = TagCollectionManager.getManager().getFluidTags().get(tagName);
+                if (tag == null) {
+                    throw new NullPointerException("Can't find fluid tag named " + tagName);
+                }
                 if (fluidObject.has("amount")) {
                     return new FluidIngredient(tag, fluidObject.get("amount").getAsInt());
                 } else {

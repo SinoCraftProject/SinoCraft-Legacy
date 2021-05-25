@@ -3,11 +3,11 @@ package cx.rain.mc.forgemod.sinocraft.item;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -18,13 +18,13 @@ public class ModItems {
     public static final DeferredRegister<Item> REGISTRY =
             DeferredRegister.create(ForgeRegistries.ITEMS, SinoCraft.MODID);
 
-    public static RegistryObject<Item> CHILI_PEPPER_SEED = REGISTRY.register("chili_pepper_seed", () -> new ItemSeed(ModBlocks.CHILI_PEPPER_PLANT.get(), PlantType.CHILI_PEPPER));
-    public static RegistryObject<Item> GREEN_PEPPER_SEED = REGISTRY.register("green_pepper_seed", () -> new ItemSeed(ModBlocks.GREEN_PEPPER_PLANT.get(), PlantType.GREEN_PEPPER));
-    public static RegistryObject<Item> EGGPLANT_SEED = REGISTRY.register("eggplant_seed", () -> new ItemSeed(ModBlocks.EGGPLANT_PLANT.get(), PlantType.EGGPLANT));
-    public static RegistryObject<Item> CABBAGE_SEED = REGISTRY.register("cabbage_seed", () -> new ItemSeed(ModBlocks.CABBAGE_PLANT.get(), PlantType.CABBAGE));
-    public static RegistryObject<Item> RICE_SEED = REGISTRY.register("rice_seed", () -> new ItemSeed(ModBlocks.RICE_PLANT.get(), PlantType.RICE));
-    public static RegistryObject<Item> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(ModBlocks.MILLET_PLANT.get(), PlantType.MILLET));
-    public static RegistryObject<Item> SORGHUM_SEED = REGISTRY.register("sorghum_seed", () -> new ItemSeed(ModBlocks.SORGHUM_PLANT.get(), PlantType.SORGHUM));
+    public static RegistryObject<ItemSeed> CHILI_PEPPER_SEED = REGISTRY.register("chili_pepper_seed", () -> new ItemSeed(ModBlocks.CHILI_PEPPER_PLANT.get(), PlantType.CHILI_PEPPER));
+    public static RegistryObject<ItemSeed> GREEN_PEPPER_SEED = REGISTRY.register("green_pepper_seed", () -> new ItemSeed(ModBlocks.GREEN_PEPPER_PLANT.get(), PlantType.GREEN_PEPPER));
+    public static RegistryObject<ItemSeed> EGGPLANT_SEED = REGISTRY.register("eggplant_seed", () -> new ItemSeed(ModBlocks.EGGPLANT_PLANT.get(), PlantType.EGGPLANT));
+    public static RegistryObject<ItemSeed> CABBAGE_SEED = REGISTRY.register("cabbage_seed", () -> new ItemSeed(ModBlocks.CABBAGE_PLANT.get(), PlantType.CABBAGE));
+    public static RegistryObject<ItemSeed> RICE_SEED = REGISTRY.register("rice_seed", () -> new ItemSeed(ModBlocks.RICE_PLANT.get(), PlantType.RICE));
+    public static RegistryObject<ItemSeed> MILLET_SEED = REGISTRY.register("millet_seed", () -> new ItemSeed(ModBlocks.MILLET_PLANT.get(), PlantType.MILLET));
+    public static RegistryObject<ItemSeed> SORGHUM_SEED = REGISTRY.register("sorghum_seed", () -> new ItemSeed(ModBlocks.SORGHUM_PLANT.get(), PlantType.SORGHUM));
 
     public static RegistryObject<Item> SOYBEAN = REGISTRY.register("soybean", () -> new ItemSeed(ModBlocks.SOYBEAN_PLANT.get(), PlantType.SOYBEAN));
     public static RegistryObject<Item> RICE = REGISTRY.register("rice", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
@@ -50,16 +50,16 @@ public class ModItems {
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(Items.BUCKET).maxStackSize(1)));
     public static RegistryObject<Item> EMPTY_XUAN_PAPER = REGISTRY.register("empty_xuan_paper", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
-    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", () -> new ItemXuanPaper());
-    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new ItemTutorialBook());
+    public static RegistryObject<Item> XUAN_PAPER = REGISTRY.register("xuan_paper", ItemXuanPaper::new);
+//    public static RegistryObject<Item> TUTORIAL_BOOK = REGISTRY.register("tutorial_book", () -> new ItemTutorialBook());
     public static RegistryObject<Item> CHINESE_INK = REGISTRY.register("chinese_ink", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(64)));
     public static RegistryObject<Item> CHARCOAL_BLACK = REGISTRY.register("charcoal_black", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<Item> DISH = REGISTRY.register("dish", () -> new Item(new Item.Properties().group(ModGroups.MISC).maxStackSize(16).setNoRepair()));
 
-    public static RegistryObject<Item> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));
-    public static RegistryObject<Item> KNIFE_GOLD = REGISTRY.register("knife_gold", () -> new ItemKnife(ItemTier.GOLD));
-    public static RegistryObject<Item> KNIFE_DIAMOND = REGISTRY.register("knife_diamond", () -> new ItemKnife(ItemTier.DIAMOND));
-    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush", () -> new ItemChineseBrush());
+    public static RegistryObject<ItemKnife> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));
+    public static RegistryObject<ItemKnife> KNIFE_GOLD = REGISTRY.register("knife_gold", () -> new ItemKnife(ItemTier.GOLD));
+    public static RegistryObject<ItemKnife> KNIFE_DIAMOND = REGISTRY.register("knife_diamond", () -> new ItemKnife(ItemTier.DIAMOND));
+    public static RegistryObject<Item> CHINESE_BRUSH = REGISTRY.register("chinese_brush", ItemChineseBrush::new);
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone", () -> new Item(new Item.Properties().group(ModGroups.TOOLS)));
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));

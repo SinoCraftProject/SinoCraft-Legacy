@@ -1,13 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft;
 
-import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.block.ISinoBlocks;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ISinoRecipes;
+import cx.rain.mc.forgemod.sinocraft.api.item.ISinoItems;
+import cx.rain.mc.forgemod.sinocraft.api_impl.APIBlocks;
+import cx.rain.mc.forgemod.sinocraft.api_impl.APIItems;
+import cx.rain.mc.forgemod.sinocraft.api_impl.APIRecipes;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
 import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.gui.book.component.ComponentType;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
@@ -49,7 +54,14 @@ public class SinoCraft {
         new ModFluids(bus);
         new ModContainers(bus);
         new ModRecipes(bus);
-        ComponentType.init(bus);
+        // remove：client only
+        // ComponentType.init(bus);
+
+        // API
+        ISinoRecipes.INSTANCE.set(APIRecipes.INSTANCE);
+        ISinoItems.INSTANCE.set(APIItems.INSTANCE);
+        ISinoBlocks.INSTANCE.set(APIBlocks.INSTANCE);
+
     }
 
     public static SinoCraft getInstance() {

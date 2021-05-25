@@ -2,14 +2,21 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.DynamicBucketModel;
+import net.minecraftforge.client.model.generators.CustomLoaderBuilder;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.loaders.DynamicBucketModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.function.BiFunction;
 
 public class ProviderItemModel extends ItemModelProvider {
     public static final ModelFile.UncheckedModelFile GENERATED =
@@ -58,7 +65,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
-        simpleItem(ModItems.TUTORIAL_BOOK.get());
+//         simpleItem(ModItems.TUTORIAL_BOOK.get());
 
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
         getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));
@@ -66,7 +73,12 @@ public class ProviderItemModel extends ItemModelProvider {
         getBuilder("dumpling").parent(GENERATED).texture("layer0", modLoc("item/dumpling"));
         getBuilder("cooked_dumpling").parent(GENERATED).texture("layer0", modLoc("item/cooked_dumpling"));
         getBuilder("stuffing").parent(GENERATED).texture("layer0", modLoc("item/stuffing"));
-        getBuilder("bucket_wood_pulp").parent(GENERATED).texture("layer0",modLoc("item/bucket_wood_pulp"));
+        getBuilder("bucket_wood_pulp")
+                .parent(new ModelFile.UncheckedModelFile("forge:item/bucket_drip"))
+                .customLoader((BiFunction<ItemModelBuilder, ExistingFileHelper, CustomLoaderBuilder<ItemModelBuilder>>) (itemModelBuilder, existingFileHelper) ->
+                        DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
+                .end();
+
 
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
@@ -132,6 +144,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModBlockItems.SUMMER_RADISH.get());
         simpleItem(ModBlockItems.GREEN_RADISH.get());
         simpleItem(ModItems.PEACH.get());
+        simpleItem(ModItems.SILKWORM.get());
     }
 
     private void addTools() {

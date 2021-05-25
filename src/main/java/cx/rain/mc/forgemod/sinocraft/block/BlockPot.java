@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
+import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityPot;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -60,7 +61,7 @@ public class BlockPot extends Block {
     public ActionResultType clientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof TileEntityPot) {
-            TileEntityPot tileEntity = (TileEntityPot) te;
+            ITileEntityPot tileEntity = (ITileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
 
             if (!holdingStack.isEmpty()) {
@@ -68,7 +69,7 @@ public class BlockPot extends Block {
 
                 return ActionResultType.SUCCESS;
             } else {
-                if (tileEntity.getOutput().isEmpty()) {
+                if (tileEntity.getOutputs().isEmpty()) {
                     if (player.isSneaking()) {
                         worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
@@ -88,22 +89,20 @@ public class BlockPot extends Block {
     public ActionResultType serverActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof TileEntityPot) {
-            TileEntityPot tileEntity = (TileEntityPot) te;
+            ITileEntityPot tileEntity = (ITileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
-
             if (!holdingStack.isEmpty()) {
-                holdingStack.shrink(holdingStack.getCount() - tileEntity.addStackToInput(holdingStack));
-
+                player.setHeldItem(handIn, tileEntity.insertInput(holdingStack));
                 return ActionResultType.SUCCESS;
             } else {
-                if (tileEntity.getOutput().isEmpty()) {
+                if (tileEntity.getOutputs().isEmpty()) {
                     if (player.isSneaking()) {
-                        player.setHeldItem(handIn, tileEntity.removeStackOnInput());
+                        player.setHeldItem(handIn, tileEntity.extractInput());
 
                         return ActionResultType.SUCCESS;
                     }
                 } else {
-                    player.setHeldItem(handIn, tileEntity.removeStackOnOutput());
+                    player.setHeldItem(handIn, tileEntity.extractOutput());
 
                     return ActionResultType.SUCCESS;
                 }

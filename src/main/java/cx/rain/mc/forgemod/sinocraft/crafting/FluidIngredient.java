@@ -1,23 +1,24 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-public class FluidIngredient {
+public class FluidIngredient implements IFluidIngredient {
 
-    public final ResourceLocation loc;
+    private final ResourceLocation loc;
     // fluid
-    public final Fluid fluid;
+    private final Fluid fluid;
     // tag
     private ITag<Fluid> tag;
 
-    public final int amount;
-    public final int type;
+    private final int amount;
+    private final int type;
 
     public FluidIngredient(Fluid fluid, int amount) {
         this.loc = fluid.delegate.name();
@@ -26,14 +27,40 @@ public class FluidIngredient {
         this.type = 0;
     }
 
-    public FluidIngredient(ResourceLocation tag, int amount) {
+    public FluidIngredient(ITag<Fluid> tag, int amount) {
         this.fluid = Fluids.EMPTY;
-        this.loc = tag;
-        this.tag = FluidTags.getCollection().getTagByID(tag);
+        this.loc = TagCollectionManager.getManager().getFluidTags().getValidatedIdFromTag(tag);
+        this.tag = tag;
         this.amount = amount;
         this.type = 1;
     }
 
+    @Override
+    public int getType() {
+        return type;
+    }
+
+    @Override
+    public Fluid getFluid() {
+        return fluid;
+    }
+
+    @Override
+    public ITag<Fluid> getTag() {
+        return tag;
+    }
+
+    @Override
+    public ResourceLocation getResourceLocation() {
+        return loc;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
+    }
+
+    @Override
     public boolean match(FluidStack stack) {
         if (stack.getAmount() >= amount) {
             if (type == 0) {
@@ -51,12 +78,17 @@ public class FluidIngredient {
             int amount = buffer.readInt();
             return new FluidIngredient(fluid, amount);
         } else {
-            ResourceLocation loc = buffer.readResourceLocation();
+            ResourceLocation tagName = buffer.readResourceLocation();
+            ITag<Fluid> tag = TagCollectionManager.getManager().getFluidTags().get(tagName);
+            if (tag == null) {
+                throw new NullPointerException("Can't find fluid tag named " + tagName);
+            }
             int amount = buffer.readInt();
-            return new FluidIngredient(loc, amount);
+            return new FluidIngredient(tag, amount);
         }
     }
 
+    @Override
     public void write(PacketBuffer buffer) {
         buffer.writeBoolean(type == 0);
         if (type == 0) {

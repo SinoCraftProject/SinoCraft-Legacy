@@ -38,7 +38,9 @@ public abstract class TileEntityUpdatableBase extends TileEntity implements ITic
 
     @Override
     public void markDirty() {
-        world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
-        super.markDirty();
+        if (world != null) {
+            world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
+            super.markDirty();
+        }
     }
 }

@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontalActivatable;
-import cx.rain.mc.forgemod.sinocraft.block.base.IBlockActivatable;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,24 +8,24 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockPaperDryingRack extends BlockHorizontalActivatable implements IBlockActivatable {
+public class BlockPaperDryingRack extends BlockHorizontalActivatable {
     /**
      * State is a int value shows drying rack's state.
      * 0: There is no paper drying.
@@ -34,29 +33,18 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
      * 4: Paper drying is finished.
      */
     public static IntegerProperty STATE = IntegerProperty.create("state", 0, 4);
-    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 
     public BlockPaperDryingRack() {
         super(Block.Properties.create(Material.WOOD)
                 .hardnessAndResistance(3.0F)
+                .tickRandomly()
                 .sound(SoundType.WOOD).notSolid());
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(STATE);
-    }
-
-    @Override
-    public boolean ticksRandomly(BlockState p_149653_1_) {
-        return true;
     }
 
     @Override
@@ -107,10 +95,8 @@ public class BlockPaperDryingRack extends BlockHorizontalActivatable implements 
 
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.get(STATE) == 4) {
-            if (worldIn.isRemote) {
-                worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
-            }
+        if (worldIn.isRemote && state.get(STATE) == 4) {
+            worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.EMPTY_XUAN_PAPER.get())));
         }
     }
 

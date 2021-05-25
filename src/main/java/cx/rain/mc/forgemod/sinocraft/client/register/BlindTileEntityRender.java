@@ -19,6 +19,6 @@ public class BlindTileEntityRender {
     public static void blind(FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.VAT.get(), TileEntityVatRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.STONE_MILL.get(), TileEntityStoneMillRender::new);
-        SinoCraft.getInstance().getLogger().info("Registering TER");
+        SinoCraft.getLogger().info("Registering TileEntity renderer.");
     }
 }
