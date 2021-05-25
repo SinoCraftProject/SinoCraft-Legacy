@@ -198,4 +198,9 @@ public enum APIModItems implements cx.rain.mc.forgemod.sinocraft.api.item.IModIt
         return ModItems.BUFFALO_SPAWN_EGG;
     }
 
+    @Override
+    public RegistryObject<? extends Item> getTeaLeaf() {
+        return ModItems.TEA_LEAF;
+    }
+
 }

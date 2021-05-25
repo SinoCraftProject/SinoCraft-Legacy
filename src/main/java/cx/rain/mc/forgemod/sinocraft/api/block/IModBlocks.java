@@ -56,4 +56,5 @@ public interface IModBlocks {
     RegistryObject<? extends HorizontalBlock> getPaperDryingRack();
     RegistryObject<? extends Block> getPot();
     RegistryObject<? extends Block> getWoodPulpBlock();
+    RegistryObject<? extends Block> getTeaTable();
 }

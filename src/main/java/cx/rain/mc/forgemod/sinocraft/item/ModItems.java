@@ -64,6 +64,11 @@ public class ModItems {
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
 
+    public static RegistryObject<Item> TEA_LEAF = REGISTRY.register("tea_leaf", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
+    public static RegistryObject<Item> TEACUP_EMPTY = REGISTRY.register("teacup", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
+    public static RegistryObject<Item> TEACUP_TEA = REGISTRY.register("teacup2", () -> new Item(new Item.Properties().group(ModGroups.FOODS)));
+    public static RegistryObject<Item> TEAPOT = REGISTRY.register("teapot", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
+
     public ModItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering items.");
         REGISTRY.register(bus);

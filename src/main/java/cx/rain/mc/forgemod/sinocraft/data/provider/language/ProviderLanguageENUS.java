@@ -102,6 +102,10 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
 //        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
+        addItem(ModItems.TEA_LEAF, "Tea Leaf");
+        addItem(ModItems.TEACUP_EMPTY, "Teacup(Empty)");
+        addItem(ModItems.TEACUP_TEA, "Teacup");
+        addItem(ModItems.TEAPOT, "Teapot");
     }
 
     private void addBlocks() {
@@ -145,6 +149,8 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlock(ModBlocks.VAT, "Vat");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "Paper Drying Rack");
         addBlock(ModBlocks.STONE_MILL, "Stone Mill");
+
+        addBlock(ModBlocks.TEA_TABLE, "");
     }
 
     private void addEntities() {

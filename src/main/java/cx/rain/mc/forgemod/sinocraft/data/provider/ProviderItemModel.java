@@ -78,7 +78,7 @@ public class ProviderItemModel extends ItemModelProvider {
                 .customLoader((BiFunction<ItemModelBuilder, ExistingFileHelper, CustomLoaderBuilder<ItemModelBuilder>>) (itemModelBuilder, existingFileHelper) ->
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
-
+        simpleItem(ModItems.TEACUP_TEA.get());
 
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
@@ -145,6 +145,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModBlockItems.GREEN_RADISH.get());
         simpleItem(ModItems.PEACH.get());
         simpleItem(ModItems.SILKWORM.get());
+        simpleItem(ModItems.TEA_LEAF.get());
     }
 
     private void addTools() {
@@ -165,6 +166,9 @@ public class ProviderItemModel extends ItemModelProvider {
 
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
+
+        simpleItem(ModItems.TEAPOT.get());
+        simpleItem(ModItems.TEACUP_EMPTY.get());
     }
 
     private void addMachineBlockItems() {

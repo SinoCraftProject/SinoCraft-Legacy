@@ -248,4 +248,9 @@ public enum APIModBlocks implements IModBlocks {
     public RegistryObject<? extends Block> getWoodPulpBlock() {
         return ModBlocks.WOOD_PULP_BLOCK;
     }
+
+    @Override
+    public RegistryObject<? extends Block> getTeaTable() {
+        return ModBlocks.TEA_TABLE;
+    }
 }
