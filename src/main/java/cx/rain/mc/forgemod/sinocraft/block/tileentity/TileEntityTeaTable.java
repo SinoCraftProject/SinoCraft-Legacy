@@ -79,6 +79,10 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase {
         return stacks;
     }
 
+    public List<PlacedTableElement> getElements() {
+        return elements;
+    }
+
     @Override
     public void tick() {
         if (world != null && !world.isRemote) {

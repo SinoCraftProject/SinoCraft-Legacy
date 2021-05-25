@@ -33,17 +33,17 @@ public class PlacedTeapot extends PlacedTableElement {
     }
 
     @Override
-    double getLenX() {
+    public double getLenX() {
         return 4.0 / 16.0;
     }
 
     @Override
-    double getLenY() {
+    public double getLenY() {
         return 4.0 / 16.0;
     }
 
     @Override
-    double getLenZ() {
+    public double getLenZ() {
         return 4.0 / 16.0;
     }
 

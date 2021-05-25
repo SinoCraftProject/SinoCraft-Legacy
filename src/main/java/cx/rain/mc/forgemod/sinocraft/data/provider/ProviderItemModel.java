@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.client.register.RendererRegister;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -167,7 +168,10 @@ public class ProviderItemModel extends ItemModelProvider {
 
         // todo by lq2007: Teacup, Teapot 材质
         simpleItem(ModItems.TEAPOT.get());
-        simpleItem(ModItems.TEACUP.get());
+        String path = ModItems.TEACUP.get().getRegistryName().getPath();
+        singleTexture(path, mcLoc("generated"), "layer0", modLoc("item/teapot"))
+                .override()
+                .predicate(RendererRegister.TEAPOT_TEA, 1.0f).model(new ModelFile.UncheckedModelFile(modLoc("item/teapot2"))).end();
     }
 
     private void addMachineBlockItems() {

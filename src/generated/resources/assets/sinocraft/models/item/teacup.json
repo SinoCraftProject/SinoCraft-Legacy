@@ -1,6 +1,14 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sinocraft:item/teacup"
-  }
+    "layer0": "sinocraft:item/teapot"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "sinocraft:tea": 1.0
+      },
+      "model": "sinocraft:item/teapot2"
+    }
+  ]
 }

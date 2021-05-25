@@ -40,11 +40,11 @@ public abstract class PlacedTableElement implements INBTSerializable<CompoundNBT
         return range;
     }
 
-    abstract double getLenX();
+    public abstract double getLenX();
 
-    abstract double getLenY();
+    public abstract double getLenY();
 
-    abstract double getLenZ();
+    public abstract double getLenZ();
 
     @Override
     public CompoundNBT serializeNBT() {
