@@ -17,7 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public enum APIBlocks implements ISinoBlocks {
 

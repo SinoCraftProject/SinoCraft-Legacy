@@ -164,8 +164,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlock(ModBlocks.STONE_MILL, "石磨");
 
         addBlock(ModBlocks.TEA_TABLE, "");
-        addItem(ModItems.TEACUP_EMPTY, "茶杯 (空)");
-        addItem(ModItems.TEACUP_TEA, "茶杯");
+        addItem(ModItems.TEACUP, "茶杯");
         addItem(ModItems.TEAPOT, "茶壶");
     }
 

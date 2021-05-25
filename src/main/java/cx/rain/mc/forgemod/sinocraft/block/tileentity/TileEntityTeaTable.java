@@ -1,222 +1,148 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.utility.ItemTagHelper;
+import com.google.common.collect.Streams;
+import cx.rain.mc.forgemod.sinocraft.block.table.PlacedTableElement;
+import cx.rain.mc.forgemod.sinocraft.item.ItemTeaTableElement;
+import cx.rain.mc.forgemod.sinocraft.utility.property.CollectionHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.util.Constants;
 
+import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
+@SuppressWarnings("UnstableApiUsage")
 public class TileEntityTeaTable extends TileEntityUpdatableBase {
 
-    // todo 有材质后调整大小
-    private static final double TEACUP_WIDTH = 4.0 / 16.0;
-    private static final double TEACUP_HEIGHT = 4.0 / 16.0;
-    private static final double TEAPOT_WIDTH = 4.0 / 16.0;
-    private static final double TEAPOT_HEIGHT = 4.0 / 16.0;
-
-    private final List<PlacedTeacup> teacups = NonNullList.create();
-    private final List<PlacedTeapot> teapots = NonNullList.create();
+    private final List<PlacedTableElement> elements = NonNullList.create();
 
     public TileEntityTeaTable() {
         super(ModTileEntities.TEA_TABLE.get());
     }
 
-    public boolean putTeacup(double x, double z, ItemStack teacup) {
-        double x1 = x + TEACUP_WIDTH;
-        double z1 = z + TEACUP_HEIGHT;
-        for (PlacedTeacup cup : teacups) {
-            if (isIn(cup.x0, cup.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x1, cup.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x0, cup.z1, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x1, cup.z1, x, z, x1, z1)) {
-                return false;
-            }
-        }
-        for (PlacedTeapot pot : teapots) {
-            if (isIn(pot.x0, pot.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x1, pot.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x0, pot.z1, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x1, pot.z1, x, z, x1, z1)) {
-                return false;
-            }
-        }
-        boolean hasTea = ItemTagHelper.getOrDefault(teacup, "hasTea", false);
-        ItemStack copy = teacup.copy();
-        copy.setCount(1);
-        teacups.add(new PlacedTeacup(x, z, x1, z1, hasTea, copy));
-        return true;
-    }
-
-    public boolean putTeapot(double x, double z, ItemStack teapot) {
-        double x1 = x + TEAPOT_WIDTH;
-        double z1 = z + TEAPOT_HEIGHT;
-        for (PlacedTeacup cup : teacups) {
-            if (isIn(cup.x0, cup.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x1, cup.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x0, cup.z1, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(cup.x1, cup.z1, x, z, x1, z1)) {
-                return false;
-            }
-        }
-        for (PlacedTeapot pot : teapots) {
-            if (isIn(pot.x0, pot.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x1, pot.z0, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x0, pot.z1, x, z, x1, z1)) {
-                return false;
-            }
-            if (isIn(pot.x1, pot.z1, x, z, x1, z1)) {
-                return false;
-            }
-        }
-        byte contains = ItemTagHelper.getOrDefault(teapot, "teaContains", (byte) 0);
-        boolean hasLeaf = (contains & 0b0001) == 0b0001;
-        boolean hasWater = (contains & 0b0010) == 0b0010;
-        boolean hasTea = (contains & 0b0100) == 0b0100;
-        int progress = ItemTagHelper.getOrDefault(teapot, "teaProcess", 0);
-        ItemStack copy = teapot.copy();
-        copy.setCount(1);
-        teapots.add(new PlacedTeapot(x, z, x1, z1, hasLeaf, hasWater, hasTea, progress, copy));
-        if (world != null && !world.isRemote) {
+    public boolean put(double x, double z, ItemStack element) {
+        Item item = element.getItem();
+        if (!(item instanceof ItemTeaTableElement)) return false;
+        PlacedTableElement e = ((ItemTeaTableElement) item).createElement(x, z);
+        if (elements.stream().allMatch(e::isDisjoint)) {
+            e.load(element);
+            elements.add(e);
             markDirty();
+            return true;
         }
-        return true;
+        return false;
     }
 
     public ItemStack take(double x, double z, boolean simulate) {
-        Iterator<PlacedTeacup> teacupItr = teacups.iterator();
-        while (teacupItr.hasNext()) {
-            PlacedTeacup teacup = teacupItr.next();
-            if (isIn(x, z, teacup.x0, teacup.z0, teacup.x1, teacup.z1)) {
-                ItemStack cup = teacup.stack.copy();
-                cup.getOrCreateTag().putBoolean("hasTea", teacup.hasTea);
+        Iterator<PlacedTableElement> iterator = elements.iterator();
+        while (iterator.hasNext()) {
+            PlacedTableElement element = iterator.next();
+            if (element.contains(x, z)) {
                 if (!simulate) {
-                    teacupItr.remove();
-                    markDirty();
+                    iterator.remove();
                 }
-                return cup;
-            }
-        }
-        Iterator<PlacedTeapot> teapotItr = teapots.iterator();
-        while (teapotItr.hasNext()) {
-            PlacedTeapot teapot = teapotItr.next();
-            if (isIn(x, z, teapot.x0, teapot.z0, teapot.x1, teapot.z1)) {
-                ItemStack pot = teapot.stack.copy();
-                CompoundNBT tag = pot.getOrCreateTag();
-                byte b = 0b0000;
-                if (teapot.hasTeaLeaf) {
-                    b |= 0b0001;
-                }
-                if (teapot.hasWater) {
-                    b |= 0b0010;
-                }
-                if (teapot.hasTea) {
-                    b |= 0b0100;
-                }
-                tag.putByte("teaContains", b);
-                if (teapot.process > 0) {
-                    tag.putInt("teaProcess", teapot.process);
-                }
-                if (!simulate) {
-                    teapotItr.remove();
-                    markDirty();
-                }
-                return pot;
+                return element.make();
             }
         }
         return ItemStack.EMPTY;
     }
 
-    private boolean isIn(double x, double z, double x0, double z0, double x1, double z1) {
-        return x >= x0 && x <= x1 && z >= z0 && z <= z1;
+    public VoxelShape buildShape() {
+        VoxelShape shape = VoxelShapes.empty();
+        for (PlacedTableElement element : elements) {
+            AxisAlignedBB range = element.getRange();
+            shape = VoxelShapes.or(shape, VoxelShapes.create(range));
+        }
+        return shape;
+    }
+
+    public NonNullList<ItemStack> removeAll() {
+        NonNullList<ItemStack> stacks = elements.stream()
+                .map(PlacedTableElement::make)
+                .collect(CollectionHelper.toNonnullList());
+        elements.clear();
+        return stacks;
     }
 
     @Override
     public void tick() {
-        if (world != null && !world.isRemote && teacups.isEmpty() && teapots.isEmpty()) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        if (world != null && !world.isRemote) {
+            if (elements.isEmpty()) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            } else if (!canExist(world, pos)) {
+                // todo move to neighborChanged
+                NonNullList<ItemStack> droppedItems = Streams.stream(elements)
+                        .map(PlacedTableElement::make)
+                        .collect(CollectionHelper.toNonnullList());
+                InventoryHelper.dropItems(world, pos, droppedItems);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }
         }
+    }
+
+    public static boolean canExist(@Nullable IBlockReader world, BlockPos pos) {
+        if (world == null) return false;
+        BlockPos down = pos.down();
+        BlockState state = world.getBlockState(down);
+        Block block = state.getBlock();
+        if (block.isAir(state, world, down)) {
+            return false;
+        }
+        if (!state.isSolid()) {
+            return false;
+        }
+        boolean[] canExist = new boolean[] {false};
+        VoxelShape shape = block.getCollisionShape(state, world, down);
+        shape.forEachBox((x0, y0, z0, x1, y1, z1) -> {
+            if (!canExist[0] && y1 == 1) {
+                if (MathHelper.epsilonEquals(x0, 0)
+                        && MathHelper.epsilonEquals(z0, 0)
+                        && MathHelper.epsilonEquals(x1, 1)
+                        && MathHelper.epsilonEquals(z1, 1)) {
+                    canExist[0] = true;
+                }
+            }
+        });
+        return canExist[0];
     }
 
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
-        teacups.clear();
-        teapots.clear();
-        ListNBT cups = nbt.getList("cups", Constants.NBT.TAG_COMPOUND);
-        ListNBT pots = nbt.getList("pots", Constants.NBT.TAG_COMPOUND);
+        elements.clear();
+        ListNBT elements = nbt.getList("elements", Constants.NBT.TAG_COMPOUND);
+        for (INBT eNbt : elements) {
+            ItemStack stack = PlacedTableElement.deserializeItem((CompoundNBT) eNbt);
+            Item item = stack.getItem();
+            if (item instanceof ItemTeaTableElement) {
+                PlacedTableElement element = ((ItemTeaTableElement) item).createElement(0, 0);
+                element.deserializeNBT((CompoundNBT) eNbt);
+                this.elements.add(element);
+            }
+        }
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound = super.write(compound);
-        ListNBT cups = new ListNBT();
-        ListNBT pots = new ListNBT();
-        compound.put("cups", cups);
-        compound.put("pots", pots);
+        compound.put("elements", elements.stream()
+                .map(PlacedTableElement::serializeNBT)
+                .collect(CollectionHelper.toNBTList()));
         return compound;
-    }
-
-    public static class PlacedTeacup {
-        public double x0, z0, x1, z1;
-        public boolean hasTea;
-        final public ItemStack stack;
-
-        public PlacedTeacup(double x0, double z0, double x1, double z1, boolean hasTea, ItemStack stack) {
-            this.x0 = x0;
-            this.z0 = z0;
-            this.x1 = x1;
-            this.z1 = z1;
-            this.hasTea = hasTea;
-            this.stack = stack;
-        }
-    }
-
-    public static class PlacedTeapot {
-        public double x0, z0, x1, z1;
-        public boolean hasTeaLeaf;
-        public boolean hasWater;
-        public boolean hasTea;
-        public int process;
-        public ItemStack stack;
-
-        public PlacedTeapot(double x0, double z0, double x1, double z1, boolean hasTeaLeaf, boolean hasWater, boolean hasTea, int process, ItemStack stack) {
-            this.x0 = x0;
-            this.z0 = z0;
-            this.x1 = x1;
-            this.z1 = z1;
-            this.hasTeaLeaf = hasTeaLeaf;
-            this.hasWater = hasWater;
-            this.hasTea = hasTea;
-            this.process = process;
-            this.stack = stack;
-        }
     }
 }

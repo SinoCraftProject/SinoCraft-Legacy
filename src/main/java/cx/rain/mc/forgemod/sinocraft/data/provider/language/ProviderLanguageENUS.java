@@ -103,8 +103,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
 //        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
         addItem(ModItems.TEA_LEAF, "Tea Leaf");
-        addItem(ModItems.TEACUP_EMPTY, "Teacup(Empty)");
-        addItem(ModItems.TEACUP_TEA, "Teacup");
+        addItem(ModItems.TEACUP, "Teacup");
         addItem(ModItems.TEAPOT, "Teapot");
     }
 

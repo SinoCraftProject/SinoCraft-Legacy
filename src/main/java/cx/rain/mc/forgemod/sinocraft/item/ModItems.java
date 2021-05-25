@@ -2,6 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.table.PlacedTeacup;
+import cx.rain.mc.forgemod.sinocraft.block.table.PlacedTeapot;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
@@ -64,10 +66,9 @@ public class ModItems {
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
 
-    public static RegistryObject<Item> TEA_LEAF = REGISTRY.register("tea_leaf", () -> new Item(new Item.Properties().maxStackSize(1).group(ModGroups.AGRICULTURE)));
-    public static RegistryObject<Item> TEACUP_EMPTY = REGISTRY.register("teacup", () -> new Item(new Item.Properties().maxStackSize(1).group(ModGroups.MISC)));
-    public static RegistryObject<Item> TEACUP_TEA = REGISTRY.register("teacup2", () -> new Item(new Item.Properties().maxStackSize(1).group(ModGroups.FOODS)));
-    public static RegistryObject<Item> TEAPOT = REGISTRY.register("teapot", () -> new Item(new Item.Properties().maxStackSize(1).group(ModGroups.MISC)));
+    public static RegistryObject<Item> TEA_LEAF = REGISTRY.register("tea_leaf", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
+    public static RegistryObject<Item> TEACUP = REGISTRY.register("teacup", () -> new ItemTeaTableElement(ModGroups.MISC, PlacedTeacup::new));
+    public static RegistryObject<Item> TEAPOT = REGISTRY.register("teapot", () -> new ItemTeaTableElement(ModGroups.MISC, PlacedTeapot::new));
 
     public ModItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering items.");

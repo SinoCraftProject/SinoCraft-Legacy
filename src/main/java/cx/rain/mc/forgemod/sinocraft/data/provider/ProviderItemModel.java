@@ -8,7 +8,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.DynamicBucketModel;
 import net.minecraftforge.client.model.generators.CustomLoaderBuilder;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -78,7 +77,6 @@ public class ProviderItemModel extends ItemModelProvider {
                 .customLoader((BiFunction<ItemModelBuilder, ExistingFileHelper, CustomLoaderBuilder<ItemModelBuilder>>) (itemModelBuilder, existingFileHelper) ->
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
-        simpleItem(ModItems.TEACUP_TEA.get());
 
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
@@ -167,8 +165,9 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
 
+        // todo by lq2007: Teacup, Teapot 材质
         simpleItem(ModItems.TEAPOT.get());
-        simpleItem(ModItems.TEACUP_EMPTY.get());
+        simpleItem(ModItems.TEACUP.get());
     }
 
     private void addMachineBlockItems() {
