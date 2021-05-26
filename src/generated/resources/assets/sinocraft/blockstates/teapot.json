@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "fluid=0": {
+      "model": "sinocraft:teapot"
+    },
+    "fluid=1": {
+      "model": "sinocraft:teapot_without_lid"
+    },
+    "fluid=2": {
+      "model": "sinocraft:teapot_without_lid_with_tea"
+    }
+  }
+}

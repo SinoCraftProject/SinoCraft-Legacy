@@ -2,10 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
-import cx.rain.mc.forgemod.sinocraft.block.BlockPaperDryingRack;
-import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
-import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
-import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.*;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
@@ -115,12 +112,12 @@ public class ProviderBlockState extends BlockStateProvider {
         addTrees();
         addBuildingBlocks();
         addMachineBlocks();
+        addOtherBlock();
 
         getVariantBuilder(ModBlocks.WOOD_PULP_BLOCK.get()).partialState().modelForState()
                 .modelFile(models().getBuilder("block/wood_pump").texture("particle", modLoc("block/wood_pulp_still")))
                 .addModel();
 
-        simpleBlock(ModBlocks.TEA_TABLE.get(), models().getExistingFile(new ResourceLocation("air")));
     }
 
     private void addCrops() {
@@ -213,5 +210,21 @@ public class ProviderBlockState extends BlockStateProvider {
                 paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
             }
         }
+    }
+
+    private void addOtherBlock() {
+        simpleBlock(ModBlocks.TEA_TABLE.get(), models().getExistingFile(new ResourceLocation("air")));
+        getVariantBuilder(ModBlocks.TEACUP.get()).partialState()
+                .with(BlockTeacup.WITH_TEA, false).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teacup")))
+                .addModel().partialState()
+                .with(BlockTeacup.WITH_TEA, true).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teacup_with_tea")))
+                .addModel();
+        getVariantBuilder(ModBlocks.TEAPOT.get()).partialState()
+                .with(BlockTeapot.FLUID, 0).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot")))
+                .addModel().partialState()
+                .with(BlockTeapot.FLUID, 1).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot_without_lid")))
+                .addModel().partialState()
+                .with(BlockTeapot.FLUID, 2).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot_without_lid_with_tea")))
+                .addModel();
     }
 }
