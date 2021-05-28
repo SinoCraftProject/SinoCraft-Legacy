@@ -78,12 +78,12 @@ public class ModBlocks {
     public static RegistryObject<BlockPaperDryingRack> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
     public static RegistryObject<BlockPot> POT = REGISTRY.register("pot", BlockPot::new);
 
-    public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
+    public static RegistryObject<FlowingFluidBlock> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 
     // Use for render
-    public static RegistryObject<Block> TEA_TABLE = REGISTRY.register("tea_table", BlockTeaTable::new);
-    public static RegistryObject<Block> TEACUP = REGISTRY.register("teacup", BlockTeacup::new);
-    public static RegistryObject<Block> TEAPOT = REGISTRY.register("teapot", BlockTeapot::new);
+    public static RegistryObject<BlockTeaTable> TEA_TABLE = REGISTRY.register("tea_table", BlockTeaTable::new);
+    public static RegistryObject<BlockTeacup> TEACUP = REGISTRY.register("teacup", BlockTeacup::new);
+    public static RegistryObject<BlockTeapot> TEAPOT = REGISTRY.register("teapot", BlockTeapot::new);
 
     public ModBlocks(IEventBus bus) {
         SinoCraft.getLogger().info("Registering blocks.");
