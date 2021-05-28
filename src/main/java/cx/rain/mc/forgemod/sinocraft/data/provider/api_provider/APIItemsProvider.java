@@ -44,10 +44,10 @@ public class APIItemsProvider {
                     Object o = ((RegistryObject<?>) obj).get();
                     if (o instanceof Item) {
                         Class<?> itemType = o.getClass();
-                        String typeName = itemType.getSimpleName();
+                        String typeName = itemType.getName();
                         while (!typeName.startsWith("net.minecraft") && !typeName.startsWith("cx.rain.mc.forgemod.sinocraft.api")) {
                             itemType = itemType.getSuperclass();
-                            typeName = itemType.getSimpleName();
+                            typeName = itemType.getName();
                         }
                         String fieldName = field.getName();
                         String[] names = fieldName.toLowerCase(Locale.ROOT).split("_");

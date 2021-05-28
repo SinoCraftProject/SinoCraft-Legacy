@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.item;
 
+import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
@@ -48,7 +49,7 @@ public interface IModItems {
     RegistryObject<? extends Item> getInkStone();
     RegistryObject<? extends SpawnEggItem> getBuffaloSpawnEgg();
     RegistryObject<? extends Item> getTeaLeaf();
-    RegistryObject<? extends Item> getTeacup();
-    RegistryObject<? extends Item> getTeapot();
+    RegistryObject<? extends BaseTableItem> getTeacup();
+    RegistryObject<? extends BaseTableItem> getTeapot();
 
 }

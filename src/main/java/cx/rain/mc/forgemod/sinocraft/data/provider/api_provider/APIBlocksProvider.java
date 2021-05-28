@@ -44,10 +44,10 @@ public class APIBlocksProvider {
                     Object o = ((RegistryObject<?>) obj).get();
                     if (o instanceof Block) {
                         Class<?> blockType = o.getClass();
-                        String typeName = blockType.getSimpleName();
+                        String typeName = blockType.getName();
                         while (!typeName.startsWith("net.minecraft") && !typeName.startsWith("cx.rain.mc.forgemod.sinocraft.api")) {
                             blockType = blockType.getSuperclass();
-                            typeName = blockType.getSimpleName();
+                            typeName = blockType.getName();
                         }
                         String fieldName = field.getName();
                         String[] names = fieldName.toLowerCase(Locale.ROOT).split("_");
