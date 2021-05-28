@@ -52,14 +52,14 @@ public class BlockTeaTable extends Block {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof TileEntityTeaTable) {
             TileEntityTeaTable table = (TileEntityTeaTable) te;
-            Vector3d look = player.getLook(1.0f);
             ItemStack heldItem = player.getHeldItem(handIn);
-            if (heldItem.isEmpty()) {
-                player.setHeldItem(handIn, table.take(look, hit.getHitVec()));
+            Vector3d hitVec = hit.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+            if (heldItem.isEmpty() && player.isSneaking()) {
+                player.setHeldItem(handIn, table.take(hitVec.x, hitVec.y, hitVec.z));
                 return ActionResultType.SUCCESS;
             }
-            return table.lookup(look, hit.getHitVec())
-                    .map(element -> element.onActivated(state, worldIn, pos, player, handIn, hit))
+            return table.lookup(hitVec.x, hitVec.y, hitVec.z)
+                    .map(element -> element.onActivated(state, table, worldIn, pos, player, handIn, hit))
                     .orElse(ActionResultType.FAIL);
         }
         return ActionResultType.FAIL;
@@ -116,7 +116,7 @@ public class BlockTeaTable extends Block {
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
         if (fromPos.equals(pos.down())) {
-            if (isMoving || !canExist(worldIn, fromPos)) {
+            if (isMoving || !canExist(worldIn, pos)) {
                 TileEntity tileEntity = worldIn.getTileEntity(pos);
                 if (!(tileEntity instanceof TileEntityTeaTable)) {
                     worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());

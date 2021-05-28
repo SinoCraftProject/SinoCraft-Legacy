@@ -3,9 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.api.block;
 import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableElement;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -21,25 +19,19 @@ public interface ITileEntityTeaTable {
     boolean put(ItemUseContext context, double x, double z, ItemStack element);
 
     /**
-     * Try take and remove an element by ray, and return its ItemStack
-     * @param startVec start, usually is entity's eye position.
-     * @param endVec target, like {@link BlockRayTraceResult#getHitVec()}
+     * Try take and remove an element and return its ItemStack
      */
-    ItemStack take(Vector3d startVec, Vector3d endVec);
+    ItemStack take(double x, double y, double z);
 
     /**
      * Lookup an element from the table.
-     * @param startVec start, usually is entity's eye position.
-     * @param endVec target, like {@link BlockRayTraceResult#getHitVec()}
      */
-    Optional<BaseTableElement> lookup(Vector3d startVec, Vector3d endVec);
+    Optional<BaseTableElement> lookup(double x, double y, double z);
 
     /**
      * Lookup a special typed element from the table.
-     * @param startVec start, usually is entity's eye position.
-     * @param endVec target, like {@link BlockRayTraceResult#getHitVec()}
      */
-    <T extends BaseTableElement> Optional<T> lookup(Vector3d startVec, Vector3d endVec, Class<T> type);
+    <T extends BaseTableElement> Optional<T> lookup(double x, double y, double z, Class<T> type);
 
     /**
      * Get a stream contains all elements

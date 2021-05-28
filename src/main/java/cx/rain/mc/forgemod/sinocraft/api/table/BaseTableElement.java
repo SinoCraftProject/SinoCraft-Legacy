@@ -14,7 +14,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.INBTSerializable;
 
@@ -56,11 +55,12 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
     }
 
     /**
-     * Return true if the ray direct the element.
+     * Return true if the element contains position.
      */
-    public boolean rayTrace(Vector3d startVec, Vector3d endVec, BlockPos pos) {
-        BlockRayTraceResult result = getShape().rayTrace(startVec, endVec, pos);
-        return result != null && result.isInside();
+    public boolean contains(double x, double y, double z) {
+        AxisAlignedBB aabb = getShape().getBoundingBox();
+        // allow edges
+        return x >= aabb.minX && x <= aabb.maxX && y >= aabb.minY && y <= aabb.maxY && z >= aabb.minZ && z <= aabb.maxZ;
     }
 
     /**
@@ -100,7 +100,7 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
     /**
      * Called when other item click the element.
      */
-    public ActionResultType onActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onActivated(BlockState state, TileEntityTeaTable table, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return ActionResultType.FAIL;
     }
 

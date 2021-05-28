@@ -6,6 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.block.BlockTeacup;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityTeaTable;
 import cx.rain.mc.forgemod.sinocraft.item.ItemTeacup;
+import cx.rain.mc.forgemod.sinocraft.item.ItemTeapot;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,15 +24,15 @@ import net.minecraft.world.World;
 
 public class TableTeacup extends BaseTableElement {
     public static final float SCALE_XZ = 0.33f;
-    public static final float SCALE_Y = 0.8f;
+    public static final float SCALE_Y = 0.7f;
     private static final VoxelShape SHAPE = VoxelShapes.create(0.1875 * SCALE_XZ, 0, 0.1875 * SCALE_XZ, 0.8125 * SCALE_XZ, 0.4375 * SCALE_Y, 0.8125 * SCALE_XZ);
 
     private int teaCount = 0;
     private VoxelShape shape;
 
     public TableTeacup(double x, double y, double z) {
-        super(x, y, z);
-        shape = SHAPE.withOffset(x, y, z);
+        super(x - 0.3125 * SCALE_XZ, y, z - 0.3125 * SCALE_XZ);
+        shape = SHAPE.withOffset(this.x, this.y, this.z);
     }
 
     @Override
@@ -103,12 +104,24 @@ public class TableTeacup extends BaseTableElement {
     }
 
     @Override
-    public ActionResultType onActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onActivated(BlockState state, TileEntityTeaTable table, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack heldItem = player.getHeldItem(handIn);
-        Item item = heldItem.getItem();
-        if (item == ModItems.TEAPOT.get()) {
+        if (heldItem.isEmpty()) {
+            return ActionResultType.FAIL;
         }
-        return super.onActivated(state, worldIn, pos, player, handIn, hit);
+        Item item = heldItem.getItem();
+        ItemTeapot teapot = ModItems.TEAPOT.get();
+        if (item == teapot) {
+            int space = getCapacity() - teaCount;
+            int teaCount = teapot.getTea(heldItem);
+            if (space > 0 && teaCount > 0) {
+                int transform = Math.min(Math.min(space, teaCount), 20);
+                teapot.takeTea(heldItem, transform);
+                addTea(transform);
+                table.markDirty();
+            }
+        }
+        return super.onActivated(state, table, worldIn, pos, player, handIn, hit);
     }
 
     @Override

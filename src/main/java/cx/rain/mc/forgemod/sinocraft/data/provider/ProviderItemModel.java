@@ -166,9 +166,8 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
 
-        // todo by lq2007: Teacup, Teapot 材质
-        simpleItem(ModItems.TEAPOT.get());
-        String path = ModItems.TEACUP.get().getRegistryName().getPath();
+        simpleItem(ModItems.TEACUP.get());
+        String path = ModItems.TEAPOT.get().getRegistryName().getPath();
         singleTexture(path, mcLoc("generated"), "layer0", modLoc("item/teapot"))
                 .override()
                 .predicate(RendererRegister.TEAPOT_TEA, 1.0f).model(new ModelFile.UncheckedModelFile(modLoc("item/teapot2"))).end();

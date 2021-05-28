@@ -27,14 +27,14 @@ public abstract class TableItem extends BaseTableItem {
         if (!(tileEntity instanceof TileEntityTeaTable)) {
             if (ModBlocks.TEA_TABLE.get().canExist(world, up)) {
                 world.setBlockState(up, ModBlocks.TEA_TABLE.get().getDefaultState(), 2);
-                tileEntity = world.getTileEntity(up);
-                if (tileEntity instanceof TileEntityTeaTable) {
-                    Vector3d hitVec = context.getHitVec();
-                    if (((TileEntityTeaTable) tileEntity).put(context, hitVec.x - pos.getX(), hitVec.z - pos.getZ(), context.getItem())) {
-                        context.getItem().shrink(1);
-                        return ActionResultType.SUCCESS;
-                    }
-                }
+            }
+        }
+        tileEntity = world.getTileEntity(up);
+        if (tileEntity instanceof TileEntityTeaTable) {
+            Vector3d hitVec = context.getHitVec();
+            if (((TileEntityTeaTable) tileEntity).put(context, hitVec.x - pos.getX(), hitVec.z - pos.getZ(), context.getItem())) {
+                context.getItem().shrink(1);
+                return ActionResultType.SUCCESS;
             }
         }
         return super.onItemUse(context);

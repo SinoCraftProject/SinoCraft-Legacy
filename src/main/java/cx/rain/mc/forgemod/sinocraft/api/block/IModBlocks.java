@@ -1,11 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraftforge.fml.RegistryObject;
 
-/**
- * An interface to get all blocks from the mod.
- */
 public interface IModBlocks {
 
     RegistryObject<? extends CropsBlock> getWhiteRadishPlant();
@@ -55,6 +58,9 @@ public interface IModBlocks {
     RegistryObject<? extends HorizontalBlock> getStoneMill();
     RegistryObject<? extends HorizontalBlock> getPaperDryingRack();
     RegistryObject<? extends Block> getPot();
-    RegistryObject<? extends Block> getWoodPulpBlock();
+    RegistryObject<? extends FlowingFluidBlock> getWoodPulpBlock();
     RegistryObject<? extends Block> getTeaTable();
+    RegistryObject<? extends Block> getTeacup();
+    RegistryObject<? extends Block> getTeapot();
+
 }

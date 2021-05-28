@@ -15,7 +15,6 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.Iterator;
@@ -46,11 +45,11 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
     }
 
     @Override
-    public ItemStack take(Vector3d startVec, Vector3d endVec) {
+    public ItemStack take(double x, double y, double z) {
         Iterator<BaseTableElement> iterator = elements.iterator();
         while (iterator.hasNext()) {
             BaseTableElement element = iterator.next();
-            if (element.rayTrace(startVec, endVec, pos)) {
+            if (element.contains(x, y, z)) {
                 iterator.remove();
                 return element.makeItem();
             }
@@ -59,16 +58,16 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
     }
 
     @Override
-    public Optional<BaseTableElement> lookup(Vector3d startVec, Vector3d endVec) {
+    public Optional<BaseTableElement> lookup(double x, double y, double z) {
         return elements.stream()
-                .filter(e -> e.rayTrace(startVec, endVec, pos))
+                .filter(e -> e.contains(x, y, z))
                 .findFirst();
     }
 
     @Override
-    public <T extends BaseTableElement> Optional<T> lookup(Vector3d startVec, Vector3d endVec, Class<T> type) {
+    public <T extends BaseTableElement> Optional<T> lookup(double x, double y, double z, Class<T> type) {
         return (Optional<T>) elements.stream()
-                .filter(e -> e.rayTrace(startVec, endVec, pos))
+                .filter(e -> e.contains(x, y, z))
                 .filter(type::isInstance)
                 .findFirst();
     }

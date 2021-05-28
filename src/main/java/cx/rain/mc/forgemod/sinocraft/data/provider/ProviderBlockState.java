@@ -215,16 +215,16 @@ public class ProviderBlockState extends BlockStateProvider {
     private void addOtherBlock() {
         simpleBlock(ModBlocks.TEA_TABLE.get(), models().getExistingFile(new ResourceLocation("air")));
         getVariantBuilder(ModBlocks.TEACUP.get()).partialState()
-                .with(BlockTeacup.WITH_TEA, false).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teacup")))
+                .with(BlockTeacup.WITH_TEA, false).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("block/teacup")))
                 .addModel().partialState()
-                .with(BlockTeacup.WITH_TEA, true).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teacup_with_tea")))
+                .with(BlockTeacup.WITH_TEA, true).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("block/teacup_with_tea")))
                 .addModel();
         getVariantBuilder(ModBlocks.TEAPOT.get()).partialState()
-                .with(BlockTeapot.FLUID, 0).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot")))
+                .with(BlockTeapot.FLUID, 0).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("block/teapot")))
                 .addModel().partialState()
-                .with(BlockTeapot.FLUID, 1).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot_without_lid")))
+                .with(BlockTeapot.FLUID, 1).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("block/teapot_without_lid")))
                 .addModel().partialState()
-                .with(BlockTeapot.FLUID, 2).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("teapot_without_lid_with_tea")))
+                .with(BlockTeapot.FLUID, 2).modelForState().modelFile(new ModelFile.UncheckedModelFile(modLoc("block/teapot_without_lid_with_tea")))
                 .addModel();
     }
 }
