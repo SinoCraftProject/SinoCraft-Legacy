@@ -1,30 +1,32 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
+import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableElement;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityTeaTable;
-import cx.rain.mc.forgemod.sinocraft.item.ItemTeaTableElement;
+import cx.rain.mc.forgemod.sinocraft.utility.property.CollectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class BlockTeaTable extends Block {
 
@@ -50,21 +52,15 @@ public class BlockTeaTable extends Block {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof TileEntityTeaTable) {
             TileEntityTeaTable table = (TileEntityTeaTable) te;
-            Vector3d hitVec = hit.getHitVec();
-            float x = (float) (pos.getX() - hitVec.x);
-            float z = (float) (pos.getZ() - hitVec.z);
-            ItemStack stack = player.getHeldItemMainhand();
-            if (stack.isEmpty()) {
-                player.setHeldItem(Hand.MAIN_HAND, table.take(x, z, false));
+            Vector3d look = player.getLook(1.0f);
+            ItemStack heldItem = player.getHeldItem(handIn);
+            if (heldItem.isEmpty()) {
+                player.setHeldItem(handIn, table.take(look, hit.getHitVec()));
                 return ActionResultType.SUCCESS;
             }
-            Item item = stack.getItem();
-            if (item instanceof ItemTeaTableElement) {
-                if (table.put(x, z, stack)) {
-                    stack.shrink(1);
-                    return ActionResultType.SUCCESS;
-                }
-            }
+            return table.lookup(look, hit.getHitVec())
+                    .map(element -> element.onActivated(state, worldIn, pos, player, handIn, hit))
+                    .orElse(ActionResultType.FAIL);
         }
         return ActionResultType.FAIL;
     }
@@ -73,8 +69,10 @@ public class BlockTeaTable extends Block {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
         if (tileEntity instanceof TileEntityTeaTable) {
-            NonNullList<ItemStack> list = ((TileEntityTeaTable) tileEntity).removeAll();
-            InventoryHelper.dropItems(worldIn, pos, list);
+            NonNullList<ItemStack> stacks = ((TileEntityTeaTable) tileEntity).elements()
+                    .map(BaseTableElement::makeItem)
+                    .collect(CollectionHelper.toNonnullList());
+            InventoryHelper.dropItems(worldIn, pos, stacks);
         }
         super.onReplaced(state, worldIn, pos, newState, isMoving);
     }
@@ -86,5 +84,51 @@ public class BlockTeaTable extends Block {
             return ((TileEntityTeaTable) te).buildShape();
         }
         return VoxelShapes.empty();
+    }
+
+    public boolean canExist(@Nullable IBlockReader world, BlockPos pos) {
+        if (world == null) return false;
+        BlockPos down = pos.down();
+        BlockState state = world.getBlockState(down);
+        Block block = state.getBlock();
+        if (block.isAir(state, world, down)) {
+            return false;
+        }
+        if (!state.isSolid()) {
+            return false;
+        }
+        boolean[] canExist = new boolean[] {false};
+        VoxelShape shape = block.getCollisionShape(state, world, down);
+        shape.forEachBox((x0, y0, z0, x1, y1, z1) -> {
+            if (!canExist[0] && y1 == 1) {
+                if (MathHelper.epsilonEquals(x0, 0)
+                        && MathHelper.epsilonEquals(z0, 0)
+                        && MathHelper.epsilonEquals(x1, 1)
+                        && MathHelper.epsilonEquals(z1, 1)) {
+                    canExist[0] = true;
+                }
+            }
+        });
+        return canExist[0];
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
+        if (fromPos.equals(pos.down())) {
+            if (isMoving || !canExist(worldIn, fromPos)) {
+                TileEntity tileEntity = worldIn.getTileEntity(pos);
+                if (!(tileEntity instanceof TileEntityTeaTable)) {
+                    worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    return;
+                }
+                TileEntityTeaTable table = (TileEntityTeaTable) tileEntity;
+                NonNullList<ItemStack> droppedItems = table.elements()
+                        .map(BaseTableElement::makeItem)
+                        .collect(CollectionHelper.toNonnullList());
+                InventoryHelper.dropItems(worldIn, pos, droppedItems);
+                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }
+        }
     }
 }

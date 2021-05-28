@@ -31,5 +31,7 @@ public class ChangeRenderType {
         RenderTypeLookup.setRenderLayer(ModBlocks.STONE_MILL.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PAPER_DRYING_RACK.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.STOVE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TEAPOT.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TEACUP.get(), RenderType.getTranslucent());
     }
 }
