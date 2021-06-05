@@ -2,12 +2,20 @@ package cx.rain.mc.forgemod.sinocraft.api.utility;
 
 public class Lazy<T> {
 
-    private T value = null;
+    private T value;
 
     public void set(T value) {
         if (this.value != null) {
             throw new UnsupportedOperationException("Value has been initialized");
         }
+        this.value = value;
+    }
+
+    public Lazy() {
+        this.value = null;
+    }
+
+    public Lazy(T value) {
         this.value = value;
     }
 
