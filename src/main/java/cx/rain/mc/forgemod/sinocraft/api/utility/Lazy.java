@@ -21,4 +21,8 @@ public class Lazy<T> {
     public boolean hasInstance() {
         return value != null;
     }
+
+    public <R> Lazy<R> cast() {
+        return (Lazy<R>)this;
+    }
 }
