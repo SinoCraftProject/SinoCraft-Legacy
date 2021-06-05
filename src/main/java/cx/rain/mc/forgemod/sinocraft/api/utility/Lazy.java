@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.api.utility;
 
 public class Lazy<T> {
 
-    private T value;
+    private T value = null;
 
     public void set(T value) {
         if (this.value != null) {
@@ -12,7 +12,6 @@ public class Lazy<T> {
     }
 
     public Lazy() {
-        this.value = null;
     }
 
     public Lazy(T value) {
