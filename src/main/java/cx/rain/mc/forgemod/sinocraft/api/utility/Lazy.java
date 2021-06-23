@@ -11,6 +11,13 @@ public class Lazy<T> {
         this.value = value;
     }
 
+    public Lazy() {
+    }
+
+    public Lazy(T value) {
+        this.value = value;
+    }
+
     public T get() {
         if (value == null) {
             throw new UnsupportedOperationException("Value is not initialized: Can't found SinoCraft mod");
@@ -20,5 +27,9 @@ public class Lazy<T> {
 
     public boolean hasInstance() {
         return value != null;
+    }
+
+    public <R> Lazy<R> cast() {
+        return (Lazy<R>)this;
     }
 }
