@@ -189,7 +189,7 @@ public class TableTeapot extends BaseTableElement {
         leaves = nbt.getFloat("leaves");
         water = nbt.getInt("water");
         tea = nbt.getInt("tea");
-        hasCover = nbt.getBoolean("cover")
+        hasCover = nbt.getBoolean("cover");
         shape0 = BlockTeapot.SHAPE0.withOffset(x, y, z);
         shape1 = BlockTeapot.SHAPE1.withOffset(x, y, z);
     }
