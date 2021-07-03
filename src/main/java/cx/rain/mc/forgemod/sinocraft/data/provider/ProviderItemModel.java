@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
-import cx.rain.mc.forgemod.sinocraft.client.register.RendererRegister;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -64,8 +63,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.WHITE_MARBLE.get());
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
-
-//         simpleItem(ModItems.TUTORIAL_BOOK.get());
 
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
         getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));
@@ -167,10 +164,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
 
         simpleItem(ModItems.TEACUP.get());
-        String path = ModItems.TEAPOT.get().getRegistryName().getPath();
-        singleTexture(path, mcLoc("generated"), "layer0", modLoc("item/teapot"))
-                .override()
-                .predicate(RendererRegister.TEAPOT_TEA, 1.0f).model(new ModelFile.UncheckedModelFile(modLoc("item/teapot2"))).end();
     }
 
     private void addMachineBlockItems() {

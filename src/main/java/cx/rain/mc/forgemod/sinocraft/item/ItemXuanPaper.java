@@ -8,7 +8,7 @@ public class ItemXuanPaper extends Item {
         super(new Properties()
                 .group(ModGroups.MISC)
                 .maxStackSize(1)
-                .setISTER(() -> cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.item.XuanPaperItemStackTileEntityRenderer::new)
+                .setISTER(() -> cx.rain.mc.forgemod.sinocraft.client.renderer.item.XuanPaperItemStackRenderer::new)
         );
     }
 }

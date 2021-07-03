@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.client;
+package cx.rain.mc.forgemod.sinocraft.client.renderer.item;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
@@ -20,7 +20,7 @@ import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class XuanPaperBakedModel implements IBakedModel {
-    private IBakedModel existingModel;
+    private final IBakedModel existingModel;
 
     public XuanPaperBakedModel(IBakedModel existingModel) {
         this.existingModel = existingModel;

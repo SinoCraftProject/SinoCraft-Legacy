@@ -1,7 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
-import cx.rain.mc.forgemod.sinocraft.data.provider.api_provider.APIBlocksProvider;
-import cx.rain.mc.forgemod.sinocraft.data.provider.api_provider.APIItemsProvider;
+import cx.rain.mc.forgemod.sinocraft.data.provider.src_provider.APIBlocksProvider;
+import cx.rain.mc.forgemod.sinocraft.data.provider.src_provider.APIItemsProvider;
+import cx.rain.mc.forgemod.sinocraft.data.provider.src_provider.SRCNetworkProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -20,10 +21,11 @@ public class ProviderAPI implements IDataProvider {
     public void act(DirectoryCache cache) throws IOException {
         new APIItemsProvider().write(generator);
         new APIBlocksProvider().write(generator);
+        new SRCNetworkProvider().write(generator);
     }
 
     @Override
     public String getName() {
-        return "SinoCraft API Generator";
+        return "SinoCraft Source Generator";
     }
 }

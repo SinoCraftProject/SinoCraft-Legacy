@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.data.provider.api_provider;
+package cx.rain.mc.forgemod.sinocraft.data.provider.src_provider;
 
 import cx.rain.mc.forgemod.sinocraft.api.item.IModItems;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;

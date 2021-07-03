@@ -1,17 +1,17 @@
 package cx.rain.mc.forgemod.sinocraft.network.packet;
 
-import cx.rain.mc.forgemod.sinocraft.network.IMessage;
+import cx.rain.mc.forgemod.sinocraft.network.BaseMessage;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
-import java.util.function.Supplier;
+public class GetRecipeC2SPacket extends BaseMessage {
 
-public class GetRecipeC2SPacket implements IMessage {
-    private Pack pack;
+    private final Pack pack;
 
     public GetRecipeC2SPacket(Pack pack) {
         this.pack = pack;
@@ -19,11 +19,6 @@ public class GetRecipeC2SPacket implements IMessage {
 
     public GetRecipeC2SPacket(PacketBuffer buffer) {
         this.pack = new Pack(new ResourceLocation(""));
-        deserialize(buffer);
-    }
-
-    @Override
-    public void deserialize(PacketBuffer buffer) {
         this.pack.deserialize(buffer);
     }
 
@@ -33,13 +28,11 @@ public class GetRecipeC2SPacket implements IMessage {
     }
 
     @Override
-    public void handler(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            IRecipe<?> recipe = context.get().getSender().world.getRecipeManager().getRecipe(this.pack.id)
-                    .orElseThrow(() -> new IllegalStateException("Not found recipe " + this.pack.id.toString()));
-            Networks.INSTANCE.send(PacketDistributor.PLAYER.with(context.get()::getSender),new GetRecipeS2CPacket(new GetRecipeS2CPacket.Pack(recipe)));
-        });
-        context.get().setPacketHandled(true);
+    public void handleServer(NetworkEvent.Context context, ServerPlayerEntity sender) {
+        IRecipe<?> recipe = sender.world.getRecipeManager()
+                .getRecipe(this.pack.id)
+                .orElseThrow(() -> new IllegalStateException("Not found recipe " + this.pack.id.toString()));
+        Networks.INSTANCE.send(PacketDistributor.PLAYER.with(context::getSender), new GetRecipeS2CPacket(new GetRecipeS2CPacket.Pack(recipe)));
     }
 
     public static class Pack implements IPack {

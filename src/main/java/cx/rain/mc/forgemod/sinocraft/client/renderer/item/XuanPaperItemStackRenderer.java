@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.item;
+package cx.rain.mc.forgemod.sinocraft.client.renderer.item;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class XuanPaperItemStackTileEntityRenderer extends ItemStackTileEntityRenderer {
+public class XuanPaperItemStackRenderer extends ItemStackTileEntityRenderer {
     @Override
     public void func_239207_a_(ItemStack stack, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
         if (stack.getTag() == null)

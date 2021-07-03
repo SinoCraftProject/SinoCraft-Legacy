@@ -2,110 +2,37 @@ package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableElement;
 import cx.rain.mc.forgemod.sinocraft.block.table.TableTeapot;
+import cx.rain.mc.forgemod.sinocraft.capability.CapabilityTeapot;
 import cx.rain.mc.forgemod.sinocraft.item.base.TableItem;
-import cx.rain.mc.forgemod.sinocraft.utility.NBTHelper;
+import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ItemTeapot extends TableItem {
 
-    public float getLeaves(ItemStack stack) {
-        return NBTHelper.getOrDefault(stack, "teapot", "leaves", 0f);
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, net.minecraft.client.util.ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        CapabilityTeapot.CapTeapot teapot = CapabilityHelper.getTeapot(stack);
+        tooltip.add(new StringTextComponent("茶: " + teapot.getTea() + " mb"));
+        tooltip.add(new StringTextComponent("水: " + teapot.getWater() + " mb"));
+        tooltip.add(new StringTextComponent("茶叶: " + String.format("%.2f", teapot.getLeaves())));
     }
 
-    public float addLeaves(ItemStack stack, float leaves) {
-        float value = getLeaves(stack);
-        float newValue = value + leaves;
-        float capacity = getLeavesCapacity();
-        if (newValue > capacity) {
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putFloat("leaves", capacity);
-            return capacity - value;
-        } else {
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putFloat("leaves", newValue);
-            return leaves;
-        }
-    }
-
-    public float takeLeaves(ItemStack stack, float leaves) {
-        float value = getLeaves(stack);
-        if (value > leaves) {
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putFloat("leaves", value - leaves);
-            return leaves;
-        } else {
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putFloat("leaves", 0);
-            return value;
-        }
-    }
-
-    public int getWater(ItemStack stack) {
-        return NBTHelper.getOrDefault(stack, "teapot", "water", 0);
-    }
-
-    public int addWater(ItemStack stack, int water) {
-        return addFluid(stack, "water", water);
-    }
-
-    public int takeWater(ItemStack stack, int water) {
-        return takeFluid(stack, "water", water);
-    }
-
-    public int getTea(ItemStack stack) {
-        return NBTHelper.getOrDefault(stack, "teapot", "tea", 0);
-    }
-
-    public int addTea(ItemStack stack, int tea) {
-        return addFluid(stack, "tea", tea);
-    }
-
-    public int takeTea(ItemStack stack, int tea) {
-        return takeFluid(stack, "tea", tea);
-    }
-
-    public boolean isLeavesFull(ItemStack stack) {
-        return getLeaves(stack) >= getLeavesCapacity();
-    }
-
-    public boolean isWaterFull(ItemStack stack) {
-        return getWater(stack) + getTea(stack) >= getWaterCapacity();
-    }
-
-    public float getLeavesCapacity() {
-        return 10f;
-    }
-
-    public int getWaterCapacity() {
-        return 10000;
-    }
-
-    private int addFluid(ItemStack stack, String key, int value) {
-        int waterCount = getWater(stack) + getTea(stack);
-        int capacity = getWaterCapacity();
-        if (waterCount >= capacity) {
-            return 0;
-        }
-        int newCount = waterCount + value;
-        if (newCount > capacity) {
-            int add = capacity - waterCount;
-            int newValue = NBTHelper.getOrDefault(stack, "teapot", key, 0) + add;
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putInt(key, newValue);
-            return add;
-        } else {
-            int newValue = NBTHelper.getOrDefault(stack, "teapot", key, 0) + value;
-            NBTHelper.getOrCreateTag(stack.getOrCreateTag(), "teapot").putInt(key, newValue);
-            return value;
-        }
-    }
-
-    private int takeFluid(ItemStack stack, String key, int value) {
-        int thisValue = NBTHelper.getOrDefault(stack, "teapot", key, 0);
-        if (thisValue > value) {
-            int newValue = thisValue - value;
-            NBTHelper.getOrCreateTag(stack.getTag(), "teapot").putInt(key, newValue);
-            return value;
-        } else {
-            NBTHelper.getOrCreateTag(stack.getTag(), "teapot").putInt(key, 0);
-            return thisValue;
-        }
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+        return new CapabilityTeapot.CapTeapot();
     }
 
     @Override
@@ -113,11 +40,34 @@ public class ItemTeapot extends TableItem {
         return new TableTeapot(x, y, z);
     }
 
-    public static ItemStack build(ItemStack stack, int water, int tea, float leaves) {
-        CompoundNBT tag = stack.getOrCreateChildTag("teapot");
-        tag.putFloat("leaves", leaves);
-        tag.putInt("water", water);
-        tag.putInt("tea", tea);
-        return stack;
+    @Nullable
+    @Override
+    public CompoundNBT getShareTag(ItemStack stack) {
+        CapabilityTeapot.CapTeapot teapot = CapabilityHelper.getTeapot(stack);
+//        new RuntimeException("log: ").printStackTrace();
+        CompoundNBT shareTag = super.getShareTag(stack);
+        if (FMLEnvironment.dist.isDedicatedServer()) {
+            if (shareTag == null) {
+                shareTag = new CompoundNBT();
+            }
+            if (teapot.isValid() && !teapot.isEmpty()) {
+                CompoundNBT data = teapot.serializeNBT();
+                data.putBoolean("pour", teapot.isPouring());
+                shareTag.put("teapot", data);
+            }
+        }
+        return shareTag;
+    }
+
+    @Override
+    public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
+        if (nbt != null && nbt.contains("teapot", Constants.NBT.TAG_COMPOUND)) {
+            CompoundNBT data = nbt.getCompound("teapot");
+            CapabilityTeapot.CapTeapot teapot = CapabilityHelper.getTeapot(stack);
+            teapot.deserializeNBT(data);
+            teapot.setPouring(data.getBoolean("pour"));
+            nbt.remove("teapot");
+        }
+        super.readShareTag(stack, nbt);
     }
 }

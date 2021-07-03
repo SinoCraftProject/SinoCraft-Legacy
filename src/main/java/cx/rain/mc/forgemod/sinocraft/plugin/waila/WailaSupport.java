@@ -3,6 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.plugin.waila;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.BlockPot;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
+import cx.rain.mc.forgemod.sinocraft.block.BlockTeaTable;
 import cx.rain.mc.forgemod.sinocraft.block.BlockVat;
 import mcp.mobius.waila.api.IRegistrar;
 import mcp.mobius.waila.api.IWailaPlugin;
@@ -22,6 +23,9 @@ public class WailaSupport implements IWailaPlugin {
         registerBlock(registrar, PotProvider.RENDERER, PotProvider.INSTANCE, BlockPot.class);
         registerBlock(registrar, VatProvider.RENDERER, VatProvider.INSTANCE, BlockVat.class);
         registerBlock(registrar, StoveProvider.RENDERER, StoveProvider.INSTANCE, BlockStove.class);
+        registerBlock(registrar, TeaTableProvider.RENDERER, TeaTableProvider.INSTANCE, BlockTeaTable.class);
+
+        registrar.registerStackProvider(TeaTableProvider.INSTANCE, BlockTeaTable.class);
     }
 
     private void registerBlock(IRegistrar registrar, ResourceLocation tooltip, IWailaProvider provider, Class<?> block) {
