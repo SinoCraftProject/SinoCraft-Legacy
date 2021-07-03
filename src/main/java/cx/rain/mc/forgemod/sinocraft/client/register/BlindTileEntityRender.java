@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.client.register;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityPotRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityStoneMillRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityVatRender;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
@@ -19,6 +20,7 @@ public class BlindTileEntityRender {
     public static void blind(FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.VAT.get(), TileEntityVatRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.STONE_MILL.get(), TileEntityStoneMillRender::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.IRON_POT.get(), TileEntityPotRender::new);
         SinoCraft.getLogger().info("Registering TileEntity renderer.");
     }
 }

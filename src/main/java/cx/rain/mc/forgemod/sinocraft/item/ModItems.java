@@ -7,7 +7,9 @@ import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
+import cx.rain.mc.forgemod.sinocraft.item.cloth.ItemCloth;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -63,6 +65,8 @@ public class ModItems {
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone", () -> new Item(new Item.Properties().group(ModGroups.TOOLS)));
 
     public static RegistryObject<Item> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
+
+    //public static RegistryObject<Item> CLOTH_HELMET = REGISTRY.register("cloth_helmet", () -> new ItemCloth.ItemClothHelmet(new Item.Properties().group(ModGroups.TOOLS)));
 
     public ModItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering items.");

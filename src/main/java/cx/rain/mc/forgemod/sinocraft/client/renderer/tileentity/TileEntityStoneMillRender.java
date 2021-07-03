@@ -22,7 +22,7 @@ public class TileEntityStoneMillRender  extends TileEntityRenderer<TileEntitySto
     @Override
     public void render(TileEntityStoneMill te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
+        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent()){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
             if(stack!=ItemStack.EMPTY){
                 matrixStack.push();
