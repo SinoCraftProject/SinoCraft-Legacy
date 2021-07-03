@@ -24,6 +24,9 @@ public class ModTileEntities {
     public static RegistryObject<TileEntityType<TileEntityPot>> IRON_POT = REGISTRY.register("iron_pot",
             () -> TileEntityType.Builder.create(TileEntityPot::new, ModBlocks.POT.get()).build(null));
 
+    public static RegistryObject<TileEntityType<TileEntityTeaTable>> TEA_TABLE = REGISTRY.register("tea_table",
+            () -> TileEntityType.Builder.create(TileEntityTeaTable::new, ModBlocks.TEA_TABLE.get()).build(null));
+
     public ModTileEntities(IEventBus bus) {
         SinoCraft.getLogger().info("Registering tile entities.");
         REGISTRY.register(bus);

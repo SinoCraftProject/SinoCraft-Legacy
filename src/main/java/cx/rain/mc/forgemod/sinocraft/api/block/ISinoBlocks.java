@@ -45,6 +45,12 @@ public interface ISinoBlocks {
     @Nullable
     ITileEntityVat getAsVat(@Nullable TileEntity te);
 
+    /**
+     * Convert a te to ITileEntityTeaTable if it is TileEntityTeaTable or return null.
+     */
+    @Nullable
+    ITileEntityTeaTable getAsTable(@Nullable TileEntity te);
+
     // ==== Plant ======================================================================================================
 
     /**

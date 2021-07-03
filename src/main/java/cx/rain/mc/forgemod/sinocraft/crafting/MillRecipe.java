@@ -11,7 +11,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class MillRecipe implements IMillRecipe {
     final ResourceLocation id;

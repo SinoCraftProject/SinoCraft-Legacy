@@ -11,7 +11,8 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public final class SoakingRecipe implements ISoakingRecipe {
 

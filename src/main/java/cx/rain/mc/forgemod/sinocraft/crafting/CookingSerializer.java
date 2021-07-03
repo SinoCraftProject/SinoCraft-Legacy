@@ -12,7 +12,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<CookingRecipe> {
 

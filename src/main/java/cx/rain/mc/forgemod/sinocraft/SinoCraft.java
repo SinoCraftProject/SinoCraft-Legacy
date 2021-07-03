@@ -9,7 +9,6 @@ import cx.rain.mc.forgemod.sinocraft.api_impl.APIRecipes;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
-import cx.rain.mc.forgemod.sinocraft.client.RenderHook;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
@@ -19,9 +18,7 @@ import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.utility.BlockAdditions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,8 +40,6 @@ public class SinoCraft {
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
-        bus.addListener(this::setupClient);
-        bus.addListener(this::setupServer);
 
         new ModBlocks(bus);
         new ModBlockItems(bus);
@@ -73,14 +68,6 @@ public class SinoCraft {
 
         new BlockAdditions();
         Networks.setup();
-        Networks.registerMessages();
-    }
-
-    private void setupClient(final FMLClientSetupEvent event) {
-        new RenderHook();
-    }
-
-    private void setupServer(final FMLDedicatedServerSetupEvent event) {
     }
 
     public static Logger getLogger() {
