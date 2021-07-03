@@ -34,7 +34,7 @@ public class TileEntityVatRender extends TileEntityRenderer<TileEntityVat> {
     public void render(TileEntityVat te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         float top = 0;
-        if (te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null) != null) {
+        if (te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).isPresent()) {
             if (te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0) != FluidStack.EMPTY && te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null).getFluidInTank(0).getAmount() != 0) {
                 top = 3.5f;
                 matrixStack.push();

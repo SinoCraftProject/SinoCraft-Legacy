@@ -36,10 +36,15 @@ class PotItemHandler extends ItemStackHandler {
     public ItemStack addStack(ItemStack stack) {
         for (int i = 0; i <= 5; i++) {
             ItemStack input = this.getStackInSlot(i);
-            if (input.isEmpty() || input.getItem() == stack.getItem()) {
+            if (input.isEmpty()) {
                 return insertItem(i, stack, false);
             }
         }
         return stack;
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+        return 1;
     }
 }

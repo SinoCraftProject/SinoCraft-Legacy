@@ -7,7 +7,9 @@ import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
+import cx.rain.mc.forgemod.sinocraft.item.cloth.ItemCloth;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -67,6 +69,8 @@ public class ModItems {
     public static RegistryObject<Item> TEA_LEAF = REGISTRY.register("tea_leaf", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
     public static RegistryObject<ItemTeacup> TEACUP = REGISTRY.register("teacup", ItemTeacup::new);
     public static RegistryObject<ItemTeapot> TEAPOT = REGISTRY.register("teapot", ItemTeapot::new);
+
+    //public static RegistryObject<Item> CLOTH_HELMET = REGISTRY.register("cloth_helmet", () -> new ItemCloth.ItemClothHelmet(new Item.Properties().group(ModGroups.TOOLS)));
 
     public ModItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering items.");
