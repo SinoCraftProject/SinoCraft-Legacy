@@ -5,6 +5,7 @@ import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.entity.RendererBuffalo;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.item.XuanPaperBakedModel;
+import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityPotRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityStoneMillRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityTeaTableRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityVatRender;
@@ -51,6 +52,7 @@ public class ClientEventHandler {
         // block
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.VAT.get(), TileEntityVatRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.STONE_MILL.get(), TileEntityStoneMillRender::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.IRON_POT.get(), TileEntityPotRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.TEA_TABLE.get(), TileEntityTeaTableRender::new);
         SinoCraft.getLogger().info("Registering TileEntity renderer.");
         // gui
