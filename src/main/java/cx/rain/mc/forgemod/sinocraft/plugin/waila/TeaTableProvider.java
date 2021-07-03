@@ -15,9 +15,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Optional;
 
 public enum TeaTableProvider implements IWailaProvider {
 
@@ -41,11 +44,17 @@ public enum TeaTableProvider implements IWailaProvider {
             double x = hitVec.x - pos.getX();
             double y = hitVec.y - pos.getY();
             double z = hitVec.z - pos.getZ();
-            table.lookup(x, y, z).ifPresent(element -> {
-                ItemStack stack = element.getStack();
-                stack.getItem().addInformation(stack, accessor.getWorld(), tooltip, net.minecraft.client.util.ITooltipFlag.TooltipFlags.NORMAL);
-            });
+            Optional<BaseTableElement> lookup = table.lookup(x, y, z);
+            if (lookup.isPresent()) {
+                ItemStack stack = lookup.get().getStack();
+                appendTailOnClient(stack, accessor.getWorld(), tooltip);
+            }
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void appendTailOnClient(ItemStack stack, World world, List<ITextComponent> tooltip) {
+        stack.getItem().addInformation(stack, world, tooltip, net.minecraft.client.util.ITooltipFlag.TooltipFlags.NORMAL);
     }
 
     @Override
