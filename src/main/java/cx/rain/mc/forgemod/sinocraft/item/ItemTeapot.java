@@ -5,8 +5,11 @@ import cx.rain.mc.forgemod.sinocraft.block.table.TableTeapot;
 import cx.rain.mc.forgemod.sinocraft.capability.CapabilityTeapot;
 import cx.rain.mc.forgemod.sinocraft.item.base.TableItem;
 import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -19,6 +22,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ItemTeapot extends TableItem {
+
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        super.fillItemGroup(group, items);
+        if (isInGroup(group)) {
+            ItemStack stack2 = new ItemStack(this);
+            CapabilityHelper.getTeapot(stack2).setTea(1000);
+            items.add(stack2);
+        }
+    }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, net.minecraft.client.util.ITooltipFlag flagIn) {
