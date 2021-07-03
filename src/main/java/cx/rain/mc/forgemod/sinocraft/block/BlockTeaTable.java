@@ -19,6 +19,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -27,6 +28,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class BlockTeaTable extends Block {
 
@@ -55,7 +57,13 @@ public class BlockTeaTable extends Block {
             ItemStack heldItem = player.getHeldItem(handIn);
             Vector3d hitVec = hit.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
             if (heldItem.isEmpty() && player.isSneaking()) {
-                player.setHeldItem(handIn, table.take(hitVec.x, hitVec.y, hitVec.z));
+                if (!worldIn.isRemote) {
+                    table.take(hitVec.x, hitVec.y, hitVec.z).ifPresent(element -> {
+                        ItemStack stack = element.makeItem();
+                        player.setHeldItem(handIn, stack);
+                        element.onTakeItem(player, stack);
+                    });
+                }
                 return ActionResultType.SUCCESS;
             }
             return table.lookup(hitVec.x, hitVec.y, hitVec.z)
@@ -130,5 +138,19 @@ public class BlockTeaTable extends Block {
                 worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
             }
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityTeaTable) {
+            TileEntityTeaTable table = (TileEntityTeaTable) tileEntity;
+            Vector3d hitVec = target.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+            Optional<BaseTableElement> lookup = table.lookup(hitVec.x, hitVec.y, hitVec.z);
+            if (lookup.isPresent()) {
+                return lookup.get().makeItem();
+            }
+        }
+        return super.getPickBlock(state, target, world, pos, player);
     }
 }

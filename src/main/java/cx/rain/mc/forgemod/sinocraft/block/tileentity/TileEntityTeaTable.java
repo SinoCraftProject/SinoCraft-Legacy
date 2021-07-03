@@ -45,16 +45,16 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
     }
 
     @Override
-    public ItemStack take(double x, double y, double z) {
+    public Optional<BaseTableElement> take(double x, double y, double z) {
         Iterator<BaseTableElement> iterator = elements.iterator();
         while (iterator.hasNext()) {
             BaseTableElement element = iterator.next();
             if (element.contains(x, y, z)) {
                 iterator.remove();
-                return element.makeItem();
+                return Optional.of(element);
             }
         }
-        return ItemStack.EMPTY;
+        return Optional.empty();
     }
 
     @Override
@@ -65,6 +65,7 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T extends BaseTableElement> Optional<T> lookup(double x, double y, double z, Class<T> type) {
         return (Optional<T>) elements.stream()
                 .filter(e -> e.contains(x, y, z))
@@ -87,18 +88,14 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
         if (world != null) {
             if (elements.isEmpty()) {
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
             } else {
-                elements().forEach(this::tick);
+                elements().forEach(element -> element.tick(this));
             }
         }
-    }
-
-    private void tick(BaseTableElement element) {
-        element.tick(this);
     }
 
     @Override
@@ -107,7 +104,7 @@ public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITile
         elements.clear();
         ListNBT elements = nbt.getList("elements", Constants.NBT.TAG_COMPOUND);
         for (INBT eNbt : elements) {
-            ItemStack stack = BaseTableElement.deserializeItem((CompoundNBT) eNbt);
+            ItemStack stack = ItemStack.read(((CompoundNBT) eNbt).getCompound("stack"));
             Item item = stack.getItem();
             if (item instanceof TableItem) {
                 BaseTableElement element = ((TableItem) item).createElement(0, 0, 0);

@@ -20,8 +20,9 @@ public interface ITileEntityTeaTable {
 
     /**
      * Try take and remove an element and return its ItemStack
+     * @return
      */
-    ItemStack take(double x, double y, double z);
+    Optional<BaseTableElement> take(double x, double y, double z);
 
     /**
      * Lookup an element from the table.

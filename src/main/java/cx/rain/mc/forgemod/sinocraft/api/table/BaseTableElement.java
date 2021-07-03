@@ -35,7 +35,9 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
      * Create a new ItemStack to drop.
      */
     public ItemStack makeItem() {
-        return this.stack.copy();
+        ItemStack stack = this.stack.copy();
+        stack.setCount(1);
+        return stack;
     }
 
     /**
@@ -60,7 +62,12 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
     public boolean contains(double x, double y, double z) {
         AxisAlignedBB aabb = getShape().getBoundingBox();
         // allow edges
-        return x >= aabb.minX && x <= aabb.maxX && y >= aabb.minY && y <= aabb.maxY && z >= aabb.minZ && z <= aabb.maxZ;
+        return x - aabb.minX >= -1e-5
+            && x - aabb.maxX <=  1e-5
+            && y - aabb.minY >= -1e-5
+            && y - aabb.maxY <=  1e-5
+            && z - aabb.minZ >= -1e-5
+            && z - aabb.maxZ <=  1e-5;
     }
 
     /**
@@ -113,6 +120,20 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
         return true;
     }
 
+    /**
+     * Get the stack in the element.
+     */
+    public ItemStack getStack() {
+        return stack;
+    }
+
+    /**
+     * Called when player take the element as an item
+     */
+    public void onTakeItem(PlayerEntity player, ItemStack stack) {
+
+    }
+
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT nbt = new CompoundNBT();
@@ -129,9 +150,5 @@ public abstract class BaseTableElement implements INBTSerializable<CompoundNBT> 
         this.x = nbt.getFloat("x");
         this.y = nbt.getFloat("y");
         this.z = nbt.getFloat("z");
-    }
-
-    public static ItemStack deserializeItem(CompoundNBT nbt) {
-        return ItemStack.read(nbt.getCompound("stack"));
     }
 }

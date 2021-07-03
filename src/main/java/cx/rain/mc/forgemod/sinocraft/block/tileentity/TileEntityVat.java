@@ -52,7 +52,7 @@ public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
         if (world == null || world.isRemote) {
             return;
         }
