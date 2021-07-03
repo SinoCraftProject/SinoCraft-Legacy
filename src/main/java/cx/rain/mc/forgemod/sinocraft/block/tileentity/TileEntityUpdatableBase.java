@@ -11,9 +11,20 @@ import net.minecraft.tileentity.TileEntityType;
 import javax.annotation.Nullable;
 
 public abstract class TileEntityUpdatableBase extends TileEntity implements ITickableTileEntity {
+
+    private boolean isDirty = false;
+
     public TileEntityUpdatableBase(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
+
+    @Override
+    public final void tick() {
+        onTick();
+        checkDirtyAndUpdate();
+    }
+
+    public abstract void onTick();
 
     @Nullable
     @Override
@@ -38,9 +49,14 @@ public abstract class TileEntityUpdatableBase extends TileEntity implements ITic
 
     @Override
     public void markDirty() {
-        if (world != null) {
+        isDirty = true;
+    }
+
+    protected void checkDirtyAndUpdate() {
+        if (world != null && isDirty) {
             world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
             super.markDirty();
+            isDirty = false;
         }
     }
 }

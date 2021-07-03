@@ -45,7 +45,7 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
         if (world != null && recoveryRecipeLocation != null) {
             world.getRecipeManager().getRecipe(recoveryRecipeLocation)
                     .filter(recipe -> recipe instanceof IMillRecipe)

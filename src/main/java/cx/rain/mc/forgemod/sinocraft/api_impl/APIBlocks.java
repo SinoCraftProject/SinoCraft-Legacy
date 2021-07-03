@@ -6,10 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.block.BlockStoneMill;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
 import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlantMulti;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStoneMill;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityStove;
-import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
+import cx.rain.mc.forgemod.sinocraft.block.tileentity.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -17,7 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public enum APIBlocks implements ISinoBlocks {
 
@@ -60,6 +58,15 @@ public enum APIBlocks implements ISinoBlocks {
     public ITileEntityVat getAsVat(@Nullable TileEntity te) {
         if (te != null && te.getClass() == TileEntityVat.class) {
             return (ITileEntityVat) te;
+        }
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public ITileEntityTeaTable getAsTable(@Nullable TileEntity te) {
+        if (te != null && te.getClass() == TileEntityTeaTable.class) {
+            return (ITileEntityTeaTable) te;
         }
         return null;
     }

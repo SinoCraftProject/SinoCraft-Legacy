@@ -8,7 +8,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.DynamicBucketModel;
 import net.minecraftforge.client.model.generators.CustomLoaderBuilder;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -65,8 +64,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.RED_MARBLE.get());
         simpleBlockItem(ModBlockItems.BLACK_MARBLE.get());
 
-//         simpleItem(ModItems.TUTORIAL_BOOK.get());
-
         getBuilder("flour").parent(GENERATED).texture("layer0", modLoc("item/flour"));
         getBuilder("dough").parent(GENERATED).texture("layer0", modLoc("item/dough"));
         getBuilder("dumpling_wrapper").parent(GENERATED).texture("layer0", modLoc("item/dumpling_wrapper"));
@@ -78,7 +75,6 @@ public class ProviderItemModel extends ItemModelProvider {
                 .customLoader((BiFunction<ItemModelBuilder, ExistingFileHelper, CustomLoaderBuilder<ItemModelBuilder>>) (itemModelBuilder, existingFileHelper) ->
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
-
 
         getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
 
@@ -145,6 +141,7 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleItem(ModBlockItems.GREEN_RADISH.get());
         simpleItem(ModItems.PEACH.get());
         simpleItem(ModItems.SILKWORM.get());
+        simpleItem(ModItems.TEA_LEAF.get());
     }
 
     private void addTools() {
@@ -165,6 +162,8 @@ public class ProviderItemModel extends ItemModelProvider {
 
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
+
+        simpleItem(ModItems.TEACUP.get());
     }
 
     private void addMachineBlockItems() {
