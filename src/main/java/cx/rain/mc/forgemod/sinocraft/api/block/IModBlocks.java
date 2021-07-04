@@ -58,6 +58,7 @@ public interface IModBlocks {
     RegistryObject<? extends HorizontalBlock> getStoneMill();
     RegistryObject<? extends HorizontalBlock> getPaperDryingRack();
     RegistryObject<? extends Block> getPot();
+    RegistryObject<? extends HorizontalBlock> getBellows();
     RegistryObject<? extends FlowingFluidBlock> getWoodPulpBlock();
     RegistryObject<? extends Block> getTeaTable();
     RegistryObject<? extends Block> getTeacup();
