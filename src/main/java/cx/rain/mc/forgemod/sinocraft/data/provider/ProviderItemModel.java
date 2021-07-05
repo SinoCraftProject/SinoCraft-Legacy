@@ -170,6 +170,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.VAT.get());
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
         simpleBlockItem(ModBlockItems.POT.get());
-        simpleBlockItem(ModBlockItems.BELLOWS.get());
+        namedBlockItem(ModBlockItems.BELLOWS.get(), "0");
     }
 }

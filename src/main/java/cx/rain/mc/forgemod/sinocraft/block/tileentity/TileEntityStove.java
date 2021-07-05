@@ -39,9 +39,9 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
     @Override
     public void tick() {
         if (world != null && !world.isRemote) {
-            if (heat.getHeat() == 0 && world.getBlockState(pos).get(BURNING))
+            if (! isBurning() && world.getBlockState(pos).get(BURNING))
                     world.setBlockState(pos, world.getBlockState(pos).with(BURNING, false));
-            if (heat.getHeat() > 0 && ! world.getBlockState(pos).get(BURNING))
+            if (isBurning() && ! world.getBlockState(pos).get(BURNING))
                 world.setBlockState(pos, world.getBlockState(pos).with(BURNING, true));
             if (isBurning()) {
                 modifyBurnSpeed();

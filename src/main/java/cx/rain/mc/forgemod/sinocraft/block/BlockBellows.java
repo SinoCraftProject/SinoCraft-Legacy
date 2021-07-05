@@ -16,10 +16,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class BlockBellows extends BlockHorizontalActivatable {
-    public static IntegerProperty STATE = IntegerProperty.create("state", 0, 7);
+    public static IntegerProperty STATE = IntegerProperty.create("state", 0, 3);
 
     public BlockBellows() {
         super(Block.Properties
@@ -43,7 +46,7 @@ public class BlockBellows extends BlockHorizontalActivatable {
 
     @Override
     public ActionResultType onServerActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (state.get(STATE) != 7)
+        if (state.get(STATE) != 3)
             worldIn.setBlockState(pos, state.with(STATE, state.get(STATE) + 1));
         else{
             worldIn.setBlockState(pos, state.with(STATE, 0));
@@ -53,5 +56,16 @@ public class BlockBellows extends BlockHorizontalActivatable {
             }
         }
         return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new TileEntityBellows();
     }
 }
