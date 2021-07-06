@@ -1,5 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
 import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
 import cx.rain.mc.forgemod.sinocraft.capability.empty.NoWind;
@@ -10,9 +11,14 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.LazyOptional;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy.CAPABILITY;
+import static cx.rain.mc.forgemod.sinocraft.block.BlockStove.BURNING;
 
 public class TileEntityStove extends TileEntity implements ITickableTileEntity, cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStove {
 
@@ -33,6 +39,10 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
     @Override
     public void tick() {
         if (world != null && !world.isRemote) {
+            if (! isBurning() && world.getBlockState(pos).get(BURNING))
+                    world.setBlockState(pos, world.getBlockState(pos).with(BURNING, false));
+            if (isBurning() && ! world.getBlockState(pos).get(BURNING))
+                world.setBlockState(pos, world.getBlockState(pos).with(BURNING, true));
             if (isBurning()) {
                 modifyBurnSpeed();
                 burn();
@@ -63,10 +73,11 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
 
     private void burn() {
         assert world != null;
-        if (burnTime > 0) {
+        if (isBurning()) {
             burnTime = Math.max(0, burnTime - burnSpeed);
         }
         heat.addHeat(burnSpeed);
+        burnSpeed = 1;
 
         BlockPos up = getPos().offset(Direction.UP, 1);
         TileEntity tile = world.getTileEntity(up);
@@ -117,5 +128,14 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
         compound.putInt("cooldown", cooldown);
         compound.putInt("heat", heat.getHeat());
         return compound;
+    }
+
+    @NotNull
+    @Override
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityHeat.CAPABILITY) {
+            return LazyOptional.of(()->heat).cast();
+        }
+        return super.getCapability(cap, side);
     }
 }

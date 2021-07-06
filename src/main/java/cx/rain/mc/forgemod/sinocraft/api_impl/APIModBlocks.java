@@ -204,6 +204,10 @@ public enum APIModBlocks implements IModBlocks {
         return ModBlocks.POT;
     }
     @Override
+    public RegistryObject<? extends HorizontalBlock> getBellows() {
+        return ModBlocks.BELLOWS;
+    }
+    @Override
     public RegistryObject<? extends FlowingFluidBlock> getWoodPulpBlock() {
         return ModBlocks.WOOD_PULP_BLOCK;
     }

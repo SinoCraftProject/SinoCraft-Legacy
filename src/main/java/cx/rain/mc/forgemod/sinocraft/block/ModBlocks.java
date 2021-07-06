@@ -77,6 +77,7 @@ public class ModBlocks {
     public static RegistryObject<BlockStoneMill> STONE_MILL = REGISTRY.register("stone_mill", BlockStoneMill::new);
     public static RegistryObject<BlockPaperDryingRack> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
     public static RegistryObject<BlockPot> POT = REGISTRY.register("pot", BlockPot::new);
+    public static RegistryObject<BlockBellows> BELLOWS = REGISTRY.register("bellows", BlockBellows::new);
 
     public static RegistryObject<FlowingFluidBlock> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
 

@@ -60,6 +60,7 @@ public class ModBlockItems {
     public static RegistryObject<BlockItem> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", () -> new BlockItem(ModBlocks.PAPER_DRYING_RACK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
     public static RegistryObject<BlockItem> STOVE = REGISTRY.register("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties().group(ModGroups.BLOCKS)));
     public static RegistryObject<BlockItem> POT = REGISTRY.register("pot", () -> new BlockItem(ModBlocks.POT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
+    public static RegistryObject<BlockItem> BELLOWS = REGISTRY.register("bellows", () -> new BlockItem(ModBlocks.BELLOWS.get(), new Item.Properties().group(ModGroups.BLOCKS)));
 
     public ModBlockItems(IEventBus bus) {
         SinoCraft.getLogger().info("Registering block items.");
