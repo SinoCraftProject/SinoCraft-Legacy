@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 
@@ -64,13 +65,9 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     }
 
     private void addItemGroups() {
-        addItemGroup("blocks", "华夏工艺 | 方块");
-        addItemGroup("decorate", "华夏工艺 | 装饰");
-        addItemGroup("agriculture", "华夏工艺 | 农业");
-        addItemGroup("foods", "华夏工艺 | 食物");
-        addItemGroup("combat", "华夏工艺 | 战斗");
-        addItemGroup("tools", "华夏工艺 | 工具");
-        addItemGroup("misc", "华夏工艺 | 杂项");
+        addItemGroup(ModGroups.BLOCKS, "华夏工艺 | 方块");
+        addItemGroup(ModGroups.AGRICULTURE, "华夏工艺 | 农业与食物");
+        addItemGroup(ModGroups.MISC, "华夏工艺 | 其他");
     }
 
     private void addMisc() {
