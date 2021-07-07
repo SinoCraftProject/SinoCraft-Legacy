@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
-import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrushProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ItemChineseBrush extends Item {
     public ItemChineseBrush() {
-        super(new Item.Properties().group(ModGroups.TOOLS).maxStackSize(1));
+        super(new Item.Properties().group(ModGroups.MISC).maxStackSize(1));
     }
 
     @Override

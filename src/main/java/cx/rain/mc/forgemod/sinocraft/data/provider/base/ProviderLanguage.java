@@ -3,7 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.base;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -17,12 +20,12 @@ public abstract class ProviderLanguage extends LanguageProvider {
         add("advancement.sinocraft." + id + ".description", description);
     }
 
-    public void addItemGroup(String id, String name) {
-        add("itemGroup.sinocraft." + id, name);
+    public void addItemGroup(ItemGroup group, String name) {
+        add(((TranslationTextComponent) group.getGroupName()).getKey(), name);
     }
 
-    public void addTooltip(Supplier<? extends Item> item, String... tooltips) {
-        String name = item.get().getRegistryName().getPath();
+    public void addTooltip(RegistryObject<? extends Item> item, String... tooltips) {
+        String name = item.getId().getPath();
         for (int i = 1; i <= tooltips.length; i++) {
             add("tooltip." + name + "." + i, tooltips[i - 1]);
         }

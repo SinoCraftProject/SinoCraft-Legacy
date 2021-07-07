@@ -1,14 +1,15 @@
 package cx.rain.mc.forgemod.sinocraft.item.base;
 
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 
 public class ItemFood extends Item {
-    public ItemFood(ItemGroup group, Food food) {
+    
+    public ItemFood(int hunger, float saturation) {
         super(new Item.Properties()
-                .group(group)
-                .food(food)
+                .group(ModGroups.AGRICULTURE)
+                .food(new Food.Builder().hunger(hunger).saturation(saturation).build())
                 .setNoRepair());
     }
 }

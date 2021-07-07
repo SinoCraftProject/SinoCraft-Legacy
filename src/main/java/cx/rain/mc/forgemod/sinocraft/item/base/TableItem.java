@@ -3,7 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.item.base;
 import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableItem;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityTeaTable;
-import cx.rain.mc.forgemod.sinocraft.group.ModGroups;
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.tileentity.TileEntity;

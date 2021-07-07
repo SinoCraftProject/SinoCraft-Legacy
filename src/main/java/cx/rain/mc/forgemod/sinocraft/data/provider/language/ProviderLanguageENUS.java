@@ -4,6 +4,7 @@ import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
 
@@ -50,13 +51,9 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     }
 
     private void addItemGroups() {
-        add("itemGroup.sinocraft.blocks", "SinoCraft | Blocks");
-        add("itemGroup.sinocraft.decorate", "SinoCraft | Decorate");
-        add("itemGroup.sinocraft.agriculture", "SinoCraft | Agriculture");
-        add("itemGroup.sinocraft.foods", "SinoCraft | Foods");
-        add("itemGroup.sinocraft.combat", "SinoCraft | Combat");
-        add("itemGroup.sinocraft.tools", "SinoCraft | Tools");
-        add("itemGroup.sinocraft.misc", "SinoCraft | Miscellaneous");
+        addItemGroup(ModGroups.BLOCKS, "SinoCraft | Blocks");
+        addItemGroup(ModGroups.AGRICULTURE, "SinoCraft | Agriculture And Food");
+        addItemGroup(ModGroups.MISC, "SinoCraft | Miscellaneous");
     }
 
     private void addMisc() {
