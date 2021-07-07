@@ -210,6 +210,20 @@ public class ProviderBlockState extends BlockStateProvider {
                 paperDryingRackBuilderDirection = paperDryingRackBuilderDirection.rotateY();
             }
         }
+
+        MultiPartBlockStateBuilder bellowsBuilder = getMultipartBuilder(ModBlocks.BELLOWS.get());
+        for (int i = 0; i <= 3; i++) {
+            Direction bellowsBuilderDirection = Direction.NORTH;
+            for (int j = 0; j < 4; j++) {
+                bellowsBuilder.part().modelFile(models().getExistingFile(modLoc("block/bellows" + i)))
+                        .rotationY(90 * j)
+                        .addModel()
+                        .condition(BlockBellows.STATE, i)
+                        .condition(BlockBellows.HORIZONTAL_FACING, bellowsBuilderDirection)
+                        .end();
+                bellowsBuilderDirection = bellowsBuilderDirection.rotateY();
+            }
+        }
     }
 
     private void addOtherBlock() {
