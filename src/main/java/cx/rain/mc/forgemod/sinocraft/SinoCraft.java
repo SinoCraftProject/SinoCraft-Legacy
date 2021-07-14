@@ -10,12 +10,14 @@ import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
+import cx.rain.mc.forgemod.sinocraft.data.modifier.ModModifiers;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
 import cx.rain.mc.forgemod.sinocraft.utility.BlockAdditions;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -49,6 +51,7 @@ public class SinoCraft {
         new ModFluids(bus);
         new ModContainers(bus);
         new ModRecipes(bus);
+        new ModModifiers(bus);
         // remove：client only
         // ComponentType.init(bus);
 
@@ -56,7 +59,6 @@ public class SinoCraft {
         ISinoRecipes.INSTANCE.set(APIRecipes.INSTANCE);
         ISinoItems.INSTANCE.set(APIItems.INSTANCE);
         ISinoBlocks.INSTANCE.set(APIBlocks.INSTANCE);
-
     }
 
     public static SinoCraft getInstance() {
