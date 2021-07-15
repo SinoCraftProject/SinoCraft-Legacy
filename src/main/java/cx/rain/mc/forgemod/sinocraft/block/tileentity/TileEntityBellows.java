@@ -55,9 +55,9 @@ public class TileEntityBellows extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (cd >= 0)
+        if (cd > 0)
             cd --;
-        if (we >= 0 && cd <= 0) {
+        if (we > 0 && cd <= 0) {
             we --;
             cd = 200;
         }

@@ -54,10 +54,22 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerIronPotRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(CookingRecipe.builder(new ResourceLocation("sinocraft:pot_apple"))
-                .addInput(Ingredient.fromItems(Items.RED_DYE))
-                .setOutput(new ItemStack(Items.APPLE))
+        consumer.accept(CookingRecipe.builder(new ResourceLocation("sinocraft:pot_rice"))
+                .addInput(Ingredient.fromItems(ModItems.RICE.get()))
+                .addInput(Ingredient.fromItems(ModItems.RICE.get()))
+                .addInput(Ingredient.fromItems(ModItems.RICE.get()))
+                .setOutput(new ItemStack(ModItems.BOWL_WITH_RICE.get()))
                 .setHeat(1, Integer.MAX_VALUE)
+                .setContainer(new ItemStack(Items.BOWL))
+                .setTime(40)
+                .build());
+        consumer.accept(CookingRecipe.builder(new ResourceLocation("sinocraft:pot_porridge"))
+                .addInput(Ingredient.fromItems(ModItems.MILLET.get()))
+                .addInput(Ingredient.fromItems(ModItems.MILLET.get()))
+                .addInput(Ingredient.fromItems(ModItems.MILLET.get()))
+                .setOutput(new ItemStack(ModItems.BOWL_WITH_PORRIDGE.get()))
+                .setHeat(1, Integer.MAX_VALUE)
+                .setContainer(new ItemStack(ModItems.BOWL_WITH_WATER.get()))
                 .setTime(40)
                 .build());
     }
@@ -77,6 +89,16 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .setOutput(new ItemStack(ModItems.FLOUR.get()))
                 .setTime(20)
                 .build());
+        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_rice"))
+                .setInput(Ingredient.fromItems(ModItems.RICE_SEED.get()))
+                .setOutput(new ItemStack(ModItems.RICE.get()))
+                .setTime(20)
+                .build());
+        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_millet"))
+                .setInput(Ingredient.fromItems(ModItems.MILLET_SEED.get()))
+                .setOutput(new ItemStack(ModItems.MILLET.get()))
+                .setTime(20)
+                .build());
     }
 
     private void registerShapedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -87,6 +109,71 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .key('W', ItemTags.PLANKS)
                 .key('S', ItemTags.SLABS)
                 .addCriterion("got_wood", hasItem(ItemTags.PLANKS))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.PAPER_DRYING_RACK.get())
+                .patternLine("  S")
+                .patternLine(" Ss")
+                .patternLine("S s")
+                .key('S', ItemTags.SLABS)
+                .key('s', Items.STICK)
+                .addCriterion("got_slab", hasItem(ItemTags.SLABS))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.STONE_MILL.get())
+                .patternLine("   ")
+                .patternLine("SSs")
+                .patternLine("SS ")
+                .key('S', Items.SMOOTH_STONE_SLAB)
+                .key('s', Items.STICK)
+                .addCriterion("got_slab", hasItem(Items.SMOOTH_STONE_SLAB))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.STOVE.get())
+                .patternLine("BBB")
+                .patternLine("B B")
+                .patternLine("BFB")
+                .key('B', Items.BRICK)
+                .key('F', Items.FURNACE)
+                .addCriterion("got_furnace", hasItem(Items.FURNACE))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.BELLOWS.get())
+                .patternLine("WWW")
+                .patternLine(" PL")
+                .patternLine("WWW")
+                .key('P', Items.PISTON)
+                .key('W', ItemTags.PLANKS)
+                .key('L', Items.LEVER)
+                .addCriterion("got_piston", hasItem(Items.PISTON))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.POT.get())
+                .patternLine("I I")
+                .patternLine("III")
+                .key('I', Items.IRON_INGOT)
+                .addCriterion("got_iron", hasItem(Items.IRON_INGOT))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.KNIFE_DIAMOND.get())
+                .patternLine("  M")
+                .patternLine(" M ")
+                .patternLine("S  ")
+                .key('S', Items.STICK)
+                .key('M', Items.DIAMOND)
+                .addCriterion("got_material", hasItem(Items.DIAMOND))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModItems.KNIFE_GOLD.get())
+                .patternLine("  M")
+                .patternLine(" M ")
+                .patternLine("S  ")
+                .key('S', Items.STICK)
+                .key('M', Items.GOLD_INGOT)
+                .addCriterion("got_material", hasItem(Items.GOLD_INGOT))
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModItems.KNIFE_IRON.get())
+                .patternLine("  M")
+                .patternLine(" M ")
+                .patternLine("S  ")
+                .key('S', Items.STICK)
+                .key('M', Items.IRON_INGOT)
+                .addCriterion("got_material", hasItem(Items.IRON_INGOT))
                 .build(consumer);
     }
 

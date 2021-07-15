@@ -26,13 +26,14 @@ import java.util.Arrays;
  * @author Infinity_rain
  */
 public class CookingRecipe implements ICookingRecipe {
-    final ResourceLocation id;
-    int minThermal;
-    int maxThermal;
-    ItemStack recipeResult = new ItemStack(ModItems.ADUST_FOOD.get());
-    ItemStack adustResult = new ItemStack(ModItems.ADUST_FOOD.get());
-    int time = 60;
-    final NonNullList<ICountIngredient> stacks = NonNullList.create();
+    protected final ResourceLocation id;
+    protected int minThermal;
+    protected int maxThermal;
+    protected ItemStack recipeResult = new ItemStack(ModItems.ADUST_FOOD.get());
+    protected ItemStack adustResult = new ItemStack(ModItems.ADUST_FOOD.get());
+    protected ItemStack container = ItemStack.EMPTY;
+    protected int time = 60;
+    protected final NonNullList<ICountIngredient> stacks = NonNullList.create();
 
     public static ICookingRecipeBuilder builder(ResourceLocation id) {
         return new Builder(id);
@@ -111,6 +112,11 @@ public class CookingRecipe implements ICookingRecipe {
     }
 
     @Override
+    public ItemStack getContainer() {
+        return container;
+    }
+
+    @Override
     public ResourceLocation getId() {
         return id;
     }
@@ -147,7 +153,7 @@ public class CookingRecipe implements ICookingRecipe {
         return null;
     }
 
-    static class Builder implements ICookingRecipeBuilder {
+    public static class Builder implements ICookingRecipeBuilder {
         final CookingRecipe recipe;
 
         Builder(ResourceLocation id) {
@@ -188,6 +194,12 @@ public class CookingRecipe implements ICookingRecipe {
         @Override
         public ICookingRecipeBuilder addInput(Ingredient item, int count) {
             recipe.stacks.add(new CountIngredient(item, count));
+            return this;
+        }
+
+        @Override
+        public ICookingRecipeBuilder setContainer(ItemStack container) {
+            recipe.container = container;
             return this;
         }
 

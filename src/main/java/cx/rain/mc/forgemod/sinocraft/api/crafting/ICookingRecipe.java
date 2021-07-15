@@ -69,6 +69,11 @@ public interface ICookingRecipe extends IRecipe<IExtendedRecipeInventory>, IFini
      */
     ItemStack getAdustOutput();
 
+    /**
+     * Return the container for dish
+     */
+    ItemStack getContainer();
+
     @Override
     default boolean canFit(int width, int height) {
         return true;
