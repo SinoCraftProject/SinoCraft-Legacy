@@ -45,8 +45,8 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onClientSetUpEvent(FMLClientSetupEvent event) {
+        ModEntities.REGISTRY.registerRenderers();
         // item
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_BUFFALO.get(), RendererBuffalo::new);
         ItemModelsProperties.registerProperty(ModItems.TEAPOT.get(), TEAPOT_TEA, (stack, world, entity) ->
                 CapabilityHelper.getTeapot(stack).isPouring() ? 1.0f : 0.0f);
         // block

@@ -5,7 +5,6 @@ import cx.rain.mc.forgemod.sinocraft.block.table.TableTeapot;
 import cx.rain.mc.forgemod.sinocraft.capability.CapabilityTeapot;
 import cx.rain.mc.forgemod.sinocraft.item.base.TableItem;
 import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
