@@ -1,6 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
+import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.crafting.CookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.crafting.MillRecipe;
@@ -70,6 +71,16 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .setOutput(new ItemStack(ModItems.BOWL_WITH_PORRIDGE.get()))
                 .setHeat(1, Integer.MAX_VALUE)
                 .setContainer(new ItemStack(ModItems.BOWL_WITH_WATER.get()))
+                .setTime(40)
+                .build());
+        consumer.accept(CookingRecipe.builder(new ResourceLocation("sinocraft:pot_hero_assemble"))
+                .addInput(Ingredient.fromItems(ModBlockItems.GREEN_RADISH.get()))
+                .addInput(Ingredient.fromItems(ModBlockItems.WHITE_RADISH.get()))
+                .addInput(Ingredient.fromItems(ModBlockItems.SUMMER_RADISH.get()))
+                .addInput(Ingredient.fromItems(Items.CARROT))
+                .setOutput(new ItemStack(ModItems.HEROES_ASSEMBLE.get()))
+                .setHeat(1, Integer.MAX_VALUE)
+                .setContainer(new ItemStack(ModItems.DISH.get()))
                 .setTime(40)
                 .build());
     }
@@ -174,6 +185,12 @@ public class ProviderRecipe extends ProviderBaseRecipe {
                 .key('S', Items.STICK)
                 .key('M', Items.IRON_INGOT)
                 .addCriterion("got_material", hasItem(Items.IRON_INGOT))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.DISH.get(), 2)
+                .patternLine("BBB")
+                .key('B', Items.BRICK)
+                .addCriterion("got_brick", hasItem(Items.BRICK))
                 .build(consumer);
     }
 

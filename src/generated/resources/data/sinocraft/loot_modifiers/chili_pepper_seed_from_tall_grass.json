@@ -18,9 +18,6 @@
       "block": "minecraft:tall_grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:chili_pepper_seed",
-    "count": 1
-  },
+  "item": "sinocraft:chili_pepper_seed",
   "type": "sinocraft:seed_drop"
 }

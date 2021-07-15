@@ -18,9 +18,6 @@
       "block": "minecraft:grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:millet_seed",
-    "count": 1
-  },
+  "item": "sinocraft:millet_seed",
   "type": "sinocraft:seed_drop"
 }

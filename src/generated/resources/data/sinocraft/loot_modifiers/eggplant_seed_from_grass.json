@@ -18,9 +18,6 @@
       "block": "minecraft:grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:eggplant_seed",
-    "count": 1
-  },
+  "item": "sinocraft:eggplant_seed",
   "type": "sinocraft:seed_drop"
 }

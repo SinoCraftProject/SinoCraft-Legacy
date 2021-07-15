@@ -12,7 +12,7 @@ public class ModModifiers {
     public static final DeferredRegister<GlobalLootModifierSerializer<?>> REGISTRY =
             DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, SinoCraft.MODID);
 
-    public static RegistryObject<GlobalLootModifierSerializer<GrassDropModifier>> SEED_DROP = REGISTRY.register("seed_drop", SeedDropSerialize::new);
+    public static RegistryObject<GlobalLootModifierSerializer<SeedDropModifier>> SEED_DROP = REGISTRY.register("seed_drop", SeedDropSerialize::new);
 
     public ModModifiers(IEventBus bus) {
         REGISTRY.register(bus);
