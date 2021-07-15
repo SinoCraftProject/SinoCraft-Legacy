@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sinocraft:item/bowl_with_rice"
+  }
+}

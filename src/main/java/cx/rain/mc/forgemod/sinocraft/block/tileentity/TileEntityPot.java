@@ -6,10 +6,12 @@ import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
@@ -39,11 +41,11 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
     private int cooldown = 0;
     private int progress = 0;
     private int maxHeat = 0;
-    private ItemStack outputItem = ItemStack.EMPTY;
     private ICookingRecipe currentRecipe = null;
     private ResourceLocation recoveryRecipeLocation = null;
 
     private int[] slotMap = new int[6];
+    private boolean isAdust = false;
 
     public TileEntityPot() {
         super(ModTileEntities.IRON_POT.get());
@@ -63,57 +65,18 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
             heat.subHeat(1);
             cooldown = 40;
         }
-        if (!outputItem.isEmpty()) {
-            outputItem = itemHandler.insertItem(6, outputItem, false);
-        }
         if (world != null && recoveryRecipeLocation != null) {
             world.getRecipeManager().getRecipe(recoveryRecipeLocation)
                     .filter(recipe -> recipe instanceof ICookingRecipe)
                     .ifPresent(recipe -> currentRecipe = (ICookingRecipe) recipe);
             recoveryRecipeLocation = null;
         }
-        ICookingRecipe recipe = currentRecipe;
-        if (recipe != null) {
-            if (progress >= recipe.getCookingTime()) {
-                if (!outputItem.isEmpty()) return;
-                int[] map = Arrays.copyOf(slotMap, recipe.getInputSlotCount());
-                // 消耗
-                for (int i = 0; i < recipe.getInputSlotCount(); i++) {
-                    int inputCount = recipe.getInput(map[i]).getCount();
-                    ItemStack extractItem = itemHandler.extractItem(i, inputCount, true);
-                    if (extractItem.getCount() < inputCount) {
-                        return;
-                    }
-                }
-                for (int i = 0; i < recipe.getInputSlotCount(); i++) {
-                    itemHandler.extractItem(i, recipe.getInput(map[i]).getCount(), false);
-                }
-                // 产出
-                ItemStack itemOutput = recipe.getCraftingResult(inv);
-                if (!itemOutput.isEmpty()) {
-                    itemOutput = itemOutput.copy();
-                    ItemStack insert = itemHandler.insertItem(6, itemOutput, false);
-                    if (!insert.isEmpty()) {
-                        outputItem = insert;
-                        markDirty();
-                    }
-                }
-
-                progress = 0;
-                currentRecipe = null;
-                setMaxHeat(0);
-            } else {
-                if (heat.getHeat() < recipe.getMinHeat()) {
-                    progress = 0;
-                    setMaxHeat(0);
-                } else {
-                    progress++;
-                    int heat = this.heat.getHeat();
-                    if (heat > maxHeat) {
-                        setMaxHeat(heat);
-                    }
-                }
+        if (currentRecipe != null) {
+            if (heat.getHeat() > currentRecipe.getMaxHeat()) {
+                isAdust = true;
             }
+            if (heat.getHeat() > currentRecipe.getMinHeat() && progress < currentRecipe.getCookingTime())
+                progress ++;
         }
     }
 
@@ -130,13 +93,22 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
     }
 
     @Override
-    public ItemStack extractOutput() {
-        ItemStack stack = itemHandler.getStackInSlot(6);
-        if (stack.isEmpty()) {
+    public ItemStack extractOutput(PlayerEntity player, Hand handIn) {
+        if (currentRecipe == null || progress < currentRecipe.getCookingTime())
             return ItemStack.EMPTY;
+        if (player.getHeldItem(handIn).getItem().getRegistryName().equals(currentRecipe.getContainer().getItem().getRegistryName())) {
+            ItemStack stack = currentRecipe.getCraftingResult(inv).copy();
+            inv.clear();
+            if (isAdust) {
+                isAdust = false;
+                return currentRecipe.getAdustOutput().copy();
+            }
+            if (! stack.isEmpty()) {
+                player.getHeldItem(handIn).shrink(1);
+                player.inventory.addItemStackToInventory(stack);
+            }
         }
-        itemHandler.setStackInSlot(6, ItemStack.EMPTY);
-        return stack.copy();
+        return player.getHeldItem(handIn);
     }
 
     @Override
@@ -151,7 +123,7 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
 
     @Override
     public ItemStack getOutputs() {
-        return itemHandler.getStackInSlot(6);
+        return currentRecipe == null ? ItemStack.EMPTY : currentRecipe.getRecipeOutput();
     }
 
     @Override
@@ -234,9 +206,6 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
         super.write(compound);
         compound = compound.merge(itemHandler.serializeNBT());
         compound.putInt("cooldown", cooldown);
-        if (!outputItem.isEmpty()) {
-            compound.put("outputItem", outputItem.write(new CompoundNBT()));
-        }
         if (currentRecipe != null) {
             compound.putString("recipe", currentRecipe.getId().toString());
             compound.putInt("progress", progress);
@@ -252,16 +221,16 @@ public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc
         super.read(state, compound);
         itemHandler.deserializeNBT(compound);
         cooldown = compound.getInt("cooldown");
-        if (compound.contains("outputItem", Constants.NBT.TAG_COMPOUND)) {
-            outputItem = ItemStack.read(compound.getCompound("outputItem"));
-        } else {
-            outputItem = ItemStack.EMPTY;
-        }
         if (compound.contains("recipe", Constants.NBT.TAG_STRING)) {
             recoveryRecipeLocation = new ResourceLocation(compound.getString("recipe"));
         }
         progress = compound.getInt("process");
         slotMap = compound.getIntArray("slotMap");
+        if (slotMap.length != 6) {
+            slotMap = new int[6];
+            for (int i = 0; i < 6; i++)
+                slotMap[i] = i;
+        }
         heat.setHeat(compound.getInt("heat"));
         maxHeat = compound.getInt("maxHeat");
     }

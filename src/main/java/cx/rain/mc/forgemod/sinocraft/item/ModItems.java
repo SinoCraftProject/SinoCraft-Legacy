@@ -6,7 +6,9 @@ import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
+import net.minecraft.world.World;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,8 +35,8 @@ public class ModItems {
     public static RegistryObject<ItemFood> PEACH = REGISTRY.register("peach", () -> new ItemFood(2, 3));
     public static RegistryObject<ItemFood> CHILI_PEPPER = REGISTRY.register("chili_pepper", () -> new ItemFood(1, 2));
     public static RegistryObject<ItemFood> GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood(2, 3));
-    public static RegistryObject<ItemFood> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(3, 4));
-    public static RegistryObject<ItemFood> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(3, 4));
+    public static RegistryObject<ItemFood> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood(2, 2));
+    public static RegistryObject<ItemFood> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood(2, 2));
     public static RegistryObject<ItemFood> ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood(1, 0));
 
     public static RegistryObject<ItemHeroesAssemble> HEROES_ASSEMBLE = REGISTRY.register("heroes_assemble", ItemHeroesAssemble::new);
@@ -44,6 +46,27 @@ public class ModItems {
     public static RegistryObject<Item> STUFFING = REGISTRY.register("stuffing", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
     public static RegistryObject<Item> DUMPLING = REGISTRY.register("dumpling", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
     public static RegistryObject<ItemFood> COOKED_DUMPLING = REGISTRY.register("cooked_dumpling", () -> new ItemFood(6, 0.2f));
+    public static RegistryObject<ItemFood> BOWL_WITH_RICE = REGISTRY.register("bowl_with_rice", () -> new ItemFood(8, 4, 1){
+        @Override
+        public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+            super.onItemUseFinish(stack, worldIn, entityLiving);
+            return new ItemStack(Items.BOWL);
+        }
+    });
+    public static RegistryObject<ItemFood> BOWL_WITH_WATER = REGISTRY.register("bowl_with_water", () -> new ItemFood(0, 0, 1){
+        @Override
+        public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+            super.onItemUseFinish(stack, worldIn, entityLiving);
+            return new ItemStack(Items.BOWL);
+        }
+    });
+    public static RegistryObject<ItemFood> BOWL_WITH_PORRIDGE = REGISTRY.register("bowl_with_porridge", () -> new ItemFood(6, 2, 1){
+        @Override
+        public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+            super.onItemUseFinish(stack, worldIn, entityLiving);
+            return new ItemStack(Items.BOWL);
+        }
+    });
 
     public static RegistryObject<Item> BARK = REGISTRY.register("bark", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
     public static RegistryObject<BucketItem> BUCKET_WOOD_PULP = REGISTRY.register("bucket_wood_pulp", () -> new BucketItem(ModFluids.WOOD_PULP, new Item.Properties().group(ModGroups.MISC).containerItem(Items.BUCKET).maxStackSize(1)));

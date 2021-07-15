@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sinocraft:paper_drying_rack"
+    ]
+  },
+  "criteria": {
+    "got_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:slabs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sinocraft:paper_drying_rack"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_slab",
+      "has_the_recipe"
+    ]
+  ]
+}
