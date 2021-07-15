@@ -149,6 +149,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlock(ModBlocks.STONE_MILL, "Stone Mill");
 
         addBlock(ModBlocks.TEA_TABLE, "");
+        addBlock(ModBlocks.BELLOWS, "Bellows");
     }
 
     private void addEntities() {
