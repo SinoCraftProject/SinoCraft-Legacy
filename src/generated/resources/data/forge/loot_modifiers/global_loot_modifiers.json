@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "entries": [
+    "sinocraft:rice_seed_from_grass",
+    "sinocraft:eggplant_seed_from_grass",
+    "sinocraft:chili_pepper_seed_from_tall_grass",
+    "sinocraft:green_pepper_seed_from_grass",
+    "sinocraft:cabbage_seed_from_tall_grass",
+    "sinocraft:chili_pepper_seed_from_grass",
+    "sinocraft:rice_seed_from_tall_grass",
+    "sinocraft:sorghum_seed_from_tall_grass",
+    "sinocraft:millet_seed_from_tall_grass",
+    "sinocraft:green_pepper_seed_from_tall_grass",
+    "sinocraft:eggplant_seed_from_tall_grass",
+    "sinocraft:cabbage_seed_from_grass",
+    "sinocraft:millet_seed_from_grass",
+    "sinocraft:sorghum_seed_from_grass"
+  ]
+}
