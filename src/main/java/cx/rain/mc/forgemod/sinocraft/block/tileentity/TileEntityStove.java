@@ -1,9 +1,11 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
+import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStove;
+import cx.rain.mc.forgemod.sinocraft.api.block.IWindEnergyReceiver;
 import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IWindEnergy;
 import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
-import cx.rain.mc.forgemod.sinocraft.capability.empty.NoWind;
 import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
@@ -17,10 +19,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy.CAPABILITY;
 import static cx.rain.mc.forgemod.sinocraft.block.BlockStove.BURNING;
 
-public class TileEntityStove extends TileEntity implements ITickableTileEntity, cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStove {
+public class TileEntityStove extends TileEntity implements ITickableTileEntity, ITileEntityStove, IWindEnergyReceiver {
 
     private int burnTime = 0;
     private int burnSpeed = 1;
@@ -44,7 +45,6 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
             if (isBurning() && ! world.getBlockState(pos).get(BURNING))
                 world.setBlockState(pos, world.getBlockState(pos).with(BURNING, true));
             if (isBurning()) {
-                modifyBurnSpeed();
                 burn();
             } else if (cooldown > 0) {
                 cooldown--;
@@ -52,23 +52,22 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
                 heat.subHeat(1);
                 cooldown = 20;
             }
+            markDirty();
         }
     }
 
-    private void modifyBurnSpeed() {
-        BlockPos left = getPos().offset(getBlockState().get(BlockStove.HORIZONTAL_FACING).rotateY(), 1);
-        BlockPos right = getPos().offset(getBlockState().get(BlockStove.HORIZONTAL_FACING).rotateYCCW(), 1);
-
-        internalModify(left);
-        internalModify(right);
+    @Override
+    public int receiveWindEnergy(Direction direction, int energy) {
+        if (isBurning()) {
+            burnSpeed += energy;
+        }
+        return 0;
     }
 
-    private void internalModify(BlockPos pos) {
-        assert world != null;
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile != null && tile.getCapability(CAPABILITY).isPresent()) {
-            burnSpeed += tile.getCapability(CAPABILITY).orElse(NoWind.INSTANCE).getWindEnergy();
-        }
+    @Override
+    public boolean canSupportWindEnergyProvider(Direction direction, IWindEnergy energy) {
+        Direction facing = getBlockState().get(BlockStove.HORIZONTAL_FACING);
+        return direction == facing.rotateY() || direction == facing.rotateYCCW();
     }
 
     private void burn() {
@@ -76,12 +75,17 @@ public class TileEntityStove extends TileEntity implements ITickableTileEntity, 
         if (isBurning()) {
             burnTime = Math.max(0, burnTime - burnSpeed);
         }
-        heat.addHeat(burnSpeed);
-        burnSpeed = 1;
+        if (burnSpeed > 1) {
+            int burn = burnSpeed / 10;
+            this.heat.addHeat(burn);
+            burnSpeed -= burn;
+        } else {
+            this.heat.addHeat(1);
+        }
 
         BlockPos up = getPos().offset(Direction.UP, 1);
         TileEntity tile = world.getTileEntity(up);
-        CapabilityHelper.getHeat(tile).setHeat(heat.getHeat());
+        CapabilityHelper.getHeat(tile).setHeat(this.heat.getHeat());
     }
 
     @Override

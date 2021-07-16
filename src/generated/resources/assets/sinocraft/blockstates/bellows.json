@@ -3,7 +3,7 @@
     {
       "when": {
         "state": "0",
-        "facing": "north"
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/bellows0"
@@ -12,7 +12,7 @@
     {
       "when": {
         "state": "0",
-        "facing": "east"
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/bellows0",
@@ -22,7 +22,7 @@
     {
       "when": {
         "state": "0",
-        "facing": "south"
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/bellows0",
@@ -32,7 +32,7 @@
     {
       "when": {
         "state": "0",
-        "facing": "west"
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/bellows0",
@@ -42,7 +42,7 @@
     {
       "when": {
         "state": "1",
-        "facing": "north"
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/bellows1"
@@ -51,7 +51,7 @@
     {
       "when": {
         "state": "1",
-        "facing": "east"
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/bellows1",
@@ -61,7 +61,7 @@
     {
       "when": {
         "state": "1",
-        "facing": "south"
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/bellows1",
@@ -71,7 +71,7 @@
     {
       "when": {
         "state": "1",
-        "facing": "west"
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/bellows1",
@@ -81,7 +81,7 @@
     {
       "when": {
         "state": "2",
-        "facing": "north"
+        "facing": "east"
       },
       "apply": {
         "model": "sinocraft:block/bellows2"
@@ -90,7 +90,7 @@
     {
       "when": {
         "state": "2",
-        "facing": "east"
+        "facing": "south"
       },
       "apply": {
         "model": "sinocraft:block/bellows2",
@@ -100,7 +100,7 @@
     {
       "when": {
         "state": "2",
-        "facing": "south"
+        "facing": "west"
       },
       "apply": {
         "model": "sinocraft:block/bellows2",
@@ -110,7 +110,7 @@
     {
       "when": {
         "state": "2",
-        "facing": "west"
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/bellows2",
@@ -120,20 +120,10 @@
     {
       "when": {
         "state": "3",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "sinocraft:block/bellows3"
-      }
-    },
-    {
-      "when": {
-        "state": "3",
         "facing": "east"
       },
       "apply": {
-        "model": "sinocraft:block/bellows3",
-        "y": 90
+        "model": "sinocraft:block/bellows3"
       }
     },
     {
@@ -143,13 +133,23 @@
       },
       "apply": {
         "model": "sinocraft:block/bellows3",
-        "y": 180
+        "y": 90
       }
     },
     {
       "when": {
         "state": "3",
         "facing": "west"
+      },
+      "apply": {
+        "model": "sinocraft:block/bellows3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "state": "3",
+        "facing": "north"
       },
       "apply": {
         "model": "sinocraft:block/bellows3",

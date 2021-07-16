@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -76,7 +77,9 @@ public class ProviderItemModel extends ItemModelProvider {
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
 
-        getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
+        for (String name : ModEntities.REGISTRY.entries.keySet()) {
+            getBuilder("spawn_egg_" + name).parent(TEMPLATE_SPAWN_EGG);
+        }
 
         addTrees();
         addCrops();
@@ -170,6 +173,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.VAT.get());
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
         simpleBlockItem(ModBlockItems.POT.get());
-        namedBlockItem(ModBlockItems.BELLOWS.get(), "0");
+        namedBlockItem(ModBlockItems.BELLOWS.get(), "bellows0");
     }
 }

@@ -213,7 +213,7 @@ public class ProviderBlockState extends BlockStateProvider {
 
         MultiPartBlockStateBuilder bellowsBuilder = getMultipartBuilder(ModBlocks.BELLOWS.get());
         for (int i = 0; i <= 3; i++) {
-            Direction bellowsBuilderDirection = Direction.NORTH;
+            Direction bellowsBuilderDirection = Direction.EAST;
             for (int j = 0; j < 4; j++) {
                 bellowsBuilder.part().modelFile(models().getExistingFile(modLoc("block/bellows" + i)))
                         .rotationY(90 * j)
