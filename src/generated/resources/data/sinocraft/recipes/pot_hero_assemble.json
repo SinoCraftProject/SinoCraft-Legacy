@@ -1,0 +1,25 @@
+{
+  "type": "sinocraft:cooking",
+  "ingredients": [
+    {
+      "item": "sinocraft:green_radish"
+    },
+    {
+      "item": "sinocraft:white_radish"
+    },
+    {
+      "item": "sinocraft:summer_radish"
+    },
+    {
+      "item": "minecraft:carrot"
+    }
+  ],
+  "time": 40,
+  "result": "sinocraft:heroes_assemble",
+  "adust": "sinocraft:adust_food",
+  "container": "sinocraft:dish",
+  "heat": [
+    1,
+    2147483647
+  ]
+}

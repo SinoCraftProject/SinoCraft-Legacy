@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    " PL",
+    "WWW"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "L": {
+      "item": "minecraft:lever"
+    }
+  },
+  "result": {
+    "item": "sinocraft:bellows"
+  }
+}

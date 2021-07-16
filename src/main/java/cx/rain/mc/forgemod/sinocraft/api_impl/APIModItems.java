@@ -114,6 +114,18 @@ public enum APIModItems implements IModItems {
         return ModItems.COOKED_DUMPLING;
     }
     @Override
+    public RegistryObject<? extends Item> getBowlWithRice() {
+        return ModItems.BOWL_WITH_RICE;
+    }
+    @Override
+    public RegistryObject<? extends Item> getBowlWithWater() {
+        return ModItems.BOWL_WITH_WATER;
+    }
+    @Override
+    public RegistryObject<? extends Item> getBowlWithPorridge() {
+        return ModItems.BOWL_WITH_PORRIDGE;
+    }
+    @Override
     public RegistryObject<? extends Item> getBark() {
         return ModItems.BARK;
     }

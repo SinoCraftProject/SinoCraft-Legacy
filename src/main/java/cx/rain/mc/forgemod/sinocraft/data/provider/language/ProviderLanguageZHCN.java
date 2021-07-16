@@ -119,6 +119,9 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.TEA_LEAF, "茶叶");
         addItem(ModItems.TEACUP, "茶杯");
         addItem(ModItems.TEAPOT, "茶壶");
+        addItem(ModItems.BOWL_WITH_RICE, "饭");
+        addItem(ModItems.BOWL_WITH_WATER, "水碗");
+        addItem(ModItems.BOWL_WITH_PORRIDGE, "粥");
     }
 
     private void addBlocks() {
