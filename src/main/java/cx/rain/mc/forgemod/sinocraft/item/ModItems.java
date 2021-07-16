@@ -82,8 +82,6 @@ public class ModItems {
     public static RegistryObject<ItemChineseBrush> CHINESE_BRUSH = REGISTRY.register("chinese_brush", ItemChineseBrush::new);
     public static RegistryObject<Item> INK_STONE = REGISTRY.register("ink_stone", () -> new Item(new Item.Properties().group(ModGroups.MISC)));
 
-    public static RegistryObject<ModSpawnEggItem> BUFFALO_SPAWN_EGG = REGISTRY.register("spawn_egg_buffalo", () -> new ModSpawnEggItem(ModEntities.ENTITY_BUFFALO, 0xae782d, 0xc6c6c6, new Item.Properties().group(ItemGroup.MISC)));
-
     public static RegistryObject<Item> TEA_LEAF = REGISTRY.register("tea_leaf", () -> new Item(new Item.Properties().group(ModGroups.AGRICULTURE)));
     public static RegistryObject<ItemTeacup> TEACUP = REGISTRY.register("teacup", ItemTeacup::new);
     public static RegistryObject<ItemTeapot> TEAPOT = REGISTRY.register("teapot", ItemTeapot::new);

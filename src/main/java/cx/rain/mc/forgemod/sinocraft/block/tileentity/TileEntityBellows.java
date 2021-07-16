@@ -151,19 +151,10 @@ public class TileEntityBellows extends TileEntityUpdatableBase implements IWindE
     }
 
     @Override
-<<<<<<< HEAD
     public CompoundNBT write(CompoundNBT compound) {
         compound.putBoolean("shouldLink", shouldLink);
         if (!shouldLink && linked != null) {
             compound.putInt("linked", linked.getHorizontalIndex());
-=======
-    public void tick() {
-        if (cd > 0)
-            cd --;
-        if (we > 0 && cd <= 0) {
-            we --;
-            cd = 200;
->>>>>>> origin/master
         }
         compound.putInt("we", we);
         compound.putInt("cdLowerTemp", cdLowerTemp);
