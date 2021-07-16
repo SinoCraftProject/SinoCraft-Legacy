@@ -162,6 +162,9 @@ public class ProviderItemModel extends ItemModelProvider {
 
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
+        simpleItem(ModItems.BOWL_WITH_RICE.get());
+        simpleItem(ModItems.BOWL_WITH_WATER.get());
+        simpleItem(ModItems.BOWL_WITH_PORRIDGE.get());
 
         simpleItem(ModItems.TEACUP.get());
     }

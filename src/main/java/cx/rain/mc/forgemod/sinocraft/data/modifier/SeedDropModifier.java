@@ -8,8 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class GrassDropModifier extends LootModifier {
-    public GrassDropModifier(ILootCondition[] conditionsIn, ItemStack stack) {
+public class SeedDropModifier extends LootModifier {
+    public SeedDropModifier(ILootCondition[] conditionsIn, ItemStack stack) {
         super(conditionsIn);
         this.stack = stack;
     }

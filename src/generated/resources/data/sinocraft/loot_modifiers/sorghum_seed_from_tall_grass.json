@@ -18,9 +18,6 @@
       "block": "minecraft:tall_grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:sorghum_seed",
-    "count": 1
-  },
+  "item": "sinocraft:sorghum_seed",
   "type": "sinocraft:seed_drop"
 }

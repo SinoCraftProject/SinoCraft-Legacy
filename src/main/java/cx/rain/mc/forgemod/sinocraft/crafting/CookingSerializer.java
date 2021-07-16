@@ -31,6 +31,9 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         if (json.has("adust")) {
             builder.setAdustOutput(CraftingHelper.deserializeItem(json.get("adust")));
         }
+        if (json.has("container")) {
+            builder.setContainer(CraftingHelper.deserializeItem(json.get("container")));
+        }
         if (json.has("heat")) {
             JsonArray heat = json.getAsJsonArray("heat");
             builder.setHeat(heat.get(0).getAsInt(), heat.get(1).getAsInt());
@@ -56,6 +59,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
 
         return (CookingRecipe) builder.setOutput(buffer.readItemStack())
                 .setAdustOutput(buffer.readItemStack())
+                .setContainer(buffer.readItemStack())
                 .setHeat(buffer.readVarInt(), buffer.readVarInt())
                 .setTime(buffer.readVarInt()).build();
     }
@@ -69,6 +73,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         }
         buffer.writeItemStack(recipe.recipeResult);
         buffer.writeItemStack(recipe.adustResult);
+        buffer.writeItemStack(recipe.container);
         buffer.writeVarInt(recipe.minThermal);
         buffer.writeVarInt(recipe.maxThermal);
         buffer.writeVarInt(recipe.time);
@@ -84,6 +89,7 @@ public class CookingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> 
         json.addProperty("time", recipe.time);
         json.add("result", CraftingHelper.serializeItem(recipe.recipeResult));
         json.add("adust", CraftingHelper.serializeItem(recipe.adustResult));
+        json.add("container", CraftingHelper.serializeItem(recipe.container));
         JsonArray heat = new JsonArray();
         heat.add(recipe.minThermal);
         heat.add(recipe.maxThermal);

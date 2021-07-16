@@ -1,7 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -19,7 +21,7 @@ public interface ITileEntityPot {
     /**
      * Return the output item and remove it from pot.
      */
-    ItemStack extractOutput();
+    ItemStack extractOutput(PlayerEntity player, Hand handIn);
 
     /**
      * Add an input item to the pot, return the item can not insert to the pot.

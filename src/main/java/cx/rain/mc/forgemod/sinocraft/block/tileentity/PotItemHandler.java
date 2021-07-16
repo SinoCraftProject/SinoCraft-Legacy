@@ -9,9 +9,8 @@ class PotItemHandler extends ItemStackHandler {
 
     private final TileEntityPot te;
 
-    // 6 - output
     public PotItemHandler(TileEntityPot te) {
-        super(7);
+        super(6);
         this.te = te;
     }
 

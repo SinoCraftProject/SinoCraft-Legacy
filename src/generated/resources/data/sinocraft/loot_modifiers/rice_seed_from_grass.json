@@ -18,9 +18,6 @@
       "block": "minecraft:grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:rice_seed",
-    "count": 1
-  },
+  "item": "sinocraft:rice_seed",
   "type": "sinocraft:seed_drop"
 }

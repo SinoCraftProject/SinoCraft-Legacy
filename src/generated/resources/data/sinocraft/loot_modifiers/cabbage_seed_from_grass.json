@@ -18,9 +18,6 @@
       "block": "minecraft:grass"
     }
   ],
-  "item": {
-    "id": "sinocraft:cabbage_seed",
-    "count": 1
-  },
+  "item": "sinocraft:cabbage_seed",
   "type": "sinocraft:seed_drop"
 }
