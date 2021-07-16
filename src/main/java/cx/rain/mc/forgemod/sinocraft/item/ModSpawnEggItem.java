@@ -9,7 +9,6 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -23,10 +22,8 @@ public class ModSpawnEggItem extends SpawnEggItem {
     private final EntityRegister.RegistryEntry<?> entity;
 
     public ModSpawnEggItem(EntityRegister.RegistryEntry<?> entity, final int primaryColor, final int secondaryColor) {
-        super(EntityType.PIG, primaryColor, secondaryColor, new Properties().group(ModGroups.MISC));
+        super(ModEntities.EMPTY_ENTITY_TYPE, primaryColor, secondaryColor, new Properties().group(ModGroups.MISC));
         this.entity = entity;
-        assert EntityRegister.EGGS != null;
-        EntityRegister.EGGS.put(EntityType.PIG, (SpawnEggItem) Items.PIG_SPAWN_EGG);
         addDispenserBehavior();
     }
 

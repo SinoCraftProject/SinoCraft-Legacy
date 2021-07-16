@@ -7,7 +7,6 @@ import cx.rain.mc.forgemod.sinocraft.utility.ProtectedHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -17,7 +16,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class EntityRegister {
@@ -36,44 +37,88 @@ public class EntityRegister {
         entityRegister.register(bus);
     }
 
-    public <E extends Entity> RegistryObject<EntityType<E>> register(String name, String en, String zh, int primaryColor, int secondaryColor, Supplier<EntityType.Builder<E>> sup) {
-        RegistryEntry<E> entry = new RegistryEntry<>(en, zh);
-        entries.put(name, entry);
-        entry.typeObject = entityRegister.register(name, () -> {
-            entry.type = sup.get().build(name);
-            if (entry.egg == null) {
-                SinoCraft.getLogger().warn("No egg for " + name);
-            } else {
-                assert EGGS != null;
-                EGGS.put(entry.type, entry.egg);
-            }
-            return entry.type;
-        });
-        entry.eggObject = eggRegister.register("spawn_egg_" + name, () -> entry.egg = new ModSpawnEggItem(entry, primaryColor, secondaryColor));
-        return entry.typeObject;
+    public <E extends Entity> RegistryEntry<E> register(String name) {
+        return new RegistryEntry<>(name);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void registerRenderers() {
         entries.forEach((name, entry) -> net.minecraftforge.fml.client.registry.RenderingRegistry.registerEntityRenderingHandler(entry.type,
                 (net.minecraftforge.fml.client.registry.IRenderFactory<Entity>) manager ->
-                        (net.minecraft.client.renderer.entity.EntityRenderer) new Constructor1(
-                                "cx.rain.mc.forgemod.sinocraft.client.renderer.entity.Renderer" + Character.toUpperCase(name.charAt(0)) + name.substring(1),
-                                net.minecraft.client.renderer.entity.EntityRendererManager.class).apply(manager)));
+                        (net.minecraft.client.renderer.entity.EntityRenderer) new Constructor1(entry.rendererClass, net.minecraft.client.renderer.entity.EntityRendererManager.class)
+                                .apply(manager)));
     }
 
-    public static class RegistryEntry<E extends Entity> {
+    public class RegistryEntry<E extends Entity> {
 
-        public ModSpawnEggItem egg;
-        public RegistryObject<ModSpawnEggItem> eggObject;
+        public String name;
+        public String eggName;
+        public SpawnEggItem egg;
+        public RegistryObject<SpawnEggItem> eggObject;
         public EntityType<E> type;
         public RegistryObject<EntityType<E>> typeObject;
+        public String rendererClass;
 
-        public final String langEn, langZh;
+        public String langEn, langZh;
 
-        public RegistryEntry(String langEn, String langZh) {
-            this.langEn = langEn;
-            this.langZh = langZh;
+        public RegistryEntry(String name) {
+            this.name = name.toLowerCase(Locale.ROOT);
+            String uName = Character.toUpperCase(name.charAt(0)) + name.substring(1);
+            this.langEn = uName;
+            this.langZh = uName;
+            this.rendererClass = "cx.rain.mc.forgemod.sinocraft.client.renderer.entity.Renderer" + uName;
+            this.eggName = "spawn_egg_" + name;
+        }
+
+        public RegistryEntry<E> entity(Supplier<EntityType.Builder<E>> sup) {
+            typeObject = entityRegister.register(name, () -> {
+                this.type = sup.get().build(name);
+                if (this.egg == null) {
+                    SinoCraft.getLogger().warn("No egg for " + name);
+                } else {
+                    assert EGGS != null;
+                    EGGS.put(this.type, this.egg);
+                }
+                return this.type;
+            });
+            return this;
+        }
+
+        public RegistryEntry<E> lang(String en, String zh) {
+            langEn = en;
+            langZh = zh;
+            return this;
+        }
+
+        public RegistryEntry<E> egg(int primaryColor, int secondaryColor) {
+            eggObject = eggRegister.register(eggName, () -> this.egg = new ModSpawnEggItem(this, primaryColor, secondaryColor));
+            return this;
+        }
+
+        public RegistryEntry<E> egg(String eggName, Supplier<SpawnEggItem> sup) {
+            this.eggName = eggName;
+            eggObject = eggRegister.register(eggName, () -> this.egg = sup.get());
+            return this;
+        }
+
+        public RegistryObject<EntityType<E>> getType() {
+            if (eggObject == null) {
+                egg(0xf800f8, 0x000000);
+            }
+            return typeObject;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            RegistryEntry<?> entry = (RegistryEntry<?>) o;
+            return Objects.equals(name, entry.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
         }
     }
 }

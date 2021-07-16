@@ -202,6 +202,7 @@ cfb0f6fd9bb6241378551d09df0b5cd45816e99b assets/sinocraft/models/item/mulberry_l
 ea3ab25e711c25ae2370fef076f9794eb7124844 assets/sinocraft/models/item/mulberry_log_stripped_bark.json
 69c049d978e415d72e2791c2677030d03a450be3 assets/sinocraft/models/item/mulberry_plank.json
 76d003d73788d5b098b2f05bbfad0c9c219e6ff1 assets/sinocraft/models/item/mulberry_sapling.json
+5b0181cc8871d218e2fc5aa1178c12e025c037b2 assets/sinocraft/models/item/paper_drying_rack.json
 d861708ca24506b497d55557d1b8b446a1e7ec4e assets/sinocraft/models/item/peach.json
 587856a51bd63218101e40fd7dd1823eeae66944 assets/sinocraft/models/item/peach_leaves.json
 0e38b3b4d21f84029420ebf73fea4611ff521fa7 assets/sinocraft/models/item/peach_log.json
@@ -226,6 +227,7 @@ ae188ff312b3bedfbfac650cf5dca2a0332901bb assets/sinocraft/models/item/rice.json
 5a7c7e99a23603a2787d49ebbdee43a4eeaa5824 assets/sinocraft/models/item/sorghum_seed.json
 945499b5fdecaf9aadb1889163221ea4e287c058 assets/sinocraft/models/item/soybean.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/sinocraft/models/item/spawn_egg_buffalo.json
+6c948533a2238c986e2d444a46101e4466cd2fe8 assets/sinocraft/models/item/stone_mill.json
 4e4775a23cc32686a85e27d81292ec448a23fe15 assets/sinocraft/models/item/stove.json
 000864dce0c9c8cf6992e67431c2a5bdfbab3150 assets/sinocraft/models/item/stuffing.json
 58f7fc2ac775cc3850296dcdc4f6575bcdfd6602 assets/sinocraft/models/item/summer_radish.json

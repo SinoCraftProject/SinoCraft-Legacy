@@ -20,8 +20,13 @@ import net.minecraftforge.fml.common.Mod;
 public class ModEntities {
     public static final EntityRegister REGISTRY = new EntityRegister(ModItems.REGISTRY);
 
-    public static final RegistryObject<EntityType<EntityBuffalo>> ENTITY_BUFFALO = REGISTRY.register("buffalo", "Buffalo", "水牛", 0xae782d, 0xc6c6c6,
-            () -> EntityType.Builder.create(EntityBuffalo::new, EntityClassification.MISC).size(1.4F, 1.4F));
+    public static final EntityType<?> EMPTY_ENTITY_TYPE = EntityType.Builder.create(EntityClassification.MISC).build("empty");
+
+    public static final RegistryObject<EntityType<EntityBuffalo>> ENTITY_BUFFALO = REGISTRY.<EntityBuffalo>register("buffalo")
+            .entity(() -> EntityType.Builder.create(EntityBuffalo::new, EntityClassification.MISC).size(1.4F, 1.4F))
+            .egg(0xae782d, 0xc6c6c6)
+            .lang("Buffalo", "水牛")
+            .getType();
 
     public static final EntityType<EntityGoal> ENTITY_GOAL = EntityType.Builder//山羊
             .create(EntityGoal::new, EntityClassification.MISC)
