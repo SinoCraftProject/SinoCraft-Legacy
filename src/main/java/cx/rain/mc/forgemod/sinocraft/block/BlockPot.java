@@ -92,22 +92,18 @@ public class BlockPot extends Block {
         if (te instanceof TileEntityPot) {
             ITileEntityPot tileEntity = (ITileEntityPot) te;
             ItemStack holdingStack = player.getHeldItem(handIn);
-            if (!holdingStack.isEmpty()) {
-                player.setHeldItem(handIn, tileEntity.insertInput(holdingStack));
-                return ActionResultType.SUCCESS;
-            } else {
-                if (tileEntity.getOutputs().isEmpty()) {
-                    if (player.isSneaking()) {
-                        player.setHeldItem(handIn, tileEntity.extractInput());
-
-                        return ActionResultType.SUCCESS;
-                    }
-                } else {
-                    player.setHeldItem(handIn, tileEntity.extractOutput());
-
-                    return ActionResultType.SUCCESS;
+            if (tileEntity.getCurrentRecipe() == null && tileEntity.getOutputs() == ItemStack.EMPTY) {
+                if (player.isSneaking() && ! tileEntity.getInputs().isEmpty()) {
+                    player.setHeldItem(handIn, tileEntity.extractInput());
                 }
+                else {
+
+                    player.setHeldItem(handIn, tileEntity.insertInput(holdingStack));
+                }
+            } else {
+                player.setHeldItem(handIn, tileEntity.extractOutput(player, handIn));
             }
+            return ActionResultType.SUCCESS;
         }
 
         return ActionResultType.FAIL;

@@ -35,6 +35,9 @@ public interface IModItems {
     RegistryObject<? extends Item> getStuffing();
     RegistryObject<? extends Item> getDumpling();
     RegistryObject<? extends Item> getCookedDumpling();
+    RegistryObject<? extends Item> getBowlWithRice();
+    RegistryObject<? extends Item> getBowlWithWater();
+    RegistryObject<? extends Item> getBowlWithPorridge();
     RegistryObject<? extends Item> getBark();
     RegistryObject<? extends BucketItem> getBucketWoodPulp();
     RegistryObject<? extends Item> getEmptyXuanPaper();

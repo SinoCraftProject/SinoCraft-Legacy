@@ -102,6 +102,9 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.TEA_LEAF, "Tea Leaf");
         addItem(ModItems.TEACUP, "Teacup");
         addItem(ModItems.TEAPOT, "Teapot");
+        addItem(ModItems.BOWL_WITH_RICE, "Rice");
+        addItem(ModItems.BOWL_WITH_WATER, "Bowl With Water");
+        addItem(ModItems.BOWL_WITH_PORRIDGE, "Porridge");
     }
 
     private void addBlocks() {
@@ -142,6 +145,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlock(ModBlocks.BLACK_MARBLE, "Black Marble");
 
         addBlock(ModBlocks.STOVE, "Stove");
+        addBlock(ModBlocks.POT, "Pot");
         addBlock(ModBlocks.VAT, "Vat");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "Paper Drying Rack");
         addBlock(ModBlocks.STONE_MILL, "Stone Mill");

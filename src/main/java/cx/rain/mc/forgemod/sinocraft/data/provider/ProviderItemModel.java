@@ -162,6 +162,9 @@ public class ProviderItemModel extends ItemModelProvider {
 
         simpleItem(ModItems.DISH.get());
         simpleItem(ModItems.HEROES_ASSEMBLE.get());
+        simpleItem(ModItems.BOWL_WITH_RICE.get());
+        simpleItem(ModItems.BOWL_WITH_WATER.get());
+        simpleItem(ModItems.BOWL_WITH_PORRIDGE.get());
 
         simpleItem(ModItems.TEACUP.get());
     }
@@ -170,6 +173,6 @@ public class ProviderItemModel extends ItemModelProvider {
         simpleBlockItem(ModBlockItems.VAT.get());
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
         simpleBlockItem(ModBlockItems.POT.get());
-        namedBlockItem(ModBlockItems.BELLOWS.get(), "0");
+        namedBlockItem(ModBlockItems.BELLOWS.get(), "bellows0");
     }
 }

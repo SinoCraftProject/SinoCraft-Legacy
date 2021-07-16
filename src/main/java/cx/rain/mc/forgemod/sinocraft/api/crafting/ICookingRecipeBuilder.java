@@ -48,6 +48,11 @@ public interface ICookingRecipeBuilder {
     ICookingRecipeBuilder addInput(Ingredient item, int count);
 
     /**
+     * Set the container for dish
+     */
+    ICookingRecipeBuilder setContainer(ItemStack container);
+
+    /**
      * Build and return the recipe.
      */
     ICookingRecipe build();

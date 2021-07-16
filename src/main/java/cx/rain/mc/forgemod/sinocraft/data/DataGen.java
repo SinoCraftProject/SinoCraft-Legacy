@@ -29,6 +29,8 @@ public class DataGen {
             generator.addProvider(blockTagsProvider);
             generator.addProvider(new ProviderItemTag(generator, helper, blockTagsProvider));
             generator.addProvider(new ProviderBlockLootTable(generator));
+            generator.addProvider(new ProviderLootTable(generator));
+            generator.addProvider(new ProviderGlobalLootModifier(generator));
 
             generator.addProvider(new ProviderLanguageZHCN(generator));
             generator.addProvider(new ProviderLanguageENUS(generator));

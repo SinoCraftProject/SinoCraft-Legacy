@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  S",
+    " Ss",
+    "S s"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:slabs"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "sinocraft:paper_drying_rack"
+  }
+}

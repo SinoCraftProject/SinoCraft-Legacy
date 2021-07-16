@@ -1,0 +1,8 @@
+{
+  "type": "sinocraft:mill",
+  "input": {
+    "item": "sinocraft:millet_seed"
+  },
+  "result": "sinocraft:millet",
+  "time": 20
+}
