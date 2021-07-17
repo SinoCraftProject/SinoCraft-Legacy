@@ -78,9 +78,10 @@ public class ProviderItemModel extends ItemModelProvider {
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
 
-        for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
-            getBuilder(entry.eggName).parent(TEMPLATE_SPAWN_EGG);
-        }
+        ModEntities.REGISTRY.entries.values().stream()
+                .map(EntityRegister.RegistryEntry::getEggName)
+                .map(this::getBuilder)
+                .forEach(builder -> builder.parent(TEMPLATE_SPAWN_EGG));
 
         addTrees();
         addCrops();

@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.property;
+package cx.rain.mc.forgemod.sinocraft.utility;
 
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;

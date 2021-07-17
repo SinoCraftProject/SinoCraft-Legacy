@@ -6,6 +6,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
+/**
+ * Constructor with one parameter.
+ */
 public class Constructor1<PARAM, OBJ> implements Function<PARAM, OBJ> {
 
     Constructor<? extends OBJ> constructor;

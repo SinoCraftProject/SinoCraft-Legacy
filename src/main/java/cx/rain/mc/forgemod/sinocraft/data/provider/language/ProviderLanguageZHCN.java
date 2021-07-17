@@ -178,7 +178,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     private void addEntities() {
         add(ModSpawnEggItem.TRANSLATION_KEY, "%s刷怪蛋");
         for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
-            addEntityType(entry.typeObject, entry.langZh);
+            addEntityType(entry.getTypeObj(), entry.langZh);
         }
     }
 

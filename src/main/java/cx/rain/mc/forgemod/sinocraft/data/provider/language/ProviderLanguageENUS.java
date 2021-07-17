@@ -159,7 +159,7 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     private void addEntities() {
         add(ModSpawnEggItem.TRANSLATION_KEY, "%s Spawn Egg");
         for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
-            addEntityType(entry.typeObject, entry.langEn);
+            addEntityType(entry.getTypeObj(), entry.langEn);
         }
     }
 

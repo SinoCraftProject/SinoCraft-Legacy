@@ -51,13 +51,13 @@ public class EntityRegister {
 
     public class RegistryEntry<E extends Entity> {
 
-        public String name;
-        public String eggName;
-        public SpawnEggItem egg;
-        public RegistryObject<SpawnEggItem> eggObject;
-        public EntityType<E> type;
-        public RegistryObject<EntityType<E>> typeObject;
-        public String rendererClass;
+        String name;
+        String eggName;
+        SpawnEggItem egg;
+        RegistryObject<SpawnEggItem> eggObject;
+        EntityType<E> type;
+        RegistryObject<EntityType<E>> typeObject;
+        String rendererClass;
 
         public String langEn, langZh;
 
@@ -95,17 +95,47 @@ public class EntityRegister {
             return this;
         }
 
-        public RegistryEntry<E> egg(String eggName, Supplier<SpawnEggItem> sup) {
+        public RegistryEntry<E> egg(String eggName, int primaryColor, int secondaryColor) {
             this.eggName = eggName;
+            return egg(primaryColor, secondaryColor);
+        }
+
+        public RegistryEntry<E> egg(Supplier<SpawnEggItem> sup) {
             eggObject = eggRegister.register(eggName, () -> this.egg = sup.get());
             return this;
         }
 
-        public RegistryObject<EntityType<E>> getType() {
+        public RegistryEntry<E> egg(String eggName, Supplier<SpawnEggItem> sup) {
+            this.eggName = eggName;
+            return egg(sup);
+        }
+
+        public RegistryEntry<E> renderer(String rendererClass) {
+            this.rendererClass = rendererClass;
+            return this;
+        }
+
+        public RegistryObject<EntityType<E>> getTypeObj() {
             if (eggObject == null) {
                 egg(0xf800f8, 0x000000);
             }
             return typeObject;
+        }
+
+        public EntityType<E> getType() {
+            return type;
+        }
+
+        public RegistryObject<SpawnEggItem> getEggObj() {
+            return eggObject;
+        }
+
+        public SpawnEggItem getEgg() {
+            return egg;
+        }
+
+        public String getEggName() {
+            return eggName;
         }
 
         @Override

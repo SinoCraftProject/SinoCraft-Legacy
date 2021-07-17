@@ -46,10 +46,10 @@ public class ModSpawnEggItem extends SpawnEggItem {
 
     @Override
     public ITextComponent getName() {
-        if (entity.type == null) {
+        if (entity.getType() == null) {
             return new TranslationTextComponent(TRANSLATION_KEY, "???");
         } else {
-            return new TranslationTextComponent(TRANSLATION_KEY, entity.type.getName());
+            return new TranslationTextComponent(TRANSLATION_KEY, entity.getType().getName());
         }
     }
 
@@ -63,10 +63,10 @@ public class ModSpawnEggItem extends SpawnEggItem {
         if (nbt != null && nbt.contains("EntityTag", 10)) {
             CompoundNBT compoundnbt = nbt.getCompound("EntityTag");
             if (compoundnbt.contains("id", 8)) {
-                return EntityType.byKey(compoundnbt.getString("id")).orElse(entity.type);
+                return EntityType.byKey(compoundnbt.getString("id")).orElse(entity.getType());
             }
         }
 
-        return entity.type;
+        return entity.getType();
     }
 }

@@ -26,7 +26,7 @@ public class ModEntities {
             .entity(() -> EntityType.Builder.create(EntityBuffalo::new, EntityClassification.MISC).size(1.4F, 1.4F))
             .egg(0xae782d, 0xc6c6c6)
             .lang("Buffalo", "水牛")
-            .getType();
+            .getTypeObj();
 
     public static final EntityType<EntityGoal> ENTITY_GOAL = EntityType.Builder//山羊
             .create(EntityGoal::new, EntityClassification.MISC)

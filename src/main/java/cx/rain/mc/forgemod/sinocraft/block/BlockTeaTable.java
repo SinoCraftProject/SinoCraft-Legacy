@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableElement;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityTeaTable;
-import cx.rain.mc.forgemod.sinocraft.utility.property.CollectionHelper;
+import cx.rain.mc.forgemod.sinocraft.utility.CollectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
