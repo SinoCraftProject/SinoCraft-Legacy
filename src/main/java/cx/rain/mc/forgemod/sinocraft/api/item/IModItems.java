@@ -4,7 +4,6 @@ import cx.rain.mc.forgemod.sinocraft.api.table.BaseTableItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -50,7 +49,6 @@ public interface IModItems {
     RegistryObject<? extends SwordItem> getKnifeDiamond();
     RegistryObject<? extends Item> getChineseBrush();
     RegistryObject<? extends Item> getInkStone();
-    RegistryObject<? extends SpawnEggItem> getBuffaloSpawnEgg();
     RegistryObject<? extends Item> getTeaLeaf();
     RegistryObject<? extends BaseTableItem> getTeacup();
     RegistryObject<? extends BaseTableItem> getTeapot();

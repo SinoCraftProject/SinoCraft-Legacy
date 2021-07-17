@@ -3,9 +3,11 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
+import cx.rain.mc.forgemod.sinocraft.entity.EntityRegister;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.item.ModSpawnEggItem;
 import net.minecraft.data.DataGenerator;
 
 public class ProviderLanguageZHCN extends ProviderLanguage {
@@ -174,7 +176,10 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
     }
 
     private void addEntities() {
-        addEntityType(ModEntities.ENTITY_BUFFALO, "水牛");
+        add(ModSpawnEggItem.TRANSLATION_KEY, "%s刷怪蛋");
+        for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
+            addEntityType(entry.getTypeObj(), entry.langZh);
+        }
     }
 
     private void addGui() {

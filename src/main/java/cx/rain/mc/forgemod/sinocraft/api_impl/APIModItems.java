@@ -6,7 +6,6 @@ import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -173,10 +172,6 @@ public enum APIModItems implements IModItems {
     @Override
     public RegistryObject<? extends Item> getInkStone() {
         return ModItems.INK_STONE;
-    }
-    @Override
-    public RegistryObject<? extends SpawnEggItem> getBuffaloSpawnEgg() {
-        return ModItems.BUFFALO_SPAWN_EGG;
     }
     @Override
     public RegistryObject<? extends Item> getTeaLeaf() {

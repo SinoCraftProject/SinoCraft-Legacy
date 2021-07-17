@@ -2,6 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
+import cx.rain.mc.forgemod.sinocraft.entity.EntityRegister;
+import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -76,7 +78,10 @@ public class ProviderItemModel extends ItemModelProvider {
                         DynamicBucketModelBuilder.begin(itemModelBuilder, existingFileHelper).fluid(ModFluids.WOOD_PULP.get()))
                 .end();
 
-        getBuilder("spawn_egg_buffalo").parent(TEMPLATE_SPAWN_EGG);
+        ModEntities.REGISTRY.entries.values().stream()
+                .map(EntityRegister.RegistryEntry::getEggName)
+                .map(this::getBuilder)
+                .forEach(builder -> builder.parent(TEMPLATE_SPAWN_EGG));
 
         addTrees();
         addCrops();
@@ -171,8 +176,10 @@ public class ProviderItemModel extends ItemModelProvider {
 
     private void addMachineBlockItems() {
         simpleBlockItem(ModBlockItems.VAT.get());
+        namedBlockItem(ModBlockItems.STONE_MILL.get(), "stone_mill1");
         namedBlockItem(ModBlockItems.STOVE.get(), "stove_off");
         simpleBlockItem(ModBlockItems.POT.get());
         namedBlockItem(ModBlockItems.BELLOWS.get(), "bellows0");
+        namedBlockItem(ModBlockItems.PAPER_DRYING_RACK.get(), "paper_drying_rack0");
     }
 }
