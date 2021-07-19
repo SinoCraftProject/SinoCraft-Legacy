@@ -38,7 +38,9 @@ public class EntityRegister {
     }
 
     public <E extends Entity> RegistryEntry<E> register(String name) {
-        return new RegistryEntry<>(name);
+        RegistryEntry<E> entry = new RegistryEntry<>(name);
+        entries.put(name, entry);
+        return entry;
     }
 
     @OnlyIn(Dist.CLIENT)
