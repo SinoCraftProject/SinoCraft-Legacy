@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "sinocraft:block/mulberry_log_side"
+      "model": "sinocraft:block/mulberry_log_bark"
     }
   }
 }

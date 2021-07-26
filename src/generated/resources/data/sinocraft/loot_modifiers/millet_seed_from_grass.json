@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.01
+    },
+    {
+      "condition": "minecraft:inverted",
+      "term": {
+        "condition": "minecraft:match_tool",
+        "predicate": {
+          "item": "minecraft:shears"
+        }
+      }
+    },
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:grass"
+    }
+  ],
+  "item": "sinocraft:millet_seed",
+  "type": "sinocraft:seed_drop"
+}

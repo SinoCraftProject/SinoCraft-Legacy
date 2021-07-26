@@ -22,10 +22,10 @@ import java.util.Random;
 public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
-    private LogType type = null;
-    private RegistryObject<Item> fruit = null;
+    private LogType type;
+    private RegistryObject<? extends Item> fruit;
 
-    public BlockLeavesGrowable(LogType typeIn, RegistryObject<Item> fruitRegistryIn) {
+    public BlockLeavesGrowable(LogType typeIn, RegistryObject<? extends Item> fruitRegistryIn) {
         super(typeIn);
         type = typeIn;
         fruit = fruitRegistryIn;
@@ -104,6 +104,6 @@ public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
             setMature(world, pos, state, false);
             return ActionResultType.SUCCESS;
         }
-        return ActionResultType.PASS;
+        return ActionResultType.FAIL;
     }
 }

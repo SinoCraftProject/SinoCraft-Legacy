@@ -1,0 +1,8 @@
+{
+  "type": "sinocraft:mill",
+  "input": {
+    "item": "minecraft:wheat"
+  },
+  "result": "sinocraft:flour",
+  "time": 20
+}

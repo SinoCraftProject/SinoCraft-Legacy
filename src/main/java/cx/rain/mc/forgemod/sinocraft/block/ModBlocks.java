@@ -1,15 +1,13 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-
 import cx.rain.mc.forgemod.sinocraft.block.base.*;
+import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogState;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogType;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.MarbleType;
 import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
-import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
-import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreeMulberry;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePeach;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePlum;
@@ -26,60 +24,67 @@ public class ModBlocks {
     public static final DeferredRegister<Block> REGISTRY =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SinoCraft.MODID);
 
-    public static RegistryObject<Block> WHITE_RADISH_PLANT = REGISTRY.register("white_radish_plant", () -> new BlockPlant(PlantType.WHITE_RADISH, ModBlockItems.WHITE_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<Block> SUMMER_RADISH_PLANT = REGISTRY.register("summer_radish_plant", () -> new BlockPlant(PlantType.SUMMER_RADISH, ModBlockItems.SUMMER_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<Block> GREEN_RADISH_PLANT = REGISTRY.register("green_radish_plant", () -> new BlockPlant(PlantType.GREEN_RADISH, ModBlockItems.GREEN_RADISH, StageProperty.STAGE_0_3));
-    public static RegistryObject<Block> CHILI_PEPPER_PLANT = REGISTRY.register("chili_pepper_plant", () -> new BlockPlant(PlantType.CHILI_PEPPER, ModItems.CHILI_PEPPER_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<Block> GREEN_PEPPER_PLANT = REGISTRY.register("green_pepper_plant", () -> new BlockPlant(PlantType.GREEN_PEPPER, ModItems.GREEN_PEPPER_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<Block> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> new BlockPlant(PlantType.CABBAGE, ModItems.EGGPLANT_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<Block> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> new BlockPlant(PlantType.CABBAGE, ModItems.CABBAGE_SEED, StageProperty.STAGE_0_3));
-    public static RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant", () -> new BlockPlant(PlantType.RICE, ModItems.RICE_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<Block> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new BlockPlant(PlantType.MILLET, ModItems.MILLET_SEED, StageProperty.STAGE_0_7));
-    public static RegistryObject<Block> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new BlockPlant(PlantType.SOYBEAN, ModItems.SOYBEAN, StageProperty.STAGE_0_3));
-    public static RegistryObject<Block> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new BlockPlant(PlantType.SORGHUM, ModItems.SORGHUM_SEED, StageProperty.STAGE_0_3));
+    public static RegistryObject<BlockPlant> WHITE_RADISH_PLANT = REGISTRY.register("white_radish_plant", () -> BlockPlant.create(PlantType.WHITE_RADISH));
+    public static RegistryObject<BlockPlant> SUMMER_RADISH_PLANT = REGISTRY.register("summer_radish_plant", () -> BlockPlant.create(PlantType.SUMMER_RADISH));
+    public static RegistryObject<BlockPlant> GREEN_RADISH_PLANT = REGISTRY.register("green_radish_plant", () -> BlockPlant.create(PlantType.GREEN_RADISH));
+    public static RegistryObject<BlockPlant> CHILI_PEPPER_PLANT = REGISTRY.register("chili_pepper_plant", () -> BlockPlant.create(PlantType.CHILI_PEPPER));
+    public static RegistryObject<BlockPlant> GREEN_PEPPER_PLANT = REGISTRY.register("green_pepper_plant", () -> BlockPlant.create(PlantType.GREEN_PEPPER));
+    public static RegistryObject<BlockPlant> EGGPLANT_PLANT = REGISTRY.register("eggplant_plant", () -> BlockPlant.create(PlantType.EGGPLANT));
+    public static RegistryObject<BlockPlant> CABBAGE_PLANT = REGISTRY.register("cabbage_plant", () -> BlockPlant.create(PlantType.CABBAGE));
+    public static RegistryObject<BlockPlant> RICE_PLANT = REGISTRY.register("rice_plant", () -> BlockPlant.create(PlantType.RICE));
+    public static RegistryObject<BlockPlant> MILLET_PLANT = REGISTRY.register("millet_plant", () -> BlockPlant.create(PlantType.MILLET));
+    public static RegistryObject<BlockPlant> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> BlockPlant.create(PlantType.SOYBEAN));
+    public static RegistryObject<BlockPlant> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> BlockPlant.create(PlantType.SORGHUM));
 
-    public static RegistryObject<Block> PEACH_LOG = REGISTRY.register("peach_log", () -> new BlockLog(LogType.PEACH, LogState.LOG));
-    public static RegistryObject<Block> PEACH_LOG_BARK = REGISTRY.register("peach_log_bark", () -> new BlockLog(LogType.PEACH, LogState.LOG_BARK));
-    public static RegistryObject<Block> PEACH_LOG_STRIPPED = REGISTRY.register("peach_log_stripped", () -> new BlockLog(LogType.PEACH, LogState.LOG_STRIPPED));
-    public static RegistryObject<Block> PEACH_LOG_STRIPPED_BARK = REGISTRY.register("peach_log_stripped_bark", () -> new BlockLog(LogType.PEACH, LogState.LOG_STRIPPED_BARK));
-    public static RegistryObject<Block> PEACH_PLANK = REGISTRY.register("peach_plank", () -> new BlockPlank(LogType.PEACH));
-    public static RegistryObject<Block> PEACH_LEAVES = REGISTRY.register("peach_leaves", () -> new BlockLeavesGrowable(LogType.PEACH, ModItems.PEACH));
-    public static RegistryObject<Block> PEACH_SAPLING = REGISTRY.register("peach_sapling", () -> new BlockSapling(LogType.PEACH, new TreePeach()));
+    public static RegistryObject<BlockLog> PEACH_LOG = REGISTRY.register("peach_log", () -> new BlockLog(LogType.PEACH, LogState.LOG));
+    public static RegistryObject<BlockLog> PEACH_LOG_BARK = REGISTRY.register("peach_log_bark", () -> new BlockLog(LogType.PEACH, LogState.LOG_BARK));
+    public static RegistryObject<BlockLog> PEACH_LOG_STRIPPED = REGISTRY.register("peach_log_stripped", () -> new BlockLog(LogType.PEACH, LogState.LOG_STRIPPED));
+    public static RegistryObject<BlockLog> PEACH_LOG_STRIPPED_BARK = REGISTRY.register("peach_log_stripped_bark", () -> new BlockLog(LogType.PEACH, LogState.LOG_STRIPPED_BARK));
+    public static RegistryObject<BlockPlank> PEACH_PLANK = REGISTRY.register("peach_plank", () -> new BlockPlank(LogType.PEACH));
+    public static RegistryObject<BlockLeavesGrowable> PEACH_LEAVES = REGISTRY.register("peach_leaves", () -> new BlockLeavesGrowable(LogType.PEACH, ModItems.PEACH));
+    public static RegistryObject<BlockSapling> PEACH_SAPLING = REGISTRY.register("peach_sapling", () -> new BlockSapling(LogType.PEACH, new TreePeach()));
 
-    public static RegistryObject<Block> WALNUT_LOG = REGISTRY.register("walnut_log", () -> new BlockLog(LogType.WALNUT, LogState.LOG));
-    public static RegistryObject<Block> WALNUT_LOG_BARK = REGISTRY.register("walnut_log_bark", () -> new BlockLog(LogType.WALNUT, LogState.LOG_BARK));
-    public static RegistryObject<Block> WALNUT_LOG_STRIPPED = REGISTRY.register("walnut_log_stripped", () -> new BlockLog(LogType.WALNUT, LogState.LOG_STRIPPED));
-    public static RegistryObject<Block> WALNUT_LOG_STRIPPED_BARK = REGISTRY.register("walnut_log_stripped_bark", () -> new BlockLog(LogType.WALNUT, LogState.LOG_STRIPPED_BARK));
-    public static RegistryObject<Block> WALNUT_PLANK = REGISTRY.register("walnut_plank", () -> new BlockPlank(LogType.WALNUT));
-    public static RegistryObject<Block> WALNUT_LEAVES = REGISTRY.register("walnut_leaves", () -> new BlockLeaves(LogType.WALNUT));
-    public static RegistryObject<Block> WALNUT_SAPLING = REGISTRY.register("walnut_sapling", () -> new BlockSapling(LogType.WALNUT, new TreeWalnut()));
+    public static RegistryObject<BlockLog> WALNUT_LOG = REGISTRY.register("walnut_log", () -> new BlockLog(LogType.WALNUT, LogState.LOG));
+    public static RegistryObject<BlockLog> WALNUT_LOG_BARK = REGISTRY.register("walnut_log_bark", () -> new BlockLog(LogType.WALNUT, LogState.LOG_BARK));
+    public static RegistryObject<BlockLog> WALNUT_LOG_STRIPPED = REGISTRY.register("walnut_log_stripped", () -> new BlockLog(LogType.WALNUT, LogState.LOG_STRIPPED));
+    public static RegistryObject<BlockLog> WALNUT_LOG_STRIPPED_BARK = REGISTRY.register("walnut_log_stripped_bark", () -> new BlockLog(LogType.WALNUT, LogState.LOG_STRIPPED_BARK));
+    public static RegistryObject<BlockPlank> WALNUT_PLANK = REGISTRY.register("walnut_plank", () -> new BlockPlank(LogType.WALNUT));
+    public static RegistryObject<BlockLeaves> WALNUT_LEAVES = REGISTRY.register("walnut_leaves", () -> new BlockLeaves(LogType.WALNUT));
+    public static RegistryObject<BlockSapling> WALNUT_SAPLING = REGISTRY.register("walnut_sapling", () -> new BlockSapling(LogType.WALNUT, new TreeWalnut()));
 
-    public static RegistryObject<Block> PLUM_LOG = REGISTRY.register("plum_log", () -> new BlockLog(LogType.PLUM, LogState.LOG));
-    public static RegistryObject<Block> PLUM_LOG_BARK = REGISTRY.register("plum_log_bark", () -> new BlockLog(LogType.PLUM, LogState.LOG_BARK));
-    public static RegistryObject<Block> PLUM_LOG_STRIPPED = REGISTRY.register("plum_log_stripped", () -> new BlockLog(LogType.PLUM, LogState.LOG_STRIPPED));
-    public static RegistryObject<Block> PLUM_LOG_STRIPPED_BARK = REGISTRY.register("plum_log_stripped_bark", () -> new BlockLog(LogType.PLUM, LogState.LOG_STRIPPED_BARK));
-    public static RegistryObject<Block> PLUM_PLANK = REGISTRY.register("plum_plank", () -> new BlockPlank(LogType.PLUM));
-    public static RegistryObject<Block> PLUM_LEAVES = REGISTRY.register("plum_leaves", () -> new BlockLeaves(LogType.PLUM));
-    public static RegistryObject<Block> PLUM_SAPLING = REGISTRY.register("plum_sapling", () -> new BlockSapling(LogType.PLUM, new TreePlum()));
+    public static RegistryObject<BlockLog> PLUM_LOG = REGISTRY.register("plum_log", () -> new BlockLog(LogType.PLUM, LogState.LOG));
+    public static RegistryObject<BlockLog> PLUM_LOG_BARK = REGISTRY.register("plum_log_bark", () -> new BlockLog(LogType.PLUM, LogState.LOG_BARK));
+    public static RegistryObject<BlockLog> PLUM_LOG_STRIPPED = REGISTRY.register("plum_log_stripped", () -> new BlockLog(LogType.PLUM, LogState.LOG_STRIPPED));
+    public static RegistryObject<BlockLog> PLUM_LOG_STRIPPED_BARK = REGISTRY.register("plum_log_stripped_bark", () -> new BlockLog(LogType.PLUM, LogState.LOG_STRIPPED_BARK));
+    public static RegistryObject<BlockPlank> PLUM_PLANK = REGISTRY.register("plum_plank", () -> new BlockPlank(LogType.PLUM));
+    public static RegistryObject<BlockLeaves> PLUM_LEAVES = REGISTRY.register("plum_leaves", () -> new BlockLeaves(LogType.PLUM));
+    public static RegistryObject<BlockSapling> PLUM_SAPLING = REGISTRY.register("plum_sapling", () -> new BlockSapling(LogType.PLUM, new TreePlum()));
 
-    public static RegistryObject<Block> MULBERRY_LOG = REGISTRY.register("mulberry_log", () -> new BlockLog(LogType.MULBERRY, LogState.LOG));
-    public static RegistryObject<Block> MULBERRY_LOG_BARK = REGISTRY.register("mulberry_log_bark", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_BARK));
-    public static RegistryObject<Block> MULBERRY_LOG_STRIPPED = REGISTRY.register("mulberry_log_stripped", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_STRIPPED));
-    public static RegistryObject<Block> MULBERRY_LOG_STRIPPED_BARK = REGISTRY.register("mulberry_log_stripped_bark", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_STRIPPED_BARK));
-    public static RegistryObject<Block> MULBERRY_PLANK = REGISTRY.register("mulberry_plank", () -> new BlockPlank(LogType.MULBERRY));
-    public static RegistryObject<Block> MULBERRY_LEAVES = REGISTRY.register("mulberry_leaves", () -> new BlockLeaves(LogType.MULBERRY));
-    public static RegistryObject<Block> MULBERRY_SAPLING = REGISTRY.register("mulberry_sapling", () -> new BlockSapling(LogType.MULBERRY, new TreeMulberry()));
+    public static RegistryObject<BlockLog> MULBERRY_LOG = REGISTRY.register("mulberry_log", () -> new BlockLog(LogType.MULBERRY, LogState.LOG));
+    public static RegistryObject<BlockLog> MULBERRY_LOG_BARK = REGISTRY.register("mulberry_log_bark", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_BARK));
+    public static RegistryObject<BlockLog> MULBERRY_LOG_STRIPPED = REGISTRY.register("mulberry_log_stripped", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_STRIPPED));
+    public static RegistryObject<BlockLog> MULBERRY_LOG_STRIPPED_BARK = REGISTRY.register("mulberry_log_stripped_bark", () -> new BlockLog(LogType.MULBERRY, LogState.LOG_STRIPPED_BARK));
+    public static RegistryObject<BlockPlank> MULBERRY_PLANK = REGISTRY.register("mulberry_plank", () -> new BlockPlank(LogType.MULBERRY));
+    public static RegistryObject<BlockLeaves> MULBERRY_LEAVES = REGISTRY.register("mulberry_leaves", () -> new BlockLeaves(LogType.MULBERRY));
+    public static RegistryObject<BlockSapling> MULBERRY_SAPLING = REGISTRY.register("mulberry_sapling", () -> new BlockSapling(LogType.MULBERRY, new TreeMulberry()));
 
-    public static RegistryObject<Block> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockMarble(MarbleType.WHITE));
-    public static RegistryObject<Block> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));
-    public static RegistryObject<Block> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockMarble(MarbleType.BLACK));
+    public static RegistryObject<BlockMarble> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockMarble(MarbleType.WHITE));
+    public static RegistryObject<BlockMarble> RED_MARBLE = REGISTRY.register("red_marble", () -> new BlockMarble(MarbleType.RED));
+    public static RegistryObject<BlockMarble> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockMarble(MarbleType.BLACK));
 
-    public static RegistryObject<Block> STOVE = REGISTRY.register("stove", () -> new BlockStove(1));
-    public static RegistryObject<Block> VAT = REGISTRY.register("vat", BlockVat::new);
-    public static RegistryObject<Block> STONE_MILL = REGISTRY.register("stone_mill", BlockStoneMill::new);
-    public static RegistryObject<Block> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
+    public static RegistryObject<BlockStove> STOVE = REGISTRY.register("stove", BlockStove::new);
+    public static RegistryObject<BlockVat> VAT = REGISTRY.register("vat", BlockVat::new);
+    public static RegistryObject<BlockStoneMill> STONE_MILL = REGISTRY.register("stone_mill", BlockStoneMill::new);
+    public static RegistryObject<BlockPaperDryingRack> PAPER_DRYING_RACK = REGISTRY.register("paper_drying_rack", BlockPaperDryingRack::new);
+    public static RegistryObject<BlockPot> POT = REGISTRY.register("pot", BlockPot::new);
+    public static RegistryObject<BlockBellows> BELLOWS = REGISTRY.register("bellows", BlockBellows::new);
 
-    public static RegistryObject<Block> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
+    public static RegistryObject<FlowingFluidBlock> WOOD_PULP_BLOCK = REGISTRY.register("wood_pulp_block",()-> new FlowingFluidBlock(()-> ModFluids.WOOD_PULP.get(), Block.Properties.create(Material.WATER)));
+
+    // Use for render
+    public static RegistryObject<BlockTeaTable> TEA_TABLE = REGISTRY.register("tea_table", BlockTeaTable::new);
+    public static RegistryObject<BlockTeacup> TEACUP = REGISTRY.register("teacup", BlockTeacup::new);
+    public static RegistryObject<BlockTeapot> TEAPOT = REGISTRY.register("teapot", BlockTeapot::new);
 
     public ModBlocks(IEventBus bus) {
         SinoCraft.getLogger().info("Registering blocks.");

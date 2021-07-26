@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "sinocraft:block/peach_log_side"
+      "model": "sinocraft:block/peach_log_bark"
     }
   }
 }

@@ -1,14 +1,15 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sinocraft:model/blocks/paper_drying_rack_column",
-		"2": "sinocraft:model/blocks/paper_drying_rack_board1",
-		"particle": "sinocraft:model/blocks/paper_drying_rack_board1"
+		"1": "sinocraft:block/paper_drying_rack_column",
+		"2": "sinocraft:block/paper_drying_rack_board1",
+		"particle": "sinocraft:block/paper_drying_rack_board1"
 	},
 	"elements": [
 		{
-			"from": [13, 0, 13],
-			"to": [15, 14, 15],
+			"from": [14, 0, 13],
+			"to": [16, 14, 15],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [0, 1, 13]},
 			"faces": {
 				"north": {"uv": [0, 0, 2, 14], "texture": "#1"},
 				"east": {"uv": [0, 0, 2, 14], "texture": "#1"},
@@ -19,8 +20,9 @@
 			}
 		},
 		{
-			"from": [1, 0, 13],
-			"to": [3, 14, 15],
+			"from": [0, 0, 13],
+			"to": [2, 14, 15],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [0, 1, 13]},
 			"faces": {
 				"north": {"uv": [0, 0, 2, 14], "texture": "#1"},
 				"east": {"uv": [0, 0, 2, 14], "texture": "#1"},

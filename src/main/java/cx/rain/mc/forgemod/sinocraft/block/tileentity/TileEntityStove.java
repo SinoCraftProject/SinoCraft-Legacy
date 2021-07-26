@@ -1,135 +1,145 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.base.TileEntityMachineBase;
-import cx.rain.mc.forgemod.sinocraft.api.capability.FuelStackHandler;
-import cx.rain.mc.forgemod.sinocraft.api.interfaces.IThermal;
+import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStove;
+import cx.rain.mc.forgemod.sinocraft.api.block.IWindEnergyReceiver;
+import cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityHeat;
+import cx.rain.mc.forgemod.sinocraft.api.capability.IWindEnergy;
+import cx.rain.mc.forgemod.sinocraft.capability.Heat;
 import cx.rain.mc.forgemod.sinocraft.block.BlockStove;
-import cx.rain.mc.forgemod.sinocraft.capability.ModCapabilities;
+import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.common.ForgeHooks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static cx.rain.mc.forgemod.sinocraft.block.BlockStove.BURNING;
 
-public class TileEntityStove extends TileEntityMachineBase implements IThermal {
-    private int thermal = 0;
-    private int burn_cd = 0;
-    private int level;
+public class TileEntityStove extends TileEntity implements ITickableTileEntity, ITileEntityStove, IWindEnergyReceiver {
 
-    private FuelStackHandler fuelHandler = new FuelStackHandler(1){
+    private int burnTime = 0;
+    private int burnSpeed = 1;
+    private int cooldown = 0;
+    private final Heat heat = new Heat() {
         @Override
-        protected void onContentsChanged(int slot) {
+        public void onHeatChanged() {
             markDirty();
         }
     };
 
     public TileEntityStove() {
         super(ModTileEntities.STOVE.get());
-        level = 1;
-    }
-
-
-    public TileEntityStove(int level) {
-        super(ModTileEntities.STOVE.get());
-        this.level = level;
-    }
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ModCapabilities.THERMAL_CAPABILITY) {
-            return LazyOptional.of(() -> this).cast();
-        }
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side == Direction.NORTH) {
-            return LazyOptional.of(() -> fuelHandler).cast();
-        }
-        return super.getCapability(cap, side);
     }
 
     @Override
     public void tick() {
-        if (this.world.isRemote)
-            return;
-        if (thermal == 0 && this.state != MachineState.CLOSE) {
-            this.state = MachineState.CLOSE;
-            this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
-            markDirty();
-        }
-        if (thermal > 0 && this.state != MachineState.WORKING) {
-            this.state = MachineState.WORKING;
-            this.world.setBlockState(this.pos ,this.getBlockState().with(BlockStove.STATE, state));
-            markDirty();
-        }
-        if (thermal > 0) {
-            thermal -= 5;
-            markDirty();
-        }
-        if (burn_cd > 0) {
-            burn_cd --;
-            markDirty();
-        }
-        else if (fuelHandler.getStackInSlot(0).getCount() > 0 && fuelHandler.getStackInSlot(0) != ItemStack.EMPTY) {
-            thermal += ForgeHooks.getBurnTime(fuelHandler.getStackInSlot(0));
-            burn_cd = thermal / (level * 10);
-            fuelHandler.extractItem(0, 1, false);
+        if (world != null && !world.isRemote) {
+            if (! isBurning() && world.getBlockState(pos).get(BURNING))
+                    world.setBlockState(pos, world.getBlockState(pos).with(BURNING, false));
+            if (isBurning() && ! world.getBlockState(pos).get(BURNING))
+                world.setBlockState(pos, world.getBlockState(pos).with(BURNING, true));
+            if (isBurning()) {
+                burn();
+            } else if (cooldown > 0) {
+                cooldown--;
+            } else {
+                heat.subHeat(1);
+                cooldown = 20;
+            }
             markDirty();
         }
     }
 
+    @Override
+    public int receiveWindEnergy(Direction direction, int energy) {
+        if (isBurning()) {
+            burnSpeed += energy;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean canSupportWindEnergyProvider(Direction direction, IWindEnergy energy) {
+        Direction facing = getBlockState().get(BlockStove.HORIZONTAL_FACING);
+        return direction == facing.rotateY() || direction == facing.rotateYCCW();
+    }
+
+    private void burn() {
+        assert world != null;
+        if (isBurning()) {
+            burnTime = Math.max(0, burnTime - burnSpeed);
+        }
+        if (burnSpeed > 1) {
+            int burn = burnSpeed / 10;
+            this.heat.addHeat(burn);
+            burnSpeed -= burn;
+        } else {
+            this.heat.addHeat(1);
+        }
+
+        BlockPos up = getPos().offset(Direction.UP, 1);
+        TileEntity tile = world.getTileEntity(up);
+        CapabilityHelper.getHeat(tile).setHeat(this.heat.getHeat());
+    }
+
+    @Override
+    public int getBurnTime() {
+        return burnTime;
+    }
+
+    @Override
+    public void setBurnTime(int time) {
+        burnTime = time;
+    }
+
+    @Override
+    public void addBurnTime(int time) {
+        burnTime += time;
+    }
+
+    @Override
+    public void subBurnTime(int time) {
+        burnTime -= time;
+    }
+
+    @Override
+    public boolean isBurning() {
+        return burnTime > 0;
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+        burnTime = nbt.getInt("burnTime");
+        if (nbt.contains("burnSpeed", Constants.NBT.TAG_INT)) {
+            burnSpeed = nbt.getInt("burnSpeed");
+        }
+        cooldown = nbt.getInt("cooldown");
+        heat.setHeat(nbt.getInt("heat"));
+    }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-        compound.putInt("thermal", thermal);
-        compound.putInt("burn_cd", burn_cd);
-        compound.put("fuel", fuelHandler.serializeNBT());
-        return super.write(compound);
+        compound = super.write(compound);
+        compound.putInt("burnTime", burnTime);
+        compound.putInt("burnSpeed", burnSpeed);
+        compound.putInt("cooldown", cooldown);
+        compound.putInt("heat", heat.getHeat());
+        return compound;
     }
 
+    @NotNull
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        thermal = compound.getInt("thermal");
-        burn_cd = compound.getInt("burn_cd");
-        fuelHandler.deserializeNBT(compound.getCompound("fuel"));
-        super.read(state, compound);
-    }
-
-    @Override
-    public NonNullList<ItemStack> getDropsItem(NonNullList<ItemStack> list) {
-        list.add(fuelHandler.getStackInSlot(0));
-        return list;
-    }
-
-    @Override
-    public int getThermal() {
-        return thermal;
-    }
-
-    @Override
-    public void setThermal(int thermal) {
-        this.thermal = thermal;
-    }
-
-    @Override
-    public void resetThermal() {
-        thermal = 0;
-    }
-
-    @Override
-    public void addThermal(int thermal) {
-        this.thermal += thermal;
-    }
-
-    @Override
-    public void subThermal(int thermal) {
-        this.thermal -= thermal;
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityHeat.CAPABILITY) {
+            return LazyOptional.of(()->heat).cast();
+        }
+        return super.getCapability(cap, side);
     }
 }

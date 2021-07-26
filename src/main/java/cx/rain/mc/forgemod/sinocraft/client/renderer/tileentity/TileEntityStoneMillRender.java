@@ -9,18 +9,20 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+@OnlyIn(Dist.CLIENT)
 public class TileEntityStoneMillRender  extends TileEntityRenderer<TileEntityStoneMill> {
     public TileEntityStoneMillRender(TileEntityRendererDispatcher dispatcher) {
         super(dispatcher);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void render(TileEntityStoneMill te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null)!=null){
+        if(te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent()){
             ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).getStackInSlot(0);
             if(stack!=ItemStack.EMPTY){
                 matrixStack.push();

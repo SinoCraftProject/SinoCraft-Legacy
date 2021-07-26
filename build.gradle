@@ -1,23 +1,20 @@
 buildscript {
     repositories {
-        //maven { url = "https://maven.aliyun.com/repository/public"}
-        //maven { url = "https://lss233.littleservice.cn/repositories/forgedev" }
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
     }
     dependencies {
-        //classpath group: 'com.otakusaikou.fgcn', name: 'ForgeGradleCN', version: '3.+', changing: true
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
     }
 }
-// apply plugin: 'com.otakusaikou.fgcn'
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.1.0'
+version = "${project.mc_version}-${project.sinocraft_version}"
 group = 'cx.rain.mc.forgemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'sinocraft'
 
@@ -45,6 +42,10 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
+
+            // Add the two lines below to solve mixin issues.
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 sinocraft {
@@ -94,7 +95,27 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        url = 'https://files.minecraftforge.net/maven'
+    }
+    maven {
+        name = "Local Maven"
         url = "file://${projectDir}/libs"
+    }
+    maven {
+        name = "JEI Maven"
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name = "JEI Maven Fallback"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "Hwyla Maven"
+        url = "https://maven.tehnut.info"
+    }
+    maven {
+        name = "Patchouli Maven"
+        url = 'https://maven.blamejared.com'
     }
 }
 
@@ -102,7 +123,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.12'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -122,7 +143,18 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    implementation fg.deobf("dev:nbtedit:0.10.0")
+    implementation 'org.jetbrains:annotations:20.1.0'
+
+    implementation fg.deobf("dev:NBTEdit:0.10.0")
+
+    compileOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${project.jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${project.jei_version}")
+
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwyla_version}")
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${project.patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${project.patchouli_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -138,7 +170,7 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-//
+
 //    sourceSets {
 //        main.resources.srcDirs += 'src/generated/resources'
 //    }
