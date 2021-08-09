@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "sinocraft:block/plum_log_side"
+      "model": "sinocraft:block/plum_log_bark"
     }
   }
 }

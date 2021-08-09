@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "sinocraft:block/mulberry_log_stripped",
-    "end": "sinocraft:block/mulberry_log_end",
-    "all": "sinocraft:block/mulberry_log_stripped"
+    "end": "sinocraft:block/mulberry_log_end"
   }
 }

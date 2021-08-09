@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tea=false": {
+      "model": "sinocraft:block/teacup"
+    },
+    "tea=true": {
+      "model": "sinocraft:block/teacup_with_tea"
+    }
+  }
+}

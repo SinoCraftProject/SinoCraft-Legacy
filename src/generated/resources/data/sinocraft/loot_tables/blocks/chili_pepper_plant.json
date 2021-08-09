@@ -49,7 +49,7 @@
           "condition": "minecraft:block_state_property",
           "block": "sinocraft:chili_pepper_plant",
           "properties": {
-            "age": "7"
+            "stage": "7"
           }
         }
       ]

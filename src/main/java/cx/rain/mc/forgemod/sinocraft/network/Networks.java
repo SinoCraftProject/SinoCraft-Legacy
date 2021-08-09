@@ -17,34 +17,15 @@ public class Networks {
     public static void setup() {
         SinoCraft.getLogger().info("Registering networks.");
         INSTANCE = NetworkRegistry.newSimpleChannel(
-                new ResourceLocation(SinoCraft.MODID + "paper_drawing"),
+                new ResourceLocation(SinoCraft.MODID, "network"),
                 () -> SinoCraft.VERSION,
                 SinoCraft.VERSION::equals,
                 SinoCraft.VERSION::equals
         );
-    }
 
-    public static void registerMessages() {
-        INSTANCE.registerMessage(
-                nextID(),
-                DrawPaperC2SPacket.class,
-                DrawPaperC2SPacket::serialize,
-                DrawPaperC2SPacket::new,
-                DrawPaperC2SPacket::handler
-        );
-        INSTANCE.registerMessage(
-                nextID(),
-                GetRecipeC2SPacket.class,
-                GetRecipeC2SPacket::serialize,
-                GetRecipeC2SPacket::new,
-                GetRecipeC2SPacket::handler
-        );
-        INSTANCE.registerMessage(
-                nextID(),
-                GetRecipeS2CPacket.class,
-                GetRecipeS2CPacket::serialize,
-                GetRecipeS2CPacket::new,
-                GetRecipeS2CPacket::handler
-        );
+        INSTANCE.registerMessage(nextID(), DrawPaperC2SPacket.class, DrawPaperC2SPacket::serialize, DrawPaperC2SPacket::new, DrawPaperC2SPacket::handler);
+        INSTANCE.registerMessage(nextID(), GetRecipeC2SPacket.class, GetRecipeC2SPacket::serialize, GetRecipeC2SPacket::new, GetRecipeC2SPacket::handler);
+        INSTANCE.registerMessage(nextID(), GetRecipeS2CPacket.class, GetRecipeS2CPacket::serialize, GetRecipeS2CPacket::new, GetRecipeS2CPacket::handler);
+        INSTANCE.registerMessage(nextID(), TeapotPacket.class, TeapotPacket::serialize, TeapotPacket::new, TeapotPacket::handler);
     }
 }

@@ -4,9 +4,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ContainerChineseBrush;
-import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
-import cx.rain.mc.forgemod.sinocraft.utility.math.Vec2;
+import cx.rain.mc.forgemod.sinocraft.network.packet.DrawPaperC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -18,6 +17,9 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+import java.awt.*;
+
 @OnlyIn(Dist.CLIENT)
 public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     private static final ResourceLocation GUI = new ResourceLocation(SinoCraft.MODID, "textures/gui/chinese_brush.png");
@@ -28,18 +30,18 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
         super(screenContainer, playerInventory, titleIn);
         this.xSize = 212;
         this.ySize = 236;
-
     }
 
     @Override
     protected void init() {
         super.init();
-        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.incColor();
-        }) {
+        buttonUp = new Button(guiLeft + 16, guiTop + 112, 11, 7, new StringTextComponent("null"), (button) -> this.container.incColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-                this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+                this.isHovered = mouseX >= this.x
+                        && mouseY >= this.y
+                        && mouseX < this.x + this.width
+                        && mouseY < this.y + this.height;
                 Minecraft.getInstance().getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
                 RenderSystem.enableAlphaTest();
@@ -54,12 +56,12 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             }
         };
 
-        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> {
-            this.container.decColor();
-        }) {
+        buttonDown = new Button(guiLeft + 16, guiTop + 166, 11, 7, new StringTextComponent("null"), (button) -> this.container.decColor()) {
             @Override
             public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-                this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+                this.isHovered = mouseX >= this.x
+                        && mouseY >= this.y && mouseX < this.x + this.width
+                        && mouseY < this.y + this.height;
                 Minecraft.getInstance().getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
                 RenderSystem.enableAlphaTest();
@@ -86,17 +88,15 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     }
 
     protected void draw(MatrixStack matrixStack) {
-        if (container.inventory.getStackInSlot(0).copy() != ItemStack.EMPTY) {
-            ItemStack paper = this.container.inventory.getStackInSlot(0).copy();
+        if (container.inventory.getStackInSlot(0) != ItemStack.EMPTY) {
+            ItemStack paper = this.container.inventory.getStackInSlot(2);
 
             this.minecraft.getTextureManager().bindTexture(GUI);
 
             byte[] pixels = null;
-
             if (paper.getOrCreateTag().contains("pixels")) {
                 pixels = paper.getTag().getByteArray("pixels");
             }
-
             if (pixels == null) {
                 pixels = new byte[32 * 32];
             }
@@ -106,11 +106,8 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
             for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 32; j++) {
                     float color = 0.0625f * (16 - pixels[i * 32 + j]);
-                    if (color == 0.0625f) {
-                        color = 0.0f;
-                    }
                     RenderSystem.color3f(color, color, color);
-                    blit(matrixStack, sx + i * unit, sy + j * unit,  22, 236, unit, unit);
+                    blit(matrixStack, sx + i * unit, sy + j * unit, 22, 236, unit, unit);
                 }
             }
         }
@@ -119,32 +116,24 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int keyCode) {
         super.mouseClicked(mouseX, mouseY, keyCode);
-        if ((mouseX >= guiLeft + 61) && (mouseX < guiLeft + 61 + 128) && (mouseY >= guiTop + 14) && (mouseY < guiTop + 14 + 128)) {
+        if ((mouseX >= guiLeft + 61)
+                && (mouseX < guiLeft + 61 + 128)
+                && (mouseY >= guiTop + 14)
+                && (mouseY < guiTop + 14 + 128)) {
+
             ItemStack paper = this.container.inventory.getStackInSlot(0);
 
             if (paper == ItemStack.EMPTY) {
                 return false;
             }
 
-            byte[] pixels = null;
-
-            if (paper.getOrCreateTag().contains("pixels")) {
-                pixels = paper.getTag().getByteArray("pixels");
-            } else {
-                pixels = new byte[32 * 32];
-            }
-
-            //TODO
-            //this.container.inventory.getStackInSlot(1).damageItem(this.container.color, this.minecraft.player, (e)->{});
-
             int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
             int y = (int) (Math.round(mouseY) - guiTop - 14) / 4;
 
             Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
-                    new DrawPaperC2SPacket.Pack(
-                            new Vec2(x, y), this.container.color
-                    )
+                    new DrawPaperC2SPacket.Pack(new Point(x, y), this.container.color)
             ));
+
             return true;
         }
         return false;
@@ -153,21 +142,14 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int keyCode, double p_mouseDragged_6_, double p_mouseDragged_8_) {
         super.mouseDragged(mouseX, mouseY, keyCode, p_mouseDragged_6_, p_mouseDragged_8_);
-        if ((mouseX >= guiLeft + 61) && (mouseX < guiLeft + 61 + 128) && (mouseY >= guiTop + 14) && (mouseY < guiTop + 14 + 128)) {
+        if ((mouseX >= guiLeft + 61)
+                && (mouseX < guiLeft + 61 + 128)
+                && (mouseY >= guiTop + 14)
+                && (mouseY < guiTop + 14 + 128)) {
             ItemStack paper = this.container.inventory.getStackInSlot(0);
 
             if (paper == ItemStack.EMPTY) {
                 return false;
-            }
-
-            byte[] pixels = null;
-
-            if (paper.getOrCreateTag().contains("pixels")) {
-                pixels = paper.getTag().getByteArray("pixels");
-            }
-
-            if (pixels == null) {
-                pixels = new byte[32 * 32];
             }
 
             int x = (int) (Math.round(mouseX) - guiLeft - 61) / 4;
@@ -175,9 +157,10 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
 
             Networks.INSTANCE.sendToServer(new DrawPaperC2SPacket(
                     new DrawPaperC2SPacket.Pack(
-                            new Vec2(x, y), this.container.color
+                            new Point(x, y), this.container.color
                     )
             ));
+
             return true;
         }
         return false;
@@ -187,7 +170,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         this.minecraft.getTextureManager().bindTexture(GUI);
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.blit(matrixStack, guiLeft, guiTop,  0, 0, xSize, ySize);
+        this.blit(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 
     @Override
@@ -196,6 +179,7 @@ public class GuiChineseBrush extends ContainerScreen<ContainerChineseBrush> {
         draw(matrixStack);
     }
 
+    @Nonnull
     public static GuiChineseBrush create(ContainerChineseBrush container, PlayerInventory inventory, ITextComponent title) {
         return new GuiChineseBrush(container, inventory, title);
     }

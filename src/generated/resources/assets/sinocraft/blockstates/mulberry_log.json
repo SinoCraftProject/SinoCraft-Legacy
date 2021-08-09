@@ -1,15 +1,16 @@
 {
   "variants": {
     "axis=x": {
-      "model": "sinocraft:block/mulberry_log_horizontal",
+      "model": "sinocraft:block/mulberry_log",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "sinocraft:block/mulberry_log"
+      "model": "sinocraft:block/mulberry_log",
+      "y": 90
     },
     "axis=z": {
-      "model": "sinocraft:block/mulberry_log_horizontal",
+      "model": "sinocraft:block/mulberry_log",
       "x": 90
     }
   }

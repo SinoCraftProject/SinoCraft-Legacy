@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:xuan_paper"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.write_on_paper.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.write_on_paper.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/got_ink",
+  "criteria": {
+    "write_on_paper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:xuan_paper"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "write_on_paper"
+    ]
+  ],
+  "rewards": {}
+}

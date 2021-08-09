@@ -20,8 +20,7 @@ public class ProtectedHelper {
             modifiersField.setAccessible(true);
             modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 
-            Map<Block, Block> tmpStrippingMap = new HashMap<>();
-            tmpStrippingMap.putAll((Map<Block, Block>) field.get(null));
+            Map<Block, Block> tmpStrippingMap = new HashMap<>((Map<Block, Block>) field.get(null));
             tmpStrippingMap.put(originWood, outputWood);
             field.set(null, tmpStrippingMap);
         } catch (NoSuchFieldException | IllegalAccessException ex) {

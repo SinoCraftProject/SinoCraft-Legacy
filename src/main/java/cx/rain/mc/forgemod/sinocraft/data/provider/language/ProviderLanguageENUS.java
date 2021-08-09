@@ -1,13 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
+import cx.rain.mc.forgemod.sinocraft.entity.EntityRegister;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.item.ModSpawnEggItem;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.LanguageProvider;
 
 public class ProviderLanguageENUS extends ProviderLanguage {
     public ProviderLanguageENUS(DataGenerator gen) {
@@ -21,6 +22,8 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlocks();
         addEntities();
         addAdvancements();
+        addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
@@ -50,13 +53,13 @@ public class ProviderLanguageENUS extends ProviderLanguage {
     }
 
     private void addItemGroups() {
-        add("itemGroup.sinocraft.blocks", "SinoCraft | Blocks");
-        add("itemGroup.sinocraft.decorate", "SinoCraft | Decorate");
-        add("itemGroup.sinocraft.agriculture", "SinoCraft | Agriculture");
-        add("itemGroup.sinocraft.foods", "SinoCraft | Foods");
-        add("itemGroup.sinocraft.combat", "SinoCraft | Combat");
-        add("itemGroup.sinocraft.tools", "SinoCraft | Tools");
-        add("itemGroup.sinocraft.misc", "SinoCraft | Miscellaneous");
+        addItemGroup(ModGroups.BLOCKS, "SinoCraft | Blocks");
+        addItemGroup(ModGroups.AGRICULTURE, "SinoCraft | Agriculture And Food");
+        addItemGroup(ModGroups.MISC, "SinoCraft | Miscellaneous");
+    }
+
+    private void addMisc() {
+        add("gui.sinocraft.category.soak", "Soak");
     }
 
     private void addItems() {
@@ -92,12 +95,18 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addItem(ModItems.KNIFE_GOLD, "Gold Knife");
         addItem(ModItems.KNIFE_DIAMOND, "Diamond Knife");
         addItem(ModItems.CHINESE_BRUSH, "Chinese Brush");
-        addItem(ModItems.CHINA_INK, "China Ink");
+        addItem(ModItems.CHINESE_INK, "China Ink");
         addItem(ModItems.CHARCOAL_BLACK, "Charcoal Black");
         addItem(ModItems.INK_STONE, "Ink Stone");
         addItem(ModItems.XUAN_PAPER, "Xuan Paper");
         addItem(ModItems.BUCKET_WOOD_PULP, "Wood Pulp Bucket");
-        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
+//        addItem(ModItems.TUTORIAL_BOOK, "《SinoCraft》");
+        addItem(ModItems.TEA_LEAF, "Tea Leaf");
+        addItem(ModItems.TEACUP, "Teacup");
+        addItem(ModItems.TEAPOT, "Teapot");
+        addItem(ModItems.BOWL_WITH_RICE, "Rice");
+        addItem(ModItems.BOWL_WITH_WATER, "Bowl With Water");
+        addItem(ModItems.BOWL_WITH_PORRIDGE, "Porridge");
     }
 
     private void addBlocks() {
@@ -138,12 +147,27 @@ public class ProviderLanguageENUS extends ProviderLanguage {
         addBlock(ModBlocks.BLACK_MARBLE, "Black Marble");
 
         addBlock(ModBlocks.STOVE, "Stove");
+        addBlock(ModBlocks.POT, "Pot");
         addBlock(ModBlocks.VAT, "Vat");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "Paper Drying Rack");
         addBlock(ModBlocks.STONE_MILL, "Stone Mill");
+
+        addBlock(ModBlocks.TEA_TABLE, "");
+        addBlock(ModBlocks.BELLOWS, "Bellows");
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "Buffalo");
+        add(ModSpawnEggItem.TRANSLATION_KEY, "%s Spawn Egg");
+        for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
+            addEntityType(entry.getTypeObj(), entry.langEn);
+        }
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "Iron Pot");
+        add("sinocraft.jei.recipe.soaking", "Vat");
+        add("sinocraft.jei.recipe.steamer", "Food Steamer");
+        add("config.waila.plugin_sinocraft", "SinoCraft");
+        add("config.waila.plugin_sinocraft.enabled", "Enabled");
     }
 }

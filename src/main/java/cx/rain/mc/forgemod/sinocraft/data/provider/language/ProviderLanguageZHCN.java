@@ -1,13 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.data.provider.language;
 
-import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderLanguage;
+import cx.rain.mc.forgemod.sinocraft.entity.EntityRegister;
 import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
+import cx.rain.mc.forgemod.sinocraft.item.ModGroups;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
+import cx.rain.mc.forgemod.sinocraft.item.ModSpawnEggItem;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.LanguageProvider;
 
 public class ProviderLanguageZHCN extends ProviderLanguage {
     public ProviderLanguageZHCN(DataGenerator gen) {
@@ -19,57 +20,60 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItemGroups();
         addItems();
         addBlocks();
+        addTooltips();
         addEntities();
         addAdvancements();
+        addMisc();
+        addGui();
     }
 
     private void addAdvancements() {
         addAdvancement("root",
-                "欢迎使用 SinoCraft 华夏工艺！",
-                "有服章之美谓之华，有礼仪之邦谓之夏。");
-        addAdvancement("knife",
+                "SinoCraft 华夏工艺",
+                "有服章之美谓之华，有礼仪之大谓之夏。");
+        addAdvancement("got_knife",
                 "刀",
                 "获得一把小刀。");
         addAdvancement("kill_entity_by_knives",
                 "无物为真，诸行皆可",
                 "用小刀杀死一个生物。");
-        addAdvancement("get_bark",
-                "Don't starve.",
-                "用小刀剥下一棵树的树皮。");
+        addAdvancement("got_bark",
+                "周扒皮",
+                "用小刀扒下一棵树的树皮。");
         addAdvancement("kill_all_mobs_with_knife",
                 "怪物大师",
                 "用小刀杀死每一种怪物。");
         addAdvancement("kill_all_entities_with_knife",
                 "刺客的盛宴",
                 "用小刀杀死每一种生物。");
-        addAdvancement("get_china_ink",
+        addAdvancement("got_ink",
                 "粉墨登场",
                 "获得墨汁。");
         addAdvancement("write_on_paper",
-                "纸上描眉目，不辨妍或媸。",
+                "纸上描眉目，不辨妍或媸",
                 "在纸上着墨。");
-        addAdvancement("get_stone_mill",
+        addAdvancement("got_stone_mill",
                 "磨坊主",
                 "制作石磨。");
         addAdvancement("eating_first",
                 "民以食为天",
-                "制作炉灶。");
-        addAdvancement("heroes_gathering",
-                "看看这道菜，群英荟萃",
-                "要您老八十一点都不贵。");
+                "搭锅做饭。");
         addAdvancement("porridge_ready",
                 "食以粥为先",
-                "用炉灶煮粥。");
+                "用锅煮粥。");
+        addAdvancement("heroes_assembly",
+                "看看这道菜，群英荟萃",
+                "要您老八十一点都不贵。");
     }
 
     private void addItemGroups() {
-        addItemGroup("blocks", "华夏工艺 | 方块");
-        addItemGroup("decorate", "华夏工艺 | 装饰");
-        addItemGroup("agriculture", "华夏工艺 | 农业");
-        addItemGroup("foods", "华夏工艺 | 食物");
-        addItemGroup("combat", "华夏工艺 | 战斗");
-        addItemGroup("tools", "华夏工艺 | 工具");
-        addItemGroup("misc", "华夏工艺 | 杂项");
+        addItemGroup(ModGroups.BLOCKS, "华夏工艺 | 方块");
+        addItemGroup(ModGroups.AGRICULTURE, "华夏工艺 | 农业与食物");
+        addItemGroup(ModGroups.MISC, "华夏工艺 | 其他");
+    }
+
+    private void addMisc() {
+        add("gui.sinocraft.category.soaking", "浸泡");
     }
 
     private void addItems() {
@@ -79,7 +83,7 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.CABBAGE_SEED, "白菜种子");
         addItem(ModItems.EGGPLANT_SEED, "茄子种子");
         addItem(ModItems.RICE_SEED, "稻谷");
-        addItem(ModItems.MILLET_SEED, "谷子");
+        addItem(ModItems.MILLET_SEED, "粟");
         addItem(ModItems.SORGHUM_SEED, "高粱");
         addItem(ModItems.SOYBEAN, "大豆");
         addItem(ModItems.RICE, "大米");
@@ -89,9 +93,6 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.FLOUR, "面粉");
         addItem(ModItems.DOUGH, "面团");
         addItem(ModItems.DUMPLING_WRAPPER, "饺子皮");
-//        addItem(ModItems.DUMPLING, "饺子");
-//        addItem(ModItems.COOKED_DUMPLING, "熟饺子");
-//        addItem(ModItems.STUFFING, "馅");
 
         addItem(ModBlockItems.GREEN_RADISH, "青萝卜");
         addItem(ModBlockItems.SUMMER_RADISH, "水萝卜");
@@ -100,18 +101,27 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addItem(ModItems.GREEN_PEPPER, "青椒");
         addItem(ModItems.EGGPLANT, "茄子");
         addItem(ModItems.CABBAGE, "白菜");
+        addItem(ModItems.HEROES_ASSEMBLE, "群英荟萃");
+
+        addItem(ModItems.DISH, "盘子");
         addItem(ModItems.BARK, "树皮");
         addItem(ModItems.KNIFE_IRON, "铁质小刀");
         addItem(ModItems.KNIFE_GOLD, "金质小刀");
         addItem(ModItems.KNIFE_DIAMOND, "钻石小刀");
         addItem(ModItems.CHINESE_BRUSH, "毛笔");
-        addItem(ModItems.CHINA_INK, "墨汁");
+        addItem(ModItems.CHINESE_INK, "墨汁");
         addItem(ModItems.CHARCOAL_BLACK, "炭黑");
         addItem(ModItems.INK_STONE, "砚台");
         addItem(ModItems.EMPTY_XUAN_PAPER, "空白的宣纸");
         addItem(ModItems.XUAN_PAPER, "宣纸");
         addItem(ModItems.BUCKET_WOOD_PULP, "木浆桶");
-        addItem(ModItems.TUTORIAL_BOOK, "《华夏工艺》");
+//         addItem(ModItems.TUTORIAL_BOOK, "《华夏工艺》");
+        addItem(ModItems.TEA_LEAF, "茶叶");
+        addItem(ModItems.TEACUP, "茶杯");
+        addItem(ModItems.TEAPOT, "茶壶");
+        addItem(ModItems.BOWL_WITH_RICE, "饭");
+        addItem(ModItems.BOWL_WITH_WATER, "水碗");
+        addItem(ModItems.BOWL_WITH_PORRIDGE, "粥");
     }
 
     private void addBlocks() {
@@ -151,13 +161,32 @@ public class ProviderLanguageZHCN extends ProviderLanguage {
         addBlock(ModBlocks.RED_MARBLE, "南江红大理石");
         addBlock(ModBlocks.BLACK_MARBLE, "晶墨玉大理石");
 
-        addBlock(ModBlocks.STOVE, "炉灶");
+        addBlock(ModBlocks.STOVE, "灶台");
         addBlock(ModBlocks.VAT, "木缸");
+        addBlock(ModBlocks.POT, "铁锅");
         addBlock(ModBlocks.PAPER_DRYING_RACK, "晾纸架");
         addBlock(ModBlocks.STONE_MILL, "石磨");
+
+        addBlock(ModBlocks.TEA_TABLE, "");
+        addBlock(ModBlocks.BELLOWS, "风箱");
+    }
+
+    private void addTooltips() {
+        addTooltip(ModItems.HEROES_ASSEMBLE, "我看就是萝卜开会。");
     }
 
     private void addEntities() {
-        addEntityType(() -> ModEntities.ENTITY_BUFFALO.get(), "水牛");
+        add(ModSpawnEggItem.TRANSLATION_KEY, "%s刷怪蛋");
+        for (EntityRegister.RegistryEntry<?> entry : ModEntities.REGISTRY.entries.values()) {
+            addEntityType(entry.getTypeObj(), entry.langZh);
+        }
+    }
+
+    private void addGui() {
+        add("sinocraft.jei.recipe.cooking", "铁锅");
+        add("sinocraft.jei.recipe.soaking", "木缸");
+        add("sinocraft.jei.recipe.steamer", "蒸笼");
+        add("config.waila.plugin_sinocraft", "华夏工艺");
+        add("config.waila.plugin_sinocraft.enabled", "启用");
     }
 }

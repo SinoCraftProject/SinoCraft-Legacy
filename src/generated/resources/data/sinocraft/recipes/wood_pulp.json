@@ -1,0 +1,14 @@
+{
+  "type": "sinocraft:soaking",
+  "time": 400,
+  "ingredients": {
+    "item": {
+      "item": "sinocraft:bark",
+      "count": 3
+    },
+    "fluid": "minecraft:water"
+  },
+  "results": {
+    "fluid": "sinocraft:wood_pulp"
+  }
+}

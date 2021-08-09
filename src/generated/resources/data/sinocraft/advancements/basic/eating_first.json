@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "sinocraft:stove"
+    },
+    "title": {
+      "translate": "advancement.sinocraft.eating_first.title"
+    },
+    "description": {
+      "translate": "advancement.sinocraft.eating_first.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "sinocraft:basic/root",
+  "criteria": {
+    "eating_first": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sinocraft:stove"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eating_first"
+    ]
+  ],
+  "rewards": {}
+}
