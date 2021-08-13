@@ -58,7 +58,8 @@ public class JEISupport implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.POT.get()), CookingCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.VAT.get()), SoakingCategory.ID);
+        // FIXME: 2021/8/13 AS: Maybe another bug.
+        // registration.addRecipeCatalyst(new ItemStack(ModBlocks.VAT.get()), SoakingCategory.ID);
         // todo 蒸笼
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.STOVE.get()), SteamerCategory.ID);
     }
