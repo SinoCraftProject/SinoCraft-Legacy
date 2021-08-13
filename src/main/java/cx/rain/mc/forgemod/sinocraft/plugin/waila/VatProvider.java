@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.waila;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityVat;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.VatFluidHandler;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.VatItemHandler;

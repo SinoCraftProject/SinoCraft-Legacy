@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
 
 import javax.annotation.Nullable;
 
@@ -15,7 +15,7 @@ public interface ITileEntityStoneMill {
      * Get the current recipe.
      */
     @Nullable
-    IMillRecipe getCurrentRecipe();
+    IGrindingRecipe getCurrentRecipe();
 
     /**
      * Check input and reset current recipe.

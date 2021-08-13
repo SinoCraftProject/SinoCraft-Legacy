@@ -1,6 +1,14 @@
 package cx.rain.mc.forgemod.sinocraft.api.crafting;
 
 import com.google.gson.*;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -16,18 +24,18 @@ public interface ISinoRecipes {
 
     IRecipeType<ISoakingRecipe> getSoakingRecipe();
     IRecipeType<ICookingRecipe> getCookingRecipe();
-    IRecipeType<ISteamerRecipe> getSteamerRecipe();
-    IRecipeType<IMillRecipe> getMillRecipe();
+    IRecipeType<ISteamingRecipe> getSteamerRecipe();
+    IRecipeType<IGrindingRecipe> getMillRecipe();
 
     IModRecipeSerializer<? extends ISoakingRecipe> getSoakingSerializer();
     IModRecipeSerializer<? extends ICookingRecipe> getCookingSerializer();
-    IModRecipeSerializer<? extends ISteamerRecipe> getSteamerSerializer();
-    IModRecipeSerializer<? extends IMillRecipe> getMillSerializer();
+    IModRecipeSerializer<? extends ISteamingRecipe> getSteamerSerializer();
+    IModRecipeSerializer<? extends IGrindingRecipe> getMillSerializer();
 
     ICookingRecipeBuilder newCookingRecipe(ResourceLocation id);
     ISoakingRecipeBuilder newSoakingRecipe(ResourceLocation id);
-    ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id);
-    IMillRecipeBuilder newMillRecipe(ResourceLocation id);
+    ISteamingRecipeBuilder newSteamerRecipe(ResourceLocation id);
+    IGrindingRecipeBuilder newMillRecipe(ResourceLocation id);
 
     /**
      * Create new count ingredient instance,

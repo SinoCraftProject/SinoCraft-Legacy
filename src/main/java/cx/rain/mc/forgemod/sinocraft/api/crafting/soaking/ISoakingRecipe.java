@@ -1,5 +1,8 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.soaking;
 
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IFluidIngredient;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fluids.FluidStack;

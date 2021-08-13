@@ -1,5 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.cooking;
 
+import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 

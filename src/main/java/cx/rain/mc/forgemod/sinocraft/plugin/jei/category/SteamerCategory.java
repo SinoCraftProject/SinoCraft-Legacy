@@ -1,10 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.utility.RenderHelper;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import java.util.ArrayList;
-
-public class SteamerCategory implements IRecipeCategory<ISteamerRecipe> {
+public class SteamerCategory implements IRecipeCategory<ISteamingRecipe> {
 
     public static final ResourceLocation ID = new ResourceLocation(SinoCraft.MODID, "jei_steamer");
 
@@ -45,8 +42,8 @@ public class SteamerCategory implements IRecipeCategory<ISteamerRecipe> {
     }
 
     @Override
-    public Class<ISteamerRecipe> getRecipeClass() {
-        return ISteamerRecipe.class;
+    public Class<ISteamingRecipe> getRecipeClass() {
+        return ISteamingRecipe.class;
     }
 
     @Override
@@ -70,13 +67,13 @@ public class SteamerCategory implements IRecipeCategory<ISteamerRecipe> {
     }
 
     @Override
-    public void setIngredients(ISteamerRecipe recipe, IIngredients ingredients) {
+    public void setIngredients(ISteamingRecipe recipe, IIngredients ingredients) {
         ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutputs(VanillaTypes.ITEM, Lists.newArrayList(recipe.getRecipeOutput(), recipe.getAdustOutput()));
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, ISteamerRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, ISteamingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemGroups = recipeLayout.getItemStacks();
         itemGroups.init(0, true, 23, 28);
         itemGroups.set(0, ingredients.getInputs(VanillaTypes.ITEM).get(0));
@@ -87,7 +84,7 @@ public class SteamerCategory implements IRecipeCategory<ISteamerRecipe> {
     }
 
     @Override
-    public void draw(ISteamerRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+    public void draw(ISteamingRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
         FontRenderer renderer = Minecraft.getInstance().fontRenderer;
         String time = recipe.getCookingTime() + " tick";
         RenderHelper.drawText(time, matrixStack, renderer, 61, 70, 22, 0, 0xFF000000, true);

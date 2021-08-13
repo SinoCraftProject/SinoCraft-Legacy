@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
 
 import javax.annotation.Nullable;
 

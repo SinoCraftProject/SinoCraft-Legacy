@@ -1,5 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.grinding;
 
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -18,7 +19,7 @@ import net.minecraft.item.crafting.Ingredient;
  *   "result": "minecraft:acacia_planks",
  * }}</pre>
  */
-public interface IMillRecipe extends IRecipe<IExtendedRecipeInventory>, IFinishedRecipe {
+public interface IGrindingRecipe extends IRecipe<IExtendedRecipeInventory>, IFinishedRecipe {
 
     /**
      * Get the times need to right click

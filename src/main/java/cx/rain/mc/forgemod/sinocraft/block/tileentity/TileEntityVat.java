@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;

@@ -2,6 +2,14 @@ package cx.rain.mc.forgemod.sinocraft.api_impl;
 
 import com.google.gson.JsonElement;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.crafting.*;
 import cx.rain.mc.forgemod.sinocraft.crafting.cooking.CookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.crafting.grinding.GrindingRecipe;
@@ -31,12 +39,12 @@ public enum APIRecipes implements ISinoRecipes {
     }
 
     @Override
-    public IRecipeType<ISteamerRecipe> getSteamerRecipe() {
+    public IRecipeType<ISteamingRecipe> getSteamerRecipe() {
         return ModRecipes.STEAMER;
     }
 
     @Override
-    public IRecipeType<IMillRecipe> getMillRecipe() {
+    public IRecipeType<IGrindingRecipe> getMillRecipe() {
         return ModRecipes.MILL;
     }
 
@@ -51,12 +59,12 @@ public enum APIRecipes implements ISinoRecipes {
     }
 
     @Override
-    public IModRecipeSerializer<? extends ISteamerRecipe> getSteamerSerializer() {
+    public IModRecipeSerializer<? extends ISteamingRecipe> getSteamerSerializer() {
         return ModRecipes.STEAMER_SERIALIZER.get();
     }
 
     @Override
-    public IModRecipeSerializer<? extends IMillRecipe> getMillSerializer() {
+    public IModRecipeSerializer<? extends IGrindingRecipe> getMillSerializer() {
         return ModRecipes.MILL_SERIALIZER.get();
     }
 
@@ -71,12 +79,12 @@ public enum APIRecipes implements ISinoRecipes {
     }
 
     @Override
-    public ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id) {
+    public ISteamingRecipeBuilder newSteamerRecipe(ResourceLocation id) {
         return SteamingRecipe.builder(id);
     }
 
     @Override
-    public IMillRecipeBuilder newMillRecipe(ResourceLocation id) {
+    public IGrindingRecipeBuilder newMillRecipe(ResourceLocation id) {
         return GrindingRecipe.builder(id);
     }
 

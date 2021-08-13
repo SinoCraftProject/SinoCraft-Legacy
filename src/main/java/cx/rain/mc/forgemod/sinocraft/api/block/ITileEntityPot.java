@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;

@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.waila;
 
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityPot;
 import cx.rain.mc.forgemod.sinocraft.utility.CapabilityHelper;

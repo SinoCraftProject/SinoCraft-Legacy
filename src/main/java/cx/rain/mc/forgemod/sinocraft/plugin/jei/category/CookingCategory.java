@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.utility.RenderHelper;
 import mezz.jei.api.constants.VanillaTypes;

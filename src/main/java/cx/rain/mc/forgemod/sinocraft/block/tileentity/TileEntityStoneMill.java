@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.block.tileentity;
 
 import cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityStoneMill;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.InventoryHelper;
@@ -26,7 +26,7 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
     private final ExtendedInventory inv = new ExtendedInventory();
 
     private int progress = 0;
-    private IMillRecipe currentRecipe = null;
+    private IGrindingRecipe currentRecipe = null;
     private ResourceLocation recoveryRecipeLocation = null;
     private ItemStack outputStack = ItemStack.EMPTY;
 
@@ -48,8 +48,8 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
     public void onTick() {
         if (world != null && recoveryRecipeLocation != null) {
             world.getRecipeManager().getRecipe(recoveryRecipeLocation)
-                    .filter(recipe -> recipe instanceof IMillRecipe)
-                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+                    .filter(recipe -> recipe instanceof IGrindingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IGrindingRecipe) recipe);
             recoveryRecipeLocation = null;
         }
     }
@@ -78,11 +78,11 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
     }
 
     @Override
-    public IMillRecipe getCurrentRecipe() {
+    public IGrindingRecipe getCurrentRecipe() {
         if (world != null && recoveryRecipeLocation != null) {
             world.getRecipeManager().getRecipe(recoveryRecipeLocation)
-                    .filter(recipe -> recipe instanceof IMillRecipe)
-                    .ifPresent(recipe -> currentRecipe = (IMillRecipe) recipe);
+                    .filter(recipe -> recipe instanceof IGrindingRecipe)
+                    .ifPresent(recipe -> currentRecipe = (IGrindingRecipe) recipe);
             recoveryRecipeLocation = null;
         }
         return currentRecipe;
@@ -97,11 +97,11 @@ public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITil
             }
             return;
         }
-        IMillRecipe old;
+        IGrindingRecipe old;
         if (recoveryRecipeLocation != null) {
             old = world.getRecipeManager().getRecipe(recoveryRecipeLocation)
-                    .filter(recipe -> recipe instanceof IMillRecipe)
-                    .map(recipe -> (IMillRecipe) recipe)
+                    .filter(recipe -> recipe instanceof IGrindingRecipe)
+                    .map(recipe -> (IGrindingRecipe) recipe)
                     .orElse(currentRecipe);
             recoveryRecipeLocation = null;
         } else old = currentRecipe;

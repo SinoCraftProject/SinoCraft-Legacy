@@ -3,7 +3,7 @@ package cx.rain.mc.forgemod.sinocraft.crafting.steaming;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
@@ -31,7 +31,7 @@ public class SteamingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 
     @Override
     public SteamingRecipe read(ResourceLocation recipeId, JsonObject json) {
-        ISteamerRecipeBuilder builder = SteamingRecipe.builder(recipeId);
+        ISteamingRecipeBuilder builder = SteamingRecipe.builder(recipeId);
         if (json.has("adust")) {
             builder.setAdustOutput(CraftingHelper.deserializeItem(json.get("adust")));
         }

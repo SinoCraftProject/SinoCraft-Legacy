@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.soaking;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;

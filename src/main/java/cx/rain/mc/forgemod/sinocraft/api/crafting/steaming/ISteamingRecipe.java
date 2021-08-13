@@ -1,6 +1,7 @@
-package cx.rain.mc.forgemod.sinocraft.api.crafting;
+package cx.rain.mc.forgemod.sinocraft.api.crafting.steaming;
 
 import com.google.gson.JsonObject;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -27,7 +28,7 @@ import javax.annotation.Nullable;
  *   "heat": [0, 100]
  * }}</pre>
  */
-public interface ISteamerRecipe extends IRecipe<IExtendedRecipeInventory>, IFinishedRecipe {
+public interface ISteamingRecipe extends IRecipe<IExtendedRecipeInventory>, IFinishedRecipe {
 
     int getCookingTime();
 

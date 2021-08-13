@@ -1,10 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.crafting;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.cooking.ICookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.soaking.ISoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.steaming.ISteamingRecipe;
 import cx.rain.mc.forgemod.sinocraft.crafting.cooking.CookingSerializer;
 import cx.rain.mc.forgemod.sinocraft.crafting.grinding.GrindingSerializer;
 import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingSerializer;
@@ -19,8 +19,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModRecipes {
     public static final IRecipeType<ISoakingRecipe> SOAKING = IRecipeType.register("sinocraft:soaking");
     public static final IRecipeType<ICookingRecipe> COOKING = IRecipeType.register("sinocraft:cooking");
-    public static final IRecipeType<ISteamerRecipe> STEAMER = IRecipeType.register("sinocraft:steamer");
-    public static final IRecipeType<IMillRecipe> MILL = IRecipeType.register("sinocraft:mill");
+    public static final IRecipeType<ISteamingRecipe> STEAMER = IRecipeType.register("sinocraft:steamer");
+    public static final IRecipeType<IGrindingRecipe> MILL = IRecipeType.register("sinocraft:mill");
 
     private static final DeferredRegister<IRecipeSerializer<?>> REGISTRY =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SinoCraft.MODID);

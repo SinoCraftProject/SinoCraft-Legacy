@@ -2,8 +2,8 @@ package cx.rain.mc.forgemod.sinocraft.crafting.grinding;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
-import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.api.crafting.grinding.IGrindingRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -15,13 +15,13 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class GrindingRecipe implements IMillRecipe {
+public class GrindingRecipe implements IGrindingRecipe {
     final ResourceLocation id;
     Ingredient input = Ingredient.EMPTY;
     ItemStack output = ItemStack.EMPTY;
     int time = 60;
 
-    public static IMillRecipeBuilder builder(ResourceLocation id) {
+    public static IGrindingRecipeBuilder builder(ResourceLocation id) {
         return new Builder(id);
     }
 
@@ -96,7 +96,7 @@ public class GrindingRecipe implements IMillRecipe {
         return input;
     }
 
-    static class Builder implements IMillRecipeBuilder {
+    static class Builder implements IGrindingRecipeBuilder {
         final GrindingRecipe recipe;
 
         Builder(ResourceLocation id) {
@@ -104,31 +104,31 @@ public class GrindingRecipe implements IMillRecipe {
         }
 
         @Override
-        public IMillRecipeBuilder setInput(IItemProvider input) {
+        public IGrindingRecipeBuilder setInput(IItemProvider input) {
             recipe.input = Ingredient.fromItems(input);
             return this;
         }
 
         @Override
-        public IMillRecipeBuilder setInput(Ingredient input) {
+        public IGrindingRecipeBuilder setInput(Ingredient input) {
             recipe.input = input;
             return this;
         }
 
         @Override
-        public IMillRecipeBuilder setOutput(ItemStack output) {
+        public IGrindingRecipeBuilder setOutput(ItemStack output) {
             recipe.output = output.copy();
             return this;
         }
 
         @Override
-        public IMillRecipeBuilder setTime(int time) {
+        public IGrindingRecipeBuilder setTime(int time) {
             recipe.time = time;
             return this;
         }
 
         @Override
-        public IMillRecipe build() {
+        public IGrindingRecipe build() {
             return recipe;
         }
     }
