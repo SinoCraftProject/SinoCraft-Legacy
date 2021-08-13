@@ -1,9 +1,10 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.grinding;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class MillRecipe implements IMillRecipe {
+public class GrindingRecipe implements IMillRecipe {
     final ResourceLocation id;
     Ingredient input = Ingredient.EMPTY;
     ItemStack output = ItemStack.EMPTY;
@@ -24,7 +25,7 @@ public class MillRecipe implements IMillRecipe {
         return new Builder(id);
     }
 
-    MillRecipe(ResourceLocation id) {
+    GrindingRecipe(ResourceLocation id) {
         this.id = id;
     }
 
@@ -60,7 +61,7 @@ public class MillRecipe implements IMillRecipe {
 
     @Override
     public void serialize(JsonObject json) {
-        MillSerializer.SERIALIZER.write(json, this);
+        GrindingSerializer.SERIALIZER.write(json, this);
     }
 
     @Override
@@ -70,7 +71,7 @@ public class MillRecipe implements IMillRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return MillSerializer.SERIALIZER;
+        return GrindingSerializer.SERIALIZER;
     }
 
     @Nullable
@@ -96,10 +97,10 @@ public class MillRecipe implements IMillRecipe {
     }
 
     static class Builder implements IMillRecipeBuilder {
-        final MillRecipe recipe;
+        final GrindingRecipe recipe;
 
         Builder(ResourceLocation id) {
-            recipe = new MillRecipe(id);
+            recipe = new GrindingRecipe(id);
         }
 
         @Override

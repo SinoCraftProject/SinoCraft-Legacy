@@ -1,9 +1,10 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.steaming;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipeBuilder;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -13,7 +14,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class SteamerRecipe implements ISteamerRecipe {
+public class SteamingRecipe implements ISteamerRecipe {
 
     private final ResourceLocation id;
     int time, minHeat, maxHeat;
@@ -24,7 +25,7 @@ public class SteamerRecipe implements ISteamerRecipe {
         return new Builder(id);
     }
 
-    SteamerRecipe(ResourceLocation id) {
+    SteamingRecipe(ResourceLocation id) {
         this.id = id;
         this.adust = new ItemStack(ModItems.ADUST_FOOD.get());
     }
@@ -46,7 +47,7 @@ public class SteamerRecipe implements ISteamerRecipe {
 
     @Override
     public void serialize(JsonObject json) {
-        SteamerSerializer.SERIALIZER.write(json, this);
+        SteamingSerializer.SERIALIZER.write(json, this);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class SteamerRecipe implements ISteamerRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return SteamerSerializer.SERIALIZER;
+        return SteamingSerializer.SERIALIZER;
     }
 
     @Override
@@ -90,10 +91,10 @@ public class SteamerRecipe implements ISteamerRecipe {
     }
 
     static class Builder implements ISteamerRecipeBuilder {
-        private final SteamerRecipe recipe;
+        private final SteamingRecipe recipe;
 
         Builder(ResourceLocation id) {
-            recipe = new SteamerRecipe(id);
+            recipe = new SteamingRecipe(id);
         }
 
         @Override

@@ -3,6 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.api_impl;
 import com.google.gson.JsonElement;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.*;
 import cx.rain.mc.forgemod.sinocraft.crafting.*;
+import cx.rain.mc.forgemod.sinocraft.crafting.cooking.CookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.grinding.GrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.steaming.SteamingRecipe;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -68,12 +72,12 @@ public enum APIRecipes implements ISinoRecipes {
 
     @Override
     public ISteamerRecipeBuilder newSteamerRecipe(ResourceLocation id) {
-        return SteamerRecipe.builder(id);
+        return SteamingRecipe.builder(id);
     }
 
     @Override
     public IMillRecipeBuilder newMillRecipe(ResourceLocation id) {
-        return MillRecipe.builder(id);
+        return GrindingRecipe.builder(id);
     }
 
     @Override

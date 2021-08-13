@@ -5,6 +5,10 @@ import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IMillRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISoakingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ISteamerRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.cooking.CookingSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.grinding.GrindingSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.steaming.SteamingSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,8 +27,8 @@ public class ModRecipes {
 
     public static final RegistryObject<SoakingSerializer> SOAKING_SERIALIZER = REGISTRY.register("soaking", () -> SoakingSerializer.SERIALIZER);
     public static final RegistryObject<CookingSerializer> COOKING_SERIALIZER = REGISTRY.register("cooking", () -> CookingSerializer.SERIALIZER);
-    public static final RegistryObject<SteamerSerializer> STEAMER_SERIALIZER = REGISTRY.register("steamer", () -> SteamerSerializer.SERIALIZER);
-    public static final RegistryObject<MillSerializer> MILL_SERIALIZER = REGISTRY.register("mill", () -> MillSerializer.SERIALIZER);
+    public static final RegistryObject<SteamingSerializer> STEAMER_SERIALIZER = REGISTRY.register("steamer", () -> SteamingSerializer.SERIALIZER);
+    public static final RegistryObject<GrindingSerializer> MILL_SERIALIZER = REGISTRY.register("mill", () -> GrindingSerializer.SERIALIZER);
 
     public ModRecipes(IEventBus bus) {
         SinoCraft.getLogger().info("Registering recipes.");

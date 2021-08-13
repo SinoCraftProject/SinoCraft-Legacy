@@ -1,7 +1,9 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.soaking;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
+import cx.rain.mc.forgemod.sinocraft.crafting.CountIngredient;
+import cx.rain.mc.forgemod.sinocraft.crafting.FluidIngredient;
 import cx.rain.mc.forgemod.sinocraft.utility.CraftingHelper;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.network.PacketBuffer;

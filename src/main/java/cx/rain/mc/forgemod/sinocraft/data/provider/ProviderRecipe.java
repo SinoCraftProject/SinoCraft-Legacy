@@ -3,10 +3,10 @@ package cx.rain.mc.forgemod.sinocraft.data.provider;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
-import cx.rain.mc.forgemod.sinocraft.crafting.CookingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.MillRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.SoakingRecipe;
-import cx.rain.mc.forgemod.sinocraft.crafting.SteamerRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.cooking.CookingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.grinding.GrindingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.soaking.SoakingRecipe;
+import cx.rain.mc.forgemod.sinocraft.crafting.steaming.SteamingRecipe;
 import cx.rain.mc.forgemod.sinocraft.data.provider.base.ProviderBaseRecipe;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
@@ -86,7 +86,7 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerSteamerRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(SteamerRecipe.builder(new ResourceLocation("sinocraft:steamer_test"))
+        consumer.accept(SteamingRecipe.builder(new ResourceLocation("sinocraft:steamer_test"))
                 .setInput(Ingredient.fromItems(Items.APPLE))
                 .setOutput(new ItemStack(Items.ACACIA_LOG))
                 .setTime(100)
@@ -95,17 +95,17 @@ public class ProviderRecipe extends ProviderBaseRecipe {
     }
 
     private void registerStoneMillRecipe(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_wheat"))
+        consumer.accept(GrindingRecipe.builder(new ResourceLocation("sinocraft:mill_wheat"))
                 .setInput(Ingredient.fromItems(Items.WHEAT))
                 .setOutput(new ItemStack(ModItems.FLOUR.get()))
                 .setTime(20)
                 .build());
-        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_rice"))
+        consumer.accept(GrindingRecipe.builder(new ResourceLocation("sinocraft:mill_rice"))
                 .setInput(Ingredient.fromItems(ModItems.RICE_SEED.get()))
                 .setOutput(new ItemStack(ModItems.RICE.get()))
                 .setTime(20)
                 .build());
-        consumer.accept(MillRecipe.builder(new ResourceLocation("sinocraft:mill_millet"))
+        consumer.accept(GrindingRecipe.builder(new ResourceLocation("sinocraft:mill_millet"))
                 .setInput(Ingredient.fromItems(ModItems.MILLET_SEED.get()))
                 .setOutput(new ItemStack(ModItems.MILLET.get()))
                 .setTime(20)

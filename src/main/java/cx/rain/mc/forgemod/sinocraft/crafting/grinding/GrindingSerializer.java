@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.grinding;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IModRecipeSerializer;
@@ -11,13 +11,13 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class MillSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<MillRecipe> {
+public class GrindingSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IModRecipeSerializer<GrindingRecipe> {
 
-    static final MillSerializer SERIALIZER = new MillSerializer();
+    static final GrindingSerializer SERIALIZER = new GrindingSerializer();
 
     @Override
-    public MillRecipe read(ResourceLocation recipeId, JsonObject json) {
-        return (MillRecipe) MillRecipe.builder(recipeId)
+    public GrindingRecipe read(ResourceLocation recipeId, JsonObject json) {
+        return (GrindingRecipe) GrindingRecipe.builder(recipeId)
                 .setInput(CraftingHelper.deserializeVanillaIngredient(json.get("input")))
                 .setOutput(CraftingHelper.deserializeItem(json.get("result")))
                 .setTime(json.get("time").getAsInt())
@@ -26,8 +26,8 @@ public class MillSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> imp
 
     @Nullable
     @Override
-    public MillRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-        return (MillRecipe) MillRecipe.builder(recipeId)
+    public GrindingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        return (GrindingRecipe) GrindingRecipe.builder(recipeId)
                 .setInput(Ingredient.read(buffer))
                 .setOutput(buffer.readItemStack())
                 .setTime(buffer.readVarInt())
@@ -35,14 +35,14 @@ public class MillSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> imp
     }
 
     @Override
-    public void write(PacketBuffer buffer, MillRecipe recipe) {
+    public void write(PacketBuffer buffer, GrindingRecipe recipe) {
         recipe.getInput().write(buffer);
         buffer.writeItemStack(recipe.getRecipeOutput());
         buffer.writeVarInt(recipe.getTime());
     }
 
     @Override
-    public void write(JsonObject json, MillRecipe recipe) {
+    public void write(JsonObject json, GrindingRecipe recipe) {
         json.add("input", recipe.input.serialize());
         json.add("result", CraftingHelper.serializeItem(recipe.getRecipeOutput()));
         json.addProperty("time", recipe.getTime());

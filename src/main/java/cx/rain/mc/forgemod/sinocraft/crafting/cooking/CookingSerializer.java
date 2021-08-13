@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.cooking;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

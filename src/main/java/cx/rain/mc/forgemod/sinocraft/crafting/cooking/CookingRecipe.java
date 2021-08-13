@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.crafting;
+package cx.rain.mc.forgemod.sinocraft.crafting.cooking;
 
 import com.google.gson.JsonObject;
 import cx.rain.mc.forgemod.sinocraft.api.capability.IHeat;
@@ -6,6 +6,8 @@ import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipe;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICookingRecipeBuilder;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.ICountIngredient;
 import cx.rain.mc.forgemod.sinocraft.api.crafting.IExtendedRecipeInventory;
+import cx.rain.mc.forgemod.sinocraft.crafting.CountIngredient;
+import cx.rain.mc.forgemod.sinocraft.crafting.ModRecipes;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
