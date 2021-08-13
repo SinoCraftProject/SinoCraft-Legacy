@@ -10,17 +10,16 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModGroups {
-
-    public static final ModGroup BLOCKS = new ModGroup("blocks", () -> ModBlocks.WHITE_MARBLE);
-    public static final ModGroup AGRICULTURE = new ModGroup("agriculture_foods", () ->  ModItems.CHILI_PEPPER_SEED);
-    public static final ModGroup MISC = new ModGroup("tools_misc", () -> ModItems.KNIFE_IRON);
+    public static final ModGroup BLOCKS = new ModGroup("blocks", ModBlocks.WHITE_MARBLE);
+    public static final ModGroup AGRICULTURE = new ModGroup("agriculture_foods", ModItems.CHILI_PEPPER_SEED);
+    public static final ModGroup MISC = new ModGroup("tools_misc", ModItems.KNIFE_IRON);
 
     public static class ModGroup extends ItemGroup {
 
         private ItemStack icon = ItemStack.EMPTY;
-        private final Supplier<RegistryObject<? extends IItemProvider>> iconSupplier;
+        private final RegistryObject<? extends IItemProvider> iconSupplier;
 
-        public ModGroup(String label, Supplier<RegistryObject<? extends IItemProvider>> icon) {
+        public ModGroup(String label, RegistryObject<? extends IItemProvider> icon) {
             super(SinoCraft.MODID + "." + label);
             iconSupplier = icon;
         }
@@ -28,7 +27,7 @@ public class ModGroups {
         @Override
         public ItemStack createIcon() {
             if (icon == ItemStack.EMPTY) {
-                icon = new ItemStack(iconSupplier.get().get());
+                icon = new ItemStack(iconSupplier.get());
             }
             return icon;
         }
