@@ -63,6 +63,9 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 sinocraft {
                     source sourceSets.main
@@ -78,6 +81,9 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             args '--mod', 'sinocraft', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
