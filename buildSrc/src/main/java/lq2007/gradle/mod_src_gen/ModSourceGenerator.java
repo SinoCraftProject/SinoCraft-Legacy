@@ -21,7 +21,7 @@ public class ModSourceGenerator extends DefaultTask {
             optionals.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
             optionals.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
             optionals.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
-            ASTParser parser = ASTParser.newParser(AST.JLS_Latest);
+            ASTParser parser = ASTParser.newParser(AST.JLS8);
             parser.setKind(ASTParser.K_COMPILATION_UNIT);
             parser.setResolveBindings(true);
             parser.setCompilerOptions(optionals);
