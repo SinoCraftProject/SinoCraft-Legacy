@@ -1,6 +1,8 @@
 package lq2007.gradle.mod_src_gen;
 
+import com.moandjiezana.toml.Toml;
 import com.squareup.javapoet.ClassName;
+import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.*;
 
 import java.io.IOException;
@@ -14,22 +16,17 @@ import java.util.stream.Stream;
 
 public class Utils {
 
-    public static List<ClassFileInfo> findClasses(String packageName, Path srcPath) throws IOException {
+    public static List<ClassFileInfo> findClasses(String packageName, Path srcPath, boolean children) throws IOException {
         Path root = srcPath.resolve(packageName.replace(".", "/"));
-        ClassFileVisitor visitor = new ClassFileVisitor(packageName, root);
-        Files.walkFileTree(root, new ClassFileVisitor(packageName, root));
+        ClassFileVisitor visitor = new ClassFileVisitor(packageName, root, children);
+        Files.walkFileTree(root, visitor);
         return visitor.result;
     }
 
-    public static Stream<EnumConstantDeclaration> getEnumValues(ClassName className, Path srcPath, ASTParser parser, String... skip) throws IOException {
-        CompilationUnit ast = getAST(className, srcPath, parser);
-        List<?> types = ast.types();
-        if (types.isEmpty()) {
-            return Stream.empty();
-        }
-        Object o = types.get(0);
+    public static Stream<EnumConstantDeclaration> getEnumValues(ClassName className, ModSourceGenerator task, String... skip) throws IOException {
+        Object o = getAST(className, task).types().get(0);
         if (!(o instanceof EnumDeclaration)) {
-            return Stream.empty();
+            throw new IOException(className.canonicalName() + " is not an enum.");
         }
         Stream<EnumConstantDeclaration> values = ((List<EnumConstantDeclaration>) ((EnumDeclaration) o).enumConstants()).stream();
         if (skip.length > 0) {
@@ -39,15 +36,10 @@ public class Utils {
         return values;
     }
 
-    public static FieldDeclaration[] getFields(ClassName className, Path srcPath, ASTParser parser) throws IOException {
-        CompilationUnit ast = getAST(className, srcPath, parser);
-        List<?> types = ast.types();
-        if (types.isEmpty()) {
-            return new FieldDeclaration[0];
-        }
-        Object o = types.get(0);
+    public static FieldDeclaration[] getFields(ClassName className, ModSourceGenerator task) throws IOException {
+        Object o = getAST(className, task).types().get(0);
         if (!(o instanceof TypeDeclaration)) {
-            return new FieldDeclaration[0];
+            throw new IOException(className.canonicalName() + " is not a class.");
         }
         return ((TypeDeclaration) o).getFields();
     }
@@ -56,20 +48,35 @@ public class Utils {
         return srcPath.resolve(className.replace(".", "/") + ".java");
     }
 
-    public static CompilationUnit getAST(ClassName className, Path srcPath, ASTParser parser) throws IOException {
-        Path classPath = getClassPath(className.canonicalName(), srcPath);
-        return getAST(classPath, parser);
+    public static CompilationUnit getAST(ClassName className, ModSourceGenerator task) throws IOException {
+        Path classPath = getClassPath(className.canonicalName(), task.srcPath);
+        return getAST(classPath, task);
     }
 
-    public static CompilationUnit getAST(Path file, ASTParser parser) throws IOException {
+    public static CompilationUnit getAST(Path file, ModSourceGenerator task) throws IOException {
         char[] source = new String(Files.readAllBytes(file)).toCharArray();
-        parser.setSource(source);
-        return (CompilationUnit) parser.createAST(null);
+        task.parser.setKind(ASTParser.K_COMPILATION_UNIT);
+        task.parser.setResolveBindings(true);
+        task.parser.setCompilerOptions(task.optionals);
+        task.parser.setSource(source);
+        CompilationUnit ast = (CompilationUnit) task.parser.createAST(null);
+        if (ast.getProblems().length > 0) {
+            StringBuilder sb = new StringBuilder("Error in java file ").append(file).append("\n");
+            for (IProblem problem : ast.getProblems()) {
+                sb.append("  ").append(problem).append("\n");
+            }
+            throw new IOException(sb.toString());
+        }
+        return ast;
+    }
+
+    public static Toml getToml(String file, ModSourceGenerator task) {
+        return new Toml().read(task.resPath.resolve(file).toFile());
     }
 
     public static String toUpperName(String name, int skip) {
         if (name.isEmpty() || name.length() <= skip) return "";
-        String itemName = name.substring(skip + 1);
+        String itemName = name.substring(skip);
         StringBuilder sb = new StringBuilder(String.valueOf(Character.toUpperCase(itemName.charAt(0))));
         for (int i = 1; i < itemName.length(); i++) {
             char c = itemName.charAt(i);
@@ -84,7 +91,7 @@ public class Utils {
 
     public static String toLowerName(String name, int skip) {
         if (name.isEmpty() || name.length() <= skip) return "";
-        String itemName = name.substring(skip + 1);
+        String itemName = name.substring(skip);
         StringBuilder sb = new StringBuilder(String.valueOf(Character.toLowerCase(itemName.charAt(0))));
         for (int i = 1; i < itemName.length(); i++) {
             char c = itemName.charAt(i);

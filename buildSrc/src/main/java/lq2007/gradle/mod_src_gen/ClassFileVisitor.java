@@ -15,13 +15,15 @@ public class ClassFileVisitor implements FileVisitor<Path> {
 
     private String rootPackage;
     private Path rootPath;
+    private boolean children;
 
     private LinkedList<String> prevPackages = new LinkedList<>();
     private String currentPackage;
 
-    public ClassFileVisitor(String packageName, Path rootPath) {
+    public ClassFileVisitor(String packageName, Path rootPath, boolean children) {
         this.rootPackage = packageName;
         this.rootPath = rootPath;
+        this.children = children;
 
         currentPackage = packageName;
     }
@@ -31,6 +33,9 @@ public class ClassFileVisitor implements FileVisitor<Path> {
         String currentDirectory = dir.getFileName().toString();
         if (currentDirectory.equals(rootPath.getFileName().toString())) {
             return FileVisitResult.CONTINUE;
+        }
+        if (!children) {
+            return FileVisitResult.SKIP_SUBTREE;
         }
         prevPackages.add(currentPackage);
         if (currentDirectory.isEmpty()) {
