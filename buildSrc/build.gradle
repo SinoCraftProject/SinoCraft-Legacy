@@ -29,7 +29,7 @@ repositories {
 dependencies {
 
     // https://mvnrepository.com/artifact/org.eclipse.jdt/org.eclipse.jdt.core
-    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.26.0'
+    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.10.0'
 
     // https://mvnrepository.com/artifact/toml/toml
     implementation group: 'toml', name: 'toml', version: '0.1.3'
