@@ -1,5 +1,7 @@
 package lq2007.gradle.mod_src_gen;
 
+import lq2007.gradle.mod_src_gen.generator.ModBlockItems;
+import lq2007.gradle.mod_src_gen.generator.ModBlocks;
 import lq2007.gradle.mod_src_gen.generator.ModItems;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
@@ -37,6 +39,8 @@ public class ModSourceGenerator extends DefaultTask {
             resPath = rootDir.resolve("src/main/resources/assets/sinocraft");
 
             new ModItems().create(this);
+            new ModBlocks().create(this);
+            new ModBlockItems().create(this);
         } catch (Exception e) {
             getProject().getLogger().error(e.getMessage());
             e.printStackTrace();

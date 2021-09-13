@@ -2,24 +2,22 @@ package lq2007.gradle.mod_src_gen.generator;
 
 import com.moandjiezana.toml.Toml;
 import com.squareup.javapoet.*;
+import lq2007.gradle.mod_src_gen.Checker;
 import lq2007.gradle.mod_src_gen.ModSourceGenerator;
 import lq2007.gradle.mod_src_gen.Utils;
 import org.eclipse.jdt.core.dom.*;
 
 import javax.lang.model.element.Modifier;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static lq2007.gradle.mod_src_gen.ClassTypes.*;
+import static lq2007.gradle.mod_src_gen.Templates.TEMPLATE_FIELD;
 
 public class ModItems {
-
-    private static final String TEMPLATE_FIELD_ITEM = "REGISTRY.register($S, () -> new $T($T.%s))";
-
+    
     private TypeSpec.Builder items;
     private ModSourceGenerator task;
     private final AtomicInteger counter = new AtomicInteger(0);
@@ -38,8 +36,8 @@ public class ModItems {
         addKnives();
         addBuckets();
         addGroupItems();
-        addTypedItem();
-        task.logger.printLog("    Created " + counter.get() + " items.");
+        addTypedItems();
+        task.logger.printLog("    Added " + counter.get() + " items.");
         items.addMethod(MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PUBLIC)
                 .addParameter(IEventBus, "bus")
@@ -47,25 +45,28 @@ public class ModItems {
                 .addCode("REGISTRY.register(bus);")
                 .build());
         JavaFile.builder("cx.rain.mc.forgemod.sinocraft.item", items.build()).build().writeTo(task.srcPath);
+        Map<String, String> equalsClass = new HashMap<>();
+        equalsClass.put("BucketItem", "ItemBucket");
+        equalsClass.put("ItemFood", "ItemFood2");
+        Checker.checkRegistryObjects(task, ModItems, ClassName.get("cx.rain.mc.forgemod.sinocraft.item", "ModItems2"), equalsClass);
     }
 
     private void addSeeds() throws IOException {
         ClassName ItemSeed = ClassName.get("cx.rain.mc.forgemod.sinocraft.item.base", "ItemSeed");
-        ClassName PlantType = ClassName.get("cx.rain.mc.forgemod.sinocraft.utility.enumerate", "PlantType");
-        task.logger.printDetailedLog(" Create seeds use " + ItemSeed.canonicalName());
+        task.logger.printDetailedLog(" Add seeds use " + ItemSeed.canonicalName());
 
         Utils.getEnumValues(PlantType, task, "WHITE_RADISH", "SUMMER_RADISH", "GREEN_RADISH", "SOYBEAN").forEach(value -> {
             String identifier = value.getName().getIdentifier();
             String fieldName = identifier + "_SEED";
             String name = ((StringLiteral) value.arguments().get(0)).getLiteralValue() + "_seed";
             items.addField(FieldSpec.builder(RegistryObject(ItemSeed), fieldName, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD_ITEM, identifier), name, ItemSeed, PlantType)
+                    .initializer(String.format(TEMPLATE_FIELD, identifier), name, ItemSeed, PlantType)
                     .build());
             task.logger.printDetailedLog("  Seed: " + fieldName + "{id = " + name + ", type = " + identifier + "}");
             counter.addAndGet(1);
         });
         items.addField(FieldSpec.builder(RegistryObject(ItemSeed), "SOYBEAN", Modifier.PUBLIC, Modifier.STATIC)
-                .initializer(String.format(TEMPLATE_FIELD_ITEM, "SOYBEAN"), "soybean", ItemSeed, PlantType)
+                .initializer(String.format(TEMPLATE_FIELD, "SOYBEAN"), "soybean", ItemSeed, PlantType)
                 .build());
         task.logger.printDetailedLog("  Seed: SOYBEAN{id = soybean, type = SOYBEAN}");
         counter.addAndGet(1);
@@ -74,13 +75,13 @@ public class ModItems {
     private void addFoods() throws IOException {
         ClassName EnumFoods = ClassName.get("cx.rain.mc.forgemod.sinocraft.item.food", "EnumFoods");
         ClassName ItemFood2 = ClassName.get("cx.rain.mc.forgemod.sinocraft.item.food", "ItemFood2");
-        task.logger.printDetailedLog(" Create foods use " + ItemFood2.canonicalName());
+        task.logger.printDetailedLog(" Add foods use " + ItemFood2.canonicalName());
 
         Utils.getEnumValues(EnumFoods, task).forEach(value -> {
             String name = value.getName().getIdentifier();
             String id = name.toLowerCase(Locale.ROOT);
-            items.addField(FieldSpec.builder(ItemFood2, name, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD_ITEM, name), id, ItemFood2, EnumFoods)
+            items.addField(FieldSpec.builder(RegistryObject(ItemFood2), name, Modifier.PUBLIC, Modifier.STATIC)
+                    .initializer(String.format(TEMPLATE_FIELD, name), id, ItemFood2, EnumFoods)
                     .build());
             task.logger.printDetailedLog("  Food: " + name + "{id = " + id + ", type = " + name + "}");
             counter.addAndGet(1);
@@ -94,14 +95,14 @@ public class ModItems {
                 "gold",
                 "diamond"
         };
-        task.logger.printDetailedLog(" Create knives use " + ItemKnife.canonicalName());
+        task.logger.printDetailedLog(" Add knives use " + ItemKnife.canonicalName());
 
         for (String material : materials) {
             String type = material.toUpperCase(Locale.ROOT);
             String fieldName = "KNIFE_" + type;
             String id = "knife_" + material;
             items.addField(FieldSpec.builder(RegistryObject(ItemKnife), fieldName, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD_ITEM, type), id, ItemKnife, ItemTier)
+                    .initializer(String.format(TEMPLATE_FIELD, type), id, ItemKnife, ItemTier)
                     .build());
             task.logger.printDetailedLog("  Knife: " + fieldName + "{id = " + id + ", type = " + type + "}");
             counter.addAndGet(1);
@@ -109,47 +110,22 @@ public class ModItems {
     }
 
     private void addBuckets() throws IOException {
-        ClassName ModFluids = ClassName.get("cx.rain.mc.forgemod.sinocraft.fluid", "ModFluids");
         ClassName ItemBucket = ClassName.get("cx.rain.mc.forgemod.sinocraft.item.base", "ItemBucket");
-        task.logger.printDetailedLog(" Create bucket use " + ItemBucket.canonicalName());
+        task.logger.printDetailedLog(" Add bucket use " + ItemBucket.canonicalName());
 
-        FieldDeclaration[] fields = Utils.getFields(ModFluids, task);
-        for (FieldDeclaration field : fields) {
-            int modifiers = field.getModifiers();
-            if (!org.eclipse.jdt.core.dom.Modifier.isStatic(modifiers)
-                    || !org.eclipse.jdt.core.dom.Modifier.isPublic(modifiers)) {
-                continue;
-            }
-            Type type = field.getType();
-            String typeName;
-            if (type instanceof ParameterizedType) {
-                typeName = ((SimpleType) ((ParameterizedType) type).getType()).getName().getFullyQualifiedName();
-            } else if (type instanceof SimpleType) {
-                typeName = ((SimpleType) type).getName().getFullyQualifiedName();
-            } else {
-                continue;
-            }
-            if (!"RegistryObject".equals(typeName)) {
-                continue;
-            }
-            VariableDeclarationFragment variable = (VariableDeclarationFragment) field.fragments().get(0);
-            String fieldName = variable.getName().getIdentifier();
-            if (fieldName.endsWith("_FLOWING")) {
-                continue;
-            }
-
-            String name = "BUCKET_" + fieldName;
+        for (String fluid : ModFluids.getAllFluids(task)) {
+            String name = "BUCKET_" + fluid;
             String id = name.toLowerCase(Locale.ROOT);
             items.addField(FieldSpec.builder(RegistryObject(ItemBucket), name, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD_ITEM, fieldName), id, ItemBucket, ModFluids)
+                    .initializer(String.format(TEMPLATE_FIELD, fluid), id, ItemBucket, ModFluids.ModFluids)
                     .build());
-            task.logger.printDetailedLog("  Bucket: " + name + "{id = " + id + ", fluid = " + fieldName + "}");
+            task.logger.printDetailedLog("  Bucket: " + name + "{id = " + id + ", fluid = " + fluid + "}");
             counter.addAndGet(1);
         }
     }
 
     private void addGroupItems() throws IOException {
-        task.logger.printDetailedLog(" Create simple items in items.toml");
+        task.logger.printDetailedLog(" Add simple items in items.toml");
         Toml items = Utils.getToml("items.toml", task);
         for (FieldDeclaration field : Utils.getFields(ModGroups, task)) {
             int modifiers = field.getModifiers();
@@ -188,7 +164,8 @@ public class ModItems {
         }
     }
 
-    private void addTypedItem() throws IOException {
+    private void addTypedItems() throws IOException {
+        task.logger.printDetailedLog(" Add custom items");
         Utils.findClasses("cx.rain.mc.forgemod.sinocraft.item", task.srcPath, false).stream()
                 .filter(info -> {
                     String name = info.className;
@@ -196,7 +173,6 @@ public class ModItems {
                 })
                 .forEach(info -> {
                     ClassName itemType = ClassName.get(info.packageName, info.className);
-                    task.logger.printDetailedLog(" Create custom items use " + itemType.canonicalName());
 
                     String registerName = Utils.toLowerName(info.className, 4);
                     String fieldName = Utils.toUpperName(info.className, 4);
@@ -204,36 +180,8 @@ public class ModItems {
                     items.addField(FieldSpec.builder(RegistryObject(itemType), fieldName, Modifier.PUBLIC, Modifier.STATIC)
                             .initializer("REGISTRY.register($S, $T::new)", registerName, itemType)
                             .build());
-                    task.logger.printDetailedLog("  Custom: " + fieldName + "{id = " + registerName + "}");
+                    task.logger.printDetailedLog("  Custom: " + fieldName + "{id = " + registerName + ", type = " + itemType.canonicalName() + "}");
                     counter.addAndGet(1);
                 });
-    }
-
-    private void checkGeneratedClass() throws IOException {
-        ClassName generatedClass = ClassName.get("cx.rain.mc.forgemod.sinocraft.item", "ModItems2");
-        ClassName originClass = ClassName.get("cx.rain.mc.forgemod.sinocraft.item", "ModItems");
-        Set<String> fieldNames = new HashSet<>();
-        StringBuilder sb = new StringBuilder();
-        for (FieldDeclaration field : Utils.getFields(generatedClass, task)) {
-            VariableDeclarationFragment fragment = (VariableDeclarationFragment) field.fragments().get(0);
-            fieldNames.add(fragment.getName().getIdentifier());
-        }
-        for (FieldDeclaration field : Utils.getFields(originClass, task)) {
-            VariableDeclarationFragment fragment = (VariableDeclarationFragment) field.fragments().get(0);
-            String identifier = fragment.getName().getIdentifier();
-            if (!fieldNames.remove(identifier)) {
-                sb.append("No field in ModItems2: ").append(identifier).append("\n");
-            }
-        }
-        if (!fieldNames.isEmpty()) {
-            for (String name : fieldNames) {
-                sb.append("No field in ModItems: ").append(name).append("\n");
-            }
-        }
-        if (sb.length() > 0) {
-            throw new IOException("Items class has difference: \n" + sb);
-        } else {
-            System.out.println("ModItems check pass.");
-        }
     }
 }

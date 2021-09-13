@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.base;
 
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.LogType;
+import cx.rain.mc.forgemod.sinocraft.utility.enumerate.TreeType;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,10 +22,10 @@ import java.util.Random;
 public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
-    private LogType type;
+    private TreeType type;
     private RegistryObject<? extends Item> fruit;
 
-    public BlockLeavesGrowable(LogType typeIn, RegistryObject<? extends Item> fruitRegistryIn) {
+    public BlockLeavesGrowable(TreeType typeIn, RegistryObject<? extends Item> fruitRegistryIn) {
         super(typeIn);
         type = typeIn;
         fruit = fruitRegistryIn;

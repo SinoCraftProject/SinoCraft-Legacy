@@ -33,25 +33,25 @@ class ModItems2 {
 
   public static RegistryObject<ItemSeed> SOYBEAN = REGISTRY.register("soybean", () -> new ItemSeed(PlantType.SOYBEAN));
 
-  public static ItemFood2 PEACH = REGISTRY.register("peach", () -> new ItemFood2(EnumFoods.PEACH));
+  public static RegistryObject<ItemFood2> PEACH = REGISTRY.register("peach", () -> new ItemFood2(EnumFoods.PEACH));
 
-  public static ItemFood2 CHILI_PEPPER = REGISTRY.register("chili_pepper", () -> new ItemFood2(EnumFoods.CHILI_PEPPER));
+  public static RegistryObject<ItemFood2> CHILI_PEPPER = REGISTRY.register("chili_pepper", () -> new ItemFood2(EnumFoods.CHILI_PEPPER));
 
-  public static ItemFood2 GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood2(EnumFoods.GREEN_PEPPER));
+  public static RegistryObject<ItemFood2> GREEN_PEPPER = REGISTRY.register("green_pepper", () -> new ItemFood2(EnumFoods.GREEN_PEPPER));
 
-  public static ItemFood2 EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood2(EnumFoods.EGGPLANT));
+  public static RegistryObject<ItemFood2> EGGPLANT = REGISTRY.register("eggplant", () -> new ItemFood2(EnumFoods.EGGPLANT));
 
-  public static ItemFood2 CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood2(EnumFoods.CABBAGE));
+  public static RegistryObject<ItemFood2> CABBAGE = REGISTRY.register("cabbage", () -> new ItemFood2(EnumFoods.CABBAGE));
 
-  public static ItemFood2 ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood2(EnumFoods.ADUST_FOOD));
+  public static RegistryObject<ItemFood2> ADUST_FOOD = REGISTRY.register("adust_food", () -> new ItemFood2(EnumFoods.ADUST_FOOD));
 
-  public static ItemFood2 COOKED_DUMPLING = REGISTRY.register("cooked_dumpling", () -> new ItemFood2(EnumFoods.COOKED_DUMPLING));
+  public static RegistryObject<ItemFood2> COOKED_DUMPLING = REGISTRY.register("cooked_dumpling", () -> new ItemFood2(EnumFoods.COOKED_DUMPLING));
 
-  public static ItemFood2 BOWL_WITH_RICE = REGISTRY.register("bowl_with_rice", () -> new ItemFood2(EnumFoods.BOWL_WITH_RICE));
+  public static RegistryObject<ItemFood2> BOWL_WITH_RICE = REGISTRY.register("bowl_with_rice", () -> new ItemFood2(EnumFoods.BOWL_WITH_RICE));
 
-  public static ItemFood2 BOWL_WITH_WATER = REGISTRY.register("bowl_with_water", () -> new ItemFood2(EnumFoods.BOWL_WITH_WATER));
+  public static RegistryObject<ItemFood2> BOWL_WITH_WATER = REGISTRY.register("bowl_with_water", () -> new ItemFood2(EnumFoods.BOWL_WITH_WATER));
 
-  public static ItemFood2 BOWL_WITH_PORRIDGE = REGISTRY.register("bowl_with_porridge", () -> new ItemFood2(EnumFoods.BOWL_WITH_PORRIDGE));
+  public static RegistryObject<ItemFood2> BOWL_WITH_PORRIDGE = REGISTRY.register("bowl_with_porridge", () -> new ItemFood2(EnumFoods.BOWL_WITH_PORRIDGE));
 
   public static RegistryObject<ItemKnife> KNIFE_IRON = REGISTRY.register("knife_iron", () -> new ItemKnife(ItemTier.IRON));
 

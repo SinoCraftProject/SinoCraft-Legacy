@@ -8,10 +8,7 @@ import org.eclipse.jdt.core.dom.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Utils {
@@ -102,5 +99,50 @@ public class Utils {
             }
         }
         return sb.toString();
+    }
+
+    public static String toCamelCase(String name, boolean lowerFirst) {
+        StringBuilder sb = new StringBuilder();
+        boolean first = false;
+        for (String s : name.split("_")) {
+            if (s.isEmpty()) continue;
+            String s1 = s.toLowerCase(Locale.ROOT);
+            if (lowerFirst && !first) {
+                first = true;
+                sb.append(s1);
+            } else {
+                sb.append(Character.toUpperCase(s1.charAt(0)));
+                sb.append(s1.substring(1));
+            }
+        }
+        return sb.toString();
+    }
+
+    public static void forAllRegistryObjects(ClassName className, ModSourceGenerator task, ITriConsumer.RegistryObjectInfoConsumer consumer) throws IOException {
+        for (FieldDeclaration field : getFields(className, task)) {
+            int modifiers = field.getModifiers();
+            Type fieldType = field.getType();
+            String objectType = "";
+            if (fieldType instanceof SimpleType && !"RegistryObject".equals(((SimpleType) fieldType).getName().getFullyQualifiedName())) {
+                continue;
+            } else if (fieldType instanceof ParameterizedType) {
+                ParameterizedType parameterizedType = (ParameterizedType) fieldType;
+                if ("RegistryObject".equals(((SimpleType) parameterizedType.getType()).getName().getFullyQualifiedName())) {
+                    objectType = ((SimpleType) parameterizedType.typeArguments().get(0)).getName().getFullyQualifiedName();
+                } else {
+                    continue;
+                }
+            } else {
+                continue;
+            }
+            if (Modifier.isPublic(modifiers) && Modifier.isStatic(modifiers)) {
+                VariableDeclarationFragment variable = (VariableDeclarationFragment) field.fragments().get(0);
+                String name = variable.getName().getIdentifier();
+                MethodInvocation initializer = (MethodInvocation) variable.getInitializer();
+                StringLiteral idParameter = (StringLiteral) initializer.arguments().get(0);
+                String id = idParameter.getLiteralValue();
+                consumer.consume(objectType, name, id);
+            }
+        }
     }
 }
