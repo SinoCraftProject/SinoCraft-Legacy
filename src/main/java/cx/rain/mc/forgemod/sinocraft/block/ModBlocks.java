@@ -2,6 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.marble.BlockMarble;
+import cx.rain.mc.forgemod.sinocraft.block.marble.MarbleType;
 import cx.rain.mc.forgemod.sinocraft.block.plant.BlockPlant;
 import cx.rain.mc.forgemod.sinocraft.block.tree.*;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;

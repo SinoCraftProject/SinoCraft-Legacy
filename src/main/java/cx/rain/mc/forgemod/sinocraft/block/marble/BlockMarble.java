@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.marble;
 
-import cx.rain.mc.forgemod.sinocraft.block.MarbleType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;

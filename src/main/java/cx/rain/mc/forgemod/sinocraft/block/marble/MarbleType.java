@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.block;
+package cx.rain.mc.forgemod.sinocraft.block.marble;
 
 import net.minecraft.block.material.MaterialColor;
 
