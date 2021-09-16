@@ -10,8 +10,8 @@ tasks.withType(JavaCompile) {
 gradlePlugin {
     plugins {
         myPlugins {
-            id = 'lq2007.gradle.mod-source-generator'
-            implementationClass = 'lq2007.gradle.mod_src_gen.PluginMain'
+            id = 'mc.sinocraft.gradle_plugin'
+            implementationClass = 'mc.sinocraft.gradle_plugin.PluginMain'
         }
     }
 }

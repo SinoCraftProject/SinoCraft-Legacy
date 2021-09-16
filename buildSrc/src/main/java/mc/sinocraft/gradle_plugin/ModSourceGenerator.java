@@ -1,8 +1,9 @@
-package lq2007.gradle.mod_src_gen;
+package mc.sinocraft.gradle_plugin;
 
-import lq2007.gradle.mod_src_gen.generator.ModBlockItems;
-import lq2007.gradle.mod_src_gen.generator.ModBlocks;
-import lq2007.gradle.mod_src_gen.generator.ModItems;
+import mc.sinocraft.gradle_plugin.generator.ModBlockItems;
+import mc.sinocraft.gradle_plugin.generator.ModBlocks;
+import mc.sinocraft.gradle_plugin.generator.ModItems;
+import mc.sinocraft.gradle_plugin.generator.ModTileEntities;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -41,6 +42,7 @@ public class ModSourceGenerator extends DefaultTask {
             new ModItems().create(this);
             new ModBlocks().create(this);
             new ModBlockItems().create(this);
+            new ModTileEntities().create(this);
         } catch (Exception e) {
             getProject().getLogger().error(e.getMessage());
             e.printStackTrace();

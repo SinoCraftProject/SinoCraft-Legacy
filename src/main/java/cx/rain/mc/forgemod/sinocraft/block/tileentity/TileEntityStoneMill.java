@@ -20,7 +20,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityStoneMill extends TileEntityUpdatableBase implements ITileEntityStoneMill {
+public class TileEntityStoneMill extends BaseTileEntityUpdatable implements ITileEntityStoneMill {
 
     private final ItemStackHandler itemHandler = new MillItemHandler(this);
     private final ExtendedInventory inv = new ExtendedInventory();

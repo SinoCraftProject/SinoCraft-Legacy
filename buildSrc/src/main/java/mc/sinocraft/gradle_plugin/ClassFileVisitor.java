@@ -1,29 +1,27 @@
-package lq2007.gradle.mod_src_gen;
+package mc.sinocraft.gradle_plugin;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class ClassFileVisitor implements FileVisitor<Path> {
-
-    public List<ClassFileInfo> result = new ArrayList<>();
 
     private String rootPackage;
     private Path rootPath;
     private boolean children;
+    private ITriConsumer.ClassInfoConsumer consumer;
 
     private LinkedList<String> prevPackages = new LinkedList<>();
     private String currentPackage;
 
-    public ClassFileVisitor(String packageName, Path rootPath, boolean children) {
+    public ClassFileVisitor(String packageName, Path rootPath, boolean children, ITriConsumer.ClassInfoConsumer consumer) {
         this.rootPackage = packageName;
         this.rootPath = rootPath;
         this.children = children;
+        this.consumer = consumer;
 
         currentPackage = packageName;
     }
@@ -53,8 +51,7 @@ public class ClassFileVisitor implements FileVisitor<Path> {
             return FileVisitResult.CONTINUE;
         }
         String className = fileName.substring(0, fileName.length() - 5);
-        ClassFileInfo info = new ClassFileInfo(currentPackage, className, file);
-        result.add(info);
+        consumer.consume(currentPackage, className, file);
         return FileVisitResult.CONTINUE;
     }
 

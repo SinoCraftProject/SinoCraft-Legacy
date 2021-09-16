@@ -14,6 +14,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 class ModBlockItems2 {
   public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, SinoCraft.MODID);
 
+  public static RegistryObject<BlockNamedItem> WHITE_RADISH = REGISTRY.register("white_radish", () -> new BlockNamedItem(ModBlocks.WHITE_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(3).saturation(4.0f).build()).setNoRepair()));
+
+  public static RegistryObject<BlockNamedItem> SUMMER_RADISH = REGISTRY.register("summer_radish", () -> new BlockNamedItem(ModBlocks.SUMMER_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(2).saturation(3.0f).build()).setNoRepair()));
+
+  public static RegistryObject<BlockNamedItem> GREEN_RADISH = REGISTRY.register("green_radish", () -> new BlockNamedItem(ModBlocks.GREEN_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(3).saturation(5.0f).build()).setNoRepair()));
+
   public static RegistryObject<BlockItem> PEACH_LOG = REGISTRY.register("peach_log", () -> new BlockItem(ModBlocks.PEACH_LOG.get(), new Item.Properties().group(ModGroups.BLOCKS)));
 
   public static RegistryObject<BlockItem> PEACH_LOG_BARK = REGISTRY.register("peach_log_bark", () -> new BlockItem(ModBlocks.PEACH_LOG_BARK.get(), new Item.Properties().group(ModGroups.BLOCKS)));
@@ -87,12 +93,6 @@ class ModBlockItems2 {
   public static RegistryObject<BlockItem> POT = REGISTRY.register("pot", () -> new BlockItem(ModBlocks.POT.get(), new Item.Properties().group(ModGroups.BLOCKS)));
 
   public static RegistryObject<BlockItem> BELLOWS = REGISTRY.register("bellows", () -> new BlockItem(ModBlocks.BELLOWS.get(), new Item.Properties().group(ModGroups.BLOCKS)));
-
-  public static RegistryObject<BlockItem> WHITE_RADISH = REGISTRY.register("white_radish", () -> new BlockNamedItem(ModBlocks.WHITE_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(3).saturation(4.0f).build()).setNoRepair()));
-
-  public static RegistryObject<BlockItem> SUMMER_RADISH = REGISTRY.register("summer_radish", () -> new BlockNamedItem(ModBlocks.SUMMER_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(2).saturation(3.0f).build()).setNoRepair()));
-
-  public static RegistryObject<BlockItem> GREEN_RADISH = REGISTRY.register("green_radish", () -> new BlockNamedItem(ModBlocks.GREEN_RADISH_PLANT.get(), new Item.Properties().group(ModGroups.AGRICULTURE).food(new Food.Builder().hunger(3).saturation(5.0f).build()).setNoRepair()));
 
   public ModBlockItems2(IEventBus bus) {
     SinoCraft.getLogger().info("Registering block items.");

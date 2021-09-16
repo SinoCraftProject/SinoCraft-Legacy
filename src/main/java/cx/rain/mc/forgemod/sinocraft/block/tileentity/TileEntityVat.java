@@ -22,7 +22,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityVat extends TileEntityUpdatableBase implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityVat {
+public class TileEntityVat extends BaseTileEntityUpdatable implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityVat {
 
     private final VatItemHandler itemHandler = new VatItemHandler(this);
     private final VatFluidHandler fluidHandler = new VatFluidHandler(this);

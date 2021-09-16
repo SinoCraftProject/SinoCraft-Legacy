@@ -12,12 +12,12 @@ import net.minecraft.tileentity.TileEntityType;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public abstract class TileEntityUpdatableBase extends TileEntity implements ITickableTileEntity {
+public abstract class BaseTileEntityUpdatable extends TileEntity implements ITickableTileEntity {
 
     private boolean isDirty = false;
     private BlockState newState;
 
-    public TileEntityUpdatableBase(TileEntityType<?> tileEntityTypeIn) {
+    public BaseTileEntityUpdatable(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
@@ -58,7 +58,7 @@ public abstract class TileEntityUpdatableBase extends TileEntity implements ITic
         isDirty = true;
     }
 
-    protected <T extends Comparable<T>> TileEntityUpdatableBase updateBlockState(Property<T> property, T value) {
+    protected <T extends Comparable<T>> BaseTileEntityUpdatable updateBlockState(Property<T> property, T value) {
         if (newState == null) {
             newState = getBlockState();
         }

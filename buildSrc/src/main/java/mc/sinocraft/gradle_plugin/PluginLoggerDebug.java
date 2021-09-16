@@ -1,4 +1,4 @@
-package lq2007.gradle.mod_src_gen;
+package mc.sinocraft.gradle_plugin;
 
 public class PluginLoggerDebug extends PluginLogger {
 

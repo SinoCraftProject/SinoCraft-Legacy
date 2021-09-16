@@ -1,12 +1,15 @@
-package lq2007.gradle.mod_src_gen;
+package mc.sinocraft.gradle_plugin;
+
+import org.eclipse.jdt.core.dom.Type;
 
 import java.util.Objects;
 
 public class RegistryObjectInfo {
 
-    public final String name, id, type;
+    public final String name, id;
+    public final Type type;
 
-    public RegistryObjectInfo(String name, String id, String type) {
+    public RegistryObjectInfo(String name, String id, Type type) {
         this.name = name;
         this.id = id;
         this.type = type;

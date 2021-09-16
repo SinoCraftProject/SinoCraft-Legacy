@@ -1,0 +1,44 @@
+# block field name in ModBlocks
+[WHITE_RADISH_PLANT]
+# true if BlockNamedItem, default is false(BlockItem)
+named = true
+# field name in ModBlockItems, default is equals to block item in ModBlocks
+name = "WHITE_RADISH"
+# block item registryName, default is equals to block registryName
+id = "white_radish"
+# item group, debault is BLOCK
+group = "AGRICULTURE"
+# food if the item is a food, default is not a food
+food = { hunger = 3, saturation = 4.0 }
+# other item properties, default is empty
+properties = ["setNoRepair()"]
+
+[SUMMER_RADISH_PLANT]
+named = true
+name = "SUMMER_RADISH"
+id = "summer_radish"
+group = "AGRICULTURE"
+food = { hunger = 2, saturation = 3.0 }
+properties = ["setNoRepair()"]
+
+[GREEN_RADISH_PLANT]
+named = true
+name = "GREEN_RADISH"
+id = "green_radish"
+group = "AGRICULTURE"
+food = { hunger = 3, saturation = 5.0 }
+properties = ["setNoRepair()"]
+
+# create empty table to skip the block
+[EGGPLANT_PLANT]
+[TEAPOT]
+[WOOD_PULP_BLOCK]
+[SOYBEAN_PLANT]
+[RICE_PLANT]
+[CHILI_PEPPER_PLANT]
+[GREEN_PEPPER_PLANT]
+[CABBAGE_PLANT]
+[TEA_TABLE]
+[SORGHUM_PLANT]
+[TEACUP]
+[MILLET_PLANT]

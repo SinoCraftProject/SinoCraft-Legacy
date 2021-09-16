@@ -1,8 +1,8 @@
-package lq2007.gradle.mod_src_gen.generator;
+package mc.sinocraft.gradle_plugin.generator;
 
-import com.squareup.javapoet.ClassName;
-import lq2007.gradle.mod_src_gen.ModSourceGenerator;
-import lq2007.gradle.mod_src_gen.Utils;
+import mc.sinocraft.gradle_plugin.ClassTypes;
+import mc.sinocraft.gradle_plugin.ModSourceGenerator;
+import mc.sinocraft.gradle_plugin.Utils;
 import org.eclipse.jdt.core.dom.*;
 
 import java.io.IOException;
@@ -13,7 +13,6 @@ import java.util.List;
 public class ModFluids {
 
     private static List<String> FLUIDS = null;
-    public static final ClassName ModFluids = ClassName.get("cx.rain.mc.forgemod.sinocraft.fluid", "ModFluids");
 
     public static List<String> getAllFluids(ModSourceGenerator task) throws IOException {
         if (FLUIDS == null) {
@@ -24,7 +23,7 @@ public class ModFluids {
 
     private static void loadAllFluids(ModSourceGenerator task) throws IOException {
         List<String> builder = new ArrayList<>();
-        FieldDeclaration[] fields = Utils.getFields(ModFluids, task);
+        FieldDeclaration[] fields = Utils.getFields(ClassTypes.ModFluids, task);
         for (FieldDeclaration field : fields) {
             int modifiers = field.getModifiers();
             if (!org.eclipse.jdt.core.dom.Modifier.isStatic(modifiers)
