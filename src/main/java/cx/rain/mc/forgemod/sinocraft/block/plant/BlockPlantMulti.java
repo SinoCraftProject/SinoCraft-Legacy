@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.block.base;
+package cx.rain.mc.forgemod.sinocraft.block.plant;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,8 +11,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-
-import java.util.Random;
 
 public class BlockPlantMulti extends BlockPlant {
 

@@ -6,7 +6,7 @@ import cx.rain.mc.forgemod.sinocraft.item.base.ItemBucket;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
 import cx.rain.mc.forgemod.sinocraft.item.food.EnumFoods;
 import cx.rain.mc.forgemod.sinocraft.item.food.ItemFood2;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.block.plant.PlantType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraftforge.eventbus.api.IEventBus;

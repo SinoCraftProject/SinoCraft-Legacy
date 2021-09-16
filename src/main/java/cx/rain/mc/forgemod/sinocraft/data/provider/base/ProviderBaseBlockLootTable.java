@@ -2,7 +2,7 @@ package cx.rain.mc.forgemod.sinocraft.data.provider.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockLeavesGrowable;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;

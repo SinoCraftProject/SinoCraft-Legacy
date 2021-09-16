@@ -1,6 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.api.block;
 
-import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
+import cx.rain.mc.forgemod.sinocraft.block.plant.StageProperty;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;

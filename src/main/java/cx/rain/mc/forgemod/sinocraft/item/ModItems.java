@@ -1,11 +1,10 @@
 package cx.rain.mc.forgemod.sinocraft.item;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.entity.ModEntities;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemFood;
 import cx.rain.mc.forgemod.sinocraft.item.base.ItemSeed;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
+import cx.rain.mc.forgemod.sinocraft.block.plant.PlantType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.world.World;

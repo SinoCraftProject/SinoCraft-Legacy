@@ -1,11 +1,9 @@
-package cx.rain.mc.forgemod.sinocraft.utility.enumerate;
+package cx.rain.mc.forgemod.sinocraft.block.plant;
 
 import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
@@ -14,8 +12,8 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import static cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty.STAGE_0_3;
-import static cx.rain.mc.forgemod.sinocraft.utility.property.StageProperty.STAGE_0_7;
+import static cx.rain.mc.forgemod.sinocraft.block.plant.StageProperty.STAGE_0_3;
+import static cx.rain.mc.forgemod.sinocraft.block.plant.StageProperty.STAGE_0_7;
 
 public enum PlantType implements IPlantType {
 

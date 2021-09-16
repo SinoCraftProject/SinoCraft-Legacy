@@ -1,6 +1,5 @@
-package cx.rain.mc.forgemod.sinocraft.block.base;
+package cx.rain.mc.forgemod.sinocraft.block.tree;
 
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.TreeType;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

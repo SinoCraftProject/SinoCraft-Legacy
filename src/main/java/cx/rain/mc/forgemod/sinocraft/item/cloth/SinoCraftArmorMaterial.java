@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.enumerate;
+package cx.rain.mc.forgemod.sinocraft.item.cloth;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;

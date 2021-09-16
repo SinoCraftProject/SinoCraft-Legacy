@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.enumerate;
+package cx.rain.mc.forgemod.sinocraft.block.tree;
 
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.block.material.MaterialColor;
@@ -13,8 +13,8 @@ public enum TreeType {
     PLUM("plum", MaterialColor.PINK_TERRACOTTA, null),
     MULBERRY("mulberry", MaterialColor.OBSIDIAN, null);
 
-    private String name;
-    private MaterialColor color;
+    private final String name;
+    private final MaterialColor color;
 
     /**
      * @param fruit 用于生成树叶方块，只能引用来自 ModItems, ModBlockItems, Items 的物品

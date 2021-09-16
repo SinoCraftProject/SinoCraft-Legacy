@@ -2,7 +2,6 @@ package cx.rain.mc.forgemod.sinocraft.item.cloth;
 
 import cx.rain.mc.forgemod.sinocraft.api.utility.Lazy;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.model.armor.ClothModel;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.SinoCraftArmorMaterial;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

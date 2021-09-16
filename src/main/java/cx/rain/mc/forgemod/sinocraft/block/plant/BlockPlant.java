@@ -1,7 +1,6 @@
-package cx.rain.mc.forgemod.sinocraft.block.base;
+package cx.rain.mc.forgemod.sinocraft.block.plant;
 
 import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

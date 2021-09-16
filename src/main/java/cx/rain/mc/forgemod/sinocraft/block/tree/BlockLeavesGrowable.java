@@ -1,6 +1,5 @@
-package cx.rain.mc.forgemod.sinocraft.block.base;
+package cx.rain.mc.forgemod.sinocraft.block.tree;
 
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.TreeType;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

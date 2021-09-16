@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.property;
+package cx.rain.mc.forgemod.sinocraft.block.plant;
 
 import net.minecraft.state.IntegerProperty;
 

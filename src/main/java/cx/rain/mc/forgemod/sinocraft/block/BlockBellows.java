@@ -1,7 +1,7 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.api.block.IWindEnergyReceiver;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontalActivatable;
+import cx.rain.mc.forgemod.sinocraft.block.base.BlockHorizontal;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.TileEntityBellows;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,15 +21,11 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockBellows extends BlockHorizontalActivatable {
+public class BlockBellows extends BlockHorizontal {
     public static IntegerProperty STATE = IntegerProperty.create("state", 0, 3);
 
     public BlockBellows() {
-        super(Block.Properties
-                .create(Material.WOOD)
-                .sound(SoundType.WOOD)
-                .notSolid()
-        );
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).notSolid());
     }
 
     @Override
@@ -39,16 +35,12 @@ public class BlockBellows extends BlockHorizontalActivatable {
     }
 
     @Override
-    public ActionResultType onClientActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        worldIn.playSound(player, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        return ActionResultType.SUCCESS;
-    }
-
-    @Override
-    public ActionResultType onServerActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (state.get(STATE) != 3)
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isRemote) {
+            worldIn.playSound(player, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        } else if (state.get(STATE) != 3) {
             worldIn.setBlockState(pos, state.with(STATE, state.get(STATE) + 1));
-        else{
+        } else {
             worldIn.setBlockState(pos, state.with(STATE, 0));
             TileEntity te = worldIn.getTileEntity(pos);
             if (te instanceof TileEntityBellows) {

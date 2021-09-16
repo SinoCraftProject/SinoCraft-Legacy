@@ -1,18 +1,17 @@
 package cx.rain.mc.forgemod.sinocraft.block;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeaves;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLeavesGrowable;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockLog;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockMarble;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlank;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockPlant;
-import cx.rain.mc.forgemod.sinocraft.block.base.BlockSapling;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockLeaves;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockLeavesGrowable;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockLog;
+import cx.rain.mc.forgemod.sinocraft.block.marble.BlockMarble;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockPlank;
+import cx.rain.mc.forgemod.sinocraft.block.plant.BlockPlant;
+import cx.rain.mc.forgemod.sinocraft.block.tree.BlockSapling;
 import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.MarbleType;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.PlantType;
-import cx.rain.mc.forgemod.sinocraft.utility.enumerate.TreeType;
+import cx.rain.mc.forgemod.sinocraft.block.plant.PlantType;
+import cx.rain.mc.forgemod.sinocraft.block.tree.TreeType;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreeMulberry;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePeach;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreePlum;

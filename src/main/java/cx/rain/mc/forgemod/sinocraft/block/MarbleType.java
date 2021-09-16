@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.utility.enumerate;
+package cx.rain.mc.forgemod.sinocraft.block;
 
 import net.minecraft.block.material.MaterialColor;
 
@@ -10,7 +10,7 @@ public enum MarbleType {
     private String name;
     private MaterialColor color;
 
-    private MarbleType(String nameIn, MaterialColor colorIn) {
+    MarbleType(String nameIn, MaterialColor colorIn) {
         name = nameIn;
         color = colorIn;
     }
