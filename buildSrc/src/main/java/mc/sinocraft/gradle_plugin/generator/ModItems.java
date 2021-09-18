@@ -4,17 +4,21 @@ import com.moandjiezana.toml.Toml;
 import com.squareup.javapoet.*;
 import mc.sinocraft.gradle_plugin.ClassTypes;
 import mc.sinocraft.gradle_plugin.ModSourceGenerator;
-import mc.sinocraft.gradle_plugin.Checker;
 import mc.sinocraft.gradle_plugin.Utils;
-import org.eclipse.jdt.core.dom.*;
+import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import javax.lang.model.element.Modifier;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static mc.sinocraft.gradle_plugin.Templates.TEMPLATE_FIELD;
+import static mc.sinocraft.gradle_plugin.Templates.registerWithNew;
 
 public class ModItems {
     
@@ -23,7 +27,7 @@ public class ModItems {
     private final AtomicInteger counter = new AtomicInteger(0);
 
     public void create(ModSourceGenerator task) throws IOException {
-        items = TypeSpec.classBuilder("ModItems2");
+        items = TypeSpec.classBuilder("ModItems").addModifiers(Modifier.PUBLIC);
         items.addField(FieldSpec.builder(ClassTypes.DeferredRegister(ClassTypes.Item), "REGISTRY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .initializer("$T.create($T.ITEMS, $T.MODID)", ClassTypes.DeferredRegister, ClassTypes.ForgeRegistries, ClassTypes.SinoCraft)
                 .build());
@@ -48,7 +52,6 @@ public class ModItems {
         Map<String, String> equalsClass = new HashMap<>();
         equalsClass.put("BucketItem", "ItemBucket");
         equalsClass.put("ItemFood", "ItemFood2");
-        Checker.checkRegistryObjects(task, ClassTypes.ModItems, ClassTypes.ModItems2, equalsClass);
     }
 
     private void addSeeds() throws IOException {
@@ -59,26 +62,26 @@ public class ModItems {
             String fieldName = identifier + "_SEED";
             String name = ((StringLiteral) value.arguments().get(0)).getLiteralValue() + "_seed";
             items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemSeed), fieldName, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD, identifier), name, ClassTypes.ItemSeed, ClassTypes.PlantType)
+                    .initializer(registerWithNew(identifier), name, ClassTypes.ItemSeed, ClassTypes.PlantType)
                     .build());
             task.logger.printDetailedLog("  Seed: " + fieldName + "{id = " + name + ", type = " + identifier + "}");
             counter.addAndGet(1);
         });
         items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemSeed), "SOYBEAN", Modifier.PUBLIC, Modifier.STATIC)
-                .initializer(String.format(TEMPLATE_FIELD, "SOYBEAN"), "soybean", ClassTypes.ItemSeed, ClassTypes.PlantType)
+                .initializer(registerWithNew("SOYBEAN"), "soybean", ClassTypes.ItemSeed, ClassTypes.PlantType)
                 .build());
         task.logger.printDetailedLog("  Seed: SOYBEAN{id = soybean, type = SOYBEAN}");
         counter.addAndGet(1);
     }
 
     private void addFoods() throws IOException {
-        task.logger.printDetailedLog(" Add foods use " + ClassTypes.ItemFood2.canonicalName());
+        task.logger.printDetailedLog(" Add foods use " + ClassTypes.ItemFood.canonicalName());
 
         Utils.getEnumValues(ClassTypes.EnumFoods, task).forEach(value -> {
             String name = value.getName().getIdentifier();
             String id = name.toLowerCase(Locale.ROOT);
-            items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemFood2), name, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD, name), id, ClassTypes.ItemFood2, ClassTypes.EnumFoods)
+            items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemFood), name, Modifier.PUBLIC, Modifier.STATIC)
+                    .initializer(registerWithNew(name), id, ClassTypes.ItemFood, ClassTypes.EnumFoods)
                     .build());
             task.logger.printDetailedLog("  Food: " + name + "{id = " + id + ", type = " + name + "}");
             counter.addAndGet(1);
@@ -98,7 +101,7 @@ public class ModItems {
             String fieldName = "KNIFE_" + type;
             String id = "knife_" + material;
             items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemKnife), fieldName, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD, type), id, ClassTypes.ItemKnife, ClassTypes.ItemTier)
+                    .initializer(registerWithNew(type), id, ClassTypes.ItemKnife, ClassTypes.ItemTier)
                     .build());
             task.logger.printDetailedLog("  Knife: " + fieldName + "{id = " + id + ", type = " + type + "}");
             counter.addAndGet(1);
@@ -112,7 +115,7 @@ public class ModItems {
             String name = "BUCKET_" + fluid;
             String id = name.toLowerCase(Locale.ROOT);
             items.addField(FieldSpec.builder(ClassTypes.RegistryObject(ClassTypes.ItemBucket), name, Modifier.PUBLIC, Modifier.STATIC)
-                    .initializer(String.format(TEMPLATE_FIELD, fluid), id, ClassTypes.ItemBucket, ClassTypes.ModFluids)
+                    .initializer(registerWithNew(fluid), id, ClassTypes.ItemBucket, ClassTypes.ModFluids)
                     .build());
             task.logger.printDetailedLog("  Bucket: " + name + "{id = " + id + ", fluid = " + fluid + "}");
             counter.addAndGet(1);

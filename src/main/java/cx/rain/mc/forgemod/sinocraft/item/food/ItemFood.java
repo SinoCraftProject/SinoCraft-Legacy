@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemFood2 extends Item {
+public class ItemFood extends Item {
 
     private static Properties createFoodProperties(EnumFoods food) {
         Properties properties = new Properties()
@@ -22,7 +22,7 @@ public class ItemFood2 extends Item {
 
     private final EnumFoods food;
 
-    public ItemFood2(EnumFoods food) {
+    public ItemFood(EnumFoods food) {
         super(createFoodProperties(food));
         this.food = food;
     }

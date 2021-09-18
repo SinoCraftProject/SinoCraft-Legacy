@@ -2,14 +2,12 @@ package mc.sinocraft.gradle_plugin.generator;
 
 import com.moandjiezana.toml.Toml;
 import com.squareup.javapoet.*;
-import mc.sinocraft.gradle_plugin.Checker;
 import mc.sinocraft.gradle_plugin.ClassTypes;
 import mc.sinocraft.gradle_plugin.ModSourceGenerator;
 import mc.sinocraft.gradle_plugin.Utils;
 
 import javax.lang.model.element.Modifier;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ModBlockItems {
@@ -19,7 +17,7 @@ public class ModBlockItems {
     private final AtomicInteger counter = new AtomicInteger(0);
 
     public void create(ModSourceGenerator task) throws IOException {
-        items = TypeSpec.classBuilder("ModBlockItems2");
+        items = TypeSpec.classBuilder("ModBlockItems").addModifiers(Modifier.PUBLIC);
         items.addField(FieldSpec.builder(ClassTypes.DeferredRegister(ClassTypes.Item), "REGISTRY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .initializer("$T.create($T.ITEMS, $T.MODID)", ClassTypes.DeferredRegister, ClassTypes.ForgeRegistries, ClassTypes.SinoCraft)
                 .build());
@@ -36,7 +34,6 @@ public class ModBlockItems {
                 .addCode("REGISTRY.register(bus);")
                 .build());
         JavaFile.builder("cx.rain.mc.forgemod.sinocraft.block", items.build()).build().writeTo(task.srcPath);
-        Checker.checkRegistryObjects(task, ClassTypes.ModBlockItems, ClassTypes.ModBlockItems2, Collections.emptyMap());
     }
 
     private void addBlocks() throws IOException {

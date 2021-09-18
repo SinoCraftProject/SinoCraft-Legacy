@@ -6,8 +6,10 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 import javax.annotation.Nullable;
+import java.util.EnumMap;
 
 public enum TreeType {
+
     PEACH("peach", MaterialColor.PINK_TERRACOTTA, ModItems.PEACH),
     WALNUT("walnut", MaterialColor.OBSIDIAN, null),
     PLUM("plum", MaterialColor.PINK_TERRACOTTA, null),

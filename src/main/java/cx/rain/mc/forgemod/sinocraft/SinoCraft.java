@@ -16,8 +16,6 @@ import cx.rain.mc.forgemod.sinocraft.fluid.ModFluids;
 import cx.rain.mc.forgemod.sinocraft.gui.container.ModContainers;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import cx.rain.mc.forgemod.sinocraft.network.Networks;
-import cx.rain.mc.forgemod.sinocraft.utility.BlockAdditions;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -66,9 +64,7 @@ public class SinoCraft {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        logger.info("Hello Minecraft!");
-
-        new BlockAdditions();
+        logger.info("Hello SinoCraft!");
         Networks.setup();
     }
 

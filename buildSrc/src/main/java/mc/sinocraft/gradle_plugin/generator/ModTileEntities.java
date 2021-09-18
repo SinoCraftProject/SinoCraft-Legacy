@@ -2,14 +2,12 @@ package mc.sinocraft.gradle_plugin.generator;
 
 import com.moandjiezana.toml.Toml;
 import com.squareup.javapoet.*;
-import mc.sinocraft.gradle_plugin.Checker;
 import mc.sinocraft.gradle_plugin.ClassTypes;
 import mc.sinocraft.gradle_plugin.ModSourceGenerator;
 import mc.sinocraft.gradle_plugin.Utils;
 
 import javax.lang.model.element.Modifier;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ModTileEntities {
@@ -18,7 +16,7 @@ public class ModTileEntities {
     private final AtomicInteger counter = new AtomicInteger();
 
     public void create(ModSourceGenerator task) throws IOException {
-        blocks = TypeSpec.classBuilder("ModTileEntities2");
+        blocks = TypeSpec.classBuilder("ModTileEntities").addModifiers(Modifier.PUBLIC);
         blocks.addField(FieldSpec.builder(ClassTypes.DeferredRegister(ClassTypes.TileEntityType(ClassTypes.Any)), "REGISTRY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .initializer("$T.create($T.TILE_ENTITIES, $T.MODID)", ClassTypes.DeferredRegister, ClassTypes.ForgeRegistries, ClassTypes.SinoCraft)
                 .build());
@@ -35,7 +33,6 @@ public class ModTileEntities {
                 .addCode("REGISTRY.register(bus);")
                 .build());
         JavaFile.builder("cx.rain.mc.forgemod.sinocraft.block.tileentity", blocks.build()).build().writeTo(task.srcPath);
-        Checker.checkRegistryObjects(task, ClassTypes.ModTileEntities, ClassTypes.ModTileEntities2, Collections.emptyMap());
     }
 
     private void addTypedTileEntities() throws IOException {

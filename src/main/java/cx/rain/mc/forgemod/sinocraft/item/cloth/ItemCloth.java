@@ -25,9 +25,4 @@ public abstract class ItemCloth extends ArmorItem {
         return model.<A>cast().get();
     }
 
-    public static class ItemClothHelmet extends ItemCloth {
-        public ItemClothHelmet(Item.Properties builderIn) {
-            super(EquipmentSlotType.HEAD, new Lazy<>(new ClothModel<PlayerEntity>(1.0f)), builderIn);
-        }
-    }
 }
