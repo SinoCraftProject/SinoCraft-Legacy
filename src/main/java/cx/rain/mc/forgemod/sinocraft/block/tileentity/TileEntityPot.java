@@ -21,13 +21,12 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author NmmOC7
  */
-public class TileEntityPot extends TileEntityUpdatableBase implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityPot {
+public class TileEntityPot extends BaseTileEntityUpdatable implements cx.rain.mc.forgemod.sinocraft.api.block.ITileEntityPot {
     private final PotItemHandler itemHandler = new PotItemHandler(this);
     private final Heat heat = new Heat() {
         @Override

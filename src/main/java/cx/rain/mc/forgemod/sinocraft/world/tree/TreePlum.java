@@ -6,7 +6,6 @@ import net.minecraft.block.trees.Tree;
 import net.minecraft.util.Direction;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 

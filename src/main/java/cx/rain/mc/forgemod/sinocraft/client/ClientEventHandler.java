@@ -3,7 +3,6 @@ package cx.rain.mc.forgemod.sinocraft.client;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
 import cx.rain.mc.forgemod.sinocraft.block.tileentity.ModTileEntities;
-import cx.rain.mc.forgemod.sinocraft.client.renderer.entity.RendererBuffalo;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.item.XuanPaperBakedModel;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityPotRender;
 import cx.rain.mc.forgemod.sinocraft.client.renderer.tileentity.TileEntityStoneMillRender;
@@ -30,7 +29,6 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 

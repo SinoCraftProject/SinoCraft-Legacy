@@ -7,8 +7,6 @@ import cx.rain.mc.forgemod.sinocraft.world.tree.TreePlum;
 import cx.rain.mc.forgemod.sinocraft.world.tree.TreeWalnut;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.DecoratedPlacementConfig;
-import net.minecraft.world.gen.placement.NoiseDependant;
 import net.minecraft.world.gen.placement.Placement;
 
 public class FeatureConfigs {

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class TileEntityTeaTable extends TileEntityUpdatableBase implements ITileEntityTeaTable {
+public class TileEntityTeaTable extends BaseTileEntityUpdatable implements ITileEntityTeaTable {
 
     private final List<BaseTableElement> elements = NonNullList.create();
 

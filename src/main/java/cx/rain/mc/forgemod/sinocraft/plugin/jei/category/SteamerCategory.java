@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.plugin.jei.category;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
@@ -20,8 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.util.ArrayList;
 
 public class SteamerCategory implements IRecipeCategory<ISteamerRecipe> {
 

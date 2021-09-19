@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 import static cx.rain.mc.forgemod.sinocraft.api.capability.CapabilityWindEnergy.CAPABILITY;
 
-public class TileEntityBellows extends TileEntityUpdatableBase implements IWindEnergy {
+public class TileEntityBellows extends BaseTileEntityUpdatable implements IWindEnergy {
     private int we = 0;
     private int cdLowerTemp = 0;
     private int cdSendEnergy = 0;
