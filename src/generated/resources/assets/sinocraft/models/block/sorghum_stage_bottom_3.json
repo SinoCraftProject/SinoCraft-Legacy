@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "sinocraft:block/sorghum_stage_bottom_3"
-  }
-}

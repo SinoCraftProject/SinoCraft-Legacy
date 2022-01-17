@@ -1,8 +1,0 @@
-{
-  "type": "sinocraft:mill",
-  "input": {
-    "item": "sinocraft:rice_seed"
-  },
-  "result": "sinocraft:rice",
-  "time": 20
-}

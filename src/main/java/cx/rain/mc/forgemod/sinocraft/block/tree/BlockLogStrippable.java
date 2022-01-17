@@ -14,7 +14,7 @@ public class BlockLogStrippable extends BlockLog {
 
     private final Supplier<BlockLog> strippedLog;
 
-    public BlockLogStrippable(TreeType type, Supplier<BlockLog> strippedLog) {
+    public BlockLogStrippable(TreeData type, Supplier<BlockLog> strippedLog) {
         super(type);
         this.strippedLog = strippedLog;
     }

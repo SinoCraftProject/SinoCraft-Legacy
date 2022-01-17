@@ -7,9 +7,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.trees.Tree;
 
 public class BlockSapling extends SaplingBlock {
-    private TreeType type;
+    private TreeData type;
 
-    public BlockSapling(TreeType typeIn, Tree treeIn) {
+    public BlockSapling(TreeData typeIn, Tree treeIn) {
         super(treeIn, Block.Properties.create(Material.PLANTS)
                 .doesNotBlockMovement()
                 .tickRandomly()

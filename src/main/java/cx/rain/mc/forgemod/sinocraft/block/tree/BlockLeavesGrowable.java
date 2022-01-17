@@ -21,10 +21,10 @@ import java.util.Random;
 public class BlockLeavesGrowable extends BlockLeaves implements IGrowable {
     public static BooleanProperty MATURE = BooleanProperty.create("mature");
 
-    private TreeType type;
+    private TreeData type;
     private RegistryObject<? extends Item> fruit;
 
-    public BlockLeavesGrowable(TreeType typeIn, RegistryObject<? extends Item> fruitRegistryIn) {
+    public BlockLeavesGrowable(TreeData typeIn, RegistryObject<? extends Item> fruitRegistryIn) {
         super(typeIn);
         type = typeIn;
         fruit = fruitRegistryIn;

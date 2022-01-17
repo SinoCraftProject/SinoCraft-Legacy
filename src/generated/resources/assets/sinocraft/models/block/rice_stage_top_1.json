@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "sinocraft:block/rice_stage_top_1"
-  }
-}

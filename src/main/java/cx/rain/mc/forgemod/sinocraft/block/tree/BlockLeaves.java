@@ -1,18 +1,18 @@
 package cx.rain.mc.forgemod.sinocraft.block.tree;
 
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
 
 public class BlockLeaves extends LeavesBlock {
-    private TreeType type = null;
+    private TreeData type = null;
 
-    public BlockLeaves(TreeType typeIn) {
-        super(Properties.create(Material.LEAVES)
-                .sound(SoundType.PLANT)
-                .hardnessAndResistance(0.2F)
-                .tickRandomly()
-                .notSolid()
+    public BlockLeaves(TreeData typeIn) {
+        super(Properties.of(Material.LEAVES)
+                .sound(SoundType.GRASS)
+                .strength(0.2F)
+                .randomTicks()
+                .noOcclusion()
         );
 
         type = typeIn;

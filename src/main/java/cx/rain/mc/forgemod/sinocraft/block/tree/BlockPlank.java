@@ -6,9 +6,9 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
 public class BlockPlank extends Block {
-    private TreeType type = null;
+    private TreeData type = null;
 
-    public BlockPlank(TreeType typeIn) {
+    public BlockPlank(TreeData typeIn) {
         super(Properties.create(Material.WOOD)
                 .harvestTool(ToolType.AXE)
                 .hardnessAndResistance(2.0F, 3.0F)

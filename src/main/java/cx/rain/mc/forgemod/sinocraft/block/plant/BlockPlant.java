@@ -1,126 +1,83 @@
 package cx.rain.mc.forgemod.sinocraft.block.plant;
 
-import cx.rain.mc.forgemod.sinocraft.api.block.IPlantType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import cx.rain.mc.forgemod.sinocraft.api.block.plant.IPlantData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
-public class BlockPlant extends CropsBlock {
+public class BlockPlant extends CropBlock {
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    private static final ThreadLocal<IPlantType> BLOCK_TYPE = new ThreadLocal<>();
+    protected IPlantData type = null;
 
-    private final IPlantType plantType;
+    public BlockPlant(IPlantData typeIn) {
+        super(BlockBehaviour.Properties.of(Material.PLANT));
 
-    public static BlockPlant create(PlantType type) {
-        BLOCK_TYPE.set(type);
-        return type.getMaxHeight() > 1 ? new BlockPlantMulti() : new BlockPlant();
+        type = typeIn;
     }
 
-    protected BlockPlant() {
-        super(Block.Properties.from(Blocks.CARROTS));
-        this.plantType = BLOCK_TYPE.get();
-        BLOCK_TYPE.remove();
-    }
-
+    @Override
     public IntegerProperty getAgeProperty() {
-        return getType().getProperty();
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        int age = state.get(getAgeProperty());
-        int stage = age / ((getType().getProperty().getMaxStage() + 1) / 4);
-        return SHAPES[stage];
-    }
-
-    @Override
-    public IItemProvider getSeedsItem() {
-        return getType().getSeed().get();
+        return type.getProperty();
     }
 
     @Override
     public int getMaxAge() {
-        return getType().getProperty().getMaxStage();
+        return type.getProperty().getMaxStage();
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        var age = state.getValue(getAgeProperty());
+        var stage = age / ((getMaxAge() + 1) / 4);
+        return SHAPES[stage];
+    }
+
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return type.getSeed().get();
+    }
+
+    @Override
+    public BlockState getStateForAge(int age) {
+        return this.defaultBlockState().setValue(this.getAgeProperty(), age);
+    }
+
+    // qyl: Why I override this method? 2022/1/17.
+    @Override
+    @NotNull
+    public StateDefinition<Block, BlockState> getStateDefinition() {
+        return stateDefinition;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(getAgeProperty());
     }
 
     @Override
-    protected int getAge(BlockState state) {
-        return state.get(this.getAgeProperty());
+    protected int getBonemealAgeIncrease(Level world) {
+        return type.growWithBonus(world.random);
     }
 
     @Override
-    public BlockState withAge(int age) {
-        return this.getDefaultState().with(this.getAgeProperty(), age);
-    }
-
-    @Override
-    public StateContainer<Block, BlockState> getStateContainer() {
-        return stateContainer;
-    }
-
-    @Override
-    protected int getBonemealAgeIncrease(World worldIn) {
-        return getType().randomGrowAge(worldIn.rand);
-    }
-
-    @Override
-    public void grow(World worldIn, BlockPos pos, BlockState state) {
-        grow(worldIn, pos, state, getBonemealAgeIncrease(worldIn));
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        if (worldIn.getLightSubtracted(pos, 0) >= 9) {
-            if (canGrowTick(state, worldIn, pos)) {
-                float f = getGrowthChance(this, worldIn, pos);
-                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int)(25.0F / f) + 1) == 0)) {
-                    grow(worldIn, pos, state, 1);
-                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
-                }
-            }
-        }
-    }
-
-    protected boolean canGrowTick(BlockState state, ServerWorld worldIn, BlockPos pos) {
-        return canGrow(worldIn, pos, state, false);
-    }
-
-    public void grow(World worldIn, BlockPos pos, BlockState state, int age) {
-        int current = getAge(state);
-        int maxAge = getMaxAge();
-        if (current == maxAge) return;
-        BlockState newState = withAge(Math.min(maxAge, current + age));
-        worldIn.setBlockState(pos, newState, 2);
-    }
-
-    public IPlantType getType() {
-        if (plantType == null) {
-            return BLOCK_TYPE.get();
-        }
-        return plantType;
+    public void growCrops(Level world, BlockPos pos, BlockState state) {
+        super.growCrops(world, pos, state);
     }
 }
