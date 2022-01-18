@@ -6,8 +6,6 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.RegistryObject;
 
 public interface ITreeData extends IData {
-    String getName();
-
     MaterialColor getColor();
 
     boolean hasFruit();

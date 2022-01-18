@@ -7,8 +7,6 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Random;
 
 public interface IPlantData extends IData {
-    String getName();
-
     int getMaxHeight();
 
     PropertyPlantStage getProperty();

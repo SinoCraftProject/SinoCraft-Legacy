@@ -7,6 +7,11 @@ import net.minecraftforge.registries.RegistryManager;
 public class Tree extends ForgeRegistryEntry<Tree> {
     public static final IForgeRegistry<Tree> TREES = RegistryManager.ACTIVE.getRegistry(Tree.class);
 
+    protected TreeData treeData = null;
+
     public Tree(TreeData tree) {
+        treeData = tree;
     }
+
+
 }
