@@ -1,4 +1,4 @@
-package cx.rain.mc.forgemod.sinocraft.block.tree;
+package cx.rain.mc.forgemod.sinocraft.api.block.tree;
 
 import cx.rain.mc.forgemod.sinocraft.api.block.tree.ITreeData;
 import net.minecraft.world.level.ItemLike;
