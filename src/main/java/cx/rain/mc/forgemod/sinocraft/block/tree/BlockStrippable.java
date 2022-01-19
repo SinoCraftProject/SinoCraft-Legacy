@@ -1,8 +1,8 @@
 package cx.rain.mc.forgemod.sinocraft.block.tree;
 
-import cx.rain.mc.forgemod.sinocraft.api.block.tree.TreeData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -11,16 +11,24 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
+import java.util.HashMap;
 
+// Todo: qyl: Maybe there have some way to reuse this class? Not delete for now. 2022.1.19.
 public class BlockStrippable extends Block {
-    private final Supplier<Block> target;
+    static {
+        AxeItem.STRIPPABLES = new HashMap<>(AxeItem.STRIPPABLES);
+    }
 
-    public BlockStrippable(BlockBehaviour.Properties properties, Supplier<Block> targetIn) {
+    protected final RegistryObject<Block> target;
+
+    public BlockStrippable(BlockBehaviour.Properties properties, RegistryObject<Block> targetIn) {
         super(properties);
         target = targetIn;
+
+        AxeItem.STRIPPABLES.put(this, targetIn.get());
     }
 
     @Nullable
