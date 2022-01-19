@@ -1,7 +1,6 @@
 package cx.rain.mc.forgemod.sinocraft.block.tree;
 
 import cx.rain.mc.forgemod.sinocraft.SinoCraft;
-import cx.rain.mc.forgemod.sinocraft.api.block.tree.Tree;
 import cx.rain.mc.forgemod.sinocraft.api.block.tree.TreeData;
 import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraft.world.level.material.MaterialColor;

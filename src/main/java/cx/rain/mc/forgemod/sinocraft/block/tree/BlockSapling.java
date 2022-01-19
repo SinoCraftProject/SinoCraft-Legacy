@@ -1,6 +1,5 @@
 package cx.rain.mc.forgemod.sinocraft.block.tree;
 
-import cx.rain.mc.forgemod.sinocraft.api.block.tree.Tree;
 import cx.rain.mc.forgemod.sinocraft.api.block.tree.TreeData;
 import net.minecraft.block.Block;
 import net.minecraft.block.SaplingBlock;
