@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,42 +25,50 @@ public class BlockPlant extends CropBlock {
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
     };
 
-    protected IPlantData type = null;
+    protected IPlantData data = null;
+    protected StateDefinition<Block, BlockState> stateDefinition = null;
 
-    public BlockPlant(IPlantData typeIn) {
+    public BlockPlant(IPlantData dataIn) {
         super(BlockBehaviour.Properties.of(Material.PLANT));
 
-        type = typeIn;
+        data = dataIn;
+
+        // qyl: Replace StateContainer. 2022.1.20.
+        StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
+        addPropertyToStateDefinition(builder, getNewAgeProperty());
+//        addDefaultPropertyToStateDefinition(builder);
+        stateDefinition = builder.create(Block::defaultBlockState, BlockState::new);
+        registerDefaultState(stateDefinition.any().setValue(getNewAgeProperty(), 0));
     }
 
-    @Override
-    public IntegerProperty getAgeProperty() {
-        return type.getProperty();
+    public IntegerProperty getNewAgeProperty() {
+        return data.getProperty();
     }
 
     @Override
     public int getMaxAge() {
-        return type.getProperty().getMaxStage();
+        return data.getProperty().getMaxStage();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        var age = state.getValue(getAgeProperty());
+        var age = state.getValue(getNewAgeProperty());
         var stage = age / ((getMaxAge() + 1) / 4);
         return SHAPES[stage];
     }
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return type.getSeed().get();
+        return data.getSeed().get();
     }
 
     @Override
     public BlockState getStateForAge(int age) {
-        return this.defaultBlockState().setValue(this.getAgeProperty(), age);
+        return this.defaultBlockState().setValue(this.getNewAgeProperty(), age);
     }
 
     // qyl: Why I override this method? 2022/1/17.
+    // qyl: For replacing the default stateDefinition. 2022/1/20.
     @Override
     @NotNull
     public StateDefinition<Block, BlockState> getStateDefinition() {
@@ -68,16 +77,28 @@ public class BlockPlant extends CropBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(getAgeProperty());
+//        builder.add(getAgeProperty());
+        // qyl: Disable original age state, use new stage state instead. 2022.1.20.
+        super.createBlockStateDefinition(builder);
     }
+
+    // qyl: Codes below here are used to use our stage state. 2022.1.20.
+    protected void addPropertyToStateDefinition(StateDefinition.Builder<Block, BlockState> builder, Property<?> property) {
+        builder.add(property);
+    }
+
+    protected void addDefaultPropertyToStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+    }
+
 
     @Override
     protected int getBonemealAgeIncrease(Level world) {
-        return type.growWithBonus(world.random);
+        return data.growWithBonus(world.random);
     }
 
-    @Override
-    public void growCrops(Level world, BlockPos pos, BlockState state) {
-        super.growCrops(world, pos, state);
-    }
+//    @Override
+//    public void growCrops(Level world, BlockPos pos, BlockState state) {
+//        super.growCrops(world, pos, state);
+//    }
 }

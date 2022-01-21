@@ -16,17 +16,18 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistryEntry;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryManager;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = SinoCraft.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = SinoCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Tree extends ForgeRegistryEntry<Tree> {
-    public static final IForgeRegistry<Tree> TREES = RegistryManager.ACTIVE.getRegistry(Tree.class);
+    public static final IForgeRegistry<Tree> TREES = new RegistryBuilder<Tree>()
+            .setType(Tree.class)
+            .setName(new ResourceLocation(SinoCraft.MODID, "trees"))
+            .allowModification()
+            .create();
 
     public static final String SUFFIX_LOG = "_log";
     public static final String SUFFIX_LOG_STRIPPED = "_log_stripped";
@@ -49,6 +50,9 @@ public class Tree extends ForgeRegistryEntry<Tree> {
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event) {
         for (Map.Entry<ResourceKey<Tree>, Tree> tree : TREES.getEntries()) {
+            // Fixme: qyl: No entries found. 2022.1.21.
+            System.out.println(tree.getKey().getRegistryName());
+
             var data = tree.getValue().treeData;
 
             var blockLogStripped = log(data.getTopColor(), data.getSideColor())

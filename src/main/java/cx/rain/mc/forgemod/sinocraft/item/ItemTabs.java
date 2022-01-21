@@ -10,9 +10,9 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ItemTabs extends CreativeModeTab {
-    public static final CreativeModeTab BLOCKS = new ItemTabs("blocks", () -> ModBlocks.WHITE_MARBLE);
-    public static final CreativeModeTab AGRICULTURE = new ItemTabs("agriculture_and_foods", () -> ModItems.CHILI_PEPPER_SEED);
-    public static final CreativeModeTab MISC = new ItemTabs("tools_misc", () -> ModItems.KNIFE_IRON);
+    public static final CreativeModeTab BLOCKS = new ItemTabs("blocks", () -> ModBlocks.SUMMER_RADISH_PLANT);
+    public static final CreativeModeTab AGRICULTURE = new ItemTabs("agriculture_and_foods", () -> ModBlocks.SUMMER_RADISH_PLANT);
+    public static final CreativeModeTab MISC = new ItemTabs("tools_misc", () -> ModBlocks.SUMMER_RADISH_PLANT);
 
     private ItemStack icon = ItemStack.EMPTY;
     private final Supplier<RegistryObject<? extends ItemLike>> iconSupplier;

@@ -1,6 +1,9 @@
 package cx.rain.mc.forgemod.sinocraft;
 
+import cx.rain.mc.forgemod.sinocraft.block.ModBlockItems;
 import cx.rain.mc.forgemod.sinocraft.block.ModBlocks;
+import cx.rain.mc.forgemod.sinocraft.block.tree.ModTrees;
+import cx.rain.mc.forgemod.sinocraft.item.ModItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -27,9 +30,11 @@ public class SinoCraft {
         bus.addListener(this::setup);
 
         new ModBlocks(bus);
-//        new ModBlockItems(bus);
+        new ModBlockItems(bus);
 //        new ModEntities(bus);
-//        new ModItems(bus);
+        new ModItems(bus);
+
+        new ModTrees(bus);
 //        new ModTileEntities(bus);
 //        new ModFluids(bus);
 //        new ModContainers(bus);
