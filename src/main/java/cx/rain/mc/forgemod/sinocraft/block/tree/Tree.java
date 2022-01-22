@@ -4,7 +4,6 @@ import cx.rain.mc.forgemod.sinocraft.SinoCraft;
 import cx.rain.mc.forgemod.sinocraft.api.block.tree.TreeData;
 import cx.rain.mc.forgemod.sinocraft.item.ItemTabs;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
@@ -20,14 +19,17 @@ import net.minecraftforge.registries.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SinoCraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Tree extends ForgeRegistryEntry<Tree> {
-    public static final IForgeRegistry<Tree> TREES = new RegistryBuilder<Tree>()
-            .setType(Tree.class)
-            .setName(new ResourceLocation(SinoCraft.MODID, "trees"))
-            .allowModification()
-            .create();
+//    public static final IForgeRegistry<Tree> TREES = new RegistryBuilder<Tree>()
+//            .setType(Tree.class)
+//            .setName(new ResourceLocation(SinoCraft.MODID, "trees"))
+//            .allowModification()
+//            .create();
+
+    public static final Map<String, Supplier<Tree>> TREES = new HashMap<>();
 
     public static final String SUFFIX_LOG = "_log";
     public static final String SUFFIX_LOG_STRIPPED = "_log_stripped";
@@ -49,11 +51,11 @@ public class Tree extends ForgeRegistryEntry<Tree> {
 
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event) {
-        for (Map.Entry<ResourceKey<Tree>, Tree> tree : TREES.getEntries()) {
-            // Fixme: qyl: No entries found. 2022.1.21.
-            System.out.println(tree.getKey().getRegistryName());
+        for (Map.Entry<String, Supplier<Tree>> tree : TREES.entrySet()) {
+            var data = tree.getValue().get().treeData;
 
-            var data = tree.getValue().treeData;
+            var registry = DeferredRegister.create(ForgeRegistries.BLOCKS, SinoCraft.MODID);
+            // Todo: qyl: Replace it by our own Registry Manager. 2022.1.22.
 
             var blockLogStripped = log(data.getTopColor(), data.getSideColor())
                     .setRegistryName(new ResourceLocation(SinoCraft.MODID, data.getName() + SUFFIX_LOG_STRIPPED));
@@ -108,8 +110,8 @@ public class Tree extends ForgeRegistryEntry<Tree> {
     public static void onRegisterItem(RegistryEvent.Register<Item> event) {
         // Todo: qyl: Waiting for test. 2022.1.19.
 
-        for (Map.Entry<ResourceKey<Tree>, Tree> tree : TREES.getEntries()) {
-            var data = tree.getValue().treeData;
+        for (Map.Entry<String, Supplier<Tree>> tree : TREES.entrySet()) {
+            var data = tree.getValue().get().treeData;
 
             var itemLog = blockItem(new ResourceLocation(SinoCraft.MODID, data.getName() + SUFFIX_LOG));
             var itemLogStripped = blockItem(new ResourceLocation(SinoCraft.MODID, data.getName() + SUFFIX_LOG_STRIPPED));
